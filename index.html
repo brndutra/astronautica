@@ -4945,6 +4945,21 @@ dialog.ave-dlg::before{content:'';display:block;height:12px;margin:6px 8px 0;bac
 @media(max-width:1500px){#modo-op.op-grego .op-cabt b{font-size:13.5px;letter-spacing:.04em}#modo-op.op-grego .op-cabt small{font-size:7px;letter-spacing:.14em}
  #modo-op.op-grego .op-templo .op-med{width:26px;height:26px}#modo-op.op-grego .op-templo .op-med svg{width:15px;height:15px}
  #modo-op.op-grego .op-templo .op-cab{gap:6px;padding:5px 6px!important}#modo-op.op-grego .op-cd{padding:2px 5px}#modo-op.op-grego .op-cd b{font-size:15px}}
+/* Clepsidra: água do dia, gota, marcas de hora, flechas de foco e próximo compromisso */
+#modo-op .op-agua{position:absolute;left:26px;right:16px;bottom:0;z-index:1;pointer-events:none;border-radius:0 0 6px 6px;
+ background:linear-gradient(180deg,rgba(74,127,168,.16),rgba(74,127,168,.32));mix-blend-mode:multiply;transition:top 1s linear}
+#modo-op .op-agua::before{content:'';position:absolute;left:0;right:0;top:-6px;height:7px;opacity:.55;
+ background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='7'%3E%3Cpath d='M0 4Q10 0 20 4T40 4V7H0z' fill='%234a7fa8'/%3E%3C/svg%3E") repeat-x 0 0/40px 7px;animation:clepOnda 5s linear infinite}
+@keyframes clepOnda{to{background-position:40px 0}}
+#modo-op .op-gota{position:absolute;left:50%;top:-22px;width:6px;height:8px;margin-left:-3px;border-radius:50% 50% 50% 50%/62% 62% 38% 38%;background:#4a7fa8;opacity:0;animation:clepGota 3s ease-in infinite}
+@keyframes clepGota{0%{transform:translateY(0) scale(.6);opacity:0}25%{opacity:.85}80%{transform:translateY(16px) scale(1);opacity:.85}100%{transform:translateY(20px) scale(1.4,.3);opacity:0}}
+#modo-op .op-tk{position:absolute;left:14px;width:6px;height:1px;background:#c9b28a}
+#modo-op .op-vfoco{position:absolute;left:21px;width:4px;z-index:2;border-radius:2px;background:linear-gradient(180deg,#f2c14e,#e8a33c);box-shadow:0 0 0 1px #f6ecd4;pointer-events:auto}
+#modo-op .op-vprox{flex:none;display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 6px;margin-top:6px;padding:5px 8px;border:1px solid #c9b28a;border-radius:6px;background:#fbf5e6}
+#modo-op .op-vprox small{width:100%;font:700 8px var(--mono,monospace);letter-spacing:.18em;text-transform:uppercase;color:#9a6b3a}
+#modo-op .op-vprox b{font:700 12px var(--mono,monospace);color:#5a3f2c}
+#modo-op .op-vprox span{flex:1;min-width:0;font:12.5px Georgia,serif;color:#2a2418;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#modo-op .op-vprox em{font:italic 11px Georgia,serif;color:#b4463a}
 </style>
 <link rel="stylesheet" href="pontes.css">
 <script src="pontes.js" defer></script>
@@ -15819,6 +15834,26 @@ tdFocoFim=(function(f0){return function(reg){var f=tdD().foco,conta=reg&&f&&!f.p
 setInterval(function(){try{op2Proc();op2MedAlarme();op2SaidaAlarme();op2Lotus();}catch(e){console.error('posto:',e);}},30000);
 setInterval(function(){try{op2CompPinta();}catch(e){}},1000);
 setTimeout(function(){try{opx();op2Proc();op2MedAlarme();}catch(e){}},2500);
+
+/* ======================= Clepsidra: o dia escoando =======================
+   A água ocupa o que ainda resta do dia (do agora até as 24h) e baixa conforme as horas passam;
+   uma gota cai no ponteiro do agora; marcas a cada hora; os blocos de foco de hoje aparecem como
+   flechas douradas na lateral; embaixo, o próximo compromisso e quanto falta. */
+function clepFocos(){var hj=hoje(),L=[];try{(vxData().sessions||[]).forEach(function(x){if(x.day!==hj)return;var m=/(\d{13})/.exec(String(x.id||''));if(!m)return;var fim=new Date(+m[1]),f=fim.getHours()*60+fim.getMinutes(),ini=f-Math.max(1,+x.minutes||0);L.push({i:ini,f:f,t:(x.result||'foco')+' · '+Math.round(+x.minutes||0)+' min'});});}catch(e){}return L;}
+function clepProx(){var a=opMin(),L=[];try{rtD().toques.forEach(function(t){if(t.on&&rtMin(t.h)>a)L.push({m:rtMin(t.h),h:t.h,t:t.n});});}catch(e){}
+ try{agDoDia(hoje()).forEach(function(x){if(x.dia)return;var m=x.ini.getHours()*60+x.ini.getMinutes();if(m>a)L.push({m:m,h:agHora(x),t:x.t});});}catch(e){}
+ try{rtGradeHoje().forEach(function(x){if(x.m>a)L.push({m:x.m,h:x.h,t:x.t});});}catch(e){}
+ L.sort(function(p,q){return p.m-q.m;});return L[0]||null;}
+opLinhaHTML=(function(f0){return function(){var h=f0.apply(this,arguments),a=opMin(),ini=360,fim=1440,pct=function(m){return Math.max(0,Math.min(100,(m-ini)/(fim-ini)*100));};
+ var p=pct(a),pas=Math.round(p);
+ var tk='';for(var hh=7;hh<24;hh++){if(hh%3===0)continue;tk+='<span class="op-tk" style="top:'+pct(hh*60)+'%"></span>';}
+ var fo=clepFocos().map(function(x){var t=pct(x.i),b=pct(x.f);return '<i class="op-vfoco" style="top:'+t+'%;height:'+Math.max(.8,b-t)+'%" title="'+esc(x.t)+'"></i>';}).join('');
+ var agua=a<fim?'<div class="op-agua" style="top:'+p+'%"><i class="op-gota"></i></div>':'';
+ h=h.replace('<div class="op-vhs">','<div class="op-vhs">'+tk).replace('<div class="op-vagora"',agua+fo+'<div class="op-vagora"');
+ h=h.replace('<small>linha do dia</small>','<small>o dia escoando · '+pas+'% passou</small>');
+ var px=clepProx(),rest=px?px.m-a:0;
+ h+='<div class="op-vprox">'+(px?'<small>próximo</small><b>'+esc(px.h)+'</b><span>'+esc(px.t)+'</span><em>em '+(rest>=60?Math.floor(rest/60)+'h'+String(rest%60).padStart(2,'0'):rest+' min')+'</em>':'<small>próximo</small><span>nada mais marcado hoje</span>')+'</div>';
+ return h;};})(opLinhaHTML);
 
 })();
 </script>
