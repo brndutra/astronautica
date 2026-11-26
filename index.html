@@ -2379,34 +2379,54 @@ body.claro[data-skin="astro"] .cp-dracmas i.mosaico::after,.cp-dracmas i::after{
 #lat-ac .ac-row{grid-template-columns:1fr!important;margin:0!important;gap:10px}
 
 #lat-quadro:empty,#lat-vx:empty{display:none}
+.rt-novo{display:flex;gap:8px;margin:10px 0}
+.rt-novo input{flex:1;min-width:0;font-size:13px;padding:7px 10px;border:1px solid #5a3f2c;border-radius:6px;background:#fbf5e6;color:#3b2a1d;margin:0}
+.rt-novo button{width:auto!important;margin:0!important;padding:7px 14px!important;border:1px solid #5a3f2c!important;background:#5a3f2c!important;color:#f4ead2!important;border-radius:6px;font-family:Georgia,serif;letter-spacing:.08em;cursor:pointer}
+
+/* registros numa linha só */
+.cp-reg .cr-bar{flex-wrap:nowrap!important;gap:5px!important}
+.cp-reg .cr-p{flex:1 1 auto;min-width:max-content!important;padding:0 6px 0 4px!important;gap:5px!important}
+.cp-reg .cr-ico{width:22px!important;height:22px!important}
+.cp-reg .cr-ico svg{width:13px!important;height:13px!important}
+.cp-reg .cr-lb{min-width:max-content}
+.cp-reg .cr-lb small{display:none!important}
+.cp-reg .cr-lb b{margin:0!important;font-size:12.5px!important}
+.cp-reg .cr-sep{margin:4px 2px!important}
+.cp-reg .cr-dt{flex:none}
+.cp-reg .cr-dt b{font-size:10px!important;white-space:nowrap}
+.cp-reg .cr-dt small{font-size:7.5px!important;white-space:nowrap}
+.cp-reg .cr-concha{flex:none;margin-left:2px!important}
+.cp-reg .cr-concha small{display:none!important}
+@media(max-width:900px){.cp-reg .cr-bar{overflow-x:auto;padding-bottom:4px}.cp-reg .cr-p{flex:0 0 auto;min-width:76px!important}}
+
 /* ===== neoclássico: colunas gravadas, papel creme, tinta preta ===== */
-.neo-moldura{position:relative;padding:52px 50px 30px!important;border:1.5px solid #1d1a16!important;border-radius:3px!important;color:#1d1a16;
+.neo-moldura{position:relative;padding:52px 50px 30px!important;border:1.5px solid #5a3f2c!important;border-radius:3px!important;color:#5a3f2c;
  background:var(--neo-ent) left top/240px 40px repeat-x,
   var(--neo-cap) left 4px top 42px/42px 29px no-repeat,var(--neo-cap) right 4px top 42px/42px 29px no-repeat,
   var(--neo-fuste) left 4px top 70px/42px calc(100% - 70px - 20px) no-repeat,var(--neo-fuste) right 4px top 70px/42px calc(100% - 70px - 20px) no-repeat,
   var(--neo-base) left 4px bottom 4px/42px 15px no-repeat,var(--neo-base) right 4px bottom 4px/42px 15px no-repeat,
-  var(--neo-papel),#f3ecdc!important}
+  var(--neo-papel),#f4ead2!important}
 .neo-moldura .tbgrid{filter:saturate(.55) sepia(.12)}
-.neo-moldura .tbcab .k9,.neo-moldura .k9{color:#1d1a16!important;font-family:Georgia,serif!important;letter-spacing:.3em!important}
-.neo-moldura .tbcab button,.neo-moldura .cab button{border-color:#1d1a16!important;color:#1d1a16!important;background:#f3ecdc!important}
-h2.sec.neo-tit{justify-content:center;text-align:center;gap:14px;margin:26px 0 0!important;padding:10px 0 8px!important;border-top:3px double #1d1a16!important;border-bottom:0!important;
- font-family:Georgia,serif!important;letter-spacing:.32em;text-transform:uppercase;color:#1d1a16!important}
-h2.sec.neo-tit>span{letter-spacing:.14em;color:#6b6356!important;margin-left:0!important}
+.neo-moldura .tbcab .k9,.neo-moldura .k9{color:#5a3f2c!important;font-family:Georgia,serif!important;letter-spacing:.3em!important}
+.neo-moldura .tbcab button,.neo-moldura .cab button{border-color:#5a3f2c!important;color:#5a3f2c!important;background:#f4ead2!important}
+h2.sec.neo-tit{justify-content:center;text-align:center;gap:14px;margin:26px 0 0!important;padding:10px 0 8px!important;border-top:3px double #5a3f2c!important;border-bottom:0!important;
+ font-family:Georgia,serif!important;letter-spacing:.32em;text-transform:uppercase;color:#5a3f2c!important}
+h2.sec.neo-tit>span{letter-spacing:.14em;color:#8a6f55!important;margin-left:0!important}
 h2.sec.neo-tit::before{display:none!important}
 h2.sec.neo-tit+.neo-moldura{margin-top:6px}
 .neo-frontao{height:88px;margin:0 14px -12px;position:relative;z-index:1}
 .neo-frontao svg{display:block;width:100%;height:78px}
-.neo-arquitrave{height:10px;margin:0 -12px;border:1.5px solid #1d1a16;border-bottom:0;background:#f3ecdc}
+.neo-arquitrave{height:10px;margin:0 -12px;border:1.5px solid #5a3f2c;border-bottom:0;background:#f4ead2}
 body.bn-mini .neo-frontao{display:none}
-.pt{margin:0!important;border:1.5px solid #1d1a16;border-radius:3px;overflow:hidden;background:#f3ecdc}
+.pt{margin:0!important;border:1.5px solid #5a3f2c;border-radius:3px;overflow:hidden;background:#f4ead2}
 .pt-svg{display:block;width:100%;height:auto}
-.pt-tit{font-family:Georgia,serif;font-size:15px;letter-spacing:6px;fill:#1d1a16}
-.pt-fase{font-family:Georgia,serif;font-size:10px;letter-spacing:2.5px;fill:#1d1a16}
-.pt-m{font-family:Georgia,serif;font-style:italic;font-size:11px;fill:#3b342a}
-.pt-ck{font-family:Georgia,serif;font-size:8.5px;letter-spacing:1.6px;fill:#f3ecdc}
-.pt-cn{font-family:Georgia,serif;font-size:36px;font-weight:700;fill:#f3ecdc}
-.pt-cn2{font-family:Georgia,serif;font-size:22px;font-weight:700;fill:#f3ecdc}
-.pt-leg{margin:0;padding:7px 12px 9px;border-top:1px solid #1d1a16;font-size:11.5px;line-height:1.4;color:#3b342a;font-style:italic;font-family:Georgia,serif}
+.pt-tit{font-family:Georgia,serif;font-size:15px;letter-spacing:6px;fill:#5a3f2c}
+.pt-fase{font-family:Georgia,serif;font-size:10px;letter-spacing:2.5px;fill:#5a3f2c}
+.pt-m{font-family:Georgia,serif;font-style:italic;font-size:11px;fill:#6b5140}
+.pt-ck{font-family:Georgia,serif;font-size:8.5px;letter-spacing:1.6px;fill:#f4ead2}
+.pt-cn{font-family:Georgia,serif;font-size:36px;font-weight:700;fill:#f4ead2}
+.pt-cn2{font-family:Georgia,serif;font-size:22px;font-weight:700;fill:#f4ead2}
+.pt-leg{margin:0;padding:7px 12px 9px;border-top:1px solid #5a3f2c;font-size:11.5px;line-height:1.4;color:#6b5140;font-style:italic;font-family:Georgia,serif}
 
 .ar-postal img.ar-svg{object-fit:cover}
 #rt-box.com-foto{background:linear-gradient(180deg,rgba(251,247,236,.25),var(--panel) 190px),var(--foto) top center/100% auto no-repeat,var(--panel)}
@@ -10536,7 +10556,7 @@ function pintaRastro(){
  if(!RTM) RTM=hoje().slice(0,7);
  var Y=+RTM.slice(0,4), M=+RTM.slice(5,7), dias=new Date(Y,M,0).getDate();
  el("rt-mes").textContent=MESES[M-1]+" "+Y;
- if(!S.hab.length){ el("rt-w").innerHTML='<div class="vzr">nenhum h\u00e1bito registrado \u2014 inclua acima</div>'; el("rt-kpi").innerHTML=""; return; }
+ if(!S.hab.length){ el("rt-w").innerHTML='<div class="vzr">nenhum h\u00e1bito ainda \u2014 crie o primeiro no campo acima e marque os dias na grade</div>'; el("rt-kpi").innerHTML=""; return; }
  var i,d,h='<table class="rtg"><thead><tr><th class="h">H\u00e1bito</th>';
  for(d=1;d<=dias;d++){ var dw=new Date(Y,M-1,d).getDay();
   h+='<th class="d'+((dw===0||dw===6)?" fds":"")+'">'+d+'</th>'; }
@@ -13674,7 +13694,7 @@ document.addEventListener('click',function(e){if(!e.target.closest('[data-ar-pro
 
 /* ---------- Estilo neoclássico: colunas jônicas gravadas, papel creme e tinta preta ----------
    Usado no Pórtico da Profecia (linha do tempo da prova), na Grade semanal, no rastreador de hábitos e no frontão do banner. */
-var NEO_TINTA='#1d1a16',NEO_PAPEL='#f3ecdc';
+var NEO_TINTA='#5a3f2c',NEO_PAPEL='#f4ead2';
 function neoCapitel(x,y,w){var r=w*.17,s='<g fill="none" stroke="'+NEO_TINTA+'" stroke-width="1.3">';
  s+='<rect x="'+(x-w*.62)+'" y="'+y+'" width="'+(w*1.24)+'" height="'+(w*.1)+'" fill="'+NEO_PAPEL+'"/>';
  s+='<path d="M'+(x-w*.5)+' '+(y+w*.1)+' H'+(x+w*.5)+'"/><path d="M'+(x-w*.46)+' '+(y+w*.1)+' q'+(w*.46)+' '+(w*.16)+' '+(w*.92)+' 0" />';
@@ -13740,7 +13760,12 @@ function neoFrontao(){var hb=document.getElementById('hero-box');if(!hb||hb.quer
   '<text x="330" y="96" text-anchor="middle" font-family="Georgia,serif" font-size="17" letter-spacing="6" fill="'+NEO_TINTA+'">ASTRONÁUTICA</text><text x="670" y="96" text-anchor="middle" font-family="Georgia,serif" font-size="17" letter-spacing="6" fill="'+NEO_TINTA+'">CHALÉ VII</text></svg>'+
   '<div class="neo-arquitrave"></div>';
  var sl=hb.querySelector('.bn-slot');hb.insertBefore(d,sl||hb.firstChild);}
-function neoAplica(){neoImgs();['.wrap > div.tb','.wrap > div.rt'].forEach(function(q){var n=document.querySelector(q);if(n)n.classList.add('neo-moldura');});
+function rtNovoHab(){var rt=document.querySelector('.wrap > div.rt');if(!rt||rt.querySelector('.rt-novo'))return;var cab=rt.querySelector('.cab');
+ var f=document.createElement('div');f.className='rt-novo';f.innerHTML='<input placeholder="novo hábito diário (ex.: 20 min de leitura, academia, sem tela às 22h)" maxlength="34"><button type="button">incluir hábito</button>';
+ (cab&&cab.nextSibling)?rt.insertBefore(f,cab.nextSibling):rt.appendChild(f);
+ var go=function(){var inp=f.querySelector('input'),v=inp.value.trim();if(!v)return;var hi=document.getElementById('hb-in'),hb=document.getElementById('b-hab');if(!hi||!hb)return;hi.value=v;hb.click();inp.value='';try{pinta();}catch(e){}};
+ f.querySelector('button').onclick=go;f.querySelector('input').onkeydown=function(e){if(e.key==='Enter'){e.preventDefault();go();}};}
+function neoAplica(){neoImgs();try{rtNovoHab();}catch(e){}['.wrap > div.tb','.wrap > div.rt'].forEach(function(q){var n=document.querySelector(q);if(n)n.classList.add('neo-moldura');});
  ['h-sem','h-rast'].forEach(function(id){var h=document.getElementById(id);if(h)h.classList.add('neo-tit');});try{neoFrontao();}catch(e){}try{ptPinta();}catch(e){}}
 /* a Grade semanal é o painel principal: logo abaixo do índice */
 function latGradeTopo(){var wr=document.querySelector('.wrap'),h=document.getElementById('h-sem'),ix=document.getElementById('tt-indice');if(!wr||!h)return;
@@ -13800,14 +13825,14 @@ function crCtl(k){var hj=hoje(),i,h='';
  if(k==='med')return '<p>Doses de hoje</p><div class="cr-row">'+latMedHTML()+'</div>';
  if(k==='hab')return '<p>Hábitos de hoje</p><div class="cr-row">'+((S.hab||[]).map(function(x,j){var f=(x.hist||[]).indexOf(hj)>=0;return '<button type="button" class="cr-t'+(f?' on':'')+'" data-cr-hb="'+j+'"'+(f?' disabled':'')+'>'+esc(x.nome)+'</button>';}).join('')||'<small>nenhum hábito ainda</small>')+'</div>';
  return '';}
-function crData(){var d=new Date(),dias=['domingo','segunda-feira','terça-feira','quarta-feira','quinta-feira','sexta-feira','sábado'],ms=['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
+function crData(){var d=new Date(),dias=['dom','seg','ter','qua','qui','sex','sáb'],ms=['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
  var seg=new Date(d);seg.setDate(d.getDate()-((d.getDay()+6)%7));var dom=new Date(seg);dom.setDate(seg.getDate()+6);
  var t=new Date(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate()));var dn=t.getUTCDay()||7;t.setUTCDate(t.getUTCDate()+4-dn);var y0=new Date(Date.UTC(t.getUTCFullYear(),0,1));var sem=Math.ceil(((t-y0)/864e5+1)/7);
- return '<div class="cr-dt"><b>'+dias[d.getDay()]+', '+d.getDate()+' '+ms[d.getMonth()]+'</b><small>semana '+sem+' · '+seg.getDate()+' '+ms[seg.getMonth()]+' – '+dom.getDate()+' '+ms[dom.getMonth()]+'</small></div>';}
+ return '<div class="cr-dt"><b>'+dias[d.getDay()]+', '+d.getDate()+' '+ms[d.getMonth()]+'</b><small>semana '+sem+'</small></div>';}
 function latRegHTML(){var ab=latRegHTML.aberto||'';
  var bar=CR_K.map(function(k){return '<button type="button" class="cr-p cr-'+k[0]+(ab===k[0]?' on':'')+'" data-cr-pop="'+k[0]+'" title="'+k[1]+'" aria-expanded="'+(ab===k[0])+'"><span class="cr-ico">'+CR_IC[k[0]]+'</span><span class="cr-lb"><small>'+k[1]+'</small><b>'+esc(crVal(k[0]))+'</b></span></button>';}).join('');
  var pt=null;try{pt=rtProx();}catch(e){}
- return '<div class="cr-bar"><span class="cr-k2">Registro do dia</span>'+bar+'<span class="cr-sep"></span>'+crData()+(pt?'<span class="cr-concha" title="próximo Toque da Concha">'+RT_IC.concha+'<span><small>concha</small><b>'+esc(pt.h)+'</b></span></span>':'')+'</div>'+
+ return '<div class="cr-bar">'+bar+'<span class="cr-sep"></span>'+crData()+(pt?'<span class="cr-concha" title="próximo Toque da Concha">'+RT_IC.concha+'<span><small>concha</small><b>'+esc(pt.h)+'</b></span></span>':'')+'</div>'+
   (ab?'<div class="cr-pop" data-k="'+ab+'"><header><b>'+CR_K.filter(function(x){return x[0]===ab;})[0][1]+'</b><button type="button" class="cr-px" data-cr-pop="'+ab+'" aria-label="fechar">×</button></header>'+crCtl(ab)+'</div>':'');}
 /* gastos e medicação vêm do Cofre (Loja): mesmo armazenamento do AxisHub */
 function latAx(){try{return JSON.parse(localStorage.getItem('sfp_bruno_v4')||'null');}catch(e){return null;}}
