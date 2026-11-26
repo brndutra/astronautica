@@ -13741,7 +13741,7 @@ function latPosiciona(){var m=latMonta(),larga=LAT_LARGA.matches,nav=document.ge
  var fx=document.getElementById('lat-faixa');
  if(!fx){fx=document.createElement('div');fx.id='lat-faixa';fx.className='lat-faixa';fx.dataset.area='op';}
  fx.dataset.vxHidden='false';
- var tb=document.getElementById('tm-painel')||document.getElementById('rt-box')||document.querySelector('.wrap > div.rt')||document.getElementById('ws-box')||document.querySelector('.wrap > .tb');if(tb&&fx.previousElementSibling!==tb)wr.insertBefore(fx,tb.nextSibling);
+ var tb=document.getElementById('tm-painel')||document.getElementById('rt-box')||document.querySelector('.wrap > div.rt')||document.getElementById('ws-box')||document.querySelector('.wrap > .tb');if(tb&&tb.parentNode===wr&&fx.previousElementSibling!==tb)wr.insertBefore(fx,tb.nextSibling);
  var ri=document.getElementById('rail-in'),q=m.e.querySelector('#lat-quadro'),est=m.d.querySelector('#lat-est'),nos=latEstNos(),ph=document.getElementById('lat-est-ph');
  latSorteio();
  var enf=m.e.querySelector('#lat-enf'),enos=latEnfNos(),eph=document.getElementById('lat-enf-ph');
@@ -16344,6 +16344,47 @@ function cvAjustaCab(){var c=document.getElementById('lat-cv');if(!c)return;var 
  '@media(max-width:800px){#lat-cv.cv-rc .cv-cap{flex-wrap:wrap}#lat-cv.cv-rc .cv-cap input{flex-basis:100%}}'
 ].join('\n');document.head.appendChild(st);})();
 setTimeout(function(){try{cvCard();}catch(e){}},1600);
+
+
+/* ======================= Templo das Tarefas com o teor inteiro · sem selos numerados =======================
+   A coluna direita mostrava um resumo próprio. Agora as seções de verdade, Tarefas e Missões (#tm-painel)
+   e Recreações (#recreio), mudam para dentro do templo e saem da coluna do meio; as faces só trocam qual aparece.
+   O templo reescreve o próprio HTML: as seções saem antes de cada redesenho e voltam logo depois, para não se perderem.
+   O selo [01] [02] [03] dos títulos (contador CSS de h2.sec) sai: a ordem antiga dos painéis já não existe. */
+var TP_REAL=null;
+function tpRealBox(){if(!TP_REAL){TP_REAL=document.getElementById('tp-real');if(!TP_REAL){TP_REAL=document.createElement('div');TP_REAL.id='tp-real';TP_REAL.className='tp-real';}}return TP_REAL;}
+function tpReal(){var p=document.getElementById('tp-painel');if(!p)return;var fr=p.querySelector('.tp-fr');if(!fr)return;var box=tpRealBox();
+ if(box.parentNode!==fr)fr.appendChild(box);
+ var tm=document.getElementById('tm-painel'),rc=document.getElementById('recreio');
+ if(tm&&tm.parentNode!==box)box.insertBefore(tm,box.firstChild);
+ if(rc&&rc.parentNode!==box){if(tm&&tm.parentNode===box)tm.insertAdjacentElement('afterend',rc);else box.appendChild(rc);}
+ box.dataset.face=p4Face();}
+(function(){var p0=p4Painel;p4Painel=function(){var box=tpRealBox();if(box.parentNode)box.parentNode.removeChild(box);
+ var r;try{r=p0.apply(this,arguments);}finally{try{tpReal();}catch(e){}}return r;};})();
+p4TmHTML=function(){return '';};
+(function(){var r0=p4RecHTML;p4RecHTML=function(){var h=r0.apply(this,arguments),i=h.indexOf('<section class="tp-sec"><header><span class="tp-k">menu de recarga');return i>=0?h.slice(0,i):h;};})();
+(function(){var r0=reorgRecreio;reorgRecreio=function(){var x=r0.apply(this,arguments);try{tpReal();}catch(e){}return x;};})();
+(function(){var r0=vxRender;vxRender=function(){var x=r0.apply(this,arguments);try{tpReal();}catch(e){}return x;};})();
+setTimeout(function(){try{var p=document.getElementById('tp-painel');if(p)p._h='';p4Painel();}catch(e){}},1000);
+setTimeout(function(){try{tpReal();}catch(e){}},3200);
+(function(){var st=document.createElement('style');st.id='tp-real-css';st.textContent=[
+ 'h2.sec::before{content:none!important;display:none!important}',
+ '#tp-painel .tp-corpo:empty{display:none}',
+ '#tp-real{display:block;margin-top:12px}',
+ '#tp-real[data-face="tm"]>#recreio,#tp-real[data-face="rec"]>#tm-painel{display:none!important}',
+ '#tp-real[data-face="tm"]>#tm-painel,#tp-real[data-face="rec"]>#recreio{display:block!important}',
+ /* a moldura grega já é a do templo: a da seção sai */
+ '#tp-real>:is(#tm-painel,#recreio){margin:0!important;padding:0!important;border:0!important;background:none!important;box-shadow:none!important;min-height:0!important;width:auto!important;max-width:none!important}',
+ '#tp-real>:is(#tm-painel,#recreio)::before,#tp-real>:is(#tm-painel,#recreio)::after{content:none!important;display:none!important}',
+ '#tp-real>:is(#tm-painel,#recreio)>.col-orn,#tp-real>:is(#tm-painel,#recreio)>.tm-cab{display:none!important}',
+ '#tp-real :is(.tm-r,.rc-g){display:flex!important;flex-direction:column!important;gap:12px!important;grid-template-columns:1fr!important}',
+ '#tp-real .tm-lb{margin:14px 0 8px!important}',
+ '#tp-real .rc-g>*{width:100%!important;max-width:100%!important;min-width:0!important;box-sizing:border-box}',
+ '#tp-real .rc-g .lat-c{width:100%!important;max-width:100%!important;min-width:0!important;box-sizing:border-box}',
+ '#tp-real .mm-h{display:flex!important;flex-direction:column!important;align-items:flex-start!important;gap:6px!important;grid-template-columns:1fr!important}',
+ '#tp-real .mm-h>*{max-width:none!important;width:auto!important}',
+ '#tp-real .mm-g{display:flex!important;flex-direction:column!important;gap:12px!important;grid-template-columns:1fr!important}'
+].join('\n');document.head.appendChild(st);})();
 
 })();
 </script>
