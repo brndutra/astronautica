@@ -17487,7 +17487,7 @@ setTimeout(function(){try{placasTons();}catch(e){}},1200);setTimeout(function(){
 /* ======================= Pílula dos painéis (Bolsa, Bunker 9, Laptop, Enfermaria, Sully) desce para o frontão =======================
    Sai da barra do alto e vira a placa do frontão, assentada na cornija sob o medalhão, como as placas dos outros templos.
    A barra do alto some; o botão de ferramentas segue no canto. */
-function pilulaNoFrontao(){var f=document.querySelector('#hero-box .neo-frontao.nf2'),p=document.querySelector('.pd-pilula');if(!f||!p)return;if(p.parentNode!==f){f.appendChild(p);}document.body.classList.add('pil-frontao');}
+function pilulaNoFrontao(){var f=document.querySelector('#hero-box .neo-frontao.nf2'),p=document.querySelector('.pd-pilula');if(!f||!p)return;var pdo=document.querySelector('#painel-dir.pd.on');if(pdo){var tp=pdo.querySelector('.pd-top');if(tp&&p.parentNode!==tp){tp.insertBefore(p,tp.firstChild);}document.body.classList.add('pil-frontao');return;}if(p.parentNode!==f){f.appendChild(p);}document.body.classList.add('pil-frontao');}
 setInterval(function(){try{pilulaNoFrontao();}catch(e){}},1200);setTimeout(function(){try{pilulaNoFrontao();}catch(e){}},900);
 (function(){var st=document.createElement('style');st.id='pil-frontao-css';st.textContent=[
  'body.pil-frontao:not(.op-on) #tt-indice{display:none!important}',
@@ -17607,7 +17607,7 @@ function pdTopo(){var pd=document.getElementById('painel-dir'),f=document.queryS
 
 
 /* a placa do frontão abre os painéis (os atalhos antigos só ouviam a barra do alto) */
-document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('#hero-box .pd-pilula button');if(!b)return;
+document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('#hero-box .pd-pilula button,#painel-dir .pd-pilula button');if(!b)return;if(b.closest('#painel-dir')&&/sully|s[áa]tiro|einherji/i.test(b.title||'')){return;}
  var k=b.dataset.tt==='fin'?'fin':b.dataset.ic==='laptop'?'lap':b.dataset.ic==='enf'?'enf':null;if(!k)return;e.preventDefault();e.stopImmediatePropagation();
  try{var pd=document.getElementById('painel-dir');if(pd&&pd.classList.contains('on')&&pd.querySelector('[data-pd="'+k+'"][aria-selected="true"]'))pdFecha();else pdAbre(k);}catch(z){}},true);
 
@@ -17939,6 +17939,51 @@ if(TV_ON){(function(){var F=function(n){return 'url("img/acampamento/vh-fotos/'+
  'body.tv :is(#mm-box .mm-quest,#mm-box .mm-orac-col,#mm-box .mm-prof,#lat-e>#lat-gm>.gm,#lat-arena,#lat-apt)::before{background-size:cover!important;filter:saturate(.85)!important}',
  'body.tv #mm-box .mm-quest::before{background-position:center 42%!important}body.tv #mm-box .mm-orac-col::before{background-position:center 55%!important}body.tv #mm-box .mm-prof::before{background-position:center 32%!important}',
  'body.tv #lat-e>#lat-gm>.gm::before{background-position:center 45%!important}body.tv #lat-arena::before{background-position:58% 40%!important}body.tv #lat-apt::before{background-position:center 30%!important}'
+].join('\n');document.head.appendChild(st);})();}
+
+
+/* ======================= Painéis abertos: ocupam todo o centro, do painel esquerdo ao direito, do topo ao rodapé;
+   a pílula de ícones sobe para o cabeçalho do painel (volta ao frontão ao fechar) ======================= */
+(function(){var liga=function(){var pd=document.getElementById('painel-dir');if(!pd)return false;
+  new MutationObserver(function(){try{pilulaNoFrontao();}catch(e){}}).observe(pd,{attributes:true,attributeFilter:['class']});return true;};
+ var n=0,t=setInterval(function(){if(liga()||++n>20)clearInterval(t);},800);})();
+(function(){var st=document.createElement('style');st.id='pd-cheio-css';st.textContent=[
+ '@media(min-width:1380px){',
+ ' #painel-dir.pd.on .pd-corpo{top:0!important;bottom:71px!important;border-radius:0!important;padding-top:58px!important}',
+ ' #painel-dir.pd.on .pd-top{position:absolute!important;top:0!important;left:0!important;right:0!important;height:52px!important;display:flex!important;align-items:center;justify-content:center;gap:10px;padding:0 14px!important;',
+ '  background:var(--neo-papel,none),#f4ead2!important;border-bottom:1.5px solid #5a3f2c!important;box-shadow:0 4px 10px -6px rgba(40,25,10,.35)!important;z-index:8}',
+ ' #painel-dir.pd.on .pd-top>.pd-pilula{position:static!important;transform:none!important;margin:0!important}',
+ ' #painel-dir.pd.on .pd-top>.pd-pilula>button{position:relative;display:flex!important;justify-content:center;align-items:center;width:46px!important;height:34px!important;margin:0!important;padding:0!important;border:0!important;border-left:1px solid #d9c08a!important;background:transparent!important;border-radius:0!important}',
+ ' #painel-dir.pd.on .pd-top>.pd-pilula>button:first-child{border-left:0!important}',
+ ' #painel-dir.pd.on .pd-top>.pd-pilula>button svg{width:18px!important;height:18px!important;fill:none!important;stroke:currentColor!important}',
+ ' #painel-dir.pd.on .pd-top>.pd-pilula{display:flex!important;height:34px;border:1.5px solid #8a6420!important;border-radius:999px!important;overflow:hidden;background:#fbf5e6!important;color:#7a5616}',
+ ' #painel-dir.pd.on .pd-top .pd-x{position:absolute!important;right:14px;top:50%;transform:translateY(-50%)}',
+ ' #painel-dir.pd.on .pd-top>.pd-pilula>button.pil-at,#painel-dir.pd.on .pd-top>.pd-pilula>button[aria-pressed="true"]{background:#5a3f2c!important;color:#fbf5e6!important}',
+ '}',
+ 'body.tv #painel-dir.pd.on .pd-top{background:url("img/acampamento/vh-papel.svg") 0 0/120px 120px,#F5EBD6!important;border-bottom-color:#A88750!important}',
+ 'body.tv #painel-dir.pd.on .pd-top>.pd-pilula{background:#203936!important;border-color:#A88750!important;color:#F5EBD6!important}',
+ 'body.tv #painel-dir.pd.on .pd-top>.pd-pilula>button{border-left-color:#3a5552!important;color:#F5EBD6!important}'
+].join('\n');document.head.appendChild(st);})();
+/* marca o botão do painel aberto na pílula */
+setInterval(function(){var pd=document.querySelector('#painel-dir.pd.on'),pl=document.querySelector('.pd-pilula');if(!pl)return;var k=pd&&(pd.querySelector('[data-pd][aria-selected="true"]')||{}).getAttribute;var sel=pd?(pd.querySelector('[data-pd][aria-selected="true"]')||{dataset:{}}).dataset.pd:null;
+ Array.prototype.forEach.call(pl.querySelectorAll('button'),function(b){var m=b.dataset.tt==='fin'?'fin':b.dataset.ic==='laptop'?'lap':b.dataset.ic==='enf'?'enf':/bunker|b9/i.test(b.title||'')?'b9':null;b.classList.toggle('pil-at',!!sel&&m===sel);});},700);
+/* ======================= Valhala · primeira parte do edifício: portão, soleira, cores e textura vetorial ======================= */
+if(TV_ON){(function(){var U=function(n){return 'url("img/acampamento/'+n+'.svg?v=3")';};var st=document.createElement('style');st.id='vh-parte1-css';st.textContent=[
+ 'body.tv .vh-telhado{background:'+U('vh-telha-veio')+' 0 0/32px 20px repeat,#3b2717!important}',
+ 'body.tv .vh-beiral{background:linear-gradient(180deg,#e2cf98,#A88750 55%,#7d6030)!important}',
+ /* portão: moldura de entrelaçado com cantoneiras de latão em volta do banner */
+ 'body.tv #hero-box#hero-box .vx-hero::after{display:none!important}',
+ 'body.tv #hero-box#hero-box .vx-hero{border:0!important;border-radius:0!important;padding:34px 40px 30px!important;box-shadow:inset 0 0 0 20px transparent,0 0 0 1.5px #203936!important;background:',
+ '  '+U('vh-canto-tl')+' 22px 22px/46px 46px no-repeat,'+U('vh-canto-tr')+' calc(100% - 22px) 22px/46px 46px no-repeat,'+U('vh-canto-bl')+' 22px calc(100% - 22px)/46px 46px no-repeat,'+U('vh-canto-br')+' calc(100% - 22px) calc(100% - 22px)/46px 46px no-repeat,',
+ '  '+U('vh-no-h-kit')+' 0 0/40px 20px repeat-x,'+U('vh-no-h-kit')+' 0 100%/40px 20px repeat-x,'+U('vh-no-v-kit')+' 0 0/20px 40px repeat-y,'+U('vh-no-v-kit')+' 100% 0/20px 40px repeat-y,',
+ '  '+U('vh-papel')+' 0 0/120px 120px!important}',
+ 'body.tv #hero-box#hero-box .vx-hero::before{opacity:.35!important}',
+ /* soleira de pedra fechando o portão */
+ 'body.tv #hero-box .bn-slot{padding-bottom:30px!important}',
+ 'body.tv #hero-box .bn-slot::before{content:"";position:absolute;left:-6px;right:-6px;bottom:0;height:30px;background:'+U('vh-soleira')+' 0 0/120px 30px repeat-x;border-bottom:2px solid #203936;box-shadow:0 3px 6px -3px rgba(0,0,0,.4);z-index:1}',
+ 'body.tv #hero-box .bn-slot::after{bottom:30px!important}',
+ 'body.tv #hero-box .bn-slot{background-color:#F1E6CF!important}',
+ 'body.tv #hero-box{margin-bottom:6px!important}'
 ].join('\n');document.head.appendChild(st);})();}
 
 })();
