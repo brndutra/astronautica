@@ -4071,6 +4071,32 @@ nav#tt-indice.tt-indice{flex-wrap:wrap!important;row-gap:0!important}
 #tm-painel.tm-neo>.tm-lb::before,#tm-painel.tm-neo>.tm-lb::after{content:'';flex:1;border-top:3px double #5a3f2c;opacity:.75}
 #tm-painel.tm-neo>.tm-lb:first-of-type{margin-top:4px!important}
 @media(max-width:700px){#tm-painel.tm-neo>.tm-cab .k9{display:none}#tm-painel.tm-neo{padding-left:18px!important;padding-right:18px!important}}
+
+/* banner: sem foto de perfil; nome e nível na margem inferior esquerda */
+#hero-box#hero-box .vx-hero.bn2 .ac-cracha-bt{display:none!important}
+#hero-box#hero-box .vx-hero.bn2 .bn-base .ac-cracha{position:static!important;margin:0!important;padding:0!important;transform:none!important;flex:0 1 auto;min-width:0}
+#hero-box#hero-box .vx-hero.bn2 .bn-base .ac-cracha b{font-size:14px!important}
+#hero-box#hero-box .vx-hero.bn2 .bn-id .cp-pinbar{position:static!important;border:0!important;padding:0!important;margin:0 0 0 4px!important;transform:none!important}
+#hero-box#hero-box .vx-hero.bn2 .bn-id .cp-pinbar::before,#hero-box#hero-box .vx-hero.bn2 .bn-id .cp-pinbar::after{display:none!important}
+/* Quadro de avisos: seções que abrem e fecham, no mesmo padrão */
+#cerbox .qa-sec{margin:0 0 12px;border:1px solid var(--line2,#c9b28a);border-radius:12px;background:var(--panel,#f4ead2);overflow:hidden}
+#cerbox .qa-sec>summary{list-style:none;cursor:pointer;display:flex;flex-direction:column;gap:2px;padding:11px 40px 11px 14px;position:relative}
+#cerbox .qa-sec>summary::-webkit-details-marker{display:none}
+#cerbox .qa-sec>summary::after{content:'';position:absolute;right:16px;top:50%;width:7px;height:7px;border-right:1.6px solid #5a3f2c;border-bottom:1.6px solid #5a3f2c;transform:translateY(-70%) rotate(45deg);transition:transform .2s}
+#cerbox .qa-sec[open]>summary::after{transform:translateY(-30%) rotate(-135deg)}
+#cerbox .qa-sec>summary b{font:400 16px Georgia,serif;color:#3b2a1d}
+#cerbox .qa-sec>summary .qa-sk{order:-1;font:700 8.5px var(--mono,monospace);letter-spacing:.18em;text-transform:uppercase;color:#9a6b3a}
+#cerbox .qa-sec>.qa-sb{padding:0 14px 14px}
+#cerbox .qa-sec .qa-sb>*{margin:0!important;border:0!important;background:none!important;padding:0!important;box-shadow:none!important}
+#cerbox .qa-sec .qa-sb .k6,#cerbox #qa-d-pc .pctop>.k5{display:none!important}
+#cerbox .qa-sec .pctabs{display:flex;flex-wrap:wrap;gap:4px}
+
+/* painel direito aberto: no topo só os rótulos, sem cara de botão */
+#painel-dir .pd-nav{display:flex;align-items:baseline;gap:22px;flex-wrap:wrap}
+#painel-dir .pd-nav .pd-nb{width:auto!important;min-height:0!important;height:auto!important;margin:0!important;padding:4px 0 6px!important;border:0!important;border-radius:0!important;background:none!important;box-shadow:none!important;
+ font:400 15px Georgia,serif!important;letter-spacing:.02em;color:#8a6f55!important;border-bottom:2px solid transparent!important;cursor:pointer}
+#painel-dir .pd-nav .pd-nb:hover{color:#3b2a1d!important}
+#painel-dir .pd-nav .pd-nb[aria-selected="true"]{color:#3b2a1d!important;font-weight:700!important;border-bottom-color:#5a3f2c!important}
 </style>
 </head>
 <body>
@@ -13764,7 +13790,7 @@ function reorgProf(){var p=document.getElementById('lat-prof'),c=document.queryS
  p.classList.remove('cg-dob');p.classList.add('lv-prof');if(p.parentNode!==c)c.appendChild(p);}
 lvMonta=(function(m0){return function(){var x=m0.apply(this,arguments);try{reorgProf();}catch(e){}return x;};})(lvMonta);
 function reorgOrb(){var o=document.getElementById('lat-orb'),cb=document.getElementById('cerbox');if(!o||!cb)return;
- var sb=cb.querySelector(':scope > .sb');o.classList.add('qa-orb');if(sb){if(sb.previousElementSibling!==o)cb.insertBefore(o,sb);}else if(o.parentNode!==cb)cb.appendChild(o);}
+ var ri=document.getElementById('rail-in');o.classList.add('qa-orb');if(ri&&ri.parentNode===cb){if(ri.nextElementSibling!==o)ri.insertAdjacentElement('afterend',o);}else if(o.parentNode!==cb)cb.appendChild(o);}
 function reorgTesouro(){var wr=document.querySelector('.wrap');if(!wr)return;var t=document.getElementById('tesouro');
  if(!t){t=document.createElement('section');t.id='tesouro';t.className='tesouro';t.dataset.area='op';
   t.innerHTML='<header class="ts-cab"><span class="ts-k">o tesouro do chalé 7</span><h2>Arsenal, dracmas e prêmios</h2><p>O que o treino rende: a forja do Hékatos, a moeda do acampamento, o que ela compra, e as atividades em treino.</p></header>'+
@@ -13778,7 +13804,7 @@ function reorgTesouro(){var wr=document.querySelector('.wrap');if(!wr)return;var
  Array.prototype.forEach.call(wr.querySelectorAll(':scope > .area-cab'),function(ac){var n=ac.nextElementSibling,vis=false;while(n&&!n.classList.contains('area-cab')&&n.id!=='tesouro'){if(n.offsetHeight>2){vis=true;break;}n=n.nextElementSibling;}ac.classList.toggle('ts-oculta',!vis);});}
 /* Treino na Arena vira um cartão na coluna esquerda, logo abaixo do nível */
 function reorgArena(){var vx=document.getElementById('vx'),e=document.getElementById('lat-e');if(!vx||!e)return;var c=document.getElementById('lat-arena');
- if(!c){var t=document.createElement('div');t.innerHTML=latCard('lat-arena','arco','o alvo de agora','Treino na Arena','<div id="lat-arena-b"></div>');c=t.firstChild;}
+ if(!c){var t=document.createElement('div');t.innerHTML=latCard('lat-arena','arco','linha de tiro · treinos e missões','Ação do dia','<div id="lat-arena-b"></div>');c=t.firstChild;}
  var gm=document.getElementById('lat-gm');if(gm&&gm.parentNode===e){if(gm.nextElementSibling!==c)e.insertBefore(c,gm.nextSibling);}else if(c.parentNode!==e)e.insertBefore(c,e.firstChild);
  var bx=c.querySelector('#lat-arena-b');if(vx.parentNode!==bx){vx.dataset.vxHidden='false';bx.appendChild(vx);}}
 /* os ícones do painel direito numa pílula só: Bolsa, Bunker 9, Laptop e Enfermaria */
@@ -13796,9 +13822,10 @@ function bnArruma(){var h=document.querySelector('#hero-box .vx-hero');if(!h)ret
  var nv=h.querySelector('#nv-chip');if(nv&&k&&nv.previousElementSibling!==k)k.insertAdjacentElement('afterend',nv);
  var id=h.querySelector(':scope > .bn-id');if(!id){id=document.createElement('div');id.className='bn-id';}
  if(tit.nextElementSibling!==id)tit.insertAdjacentElement('afterend',id);
- ['.ac-cracha','#vx-diario','.cp-guia'].forEach(function(q){var n=h.querySelector(':scope > '+q);if(n)id.appendChild(n);});
+ ['.cp-guia','#vx-diario','.cp-pinbar'].forEach(function(q){var n=h.querySelector(':scope > '+q)||id.querySelector(':scope > '+q);if(n&&n.parentNode!==id)id.appendChild(n);});
  var base=h.querySelector(':scope > .bn-base');if(!base){base=document.createElement('div');base.className='bn-base';h.appendChild(base);}
- ['.cp-pinbar','.cp-dracmas'].forEach(function(q){var n=h.querySelector(':scope > '+q);if(n)base.appendChild(n);});}
+ ['.ac-cracha','.cp-dracmas'].forEach(function(q){var n=h.querySelector(':scope > '+q)||id.querySelector(':scope > '+q);if(n&&n.parentNode!==base)base.appendChild(n);});
+ var cr=base.querySelector('.ac-cracha'),dr=base.querySelector('.cp-dracmas');if(cr&&base.firstElementChild!==cr)base.insertBefore(cr,base.firstChild);}
 (function(){var r0=vxRender;vxRender=function(){var x=r0.apply(this,arguments);try{bnArruma();}catch(e){}return x;};})();
 setTimeout(function(){try{bnArruma();}catch(e){}},80);setTimeout(function(){try{bnArruma();}catch(e){}},1000);
 /* Registro do dia vira a terceira gaveta da Grade semanal (o dia, a semana, o mês) */
@@ -13812,7 +13839,24 @@ function diaGaveta(){var tb=document.querySelector('.wrap > div.tb'),rd=document
  var b=g.querySelector('header b');if(b){var t=new Date().toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'short'});if(b.textContent!==t)b.textContent=t;}}
 (function(){var p0=pinta;pinta=function(){var x=p0.apply(this,arguments);try{diaGaveta();}catch(e){}return x;};})();
 setTimeout(function(){try{diaGaveta();}catch(e){}},120);
-function reorg(){try{var tp=document.getElementById('tm-painel');if(tp)tp.classList.add('neo-moldura','tm-neo');}catch(e){}try{reorgProf();}catch(e){}try{reorgArena();}catch(e){}try{pdPilula();}catch(e){}try{reorgOrb();}catch(e){}try{reorgTesouro();}catch(e){}}
+/* Quadro de avisos reorganizado por frequência de uso:
+   caixa de entrada e em andamento abertos; retomadas, notas e diário em seções que abrem e fecham */
+var QA_SEC=[['qa-d-pc','Onde parei','retomadas, plataformas, acessos e referências','ret'],['qa-d-nt','Notas e rascunhos','buscar, guardar e etiquetar','nota'],['qa-d-dj','Diário do ciclo','uma entrada por ciclo · a semana em quadrinhos','diario']];
+function qaOrganiza(){var cb=document.getElementById('cerbox');if(!cb)return;
+ var sb=cb.querySelector('.sb'),pcs=document.querySelector('.pcs');
+ if(sb){if(sb.children[0]&&!sb.children[0].id)sb.children[0].id='qa-nt-in';if(sb.children[1]&&!sb.children[1].id)sb.children[1].id='qa-dj-in';}
+ var nos={'qa-d-pc':pcs,'qa-d-nt':document.getElementById('qa-nt-in'),'qa-d-dj':document.getElementById('qa-dj-in')};
+ var aberto={};try{aberto=JSON.parse(localStorage.getItem('astro_qa_sec')||'{}')||{};}catch(e){}
+ var ref=document.getElementById('lat-orb');if(!ref||ref.parentNode!==cb)ref=document.getElementById('rail-in');
+ QA_SEC.forEach(function(q){var no=nos[q[0]];if(!no)return;var d=document.getElementById(q[0]);
+  if(!d){d=document.createElement('details');d.id=q[0];d.className='qa-sec';if(aberto[q[0]])d.open=true;
+   d.innerHTML='<summary><span class="qa-sk">'+q[2]+'</span><b>'+q[1]+'</b></summary><div class="qa-sb"></div>';
+   d.addEventListener('toggle',function(){var a={};try{a=JSON.parse(localStorage.getItem('astro_qa_sec')||'{}')||{};}catch(e){}a[q[0]]=d.open;try{localStorage.setItem('astro_qa_sec',JSON.stringify(a));}catch(e){}});}
+  var bx=d.querySelector('.qa-sb');if(no.parentNode!==bx)bx.appendChild(no);
+  if(ref&&ref.parentNode===cb){if(ref.nextElementSibling!==d)ref.insertAdjacentElement('afterend',d);}else if(d.parentNode!==cb)cb.appendChild(d);ref=d;});
+ if(sb&&!sb.children.length)sb.hidden=true;
+ var h=document.getElementById('h-cup'),sp=h&&h.querySelector('span');if(sp&&sp.textContent.indexOf('caixa')<0)sp.textContent='// caixa de entrada, em andamento, retomadas, notas e diário';}
+function reorg(){try{var tp=document.getElementById('tm-painel');if(tp)tp.classList.add('neo-moldura','tm-neo');}catch(e){}try{reorgProf();}catch(e){}try{reorgArena();}catch(e){}try{qaOrganiza();}catch(e){}try{pdPilula();}catch(e){}try{reorgOrb();}catch(e){}try{reorgTesouro();}catch(e){}}
 (function(){var r0=vxRender;vxRender=function(){var x=r0.apply(this,arguments);reorg();return x;};var p0=pinta;pinta=function(){var x=p0.apply(this,arguments);reorg();return x;};})();
 setTimeout(reorg,50);setTimeout(reorg,900);
 setInterval(pintaProgresso,60000);
