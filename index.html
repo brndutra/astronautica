@@ -2317,6 +2317,18 @@ body.claro[data-skin="astro"] #vx .vx-hero>.cp-guia{position:absolute;left:auto;
 .ac-carta .tv{position:absolute;inset:14px;border-radius:50%;background:radial-gradient(circle,#e9cf86 0 30%,#b98c47 31% 34%,transparent 35%)}
 .ac-carta:not(.aberta){background:repeating-linear-gradient(45deg,#2f261d 0 6px,#3a3024 6px 12px)!important;border:3px double #b98c47!important}
 body.claro[data-skin="astro"] .cp-dracmas i.mosaico::after,.cp-dracmas i::after{inset:-4px}
+
+/* painel lateral esquerdo (sumário) mais largo */
+@media(min-width:1380px){
+ .navdr{width:300px!important}
+ .wrap{margin-left:300px!important}
+ .wrap::before{left:306px!important}
+ .navl button{grid-template-columns:44px 1fr!important;padding:9px 18px!important}
+ .navl button b{font-size:14.5px!important}
+ .navl button i{font-size:9.5px!important}
+ .navh{padding:20px 20px 16px!important}
+ .navh b{font-size:23px!important}
+}
 /* ícones que substituem os emojis */
 .ico{display:inline-block;width:1.1em;height:1.1em;vertical-align:-.18em;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
 /* =====================================================================
