@@ -17483,6 +17483,54 @@ setTimeout(function(){try{placasTons();}catch(e){}},1200);setTimeout(function(){
  '}'
 ].join('\n');document.head.appendChild(st);})();
 
+
+/* ======================= Pílula dos painéis (Bolsa, Bunker 9, Laptop, Enfermaria, Sully) desce para o frontão =======================
+   Sai da barra do alto e vira a placa do frontão, assentada na cornija sob o medalhão, como as placas dos outros templos.
+   A barra do alto some; o botão de ferramentas segue no canto. */
+function pilulaNoFrontao(){var f=document.querySelector('#hero-box .neo-frontao.nf2'),p=document.querySelector('.pd-pilula');if(!f||!p)return;if(p.parentNode!==f){f.appendChild(p);}document.body.classList.add('pil-frontao');}
+setInterval(function(){try{pilulaNoFrontao();}catch(e){}},1200);setTimeout(function(){try{pilulaNoFrontao();}catch(e){}},900);
+(function(){var st=document.createElement('style');st.id='pil-frontao-css';st.textContent=[
+ 'body.pil-frontao:not(.op-on) #tt-indice{display:none!important}',
+ '#hero-box .nf2>.pd-pilula{position:absolute!important;left:50%;top:109px;transform:translateX(-50%);z-index:5;margin:0!important;',
+ ' border:1.5px solid #8a6420!important;background:linear-gradient(180deg,#fbf5e6,#f1e4c6)!important;box-shadow:0 0 0 3px #f6eedb,0 0 0 4.5px #c99a3d,0 6px 12px -6px rgba(70,45,10,.5)!important}',
+ '#hero-box .nf2>.pd-pilula button{color:#7a5616!important}',
+ '#hero-box .nf2>.pd-pilula button:hover{background:#efe1c2!important}',
+ '#hero-box .nf2 .fr-lira{top:22px!important}',
+ '#hero-box .nf2 .nf-louro{top:50px!important}',
+ '#hero-box .nf2 .nf-txt{top:80px!important}',
+ '#hero-box .neo-frontao.nf2{margin-top:18px!important;margin-bottom:14px!important}'
+].join('\n');document.head.appendChild(st);})();
+
+
+/* ======================= Pílula no frontão: botões na horizontal; rodapé sem cartões cortados em telas menores ======================= */
+(function(){var st=document.createElement('style');st.id='pil-rod-css';st.textContent=[
+ '#hero-box .nf2>.pd-pilula{display:flex!important;flex-direction:row!important;align-items:stretch;height:34px;padding:0!important;border-radius:999px!important;overflow:visible;width:auto!important}',
+ '#hero-box .nf2>.pd-pilula>button{position:relative;display:flex!important;justify-content:center!important;align-items:center!important;width:44px!important;min-width:0;height:100%!important;margin:0!important;padding:0!important;border:0!important;border-left:1px solid #d9c08a!important;background:transparent!important;border-radius:0!important;box-shadow:none!important}',
+ '#hero-box .nf2>.pd-pilula>button:first-child{border-left:0!important;border-radius:999px 0 0 999px!important}',
+ '#hero-box .nf2>.pd-pilula>button:last-child{border-radius:0 999px 999px 0!important}',
+ '#hero-box .nf2>.pd-pilula>button svg{margin:0!important;flex:none;width:18px!important;height:18px!important;fill:none!important;stroke:currentColor!important;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}',
+ '#hero-box .nf2>.pd-pilula>button img{width:20px!important;height:20px!important;object-fit:contain}',
+ '#hero-box .nf2>.pd-pilula>button>:not(svg):not(img):not([class*="badge"]):not([class*="n"]){max-width:20px}',
+ /* rodapé: os cartões encolhem em vez de sumirem pela borda */
+ '#rod-apps .rod-top{min-width:0}',
+ '#rod-apps .rod-reg,#rod-apps .cp-reg{flex:1 1 auto;min-width:0}',
+ '#rod-apps .cr-bar{min-width:0;flex-wrap:nowrap}',
+ '#rod-apps .cr-bar>.cr-p{flex:1 1 0!important;min-width:0!important;width:auto!important}',
+ '#rod-apps .cr-bar>.cr-p .cr-lb{min-width:0;overflow:hidden}',
+ '#rod-apps .cr-bar>.cr-p .cr-lb small,#rod-apps .cr-bar>.cr-p .cr-lb b{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}',
+ '@media(max-width:1700px){#rod-apps .cr-bar>.cr-sep,#rod-apps .cr-bar>.cr-dt,#rod-apps .cr-bar>.cr-concha{display:none!important}#rod-apps .cr-bar>.cr-p .cr-ico{width:26px!important;height:26px!important;flex:none}}',
+ '@media(max-width:1600px){#rod-apps .cr-bar>.cr-p .cr-ico{display:none!important}#rod-apps .cr-bar>.cr-p{padding-left:8px!important;padding-right:6px!important}}'
+].join('\n');document.head.appendChild(st);})();
+
+
+/* Banner: cartão-postal ajustado (centrado na altura, menos inclinado, sem invadir a linha de baixo) e sem as moedas */
+(function(){var st=document.createElement('style');st.id='postal-css';st.textContent=[
+ '#hero-box .cp-dracmas,#hero-box :has(>i.mosaico):not(.ac-medalha-bt),#hero-box i.mosaico{display:none!important}',
+ '#hero-box .cp-postal{top:46px!important;right:48px!important;left:auto!important;width:272px!important;transform:rotate(-2deg)!important}',
+ '#hero-box .bn-base{margin-right:340px!important;width:auto!important}',
+ '#hero-box .bn-tit,#hero-box .bn-id{max-width:calc(100% - 360px)!important}'
+].join('\n');document.head.appendChild(st);})();
+
 })();
 </script>
 </body>
