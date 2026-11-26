@@ -2220,6 +2220,50 @@ body[data-skin="astro"] .v4-leg .fx-06{background:var(--p-06)} body[data-skin="a
 #vx .pl-top input[type=text]{width:auto!important}
 #vx .pl-fim label{display:flex!important;flex-direction:row;align-items:center;gap:10px;grid-template-columns:none}
 #vx .pl-cal span{display:block;height:26px;line-height:26px;padding:0}
+
+/* =====================================================================
+   ACAMPAMENTO · o visual da extensão aplicado ao app
+   Papel envelhecido, verde-mata, dourado de dracma, títulos em Georgia,
+   rótulos pequenos em caixa alta e cabeçalho em forma de cartão-postal.
+   ===================================================================== */
+body[data-skin="astro"]{--display:Georgia,"Times New Roman",serif}
+body.claro[data-skin="astro"]{--void:#eadfbe;--bg:#eadfbe;--panel:#f4ead1;--panel2:#efe4c8;--well:#e2d4ab;
+ --line:#d6c69c;--line2:#b9a77a;--bone:#263a2e;--ink:#2f261d;--dim:#6f6553;--onred:#fff8e6;--red:#b98c47;
+ --a-op:#b98c47;--a-camp:#4f6b44;--a-est:#1d3c6b;--a-dos:#8e3b2a;--a-fin:#a3743a;--verde:#4f6b44;
+ --chip:#efe4c8;--chip2:#e2d4ab;--chiph:#f1d58d;--hair:#ddd0ad;--deep:#e6d9b4;
+ background-color:#eadfbe;
+ background-image:radial-gradient(circle at 18% 8%,rgba(205,170,94,.22),transparent 34%),
+  radial-gradient(circle at 85% 90%,rgba(142,171,122,.18),transparent 36%),
+  linear-gradient(90deg,rgba(95,70,35,.035) 1px,transparent 1px),linear-gradient(rgba(95,70,35,.03) 1px,transparent 1px);
+ background-size:auto,auto,42px 42px,42px 42px}
+body[data-skin="astro"]:not(.claro){--void:#11150f;--bg:#141a12;--panel:#1d2619;--panel2:#263321;--well:#2a3824;
+ --line:#34432f;--line2:#556349;--bone:#f0e6c9;--ink:#e2d6b8;--dim:#a99f84;--red:#d8bd7b;--onred:#1d2619;
+ --a-op:#d8bd7b;--a-camp:#9fbf8a;--a-est:#8fb0dc;--a-dos:#d99b8a;--a-fin:#d8a35c;--verde:#9fbf8a;
+ background-image:radial-gradient(circle at 18% 10%,rgba(205,170,94,.14),transparent 32%),linear-gradient(135deg,#161b13,#263321 46%,#11150f)}
+/* cabeçalho em forma de cartão-postal */
+body[data-skin="astro"] #vx .vx-hero{position:relative;border-radius:14px;padding:20px 22px 18px!important;color:#efe0c1;overflow:hidden;
+ background:linear-gradient(rgba(20,26,18,.22),rgba(20,26,18,.42)),radial-gradient(circle at 82% 18%,rgba(255,255,255,.16),transparent 22%),linear-gradient(135deg,#172719,#536b44 52%,#1d2b1e)!important;
+ box-shadow:inset 0 0 0 2px rgba(234,223,190,.35),0 14px 30px rgba(20,26,18,.22)}
+body[data-skin="astro"] #vx .vx-hero::before{display:none}
+body[data-skin="astro"] #vx .vx-hero h2{color:#efe0c1!important;font-weight:900;text-transform:uppercase;letter-spacing:.03em;
+ text-shadow:2px 2px 0 rgba(142,59,42,.75),0 2px 10px rgba(0,0,0,.45)}
+body[data-skin="astro"] #vx .vx-hero .vx-k,body[data-skin="astro"] #vx .vx-hero small,body[data-skin="astro"] #vx .vx-hero span{color:rgba(240,230,201,.82)}
+body[data-skin="astro"] #vx .vx-hero button{background:rgba(240,230,201,.1)!important;color:#f0e6c9!important;border-color:rgba(240,230,201,.4)!important}
+/* abas como as da extensão */
+body[data-skin="astro"] #vx .vx-tabs button{border-radius:10px!important;font-family:system-ui,-apple-system,"Segoe UI",sans-serif!important;font-weight:700!important;
+ font-size:11px!important;letter-spacing:.16em!important;text-transform:uppercase;background:var(--panel)!important;color:var(--dim)!important;border:1px solid var(--line)!important;box-shadow:none!important}
+body[data-skin="astro"] #vx .vx-tabs button[aria-selected="true"],body[data-skin="astro"] #vx .vx-tabs button.on,body[data-skin="astro"] #vx .vx-tabs button.at{
+ background:#263321!important;color:#f0e6c9!important;border-color:#263321!important}
+body[data-skin="astro"]:not(.claro) #vx .vx-tabs button[aria-selected="true"],body[data-skin="astro"]:not(.claro) #vx .vx-tabs button.on{background:#d8bd7b!important;color:#1d2619!important;border-color:#d8bd7b!important}
+/* cartões de papel */
+body[data-skin="astro"] #vx .vx-card,body[data-skin="astro"] .gm,body[data-skin="astro"] .pl-w,body[data-skin="astro"] .cc-card{
+ background:var(--panel)!important;border:1px solid var(--line)!important;border-radius:12px!important;box-shadow:0 1px 0 rgba(255,255,255,.55) inset,0 6px 16px rgba(60,45,20,.07)!important}
+body[data-skin="astro"] h2.sec{font-family:var(--display);color:var(--bone)}
+body[data-skin="astro"] #vx .vx-hero b,body[data-skin="astro"] #vx .vx-hero strong{color:#f0e6c9!important}
+body.claro[data-skin="astro"]{--blk:#e6d9b4}
+body[data-skin="astro"]:not(.claro){--blk:#172014;--chip:#263321;--chip2:#2f3d29;--chiph:#34432f;--hair:#2a3824;--deep:#1a2216;
+ background-size:auto!important;background-attachment:fixed}
+body[data-skin="astro"] .pl-k,body[data-skin="astro"] .k5,body[data-skin="astro"] .k9{color:var(--a-op)}
 </style>
 </head>
 <body>
