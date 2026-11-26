@@ -13912,7 +13912,7 @@ function diaGaveta(){var tb=document.querySelector('.wrap > div.tb'),rd=document
 setTimeout(function(){try{diaGaveta();}catch(e){}},120);
 /* Quadro de avisos reorganizado por frequência de uso:
    caixa de entrada e em andamento abertos; retomadas, notas e diário em seções que abrem e fecham */
-var QA_SEC=[['qa-d-pc','Onde parei','retomadas, plataformas, acessos e referências','ret'],['qa-d-nt','Notas e rascunhos','buscar, guardar e etiquetar','nota'],['qa-d-dj','Diário do ciclo','uma entrada por ciclo · a semana em quadrinhos','diario']];
+var QA_SEC=[['qa-d-pc','Registros diversos','sistema de armazenamento · onde as coisas ficam quando você sai','ret'],['qa-d-nt','Notas e rascunhos','buscar, guardar e etiquetar','nota'],['qa-d-dj','Diário do ciclo','uma entrada por ciclo · a semana em quadrinhos','diario']];
 function qaOrganiza(){var cb=document.getElementById('cerbox');if(!cb)return;
  var sb=cb.querySelector('.sb'),pcs=document.querySelector('.pcs');
  if(sb){if(sb.children[0]&&!sb.children[0].id)sb.children[0].id='qa-nt-in';if(sb.children[1]&&!sb.children[1].id)sb.children[1].id='qa-dj-in';}
@@ -13926,7 +13926,7 @@ function qaOrganiza(){var cb=document.getElementById('cerbox');if(!cb)return;
   var bx=d.querySelector('.qa-sb');if(no.parentNode!==bx)bx.appendChild(no);
   if(ref&&ref.parentNode===cb){if(ref.nextElementSibling!==d)ref.insertAdjacentElement('afterend',d);}else if(d.parentNode!==cb)cb.appendChild(d);ref=d;});
  if(sb&&!sb.children.length)sb.hidden=true;
- var h=document.getElementById('h-cup'),sp=h&&h.querySelector('span');if(sp&&sp.textContent.indexOf('caixa')<0)sp.textContent='// caixa de entrada, em andamento, retomadas, notas e diário';}
+ var h=document.getElementById('h-cup'),sp=h&&h.querySelector('span');if(sp&&sp.textContent.indexOf('registros diversos')<0)sp.textContent='// caixa de entrada, em andamento, registros diversos, notas e diário';}
 /* Recreações: painel próprio depois de Missões, com Atividades do acampamento e Menu de recarga */
 function reorgRecreio(){var wr=document.querySelector('.wrap'),tp=document.getElementById('tm-painel');if(!wr||!tp)return;var r=document.getElementById('recreio');
  if(!r){r=document.createElement('section');r.id='recreio';r.className='neo-moldura rc-neo';r.dataset.area='op';
