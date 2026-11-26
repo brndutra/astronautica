@@ -9268,7 +9268,7 @@ function nvPainel(){if(!nv.cli){vxMsg(nvAtivo()?'A nuvem ainda está carregando.
  nvDlg('Entrar para sincronizar','Com login, o registro fica igual no celular, no computador e na extensão. Sem login, ele continua só neste aparelho.',corpo,
   [{t:'cancelar'},
    {t:'criar conta',f:function(w){var c=nvCampos(w);if(!c.email||c.senha.length<8)return nvErro(w,'Informe o e-mail e uma senha de 8 caracteres ou mais.');
-    nvErro(w,'Criando…');nv.cli.auth.signUp({email:c.email,password:c.senha,options:{emailRedirectTo:location.origin+location.pathname}}).then(function(r){
+    if(w._cri)return;w._cri=1;nvErro(w,'Criando…');nv.cli.auth.signUp({email:c.email,password:c.senha,options:{emailRedirectTo:location.origin+location.pathname}}).then(function(r){w._cri=0;      if(r.error&&/already|registered|exists/i.test(r.error.message))return nvErro(w,'Esse e-mail já tem conta. Use "entrar".');
      if(r.error)return nvErro(w,r.error.message);
      if(r.data&&r.data.session){w.remove();vxMsg('Conta criada. Sincronizando.');}
      else nvErro(w,'Conta criada. Confirme pelo link enviado ao seu e-mail e depois entre aqui.');});}},
@@ -16881,6 +16881,92 @@ function diaBaixo(){var rod=document.getElementById('rod-apps');if(!rod||getComp
 document.addEventListener('click',function(e){if(e.target.closest&&e.target.closest('#rod-bar'))setTimeout(function(){try{diaPinta();}catch(z){}},380);});
 window.addEventListener('resize',function(){try{diaPinta();}catch(z){}});
 setTimeout(function(){try{diaPinta();}catch(z){}},2500);
+
+
+/* ======================= Templo: entablamento fixo com a placa em cima; Concha com as cores da moldura =======================
+   A faixa grega do alto (com os dois símbolos) vira uma peça fixa logo abaixo da Concha; a placa do painel pousa sobre ela,
+   centrada, e só o conteúdo rola por baixo. A Concha pega o vermelho/terracota da moldura em que está encaixada. */
+var TP_ENTAB=null;
+function tpCamada1(bg){var i=bg.indexOf('url(');if(i<0)return '';var d=0,q=null;for(var j=i;j<bg.length;j++){var c=bg[j];if(q){if(c===q)q=null;continue;}if(c==='"'||c==="'"){q=c;continue;}if(c==='(')d++;else if(c===')'){d--;if(!d)return bg.slice(i,j+1);}}return '';}
+function tpEntab(){var p=document.getElementById('tp-painel');if(!p)return;var fr=p.querySelector('.tp-fr'),re=document.getElementById('tp-real');if(!fr||!re||!re.isConnected)return;
+ var sec=re.querySelector(':scope>#tm-painel:not([hidden])')||re.querySelector(':scope>#recreio');
+ Array.prototype.forEach.call(re.querySelectorAll(':scope>:is(#tm-painel,#recreio)'),function(x){if(x.offsetParent&&x.offsetHeight)sec=x;});if(!sec)return;
+ if(!TP_ENTAB){TP_ENTAB=document.createElement('div');TP_ENTAB.id='tp-entab';TP_ENTAB.setAttribute('aria-hidden','true');TP_ENTAB.innerHTML='<i class="te-band"></i><span class="te-s te-sl"></span><span class="te-s te-sr"></span>';}
+ if(TP_ENTAB.parentNode!==fr||TP_ENTAB.nextElementSibling!==re)fr.insertBefore(TP_ENTAB,re);
+ var cs=getComputedStyle(sec),band=tpCamada1(cs.backgroundImage);
+ var k=(band.match(/stroke=\\?["']?(?:%23|#)([0-9a-fA-F]{6})/)||[])[1],c=(band.match(/fill=\\?["']?(?:%23|#)([0-9a-fA-F]{6})/)||[])[1];
+ var ck=cs.getPropertyValue('--col-k').trim(),cc=cs.getPropertyValue('--col-c').trim();
+ p.style.setProperty('--tp-k',k?'#'+k:(ck||'#9a4a30'));p.style.setProperty('--tp-c',c?'#'+c:(cc||'#f2c3ab'));
+ var bd=TP_ENTAB.querySelector('.te-band');if(bd._b!==band){bd._b=band;bd.style.backgroundImage=band||'none';}
+ var src=sec.querySelectorAll('.col-orn .co-sim');['.te-sl','.te-sr'].forEach(function(q,i){var t=TP_ENTAB.querySelector(q),o=src[i];var h=o?o.innerHTML:'';if(t._h!==h){t._h=h;t.innerHTML=h;}});
+ var ml=parseFloat(cs.marginLeft)||0,mr=parseFloat(cs.marginRight)||0;TP_ENTAB.style.marginLeft=ml+'px';TP_ENTAB.style.marginRight=mr+'px';
+ var fz=document.getElementById('tp-friso'),fh=fz&&fz.parentNode===fr?fz.offsetHeight:0;p.style.setProperty('--tp-fh',fh+'px');
+ p.style.setProperty('--tp-smt',(parseFloat(cs.marginTop)||0)+'px');
+ var cab=sec.querySelector(':scope>.tm-cab');p.style.setProperty('--tp-pw',(cab?cab.offsetWidth:220)+'px');}
+(function(){var st=document.createElement('style');st.id='tp-entab-css';st.textContent=[
+ /* a Concha encosta na faixa: sem vão por onde o conteúdo apareça */
+ '#tp-painel:has(#tp-real) #tp-friso{margin-bottom:0!important;border-color:var(--tp-k,#9a4a30)!important;background:linear-gradient(180deg,#fbf3df,#f4e6c8)!important;',
+ ' box-shadow:inset 0 3px 0 var(--tp-k,#9a4a30),inset 0 4px 0 #fbf3df,inset 0 5px 0 var(--tp-k,#9a4a30),0 0 0 1px #f7eed8!important;padding-top:5px!important}',
+ '#tp-friso .tf-met{border-bottom:1px solid var(--tp-k,#9a4a30)!important}',
+ '#tp-friso .tf-m b{color:var(--tp-k,#9a4a30)!important}',
+ '#tp-friso .tf-m.prox{background:var(--tp-c,#f2c3ab)!important;box-shadow:inset 0 0 0 1px var(--tp-k,#9a4a30)!important}#tp-friso .tf-m.prox b,#tp-friso .tf-m.prox i{color:#3a160c!important}',
+ '#tp-friso .tf-tri{background:repeating-linear-gradient(90deg,var(--tp-k,#9a4a30) 0 1.5px,transparent 1.5px 3.2px)!important;opacity:.85!important}',
+ '#tp-friso .tf-leg svg{stroke:var(--tp-k,#9a4a30)!important}#tp-friso .tf-leg b{color:var(--tp-k,#9a4a30)!important}',
+ '#tp-friso[aria-expanded="true"]{background:var(--tp-c,#f2c3ab)!important}',
+ /* o entablamento fixo */
+ '#tp-entab{position:sticky;z-index:6;top:calc(var(--tp-fh,60px) - 22px);height:48px;margin-top:0;margin-bottom:calc(-48px - var(--tp-smt,14px) + 8px);padding-top:8px;box-sizing:border-box;pointer-events:none;',
+ ' background:linear-gradient(180deg,#f7eed8,#f3e7cb)}',
+ '#tp-entab .te-band{display:block;height:40px;background-repeat:repeat-x;background-size:240px 40px;background-color:#f1e4c6;box-shadow:0 7px 9px -7px rgba(70,35,15,.45)}',
+ '#tp-entab .te-s{position:absolute;top:20px;width:22px;height:22px;display:grid;place-items:center;border-radius:50%;background:#f4ead2;border:1px solid var(--tp-k,#9a4a30);box-shadow:0 0 0 2px #f4ead2}',
+ '#tp-entab .te-s:empty{display:none}',
+ '#tp-entab .te-s svg{width:14px;height:14px;fill:none;stroke:var(--tp-k,#9a4a30);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}',
+ '#tp-entab .te-sl{left:calc(50% - var(--tp-pw,220px)/2 - 34px)}#tp-entab .te-sr{right:calc(50% - var(--tp-pw,220px)/2 - 34px)}',
+ '#tp-real>:is(#tm-painel,#recreio)>.col-orn .co-sim{visibility:hidden}',
+ /* a placa pousa sobre a faixa */
+ '#tp-real>:is(#tm-painel,#recreio)>.tm-cab{top:calc(var(--tp-fh,60px) - 22px + 11px)!important;z-index:7!important;margin:-55px auto 18px!important;',
+ ' border-color:var(--tp-k,#9a4a30)!important;box-shadow:0 0 0 3px #f4ead2,0 0 0 4.5px var(--tp-k,#9a4a30),0 6px 12px -6px rgba(70,35,15,.5)!important}'
+].join('\n');document.head.appendChild(st);})();
+tpFriso=(function(f0){return function(){var r=f0.apply(this,arguments);try{tpEntab();}catch(e){}return r;};})(tpFriso);
+p4Painel=(function(f0){return function(){var r=f0.apply(this,arguments);try{tpEntab();}catch(e){}return r;};})(p4Painel);
+window.addEventListener('resize',function(){try{tpEntab();}catch(e){}});
+setTimeout(function(){try{tpEntab();}catch(e){}},1600);setTimeout(function(){try{tpEntab();}catch(e){}},4000);
+
+
+/* ======================= Desfazer: tracinho, hábitos, tarefas e registros do dia =======================
+   Antes de cada ação dessas guarda uma cópia do estado; se algo mudou, aparece "desfazer" por 8 s. Ctrl+Z desfaz a última.
+   O Registro do dia ganha × em cada linha de hoje. */
+var DZ={pilha:[],t:null};
+var DZ_ACOES=[['[data-cila]','Tracinho anotado'],['[data-hb]','Hábito marcado'],['[data-hx],[data-delhab],[data-ws-del]','Hábito removido'],
+ ['[data-hd],[data-hw],[data-ws-mk]','Hábito alterado'],['#b-hab,[data-ws-add]','Hábito criado'],['[data-mm-ch],[data-mm-cumpre],[data-mm-dia],[data-mm-pp]','Tarefa marcada'],
+ ['[data-mm-del]','Tarefa removida'],['[data-dfck]','Inspeção alterada'],['#b-rd','Registro anotado'],['[data-rdx]','Registro apagado'],['[data-lvx],[data-lcx],[data-px]','Item removido'],
+ ['#tp-real input[type=checkbox],.rt input[type=checkbox]','Marcação alterada']];
+function dzEstado(){try{return JSON.stringify(S);}catch(e){return '';}}
+function dzArma(rot){var a=dzEstado();if(!a)return;setTimeout(function(){if(dzEstado()===a)return;DZ.pilha.push({a:a,rot:rot});if(DZ.pilha.length>20)DZ.pilha.shift();dzToast(rot+'.',true);},90);}
+function dzRepinta(){['pinta','vxRender','mmPinta','opPinta','diaPinta','tpFriso','tdAgora','rodLog','p4Painel'].forEach(function(n){try{var f={pinta:typeof pinta==='function'?pinta:null,vxRender:typeof vxRender==='function'?vxRender:null,mmPinta:typeof mmPinta==='function'?mmPinta:null,
+  opPinta:typeof opPinta==='function'?opPinta:null,diaPinta:typeof diaPinta==='function'?diaPinta:null,tpFriso:typeof tpFriso==='function'?tpFriso:null,tdAgora:typeof tdAgora==='function'?tdAgora:null,rodLog:typeof rodLog==='function'?rodLog:null,p4Painel:typeof p4Painel==='function'?p4Painel:null}[n];if(f)f();}catch(e){}});}
+function dzDesfaz(){var u=DZ.pilha.pop();if(!u){dzToast('Nada para desfazer.',false);return;}var o;try{o=JSON.parse(u.a);}catch(e){return;}
+ Object.keys(S).forEach(function(k){delete S[k];});for(var k in o)S[k]=o[k];try{grava();}catch(e){}dzRepinta();dzToast('Desfeito: '+u.rot.toLowerCase()+'.',false);}
+function dzToast(t,comBotao){var d=document.getElementById('dz-toast');if(!d){d=document.createElement('div');d.id='dz-toast';d.setAttribute('role','status');document.body.appendChild(d);
+  d.addEventListener('click',function(e){if(e.target.closest('[data-dz]')){e.stopPropagation();dzDesfaz();}});}
+ d.innerHTML='<span>'+esc(t)+'</span>'+(comBotao?'<button type="button" data-dz>desfazer</button>':'');d.classList.add('on');clearTimeout(DZ.t);DZ.t=setTimeout(function(){d.classList.remove('on');},comBotao?8000:2600);}
+window.addEventListener('click',function(e){var t=e.target;if(!t||!t.closest||t.closest('#dz-toast'))return;
+ for(var i=0;i<DZ_ACOES.length;i++){var el=t.closest(DZ_ACOES[i][0]);if(el&&!el.disabled){dzArma(DZ_ACOES[i][1]);return;}}},true);
+window.addEventListener('keydown',function(e){var tg=e.target||{},ed=tg.isContentEditable||/^(INPUT|TEXTAREA|SELECT)$/.test(tg.tagName||'');
+ if(e.altKey&&(e.key==='d'||e.key==='D')){dzArma('Tracinho anotado');return;}
+ if(e.key==='Enter'&&ed&&tg.matches&&tg.matches('#rd-in,#hb-in,[data-ws-in],[data-mm-in]')){dzArma(tg.id==='rd-in'?'Registro anotado':tg.matches('[data-mm-in]')?'Tarefa criada':'Hábito criado');return;}
+ if((e.ctrlKey||e.metaKey)&&!e.shiftKey&&(e.key==='z'||e.key==='Z')&&!ed&&DZ.pilha.length){e.preventDefault();dzDesfaz();}},true);
+/* × nas linhas de hoje do Registro do dia */
+pintaRegDia=(function(f0){return function(){var r=f0.apply(this,arguments);try{var l=document.getElementById('rd-l');if(l){var hoy=hoje(),ix=[];for(var i=0;i<S.log.length&&ix.length<24;i++)if(S.log[i].dia===hoy)ix.push(i);
+  Array.prototype.forEach.call(l.querySelectorAll('.rdi'),function(row,k){if(ix[k]==null||row.querySelector('[data-rdx]'))return;var b=document.createElement('button');b.type='button';b.className='rd-x';b.dataset.rdx=ix[k];b.title='apagar esta linha';b.setAttribute('aria-label','apagar esta linha');b.textContent='×';row.appendChild(b);});}}catch(e){}return r;};})(pintaRegDia);
+document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-rdx]');if(!b)return;e.preventDefault();e.stopPropagation();var i=+b.dataset.rdx;if(S.log[i]){S.log.splice(i,1);try{grava();}catch(z){}try{pintaRegDia();}catch(z){}try{rodLog();}catch(z){}}});
+(function(){var st=document.createElement('style');st.id='dz-css';st.textContent=[
+ '#dz-toast{position:fixed;left:50%;bottom:92px;z-index:400;transform:translate(-50%,12px);opacity:0;pointer-events:none;display:flex;align-items:center;gap:12px;padding:9px 10px 9px 16px;border:1px solid #5a3f2c;border-radius:10px;background:#2a2418;color:#f4ead2;font:13px var(--sans);box-shadow:0 12px 28px -8px rgba(0,0,0,.45);transition:opacity .2s,transform .2s}',
+ '#dz-toast.on{opacity:1;transform:translate(-50%,0);pointer-events:auto}',
+ '#dz-toast button{margin:0;padding:5px 11px;border:1px solid #e9c87a;border-radius:7px;background:transparent;color:#e9c87a;font:700 10px var(--mono,monospace);letter-spacing:.14em;text-transform:uppercase;cursor:pointer;width:auto!important}',
+ '#dz-toast button:hover{background:#e9c87a;color:#2a2418}',
+ '.rdi{position:relative}.rdi .rd-x{margin:0 0 0 6px;padding:0 6px;min-width:0;width:auto!important;height:20px;border:0;border-radius:5px;background:transparent;color:#a08b6c;font:15px/1 Georgia,serif;cursor:pointer;opacity:0;transition:opacity .15s}',
+ '.rdi:hover .rd-x,.rdi .rd-x:focus{opacity:1}.rdi .rd-x:hover{background:#9a4a30;color:#fff}'
+].join('\n');document.head.appendChild(st);})();
 
 })();
 </script>
