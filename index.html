@@ -16460,7 +16460,7 @@ mmHTML=(function(f0){return function(){var h=f0.apply(this,arguments),x=plDia(ho
  li=x.top.slice(0,3).map(function(t,i){var ok=!!t.ok,tx=(t.t||'').trim();return '<li class="'+(ok?'ok':'')+'"><button type="button" class="mm-ck" data-mmor="'+i+'" aria-label="cumprida"'+(tx?'':' disabled')+'>'+(ok?'✓':'')+'</button><input class="mm-or-in" data-mmorx="'+i+'" value="'+esc(tx)+'" placeholder="'+OR_PH[i]+'" maxlength="90" aria-label="missão '+(i+1)+'"></li>';}).join('');
  var sec='<section class="mm-col mm-orac-col"><span class="mm-k">Oráculo</span><small>missões · as três do dia · a primeira é a flecha de ouro · +5 XP</small><ul class="mm-or">'+li+'</ul><small class="mm-cont">'+x.top.slice(0,3).filter(function(t){return t.ok;}).length+' de 3 cumpridas hoje</small></section>';
  var k=h.indexOf('<section class="mm-col mm-prof">');h=k>=0?h.slice(0,k)+sec+h.slice(k):h;
- var fim=h.lastIndexOf('</div>');var grp='<div class="tm-lb mm-grp mm-grp-t">tarefas</div><div class="tm-lb mm-grp mm-grp-m">missões</div><div class="tm-lb mm-grp mm-grp-d">desafio</div>';
+ var fim=h.lastIndexOf('</div>');var grp='<div class="tm-lb mm-grp mm-grp-t" tabindex="0">tarefas<b class="mm-q" aria-hidden="true">?</b><i class="mm-dica" role="tooltip"><b>Tarefas</b>: Chalé (casa, uma vez), Diárias (voltam todo dia) e Conselho (designações do gabinete).</i></div><div class="tm-lb mm-grp mm-grp-m" tabindex="0">missões<b class="mm-q" aria-hidden="true">?</b><i class="mm-dica" role="tooltip"><b>Missões</b>: o Oráculo, as três do dia. A primeira é a flecha de ouro.</i></div><div class="tm-lb mm-grp mm-grp-d" tabindex="0">desafio<b class="mm-q" aria-hidden="true">?</b><i class="mm-dica" role="tooltip"><b>Desafio</b>: a Profecia, alvo longo com prazo e etapas.</i></div>';
  return fim>=0?h.slice(0,fim)+grp+h.slice(fim):h+grp;};})(mmHTML);
 document.addEventListener('click',function(e){var b=e.target.closest('[data-mmor]');if(!b)return;var x=plDia(hoje()),t=x.top[+b.dataset.mmor];if(!t||!(t.t||'').trim())return;t.ok=!t.ok;try{grava();}catch(z){}try{vxRender();}catch(z){}try{mmPinta();}catch(z){}try{diaPinta();}catch(z){}});
 document.addEventListener('change',function(e){var i=e.target.closest('[data-mmorx]');if(!i)return;var x=plDia(hoje()),t=x.top[+i.dataset.mmorx];if(!t)return;t.t=i.value.trim().slice(0,90);if(!t.t)t.ok=false;try{grava();}catch(z){}try{mmPinta();}catch(z){}});
@@ -17043,6 +17043,55 @@ document.addEventListener('click',function(e){var b=e.target.closest&&e.target.c
  '#tp-real>:is(#tm-painel,#recreio){margin-left:0!important;margin-right:0!important}',
  '#rail:has(#tp-real){background:none!important;box-shadow:none!important;padding-bottom:0!important}'
 ].join('\n');document.head.appendChild(st);})();
+
+
+/* ======================= Mural sem o texto de abertura: a explicação vira etiqueta ao passar o cursor nos grupos =======================
+   E o painel esquerdo refeito: grupos HOJE e SEMANA, cartões no mesmo padrão do templo, Arena sem caixas dentro de caixas. */
+(function(){var st=document.createElement('style');st.id='mm-dica-lat-css';st.textContent=[
+ '#tp-real #mm-box .mm-h{display:none!important}',
+ '#tp-real #mm-box .mm-grp-t{margin-top:2px!important}',
+ '#mm-box .mm-grp{position:relative;cursor:help;outline:0}',
+ '#mm-box .mm-grp .mm-q{display:inline-grid;place-items:center;width:13px;height:13px;margin:0 6px 0 5px;border:1px solid currentColor;border-radius:50%;font:700 8px/1 var(--sans);letter-spacing:0;opacity:.7;vertical-align:1px}',
+ '#mm-box .mm-grp .mm-dica{position:absolute;left:0;top:calc(100% + 6px);z-index:30;width:max-content;max-width:300px;padding:8px 11px;border:1px solid #5a3f2c;border-radius:8px;background:#2a2418;color:#f4ead2;',
+ ' font:400 12px/1.45 var(--sans);font-style:normal;letter-spacing:0;text-transform:none;white-space:normal;box-shadow:0 10px 22px -8px rgba(0,0,0,.45);opacity:0;transform:translateY(-3px);pointer-events:none;transition:opacity .15s,transform .15s}',
+ '#mm-box .mm-grp .mm-dica b{color:#e9c87a;font-weight:700}',
+ '#mm-box .mm-grp:hover .mm-dica,#mm-box .mm-grp:focus .mm-dica{opacity:1;transform:none}',
+ /* ---------- painel esquerdo ---------- */
+ '#lat-e{display:flex!important;flex-direction:column;gap:12px;padding-bottom:16px!important}',
+ '#lat-e>*{margin-top:0!important;margin-bottom:0!important}',
+ '#lat-e>#lat-topo{order:0}#lat-e>.lat-grp-h{order:1}#lat-e>#lat-gm{order:2}#lat-e>#lat-arena{order:3}#lat-e>#lat-vx{order:4}#lat-e>.lat-grp-s{order:5}#lat-e>#lat-band{order:6}#lat-e>#lat-cp{order:7}',
+ '#lat-e>.lat-grp{margin:2px 12px -4px!important;display:flex;align-items:center;gap:8px;font:700 8.5px var(--mono,monospace);letter-spacing:.2em;text-transform:uppercase;color:#9a7b4a}',
+ '#lat-e>.lat-grp::after{content:"";flex:1;height:1px;background:#c9b28a}',
+ /* um só cartão */
+ '#lat-e>:is(#lat-arena,#lat-band,#lat-cp),#lat-e>#lat-gm>.gm,#lat-e>#lat-vx>.vx-card{--lc:#9a6b3a;margin-left:12px!important;margin-right:12px!important;padding:12px 14px!important;box-sizing:border-box;background:#fbf5e6!important;',
+ ' border:1px solid #d6c69c!important;border-top:3px solid var(--lc)!important;border-radius:10px!important;box-shadow:0 1px 0 #e9dcbc!important}',
+ '#lat-e>#lat-gm,#lat-e>#lat-vx{margin:0!important;padding:0!important}',
+ '#lat-e>#lat-gm>.gm{--lc:#b98c47}#lat-e>#lat-arena{--lc:#a4532f}#lat-e>#lat-vx>.vx-card{--lc:#5f7a3a}#lat-e>#lat-band{--lc:#7a4a58}#lat-e>#lat-cp{--lc:#427d91}',
+ '#lat-e>#lat-arena{padding-top:0!important;overflow:hidden}',
+ '#lat-e>#lat-arena::before{margin-left:-14px!important;margin-right:-14px!important}',
+ /* cabeçalhos iguais */
+ '#lat-e .lat-c>header{margin:0 0 10px!important;padding:0!important}',
+ '#lat-e #lat-gm .gm-bot>div:first-child>:first-child{display:block;margin:0 0 4px;font:700 8.5px var(--mono,monospace)!important;letter-spacing:.14em;text-transform:uppercase;color:var(--lc)!important}',
+ '#lat-e #lat-vx .vx-card h3{margin:0 0 6px!important;font:400 16px/1.25 Georgia,serif!important;font-variant:small-caps;letter-spacing:.03em;color:#2a2418!important}',
+ '#lat-e #lat-vx .vx-card h3::before{content:"hoje · aparecem sozinhas";display:block;margin:0 0 3px;font:700 8.5px var(--mono,monospace);font-variant:normal;letter-spacing:.14em;text-transform:uppercase;color:var(--lc)}',
+ '#lat-e #lat-vx .vx-muted{margin:0!important;font:italic 12.5px/1.45 Georgia,serif!important;color:#6b5140!important}',
+ /* Arena: sem caixas dentro de caixas */
+ '#lat-arena #vx-body .vx-card,#lat-arena #vx-body details,#lat-arena #vx-body>div>section,#lat-arena #vx-body .vx-main,#lat-arena #vx-body .vx-side>*{background:none!important;border:0!important;box-shadow:none!important;border-radius:0!important;margin:0!important;padding:10px 0!important}',
+ '#lat-arena #vx-body .vx-card+.vx-card,#lat-arena #vx-body details,#lat-arena #vx-body .vx-side>*+*{border-top:1px dashed #c9b28a!important}',
+ '#lat-arena .vx-metrics{margin:0 0 4px!important;padding:0 0 10px!important;border-bottom:1px dashed #c9b28a}',
+ '#lat-arena #vx-body h3{font:400 16px/1.25 Georgia,serif!important;font-variant:small-caps;color:#2a2418!important;margin:0 0 8px!important}',
+ '#lat-arena #vx-body .vx-row,#lat-arena #vx-body [class*="filtro"],#lat-arena #vx-body .vx-filters{flex-wrap:wrap;gap:5px!important}',
+ '#lat-arena #vx-body button:not(.vx-primary){padding:4px 10px!important;font-size:12px!important;min-height:0!important;border-radius:999px!important}',
+ /* Copa mais baixa */
+ '#lat-cp #lat-cp-b svg{max-height:92px}',
+ '#lat-arena .vx-metrics{border-bottom:0!important;padding-bottom:4px!important}',
+ '#lat-arena #vx-body .vx-card:has(>h3) .vx-row{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px!important;margin-bottom:6px}',
+ '#lat-arena #vx-body .vx-card:has(>h3) .vx-row button{width:100%!important;margin:0!important;padding:5px 0!important;font-size:12px!important;white-space:nowrap;display:flex!important;justify-content:center;align-items:center}',
+ '#lat-arena #vx-body h2{margin:6px 0 6px!important;font:400 18px/1.25 Georgia,serif!important;color:#2a2418!important}',
+ '#lat-arena #vx-body p{font-size:12.5px!important;line-height:1.45!important}'
+].join('\n');document.head.appendChild(st);})();
+function latGrupos(){var e=document.getElementById('lat-e');if(!e)return;[['lat-grp-h','hoje'],['lat-grp-s','a semana']].forEach(function(g){if(!e.querySelector(':scope>.'+g[0])){var d=document.createElement('div');d.className='lat-grp '+g[0];d.textContent=g[1];e.appendChild(d);}});}
+setTimeout(function(){try{latGrupos();}catch(e){}},1200);setTimeout(function(){try{latGrupos();}catch(e){}},4000);
 
 })();
 </script>
