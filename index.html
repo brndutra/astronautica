@@ -4789,6 +4789,8 @@ dialog.ave-dlg::before{content:'';display:block;height:12px;margin:6px 8px 0;bac
 .ave-dlg .ad-cass{background:linear-gradient(90deg,rgba(180,70,58,.08),transparent);border-radius:8px;padding-left:6px!important}
 .ave-dlg .ad-cass .ad-k{color:#b4463a}
 </style>
+<link rel="stylesheet" href="pontes.css">
+<script src="pontes.js" defer></script>
 </head>
 <body>
 <div class="boot" id="boot" aria-hidden="true">
@@ -12715,6 +12717,10 @@ document.addEventListener('visibilitychange',function(){if(document.visibilitySt
 (function(){var n0=normaliza;normaliza=function(p){var b=n0(p);var w=(p&&p.ws&&typeof p.ws==='object')?p.ws:{};
  b.ws={mes:(w.mes&&typeof w.mes==='object')?w.mes:{},sem:Array.isArray(w.sem)?w.sem.filter(function(x){return x&&x.id&&x.n;}).slice(0,12):[],mk:(w.mk&&typeof w.mk==='object')?w.mk:{},rev:(w.rev&&typeof w.rev==='object')?w.rev:{}};return b;};})();
 (function(){var n0=normaliza;normaliza=function(p){var b=n0(p);b.pins=Array.isArray(p&&p.pins)?p.pins.filter(function(x){return x&&x.id&&(x.t==='nota'||x.t==='foto'||x.t==='lista');}).slice(0,30):[];return b;};})();
+/* Pontes de Hermes (pontes.js): S.pz guarda o que as integrações trazem; window.ASTRO dá ao módulo acesso ao registro */
+(function(){var n0=normaliza;normaliza=function(p){var b=n0(p);if(p&&p.pz&&typeof p.pz==='object')b.pz=p.pz;return b;};})();
+window.ASTRO={get S(){return S;},grava:function(){grava();},pinta:function(){pinta();},vxData:function(){return vxData();},vxMsg:function(m){vxMsg(m);},vxDlg:function(o){vxDlg(o);},
+ mmD:function(){return mmD();},mmPinta:function(){try{mmPinta();}catch(e){}},hoje:function(){return hoje();},esc:function(t){return esc(t);}};
 /* ---------- Ficha do Campista como livro: cada seção é uma página, duas por vez ----------
    Capa de couro trancada (a senha do cofre abre). Aberto, mostra as páginas lado a lado,
    com fitas marcadoras por seção e setas para virar. As páginas largas (Reinos e Dossiê)
