@@ -17611,6 +17611,18 @@ document.addEventListener('click',function(e){var b=e.target.closest&&e.target.c
  var k=b.dataset.tt==='fin'?'fin':b.dataset.ic==='laptop'?'lap':b.dataset.ic==='enf'?'enf':null;if(!k)return;e.preventDefault();e.stopImmediatePropagation();
  try{var pd=document.getElementById('painel-dir');if(pd&&pd.classList.contains('on')&&pd.querySelector('[data-pd="'+k+'"][aria-selected="true"]'))pdFecha();else pdAbre(k);}catch(z){}},true);
 
+
+/* ======================= Painel esquerdo com faixas gregas nas laterais; painéis do centro sem a barra de títulos ======================= */
+(function(){var st=document.createElement('style');st.id='nav-grega-css';st.textContent=[
+ '@media(min-width:1380px){',
+ ' #nav.navdr{background-image:__GK__,__GK__!important;background-repeat:repeat-y!important;background-size:14px 14px!important;background-position:left top,right top!important;background-attachment:scroll!important;padding-left:14px!important;padding-right:14px!important;box-sizing:border-box}',
+ '}',
+ /* painel aberto no centro: some a barra com os nomes (a placa do frontão já troca); o × fica no canto */
+ '#painel-dir.pd.on .pd-top{position:absolute!important;top:10px;right:12px;left:auto!important;height:auto!important;padding:0!important;margin:0!important;border:0!important;background:none!important;z-index:6;width:auto!important}',
+ '#painel-dir.pd.on .pd-top .pd-nav{display:none!important}'
+].join('\n').split('__GK__').join('url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2214%22%20height%3D%2214%22%20viewBox%3D%220%200%2014%2014%22%3E%3Crect%20width%3D%2214%22%20height%3D%2214%22%20fill%3D%22%23f1e4c6%22/%3E%3Cpath%20d%3D%22M3%200V11H11V4H6V8H8%22%20fill%3D%22none%22%20stroke%3D%22%23c99a3d%22%20stroke-width%3D%221.5%22/%3E%3Cpath%20d%3D%22M0.75%200V14M13.25%200V14%22%20stroke%3D%22%238a6420%22%20stroke-width%3D%221%22/%3E%3C/svg%3E")');document.head.appendChild(st);})();
+fioFixo=(function(f0){return function(){f0.apply(this,arguments);try{var nav=document.getElementById('nav');if(nav&&matchMedia('(min-width:1380px)').matches){var r=nav.getBoundingClientRect(),sb=nav.offsetWidth-nav.clientWidth,de=document.documentElement.style;de.setProperty('--fio-l',(Math.max(0,r.left)+14)+'px');de.setProperty('--fio-w',Math.max(160,r.width-sb-28)+'px');}}catch(e){}};})(fioFixo);
+
 })();
 </script>
 </body>
