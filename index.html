@@ -2218,6 +2218,14 @@ body.claro[data-skin="astro"] #vx .vx-hero h2{color:#efe0c1;text-transform:upper
  text-shadow:2px 2px 0 rgba(142,59,42,.75),0 2px 10px rgba(0,0,0,.45)}
 body.claro[data-skin="astro"] #vx .vx-hero button{background:rgba(240,230,201,.12);border:1px solid rgba(240,230,201,.45);color:#f0e6c9}
 body.claro[data-skin="astro"] #vx .vx-hero button *{color:inherit}
+
+/* laterais sem branco: sumário e Quadro de avisos no tom de papel */
+body.claro[data-skin="astro"] #nav{background:#efe8d6;border-right-color:#e2d8c2}
+body.claro[data-skin="astro"] #nav button.at{background:#f7f1e3;box-shadow:inset 3px 0 0 var(--a-op)}
+body.claro[data-skin="astro"] #nav button:hover{background:#f4eddd}
+body.claro[data-skin="astro"] #rail .rcap,body.claro[data-skin="astro"] #rail .rvz,body.claro[data-skin="astro"] #rail .rm,
+body.claro[data-skin="astro"] #rail .rbl,body.claro[data-skin="astro"] #rail .rmis{background:#f1e9d8}
+body.claro[data-skin="astro"] #rail input,body.claro[data-skin="astro"] #rail button{background:#f7f1e3}
 </style>
 </head>
 <body>
@@ -6331,9 +6339,9 @@ function gmPinta(){
    de nível) e a paleta. Os dados são os mesmos; a escolha fica em S.ap e sincroniza. */
 var TEMAS={
  astro:{nome:'Astron\u00e1utica',app:'Astron\u00e1utica',titulo:'Astron\u00e1utica',
-  abas:['01 / Casa Grande','02 / Miss\u00f5es','03 / Chal\u00e9 de Atena','04 / Arsenal','05 / Loja'],
-  grupos:['Casa Grande','Miss\u00f5es','Chal\u00e9 de Atena','Arsenal'],frase:'Uma flecha de cada vez.',sumario:'Astron\u00e1utica',
-  niveis:['Indeterminado','Reclamado','Campista','Conselheiro','Her\u00f3i','Constela\u00e7\u00e3o'],seq:'dias no acampamento',estudo:'Chal\u00e9 de Atena',arquivo:'Arsenal',
+  abas:['01 / Casa Grande','02 / Miss\u00f5es','03 / Partenon','04 / Arsenal','05 / Loja'],
+  grupos:['Casa Grande','Miss\u00f5es','Partenon','Arsenal'],frase:'Uma flecha de cada vez.',sumario:'Astron\u00e1utica',
+  niveis:['Indeterminado','Reclamado','Campista','Conselheiro','Her\u00f3i','Constela\u00e7\u00e3o'],seq:'dias no acampamento',estudo:'Partenon',arquivo:'Arsenal',
   /* nomes do acampamento: troca só rótulos fixos da moldura, nunca o que o usuário escreveu */
   rotulos:[
    ['Rotina','Escala do chal\u00e9'],['h\u00e1bitos e menu de recarga','h\u00e1bitos e o que recarrega'],
