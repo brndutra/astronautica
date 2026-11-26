@@ -2221,6 +2221,8 @@ body[data-skin="astro"] .v4-leg .fx-06{background:var(--p-06)} body[data-skin="a
 #vx .pl-fim label{display:flex!important;flex-direction:row;align-items:center;gap:10px;grid-template-columns:none}
 #vx .pl-cal span{display:block;height:26px;line-height:26px;padding:0}
 
+/* ícones que substituem os emojis */
+.ico{display:inline-block;width:1.1em;height:1.1em;vertical-align:-.18em;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
 /* =====================================================================
    ACAMPAMENTO · o visual da extensão aplicado ao app
    Papel envelhecido, verde-mata, dourado de dracma, títulos em Georgia,
@@ -5434,7 +5436,7 @@ body.claro[data-skin="astro"] .pl-k,body.claro[data-skin="astro"] .k5,body.claro
   <div class="td-panel">
     <header class="td-phd"><div><div class="td-peb" id="dockEb">leme</div><h2 id="dockTitle">Ponte de Comando</h2></div><button class="td-px" id="dockClose" aria-label="Fechar">×</button></header>
     <div class="td-pbody" id="dockBody" style="position:relative"></div>
-    <button class="projfab" id="projFab" title="Rotas e retomadas" style="position:absolute;left:-99px;top:33px"> <span>Rotas</span></button>
+    <button class="projfab" id="projFab" title="Rotas e retomadas" style="position:absolute;left:-99px;top:33px">🗂 <span>Rotas</span></button>
   </div>
 </div>
 
@@ -5488,26 +5490,26 @@ body.claro[data-skin="astro"] .pl-k,body.claro[data-skin="astro"] .k5,body.claro
 
     <!-- PREVISÃO + COMPROMISSOS -->
     <section class="panel" id="p-previsao">
-      <div class="vsection"> Projeção mês a mês — compromissos e saldo livre</div>
+      <div class="vsection">📈 Projeção mês a mês — compromissos e saldo livre</div>
       <div id="secTimeline"></div>
       <div id="projEditor" style="display:block">
-        <div class="vsection" style="opacity: 0"> Compromissos e consignados</div>
+        <div class="vsection" style="opacity: 0">🔓 Compromissos e consignados</div>
         <div class="sec" id="secConsignados"></div>
-        <div class="vsection" style="opacity: 0"> Cartões e parcelas futuras</div>
+        <div class="vsection" style="opacity: 0">💳 Cartões e parcelas futuras</div>
         <div class="sec" id="secParcelamentos"></div>
         <button class="addbtn" id="cardNew">+ Novo parcelamento</button>
         <div class="sec" id="secFaturas"></div>
       </div>
       <div class="tip tipcard">
-        <div class="tt"> Juros compostos: seu maior aliado</div>
+        <div class="tt">⏳ Juros compostos: seu maior aliado</div>
         <div class="tb">O dinheiro que sobra pode render dinheiro. <b>R$ 200/mês a 10% ao ano</b> viram cerca de <b>R$ 38 mil em 10 anos</b> e <b>R$ 452 mil em 30</b>. Quanto mais cedo começa, mais o tempo trabalha por você. Comece pequeno, seja constante.</div>
       </div>
       <div class="tip gold tipcard">
-        <div class="tt"> Distribua suas despesas no cartão</div>
+        <div class="tt">💳 Distribua suas despesas no cartão</div>
         <div class="tb">Uma forma de organizar: <b>Cartão 1</b> para essenciais (alimentação, saúde, transporte, internet), <b>Cartão 2</b> para parceladas essenciais (reformas, viagens, itens de trabalho) e <b>Cartão 3</b> para o que não é essencial. Mire <b>50%</b> essenciais · <b>30%</b> parceladas · <b>20%</b> não-essencial.</div>
       </div>
       <div class="tip tipcard">
-        <div class="tt"> Fatura, fechamento e vencimento</div>
+        <div class="tt">📅 Fatura, fechamento e vencimento</div>
         <div class="tb"><b>Fechamento</b> é o dia em que a fatura "fecha"; <b>vencimento</b> é o prazo final sem juros. Comprar logo após o fechamento dá quase 40 dias até pagar. Atraso vira dívida de juros altos — a que mais corrói o orçamento.</div>
       </div>
     </section>
@@ -5670,7 +5672,7 @@ body.claro[data-skin="astro"] .pl-k,body.claro[data-skin="astro"] .k5,body.claro
     <h3>Novo plano</h3>
     <div class="fr"><label>O que é</label><input id="plTitulo" placeholder="Ex.: Viagem para Nova York"></div>
     <div class="two">
-      <div class="fr"><label>Tipo</label><select id="plTipo"><option value="viagem">Viagem ✈</option><option value="compra">Compra </option><option value="outro">Outro ◇</option></select></div>
+      <div class="fr"><label>Tipo</label><select id="plTipo"><option value="viagem">Viagem ✈️</option><option value="compra">Compra 🛍️</option><option value="outro">Outro ◇</option></select></div>
       <div class="fr"><label>Valor total (R$)</label><input id="plValor" inputmode="decimal" placeholder="0,00"></div></div>
     <div class="two">
       <div class="fr"><label>Parcelas</label><input id="plParc" type="number" inputmode="numeric" min="1" value="1"></div>
@@ -5825,8 +5827,8 @@ body.claro[data-skin="astro"] .pl-k,body.claro[data-skin="astro"] .k5,body.claro
     <h3>Editar registro</h3>
     <p class="wknhint" id="capEditTxt"></p>
     <div style="display:flex;gap:8px;margin-bottom:8px">
-      <label class="qnalw" style="flex:1"><span class="qnalk"></span><input id="capEditDate" type="date" class="qnsel qnalarm" style="flex:1"></label>
-      <label class="qnalw" style="flex:1"><span class="qnalk"></span><input id="capEditTime" type="time" class="qnsel qnalarm" style="flex:1"></label>
+      <label class="qnalw" style="flex:1"><span class="qnalk">📅</span><input id="capEditDate" type="date" class="qnsel qnalarm" style="flex:1"></label>
+      <label class="qnalw" style="flex:1"><span class="qnalk">⏰</span><input id="capEditTime" type="time" class="qnsel qnalarm" style="flex:1"></label>
     </div>
     <div style="display:flex;gap:8px;margin-bottom:10px">
       <select id="capEditArea" class="qnsel" style="flex:1"></select>
@@ -5956,12 +5958,12 @@ const TAX={
     "Outros":["Presentes","Outros Impostos","Outros"]}}
 };
 const GMETA={
-  "Receitas":{ic:"",cor:"#2f6f4e"},"Investimentos":{ic:"",cor:"#1f6b46"},
-  "Moradia / Habitação":{ic:"",cor:"#e15a72"},"Habitação":{ic:"",cor:"#e15a72"},
-  "Alimentação":{ic:"",cor:"#e89a9a"},"Transporte":{ic:"",cor:"#7fb0c0"},
-  "Saúde":{ic:"❤",cor:"#2d8aa0"},"Educação":{ic:"✏",cor:"#3a4a7a"},
-  "Lazer":{ic:"",cor:"#b08bae"},"Vestuário":{ic:"",cor:"#9b7fae"},
-  "Cuidados pessoais":{ic:"",cor:"#c98a9a"},"Manutenção / prevenção":{ic:"",cor:"#8a8a6a"},
+  "Receitas":{ic:"💵",cor:"#2f6f4e"},"Investimentos":{ic:"🌱",cor:"#1f6b46"},
+  "Moradia / Habitação":{ic:"🏠",cor:"#e15a72"},"Habitação":{ic:"🏠",cor:"#e15a72"},
+  "Alimentação":{ic:"🍽️",cor:"#e89a9a"},"Transporte":{ic:"🚲",cor:"#7fb0c0"},
+  "Saúde":{ic:"❤️",cor:"#2d8aa0"},"Educação":{ic:"✏️",cor:"#3a4a7a"},
+  "Lazer":{ic:"🎮",cor:"#b08bae"},"Vestuário":{ic:"👕",cor:"#9b7fae"},
+  "Cuidados pessoais":{ic:"🧴",cor:"#c98a9a"},"Manutenção / prevenção":{ic:"🔧",cor:"#8a8a6a"},
   "Outros":{ic:"◇",cor:"#9a8f78"}
 };
 function gMeta(g){return GMETA[g]||{ic:"◇",cor:"#9a8f78"};}
@@ -6156,7 +6158,7 @@ function sectionRows(titulo,tipo,sign){
   let h=`<tr class="gband" style="--secc:${base}"><td colspan="9"><div class="gbandinner"><span>${titulo}</span><b>${sign>0?'+':'−'}${fmt0(sPrev)}</b></div></td></tr>`;
   const hasAny=items.length||faturas.length||cons.length;
   if(faturas.length){const tc=tone();
-    h+=`<tr class="grow" style="--gc:${tc}"><td colspan="5"><span class="gic"></span>Faturas de cartão</td><td class="num">${fmt0(faturaSum)}</td><td class="num"></td><td class="num"></td><td></td></tr>`;
+    h+=`<tr class="grow" style="--gc:${tc}"><td colspan="5"><span class="gic">💳</span>Faturas de cartão</td><td class="num">${fmt0(faturaSum)}</td><td class="num"></td><td class="num"></td><td></td></tr>`;
     faturas.forEach(c=>{const idx=monthDiff(c.inicio,mes)+1;h+=`<tr class="erowx" style="--gc:${tc}"><td>${c.descricao||"Fatura"} <em class="rectag">${c.bandeira}</em></td><td><span class="catdot" style="background:var(--gc)"></span>${c.bandeira}</td><td>Cartão</td><td>—</td><td>${idx}/${c.parcelas}</td><td class="num">${fmt0(num(c.valor))}</td><td class="num">—</td><td class="num">—</td><td></td></tr>`;});}
   ordered.forEach(g=>{const m=gMeta(g);const grp=groups[g];const tc=tone();
     const gp=grp.reduce((s,e)=>s+P(e),0), ge=grp.reduce((s,e)=>s+E(e),0);
@@ -6164,10 +6166,10 @@ function sectionRows(titulo,tipo,sign){
     grp.forEach(e=>{const prev=P(e);const di=difInfo(e);const d2=isInv?(e.status||"—"):(fmtDate(e.dReal)||"—");
       h+=`<tr class="erowx" style="--gc:${tc}"><td>${e.descricao||"—"}${e.recorrente?' <em class="rectag">rec.</em>':''}</td><td><span class="catdot" style="background:var(--gc)"></span>${e.sub||"—"}</td><td>${e.meio||"—"}</td><td>${fmtDate(e.dPrev)||"—"}</td><td>${d2}</td><td class="num">${fmt0(prev)}</td><td class="num">${e.efet!=null?fmt0(num(e.efet)):"—"}</td><td class="num" style="color:${di?(di.bom?'var(--pos)':'var(--neg)'):'var(--ink-soft)'}">${di?(di.dif>0?'+':'')+fmt0(di.dif):"—"}</td><td><button class="editlink" data-del="${e.id}">×</button></td></tr>`;});});
   if(cons.length){const tc=tone();
-    h+=`<tr class="grow" style="--gc:${tc}"><td colspan="5"><span class="gic"></span>Consignados · em folha</td><td class="num">${fmt0(consSum)}</td><td class="num"></td><td class="num"></td><td></td></tr>`;
+    h+=`<tr class="grow" style="--gc:${tc}"><td colspan="5"><span class="gic">🔒</span>Consignados · em folha</td><td class="num">${fmt0(consSum)}</td><td class="num"></td><td class="num"></td><td></td></tr>`;
     cons.forEach(c=>{const left=monthDiff(mes,c.fim)+1;h+=`<tr class="erowx folha" style="--gc:${tc}"><td>${c.nome}</td><td><span class="catdot" style="background:var(--gc)"></span>em folha</td><td>Folha</td><td>—</td><td>${left} rest.</td><td class="num">${fmt0(num(c.valor))}</td><td class="num">—</td><td class="num">—</td><td></td></tr>`;});}
   {const sd=sEfet-sPrev;h+=`<tr class="ctot"><td>Total ${titulo}</td><td></td><td></td><td></td><td></td><td class="num">${fmt0(sPrev)}</td><td class="num">${fmt0(sEfet)}</td><td class="num">${fmt0(sd)}</td><td></td></tr>`;}
-  if(cons.length)h+=`<tr class="folhanote"><td colspan="9"> Consignados (${fmt0(consSum)}/mês) descontados na folha — fora do líquido, não entram no total nem no saldo.</td></tr>`;
+  if(cons.length)h+=`<tr class="folhanote"><td colspan="9">🔒 Consignados (${fmt0(consSum)}/mês) descontados na folha — fora do líquido, não entram no total nem no saldo.</td></tr>`;
   return h;
 }
 function secList(elId,titulo,tipo,sign){
@@ -6194,7 +6196,7 @@ function secList(elId,titulo,tipo,sign){
   const hasAny=items.length||faturas.length||cons.length;
   if(!hasAny)h+=`<tr><td colspan="9" class="cempty">Nada por aqui. Toque em ＋ Lançamento, no topo.</td></tr>`;
   if(faturas.length){const tc=tone();
-    h+=`<tr class="grow" style="--gc:${tc}"><td colspan="5"><span class="gic"></span>Faturas de cartão</td><td class="num">${fmt0(faturaSum)}</td><td class="num"></td><td class="num"></td><td></td></tr>`;
+    h+=`<tr class="grow" style="--gc:${tc}"><td colspan="5"><span class="gic">💳</span>Faturas de cartão</td><td class="num">${fmt0(faturaSum)}</td><td class="num"></td><td class="num"></td><td></td></tr>`;
     faturas.forEach(c=>{const idx=monthDiff(c.inicio,mes)+1;h+=`<tr class="erowx" style="--gc:${tc}"><td>${c.descricao||"Fatura"} <em class="rectag">${c.bandeira}</em></td><td><span class="catdot" style="background:var(--gc)"></span>${c.bandeira}</td><td>Cartão</td><td>—</td><td>${idx}/${c.parcelas}</td><td class="num">${fmt0(num(c.valor))}</td><td class="num">—</td><td class="num">—</td><td></td></tr>`;});}
   ordered.forEach(g=>{const m=gMeta(g);const grp=groups[g];const tc=tone();
     const gp=grp.reduce((s,e)=>s+P(e),0), ge=grp.reduce((s,e)=>s+E(e),0);
@@ -6202,10 +6204,10 @@ function secList(elId,titulo,tipo,sign){
     grp.forEach(e=>{const prev=P(e);const di=difInfo(e);const d2=isInv?(e.status||"—"):(fmtDate(e.dReal)||"—");
       h+=`<tr class="erowx" style="--gc:${tc}"><td>${e.descricao||"—"}${e.recorrente?' <em class="rectag">rec.</em>':''}</td><td><span class="catdot" style="background:var(--gc)"></span>${e.sub||"—"}</td><td>${e.meio||"—"}</td><td>${fmtDate(e.dPrev)||"—"}</td><td>${d2}</td><td class="num">${fmt0(prev)}</td><td class="num">${e.efet!=null?fmt0(num(e.efet)):"—"}</td><td class="num" style="color:${di?(di.bom?'var(--pos)':'var(--neg)'):'var(--ink-soft)'}">${di?(di.dif>0?'+':'')+fmt0(di.dif):"—"}</td><td><button class="editlink" data-del="${e.id}">×</button></td></tr>`;});});
   if(cons.length){const tc=tone();
-    h+=`<tr class="grow" style="--gc:${tc}"><td colspan="5"><span class="gic"></span>Consignados · em folha</td><td class="num">${fmt0(consSum)}</td><td class="num"></td><td class="num"></td><td></td></tr>`;
+    h+=`<tr class="grow" style="--gc:${tc}"><td colspan="5"><span class="gic">🔒</span>Consignados · em folha</td><td class="num">${fmt0(consSum)}</td><td class="num"></td><td class="num"></td><td></td></tr>`;
     cons.forEach(c=>{const left=monthDiff(mes,c.fim)+1;h+=`<tr class="erowx folha" style="--gc:${tc}"><td>${c.nome}</td><td><span class="catdot" style="background:var(--gc)"></span>em folha</td><td>Folha</td><td>—</td><td>${left} rest.</td><td class="num">${fmt0(num(c.valor))}</td><td class="num">—</td><td class="num">—</td><td></td></tr>`;});}
   if(hasAny){const sd=sEfet-sPrev;h+=`<tr class="ctot"><td>Total ${titulo}</td><td></td><td></td><td></td><td></td><td class="num">${fmt0(sPrev)}</td><td class="num">${fmt0(sEfet)}</td><td class="num">${fmt0(sd)}</td><td></td></tr>`;}
-  if(cons.length)h+=`<tr class="folhanote"><td colspan="9"> Consignados (${fmt0(consSum)}/mês) são descontados na folha — já fora do líquido, não entram no total acima nem no saldo.</td></tr>`;
+  if(cons.length)h+=`<tr class="folhanote"><td colspan="9">🔒 Consignados (${fmt0(consSum)}/mês) são descontados na folha — já fora do líquido, não entram no total acima nem no saldo.</td></tr>`;
   h+=`</tbody></table></div>`;
   el.innerHTML=h;
 }
@@ -6239,11 +6241,11 @@ function renderMesCompromissos(){
   h+=`<div class="ctblwrap"><table class="ctbl grouped"><thead><tr><th>Cartão / compromisso</th><th>Parcela</th><th class="num">Valor no mês</th><th></th></tr></thead><tbody>`;
   const byCard={};live.forEach(c=>{(byCard[c.bandeira||"Cartão"]=byCard[c.bandeira||"Cartão"]||[]).push(c);});
   Object.keys(byCard).forEach(b=>{const es=byCard[b];const v=es.reduce((s,c)=>s+num(c.valor),0);
-    h+=`<tr class="grow" style="--gc:var(--brass)"><td colspan="2"><span class="gic"></span>${b}</td><td class="num">${fmt0(v)}</td><td></td></tr>`;
+    h+=`<tr class="grow" style="--gc:var(--brass)"><td colspan="2"><span class="gic">💳</span>${b}</td><td class="num">${fmt0(v)}</td><td></td></tr>`;
     es.forEach(c=>{const idx=monthDiff(c.inicio,mes)+1;h+=`<tr class="erowx" style="--gc:var(--brass)"><td>${c.descricao||"—"}</td><td>${idx}/${c.parcelas}</td><td class="num">${fmt0(num(c.valor))}</td><td></td></tr>`;});});
   if(live.length)h+=`<tr class="ctot"><td>Total que sai da conta</td><td></td><td class="num">${fmt0(totConta)}</td><td></td></tr>`;
   if(cons.length){const ct=cons.reduce((s,c)=>s+num(c.valor),0);
-    h+=`<tr class="grow" style="--gc:#a8412f"><td colspan="2"><span class="gic"></span>Consignados — descontados em folha</td><td class="num">${fmt0(ct)}</td><td></td></tr>`;
+    h+=`<tr class="grow" style="--gc:#a8412f"><td colspan="2"><span class="gic">🔒</span>Consignados — descontados em folha</td><td class="num">${fmt0(ct)}</td><td></td></tr>`;
     cons.forEach(c=>{const left=monthDiff(mes,c.fim)+1;h+=`<tr class="erowx" style="--gc:#a8412f"><td>${c.nome}</td><td>${left} rest.</td><td class="num">${fmt0(num(c.valor))}</td><td></td></tr>`;});}
   h+=`</tbody></table></div><p class="intro" style="margin:4px 2px 0">Os cartões saem da conta neste mês; os consignados já vêm descontados na folha.</p>`;
   el.innerHTML=h;
@@ -6298,7 +6300,7 @@ function renderAnual(){
   const sal=keys.map((k,i)=>rec[i]-gas[i]-car[i]-pl[i]);
   let acc=0;const ac=sal.map(s=>acc+=s);
   function tr(lbl,arr,cls){let r=`<tr class="${cls||''}"><td>${lbl}</td>`;arr.forEach(v=>{r+=`<td class="${v<0?'neg-c':''}" title="${fmt0(v)}">${fmtK(v)}</td>`;});return r+"</tr>";}
-  let h=`<div class="yearbar"><span class="vsection" style="margin:0"> Visão anual</span><span class="yearpick"><button data-anom="-1">‹</button><b>${y}</b><button data-anom="1">›</button></span></div>`;
+  let h=`<div class="yearbar"><span class="vsection" style="margin:0">📊 Visão anual</span><span class="yearpick"><button data-anom="-1">‹</button><b>${y}</b><button data-anom="1">›</button></span></div>`;
   h+=`<div class="annual"><table><thead><tr><th>${y}</th>`;
   mns.forEach(m=>h+=`<th>${m}</th>`);h+=`</tr></thead><tbody>`;
   h+=tr("Receitas",rec);h+=tr("Gastos",gas);h+=tr("Cartões",car);h+=tr("Viagens/planos",pl);
@@ -6403,7 +6405,7 @@ function renderPlanos(){
   el.innerHTML=h;
 }
 function renderSimple(p){
-  const parc=num(p.valor)/(p.parcelas||1);const ic=p.tipo==="compra"?"":"◇";
+  const parc=num(p.valor)/(p.parcelas||1);const ic=p.tipo==="compra"?"🛍️":"◇";
   return `<div class="plan ${p.ativo?'':'off'}"><div class="ph"><div><div class="ttl">${ic} ${p.titulo}</div><div class="tag">${p.parcelas}x · início ${monthShort(p.inicio||mes)}</div></div><div class="total">${fmt0(num(p.valor))}<small>${fmt0(parc)}/mês</small></div></div><div class="impact">Pesa <b>${fmt0(parc)}</b>/mês de <b>${monthShort(p.inicio||mes)}</b> a <b>${monthShort(addMonths(p.inicio||mes,(p.parcelas||1)-1))}</b>.</div><div class="pacts"><button class="${p.ativo?'on-b':''}" data-toggle="${p.id}">${p.ativo?'Ativo na previsão':'Pausado'}</button><button data-realizar="${p.id}">Realizar</button><button data-delp="${p.id}">Remover</button></div></div>`;
 }
 function renderViagem(p){
@@ -6417,12 +6419,12 @@ function renderViagem(p){
   let crows=(v.caixa||[]).map(c=>`<tr><td>${c.item}</td><td class="num">${fmt0(c.valor)}</td><td><button class="trash" data-delcx="${p.id}:${c.id}">×</button></td></tr>`).join("");
   if(!crows)crows='<tr><td colspan="3" class="vempty">Sem itens no caixa ainda.</td></tr>';
   return `<div class="vtrip ${p.ativo?'':'off'}">
-    <div class="vth"><div><div class="vtt">✈ ${p.titulo}</div><div class="vsub">${v.parcelas||1}x · início ${monthShort(v.inicio||mes)}</div></div><div class="vtotal">${fmt0(total)}<small>${fmt0(parc)}/mês</small></div></div>
+    <div class="vth"><div><div class="vtt">✈️ ${p.titulo}</div><div class="vsub">${v.parcelas||1}x · início ${monthShort(v.inicio||mes)}</div></div><div class="vtotal">${fmt0(total)}<small>${fmt0(parc)}/mês</small></div></div>
     <div class="vversions">${pills}<button class="vnew" data-vnew="${p.id}">+ versão</button></div>
-    <div class="vsection"> Roteiro dia a dia</div>
+    <div class="vsection">📅 Roteiro dia a dia</div>
     <table class="vtable"><thead><tr><th>Dia</th><th>Atividade</th><th>Custo</th><th></th></tr></thead><tbody>${rrows}</tbody><tfoot><tr><td colspan="2">Subtotal roteiro</td><td class="num">${fmt0(rt)}</td><td></td></tr></tfoot></table>
     <button class="addmini" data-step="${p.id}">+ etapa do roteiro</button>
-    <div class="vsection"> Livro-caixa (complementar)</div>
+    <div class="vsection">📒 Livro-caixa (complementar)</div>
     <table class="vtable"><thead><tr><th>Item</th><th>Valor</th><th></th></tr></thead><tbody>${crows}</tbody><tfoot><tr><td>Subtotal caixa</td><td class="num">${fmt0(cx)}</td><td></td></tr></tfoot></table>
     <button class="addmini" data-cx="${p.id}">+ item do caixa</button>
     <div class="vgrand"><span>Total da versão "${v.nome}"</span><b>${fmt0(total)}</b></div>
@@ -6446,30 +6448,30 @@ function dividaOutstanding(k){
 }
 /* Cards de desafio (catálogo) */
 const CHALLENGES={
-  passaporte:{nome:"Passaporte Financeiro — NY",ic:"✈",fn:(g)=>{
+  passaporte:{nome:"Passaporte Financeiro — NY",ic:"✈️",fn:(g)=>{
     const guard=g.passaporte*250,meta=30000,pct=Math.round(guard/meta*100);
     let cells="";for(let i=0;i<120;i++)cells+=`<div class="cell ${i<g.passaporte?'f':''}" data-cell="${i}"></div>`;
-    return `<div class="quest"><div class="qh"><span class="ic">✈</span><span class="qt">Passaporte Financeiro — Nova York</span></div><div class="qsub">120 células de R$ 250. Cada vez que guardar, marque uma célula.</div><div class="bar"><i style="width:${pct}%"></i></div><div class="qmeta"><span>Guardado <b>${fmt0(guard)}</b></span><span>Falta <b>${fmt0(meta-guard)}</b></span><span><b>${pct}%</b></span></div><div class="passport">${cells}</div><div class="stepper"><button data-pp="-1">− célula</button><button class="go" data-pp="1">+ R$ 250</button></div></div>`;}},
-  liberar:{nome:"Liberar Renda (consignados)",ic:"",fn:(g,ctx)=>{
+    return `<div class="quest"><div class="qh"><span class="ic">✈️</span><span class="qt">Passaporte Financeiro — Nova York</span></div><div class="qsub">120 células de R$ 250. Cada vez que guardar, marque uma célula.</div><div class="bar"><i style="width:${pct}%"></i></div><div class="qmeta"><span>Guardado <b>${fmt0(guard)}</b></span><span>Falta <b>${fmt0(meta-guard)}</b></span><span><b>${pct}%</b></span></div><div class="passport">${cells}</div><div class="stepper"><button data-pp="-1">− célula</button><button class="go" data-pp="1">+ R$ 250</button></div></div>`;}},
+  liberar:{nome:"Liberar Renda (consignados)",ic:"🔓",fn:(g,ctx)=>{
     const presa=g.consignados.filter(c=>!c.quitado).reduce((s,c)=>s+c.valor,0);
     const livre=g.consignados.filter(c=>c.quitado).reduce((s,c)=>s+c.valor,0);
     let debts="";g.consignados.forEach(c=>{debts+=`<div class="debt ${c.quitado?'done':''}"><span class="dot"></span><div class="dn">${c.nome}<small>${c.quitado?'quitado — renda liberada':'parcela mensal'}</small></div><span class="dv">${fmt0(c.valor)}</span><button data-cons="${c.id}">${c.quitado?'✓':'Quitar'}</button></div>`;});
-    return `<div class="quest"><div class="qh"><span class="ic"></span><span class="qt">Liberar Renda</span></div><div class="qsub">Quando os três consignados caírem, sua renda salta para <b>${fmt0(ctx.inc+presa)}</b>.</div>${debts}<div class="libpanel"><div class="presa"><div class="lbl">Renda presa</div><div class="n" style="color:var(--neg)">${fmt0(presa)}</div></div><div class="livre"><div class="lbl">Renda liberada</div><div class="n" style="color:var(--pos)">${fmt0(livre)}</div></div></div></div>`;}},
-  cheque:{nome:"Quitar o Cheque Especial",ic:"⛓",fn:(g)=>{
+    return `<div class="quest"><div class="qh"><span class="ic">🔓</span><span class="qt">Liberar Renda</span></div><div class="qsub">Quando os três consignados caírem, sua renda salta para <b>${fmt0(ctx.inc+presa)}</b>.</div>${debts}<div class="libpanel"><div class="presa"><div class="lbl">Renda presa</div><div class="n" style="color:var(--neg)">${fmt0(presa)}</div></div><div class="livre"><div class="lbl">Renda liberada</div><div class="n" style="color:var(--pos)">${fmt0(livre)}</div></div></div></div>`;}},
+  cheque:{nome:"Quitar o Cheque Especial",ic:"⛓️",fn:(g)=>{
     const chPct=Math.min(100,Math.round(g.cheque.pago/g.cheque.meta*100));
-    return `<div class="quest"><div class="qh"><span class="ic">⛓</span><span class="qt">Quitar o Cheque Especial</span></div><div class="qsub">Saldo negativo no BB: ${fmt0(g.cheque.meta)}. Registre o quanto abateu.</div><div class="bar"><i style="width:${chPct}%;background:linear-gradient(90deg,var(--neg),var(--gold))"></i></div><div class="qmeta"><span>Abatido <b>${fmt0(g.cheque.pago)}</b></span><span>Resta <b>${fmt0(g.cheque.meta-g.cheque.pago)}</b></span></div><div class="stepper"><button data-ch="-100">− R$ 100</button><button data-ch="-500">− R$ 500</button><button class="go" data-ch="-100000">Quitado!</button></div></div>`;}},
-  comprar:{nome:"Posso comprar isso?",ic:"",fn:(g,ctx)=>{
-    return `<div class="quest calc"><div class="qh"><span class="ic"></span><span class="qt">Posso comprar isso?</span></div><div class="qsub">Saldo livre previsto: <b>${fmt0(ctx.free)}</b> · meta NY exige <b>${fmt0(ctx.aporteNYC)}</b>/mês.</div><input id="buyVal" inputmode="decimal" placeholder="Valor da compra (R$)"><button class="btn" id="buyBtn" style="margin-top:10px">Avaliar impacto</button><div class="verdict" id="buyVerdict"></div><div class="zhint"><span class="zg"> até ${fmt0(Math.max(0,ctx.free-ctx.aporteNYC)*0.4)}</span><span class="zy"> até ${fmt0(Math.max(0,ctx.free-ctx.aporteNYC))}</span><span class="zr"> acima</span></div></div>`;}},
-  semcartao:{nome:"30 dias sem crédito",ic:"",fn:(g)=>{
+    return `<div class="quest"><div class="qh"><span class="ic">⛓️</span><span class="qt">Quitar o Cheque Especial</span></div><div class="qsub">Saldo negativo no BB: ${fmt0(g.cheque.meta)}. Registre o quanto abateu.</div><div class="bar"><i style="width:${chPct}%;background:linear-gradient(90deg,var(--neg),var(--gold))"></i></div><div class="qmeta"><span>Abatido <b>${fmt0(g.cheque.pago)}</b></span><span>Resta <b>${fmt0(g.cheque.meta-g.cheque.pago)}</b></span></div><div class="stepper"><button data-ch="-100">− R$ 100</button><button data-ch="-500">− R$ 500</button><button class="go" data-ch="-100000">Quitado!</button></div></div>`;}},
+  comprar:{nome:"Posso comprar isso?",ic:"🛒",fn:(g,ctx)=>{
+    return `<div class="quest calc"><div class="qh"><span class="ic">🛒</span><span class="qt">Posso comprar isso?</span></div><div class="qsub">Saldo livre previsto: <b>${fmt0(ctx.free)}</b> · meta NY exige <b>${fmt0(ctx.aporteNYC)}</b>/mês.</div><input id="buyVal" inputmode="decimal" placeholder="Valor da compra (R$)"><button class="btn" id="buyBtn" style="margin-top:10px">Avaliar impacto</button><div class="verdict" id="buyVerdict"></div><div class="zhint"><span class="zg">🟢 até ${fmt0(Math.max(0,ctx.free-ctx.aporteNYC)*0.4)}</span><span class="zy">🟡 até ${fmt0(Math.max(0,ctx.free-ctx.aporteNYC))}</span><span class="zr">🔴 acima</span></div></div>`;}},
+  semcartao:{nome:"30 dias sem crédito",ic:"🚫",fn:(g)=>{
     const dias=g.semCartao.filter(Boolean).length;let daysH="";g.semCartao.forEach((on,i)=>{daysH+=`<div class="day ${on?'on':''}" data-day="${i}">${i+1}</div>`;});
-    return `<div class="quest"><div class="qh"><span class="ic"></span><span class="qt">30 dias sem crédito</span></div><div class="qsub">Sem parcelar, sem crédito, sem PIX crédito. ${dias>=30?' Missão concluída!':`${dias}/30 dias`}</div><div class="daygrid">${daysH}</div></div>`;}},
-  semcheque:{nome:"Conta no positivo",ic:"",fn:(g)=>{
-    const mc=g.semCheque;return `<div class="quest"><div class="qh"><span class="ic"></span><span class="qt">Conta no positivo</span></div><div class="qsub">Dias seguidos sem entrar no cheque especial: <b>${mc}</b>.</div><div class="stepper"><button data-sch="-1">−1 dia</button><button class="go" data-sch="1">+1 dia</button><button data-sch="0">zerar</button></div><div class="medals"><div class="medal ${mc>=30?'win':''}"><div class="em"></div><div class="ml">30 dias</div></div><div class="medal ${mc>=60?'win':''}"><div class="em"></div><div class="ml">60 dias</div></div><div class="medal ${mc>=90?'win':''}"><div class="em"></div><div class="ml">90 dias</div></div></div></div>`;}},
-  score:{nome:"Score Financeiro",ic:"",fn:(g)=>{
-    const nv=nivelDe(g.score);return `<div class="quest"><div class="qh"><span class="ic"></span><span class="qt">Score Financeiro</span></div><div class="scorebig">${g.score}</div><div class="level">${nv[0]}</div><div class="ladder">${NIVEIS.map(n=>`<span class="${n[0]===nv[0]?'now':''}">${n[0]}</span>`).join("")}</div><div class="scoreacts"><button data-pts="10">Registrei despesas <b>+10</b></button><button data-pts="20">Mês positivo <b>+20</b></button><button data-pts="30">Aportei p/ NY <b>+30</b></button><button data-pts="50">Quitei dívida <b>+50</b></button><button data-pts="100" style="grid-column:1/3">Mês sem cheque especial <b>+100</b></button></div></div>`;}},
-  central:{nome:"Central de Economias",ic:"",fn:(g)=>{
+    return `<div class="quest"><div class="qh"><span class="ic">🚫</span><span class="qt">30 dias sem crédito</span></div><div class="qsub">Sem parcelar, sem crédito, sem PIX crédito. ${dias>=30?'🏅 Missão concluída!':`${dias}/30 dias`}</div><div class="daygrid">${daysH}</div></div>`;}},
+  semcheque:{nome:"Conta no positivo",ic:"📈",fn:(g)=>{
+    const mc=g.semCheque;return `<div class="quest"><div class="qh"><span class="ic">📈</span><span class="qt">Conta no positivo</span></div><div class="qsub">Dias seguidos sem entrar no cheque especial: <b>${mc}</b>.</div><div class="stepper"><button data-sch="-1">−1 dia</button><button class="go" data-sch="1">+1 dia</button><button data-sch="0">zerar</button></div><div class="medals"><div class="medal ${mc>=30?'win':''}"><div class="em">🥉</div><div class="ml">30 dias</div></div><div class="medal ${mc>=60?'win':''}"><div class="em">🥈</div><div class="ml">60 dias</div></div><div class="medal ${mc>=90?'win':''}"><div class="em">🥇</div><div class="ml">90 dias</div></div></div></div>`;}},
+  score:{nome:"Score Financeiro",ic:"⭐",fn:(g)=>{
+    const nv=nivelDe(g.score);return `<div class="quest"><div class="qh"><span class="ic">⭐</span><span class="qt">Score Financeiro</span></div><div class="scorebig">${g.score}</div><div class="level">${nv[0]}</div><div class="ladder">${NIVEIS.map(n=>`<span class="${n[0]===nv[0]?'now':''}">${n[0]}</span>`).join("")}</div><div class="scoreacts"><button data-pts="10">Registrei despesas <b>+10</b></button><button data-pts="20">Mês positivo <b>+20</b></button><button data-pts="30">Aportei p/ NY <b>+30</b></button><button data-pts="50">Quitei dívida <b>+50</b></button><button data-pts="100" style="grid-column:1/3">Mês sem cheque especial <b>+100</b></button></div></div>`;}},
+  central:{nome:"Central de Economias",ic:"🌱",fn:(g)=>{
     const eco=g.habitos.filter(h=>h.feito).reduce((s,h)=>s+h.eco,0);let habH="";g.habitos.forEach(h=>{habH+=`<div class="habit ${h.feito?'on':''}" data-hab="${h.id}"><div class="box">✓</div><div class="ht">${h.txt}</div><div class="he">${h.eco?fmt0(h.eco):''}</div></div>`;});
-    return `<div class="quest"><div class="qh"><span class="ic"></span><span class="qt">Central de Economias</span></div><div class="qsub">Hábitos atômicos: 1% melhor por dia. Economia estimada do mês: <b style="color:var(--pos)">${fmt0(eco)}</b></div>${habH}</div>`;}}
+    return `<div class="quest"><div class="qh"><span class="ic">🌱</span><span class="qt">Central de Economias</span></div><div class="qsub">Hábitos atômicos: 1% melhor por dia. Economia estimada do mês: <b style="color:var(--pos)">${fmt0(eco)}</b></div>${habH}</div>`;}}
 };
 
 function renderMetas(){renderEvolucao();renderMetasPainel();renderBoard();renderLinhaTempo();}
@@ -6496,7 +6498,7 @@ function renderEvolucao(){
   const COL={patr:'var(--brass)',inv:'#2f6f4e',div:'#a8412f'};
   function delta(arr,goodUp){const d=arr[11]-arr[0];const cls=d===0?'flat':((d>0)===goodUp?'up':'down');return `<div class="sd ${cls}">${d>0?'+':''}${fmtK(d)} no ano</div>`;}
   function stat(lbl,col,val,deltaHtml){return `<div class="evostat"><div class="sl"><i style="background:${col}"></i>${lbl}</div><div class="sv">${fmt0(val)}</div>${deltaHtml}</div>`;}
-  let h=`<div class="evo"><div class="evohd"><span class="vsection" style="margin:0"> Evolução financeira</span><span class="yearpick"><button data-anom="-1">‹</button><b>${anoSel}</b><button data-anom="1">›</button></span></div>`;
+  let h=`<div class="evo"><div class="evohd"><span class="vsection" style="margin:0">📈 Evolução financeira</span><span class="yearpick"><button data-anom="-1">‹</button><b>${anoSel}</b><button data-anom="1">›</button></span></div>`;
   h+=`<div class="evostats">`;
   h+=stat("Patrimônio",COL.patr,patr[11],delta(patr,true));
   h+=stat("Investido",COL.inv,inv[11],delta(inv,true));
@@ -6537,7 +6539,7 @@ function renderMetasPainel(){
       t+=`<tr><td>${m.nome}</td><td>${m.cat}</td><td class="num">${fmt0(m.alvo)}</td><td class="num">${fmt0(m.guard)}</td><td class="num">${fmt0(falta)}</td><td>${fmtBr(m.prazo)}</td><td class="num">${mr}</td><td class="num">${fmt0(aporte)}</td><td><div class="pwrap"><div class="pbar"><i style="width:${pct}%"></i></div><span>${pct}%</span></div></td></tr>`;});
     return t+`</tbody></table></div>`;
   }
-  let h=`<div class="vsection"> Metas, reserva e viagens</div><p class="intro" style="margin:0 2px 6px">Metas com faltante, prazo, aporte necessário e progresso.</p>`;
+  let h=`<div class="vsection">🎯 Metas, reserva e viagens</div><p class="intro" style="margin:0 2px 6px">Metas com faltante, prazo, aporte necessário e progresso.</p>`;
   h+=`<div class="mlabel">Curto prazo</div>`+tabela("curto");
   h+=`<div class="mlabel">Longo prazo</div>`+tabela("longo");
   el.innerHTML=h;
@@ -6545,7 +6547,7 @@ function renderMetasPainel(){
 
 function renderBoard(){
   const el=document.getElementById("board");const g=state.game;const ctx=metaCtx();
-  let h=`<div class="vsection"> Board de desafios</div>`;
+  let h=`<div class="vsection">🎮 Board de desafios</div>`;
   if(!g.board.length)h+=`<div class="empty" style="padding:14px 4px">Board vazia. Toque em "+ adicionar desafio" para trazer um card.</div>`;
   else g.board.forEach(id=>{const c=CHALLENGES[id];if(!c)return;h+=`<div class="boardcard">${c.fn(g,ctx)}<button class="rmboard" data-rmboard="${id}">×</button></div>`;});
   el.innerHTML=h;
@@ -6557,7 +6559,7 @@ function renderLinhaTempo(){
   const ks=mns.map((_,i)=>anoSel+"-"+pad(i+1));
   const consTot=state.game.consignados.filter(c=>!c.quitado).reduce((s,c)=>s+c.valor,0);
   function row(lbl,fn,cls){let r=`<tr class="${cls||''}"><td>${lbl}</td>`;ks.forEach(k=>{const v=fn(k);r+=`<td class="${v<0?'neg-c':''}" title="${fmt0(v)}">${fmtK(v)}</td>`;});return r+"</tr>";}
-  let h=`<div class="yearbar"><span class="vsection" style="margin:0"> Linha do tempo financeira</span><span class="yearpick"><button data-anom="-1">‹</button><b>${anoSel}</b><button data-anom="1">›</button></span></div>`;
+  let h=`<div class="yearbar"><span class="vsection" style="margin:0">🧭 Linha do tempo financeira</span><span class="yearpick"><button data-anom="-1">‹</button><b>${anoSel}</b><button data-anom="1">›</button></span></div>`;
   h+=`<div class="annual"><table><thead><tr><th>${anoSel}</th>`;
   mns.forEach(m=>h+=`<th>${m}</th>`);h+=`</tr></thead><tbody>`;
   h+=row("Consignados",()=>consTot);
@@ -6727,9 +6729,9 @@ function evalBuy(){
   const folga=Math.max(0,free-aporte);
   if(!v){out.className="verdict";return;}
   out.classList.add("show");
-  if(v<=folga*0.4){out.className="verdict show g";out.innerHTML=` <b>Pode comprar.</b> Cabe sem atrapalhar o aporte de Nova York. Sobram ${fmt0(folga-v)} de folga.`;}
-  else if(v<=folga){out.className="verdict show y";out.innerHTML=` <b>Dá, mas atenção.</b> Come boa parte da sua folga do mês. Depois dela restam ${fmt0(folga-v)}.`;}
-  else{out.className="verdict show r";out.innerHTML=` <b>Compromete a viagem.</b> Passa da sua folga (${fmt0(folga)}). Para comprar, você atrasaria o aporte de Nova York em ~${(v/Math.max(1,aporte)).toFixed(1)} mês(es).`;}
+  if(v<=folga*0.4){out.className="verdict show g";out.innerHTML=`🟢 <b>Pode comprar.</b> Cabe sem atrapalhar o aporte de Nova York. Sobram ${fmt0(folga-v)} de folga.`;}
+  else if(v<=folga){out.className="verdict show y";out.innerHTML=`🟡 <b>Dá, mas atenção.</b> Come boa parte da sua folga do mês. Depois dela restam ${fmt0(folga-v)}.`;}
+  else{out.className="verdict show r";out.innerHTML=`🔴 <b>Compromete a viagem.</b> Passa da sua folga (${fmt0(folga)}). Para comprar, você atrasaria o aporte de Nova York em ~${(v/Math.max(1,aporte)).toFixed(1)} mês(es).`;}
 }
 
 /* ===== Habit tracker (lado girado) ===== */
@@ -6758,17 +6760,17 @@ function defaultsHabit(h){
   if(!h.qnotes)h.qnotes=[];
   if(!h.todos)h.todos=[];
   if(!h.closet)h.closet=[
-    {id:uid(),name:'Camisas & camisetas',ic:'',hint:'tops do dia a dia',items:[]},
-    {id:uid(),name:'Calças & shorts',ic:'',hint:'partes de baixo',items:[]},
-    {id:uid(),name:'Calçados',ic:'',hint:'tênis, sapatos, botas',items:[]},
-    {id:uid(),name:'Acessórios',ic:'',hint:'bonés, óculos, relógios',items:[]}];
+    {id:uid(),name:'Camisas & camisetas',ic:'👕',hint:'tops do dia a dia',items:[]},
+    {id:uid(),name:'Calças & shorts',ic:'👖',hint:'partes de baixo',items:[]},
+    {id:uid(),name:'Calçados',ic:'👟',hint:'tênis, sapatos, botas',items:[]},
+    {id:uid(),name:'Acessórios',ic:'🧢',hint:'bonés, óculos, relógios',items:[]}];
   if(!h.pertences)h.pertences=[];
   if(!h.bagMap)h.bagMap=[
-    {id:uid(),name:'Mochila / bolsa',ic:'',hint:'o que levo comigo',items:[]},
-    {id:uid(),name:'Bolso / carteira',ic:'',hint:'essenciais do bolso',items:[]}];
+    {id:uid(),name:'Mochila / bolsa',ic:'🎒',hint:'o que levo comigo',items:[]},
+    {id:uid(),name:'Bolso / carteira',ic:'👛',hint:'essenciais do bolso',items:[]}];
   if(!h.consumoMap)h.consumoMap=[
-    {id:uid(),name:'Suplementos',ic:'',hint:'vitaminas e suplementos',items:[]},
-    {id:uid(),name:'Reposições',ic:'',hint:'o que acaba e precisa repor',items:[]}];
+    {id:uid(),name:'Suplementos',ic:'💊',hint:'vitaminas e suplementos',items:[]},
+    {id:uid(),name:'Reposições',ic:'🔁',hint:'o que acaba e precisa repor',items:[]}];
   if(!h.cart)h.cart=[];
   if(!h.rhythm)h.rhythm={
     coverage:{work:6,nutrition:5,movement:3,relations:2,space:3,rest:6,mind:4},
@@ -6816,21 +6818,21 @@ function defaultsHabit(h){
   if(!h.toolsMap)h.toolsMap={
     flow:[['Ideias','Caderno / Inbox'],['Conhecimento','OneNote'],['Arquivos','Drive'],['Dados','Excel'],['Código','GitHub'],['Agenda','Calendário'],['Ação','Este app']],
     tools:[
-      {id:uid(),ic:'',nm:'Caderno',fn:'Captura rápida e pensamento livre.',fr:'Ideias soltas · brainstorm'},
-      {id:uid(),ic:'',nm:'OneNote',fn:'Base de conhecimento e procedimentos.',fr:'Fluxos · tutoriais · TRF3'},
-      {id:uid(),ic:'',nm:'Drive',fn:'Arquivos e documentos finais.',fr:'PDFs · anexos · backups'},
-      {id:uid(),ic:'',nm:'Excel',fn:'Dados, cálculos e controle.',fr:'Planilhas · números'},
-      {id:uid(),ic:'',nm:'GitHub',fn:'Código e versionamento.',fr:'Projetos dev · scripts'},
-      {id:uid(),ic:'',nm:'Calendário',fn:'Compromissos inevitáveis.',fr:'Sessões · reuniões · viagens'},
+      {id:uid(),ic:'📓',nm:'Caderno',fn:'Captura rápida e pensamento livre.',fr:'Ideias soltas · brainstorm'},
+      {id:uid(),ic:'📝',nm:'OneNote',fn:'Base de conhecimento e procedimentos.',fr:'Fluxos · tutoriais · TRF3'},
+      {id:uid(),ic:'📁',nm:'Drive',fn:'Arquivos e documentos finais.',fr:'PDFs · anexos · backups'},
+      {id:uid(),ic:'📊',nm:'Excel',fn:'Dados, cálculos e controle.',fr:'Planilhas · números'},
+      {id:uid(),ic:'🐙',nm:'GitHub',fn:'Código e versionamento.',fr:'Projetos dev · scripts'},
+      {id:uid(),ic:'📅',nm:'Calendário',fn:'Compromissos inevitáveis.',fr:'Sessões · reuniões · viagens'},
       {id:uid(),ic:'✅',nm:'Este app',fn:'Orquestrador — não armazena tudo.',fr:'O que fazer · onde · onde parei'}]};
   return h;
 }
 const WD=['D','S','T','Q','Q','S','S'];
 const LIFE_AREAS=[
-  {id:'fisica',name:'Física',ic:'',color:'#b4521c'},
-  {id:'mental',name:'Mental',ic:'',color:'#3a6ea5'},
+  {id:'fisica',name:'Física',ic:'🪨',color:'#b4521c'},
+  {id:'mental',name:'Mental',ic:'🧠',color:'#3a6ea5'},
   {id:'espiritual',name:'Espiritual',ic:'✦',color:'#7a5cab'},
-  {id:'social',name:'Social',ic:'',color:'#c79a3a'},
+  {id:'social',name:'Social',ic:'🤝',color:'#c79a3a'},
   {id:'financeira',name:'Financeira',ic:'◈',color:'#2f6f4e'},
   {id:'familiar',name:'Familiar',ic:'⌂',color:'#a8412f'},
   {id:'vocacional',name:'Vocacional',ic:'⚒',color:'#2d6a8a'}];
@@ -6859,37 +6861,37 @@ function defaultsSaude(s){s=s||{};
     {id:uid(),name:'Omelete proteico',servings:'1',kcal:'340',ingredients:'3 ovos\n50g queijo\nespinafre',steps:'Bata os ovos.\nLeve à frigideira com o recheio.\nDobre e sirva.'}];
   return s;}
 const CV_GROUPS=[
-  {g:'Assistir',ic:'',cats:[['movies','Filmes / Séries'],['viral','Vídeos virais'],['cheap','Entretenimento barato']]},
-  {g:'Ler',ic:'',cats:[['books','Livros / Autores'],['sites','Sites'],['trashy','Coisa rasteira']]},
-  {g:'Ouvir',ic:'',cats:[['artists','Artistas / Bandas'],['podcasts','Podcasts'],['guilty','Prazeres culposos']]}];
+  {g:'Assistir',ic:'🎬',cats:[['movies','Filmes / Séries'],['viral','Vídeos virais'],['cheap','Entretenimento barato']]},
+  {g:'Ler',ic:'📚',cats:[['books','Livros / Autores'],['sites','Sites'],['trashy','Coisa rasteira']]},
+  {g:'Ouvir',ic:'🎧',cats:[['artists','Artistas / Bandas'],['podcasts','Podcasts'],['guilty','Prazeres culposos']]}];
 function defaultsCulture(c){c=c||{};if(!c.items)c.items={};CV_GROUPS.forEach(gr=>gr.cats.forEach(ct=>{if(!c.items[ct[0]])c.items[ct[0]]=[];}));if(c.notes==null)c.notes='';if(!c.refs)c.refs={blog:false,convo:false,hip:false};return c;}
 const SAUDE_SCHEMA={
-  consultas:{title:'Consulta',icon:'',sort:'date',fields:[['what','Especialidade / Motivo','text'],['doctor','Profissional','text'],['date','Data','date'],['time','Hora','time'],['place','Local','text'],['notes','Observações','textarea']]},
-  exames:{title:'Exame',icon:'',sort:'date',fields:[['name','Exame','text'],['date','Data','date'],['status','Status','select:Pendente,Agendado,Feito,Com resultado'],['result','Resultado','text'],['notes','Observações','textarea']]},
-  treinos:{title:'Treino',icon:'',fields:[['name','Nome (ex.: Treino A)','text'],['focus','Foco (grupos musculares)','text'],['exercises','Exercícios','textarea'],['notes','Notas','textarea']]},
-  receitas:{title:'Receita',icon:'',fields:[['name','Nome','text'],['servings','Porções','text'],['kcal','Calorias','text'],['ingredients','Ingredientes','textarea'],['steps','Modo de preparo','textarea']]}
+  consultas:{title:'Consulta',icon:'🩺',sort:'date',fields:[['what','Especialidade / Motivo','text'],['doctor','Profissional','text'],['date','Data','date'],['time','Hora','time'],['place','Local','text'],['notes','Observações','textarea']]},
+  exames:{title:'Exame',icon:'🧪',sort:'date',fields:[['name','Exame','text'],['date','Data','date'],['status','Status','select:Pendente,Agendado,Feito,Com resultado'],['result','Resultado','text'],['notes','Observações','textarea']]},
+  treinos:{title:'Treino',icon:'🏋️',fields:[['name','Nome (ex.: Treino A)','text'],['focus','Foco (grupos musculares)','text'],['exercises','Exercícios','textarea'],['notes','Notas','textarea']]},
+  receitas:{title:'Receita',icon:'🍳',fields:[['name','Nome','text'],['servings','Porções','text'],['kcal','Calorias','text'],['ingredients','Ingredientes','textarea'],['steps','Modo de preparo','textarea']]}
 };
 const WKC=['#c2611f','#9a7b3f','#b4521c','#a8843a','#bd6a24','#8a7a52'];
 let inboxDraft='';
 const CTXS={
-  trabalho:{ic:'⚖',label:'Trabalho',cor:'#3a4a7a'},
-  financas:{ic:'',label:'Finanças',cor:'#2f6f4e'},
-  rpg:{ic:'',label:'RPG',cor:'#8a3a7a'},
-  dev:{ic:'',label:'Dev',cor:'#2d6a8a'},
-  pessoal:{ic:'✈',label:'Pessoal',cor:'#b4521c'}};
+  trabalho:{ic:'⚖️',label:'Trabalho',cor:'#3a4a7a'},
+  financas:{ic:'💰',label:'Finanças',cor:'#2f6f4e'},
+  rpg:{ic:'🎲',label:'RPG',cor:'#8a3a7a'},
+  dev:{ic:'💻',label:'Dev',cor:'#2d6a8a'},
+  pessoal:{ic:'✈️',label:'Pessoal',cor:'#b4521c'}};
 const TOOLS=[
-  {ic:'',nm:'Caderno',fn:'Captura rápida e pensamento livre.',fr:'Ideias soltas · brainstorm'},
-  {ic:'',nm:'OneNote',fn:'Base de conhecimento e procedimentos.',fr:'Fluxos · tutoriais · TRF3'},
-  {ic:'',nm:'Drive',fn:'Arquivo mestre de documentos.',fr:'PDFs · modelos · planilhas'},
-  {ic:'',nm:'Excel',fn:'Controle estruturado e quantitativo.',fr:'Finanças · indicadores'},
-  {ic:'',nm:'GitHub',fn:'Fonte da verdade dos projetos.',fr:'Código · versões · automações'},
-  {ic:'',nm:'ChatGPT',fn:'Copiloto cognitivo.',fr:'Estruturar · resumir · planejar'},
-  {ic:'',nm:'Calendário',fn:'Compromissos inevitáveis.',fr:'Sessões · reuniões · viagens'},
+  {ic:'📓',nm:'Caderno',fn:'Captura rápida e pensamento livre.',fr:'Ideias soltas · brainstorm'},
+  {ic:'📝',nm:'OneNote',fn:'Base de conhecimento e procedimentos.',fr:'Fluxos · tutoriais · TRF3'},
+  {ic:'📁',nm:'Drive',fn:'Arquivo mestre de documentos.',fr:'PDFs · modelos · planilhas'},
+  {ic:'📊',nm:'Excel',fn:'Controle estruturado e quantitativo.',fr:'Finanças · indicadores'},
+  {ic:'💻',nm:'GitHub',fn:'Fonte da verdade dos projetos.',fr:'Código · versões · automações'},
+  {ic:'🤖',nm:'ChatGPT',fn:'Copiloto cognitivo.',fr:'Estruturar · resumir · planejar'},
+  {ic:'📅',nm:'Calendário',fn:'Compromissos inevitáveis.',fr:'Sessões · reuniões · viagens'},
   {ic:'✅',nm:'Este app',fn:'Orquestrador — não armazena tudo.',fr:'O que fazer · onde · onde parei'}];
 const FLOW=[['Ideias','Caderno / Inbox'],['Conhecimento','OneNote'],['Arquivos','Drive'],['Dados','Excel'],['Código','GitHub'],['Agenda','Calendário'],['Ação','Este app']];
 function ctxTag(k){const c=CTXS[k]||CTXS.pessoal;return `<span class="ctx" style="background:${c.cor}"><span class="ci">${c.ic}</span>${c.label}</span>`;}
 function timeAgo(ts){const s=Math.max(0,(Date.now()-ts)/1000);if(s<90)return'agora';const m=s/60;if(m<60)return Math.round(m)+' min';const h=m/60;if(h<24)return Math.round(h)+'h';const d=Math.round(h/24);return d+(d===1?' dia':' dias');}
-function pickCtx(){const o=['trabalho','financas','rpg','dev','pessoal'];const n=prompt('Contexto:\n1 ⚖ Trabalho\n2  Finanças\n3  RPG\n4  Dev\n5 ✈ Pessoal','1');return o[parseInt(n)-1]||'pessoal';}
+function pickCtx(){const o=['trabalho','financas','rpg','dev','pessoal'];const n=prompt('Contexto:\n1 ⚖️ Trabalho\n2 💰 Finanças\n3 🎲 RPG\n4 💻 Dev\n5 ✈️ Pessoal','1');return o[parseInt(n)-1]||'pessoal';}
 function pickDest(){const o=['Caderno','OneNote','Drive','Excel','GitHub','ChatGPT','Calendário','Virar tarefa'];const n=prompt('Mandar para onde?\n1 Caderno\n2 OneNote\n3 Drive\n4 Excel\n5 GitHub\n6 ChatGPT\n7 Calendário\n8 Virar tarefa','1');return o[parseInt(n)-1];}
 function mondayOf(d){const x=new Date(d);const wd=(x.getDay()+6)%7;x.setDate(x.getDate()-wd);x.setHours(0,0,0,0);return x;}
 function weekKeyOf(d){const m=mondayOf(d);return m.getFullYear()+'-'+String(m.getMonth()+1).padStart(2,'0')+'-'+String(m.getDate()).padStart(2,'0');}
@@ -6958,7 +6960,7 @@ function qnAdd(){const t=document.getElementById('qnText');if(!t)return;const tx
 function qnAskNotify(){try{if('Notification'in window&&Notification.permission==='default')Notification.requestPermission();}catch(e){}}
 function openQnAlarm(id){qnAlarmId=id;const n=(state.habit.captures||[]).find(x=>x.id===id);if(!n)return;document.getElementById('qnAlarmTxt').textContent=n.txt;const inp=document.getElementById('qnAlarmInput');if(n.alarm){const d=new Date(n.alarm);d.setMinutes(d.getMinutes()-d.getTimezoneOffset());inp.value=d.toISOString().slice(0,16);}else if(n.date){const d=new Date(n.date+'T'+(n.time||'09:00'));d.setMinutes(d.getMinutes()-d.getTimezoneOffset());inp.value=d.toISOString().slice(0,16);}else{const d=new Date(Date.now()+36e5);d.setMinutes(d.getMinutes()-d.getTimezoneOffset());inp.value=d.toISOString().slice(0,16);}openModal('qnAlarmModal');}
 function qnBeep(){try{const C=window.AudioContext||window.webkitAudioContext;if(!C)return;const x=new C();const o= x.createOscillator(),g=x.createGain();o.connect(g);g.connect(x.destination);o.type='sine';o.frequency.value=880;g.gain.setValueAtTime(0.001,x.currentTime);g.gain.exponentialRampToValueAtTime(0.4,x.currentTime+0.02);g.gain.exponentialRampToValueAtTime(0.001,x.currentTime+0.5);o.start();o.stop(x.currentTime+0.52);setTimeout(()=>{const o2=x.createOscillator(),g2=x.createGain();o2.connect(g2);g2.connect(x.destination);o2.type='sine';o2.frequency.value=1175;g2.gain.setValueAtTime(0.001,x.currentTime);g2.gain.exponentialRampToValueAtTime(0.4,x.currentTime+0.02);g2.gain.exponentialRampToValueAtTime(0.001,x.currentTime+0.5);o2.start();o2.stop(x.currentTime+0.52);},260);}catch(e){}}
-function qnToast(n){const cats=state.habit.qcats||[];const c=cats.find(x=>x.id===n.cat)||{name:'Nota',color:'#b4521c'};let host=document.getElementById('qnToastHost');if(!host){host=document.createElement('div');host.id='qnToastHost';document.body.appendChild(host);}const el=document.createElement('div');el.className='qntoast';el.style.setProperty('--cc',c.color);el.innerHTML=`<div class="qtic"></div><div class="qtbd"><div class="qtcat">${hesc(c.name)} · alarme</div><div class="qttx">${hesc(n.txt)}</div></div><button class="qtx">✕</button>`;el.querySelector('.qtx').onclick=()=>el.remove();host.appendChild(el);qnBeep();try{if('Notification'in window&&Notification.permission==='granted')new Notification(' '+c.name,{body:n.txt});}catch(e){}setTimeout(()=>{el.classList.add('out');setTimeout(()=>el.remove(),400);},9000);}
+function qnToast(n){const cats=state.habit.qcats||[];const c=cats.find(x=>x.id===n.cat)||{name:'Nota',color:'#b4521c'};let host=document.getElementById('qnToastHost');if(!host){host=document.createElement('div');host.id='qnToastHost';document.body.appendChild(host);}const el=document.createElement('div');el.className='qntoast';el.style.setProperty('--cc',c.color);el.innerHTML=`<div class="qtic">⏰</div><div class="qtbd"><div class="qtcat">${hesc(c.name)} · alarme</div><div class="qttx">${hesc(n.txt)}</div></div><button class="qtx">✕</button>`;el.querySelector('.qtx').onclick=()=>el.remove();host.appendChild(el);qnBeep();try{if('Notification'in window&&Notification.permission==='granted')new Notification('⏰ '+c.name,{body:n.txt});}catch(e){}setTimeout(()=>{el.classList.add('out');setTimeout(()=>el.remove(),400);},9000);}
 function qnCheckAlarms(){if(typeof state==='undefined'||!state||!state.habit)return;const now=Date.now();let hit=false;(state.habit.captures||[]).forEach(n=>{if(n.alarm&&!n.fired&&!n.done&&n.alarm<=now){n.fired=true;hit=true;qnToast(n);}});if(hit){save();if(typeof gtRender==='function')gtRender();}}
 const RHYTHM_AREAS=[{id:'work',name:'Trabalho',color:'#c95f1c'},{id:'nutrition',name:'Nutrição',color:'#768b43'},{id:'movement',name:'Movimento',color:'#557fb6'},{id:'relations',name:'Relações',color:'#c77276'},{id:'space',name:'Meu Espaço',color:'#b58b3d'},{id:'rest',name:'Descanso',color:'#7658a5'},{id:'mind',name:'Mindfulness',color:'#5e95a7'}];
 let pjCollapse={},sonoNoteOpen={},mgTrkOpen={};
@@ -7001,7 +7003,7 @@ function renderSonoSheet(){
   H.healthMonth=H.healthMonth||today.slice(0,7);
   H.medications.forEach(m=>{if(!m.times)m.times=[];if(m.quantity==null)m.quantity=1;});
   const slp=+(H.sleep[today]||0),SL=(H.sleepLog[today]=H.sleepLog[today]||{}),SR=(H.sleepRoutine[today]=H.sleepRoutine[today]||{});
-  const satEmoji=v=>({1:'',2:'',3:'',4:'',5:''}[+v]||'—');
+  const satEmoji=v=>({1:'😫',2:'😕',3:'😐',4:'🙂',5:'😄'}[+v]||'—');
   const prevDate=(()=>{const d=new Date(today+'T12:00:00');d.setDate(d.getDate()-1);return d.toISOString().slice(0,10)})();
   const prevSR=H.sleepRoutine[prevDate]||{};
   const seg=(f,opts,cur)=>`<div class="slseg">${opts.map(o=>`<button class="slsegb${cur===o?' on':''}" data-slog-seg="${f}:${o}">${o}</button>`).join('')}</div>`;
@@ -7017,7 +7019,7 @@ function renderSonoSheet(){
   const waterVals=monthDates.map(d=>+H.hydration[d]||0),waterAvg=waterVals.length?waterVals.reduce((a,b)=>a+b,0)/waterVals.length:0;const expenseTotal=monthDates.reduce((s,d)=>s+(+H.dailyExpense?.[d]||0),0);
   let medExpected=0,medTaken=0;monthDates.forEach(d=>H.medications.forEach(m=>{medExpected+=expectedFor(m);medTaken+=Math.min(expectedFor(m),medDoneCount(d,m));}));
   const cells=[];for(let i=0;i<first;i++)cells.push('<div class="health-day empty"></div>');
-  monthDates.forEach((d,i)=>{const sv=+H.sleep[d]||0,w=+H.hydration[d]||0,g=+(window.getDailyExpenseTotal?window.getDailyExpenseTotal(d):(H.dailyExpense?.[d]||0));let exp=0,done=0;H.medications.forEach(m=>{exp+=expectedFor(m);done+=Math.min(expectedFor(m),medDoneCount(d,m));});const pct=exp?Math.round(done/exp*100):0;cells.push(`<button class="health-day${d===today?' today':''}" data-health-date="${d}"><span class="hdn">${i+1}</span><span class="hdrow sleep">☾ <b>${sv?sv+'h':'—'}</b></span><span class="hdrow satisfaction">${satEmoji(H.sleepRoutine[d]?.satisfaction)} <b>${H.sleepRoutine[d]?.wakeTime||'—'}</b></span><span class="hdrow water"> <b>${w}/${H.hydrationGoal||8}</b></span><span class="hdrow med"> <b>${exp?done+'/'+exp:'—'}</b></span><span class="hdrow expense">◈ <b>${g?'R$ '+g.toLocaleString('pt-BR',{minimumFractionDigits:2}):'—'}</b></span><i class="hdmedbar"><i style="width:${pct}%"></i></i></button>`);});
+  monthDates.forEach((d,i)=>{const sv=+H.sleep[d]||0,w=+H.hydration[d]||0,g=+(window.getDailyExpenseTotal?window.getDailyExpenseTotal(d):(H.dailyExpense?.[d]||0));let exp=0,done=0;H.medications.forEach(m=>{exp+=expectedFor(m);done+=Math.min(expectedFor(m),medDoneCount(d,m));});const pct=exp?Math.round(done/exp*100):0;cells.push(`<button class="health-day${d===today?' today':''}" data-health-date="${d}"><span class="hdn">${i+1}</span><span class="hdrow sleep">☾ <b>${sv?sv+'h':'—'}</b></span><span class="hdrow satisfaction">${satEmoji(H.sleepRoutine[d]?.satisfaction)} <b>${H.sleepRoutine[d]?.wakeTime||'—'}</b></span><span class="hdrow water">💧 <b>${w}/${H.hydrationGoal||8}</b></span><span class="hdrow med">💊 <b>${exp?done+'/'+exp:'—'}</b></span><span class="hdrow expense">◈ <b>${g?'R$ '+g.toLocaleString('pt-BR',{minimumFractionDigits:2}):'—'}</b></span><i class="hdmedbar"><i style="width:${pct}%"></i></i></button>`);});
   const monthName=new Date(yy,mm-1,1).toLocaleDateString('pt-BR',{month:'long',year:'numeric'});
   const todayTaken=takenTokens(today);
   const medsHTML=H.medications.map(m=>{const times=(m.times||[]);return `<article class="med-card" data-med-card="${m.id}"><div class="med-card-head"><div><b>${hesc(m.name)}</b><small>${hesc(m.dose||'Sem descrição')} · quantidade ${m.quantity||1}</small></div><div class="med-card-actions"><button data-med-edit="${m.id}" title="Editar">✎</button><button data-med-del="${m.id}" title="Excluir">×</button></div></div><div class="med-times">${times.length?times.map(t=>{const token=m.id+'@'+t,checked=todayTaken.includes(token)||todayTaken.includes(m.id);return `<label class="med-time${checked?' done':''}"><input type="checkbox" data-med-dose="${token}" ${checked?'checked':''}><span>${t}</span><small>${m.quantity||1} un.</small></label>`;}).join(''):`<span class="med-no-time">Sem horário definido</span>`}</div></article>`;}).join('')||'<div class="med-empty">Nenhuma medicação cadastrada.</div>';
@@ -7025,11 +7027,11 @@ function renderSonoSheet(){
   h+=`<p class="chelp">${D} — sono, hidratação e medicação em uma base diária integrada.</p>`;
   h+=`<section class="health-month"><header><div><small>Histórico mensal</small><h3>${monthName}</h3></div><div class="health-month-nav"><button data-health-month-step="-1">‹</button><input type="month" data-health-month value="${hm}"><button data-health-month-step="1">›</button></div></header><div class="health-kpis"><div><small>Sono médio</small><b>${avg?avg.toFixed(1)+'h':'—'}</b></div><div><small>Hidratação média</small><b>${waterAvg.toFixed(1)} copos</b></div><div><small>Adesão medicamentosa</small><b>${medExpected?Math.round(medTaken/medExpected*100)+'%':'—'}</b></div><div><small>Gastos registrados</small><b>${expenseTotal?'R$ '+expenseTotal.toLocaleString('pt-BR',{minimumFractionDigits:2}):'—'}</b></div></div><div class="health-weekdays">${['Seg','Ter','Qua','Qui','Sex','Sáb','Dom'].map(x=>`<span>${x}</span>`).join('')}</div><div class="health-grid">${cells.join('')}</div></section>`;
   h+=`<section class="med-manager"><header><div><small>Tratamento atual</small><h3>Medicações</h3></div><button class="med-add" data-med-add>＋ Adicionar medicação</button></header><div class="med-list">${medsHTML}</div></section>`;
-  h+=`<section class="sleep-daily-card"><header><div><small>Registro associado a ${new Date(today+'T12:00:00').toLocaleDateString('pt-BR')}</small><h3>Ritmo diário do sono</h3></div><div class="sleep-calc-pill"><span>Noite calculada</span><b>${slp?slp.toFixed(1)+'h':'aguardando dados'}</b></div></header><div class="sleep-daily-fields"><label><span>Hora que acordei hoje</span><input type="time" data-sleep-routine="wakeTime" value="${hesc(SR.wakeTime||'')}"></label><label><span>Hora que vou dormir hoje</span><input type="time" data-sleep-routine="bedTime" value="${hesc(SR.bedTime||'')}"></label><div class="sleep-origin"><small>Cálculo desta noite</small><b>${prevSR.bedTime?prevSR.bedTime+' de ontem':'hora de dormir de ontem não registrada'} → ${SR.wakeTime||'hora de acordar de hoje'}</b></div></div><div class="sleep-satisfaction"><span>Como foi o sono?</span><div>${[[1,'','Péssimo'],[2,'','Ruim'],[3,'','Regular'],[4,'','Bom'],[5,'','Ótimo']].map(x=>`<button type="button" data-sleep-satisfaction="${x[0]}" class="${+SR.satisfaction===x[0]?'on':''}"><b>${x[1]}</b><small>${x[2]}</small></button>`).join('')}</div></div></section>`;
+  h+=`<section class="sleep-daily-card"><header><div><small>Registro associado a ${new Date(today+'T12:00:00').toLocaleDateString('pt-BR')}</small><h3>Ritmo diário do sono</h3></div><div class="sleep-calc-pill"><span>Noite calculada</span><b>${slp?slp.toFixed(1)+'h':'aguardando dados'}</b></div></header><div class="sleep-daily-fields"><label><span>Hora que acordei hoje</span><input type="time" data-sleep-routine="wakeTime" value="${hesc(SR.wakeTime||'')}"></label><label><span>Hora que vou dormir hoje</span><input type="time" data-sleep-routine="bedTime" value="${hesc(SR.bedTime||'')}"></label><div class="sleep-origin"><small>Cálculo desta noite</small><b>${prevSR.bedTime?prevSR.bedTime+' de ontem':'hora de dormir de ontem não registrada'} → ${SR.wakeTime||'hora de acordar de hoje'}</b></div></div><div class="sleep-satisfaction"><span>Como foi o sono?</span><div>${[[1,'😫','Péssimo'],[2,'😕','Ruim'],[3,'😐','Regular'],[4,'🙂','Bom'],[5,'😄','Ótimo']].map(x=>`<button type="button" data-sleep-satisfaction="${x[0]}" class="${+SR.satisfaction===x[0]?'on':''}"><b>${x[1]}</b><small>${x[2]}</small></button>`).join('')}</div></div></section>`;
   h+=`<div class="sonopage"><div class="sonocard"><div class="sonoct">Sono de hoje</div><div class="slgrid2"><label class="slf"><span>Deitar</span><input type="time" data-slog="bedtime" value="${hesc(SL.bedtime||'')}"></label><label class="slf"><span>Adormeci</span><input type="time" data-slog="fellAsleep" value="${hesc(SL.fellAsleep||'')}"></label><label class="slf"><span>Acordei</span><input type="time" data-slog="wakeTime" value="${hesc(SL.wakeTime||'')}"></label><label class="slf"><span>Levantei</span><input type="time" data-slog="getOut" value="${hesc(SL.getOut||'')}"></label></div><label class="slf wide"><span>Tempo total de sono (h)</span><input type="number" min="0" max="14" step="0.5" data-sleep="1" value="${slp||''}" placeholder="ex.: 8"></label></div>`;
   h+=`<div class="sonocard"><div class="sonoct">Estado ao acordar</div><div class="slblk"><span class="sll">Qualidade do sono</span>${seg('quality',['Ruim','Média','Boa'],SL.quality)}</div><div class="slblk"><span class="sll">Energia</span>${seg('energy',['Baixa','Média','Alta'],SL.energy)}</div><div class="slblk"><span class="sll">Estado do corpo</span>${seg('bodyState',['Esgotado','Equilibrado','Renovado'],SL.bodyState)}</div></div>`;
   h+=`<div class="sonocard"><div class="sonoct">Hidratação de hoje</div><div class="health-water-now"><button data-hydro-d="-1">−</button><b>${H.hydration[today]||0}<small> / ${H.hydrationGoal||8} copos</small></b><button data-hydro-d="1">＋</button></div><label class="slf wide"><span>Meta diária de copos</span><input type="number" min="1" max="30" data-hydro-goal value="${H.hydrationGoal||8}"></label></div>`;
-  h+=`<div class="sonocard"><div class="sonoct">Mente & registros</div><div class="slblk"><span class="sll">Mente antes de dormir</span>${chips('mentalBefore',['Ansioso','Inquieto','Acelerado','Disperso','Calmo','Relaxado'],SL.mentalBefore)}</div><div class="slnotes">${noteBtn('notesBefore',' Antes de dormir','Pensamentos e preocupações…')}${noteBtn('notes','☀ Ao acordar','Sonhos, despertares e sensações…')}</div></div></div>`;
+  h+=`<div class="sonocard"><div class="sonoct">Mente & registros</div><div class="slblk"><span class="sll">Mente antes de dormir</span>${chips('mentalBefore',['Ansioso','Inquieto','Acelerado','Disperso','Calmo','Relaxado'],SL.mentalBefore)}</div><div class="slnotes">${noteBtn('notesBefore','🌙 Antes de dormir','Pensamentos e preocupações…')}${noteBtn('notes','☀ Ao acordar','Sonhos, despertares e sensações…')}</div></div></div>`;
   return h;
 }
 const SCHED_AREAS={work:{c:'#c95f1c',n:'Trabalho',ic:'◆'},nutrition:{c:'#768b43',n:'Nutrição',ic:'◒'},movement:{c:'#557fb6',n:'Movimento',ic:'▲'},relations:{c:'#c77276',n:'Relações',ic:'✦'},space:{c:'#b58b3d',n:'Meu Espaço',ic:'▣'},rest:{c:'#7658a5',n:'Descanso',ic:'◐'},mind:{c:'#5e95a7',n:'Mindfulness',ic:'✧'}};
@@ -7112,7 +7114,7 @@ function renderHabit(){
   let totDone=0,totGoal=0;daily.forEach(h=>{let c=0;for(let d=1;d<=dim;d++)if(hOn(h.id,d))c++;totDone+=c;totGoal+=(h.goal||dim);});
   const overall=totGoal?totDone/totGoal*100:0;
   let html='',asideHTML='',aside2HTML='',planHTML='',trkbarsHTML='',sonoHTML='',afazeresView='';
-  const MOODS=[{e:'·',c:'transparent'},{e:'',c:'#c2611f'},{e:'',c:'#cb8a3a'},{e:'',c:'#9a7b3f'},{e:'',c:'#5b8c5a'},{e:'',c:'#2f8a4e'}];
+  const MOODS=[{e:'·',c:'transparent'},{e:'😣',c:'#c2611f'},{e:'😟',c:'#cb8a3a'},{e:'😐',c:'#9a7b3f'},{e:'🙂',c:'#5b8c5a'},{e:'😄',c:'#2f8a4e'}];
 
   if(activeHabitTab==='habit'){
     {const MMl=['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];const WDl=['Seg','Ter','Qua','Qui','Sex','Sáb','Dom'];
@@ -7137,41 +7139,41 @@ function renderHabit(){
       {const tdNow=new Date();const tdStr=tdNow.getFullYear()+'-'+String(tdNow.getMonth()+1).padStart(2,'0')+'-'+String(tdNow.getDate()).padStart(2,'0');
         const todos=(H.todos||[]);const pend=todos.filter(t=>!t.done);
         const dueToday=pend.filter(t=>t.day===tdStr).length,overdue=pend.filter(t=>t.day&&t.day<tdStr).length;
-        let alert='';if(overdue)alert=`<div class="tdalert over">⚠ ${overdue} atrasado${overdue>1?'s':''}${dueToday?' · '+dueToday+' hoje':''}</div>`;else if(dueToday)alert=`<div class="tdalert"> ${dueToday} afazer${dueToday>1?'es':''} para hoje</div>`;
+        let alert='';if(overdue)alert=`<div class="tdalert over">⚠ ${overdue} atrasado${overdue>1?'s':''}${dueToday?' · '+dueToday+' hoje':''}</div>`;else if(dueToday)alert=`<div class="tdalert">🔔 ${dueToday} afazer${dueToday>1?'es':''} para hoje</div>`;
         const sorted=todos.slice().sort((a,b)=>{if(a.done!==b.done)return a.done?1:-1;return (a.day||'9999').localeCompare(b.day||'9999');});
         const tdItems=sorted.map(t=>{const st=t.done?'done':(t.day&&t.day<tdStr?'over':(t.day===tdStr?'today':'up'));return `<div class="tditem ${st}"><button class="tdcheck" data-td-done="${t.id}" title="concluir">✓</button><div class="tdbody"><div class="tdtx">${hesc(t.txt)}</div><label class="tdmv"><span class="tdmvl">${tdDayLabel(t.day,tdStr)}</span><input type="date" class="tdmove" data-td-move="${t.id}" value="${t.day||''}"></label></div><button class="tddel" data-td-del="${t.id}" title="remover">✕</button></div>`;}).join('')||`<div class="tdempty">Sem afazeres — adicione um abaixo.</div>`;
-        afazeresView=`<div class="atdhd"><span class="al"> Afazeres</span><span class="atdc">${pend.length}</span></div>${alert}<div class="tdcompose"><input id="tdText" class="tdin" placeholder="Novo afazer…"><div class="tdcrow"><input type="date" id="tdDay" class="tddate" value="${tdStr}"><button class="tdadd" id="tdAdd">+ lançar</button></div></div><div class="tdlist">${tdItems}</div>`;}
+        afazeresView=`<div class="atdhd"><span class="al">🔔 Afazeres</span><span class="atdc">${pend.length}</span></div>${alert}<div class="tdcompose"><input id="tdText" class="tdin" placeholder="Novo afazer…"><div class="tdcrow"><input type="date" id="tdDay" class="tddate" value="${tdStr}"><button class="tdadd" id="tdAdd">+ lançar</button></div></div><div class="tdlist">${tdItems}</div>`;}
       const wkBtn=(f,lab)=>`<button class="wknbtn${(wkv[f]||'').trim()?' has':''}" data-wknote="${f}">${lab}</button>`;
       const wknotesHTML=`<div class="wknotes">${wkBtn('revisao','Revisão da semana')}</div>`;
       const SAUDE=state.saude,WDfull=['Segunda','Terça','Quarta','Quinta','Sexta','Sábado','Domingo'];
       const footDay=effSel>=0?effSel:0;const footDate=new Date(wmon);footDate.setDate(wmon.getDate()+footDay);
       const trSel=wkv['treinoDia-'+footDay]||'';const trOpts=`<option value="">— escolher treino —</option>`+SAUDE.treinos.map(t=>`<option value="${t.id}"${t.id===trSel?' selected':''}>${hesc(t.name)} · ${hesc(t.focus||'')}</option>`).join('');const trObj=SAUDE.treinos.find(t=>t.id===trSel);
-      let treinoView=`<div class="wkfday"> ${WDfull[footDay]} ${footDate.getDate()}/${footDate.getMonth()+1}</div><select class="wkfsel" data-treino-dia="${footDay}">${trOpts}</select>`;
+      let treinoView=`<div class="wkfday">🏋 ${WDfull[footDay]} ${footDate.getDate()}/${footDate.getMonth()+1}</div><select class="wkfsel" data-treino-dia="${footDay}">${trOpts}</select>`;
       if(trObj)treinoView+=`<div class="wkfex">${(trObj.exercises||'').split('\n').filter(Boolean).map(l=>`<div class="wkfexl">${hesc(l)}</div>`).join('')}</div>`;else treinoView+=`<div class="wkfhint">Sem treino atribuído — escolha um dos seus treinos (cadastrados no mundo Saúde).</div>`;
       treinoView+=`<div class="wkfweekly"><span class="al">Plano da semana</span><textarea class="abox" data-wp="treino" placeholder="Divisão A/B/C, cardio, descanso…">${hesc(wkv['treino']||'')}</textarea></div>`;
       const meals=[['cafe','Café da manhã'],['almoco','Almoço'],['jantar','Jantar']];
-      let dietaView=`<div class="wkfday"> ${WDfull[footDay]} ${footDate.getDate()}/${footDate.getMonth()+1}</div>`;
+      let dietaView=`<div class="wkfday">🍽 ${WDfull[footDay]} ${footDate.getDate()}/${footDate.getMonth()+1}</div>`;
       meals.forEach(mm=>{const rsel=wkv['dieta-'+footDay+'-'+mm[0]]||'';const ropts=`<option value="">—</option>`+SAUDE.receitas.map(r=>`<option value="${r.id}"${r.id===rsel?' selected':''}>${hesc(r.name)}${r.kcal?' · '+r.kcal+'kcal':''}</option>`).join('');dietaView+=`<div class="wkfmeal"><span class="wkfml">${mm[1]}</span><select class="wkfsel" data-dieta-dia="${footDay}:${mm[0]}">${ropts}</select></div>`;});
       dietaView+=`<div class="wkfweekly"><span class="al">Plano da semana</span><textarea class="abox" data-wp="dieta" placeholder="Refeições, macros, lista do mercado…">${hesc(wkv['dieta']||'')}</textarea></div>`;
-      const wkFootHTML=`<div class="wkfoot${wkFootMin?' min':''}"><div class="wkftabs"><button class="wkftab${wkFootTab==='afazeres'?' on':''}" data-wkfoot="afazeres"> Afazeres</button><button class="wkftab${wkFootTab==='treino'?' on':''}" data-wkfoot="treino"> Treino do dia</button><button class="wkftab${wkFootTab==='dieta'?' on':''}" data-wkfoot="dieta"> Dieta do dia</button><button class="wkftog" id="wkFootTog">${wkFootMin?'expandir ▾':'recolher ▴'}</button></div><div class="wkfbody">${wkFootTab==='afazeres'?afazeresView:wkFootTab==='dieta'?dietaView:treinoView}</div></div>`;
+      const wkFootHTML=`<div class="wkfoot${wkFootMin?' min':''}"><div class="wkftabs"><button class="wkftab${wkFootTab==='afazeres'?' on':''}" data-wkfoot="afazeres">📋 Afazeres</button><button class="wkftab${wkFootTab==='treino'?' on':''}" data-wkfoot="treino">🏋 Treino do dia</button><button class="wkftab${wkFootTab==='dieta'?' on':''}" data-wkfoot="dieta">🍽 Dieta do dia</button><button class="wkftog" id="wkFootTog">${wkFootMin?'expandir ▾':'recolher ▴'}</button></div><div class="wkfbody">${wkFootTab==='afazeres'?afazeresView:wkFootTab==='dieta'?dietaView:treinoView}</div></div>`;
       const mpv=(H.monthPlan[mes]=H.monthPlan[mes]||{});
       {const fw=new Date(y,m-1,1).getDay(),tdK=new Date();let cal='';
         for(let b=0;b<fw;b++)cal+='<span class="mcd off"></span>';
         for(let d=1;d<=dim;d++){let on=0;daily.forEach(h=>{if(hOn(h.id,d))on++;});const full=daily.length&&on===daily.length;const part=on>0&&!full;const isT=(tdK.getFullYear()===y&&tdK.getMonth()===m-1&&tdK.getDate()===d);cal+=`<span class="mcd${isT?' today':''}${full?' full':part?' part':''}">${d}</span>`;}
-        aside2HTML=`<div class="asec ames"><div class="ameshd"><span class="al"> Mês</span><span class="amesm">${monthLabel(mes)}</span></div><div class="mcal"><div class="mcalh">${WD.map(d=>`<span>${d}</span>`).join('')}</div><div class="mcalg">${cal}</div></div></div><div class="asec"><span class="al">Foco do mês</span><textarea class="abox" data-mp="foco" placeholder="Uma intenção para o mês">${hesc(mpv.foco||'')}</textarea></div><div class="asec"><span class="al">Metas</span><textarea class="abox" data-mp="metas" placeholder="O que quero concluir">${hesc(mpv.metas||'')}</textarea></div><div class="asec aneg"><span class="al">◆ Inegociáveis diários</span><textarea class="abox tall" data-wp="inegociaveis" placeholder="O que não pode faltar em nenhum dia — treino, leitura, água…">${hesc(wkv['inegociaveis']||'')}</textarea></div>`;}
+        aside2HTML=`<div class="asec ames"><div class="ameshd"><span class="al">📆 Mês</span><span class="amesm">${monthLabel(mes)}</span></div><div class="mcal"><div class="mcalh">${WD.map(d=>`<span>${d}</span>`).join('')}</div><div class="mcalg">${cal}</div></div></div><div class="asec"><span class="al">Foco do mês</span><textarea class="abox" data-mp="foco" placeholder="Uma intenção para o mês">${hesc(mpv.foco||'')}</textarea></div><div class="asec"><span class="al">Metas</span><textarea class="abox" data-mp="metas" placeholder="O que quero concluir">${hesc(mpv.metas||'')}</textarea></div><div class="asec aneg"><span class="al">◆ Inegociáveis diários</span><textarea class="abox tall" data-wp="inegociaveis" placeholder="O que não pode faltar em nenhum dia — treino, leitura, água…">${hesc(wkv['inegociaveis']||'')}</textarea></div>`;}
       const wtasks=(wkv.wtasks||[]);const wtCatOpts=(H.qcats||[]).map(c=>`<option value="${c.id}">${c.name}</option>`).join('');
       const wtCatOf=cid=>(H.qcats||[]).find(c=>c.id===cid)||{name:'—',color:'#999'};
-      const wtasksTrayHTML=`<div class="wtray"><div class="wtcompose"><input id="wtInput" class="wtin" placeholder="+ nova tarefa ou nota…"><select id="wtCat" class="wtcatsel">${wtCatOpts}</select><button class="wtadd" id="wtAdd">Adicionar</button></div><div class="wtchips">${wtasks.length?wtasks.map(t=>{const c=wtCatOf(t.cat);return `<div class="wtchip" draggable="true" data-wtask="${t.id}" style="--cc:${c.color}"><span class="wtdot"></span><span class="wttxt">${hesc(t.txt)}</span><span class="wtcatlbl">${hesc(c.name)}</span><button class="wtsched" data-wtsched="${t.id}" title="atribuir dia e horário"></button><button class="wtdel" data-wtdel="${t.id}" title="remover">✕</button></div>`;}).join(''):'<span class="wtempty">Nada por aqui — crie uma tarefa e atribua a um dia.</span>'}</div></div>`;
+      const wtasksTrayHTML=`<div class="wtray"><div class="wtcompose"><input id="wtInput" class="wtin" placeholder="+ nova tarefa ou nota…"><select id="wtCat" class="wtcatsel">${wtCatOpts}</select><button class="wtadd" id="wtAdd">Adicionar</button></div><div class="wtchips">${wtasks.length?wtasks.map(t=>{const c=wtCatOf(t.cat);return `<div class="wtchip" draggable="true" data-wtask="${t.id}" style="--cc:${c.color}"><span class="wtdot"></span><span class="wttxt">${hesc(t.txt)}</span><span class="wtcatlbl">${hesc(c.name)}</span><button class="wtsched" data-wtsched="${t.id}" title="atribuir dia e horário">📅</button><button class="wtdel" data-wtdel="${t.id}" title="remover">✕</button></div>`;}).join(''):'<span class="wtempty">Nada por aqui — crie uma tarefa e atribua a um dia.</span>'}</div></div>`;
       const looseHTML=`<div class="wloose wloose-head"></div>`;
       planHTML=`<div class="planrow"><section class="planc wplan"><div class="wplan-main"><div class="planhd"><div class="planhl">${wknotesHTML}<button class="weekhub-panel-btn" id="awbWeekPanelInline" type="button"><span>▦</span><b>Painel semanal</b><small>hábitos · metas · blocos</small></button><button class="weekhub-new-block-btn" id="awbAddInline" type="button"><span>＋</span><b>Novo bloco</b><small>criar na semana</small></button></div><div class="weeknav"><button class="wkbtn" data-wkp="-1" aria-label="Semana anterior">‹</button><span class="wkrange" style="font-size:23px;color:#FF7900;font-family:'Bebas Neue';font-weight:500">${wrange}</span><button class="wkbtn" data-wkp="1" aria-label="Próxima semana">›</button></div></div><div class="wgwrap">${buildSchedulerHTML()}</div>${wtasksTrayHTML}${looseHTML}</div></section></div>`;
     }
     {const today=pdStr();const cups=H.hydration[today]||0,hgoal=H.hydrationGoal||8;const slp=+(H.sleep[today]||0),sgoal=H.sleepGoal||8;
       const hpct=hgoal?Math.min(100,cups/hgoal*100):0,spct=sgoal?Math.min(100,slp/sgoal*100):0;
-      trkbarsHTML=`<div class="trkbars"><div class="trkbar"><div class="tbh"><span class="tbl"> Hidratação</span><span class="tbv">${cups}/${hgoal} copos</span></div><div class="tbtrack hydro"><i style="width:${hpct}%"></i></div><div class="tbctl"><button class="trkbtn" data-hydro-d="-1">−</button><button class="trkbtn" data-hydro-d="1">+</button></div></div><div class="trkbar"><div class="tbh"><span class="tbl"> Sono</span><span class="tbv">${slp?slp+'h':'—'} / ${sgoal}h</span></div><div class="tbtrack sleep"><i style="width:${spct}%"></i></div><div class="tbctl"><span class="tbnote">registre na folha de sono →</span></div></div></div>`;
+      trkbarsHTML=`<div class="trkbars"><div class="trkbar"><div class="tbh"><span class="tbl">💧 Hidratação</span><span class="tbv">${cups}/${hgoal} copos</span></div><div class="tbtrack hydro"><i style="width:${hpct}%"></i></div><div class="tbctl"><button class="trkbtn" data-hydro-d="-1">−</button><button class="trkbtn" data-hydro-d="1">+</button></div></div><div class="trkbar"><div class="tbh"><span class="tbl">🌙 Sono</span><span class="tbv">${slp?slp+'h':'—'} / ${sgoal}h</span></div><div class="tbtrack sleep"><i style="width:${spct}%"></i></div><div class="tbctl"><span class="tbnote">registre na folha de sono →</span></div></div></div>`;
       const SL=(H.sleepLog[today]=H.sleepLog[today]||{});
       const seg=(f,opts,cur)=>`<div class="slseg">`+opts.map(o=>`<button class="slsegb${cur===o?' on':''}" data-slog-seg="${f}:${o}">${o}</button>`).join('')+`</div>`;
       const chips=(f,opts,arr)=>`<div class="slchips">`+opts.map(o=>`<button class="slchip${(arr||[]).indexOf(o)>=0?' on':''}" data-slog-chip="${f}:${o}">${o}</button>`).join('')+`</div>`;
-      sonoHTML=`<div class="asec asono"><div class="asonohd"><span class="al"> Sono — hoje</span><span class="asonosub">${new Date().toLocaleDateString('pt-BR',{day:'2-digit',month:'short'})}</span></div><div class="slgrid2"><label class="slf"><span>Deitar</span><input type="time" data-slog="bedtime" value="${hesc(SL.bedtime||'')}"></label><label class="slf"><span>Adormeci</span><input type="time" data-slog="fellAsleep" value="${hesc(SL.fellAsleep||'')}"></label><label class="slf"><span>Acordei</span><input type="time" data-slog="wakeTime" value="${hesc(SL.wakeTime||'')}"></label><label class="slf"><span>Levantei</span><input type="time" data-slog="getOut" value="${hesc(SL.getOut||'')}"></label></div><label class="slf wide"><span>Tempo total de sono (h)</span><input type="number" min="0" max="14" step="0.5" data-sleep="1" value="${slp||''}" placeholder="ex.: 8"></label><div class="slblk"><span class="sll">Qualidade do sono</span>${seg('quality',['Ruim','Média','Boa'],SL.quality)}</div><div class="slblk"><span class="sll">Energia ao acordar</span>${seg('energy',['Baixa','Média','Alta'],SL.energy)}</div><div class="slblk"><span class="sll">Estado do corpo</span>${seg('bodyState',['Esgotado','Equilibrado','Renovado'],SL.bodyState)}</div><div class="slblk"><span class="sll">Mente antes de dormir</span>${chips('mentalBefore',['Ansioso','Inquieto','Acelerado','Disperso','Calmo','Relaxado','Em paz','Contente'],SL.mentalBefore)}</div><div class="slblk"><span class="sll">Como me senti</span>${chips('feltDuring',['Dormi fundo','Seguro','Descansado','Interrompido'],SL.feltDuring)}</div><div class="slblk2"><label class="sltog"><input type="checkbox" data-slog-toggle="hadDream" ${SL.hadDream?'checked':''}> Tive um sonho</label><label class="slf inl"><span>Acordei ×</span><input type="number" min="0" max="20" data-slog="wokeCount" value="${SL.wokeCount||''}"></label></div><div class="slblk"><span class="sll">Comida/bebida antes</span>${chips('foodBefore',['Chá','Lanche leve','Chocolate','Meditei','Celular','Li um livro'],SL.foodBefore)}</div><label class="slf wide"><span>Notas ao despertar</span><textarea data-slog="notes" rows="2" placeholder="Sonhos, despertares, sensações…">${hesc(SL.notes||'')}</textarea></label></div>`;}
+      sonoHTML=`<div class="asec asono"><div class="asonohd"><span class="al">🌙 Sono — hoje</span><span class="asonosub">${new Date().toLocaleDateString('pt-BR',{day:'2-digit',month:'short'})}</span></div><div class="slgrid2"><label class="slf"><span>Deitar</span><input type="time" data-slog="bedtime" value="${hesc(SL.bedtime||'')}"></label><label class="slf"><span>Adormeci</span><input type="time" data-slog="fellAsleep" value="${hesc(SL.fellAsleep||'')}"></label><label class="slf"><span>Acordei</span><input type="time" data-slog="wakeTime" value="${hesc(SL.wakeTime||'')}"></label><label class="slf"><span>Levantei</span><input type="time" data-slog="getOut" value="${hesc(SL.getOut||'')}"></label></div><label class="slf wide"><span>Tempo total de sono (h)</span><input type="number" min="0" max="14" step="0.5" data-sleep="1" value="${slp||''}" placeholder="ex.: 8"></label><div class="slblk"><span class="sll">Qualidade do sono</span>${seg('quality',['Ruim','Média','Boa'],SL.quality)}</div><div class="slblk"><span class="sll">Energia ao acordar</span>${seg('energy',['Baixa','Média','Alta'],SL.energy)}</div><div class="slblk"><span class="sll">Estado do corpo</span>${seg('bodyState',['Esgotado','Equilibrado','Renovado'],SL.bodyState)}</div><div class="slblk"><span class="sll">Mente antes de dormir</span>${chips('mentalBefore',['Ansioso','Inquieto','Acelerado','Disperso','Calmo','Relaxado','Em paz','Contente'],SL.mentalBefore)}</div><div class="slblk"><span class="sll">Como me senti</span>${chips('feltDuring',['Dormi fundo','Seguro','Descansado','Interrompido'],SL.feltDuring)}</div><div class="slblk2"><label class="sltog"><input type="checkbox" data-slog-toggle="hadDream" ${SL.hadDream?'checked':''}> Tive um sonho</label><label class="slf inl"><span>Acordei ×</span><input type="number" min="0" max="20" data-slog="wokeCount" value="${SL.wokeCount||''}"></label></div><div class="slblk"><span class="sll">Comida/bebida antes</span>${chips('foodBefore',['Chá','Lanche leve','Chocolate','Meditei','Celular','Li um livro'],SL.foodBefore)}</div><label class="slf wide"><span>Notas ao despertar</span><textarea data-slog="notes" rows="2" placeholder="Sonhos, despertares, sensações…">${hesc(SL.notes||'')}</textarea></label></div>`;}
     let h1='<tr><th class="nm">Hábitos diários</th>',h2='<tr><th class="nm"></th>';
     weeks.forEach((wk,wi)=>{const col=WKC[wi%WKC.length];h1+=`<th class="wk" colspan="${wk.length}" style="--wc:${col}">Sem ${wi+1}</th>`;wk.forEach(d=>{const dt=new Date(y,m-1,d);h2+=`<th class="dcol" style="--wc:${col}"><span class="dl">${WD[dt.getDay()]}</span><span class="dn">${d}</span></th>`;});});
     h1+='<th class="goalh">Meta</th><th class="progh">Progresso</th></tr>';h2+='</tr>';
@@ -7192,7 +7194,7 @@ function renderHabit(){
     const all=H.qnotes||[];
     html+=`<div class="cctitle"><span class="e">captura rápida</span><span class="t">Notas rápidas</span><span class="ln"></span></div>`;
     html+=`<p class="chelp">Solte qualquer coisa aqui, classifique por categoria e ative um alarme para não esquecer.</p>`;
-    html+=`<div class="hcard qncomposer"><input id="qnText" class="qnin" placeholder="Escreva uma nota rápida…" value=""><div class="qnrow"><select id="qnCat" class="qnsel">${cats.map(c=>`<option value="${c.id}">${c.name}</option>`).join('')}</select><label class="qnalw"><span class="qnalk"></span><input id="qnAlarm" type="datetime-local" class="qnsel qnalarm"></label><button class="qnadd" id="qnAdd">+ adicionar</button></div></div>`;
+    html+=`<div class="hcard qncomposer"><input id="qnText" class="qnin" placeholder="Escreva uma nota rápida…" value=""><div class="qnrow"><select id="qnCat" class="qnsel">${cats.map(c=>`<option value="${c.id}">${c.name}</option>`).join('')}</select><label class="qnalw"><span class="qnalk">⏰</span><input id="qnAlarm" type="datetime-local" class="qnsel qnalarm"></label><button class="qnadd" id="qnAdd">+ adicionar</button></div></div>`;
     const pending=all.filter(n=>!n.done);
     html+=`<div class="qnfilters"><button class="qnchip${qnFilter==='todas'?' on':''}" data-qnf="todas">Todas <b>${pending.length}</b></button>${cats.map(c=>`<button class="qnchip${qnFilter===c.id?' on':''}" data-qnf="${c.id}" style="--cc:${c.color}"><i></i>${c.name} <b>${pending.filter(n=>n.cat===c.id).length}</b></button>`).join('')}<button class="qnchip${qnFilter==='done'?' on':''}" data-qnf="done">Concluídas <b>${all.filter(n=>n.done).length}</b></button></div>`;
     let list=all.slice();
@@ -7201,8 +7203,8 @@ function renderHabit(){
     list.sort((a,b)=>{const aa=a.alarm&&!a.done?a.alarm:null,bb=b.alarm&&!b.done?b.alarm:null;if(aa&&bb)return aa-bb;if(aa)return -1;if(bb)return 1;return b.ts-a.ts;});
     if(!list.length){html+=`<div class="qnempty">${qnFilter==='done'?'Nenhuma nota concluída ainda.':'Nada por aqui. Capture sua primeira nota acima.'}</div>`;}
     else{html+=`<div class="qnlist">`+list.map(n=>{const c=catMap[n.cat]||{name:'—',color:'#999'};
-      let badge='';if(n.alarm){const due=n.alarm<=Date.now();const st=n.fired||due?'rang':'up';badge=`<span class="qnalb ${st}"> ${qnAlarmLabel(n.alarm)}</span>`;}
-      return `<div class="qnitem${n.done?' done':''}" style="--cc:${c.color}"><button class="qncheck" data-qn-done="${n.id}" title="${n.done?'reabrir':'concluir'}">✓</button><div class="qnbody"><div class="qntop"><span class="qncat"><i></i>${c.name}</span>${badge}<span class="qnwhen">${timeAgo(n.ts)}</span></div><div class="qntxt">${hesc(n.txt)}</div></div><div class="qnacts"><button class="qnact${n.alarm?' has':''}" data-qn-alarm="${n.id}" title="alarme"></button><button class="qnact" data-qn-del="${n.id}" title="remover">✕</button></div></div>`;
+      let badge='';if(n.alarm){const due=n.alarm<=Date.now();const st=n.fired||due?'rang':'up';badge=`<span class="qnalb ${st}">⏰ ${qnAlarmLabel(n.alarm)}</span>`;}
+      return `<div class="qnitem${n.done?' done':''}" style="--cc:${c.color}"><button class="qncheck" data-qn-done="${n.id}" title="${n.done?'reabrir':'concluir'}">✓</button><div class="qnbody"><div class="qntop"><span class="qncat"><i></i>${c.name}</span>${badge}<span class="qnwhen">${timeAgo(n.ts)}</span></div><div class="qntxt">${hesc(n.txt)}</div></div><div class="qnacts"><button class="qnact${n.alarm?' has':''}" data-qn-alarm="${n.id}" title="alarme">⏰</button><button class="qnact" data-qn-del="${n.id}" title="remover">✕</button></div></div>`;
     }).join('')+`</div>`;}
   }
 
@@ -7305,7 +7307,7 @@ document.addEventListener('click',e=>{
   const pjRtAdd=e.target.closest('[data-pj-rt-add]');if(pjRtAdd){const pid=pjRtAdd.dataset.pjRtAdd;const p=state.habit.projetos.find(x=>x.id===pid);const t=prompt('O que você quer retomar neste projeto?',p?p.name:'');if(t&&t.trim()){const nx=prompt('Próximo passo concreto:')||'';state.habit.retomadas.push({id:uid(),title:t.trim(),next:nx,ctx:p?p.ctx:'pessoal',proj:pid,ts:Date.now()});save();gtRender();}return;}
   const pjDay=e.target.closest('[data-pj-day]');if(pjDay){const p=state.habit.projetos.find(x=>x.id===pjDay.dataset.pjDay);if(p){p.days=p.days||[];const ds=pdStr();const i=p.days.indexOf(ds);if(i>=0)p.days.splice(i,1);else{p.days.push(ds);p.last=Date.now();}save();gtRender();}return;}
   const pjDel=e.target.closest('[data-pj-del]');if(pjDel){if(confirm('Remover este projeto?')){state.habit.projetos=state.habit.projetos.filter(x=>x.id!==pjDel.dataset.pjDel);save();gtRender();}return;}
-  const tlAdd=e.target.closest('#toolAdd');if(tlAdd){state.habit.toolsMap.tools.push({id:uid(),ic:'',nm:'Nova ferramenta',fn:'Para que serve.',fr:'Quando usar'});save();gtRender();return;}
+  const tlAdd=e.target.closest('#toolAdd');if(tlAdd){state.habit.toolsMap.tools.push({id:uid(),ic:'🔧',nm:'Nova ferramenta',fn:'Para que serve.',fr:'Quando usar'});save();gtRender();return;}
   const tlDel=e.target.closest('[data-tool-del]');if(tlDel){state.habit.toolsMap.tools=state.habit.toolsMap.tools.filter(x=>x.id!==tlDel.dataset.toolDel);save();gtRender();return;}
   const flAdd=e.target.closest('#flowAdd');if(flAdd){state.habit.toolsMap.flow.push(['Etapa','Destino']);save();gtRender();return;}
   if(e.target.closest('#mmSecAdd')){state.habit.toolsMap.sections=state.habit.toolsMap.sections||[];state.habit.toolsMap.sections.push({id:uid(),title:'Nova seção',cards:[]});save();gtRender();return;}
@@ -7322,13 +7324,13 @@ function gtSection(id,title,icon,body){const open=!!gtOpenSec[id];return `<secti
 const DOCK_META={raven:['o corvo avisa','Notificações',()=>renderRaven()],retomada:['onde você parou','Retomada',()=>renderRetomada()],projetos:['visão geral','Rotas',()=>renderProjetosMain()],captura:['captura rápida','Captura',()=>renderCaptura()],referencias:['referências rápidas','Referências rápidas',()=>renderFerramentas()]};
 function renderProjetosRetomadas(){return renderProjetos()+'<div style="height:6px"></div>'+renderRetomada();}
 function ravenItems(){const H=state.habit,now=Date.now();let items=[];
-  const rc=(H.retomadas||[]).length;if(rc)items.push({ic:'',t:`${rc} para retomar`,s:'onde você parou',k:'retomada'});
-  (H.projetos||[]).forEach(p=>{const days=Math.floor((now-(p.last||0))/864e5);if(days>10)items.push({ic:'',t:`"${p.name}" abandonado`,s:`há ${days} dias sem toque`,k:'projetos'});else if(days>3)items.push({ic:'',t:`"${p.name}" esfriando`,s:`há ${days} dias`,k:'projetos'});});
-  (H.captures||[]).forEach(n=>{if(n.done)return;if(n.alarm&&n.alarm<=now)items.push({ic:'',t:n.txt,s:'alarme disparado',k:'captura'});else if(n.date){const dt=new Date(n.date+'T'+(n.time||'23:59'));if(dt.getTime()<=now)items.push({ic:'',t:n.txt,s:'prazo vencido',k:'captura'});}});
+  const rc=(H.retomadas||[]).length;if(rc)items.push({ic:'🧭',t:`${rc} para retomar`,s:'onde você parou',k:'retomada'});
+  (H.projetos||[]).forEach(p=>{const days=Math.floor((now-(p.last||0))/864e5);if(days>10)items.push({ic:'📊',t:`"${p.name}" abandonado`,s:`há ${days} dias sem toque`,k:'projetos'});else if(days>3)items.push({ic:'📊',t:`"${p.name}" esfriando`,s:`há ${days} dias`,k:'projetos'});});
+  (H.captures||[]).forEach(n=>{if(n.done)return;if(n.alarm&&n.alarm<=now)items.push({ic:'⏰',t:n.txt,s:'alarme disparado',k:'captura'});else if(n.date){const dt=new Date(n.date+'T'+(n.time||'23:59'));if(dt.getTime()<=now)items.push({ic:'📅',t:n.txt,s:'prazo vencido',k:'captura'});}});
   return items;}
 function renderRaven(){const items=ravenItems();
   let h=`<p class="chelp" style="margin-top:0">O corvo observa o que precisa da sua atenção — projetos parados, retomadas em aberto e alarmes vencidos.</p>`;
-  if(!items.length){h+=`<div class="ravenempty"> Nada urgente. Tudo sob controle.</div>`;return h;}
+  if(!items.length){h+=`<div class="ravenempty">🪶 Nada urgente. Tudo sob controle.</div>`;return h;}
   h+=`<div class="ravenlist">`+items.map(it=>`<button class="ravenitem" data-raven-go="${it.k}"><span class="rvic">${it.ic}</span><span class="rvbd"><span class="rvt">${hesc(it.t)}</span><span class="rvs">${hesc(it.s)}</span></span><span class="rvarr">›</span></button>`).join('')+`</div>`;
   return h;}
 function updateRavenBadge(){const b=document.getElementById('ravenBadge');if(!b)return;const n=ravenItems().length;b.textContent=n>9?'9+':String(n);b.style.display=n?'grid':'none';const btn=document.querySelector('.td-raven');if(btn)btn.classList.toggle('alert',n>0);}
@@ -7343,8 +7345,8 @@ function renderCaptura(){
   const areaOpts=`<option value="">área…</option>`+A.areas.map(a=>`<option value="${a.id}">${a.ic} ${a.name}</option>`).join('');
   const goalOpts=`<option value="">meta…</option>`+A.goals.map(g=>`<option value="${g.id}">${hesc(g.title)}</option>`).join('');
   const catOpts=cats.map(c=>`<option value="${c.id}">${c.name}</option>`).join('');
-  const composer=`<div class="hcard capcomposer"><input id="capText" class="qnin" placeholder="Escreva uma nota ou tarefa…"><div class="caprow"><select id="capKind" class="qnsel"><option value="nota"> Nota</option><option value="task">☑ Tarefa</option></select><select id="capCat" class="qnsel">${catOpts}</select><select id="capArea" class="qnsel">${areaOpts}</select><select id="capGoal" class="qnsel">${goalOpts}</select></div><div class="caprow"><label class="qnalw"><span class="qnalk"></span><input id="capDate" type="date" class="qnsel qnalarm"></label><label class="qnalw"><span class="qnalk"></span><input id="capTime" type="time" class="qnsel qnalarm"></label><button class="qnadd" id="capAdd">+ capturar</button></div></div>`;
-  h+=gtSection('cap-new','Capturar','',composer);
+  const composer=`<div class="hcard capcomposer"><input id="capText" class="qnin" placeholder="Escreva uma nota ou tarefa…"><div class="caprow"><select id="capKind" class="qnsel"><option value="nota">📝 Nota</option><option value="task">☑ Tarefa</option></select><select id="capCat" class="qnsel">${catOpts}</select><select id="capArea" class="qnsel">${areaOpts}</select><select id="capGoal" class="qnsel">${goalOpts}</select></div><div class="caprow"><label class="qnalw"><span class="qnalk">📅</span><input id="capDate" type="date" class="qnsel qnalarm"></label><label class="qnalw"><span class="qnalk">⏰</span><input id="capTime" type="time" class="qnsel qnalarm"></label><button class="qnadd" id="capAdd">+ capturar</button></div></div>`;
+  h+=gtSection('cap-new','Capturar','🗒️',composer);
   const pend=all.filter(n=>!n.done);
   let listBody=`<div class="qnfilters"><button class="qnchip${capFilter==='todas'?' on':''}" data-capf="todas">Todas <b>${pend.length}</b></button><button class="qnchip${capFilter==='nota'?' on':''}" data-capf="nota">Notas <b>${pend.filter(n=>n.kind==='nota').length}</b></button><button class="qnchip${capFilter==='task'?' on':''}" data-capf="task">Tarefas <b>${pend.filter(n=>n.kind==='task').length}</b></button><button class="qnchip${capFilter==='done'?' on':''}" data-capf="done">Concluídas <b>${all.filter(n=>n.done).length}</b></button></div>`;
   let list=all.slice();
@@ -7352,14 +7354,14 @@ function renderCaptura(){
   list.sort((a,b)=>{const ax=a.date?new Date(a.date+'T'+(a.time||'00:00')).getTime():Infinity;const bx=b.date?new Date(b.date+'T'+(b.time||'00:00')).getTime():Infinity;if(ax!==bx)return ax-bx;return b.created-a.created;});
   if(!list.length){listBody+=`<div class="qnempty">Nada aqui ainda. Capture sua primeira nota ou tarefa.</div>`;}
   else{listBody+=`<div class="qnlist">`+list.map(n=>{const c=catMap[n.cat]||{name:'—',color:'#999'};const a=areaById(n.area),g=goalById(n.goal);
-    let assoc='';if(n.date){const dd=new Date(n.date+'T00:00:00');assoc=`<span class="qnalb up"> ${dd.toLocaleDateString('pt-BR',{day:'2-digit',month:'short'})}${n.time?' '+n.time:''}</span>`;}
-    let alarmB='';if(n.alarm){const due=n.alarm<=Date.now();alarmB=`<span class="qnalb ${n.fired||due?'rang':'up'}"> ${qnAlarmLabel(n.alarm)}</span>`;}
+    let assoc='';if(n.date){const dd=new Date(n.date+'T00:00:00');assoc=`<span class="qnalb up">📅 ${dd.toLocaleDateString('pt-BR',{day:'2-digit',month:'short'})}${n.time?' '+n.time:''}</span>`;}
+    let alarmB='';if(n.alarm){const due=n.alarm<=Date.now();alarmB=`<span class="qnalb ${n.fired||due?'rang':'up'}">⏰ ${qnAlarmLabel(n.alarm)}</span>`;}
     const areaB=a?`<span class="qnarea" style="--cc:${a.color}">${a.ic} ${a.name}</span>`:'';
-    const goalB=g?`<span class="qngoal"> ${hesc(g.title)}</span>`:'';
+    const goalB=g?`<span class="qngoal">🎯 ${hesc(g.title)}</span>`:'';
     const check=n.kind==='task'?`<button class="qncheck" data-cap-done="${n.id}" title="${n.done?'reabrir':'concluir'}">✓</button>`:`<span class="capdot" style="--cc:${c.color}"></span>`;
-    return `<div class="qnitem${n.done?' done':''}${n.kind==='task'?' istask':''}" style="--cc:${a?a.color:c.color}">${check}<div class="qnbody"><div class="qntop"><span class="qncat"><i style="background:${c.color}"></i>${c.name}</span>${areaB}${goalB}${assoc}${alarmB}<span class="qnwhen">${timeAgo(n.created)}</span></div><div class="qntxt">${hesc(n.txt)}</div></div><div class="qnacts"><button class="qnact" data-cap-edit="${n.id}" title="data · área · meta">✎</button><button class="qnact${n.alarm?' has':''}" data-cap-alarm="${n.id}" title="alarme"></button><button class="qnact" data-cap-del="${n.id}" title="remover">✕</button></div></div>`;
+    return `<div class="qnitem${n.done?' done':''}${n.kind==='task'?' istask':''}" style="--cc:${a?a.color:c.color}">${check}<div class="qnbody"><div class="qntop"><span class="qncat"><i style="background:${c.color}"></i>${c.name}</span>${areaB}${goalB}${assoc}${alarmB}<span class="qnwhen">${timeAgo(n.created)}</span></div><div class="qntxt">${hesc(n.txt)}</div></div><div class="qnacts"><button class="qnact" data-cap-edit="${n.id}" title="data · área · meta">✎</button><button class="qnact${n.alarm?' has':''}" data-cap-alarm="${n.id}" title="alarme">⏰</button><button class="qnact" data-cap-del="${n.id}" title="remover">✕</button></div></div>`;
   }).join('')+`</div>`;}
-  h+=gtSection('cap-list','Itens capturados','',listBody);
+  h+=gtSection('cap-list','Itens capturados','📥',listBody);
   return h;
 }
 function capAdd(){const t=document.getElementById('capText');if(!t)return;const txt=t.value.trim();if(!txt)return;
@@ -7377,34 +7379,34 @@ function renderProjetosMain(){
   const dayCount={};H.projetos.forEach(p=>(p.days||[]).forEach(ds=>{const dd=new Date(ds+'T00:00:00');if(dd.getFullYear()===yy&&dd.getMonth()===mm-1)dayCount[dd.getDate()]=(dayCount[dd.getDate()]||0)+1;}));
   const nowD=new Date();let cal='';for(let b=0;b<fw;b++)cal+='<span class="mcd off"></span>';
   for(let d=1;d<=dim;d++){const c=dayCount[d]||0;const isT=(nowD.getFullYear()===yy&&nowD.getMonth()===mm-1&&nowD.getDate()===d);cal+=`<span class="mcd${isT?' today':''}${c>=2?' full':c===1?' part':''}" title="${c} projeto(s)">${d}</span>`;}
-  const calBody=`<div class="hcard" style="padding:13px"><div class="ameshd"><span class="al"> ${monthLabel(mes)}</span><span class="amesm" style="font-size:10.5px;color:var(--ink-soft);font-weight:600">sincronizado · Semana &amp; Mês</span></div><div class="mcal" style="margin-top:8px"><div class="mcalh">${WD.map(d=>`<span>${d}</span>`).join('')}</div><div class="mcalg">${cal}</div></div></div>`;
+  const calBody=`<div class="hcard" style="padding:13px"><div class="ameshd"><span class="al">📆 ${monthLabel(mes)}</span><span class="amesm" style="font-size:10.5px;color:var(--ink-soft);font-weight:600">sincronizado · Semana &amp; Mês</span></div><div class="mcal" style="margin-top:8px"><div class="mcalh">${WD.map(d=>`<span>${d}</span>`).join('')}</div><div class="mcalg">${cal}</div></div></div>`;
   const R=[...H.retomadas].sort((a,b)=>b.ts-a.ts);
-  const retomadaBlock=r=>`<div class="pjrt"><div class="pjrtti">${hesc(r.title)}</div><div class="pjrtnx"><b>Próximo:</b> ${hesc(r.next||'—')}</div><div class="pjrtacts"><span class="when">há ${timeAgo(r.ts)}</span><span class="cclink" data-rt-up="${r.id}">↑ retomei agora</span><span class="cclink" data-rt-sched="${r.id}"> agendar</span><span class="cclink" data-rt-edit="${r.id}">editar</span><span class="cclink mut" data-rt-del="${r.id}">remover</span></div></div>`;
+  const retomadaBlock=r=>`<div class="pjrt"><div class="pjrtti">${hesc(r.title)}</div><div class="pjrtnx"><b>Próximo:</b> ${hesc(r.next||'—')}</div><div class="pjrtacts"><span class="when">há ${timeAgo(r.ts)}</span><span class="cclink" data-rt-up="${r.id}">↑ retomei agora</span><span class="cclink" data-rt-sched="${r.id}">⏱ agendar</span><span class="cclink" data-rt-edit="${r.id}">editar</span><span class="cclink mut" data-rt-del="${r.id}">remover</span></div></div>`;
   const P=[...H.projetos].sort((a,b)=>a.last-b.last);let cards='';
   P.forEach(p=>{const days=Math.floor((Date.now()-p.last)/864e5);let cls='ok',lab='ativo';if(days>10){cls='cold';lab='abandonado';}else if(days>3){cls='warn';lab='esfriando';}const c=CTXS[p.ctx]||CTXS.pessoal;const today=(p.days||[]).includes(todayStr);const n=(p.days||[]).length;
     const rts=R.filter(r=>r.proj===p.id);
-    const rtHTML=rts.length?rts.map(retomadaBlock).join(''):`<button class="pjrtadd" data-pj-rt-add="${p.id}"> + registrar retomada deste projeto</button>`;
-    cards+=`<div class="pjcard ${cls}" style="--cc:${c.cor}"><div class="pjcardtop"><span class="pjdot"></span><div class="pjinfo"><div class="pn">${hesc(p.name)}</div><div class="pm">${c.ic} ${c.label} · <b>${n}</b> dia(s) · ${days===0?'hoje':'há '+days+(days===1?' dia':' dias')}</div></div><span class="ccstat ${cls}">${lab}</span><span class="ccx" data-pj-del="${p.id}" title="remover projeto">✕</span></div><div class="pjcardacts"><button class="cclink${today?' mut':''}" data-pj-day="${p.id}">${today?'✓ dediquei hoje':'✋ dediquei hoje'}</button><label class="pjdate" title="registrar outro dia"> outro dia<input type="date" data-pj-dayadd="${p.id}"></label></div><div class="pjcardrt">${rtHTML}</div></div>`;});
+    const rtHTML=rts.length?rts.map(retomadaBlock).join(''):`<button class="pjrtadd" data-pj-rt-add="${p.id}">🧭 + registrar retomada deste projeto</button>`;
+    cards+=`<div class="pjcard ${cls}" style="--cc:${c.cor}"><div class="pjcardtop"><span class="pjdot"></span><div class="pjinfo"><div class="pn">${hesc(p.name)}</div><div class="pm">${c.ic} ${c.label} · <b>${n}</b> dia(s) · ${days===0?'hoje':'há '+days+(days===1?' dia':' dias')}</div></div><span class="ccstat ${cls}">${lab}</span><span class="ccx" data-pj-del="${p.id}" title="remover projeto">✕</span></div><div class="pjcardacts"><button class="cclink${today?' mut':''}" data-pj-day="${p.id}">${today?'✓ dediquei hoje':'✋ dediquei hoje'}</button><label class="pjdate" title="registrar outro dia">📅 outro dia<input type="date" data-pj-dayadd="${p.id}"></label></div><div class="pjcardrt">${rtHTML}</div></div>`;});
   cards+=`<button class="pjaddcard" data-pj-add="1">＋ novo projeto</button>`;
   const Rsolta=R.filter(r=>!r.proj);let rinner='';
-  if(Rsolta.length){rinner=Rsolta.map(r=>`<div class="ccrow"><div class="body"><div class="ti">${hesc(r.title)}</div><div class="nx"><b>Próximo:</b> ${hesc(r.next||'—')}</div><div class="r">${ctxTag(r.ctx)}<span class="when">há ${timeAgo(r.ts)}</span><span class="cclink" data-rt-link="${r.id}"> vincular projeto</span><span class="cclink" data-rt-up="${r.id}">↑ retomei agora</span><span class="cclink" data-rt-sched="${r.id}"> agendar no dia</span><span class="cclink" data-rt-edit="${r.id}">editar</span><span class="cclink mut" data-rt-del="${r.id}">remover</span></div></div></div>`).join('');
+  if(Rsolta.length){rinner=Rsolta.map(r=>`<div class="ccrow"><div class="body"><div class="ti">${hesc(r.title)}</div><div class="nx"><b>Próximo:</b> ${hesc(r.next||'—')}</div><div class="r">${ctxTag(r.ctx)}<span class="when">há ${timeAgo(r.ts)}</span><span class="cclink" data-rt-link="${r.id}">🗂 vincular projeto</span><span class="cclink" data-rt-up="${r.id}">↑ retomei agora</span><span class="cclink" data-rt-sched="${r.id}">⏱ agendar no dia</span><span class="cclink" data-rt-edit="${r.id}">editar</span><span class="cclink mut" data-rt-del="${r.id}">remover</span></div></div></div>`).join('');
   }else{rinner=`<div class="ccempty">Nenhuma retomada solta — as vinculadas aparecem dentro do próprio projeto.</div>`;}
   rinner+=`<div style="margin-top:10px"><span class="cclink" data-rt-add="1" style="font-size:13px">+ nova retomada solta</span></div>`;
   let h=`<p class="chelp" style="margin-top:0">Cada projeto já traz sua retomada — retome, agende ou edite direto no card, sem precisar procurar em outro lugar.</p>`;
-  h+=gtSection('pj-list','Projetos & retomadas','',`<div class="pjgrid">${cards}</div>`);
-  h+=gtSection('pj-rt-solta','Retomadas soltas','',rinner);
-  h+=gtSection('pj-cal','Calendário de dedicação','',calBody);
+  h+=gtSection('pj-list','Projetos & retomadas','📊',`<div class="pjgrid">${cards}</div>`);
+  h+=gtSection('pj-rt-solta','Retomadas soltas','🧭',rinner);
+  h+=gtSection('pj-cal','Calendário de dedicação','📅',calBody);
   return h;
 }
 function renderRetomada(){
   const H=state.habit;const R=[...H.retomadas].sort((a,b)=>b.ts-a.ts);
   let inner='';
-  if(R.length){R.forEach(r=>{const proj=r.proj?H.projetos.find(p=>p.id===r.proj):null;const projTag=proj?`<span class="cclink mut" data-rt-link="${r.id}"> ${hesc(proj.name)}</span>`:`<span class="cclink" data-rt-link="${r.id}"> vincular projeto</span>`;
-    inner+=`<div class="ccrow"><div class="body"><div class="ti">${hesc(r.title)}</div><div class="nx"><b>Próximo:</b> ${hesc(r.next||'—')}</div><div class="r">${ctxTag(r.ctx)}<span class="when">há ${timeAgo(r.ts)}</span>${projTag}<span class="cclink" data-rt-up="${r.id}">↑ retomei agora</span><span class="cclink" data-rt-sched="${r.id}"> agendar no dia</span><span class="cclink" data-rt-edit="${r.id}">editar</span><span class="cclink mut" data-rt-del="${r.id}">remover</span></div></div></div>`;});
+  if(R.length){R.forEach(r=>{const proj=r.proj?H.projetos.find(p=>p.id===r.proj):null;const projTag=proj?`<span class="cclink mut" data-rt-link="${r.id}">🗂 ${hesc(proj.name)}</span>`:`<span class="cclink" data-rt-link="${r.id}">🗂 vincular projeto</span>`;
+    inner+=`<div class="ccrow"><div class="body"><div class="ti">${hesc(r.title)}</div><div class="nx"><b>Próximo:</b> ${hesc(r.next||'—')}</div><div class="r">${ctxTag(r.ctx)}<span class="when">há ${timeAgo(r.ts)}</span>${projTag}<span class="cclink" data-rt-up="${r.id}">↑ retomei agora</span><span class="cclink" data-rt-sched="${r.id}">⏱ agendar no dia</span><span class="cclink" data-rt-edit="${r.id}">editar</span><span class="cclink mut" data-rt-del="${r.id}">remover</span></div></div></div>`;});
   }else{inner+=`<div class="ccempty">Nada em aberto — adicione o que você quer retomar.</div>`;}
   inner+=`<div style="margin-top:10px"><span class="cclink" data-rt-add="1" style="font-size:13px">+ nova retomada</span></div>`;
   let h=`<p class="chelp" style="margin-top:0">Onde você parou — e o próximo passo concreto.</p>`;
-  h+=gtSection('rt-list','Retomadas','',inner);
+  h+=gtSection('rt-list','Retomadas','🧭',inner);
   return h;
 }
 function renderProjetos(){
@@ -7413,34 +7415,34 @@ function renderProjetos(){
   const dayCount={};H.projetos.forEach(p=>(p.days||[]).forEach(ds=>{const dd=new Date(ds+'T00:00:00');if(dd.getFullYear()===yy&&dd.getMonth()===mm-1)dayCount[dd.getDate()]=(dayCount[dd.getDate()]||0)+1;}));
   const nowD=new Date();let cal='';for(let b=0;b<fw;b++)cal+='<span class="mcd off"></span>';
   for(let d=1;d<=dim;d++){const c=dayCount[d]||0;const isT=(nowD.getFullYear()===yy&&nowD.getMonth()===mm-1&&nowD.getDate()===d);cal+=`<span class="mcd${isT?' today':''}${c>=2?' full':c===1?' part':''}" title="${c} projeto(s)">${d}</span>`;}
-  const calBody=`<div class="hcard" style="padding:13px"><div class="ameshd"><span class="al"> ${monthLabel(mes)}</span><span class="amesm" style="font-size:10.5px;color:var(--ink-soft);font-weight:600">sincronizado · Semana &amp; Mês</span></div><div class="mcal" style="margin-top:8px"><div class="mcalh">${WD.map(d=>`<span>${d}</span>`).join('')}</div><div class="mcalg">${cal}</div></div></div>`;
+  const calBody=`<div class="hcard" style="padding:13px"><div class="ameshd"><span class="al">📆 ${monthLabel(mes)}</span><span class="amesm" style="font-size:10.5px;color:var(--ink-soft);font-weight:600">sincronizado · Semana &amp; Mês</span></div><div class="mcal" style="margin-top:8px"><div class="mcalh">${WD.map(d=>`<span>${d}</span>`).join('')}</div><div class="mcalg">${cal}</div></div></div>`;
   const P=[...H.projetos].sort((a,b)=>a.last-b.last);let listInner='';
   P.forEach(p=>{const days=Math.floor((Date.now()-p.last)/864e5);let cls='ok',lab='ativo';if(days>10){cls='cold';lab='abandonado';}else if(days>3){cls='warn';lab='esfriando';}const c=CTXS[p.ctx]||CTXS.pessoal;const today=(p.days||[]).includes(todayStr);const n=(p.days||[]).length;
-    listInner+=`<div class="ccproj"><span class="ccdot" style="background:${c.cor}"></span><div class="body"><div class="pn">${hesc(p.name)}</div><div class="pm">${c.ic} ${c.label} · <b>${n}</b> dia(s) · ${days===0?'hoje':'há '+days+(days===1?' dia':' dias')}</div></div><span class="ccstat ${cls}">${lab}</span><button class="cclink${today?' mut':''}" data-pj-day="${p.id}">${today?'✓ hoje':'✋ dediquei hoje'}</button><label class="pjdate" title="registrar outro dia"><input type="date" data-pj-dayadd="${p.id}"></label><span class="ccx" data-pj-del="${p.id}">✕</span></div>`;});
+    listInner+=`<div class="ccproj"><span class="ccdot" style="background:${c.cor}"></span><div class="body"><div class="pn">${hesc(p.name)}</div><div class="pm">${c.ic} ${c.label} · <b>${n}</b> dia(s) · ${days===0?'hoje':'há '+days+(days===1?' dia':' dias')}</div></div><span class="ccstat ${cls}">${lab}</span><button class="cclink${today?' mut':''}" data-pj-day="${p.id}">${today?'✓ hoje':'✋ dediquei hoje'}</button><label class="pjdate" title="registrar outro dia">📅<input type="date" data-pj-dayadd="${p.id}"></label><span class="ccx" data-pj-del="${p.id}">✕</span></div>`;});
   listInner+=`<div style="margin-top:10px"><span class="cclink" data-pj-add="1" style="font-size:13px">+ projeto</span></div>`;
   let h=`<p class="chelp" style="margin-top:0">Registre os dias dedicados a cada projeto — aparecem no calendário do mês.</p>`;
-  h+=gtSection('pj-cal','Calendário de dedicação','',calBody);
-  h+=gtSection('pj-list','Rotas','',listInner);
+  h+=gtSection('pj-cal','Calendário de dedicação','📅',calBody);
+  h+=gtSection('pj-list','Rotas','📊',listInner);
   return h;
 }
 function renderComando(){
   const H=state.habit;let html='';const todayStr=pdStr();
   html+=`<p class="chelp" style="margin-top:0">A próxima ação, a captura de ideias e o radar dos projetos — agora sincronizados com o calendário da <b>Semana</b> e do <b>Mês</b>.</p>`;
   const R=[...H.retomadas].sort((a,b)=>b.ts-a.ts);
-  html+=`<div class="ccbanner"><span class="bnum">01</span><div class="bic"></div><div class="bt"><h3>Retomada inteligente</h3><p>Onde você parou — e o próximo passo concreto.</p></div></div>`;
-  if(R.length){R.forEach(r=>{const proj=r.proj?H.projetos.find(p=>p.id===r.proj):null;const projTag=proj?`<span class="cclink mut" data-rt-link="${r.id}"> ${hesc(proj.name)}</span>`:`<span class="cclink" data-rt-link="${r.id}"> vincular projeto</span>`;
-    html+=`<div class="ccrow"><div class="body"><div class="ti">${hesc(r.title)}</div><div class="nx"><b>Próximo:</b> ${hesc(r.next||'—')}</div><div class="r">${ctxTag(r.ctx)}<span class="when">há ${timeAgo(r.ts)}</span>${projTag}<span class="cclink" data-rt-up="${r.id}">↑ retomei agora</span><span class="cclink" data-rt-sched="${r.id}"> agendar no dia</span><span class="cclink" data-rt-edit="${r.id}">editar</span><span class="cclink mut" data-rt-del="${r.id}">remover</span></div></div></div>`;});
+  html+=`<div class="ccbanner"><span class="bnum">01</span><div class="bic">🧭</div><div class="bt"><h3>Retomada inteligente</h3><p>Onde você parou — e o próximo passo concreto.</p></div></div>`;
+  if(R.length){R.forEach(r=>{const proj=r.proj?H.projetos.find(p=>p.id===r.proj):null;const projTag=proj?`<span class="cclink mut" data-rt-link="${r.id}">🗂 ${hesc(proj.name)}</span>`:`<span class="cclink" data-rt-link="${r.id}">🗂 vincular projeto</span>`;
+    html+=`<div class="ccrow"><div class="body"><div class="ti">${hesc(r.title)}</div><div class="nx"><b>Próximo:</b> ${hesc(r.next||'—')}</div><div class="r">${ctxTag(r.ctx)}<span class="when">há ${timeAgo(r.ts)}</span>${projTag}<span class="cclink" data-rt-up="${r.id}">↑ retomei agora</span><span class="cclink" data-rt-sched="${r.id}">⏱ agendar no dia</span><span class="cclink" data-rt-edit="${r.id}">editar</span><span class="cclink mut" data-rt-del="${r.id}">remover</span></div></div></div>`;});
   }else{html+=`<div class="ccempty">Nada em aberto — adicione o que você quer retomar.</div>`;}
   html+=`<div style="margin-top:10px"><span class="cclink" data-rt-add="1" style="font-size:13px">+ nova retomada</span></div>`;
-  html+=`<div class="ccbanner"><span class="bnum">02</span><div class="bic"></div><div class="bt"><h3>Dedicação aos projetos</h3><p>Registre os dias dedicados a cada projeto — aparecem no calendário do mês.</p></div></div>`;
+  html+=`<div class="ccbanner"><span class="bnum">02</span><div class="bic">📅</div><div class="bt"><h3>Dedicação aos projetos</h3><p>Registre os dias dedicados a cada projeto — aparecem no calendário do mês.</p></div></div>`;
   const yy=+mes.split('-')[0],mm=+mes.split('-')[1];const dim=new Date(yy,mm,0).getDate(),fw=new Date(yy,mm-1,1).getDay();
   const dayCount={};H.projetos.forEach(p=>(p.days||[]).forEach(ds=>{const dd=new Date(ds+'T00:00:00');if(dd.getFullYear()===yy&&dd.getMonth()===mm-1)dayCount[dd.getDate()]=(dayCount[dd.getDate()]||0)+1;}));
   const nowD=new Date();let cal='';for(let b=0;b<fw;b++)cal+='<span class="mcd off"></span>';
   for(let d=1;d<=dim;d++){const c=dayCount[d]||0;const isT=(nowD.getFullYear()===yy&&nowD.getMonth()===mm-1&&nowD.getDate()===d);cal+=`<span class="mcd${isT?' today':''}${c>=2?' full':c===1?' part':''}" title="${c} projeto(s)">${d}</span>`;}
-  html+=`<div class="hcard" style="padding:13px"><div class="ameshd"><span class="al"> ${monthLabel(mes)}</span><span class="amesm" style="font-size:10.5px;color:var(--ink-soft);font-weight:600">sincronizado · Semana &amp; Mês</span></div><div class="mcal" style="margin-top:8px"><div class="mcalh">${WD.map(d=>`<span>${d}</span>`).join('')}</div><div class="mcalg">${cal}</div></div></div>`;
+  html+=`<div class="hcard" style="padding:13px"><div class="ameshd"><span class="al">📆 ${monthLabel(mes)}</span><span class="amesm" style="font-size:10.5px;color:var(--ink-soft);font-weight:600">sincronizado · Semana &amp; Mês</span></div><div class="mcal" style="margin-top:8px"><div class="mcalh">${WD.map(d=>`<span>${d}</span>`).join('')}</div><div class="mcalg">${cal}</div></div></div>`;
   const P=[...H.projetos].sort((a,b)=>a.last-b.last);
   P.forEach(p=>{const days=Math.floor((Date.now()-p.last)/864e5);let cls='ok',lab='ativo';if(days>10){cls='cold';lab='abandonado';}else if(days>3){cls='warn';lab='esfriando';}const c=CTXS[p.ctx]||CTXS.pessoal;const today=(p.days||[]).includes(todayStr);const n=(p.days||[]).length;
-    html+=`<div class="ccproj"><span class="ccdot" style="background:${c.cor}"></span><div class="body"><div class="pn">${hesc(p.name)}</div><div class="pm">${c.ic} ${c.label} · <b>${n}</b> dia(s) · ${days===0?'hoje':'há '+days+(days===1?' dia':' dias')}</div></div><span class="ccstat ${cls}">${lab}</span><button class="cclink${today?' mut':''}" data-pj-day="${p.id}">${today?'✓ hoje':'✋ dediquei hoje'}</button><label class="pjdate" title="registrar outro dia"><input type="date" data-pj-dayadd="${p.id}"></label><span class="ccx" data-pj-del="${p.id}">✕</span></div>`;});
+    html+=`<div class="ccproj"><span class="ccdot" style="background:${c.cor}"></span><div class="body"><div class="pn">${hesc(p.name)}</div><div class="pm">${c.ic} ${c.label} · <b>${n}</b> dia(s) · ${days===0?'hoje':'há '+days+(days===1?' dia':' dias')}</div></div><span class="ccstat ${cls}">${lab}</span><button class="cclink${today?' mut':''}" data-pj-day="${p.id}">${today?'✓ hoje':'✋ dediquei hoje'}</button><label class="pjdate" title="registrar outro dia">📅<input type="date" data-pj-dayadd="${p.id}"></label><span class="ccx" data-pj-del="${p.id}">✕</span></div>`;});
   html+=`<div style="margin-top:10px"><span class="cclink" data-pj-add="1" style="font-size:13px">+ projeto</span></div>`;
   return html;
 }
@@ -7465,11 +7467,11 @@ function renderFerramentas(){
   html+=`<p class="chelp" style="margin-top:0">Referências rápidas — onde cada coisa mora e blocos livres para organizar.</p>`;
   let mapBody=`<div class="ccmap">`+tm.tools.map(t=>`<div class="cctool"><button class="tlx" data-tool-del="${t.id}" title="remover">✕</button><div class="ic" contenteditable="true" data-tool-edit="${t.id}:ic">${hesc(t.ic)}</div><div class="nm" contenteditable="true" data-tool-edit="${t.id}:nm">${hesc(t.nm)}</div><div class="fn" contenteditable="true" data-tool-edit="${t.id}:fn">${hesc(t.fn)}</div><div class="fr" contenteditable="true" data-tool-edit="${t.id}:fr">${hesc(t.fr)}</div></div>`).join('')+`</div>`;
   mapBody+=`<div style="margin:10px 2px"><span class="cclink" id="toolAdd" style="font-size:13px">+ ferramenta</span></div>`;
-  html+=gtSection('rf-map','Mapa de ferramentas','',mapBody);
+  html+=gtSection('rf-map','Mapa de ferramentas','🗺️',mapBody);
   const secs=tm.sections||[];
   let secBody=`<div class="mmsecs">`+secs.map(s=>`<div class="mmsec"><div class="mmsech"><span class="mmtitle" contenteditable="true" data-mmsec-title="${s.id}">${hesc(s.title)}</span><button class="mmsecdel" data-mmsec-del="${s.id}" title="remover seção">✕</button></div><div class="mmcards">${(s.cards||[]).map(c=>`<div class="mmcard" style="--cc:${c.color||'#9a7b3f'}"><span class="mmctext" contenteditable="true" data-mmcard="${s.id}:${c.id}">${hesc(c.text)}</span><button class="mmcdel" data-mmcard-del="${s.id}:${c.id}" title="remover">×</button></div>`).join('')}<button class="mmcadd" data-mmcard-add="${s.id}">＋ bloco</button></div></div>`).join('')+`</div>`;
   secBody+=`<div style="margin:10px 2px"><span class="cclink" id="mmSecAdd" style="font-size:13px">+ nova seção</span></div>`;
-  html+=gtSection('rf-secs','Seções livres','',secBody);
+  html+=gtSection('rf-secs','Seções livres','🧩',secBody);
   return html;
 }
 let rtSchedId=null;
@@ -7613,7 +7615,7 @@ function renderMgPanel(){
   const mpv=(H.monthPlan[mes]=H.monthPlan[mes]||{});
   const goals=(state.asgard.goals||[]).slice(0,3);
   const goalsHTML=goals.length?goals.map(g=>`<div class="mggoal"><span class="mggoaltxt">${hesc(g.title)}</span><span class="mggoalpct">${g.progress||0}%</span></div>`).join(''):'<div class="mggoalempty">Sem metas cadastradas em Constelações.</div>';
-  const metasHTML=`<div class="mgmetas"><div class="mgmetash"><span class="al"> Metas do mês/semana</span></div><div class="mggoals">${goalsHTML}</div><textarea class="abox" data-mp="metas" placeholder="Metas e intenções do mês…">${hesc(mpv.metas||'')}</textarea></div>`;
+  const metasHTML=`<div class="mgmetas"><div class="mgmetash"><span class="al">🎯 Metas do mês/semana</span></div><div class="mggoals">${goalsHTML}</div><textarea class="abox" data-mp="metas" placeholder="Metas e intenções do mês…">${hesc(mpv.metas||'')}</textarea></div>`;
   const cardsHTML=`<div class="mgstack">${metasHTML}</div>`;
   if(el)el.innerHTML=cardsHTML;
   if(elHab)elHab.innerHTML=cardsHTML;
@@ -7624,7 +7626,7 @@ function renderMgPanel(){
     let cal2='';for(let b=0;b<fw2;b++)cal2+='<span class="mcd off"></span>';
     for(let d=1;d<=dim2;d++){let on=0;H.daily.forEach(hb=>{if(hOn(hb.id,d))on++;});const full=H.daily.length&&on===H.daily.length,part=on>0&&!full,isT=(nowD2.getFullYear()===yy2&&nowD2.getMonth()===mm3-1&&nowD2.getDate()===d);cal2+=`<span class="mcd${isT?' today':''}${full?' full':part?' part':''}">${d}</span>`;}
     const wmonNow=mondayOf(weekStart);const weekNum=Math.ceil(wmonNow.getDate()/7);
-    calEl.innerHTML=`<div class="mgcal"><div class="mcalh">${WD.map(d=>`<span>${d}</span>`).join('')}</div><div class="mcalg">${cal2}</div></div><div class="mgweeklabel"> Semana ${weekNum} de ${MMn[wmonNow.getMonth()]}</div>`;
+    calEl.innerHTML=`<div class="mgcal"><div class="mcalh">${WD.map(d=>`<span>${d}</span>`).join('')}</div><div class="mcalg">${cal2}</div></div><div class="mgweeklabel">📍 Semana ${weekNum} de ${MMn[wmonNow.getMonth()]}</div>`;
   }
   const foot=document.getElementById('mgFoot');const footHab=document.getElementById('mgFootHab');
   const quickEl=document.getElementById('mgQuickTrk');
@@ -7638,16 +7640,16 @@ function renderMgPanel(){
     const limitVal=H.dailySpendLimit!=null?H.dailySpendLimit:'';
     const spentToday=(state.entries||[]).filter(e=>e.diaGasto===today).reduce((s,e)=>s+num(e.efet!=null?e.efet:e.valor),0);
     const restante=H.dailySpendLimit!=null?(H.dailySpendLimit-spentToday):null;
-    const gastoAlways=`<div class="mggasto"><div class="mggastoh"></div><div class="mggastorow"><span class="mgtico"></span><input type="number" min="0" step="10" class="mgspend-in" id="mgSpendLimit" value="${limitVal}" placeholder="0,00"><button class="mgtrkbtn" id="mgSpendAdd">＋</button></div>${restante!=null?`<div class="mggastostatus${restante<0?' over':''}">Gasto hoje: ${fmt0(spentToday)} · Resta: ${fmt0(restante)}</div>`:''}</div>`;
+    const gastoAlways=`<div class="mggasto"><div class="mggastoh"></div><div class="mggastorow"><span class="mgtico">💰</span><input type="number" min="0" step="10" class="mgspend-in" id="mgSpendLimit" value="${limitVal}" placeholder="0,00"><button class="mgtrkbtn" id="mgSpendAdd">＋</button></div>${restante!=null?`<div class="mggastostatus${restante<0?' over':''}">Gasto hoje: ${fmt0(spentToday)} · Resta: ${fmt0(restante)}</div>`:''}</div>`;
     quickEl.innerHTML=gastoAlways
-      +trk('sleep','','Sono',(slp||0)+'h',`<div class="mgbt sleep"><i style="width:${spct}%"></i></div><div class="mgtctl"><span class="mgtnote">registrado na aba Saúde</span></div>`)
-      +trk('hydro','','Hidratação',cups+'/'+hgoal,`<div class="mgbt hydro"><i style="width:${hpct}%"></i></div><div class="mgtctl"><button class="mgbpm" data-hydro-d="-1">−</button><button class="mgbpm" data-hydro-d="1">+</button><span class="mgtnote">copos de hoje</span></div>`)
-      +trk('meds','','Medicação',medsToday.length+'/'+(H.medications||[]).length,medsBody);
+      +trk('sleep','🌙','Sono',(slp||0)+'h',`<div class="mgbt sleep"><i style="width:${spct}%"></i></div><div class="mgtctl"><span class="mgtnote">registrado na aba Saúde</span></div>`)
+      +trk('hydro','💧','Hidratação',cups+'/'+hgoal,`<div class="mgbt hydro"><i style="width:${hpct}%"></i></div><div class="mgtctl"><button class="mgbpm" data-hydro-d="-1">−</button><button class="mgbpm" data-hydro-d="1">+</button><span class="mgtnote">copos de hoje</span></div>`)
+      +trk('meds','💊','Medicação',medsToday.length+'/'+(H.medications||[]).length,medsBody);
   }
   if(foot||footHab){
     const todayMeals=(H.mealLog[today]||[]).slice().sort((a,b)=>(a.time||'99:99').localeCompare(b.time||'99:99'));
     const mealChips=todayMeals.length?`<div class="mgmeallog">${todayMeals.map(m=>`<span class="mgmealchip">${hesc(m.name)}${m.time?' · '+hesc(m.time):''}</span>`).join('')}</div>`:'';
-    const dietaBody=`<div class="mgdplanned">${dieta}</div>${mealChips}<button class="mgtrkbtn" id="mgMealOpen"> Registrar refeição</button>`;
+    const dietaBody=`<div class="mgdplanned">${dieta}</div>${mealChips}<button class="mgtrkbtn" id="mgMealOpen">🍽 Registrar refeição</button>`;
     const treinoBody=tr?`<b>${hesc(tr.name)}</b>${tr.focus?' · '+hesc(tr.focus):''}`:'<i>sem treino hoje</i>';
     const trk=(key,ic,label,val,body)=>`<div class="mgtrk${mgTrkOpen[key]?' open':''}"><button class="mgtrkh" data-mgtrk="${key}"><span class="mgtico">${ic}</span><span class="mgtl">${label}</span>${val?`<span class="mgtv">${val}</span>`:''}<span class="mgtchev">⌄</span></button><div class="mgtrkbody">${body}</div></div>`;
     const indispBlocks=((wkv.blocks&&wkv.blocks[todayIdx])||[]).filter(b=>b.indispensavel);
@@ -7655,8 +7657,8 @@ function renderMgPanel(){
     const footHTML=metasHTML
       +`<label class="mgf"><span>◆ Indispensáveis diários</span>${indispChips}<textarea class="abox" data-wp="inegociaveis" placeholder="O que não pode faltar">${hesc(wkv['inegociaveis']||'')}</textarea></label>`
       +`<div class="mgtrks">`
-      +trk('treino','','Treino de hoje','',treinoBody)
-      +trk('dieta','','Dieta de hoje','',dietaBody)
+      +trk('treino','🏋','Treino de hoje','',treinoBody)
+      +trk('dieta','🍽','Dieta de hoje','',dietaBody)
       +`</div>`;
     if(foot)foot.innerHTML=footHTML;
     if(footHab)footHab.innerHTML=footHTML;
@@ -7664,7 +7666,7 @@ function renderMgPanel(){
 }
 let asgGoalId=null;
 function goalCard(g,areaMap){const a=areaMap[g.area]||{ic:'•',name:'—',color:'#999'};
-  return `<div class="goalcard" style="--cc:${a.color}" data-goal-edit="${g.id}"><div class="gch"><span class="gcarea">${a.ic} ${hesc(a.name)}</span>${g.horizon?`<span class="gchz">${hesc(g.horizon)}</span>`:''}</div><div class="gctitle">${hesc(g.title)}</div>${g.target?`<div class="gctarget"> ${hesc(g.target)}</div>`:''}${g.why?`<div class="gcwhy">${hesc(g.why)}</div>`:''}<div class="gcbar"><i style="width:${g.progress||0}%"></i></div><div class="gcpct">${g.progress||0}% concluído</div></div>`;}
+  return `<div class="goalcard" style="--cc:${a.color}" data-goal-edit="${g.id}"><div class="gch"><span class="gcarea">${a.ic} ${hesc(a.name)}</span>${g.horizon?`<span class="gchz">${hesc(g.horizon)}</span>`:''}</div><div class="gctitle">${hesc(g.title)}</div>${g.target?`<div class="gctarget">🎯 ${hesc(g.target)}</div>`:''}${g.why?`<div class="gcwhy">${hesc(g.why)}</div>`:''}<div class="gcbar"><i style="width:${g.progress||0}%"></i></div><div class="gcpct">${g.progress||0}% concluído</div></div>`;}
 function renderAsgard(){
   const A=state.asgard;const tab=activeSeedTab;const areaMap={};A.areas.forEach(a=>areaMap[a.id]=a);
   let h=`<div class="sec asgsec"><div class="sec-h"><span class="t">${tab==='areas'?'Áreas da Vida':tab==='metas'?'Metas':'Vision Board'}</span><span class="sum" style="font-family:var(--ax-mono),monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)">Constelações · o alto</span></div>`;
@@ -7688,10 +7690,10 @@ function openGoal(id){asgGoalId=id;const A=state.asgard;const g=id?A.goals.find(
   openModal('goalModal');}
 let saudeType=null,saudeId=null;
 function saudeCard(type,it){const E=hesc;
-  if(type==='consultas'){const dt=it.date?new Date(it.date+'T00:00:00').toLocaleDateString('pt-BR',{day:'2-digit',month:'short'}):'sem data';return `<div class="saudec" data-saude-edit="${type}:${it.id}" style="--cc:#a8412f"><div class="scbadge"> ${dt}${it.time?' · '+E(it.time):''}</div><div class="sctitle">${E(it.what||'Consulta')}</div><div class="scsub">${E(it.doctor||'')}${it.place?' · '+E(it.place):''}</div>${it.notes?`<div class="scpre">${E(it.notes)}</div>`:''}</div>`;}
+  if(type==='consultas'){const dt=it.date?new Date(it.date+'T00:00:00').toLocaleDateString('pt-BR',{day:'2-digit',month:'short'}):'sem data';return `<div class="saudec" data-saude-edit="${type}:${it.id}" style="--cc:#a8412f"><div class="scbadge">🩺 ${dt}${it.time?' · '+E(it.time):''}</div><div class="sctitle">${E(it.what||'Consulta')}</div><div class="scsub">${E(it.doctor||'')}${it.place?' · '+E(it.place):''}</div>${it.notes?`<div class="scpre">${E(it.notes)}</div>`:''}</div>`;}
   if(type==='exames'){const st=it.status||'Pendente';const dt=it.date?new Date(it.date+'T00:00:00').toLocaleDateString('pt-BR',{day:'2-digit',month:'short'}):'';return `<div class="saudec" data-saude-edit="${type}:${it.id}" style="--cc:#6f5aa8"><div class="scbadge stb" data-st="${E(st)}">${E(st)}</div><div class="sctitle">${E(it.name)}</div><div class="scsub">${dt}${it.result?' · '+E(it.result):''}</div></div>`;}
-  if(type==='treinos'){return `<div class="saudec" data-saude-edit="${type}:${it.id}" style="--cc:#3f5d75"><div class="scbadge"> ${E(it.focus||'')}</div><div class="sctitle">${E(it.name)}</div><div class="scpre">${E((it.exercises||'').split('\n').filter(Boolean).slice(0,4).join(' · '))}</div></div>`;}
-  return `<div class="saudec" data-saude-edit="${type}:${it.id}" style="--cc:#2f6f4e"><div class="scbadge"> ${E(it.servings||'?')} porç · ${E(it.kcal||'?')} kcal</div><div class="sctitle">${E(it.name)}</div><div class="scpre">${E((it.ingredients||'').split('\n').filter(Boolean).slice(0,4).join(' · '))}</div></div>`;}
+  if(type==='treinos'){return `<div class="saudec" data-saude-edit="${type}:${it.id}" style="--cc:#3f5d75"><div class="scbadge">🏋️ ${E(it.focus||'')}</div><div class="sctitle">${E(it.name)}</div><div class="scpre">${E((it.exercises||'').split('\n').filter(Boolean).slice(0,4).join(' · '))}</div></div>`;}
+  return `<div class="saudec" data-saude-edit="${type}:${it.id}" style="--cc:#2f6f4e"><div class="scbadge">🍳 ${E(it.servings||'?')} porç · ${E(it.kcal||'?')} kcal</div><div class="sctitle">${E(it.name)}</div><div class="scpre">${E((it.ingredients||'').split('\n').filter(Boolean).slice(0,4).join(' · '))}</div></div>`;}
 const SAUDE_DESC={consultas:'Agende e acompanhe consultas — com profissional, data, hora e local.',exames:'Cadastre exames, status e resultados.',treinos:'Seus treinos (A/B/C) — viram a aba Treino no rodapé da Semana.',receitas:'Suas receitas — viram a aba Dieta no rodapé da Semana.'};
 function renderSaude(){
   const type=activeSeedTab,sc=SAUDE_SCHEMA[type]||SAUDE_SCHEMA.consultas,list=(state.saude[type]||[]);
@@ -7758,15 +7760,15 @@ function mapHtml(kind,title,lead,groups){
   const count=groups.reduce((s,g)=>s+(g.items?g.items.length:0),0);
   return `<section class="mapsection"><div class="mapsection-head"><div><h4>${title}</h4><p>${lead}</p></div><span class="mapcount">${count} itens</span></div><div class="lifemap">`+
     groups.map(g=>`<div class="lifecard"><div class="lifehead"><div class="lifeico">${g.ic||'•'}</div><div class="lifetitle"><div class="nm">${hesc(g.name)}</div><div class="ct">${hesc(g.hint||'')}</div></div><button class="lifeadd" data-map-add="${kind}:${g.id}">+ item</button></div><div class="lifeitems">${
-      (g.items&&g.items.length)?g.items.map(it=>`<div class="lifeitem ${it.checked?'done':''}"><button class="lifecheck" data-map-check="${kind}:${g.id}:${it.id}">✓</button><div class="lifebody"><div class="n">${hesc(it.name)}</div><div class="m">${hesc([it.meta,it.note].filter(Boolean).join(' · '))}</div></div><div class="lifeacts"><button class="cartadd" title="carrinho" data-cart-map="${kind}:${g.id}:${it.id}"></button><button title="editar" data-map-edit="${kind}:${g.id}:${it.id}">✎</button><button title="remover" data-map-del="${kind}:${g.id}:${it.id}">×</button></div></div>`).join(''):`<div class="lifeempty">Nenhum item registrado.</div>`
+      (g.items&&g.items.length)?g.items.map(it=>`<div class="lifeitem ${it.checked?'done':''}"><button class="lifecheck" data-map-check="${kind}:${g.id}:${it.id}">✓</button><div class="lifebody"><div class="n">${hesc(it.name)}</div><div class="m">${hesc([it.meta,it.note].filter(Boolean).join(' · '))}</div></div><div class="lifeacts"><button class="cartadd" title="carrinho" data-cart-map="${kind}:${g.id}:${it.id}">🛒</button><button title="editar" data-map-edit="${kind}:${g.id}:${it.id}">✎</button><button title="remover" data-map-del="${kind}:${g.id}:${it.id}">×</button></div></div>`).join(''):`<div class="lifeempty">Nenhum item registrado.</div>`
     }</div></div>`).join('')+`</div></section>`;
 }
 function renderClosetPanel(H){
   const sel=closetSelected();const groups=H.closet||[];
   let h=`<section class="closetpanel"><div class="closetbar"><div><h4>Guarda-roupa</h4><p>Itens categorizáveis para montar looks, lembrar o que existe e combinar sem depender da memória.</p></div><div class="closetactions"><button data-closet-add-cat="">+ categoria</button><button data-closet-clear="">limpar seleção</button><button class="primary" data-closet-combine="">combinar (${sel.length})</button></div></div>`;
   if(sel.length)h+=`<div class="lookpreview"><span class="lookl">Look montado</span><div class="lookchips">`+sel.map(it=>`<span class="lookchip"><span class="closetswatch" style="${it.color?`background:${hesc(it.color)}`:''}"></span>${hesc(it.name)} <i>${hesc(it.cat)}</i></span>`).join('')+`</div></div>`;
-  h+=`<div class="closetgrid">`+groups.map(g=>`<div class="closetcat"><div class="closetcat-head"><div class="lifeico">${g.ic||''}</div><div class="closetcat-title"><div class="nm">${hesc(g.name)}</div><div class="ct">${hesc(g.hint||'')}</div></div><button data-closet-add="${g.id}">+ item</button></div><div class="closetitems">${
-    (g.items&&g.items.length)?g.items.map(it=>`<div class="closetitem ${it.selected?'sel':''}"><div class="top"><button class="closetpick" data-closet-select="${g.id}:${it.id}">${it.selected?'✓':'+'}</button><div class="body"><div class="n">${hesc(it.name)}</div><div class="m">${hesc(it.meta||'')}</div></div><div class="closetswatch" style="${it.color?`background:${hesc(it.color)}`:''}"></div></div><div class="acts"><button title="carrinho" data-cart-closet="${g.id}:${it.id}"></button><button title="editar" data-closet-edit="${g.id}:${it.id}">✎</button><button title="remover" data-closet-del="${g.id}:${it.id}">×</button></div></div>`).join(''):`<div class="closetempty">Nenhum item nesta categoria.</div>`
+  h+=`<div class="closetgrid">`+groups.map(g=>`<div class="closetcat"><div class="closetcat-head"><div class="lifeico">${g.ic||'👗'}</div><div class="closetcat-title"><div class="nm">${hesc(g.name)}</div><div class="ct">${hesc(g.hint||'')}</div></div><button data-closet-add="${g.id}">+ item</button></div><div class="closetitems">${
+    (g.items&&g.items.length)?g.items.map(it=>`<div class="closetitem ${it.selected?'sel':''}"><div class="top"><button class="closetpick" data-closet-select="${g.id}:${it.id}">${it.selected?'✓':'+'}</button><div class="body"><div class="n">${hesc(it.name)}</div><div class="m">${hesc(it.meta||'')}</div></div><div class="closetswatch" style="${it.color?`background:${hesc(it.color)}`:''}"></div></div><div class="acts"><button title="carrinho" data-cart-closet="${g.id}:${it.id}">🛒</button><button title="editar" data-closet-edit="${g.id}:${it.id}">✎</button><button title="remover" data-closet-del="${g.id}:${it.id}">×</button></div></div>`).join(''):`<div class="closetempty">Nenhum item nesta categoria.</div>`
   }</div></div>`).join('')+`</div></section>`;
   return h;
 }
@@ -7778,9 +7780,9 @@ function renderPertencesPanel(H){
 }
 function renderMapaTab(){
   const H=state.habit;
-  let h=`<div class="cctitle"><span class="e">inventário de bordo</span><span class="t">Carga</span><span class="ln"></span></div><p class="chelp">O que você veste, carrega e consome — categorizado, combinável e rastreável. Use  para mandar pro carrinho.</p>`;
+  let h=`<div class="cctitle"><span class="e">inventário de bordo</span><span class="t">Carga</span><span class="ln"></span></div><p class="chelp">O que você veste, carrega e consome — categorizado, combinável e rastreável. Use 🛒 para mandar pro carrinho.</p>`;
   const cart=H.cart||[];
-  if(cart.length)h+=`<div class="cartbar"><span class="cartl"> Carrinho · ${cart.length}</span><div class="cartitems">`+cart.map(c=>`<span class="cartchip">${hesc(c.name)}<button data-cart-del="${c.id}">×</button></span>`).join('')+`</div><button class="cartclear" data-cart-clear="">limpar</button></div>`;
+  if(cart.length)h+=`<div class="cartbar"><span class="cartl">🛒 Carrinho · ${cart.length}</span><div class="cartitems">`+cart.map(c=>`<span class="cartchip">${hesc(c.name)}<button data-cart-del="${c.id}">×</button></span>`).join('')+`</div><button class="cartclear" data-cart-clear="">limpar</button></div>`;
   h+=renderClosetPanel(H);
   h+=mapHtml('bag','Itinerário & bagagem','O que levo comigo no dia a dia e nas saídas.',H.bagMap);
   h+=mapHtml('consumo','Consumo & reposição','Suplementos, hábitos de consumo e o que precisa repor.',H.consumoMap);
@@ -7899,7 +7901,7 @@ document.addEventListener('click',e=>{
   const cClo=e.target.closest('[data-cart-closet]');if(cClo){const[gid,iid]=cClo.dataset.cartCloset.split(':');const g=(state.habit.closet||[]).find(x=>x.id===gid);const it=g&&(g.items||[]).find(x=>x.id===iid);if(it){state.habit.cart.push({id:uid(),name:it.name});save();renderHabit();}return;}
   const cDel=e.target.closest('[data-cart-del]');if(cDel){state.habit.cart=(state.habit.cart||[]).filter(x=>x.id!==cDel.dataset.cartDel);save();renderHabit();return;}
   if(e.target.closest('[data-cart-clear]')){state.habit.cart=[];save();renderHabit();return;}
-  if(e.target.closest('[data-closet-add-cat]')){const n=prompt('Nome da categoria:');if(n&&n.trim()){const ic=prompt('Ícone (emoji):','')||'';state.habit.closet.push({id:uid(),name:n.trim(),ic:ic.trim(),hint:'',items:[]});save();renderHabit();}return;}
+  if(e.target.closest('[data-closet-add-cat]')){const n=prompt('Nome da categoria:');if(n&&n.trim()){const ic=prompt('Ícone (emoji):','👗')||'👗';state.habit.closet.push({id:uid(),name:n.trim(),ic:ic.trim(),hint:'',items:[]});save();renderHabit();}return;}
   const clAdd=e.target.closest('[data-closet-add]');if(clAdd){const g=(state.habit.closet||[]).find(x=>x.id===clAdd.dataset.closetAdd);if(g){const it=askClosetItem();if(it){g.items=g.items||[];g.items.push({id:uid(),...it});save();renderHabit();}}return;}
   const clSel=e.target.closest('[data-closet-select]');if(clSel){const[gid,iid]=clSel.dataset.closetSelect.split(':');const g=(state.habit.closet||[]).find(x=>x.id===gid);const it=g&&(g.items||[]).find(x=>x.id===iid);if(it){it.selected=!it.selected;save();renderHabit();}return;}
   const clEd=e.target.closest('[data-closet-edit]');if(clEd){const[gid,iid]=clEd.dataset.closetEdit.split(':');const g=(state.habit.closet||[]).find(x=>x.id===gid);const it=g&&(g.items||[]).find(x=>x.id===iid);if(it){const nv=askClosetItem(it);if(nv){Object.assign(it,nv);save();renderHabit();}}return;}
@@ -8076,7 +8078,7 @@ load();paintTabs();renderAll();refreshSyncBadge();selectWorld('habitos');showWor
   if(e.target.closest('[data-health-med-close]')){closeMed();return}
   if(e.target.closest('[data-health-med-save]')){const name=q('#healthMedName').value.trim();if(!name){q('#healthMedName').focus();return}const times=q('#healthMedTimes').value.split(',').map(x=>x.trim()).filter(Boolean).map(x=>/^\d{1,2}:\d{2}$/.test(x)?x.padStart(5,'0'):x);const obj={name,dose:q('#healthMedDose').value.trim(),quantity:Math.max(1,+q('#healthMedQty').value||1),times};if(editing){const m=state.habit.medications.find(x=>x.id===editing);Object.assign(m,obj)}else state.habit.medications.push({id:uid(),...obj});closeMed();rerender();return}
   const ms=e.target.closest('[data-health-month-step]');if(ms){const [y,m]=state.habit.healthMonth.split('-').map(Number),d=new Date(y,m-1+(+ms.dataset.healthMonthStep),1);state.habit.healthMonth=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0');rerender();return}
-  const day=e.target.closest('[data-health-date]');if(day){const d=day.dataset.healthDate;state.habit.healthMonth=d.slice(0,7);const sl=state.habit.sleep[d]||0,w=state.habit.hydration[d]||0,g=state.habit.dailyExpense?.[d]||0;let ex=0,tk=0;(state.habit.medications||[]).forEach(m=>{ex+=Math.max(1,(m.times||[]).length)*(+(m.quantity||1));tk+=(state.habit.medsLog?.[d]||[]).filter(x=>x===m.id||String(x).startsWith(m.id+'@')).length;});const sr=state.habit.sleepRoutine?.[d]||{},em=({1:' Péssimo',2:' Ruim',3:' Regular',4:' Bom',5:' Ótimo'}[+sr.satisfaction]||'sem avaliação');alert(new Date(d+'T00:00:00').toLocaleDateString('pt-BR')+'\nSono: '+(sl?sl+'h':'sem registro')+'\nAcordou: '+(sr.wakeTime||'—')+'\nDormir: '+(sr.bedTime||'—')+'\nSatisfação: '+em+'\nHidratação: '+w+' copos\nMedicação: '+tk+'/'+ex+' doses\nGastos: '+(g?'R$ '+Number(g).toLocaleString('pt-BR',{minimumFractionDigits:2}):'sem registro'));return}
+  const day=e.target.closest('[data-health-date]');if(day){const d=day.dataset.healthDate;state.habit.healthMonth=d.slice(0,7);const sl=state.habit.sleep[d]||0,w=state.habit.hydration[d]||0,g=state.habit.dailyExpense?.[d]||0;let ex=0,tk=0;(state.habit.medications||[]).forEach(m=>{ex+=Math.max(1,(m.times||[]).length)*(+(m.quantity||1));tk+=(state.habit.medsLog?.[d]||[]).filter(x=>x===m.id||String(x).startsWith(m.id+'@')).length;});const sr=state.habit.sleepRoutine?.[d]||{},em=({1:'😫 Péssimo',2:'😕 Ruim',3:'😐 Regular',4:'🙂 Bom',5:'😄 Ótimo'}[+sr.satisfaction]||'sem avaliação');alert(new Date(d+'T00:00:00').toLocaleDateString('pt-BR')+'\nSono: '+(sl?sl+'h':'sem registro')+'\nAcordou: '+(sr.wakeTime||'—')+'\nDormir: '+(sr.bedTime||'—')+'\nSatisfação: '+em+'\nHidratação: '+w+' copos\nMedicação: '+tk+'/'+ex+' doses\nGastos: '+(g?'R$ '+Number(g).toLocaleString('pt-BR',{minimumFractionDigits:2}):'sem registro'));return}
  });
  document.addEventListener('change',e=>{
   const mo=e.target.closest('[data-health-month]');if(mo){state.habit.healthMonth=mo.value;rerender();return}
@@ -8091,7 +8093,7 @@ load();paintTabs();renderAll();refreshSyncBadge();selectWorld('habitos');showWor
  const q=s=>document.querySelector(s),pop=q('#awbQuickPop');
  const key=()=>typeof pdStr==='function'?pdStr():new Date().toISOString().slice(0,10);
  const prevKey=k=>{const d=new Date(k+'T12:00:00');d.setDate(d.getDate()-1);return d.toISOString().slice(0,10)};
- const emoji=v=>({1:'',2:'',3:'',4:'',5:''}[+v]||'');
+ const emoji=v=>({1:'😫',2:'😕',3:'😐',4:'🙂',5:'😄'}[+v]||'');
  function ensure(){const H=state.habit;H.sleep=H.sleep||{};H.sleepLog=H.sleepLog||{};H.sleepRoutine=H.sleepRoutine||{};return H}
  function duration(k){const H=ensure(),cur=H.sleepRoutine[k]||{},prev=H.sleepRoutine[prevKey(k)]||{};if(!cur.wakeTime||!prev.bedTime)return 0;const start=new Date(prevKey(k)+'T'+prev.bedTime+':00'),end=new Date(k+'T'+cur.wakeTime+':00');const h=(end-start)/36e5;return h>0&&h<24?Math.round(h*100)/100:0}
  function persist(k){const H=ensure(),r=H.sleepRoutine[k]||{};H.sleepLog[k]=H.sleepLog[k]||{};H.sleepLog[k].wakeTime=r.wakeTime||'';H.sleepLog[k].satisfaction=r.satisfaction||null;H.sleepLog[k].calculatedFromPreviousBedtime=H.sleepRoutine[prevKey(k)]?.bedTime||'';H.sleepLog[k].bedTime=r.bedTime||'';const h=duration(k);if(h)H.sleep[k]=h;else delete H.sleep[k];save();refresh();if(typeof activeHabitTab!=='undefined'&&activeHabitTab==='sono'&&typeof renderHabit==='function')renderHabit()}
@@ -11077,7 +11079,7 @@ function vxOptions(sel){return '<option value="">Sem projeto</option>'+S.proj.fi
 function vxEdit(t){t=t||{};return '<form id="vx-form" class="vx-fields">'+vxField('vx-title','Entrega / alvo do ciclo',t.title)+vxField('vx-done','Concluído quando…',t.done)+vxField('vx-next','Primeira ação concreta',t.next)+vxField('vx-date','Planejado para',t.date||hoje(),'date')+'<label>Projeto<select id="vx-project">'+vxOptions(t.project)+'</select></label><label>Operação<select id="vx-mode"><option '+(t.mode==='cerco'?'selected':'')+' value="cerco">Cerco · avanço gradual</option><option '+(t.mode==='ruptura'?'selected':'')+' value="ruptura">Ruptura · resolver o nó</option></select></label><details class="vx-wide"><summary>Varredura de futuros · preparar o caminho</summary><div class="vx-fields">'+vxField('vx-obstacle','Obstáculo provável',t.obstacle)+vxField('vx-response','Se acontecer, vou…',t.response)+vxField('vx-minimum','Versão mínima da entrega',t.minimum)+vxField('vx-due','Prazo real (opcional)',t.due,'date')+'</div></details><div class="vx-row vx-wide"><button class="vx-primary" type="submit">'+(t.id?'Salvar rota':'Declarar rota')+'</button><button type="button" data-vx="cancel">Cancelar</button></div></form>';}
 function vxRender(){
  var v=vxData(),t=vxTask(),open=v.tasks.filter(function(x){return x.status!=='done';});
- VX.innerHTML='<div class="vx-top"><div><span class="vx-k">Astronáutica · ciclo '+hoje()+'</span><h2>Escolha o ramo. Faça o movimento.</h2></div><div class="vx-k">'+esc(S.cod)+'<br>Domínio '+S.dominio+' · Lastro '+S.lastro+'</div></div><div class="vx-tabs" role="tablist" aria-label="Vistas"><button role="tab" aria-selected="'+(v.view==='op')+'" data-view="op">01 / Operação</button><button role="tab" aria-selected="'+(v.view==='camp')+'" data-view="camp">02 / Campanha</button><button role="tab" aria-selected="'+(v.view==='est')+'" data-view="est">03 / Estudo</button><button role="tab" aria-selected="'+(v.view==='dos')+'" data-view="dos">04 / Arquivo do mutante</button><button role="tab" aria-selected="'+(v.view==='fin')+'" data-view="fin">05 / Tesouro</button></div><div class="vx-metrics"><span><b>'+S.carga+'</b>Carga percebida</span><span><b>'+Math.round(vxMinutes())+' / '+v.capacity+'</b>minutos de foco hoje</span><span><b>'+open.length+'</b>rotas abertas</span><span><b>'+vxActiveProjects().length+' / '+v.limit+'</b>frentes ativas</span></div><div id="vx-body"></div>';
+ VX.innerHTML='<div class="vx-top"><div><span class="vx-k">Astronáutica · ciclo '+hoje()+'</span><h2>Escolha o ramo. Faça o movimento.</h2></div><div class="vx-k">'+esc(S.cod)+'<br>Domínio '+S.dominio+' · Lastro '+S.lastro+'</div></div><div class="vx-tabs" role="tablist" aria-label="Vistas"><button role="tab" aria-selected="'+(v.view==='op')+'" data-view="op">01 / Operação</button><button role="tab" aria-selected="'+(v.view==='camp')+'" data-view="camp">02 / Campanha</button><button role="tab" aria-selected="'+(v.view==='est')+'" data-view="est">03 / Estudo</button><button role="tab" aria-selected="'+(v.view==='dos')+'" data-view="dos">04 / Arquivo do mutante</button><button role="tab" aria-selected="'+(v.view==='fin')+'" data-view="fin">05 / Loja do Acampamento</button></div><div class="vx-metrics"><span><b>'+S.carga+'</b>Carga percebida</span><span><b>'+Math.round(vxMinutes())+' / '+v.capacity+'</b>minutos de foco hoje</span><span><b>'+open.length+'</b>rotas abertas</span><span><b>'+vxActiveProjects().length+' / '+v.limit+'</b>frentes ativas</span></div><div id="vx-body"></div>';
  var body=el('vx-body');
  if(v.view==='op'){
  var main='<div class="vx-card vx-main"><div class="vx-top"><span class="vx-k">Alvo do ciclo / '+(t?esc(t.status):'aguardando rota')+'</span><button data-vx="new">+ Nova rota</button></div>';
@@ -11427,10 +11429,10 @@ function gmPinta(){
    de nível) e a paleta. Os dados são os mesmos; a escolha fica em S.ap e sincroniza. */
 var TEMAS={
  astro:{nome:'Astron\u00e1utica',app:'Astron\u00e1utica',titulo:'Astron\u00e1utica',
-  abas:['01 / Conv\u00e9s','02 / Expedi\u00e7\u00e3o','03 / Biblioteca','04 / Por\u00e3o','05 / Tesouro'],
-  grupos:['Conv\u00e9s','Expedi\u00e7\u00e3o','Biblioteca','Por\u00e3o'],frase:'Ice as velas. Um remo de cada vez.',sumario:'Astron\u00e1utica',
-  niveis:['Grumete','Remador','Argonauta','Piloto','Her\u00f3i','Constela\u00e7\u00e3o'],seq:'dias de travessia',estudo:'Biblioteca',arquivo:'Por\u00e3o'}};
-var AP_ARQ=/^(Arquivo do mutante|Porão)$/;
+  abas:['01 / Chal\u00e9','02 / Miss\u00f5es','03 / Casa Grande','04 / Arsenal','05 / Loja do Acampamento'],
+  grupos:['Chal\u00e9','Miss\u00f5es','Casa Grande','Arsenal'],frase:'Ice as velas. Um remo de cada vez.',sumario:'Astron\u00e1utica',
+  niveis:['Grumete','Remador','Argonauta','Piloto','Her\u00f3i','Constela\u00e7\u00e3o'],seq:'dias de travessia',estudo:'Casa Grande',arquivo:'Arsenal'}};
+var AP_ARQ=/^(Arquivo do mutante|Porão|Arsenal)$/;
 function apTema(){return 'astro';}
 (function(){var n0=normaliza;normaliza=function(p){var b=n0(p);b.ap=(p&&p.ap==='astro')?'astro':'astro-novo';return b;};})();
 function apDados(){var t=TEMAS[apTema()];
@@ -11512,6 +11514,87 @@ function cpEnfeita(){var h=document.querySelector('#vx .vx-hero');if(!h||h.query
  h.insertAdjacentHTML('beforeend','<div class="cp-postal" aria-hidden="true"><div class="fr"><div><small>Greetings from</small><b>Camp<br>Half-Blood</b><span>Long Island, N.Y.</span></div></div></div>'+
   '<div class="cp-dracmas" title="dracmas"><i>Δ</i><i>Ω</i><i>Ψ</i><i>Δ</i></div>');}
 (function(){var r0=vxRender;vxRender=function(){r0();try{cpEnfeita();}catch(e){console.error('cabeçalho:',e);}};})();
+/* ---------- Ícones no lugar de emoji ----------
+   Todo emoji que aparece na tela (app, Cofre, dados salvos) vira um ícone em SVG de traço fino,
+   na cor do texto. Em títulos, dicas, campos e opções, onde não cabe SVG, o emoji só sai. */
+var ICO_P={
+ cal:'<rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/>',
+ graf:'<path d="M4 20V11M10 20V5M16 20v-7M21 20H3"/>',
+ pasta:'<path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>',
+ nota:'<path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 12h7M9 16h5"/>',
+ livro:'<path d="M5 5a2 2 0 0 1 2-2h12v15H7a2 2 0 0 0-2 2z"/><path d="M5 20a2 2 0 0 0 2 1h12v-3"/>',
+ aviao:'<path d="M2.5 12.5l19-8-5.5 15-3.5-6z"/><path d="M12.5 13.5l9-9"/>',
+ bussola:'<circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/>',
+ mapa:'<path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z"/><path d="M9 4v14M15 6v14"/>',
+ pino:'<path d="M12 21s-6-5.5-6-11a6 6 0 0 1 12 0c0 5.5-6 11-6 11z"/><circle cx="12" cy="10" r="2"/>',
+ carrinho:'<path d="M3 4h2l2.4 11h10.6l2-8H6.2"/><circle cx="9" cy="19" r="1.4"/><circle cx="17" cy="19" r="1.4"/>',
+ sacola:'<path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/>',
+ cartao:'<rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18M7 15h4"/>',
+ moeda:'<circle cx="12" cy="12" r="8.5"/><path d="M14.5 9.5c-.4-.9-1.4-1.5-2.5-1.5-1.4 0-2.5.8-2.5 2s1 1.7 2.5 2 2.5.8 2.5 2-1.1 2-2.5 2c-1.1 0-2.1-.6-2.5-1.5M12 6.5v11"/>',
+ cadeado:'<rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>',
+ aberto:'<rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 7.6-1.8"/>',
+ corrente:'<rect x="2.5" y="9" width="10" height="6" rx="3"/><rect x="11.5" y="9" width="10" height="6" rx="3"/>',
+ f5:'<circle cx="12" cy="12" r="9"/><path d="M9 10h.01M15 10h.01M8 14c1.2 1.7 2.5 2.5 4 2.5s2.8-.8 4-2.5z"/>',
+ f4:'<circle cx="12" cy="12" r="9"/><path d="M9 10h.01M15 10h.01M8.5 14.5c1 1 2.2 1.6 3.5 1.6s2.5-.6 3.5-1.6"/>',
+ f3:'<circle cx="12" cy="12" r="9"/><path d="M9 10h.01M15 10h.01M9 15.5h6"/>',
+ f2:'<circle cx="12" cy="12" r="9"/><path d="M9 10h.01M15 10h.01M9 16.3c1-.8 2-1.2 3-1.2s2 .4 3 1.2"/>',
+ f1:'<circle cx="12" cy="12" r="9"/><path d="M8 9l2 1.5L8 12M16 9l-2 1.5 2 1.5M8.5 17c1.2-1.5 2.3-2.1 3.5-2.1s2.3.6 3.5 2.1"/>',
+ lua:'<path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/>',
+ prato:'<circle cx="12" cy="13" r="5.5"/><path d="M3.5 4v5a2 2 0 0 0 2 2v9M5.5 4v4M20.5 4c-1.5 0-2.5 2-2.5 5s1 3 2.5 3v8"/>',
+ relogio:'<circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2M9.5 2.5h5"/>',
+ alvo:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/>',
+ medalha:'<circle cx="12" cy="15" r="5"/><path d="M8.5 3l2.5 7M15.5 3L13 10"/>',
+ estrela:'<path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.9z"/>',
+ broto:'<path d="M12 20v-8M12 12c0-4-3-6-7-6 0 4 3 6 7 6zM12 12c0-3 2.5-5 6-5 0 3-2.5 5-6 5z"/>',
+ pilula:'<path d="M10.5 20.5a5 5 0 0 1-7-7l6-6a5 5 0 0 1 7 7z"/><path d="M7 10l7 7"/>',
+ saude:'<path d="M9.5 3.5h5v6h6v5h-6v6h-5v-6h-6v-5h6z"/>',
+ tela:'<rect x="4" y="5" width="16" height="11" rx="1.5"/><path d="M2 19h20"/>',
+ jogo:'<rect x="3" y="8" width="18" height="9" rx="4.5"/><path d="M8 11v3M6.5 12.5h3M15.5 12h.01M17.5 13.5h.01"/>',
+ gota:'<path d="M12 3.5s6 6.5 6 10.5a6 6 0 0 1-12 0c0-4 6-10.5 6-10.5z"/>',
+ peso:'<path d="M6.5 7v10M17.5 7v10M3.5 9.5v5M20.5 9.5v5M6.5 12h11"/>',
+ mao:'<path d="M8 13V6a1.5 1.5 0 0 1 3 0v5M11 10.5V4.5a1.5 1.5 0 0 1 3 0v6M14 10.5v-4a1.5 1.5 0 0 1 3 0V14c0 4-2.5 7-6 7-2.8 0-4.5-1.8-6-4.5L3.4 13a1.5 1.5 0 0 1 2.6-1.5L8 14"/>',
+ roupa:'<path d="M8 4L3 7l2 4 2-1v10h10V10l2 1 2-4-5-3c-.5 1.5-2 2.5-4 2.5S8.5 5.5 8 4z"/>',
+ casa:'<path d="M3 11l9-7 9 7M5 9.5V20h14V9.5"/><path d="M10 20v-5h4v5"/>',
+ ferramenta:'<path d="M14 6a4 4 0 0 0 5 5l-9 9a2.1 2.1 0 0 1-3-3l9-9a4 4 0 0 0-2-2z"/>',
+ verde:'<circle cx="12" cy="12" r="6.5" fill="#5e8a4f" stroke="none"/>',
+ amarelo:'<circle cx="12" cy="12" r="6.5" fill="#d8b44a" stroke="none"/>',
+ vermelho:'<circle cx="12" cy="12" r="6.5" fill="#b2472f" stroke="none"/>',
+ proibido:'<circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/>',
+ ok:'<rect x="3.5" y="3.5" width="17" height="17" rx="4"/><path d="M8 12.5l3 3 5-6"/>',
+ sino:'<path d="M6 16v-5a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20a2 2 0 0 0 4 0"/>',
+ coracao:'<path d="M12 20s-7.5-4.5-7.5-10A4.5 4.5 0 0 1 12 7.5 4.5 4.5 0 0 1 19.5 10C19.5 15.5 12 20 12 20z"/>',
+ lapis:'<path d="M4 20l1-4L16 5l3 3L8 19z"/><path d="M14 7l3 3"/>',
+ ciclo:'<path d="M4 10a8 8 0 0 1 14-3.5L20 8M20 14a8 8 0 0 1-14 3.5L4 16"/><path d="M20 4v4h-4M4 20v-4h4"/>',
+ mente:'<path d="M9.5 4A3 3 0 0 0 6.5 7 3 3 0 0 0 4.5 12a3 3 0 0 0 2 5 3 3 0 0 0 5.5 1.5V5.5A2 2 0 0 0 9.5 4zM14.5 4a3 3 0 0 1 3 3 3 3 0 0 1 2 5 3 3 0 0 1-2 5 3 3 0 0 1-5.5 1.5"/>',
+ caixa:'<path d="M3 13l3-8h12l3 8v6H3z"/><path d="M3 13h5l1.5 2h5l1.5-2h5"/>',
+ pena:'<path d="M20 4C10 4 6 10 5 19M20 4c0 8-5 12-11 12M5 19l-1.5 1.5"/>',
+ alerta:'<path d="M12 4l9 16H3z"/><path d="M12 10v4M12 17h.01"/>',
+ fogo:'<path d="M12 21c4 0 6.5-2.6 6.5-6 0-4-3-6-4.5-9-.8 2.2-2.2 3.4-3.5 4C10 8 9.5 6 10 3.5 7 5.5 5.5 9.5 5.5 14.5 5.5 18.4 8 21 12 21z"/>',
+ balanca:'<path d="M12 4v16M7 20h10M5 7h14M5 7l-3 6a3 3 0 0 0 6 0zM19 7l-3 6a3 3 0 0 0 6 0z"/>',
+ ponto:'<circle cx="12" cy="12" r="3.5"/>'};
+var ICO_M={};(function(){var g={cal:'📅📆🗓',graf:'📊📈📉',pasta:'🗂📁📂',nota:'📝📋🗒',livro:'📚📒📓📖',aviao:'✈',bussola:'🧭',mapa:'🗺',pino:'📍📌',
+ carrinho:'🛒',sacola:'🛍',cartao:'💳',moeda:'💰💵💸🪙',cadeado:'🔒🔐',aberto:'🔓',corrente:'⛓',f5:'😄😀😁🤩',f4:'🙂☺😊',f3:'😐😶',f2:'😕😟🙁',f1:'😫😣😩😖',
+ lua:'🌙🌛',prato:'🍽🍳🥗',relogio:'⏰⏱⏳⌛⌚⏲',alvo:'🎯',medalha:'🏅🥇🥈🥉🏆',estrela:'⭐🌟',broto:'🌱🌿',pilula:'💊',saude:'🩺🧪🧴🏥',tela:'💻🖥',
+ jogo:'🎮🎲🧩🎬🎧🤖',gota:'💧',peso:'🏋🚲🏃',mao:'✋🤝👋',roupa:'👗👕👖👟🧢🎒👛👚',casa:'🏠🏡',ferramenta:'🔧⚒🛠',verde:'🟢',amarelo:'🟡',vermelho:'🔴',
+ proibido:'🚫⛔',ok:'✅',sino:'🔔',coracao:'❤',lapis:'✏',ciclo:'🔁🔄',mente:'🧠',caixa:'📥📦',pena:'🪶',alerta:'⚠',fogo:'🔥',balanca:'⚖'};
+ for(var k in g)Array.from(g[k]).forEach(function(c){ICO_M[c]=k;});})();
+var ICO_FONTE='(?:[\\u{1F000}-\\u{1FAFF}]|[\\u231A\\u231B\\u23F0-\\u23FA\\u2705\\u2708\\u270B\\u270F\\u2696\\u2692\\u26A0\\u2764\\u2B50\\u263A\\u26D3\\u26D4])\\uFE0F?(?:\\u200D(?:[\\u{1F000}-\\u{1FAFF}]|[\\u2640\\u2642\\u2695])\\uFE0F?)*';
+var ICO_RE=new RegExp(ICO_FONTE,'gu'),ICO_T=new RegExp(ICO_FONTE,'u');
+var ICO_PULA={SCRIPT:1,STYLE:1,TEXTAREA:1,OPTION:1,TITLE:1,NOSCRIPT:1,TEMPLATE:1};
+function icoSvg(c){var k=ICO_M[Array.from(c)[0]]||'ponto';return '<svg class="ico ico-'+k+'" viewBox="0 0 24 24" aria-hidden="true">'+ICO_P[k]+'</svg>';}
+function icoNo(t){var p=t.parentNode,v=t.nodeValue;if(!p||!v||!ICO_T.test(v))return;
+ if(ICO_PULA[p.nodeName]||(p.closest&&p.closest('svg'))){if(p.nodeName!=='SCRIPT'&&p.nodeName!=='STYLE')t.nodeValue=v.replace(ICO_RE,'').replace(/^\s+/,'');return;}
+ var tp=document.createElement('template');
+ tp.innerHTML=v.replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c];}).replace(ICO_RE,icoSvg);
+ p.replaceChild(tp.content,t);}
+function icoAttr(e){['title','placeholder','aria-label','alt'].forEach(function(a){var v=e.getAttribute&&e.getAttribute(a);
+ if(v&&ICO_T.test(v))e.setAttribute(a,v.replace(ICO_RE,'').replace(/\s+/g,' ').trim());});}
+function icoVarre(n){if(n.nodeType===3){icoNo(n);return;}if(n.nodeType!==1||ICO_PULA[n.nodeName])return;
+ var w=document.createTreeWalker(n,NodeFilter.SHOW_TEXT),l=[],x;while((x=w.nextNode()))if(ICO_T.test(x.nodeValue))l.push(x);l.forEach(icoNo);
+ icoAttr(n);Array.prototype.forEach.call(n.querySelectorAll('[title],[placeholder],[aria-label],[alt]'),icoAttr);}
+try{icoVarre(document.body);new MutationObserver(function(ms){ms.forEach(function(m){if(m.type==='characterData')icoNo(m.target);
+ else Array.prototype.forEach.call(m.addedNodes,icoVarre);});}).observe(document.body,{childList:true,subtree:true,characterData:true});}catch(e){console.error('ícones:',e);}
+
 
 /* ---------- Caixa de entrada da extensão do Chrome ----------
    A extensão nunca grava o registro inteiro: ela deposita eventos em

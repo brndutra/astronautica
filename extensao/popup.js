@@ -176,7 +176,7 @@ function pintaTop() {
   var p = estado && estado.plan && estado.plan[hojeStr()], top = (p && p.top) || [], ol = $('top');
   naFila('prioridade', true).forEach(function (e) { if (top[e.dados.i]) top[e.dados.i].ok = !!e.dados.ok; });
   var com = top.filter(function (t) { return t && (t.t || '').trim(); });
-  if (!com.length) { ol.innerHTML = '<li class="vazio">Defina as três prioridades no Convés do app.</li>'; return; }
+  if (!com.length) { ol.innerHTML = '<li class="vazio">Defina as três prioridades no Chalé do app.</li>'; return; }
   ol.innerHTML = top.map(function (t, i) {
     if (!t || !(t.t || '').trim()) return '';
     return '<li class="' + (t.ok ? 'ok' : '') + '"><label><input type="checkbox" data-pri="' + i + '"' + (t.ok ? ' checked' : '') + '><span>' + esc(t.t) + '</span></label></li>';
