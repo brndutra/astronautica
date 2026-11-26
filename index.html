@@ -4699,7 +4699,7 @@ body.op-on #modo-op{grid-template-rows:auto minmax(0,1fr)!important;grid-templat
 #modo-op.op-grego .op-l::before{content:''!important}
 #modo-op.op-grego .op-vlinha{margin-top:4px}
 @media(max-height:820px){#modo-op.op-grego .op-esc{width:min(140px,19vh)}#modo-op.op-grego .op-foco-c .op-hj{display:none}#modo-op.op-grego .op-rg li:nth-child(2){display:none}}
-/* Anais do dia no rodapé */
+/* Diário de bordo no rodapé */
 #rod-apps .rod-log{flex:none;display:flex!important;align-items:center;gap:8px;width:auto!important;margin:6px 8px 6px 0!important;padding:5px 12px 5px 6px!important;border:1px solid #c9b28a!important;border-radius:10px!important;background:#f4ead2!important;color:#3b2a1d!important;cursor:pointer;position:relative;--cr:#7a5532}
 #rod-apps .rod-log::after{content:'';position:absolute;left:8px;right:8px;bottom:0;height:2px;border-radius:2px;background:#7a5532}
 #rod-apps .rod-log:hover,#rod-apps .rod-log[aria-expanded="true"]{transform:translateY(-2px);box-shadow:0 4px 10px rgba(60,40,20,.18);border-color:#7a5532!important}
@@ -13506,7 +13506,7 @@ function v4VitHTML(){
  v.tasks.forEach(function(t){ if(t.completed===d) L.push('Entrega concluída: '+esc(t.title)); });
  (S.hab||[]).forEach(function(x){ if((x.hist||[]).indexOf(d)>=0) L.push('Hábito: '+esc(x.nome)); });
  todas().forEach(function(f){ if(S.fichas[f.id]===d) L.push('Lâmina: '+f.h); });
- var h='<div class="vx-card v4-vit"><h3>Pequenas vitórias de hoje</h3>';
+ var h='<div class="vx-card v4-vit"><h3>Conquistas do Dia</h3>';
  if(!L.length) return h+'<p class="vx-muted">Nenhuma ainda. A primeira aparece aqui sozinha, sem você anotar.</p></div>';
  h+='<ul>'; for(i=0;i<Math.min(L.length,12);i++) h+='<li>'+L[i]+'</li>';
  return h+'</ul>'+(L.length>12?'<p class="vx-muted">e mais '+(L.length-12)+'.</p>':'')+'</div>';
@@ -15597,13 +15597,13 @@ function opReforma(){var o=document.getElementById('modo-op');if(!o||o.dataset.g
   var a=document.activeElement,foco=a&&o.contains(a)&&/INPUT|TEXTAREA/.test(a.tagName);
   var set=function(sel,h){var n=o.querySelector(sel);if(n&&n._h!==h&&!(foco&&n.contains(a))){n.innerHTML=h;n._h=h;}};
   try{set('.op-ritos',opRitosHTML());}catch(e){}try{set('.op-estudo',opEstudoHTML());}catch(e){console.error(e);}};})();
-/* ---------- Anais do dia (registro diário de ações e notas) no rodapé, ao lado do registro ---------- */
+/* ---------- Diário de bordo (registro diário de ações e notas) no rodapé, ao lado do registro ---------- */
 function rodLog(){var top=document.querySelector('#rod-apps .rod-top'),rd=document.querySelector('.regdia');if(!top||!rd)return;
  var b=document.getElementById('rod-log'),p=document.getElementById('rod-log-pop');
- if(!b){b=document.createElement('button');b.type='button';b.id='rod-log';b.className='rod-log';b.setAttribute('aria-expanded','false');b.title='Anais do dia · o que aconteceu hoje e notas à mão';
+ if(!b){b=document.createElement('button');b.type='button';b.id='rod-log';b.className='rod-log';b.setAttribute('aria-expanded','false');b.title='Diário de bordo · o que aconteceu hoje e notas à mão';
   var rr=document.getElementById('rod-reg');top.insertBefore(b,rr?rr.nextSibling:null);
-  p=document.createElement('div');p.id='rod-log-pop';p.className='rod-log-pop';p.hidden=true;p.setAttribute('role','dialog');p.setAttribute('aria-label','Anais do dia');
-  p.innerHTML='<header><span class="rl-med"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h11v13a3 3 0 0 1-3 3H6a2 2 0 0 1-2-2v-1h10v1a2 2 0 0 0 2 2"/><path d="M7 4a2 2 0 0 0-2 2v11M10 8h5M10 11h5M10 14h3"/></svg></span><div><span class="rl-k">anais do dia</span><b class="rl-d"></b></div><button type="button" class="rl-x" aria-label="fechar">×</button></header><div class="rl-slot"></div>';
+  p=document.createElement('div');p.id='rod-log-pop';p.className='rod-log-pop';p.hidden=true;p.setAttribute('role','dialog');p.setAttribute('aria-label','Diário de bordo');
+  p.innerHTML='<header><span class="rl-med"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h11v13a3 3 0 0 1-3 3H6a2 2 0 0 1-2-2v-1h10v1a2 2 0 0 0 2 2"/><path d="M7 4a2 2 0 0 0-2 2v11M10 8h5M10 11h5M10 14h3"/></svg></span><div><span class="rl-k">diário de bordo</span><b class="rl-d"></b></div><button type="button" class="rl-x" aria-label="fechar">×</button></header><div class="rl-slot"></div>';
   document.body.appendChild(p);
   var fecha=function(){p.hidden=true;b.setAttribute('aria-expanded','false');};
   b.addEventListener('click',function(){var on=p.hidden;p.hidden=!on;b.setAttribute('aria-expanded',String(on));if(on){var i=p.querySelector('#rd-in');if(i)setTimeout(function(){try{i.focus({preventScroll:true});}catch(z){}},60);}});
@@ -15613,7 +15613,7 @@ function rodLog(){var top=document.querySelector('#rod-apps .rod-top'),rd=docume
  else if(b.parentNode!==top)top.insertBefore(b,(document.getElementById('rod-reg')||{}).nextSibling||null);
  var sl=p.querySelector('.rl-slot');if(rd.parentNode!==sl)sl.appendChild(rd);
  var hj=hoje(),n=(S.log||[]).filter(function(x){return x.dia===hj;}).length,man=(S.log||[]).filter(function(x){return x.dia===hj&&x.man;}).length;
- var h='<span class="cr-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h11v13a3 3 0 0 1-3 3H6a2 2 0 0 1-2-2v-1h10v1a2 2 0 0 0 2 2"/><path d="M7 4a2 2 0 0 0-2 2v11M10 8h5M10 11h5"/></svg></span><span class="cr-lb"><small>anais do dia</small><b>'+n+(man?' <i>· '+man+' à mão</i>':'')+'</b></span>';
+ var h='<span class="cr-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h11v13a3 3 0 0 1-3 3H6a2 2 0 0 1-2-2v-1h10v1a2 2 0 0 0 2 2"/><path d="M7 4a2 2 0 0 0-2 2v11M10 8h5M10 11h5"/></svg></span><span class="cr-lb"><small>diário de bordo</small><b>'+n+(man?' <i>· '+man+' à mão</i>':'')+'</b></span>';
  if(b.innerHTML!==h)b.innerHTML=h;var d=p.querySelector('.rl-d'),t=new Date().toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'long'});if(d.textContent!==t)d.textContent=t;}
 /* a gaveta "o dia · registro" da Grade sai: o registro mora no rodapé */
 diaGaveta=function(){var g=document.getElementById('dia-gav');if(g)g.remove();var tb=document.querySelector('.wrap > div.tb');if(tb)tb.classList.remove('gav-dia');try{rodLog();}catch(e){}};
@@ -16123,7 +16123,7 @@ opLinhaHTML=(function(f0){return function(){var h=f0.apply(this,arguments),a=opM
 
 /* ======================= Antagonista do bloco pesado =======================
    Todo dia um monstro (ou desafio) é sorteado para o bloco mais pesado. Ele aparece na faixa da Clepsidra,
-   anuncia-se num diálogo quando o bloco começa, e vencer dá XP ao Sully e entra nos Anais do dia.
+   anuncia-se num diálogo quando o bloco começa, e vencer dá XP ao Sully e entra nos Diário de bordo.
    Fugir não tem castigo: o monstro volta amanhã. Só criaturas, nenhum deus. */
 var ANTAG=[
  {k:'hidra',n:'Hidra de Lerna',o:'pendências que se multiplicam',d:'Feche três cabeças em sequência: três itens terminados sem abrir nenhum novo no meio.'},
@@ -16162,7 +16162,7 @@ function antDlg(){var d=document.getElementById('ant-dlg');if(d)return d;d=docum
  return d;}
 function antPinta(){var d=document.getElementById('ant-dlg');if(!d)return;var x=antHoje(),m=antMonstro(x.m);
  var fxs=(typeof TD_H!=='undefined'?TD_H:['06','09','12','15','18','21']).map(function(H){return '<button type="button" class="'+(x.fx===H?'on':'')+'" data-antfx="'+H+'">'+H+'h<small>'+esc(tdFaixaNome?tdFaixaNome(H):'')+'</small></button>';}).join('');
- var st=x.st==='vencido'?'<p class="ant-st ok">Vencido. +20 XP para o Sully, e já está nos Anais do dia.</p>':x.st==='fugiu'?'<p class="ant-st">Escapou hoje. Sem castigo: amanhã tem outro.</p>':'';
+ var st=x.st==='vencido'?'<p class="ant-st ok">Vencido. +20 XP para o Sully, e já está nos Diário de bordo.</p>':x.st==='fugiu'?'<p class="ant-st">Escapou hoje. Sem castigo: amanhã tem outro.</p>':'';
  d.innerHTML='<div class="ad-lista"><section class="ant-msg"><span class="ant-ic">'+ANT_IC+'</span><div><span class="ad-k">antagonista do bloco pesado · '+x.fx+'h</span><b>'+esc(m.n)+'</b><small>'+esc(m.o)+'</small>'+
   '<p class="ant-des"><em>desafio</em>'+esc(m.d)+'</p>'+st+'</div></section>'+
   '<div class="ant-fx"><span class="ad-k">qual é o bloco mais pesado hoje?</span><div>'+fxs+'</div></div></div>'+
@@ -17092,6 +17092,125 @@ document.addEventListener('click',function(e){var b=e.target.closest&&e.target.c
 ].join('\n');document.head.appendChild(st);})();
 function latGrupos(){var e=document.getElementById('lat-e');if(!e)return;[['lat-grp-h','hoje'],['lat-grp-s','a semana']].forEach(function(g){if(!e.querySelector(':scope>.'+g[0])){var d=document.createElement('div');d.className='lat-grp '+g[0];d.textContent=g[1];e.appendChild(d);}});}
 setTimeout(function(){try{latGrupos();}catch(e){}},1200);setTimeout(function(){try{latGrupos();}catch(e){}},4000);
+
+
+/* ======================= Recolher os tópicos do painel direito; Ação do dia mais compacta =======================
+   Cada cartão das duas faces (Tarefas e Missões, Recreação) ganha um botão ▾ no canto: recolhe até ficar só o título.
+   Tocar no rótulo do grupo (Tarefas, Missões, Desafio) recolhe ou abre o grupo inteiro. O estado fica guardado. */
+var TP_DOB_K=['mm-chale','mm-quest','mm-gab','mm-orac-col','mm-prof','lat-apt','lat-rec','lat-cv'];
+var TP_DOB_G={'mm-grp-t':['mm-chale','mm-quest','mm-gab'],'mm-grp-m':['mm-orac-col'],'mm-grp-d':['mm-prof']};
+function tpDobD(){try{return JSON.parse(localStorage.getItem('astro_tp_dobra')||'{}')||{};}catch(e){return {};}}
+function tpDobSalva(d){try{localStorage.setItem('astro_tp_dobra',JSON.stringify(d));}catch(e){}}
+function tpDobCard(k){var r=document.getElementById('tp-real');if(!r)return null;return r.querySelector('#'+k)||r.querySelector('.'+k);}
+function tpDobAplica(){var r=document.getElementById('tp-real');if(!r)return;var D=tpDobD();
+ TP_DOB_K.forEach(function(k){var c=tpDobCard(k);if(!c)return;var b=c.querySelector(':scope>.tp-dobra');
+  if(!b){b=document.createElement('button');b.type='button';b.className='tp-dobra';b.dataset.tpdob=k;c.insertBefore(b,c.firstChild);}
+  var on=!!D[k];if(c.classList.contains('tp-dob')!==on)c.classList.toggle('tp-dob',on);var t=on?'abrir':'recolher';if(b.title!==t){b.title=t;b.setAttribute('aria-label',t);b.setAttribute('aria-expanded',String(!on));}});
+ Object.keys(TP_DOB_G).forEach(function(g){var l=r.querySelector('.'+g);if(!l)return;var todos=TP_DOB_G[g].every(function(k){return D[k];});if(l.classList.contains('grp-dob')!==todos)l.classList.toggle('grp-dob',todos);});}
+document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('#tp-real .tp-dobra');
+ if(b){e.preventDefault();e.stopPropagation();var D=tpDobD(),k=b.dataset.tpdob;D[k]=!D[k];if(!D[k])delete D[k];tpDobSalva(D);tpDobAplica();return;}
+ var g=e.target.closest&&e.target.closest('#tp-real .mm-grp');if(g){var key=Object.keys(TP_DOB_G).filter(function(x){return g.classList.contains(x);})[0];if(!key)return;
+  var D2=tpDobD(),fechar=!TP_DOB_G[key].every(function(k){return D2[k];});TP_DOB_G[key].forEach(function(k){if(fechar)D2[k]=1;else delete D2[k];});tpDobSalva(D2);tpDobAplica();}},true);
+(function(){var t=null,mo=new MutationObserver(function(){if(t)return;t=requestAnimationFrame(function(){t=null;try{tpDobAplica();}catch(e){}});});
+ var liga=function(){var p=document.getElementById('tp-painel');if(p){mo.observe(p,{childList:true,subtree:true});tpDobAplica();return true;}return false;};
+ if(!liga())setTimeout(liga,1500);})();
+(function(){var st=document.createElement('style');st.id='tp-dobra-css';st.textContent=[
+ '#tp-real :is(.mm-col,.mm-gab,.lat-c){position:relative}',
+ '#tp-real .tp-dobra{position:absolute;top:7px;right:7px;z-index:4;margin:0!important;padding:0!important;width:24px!important;min-width:0;height:24px;display:grid;place-items:center;border:1px solid rgba(90,63,44,.45)!important;border-radius:50%!important;',
+ ' background:rgba(251,245,230,.92)!important;color:#5a3f2c;cursor:pointer;box-shadow:0 2px 6px -2px rgba(40,25,10,.4)}',
+ '#tp-real .tp-dobra::before{content:"−";font:700 15px/1 var(--sans)}',
+ '#tp-real .tp-dob>.tp-dobra::before{content:"+"}',
+ '#tp-real .tp-dob::after{display:none!important}',
+ '#tp-real .tp-dobra:hover{background:#5a3f2c!important;color:#fbf5e6}',
+ /* recolhido: só o título */
+ '#tp-real .tp-dob::before{display:none!important}',
+ '#tp-real .mm-col.tp-dob>:not(.mm-k):not(.mm-k + small):not(.tp-dobra){display:none!important}',
+ '#tp-real .mm-col.tp-dob>.mm-k+small{margin-bottom:0!important}',
+ '#tp-real :is(.mm-gab,.lat-c).tp-dob>:not(header):not(.tp-dobra){display:none!important}',
+ '#tp-real :is(.mm-gab,.lat-c).tp-dob>header{margin-bottom:0!important}',
+ '#tp-real #mm-box .tp-dob{padding-top:12px!important;padding-bottom:12px!important;padding-right:40px!important}',
+ '#tp-real #mm-box .mm-grp{cursor:pointer}#tp-real #mm-box .mm-grp.grp-dob{opacity:.65}',
+ '#tp-real #mm-box .mm-grp::before{content:"▾";margin-right:5px;font-size:9px;display:inline-block;transition:transform .15s}#tp-real #mm-box .mm-grp.grp-dob::before{transform:rotate(-90deg)}',
+ /* ---------- Ação do dia mais compacta ---------- */
+ '#lat-e>#lat-arena::before{height:52px!important;margin-bottom:8px!important}',
+ '#lat-arena>header{margin-bottom:6px!important}',
+ '#lat-arena .vx-metrics{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px!important;margin:0!important;padding:0 0 6px!important}',
+ '#lat-arena .vx-metrics>*{padding:2px 0 2px 7px!important;margin:0!important;min-width:0}',
+ '#lat-arena .vx-metrics b,#lat-arena .vx-metrics strong{font-size:15px!important;line-height:1.1!important}',
+ '#lat-arena .vx-metrics span,#lat-arena .vx-metrics small{font-size:9.5px!important;line-height:1.2!important}',
+ '#lat-arena #vx-body .vx-card,#lat-arena #vx-body details,#lat-arena #vx-body .vx-main,#lat-arena #vx-body .vx-side>*{padding:7px 0!important}',
+ '#lat-arena #vx-body h2{margin:3px 0 4px!important;font-size:15px!important}',
+ '#lat-arena #vx-body h3{margin:0 0 5px!important;font-size:14px!important}',
+ '#lat-arena #vx-body p{margin:0 0 6px!important;font-size:11.5px!important;line-height:1.35!important}',
+ '#lat-arena #vx-body .vx-primary{padding:5px 12px!important;font-size:12px!important;min-height:0!important}',
+ '#lat-arena #vx-body details>summary{font-size:12px!important;padding:0!important}',
+ '#lat-arena #vx-body .vx-card:has(>h3) .vx-row{gap:4px!important;margin-bottom:4px!important}',
+ '#lat-arena #vx-body .vx-card:has(>h3) .vx-row button{padding:3px 0!important;font-size:11px!important}',
+ '#lat-arena #vx-body [class*="vx-k"],#lat-arena #vx-body .vx-top span{font-size:9px!important}'
+].join('\n');document.head.appendChild(st);})();
+
+
+/* ======================= Conquistas do Dia como rodapé da meta do dia ======================= */
+function gmVit(){var gm=document.querySelector('#lat-gm .gm');if(!gm)return;var all=document.querySelectorAll('.v4-vit');if(!all.length)return;
+ var nova=null;Array.prototype.forEach.call(all,function(v){if(!gm.contains(v))nova=v;});
+ if(nova){Array.prototype.forEach.call(gm.querySelectorAll('.v4-vit'),function(v){v.remove();});gm.appendChild(nova);}
+ var v=gm.querySelector('.v4-vit');if(v){v.classList.add('gm-vit');var h=v.querySelector('h3');if(h&&h.textContent!=='Conquistas do Dia')h.textContent='Conquistas do Dia';if(gm.lastElementChild!==v)gm.appendChild(v);}}
+(function(){var t=null,mo=new MutationObserver(function(){if(t)return;t=requestAnimationFrame(function(){t=null;try{gmVit();}catch(e){}});});
+ var liga=function(){var e=document.getElementById('lat-e');if(e){mo.observe(e,{childList:true,subtree:true});gmVit();return true;}return false;};if(!liga())setTimeout(liga,1500);})();
+(function(){var st=document.createElement('style');st.id='gm-vit-css';st.textContent=[
+ '#lat-e>#lat-vx{display:none!important}',
+ '#lat-gm .gm .gm-vit{margin:10px 0 0!important;padding:9px 0 0!important;background:none!important;border:0!important;border-top:1px dashed #c9b28a!important;border-radius:0!important;box-shadow:none!important}',
+ '#lat-gm .gm .gm-vit h3{margin:0 0 4px!important;font:700 8.5px var(--mono,monospace)!important;letter-spacing:.14em;text-transform:uppercase;color:#5f7a3a!important}',
+ '#lat-gm .gm .gm-vit h3::before{content:"✦ ";}',
+ '#lat-gm .gm .gm-vit .vx-muted{margin:0!important;font:italic 12px/1.4 Georgia,serif!important;color:#6b5140!important}',
+ '#lat-gm .gm .gm-vit ul{margin:2px 0 0 16px!important;padding:0!important;font-size:12.5px;line-height:1.45}',
+ '#lat-arena .vx-metrics span{display:flex!important;flex-direction:column;gap:1px}',
+ '#lat-arena .vx-metrics b{font-size:14px!important}'
+].join('\n');document.head.appendChild(st);})();
+
+
+/* ======================= Diário de bordo (ex-Anais do dia) no painel esquerdo, logo abaixo da meta do dia =======================
+   O registro com hora sai do rodapé e vira um cartão fixo; o botão do rodapé fica oculto (só serve de âncora para a Fogueira). */
+rodLog=function(){var top=document.querySelector('#rod-apps .rod-top'),rd=document.querySelector('.regdia'),e=document.getElementById('lat-e');
+ if(top){var b=document.getElementById('rod-log');if(!b){b=document.createElement('button');b.type='button';b.id='rod-log';b.className='rod-log';b.hidden=true;var rr=document.getElementById('rod-reg');top.insertBefore(b,rr?rr.nextSibling:null);}b.hidden=true;}
+ var p=document.getElementById('rod-log-pop');if(p)p.hidden=true;
+ if(!e||!rd)return;var c=document.getElementById('lat-db');
+ if(!c){c=document.createElement('section');c.id='lat-db';c.className='lat-c lat-db';c.innerHTML='<header><span class="lat-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h11v13a3 3 0 0 1-3 3H6a2 2 0 0 1-2-2v-1h10v1a2 2 0 0 0 2 2"/><path d="M7 4a2 2 0 0 0-2 2v11M10 8h5M10 11h5M10 14h3"/></svg></span><div><span class="lat-k">registro com hora · ações entram sozinhas</span><h3 class="lat-t">Diário de bordo</h3></div></header><div class="lat-b db-slot"></div>';e.appendChild(c);}
+ var sl=c.querySelector('.db-slot');if(rd.parentNode!==sl)sl.appendChild(rd);};
+setTimeout(function(){try{rodLog();}catch(e){}},1400);setTimeout(function(){try{rodLog();}catch(e){}},4200);
+(function(){var st=document.createElement('style');st.id='lat-db-css';st.textContent=[
+ '#rod-apps #rod-log{display:none!important}',
+ '#lat-e>#lat-gm{order:2}#lat-e>#lat-db{order:3}#lat-e>#lat-arena{order:4}#lat-e>#lat-vx{order:5}#lat-e>.lat-grp-s{order:6}#lat-e>#lat-band{order:7}#lat-e>#lat-cp{order:8}',
+ '#lat-e>#lat-db{--lc:#6b5a9a;margin:0 12px!important;padding:12px 14px!important;box-sizing:border-box;background:#fbf5e6!important;border:1px solid #d6c69c!important;border-top:3px solid var(--lc)!important;border-radius:10px!important;box-shadow:0 1px 0 #e9dcbc!important}',
+ '#lat-db>header{display:flex;align-items:center;gap:9px;margin:0 0 8px}',
+ '#lat-db .lat-ic{flex:none;width:30px;height:30px;display:grid;place-items:center;border:1px solid #c9b28a;border-radius:50%;background:#f4ead2}',
+ '#lat-db .lat-ic svg{width:16px;height:16px;fill:none;stroke:var(--lc);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}',
+ '#lat-db .lat-k{display:block;font:700 8.5px var(--mono,monospace);letter-spacing:.14em;text-transform:uppercase;color:var(--lc)}',
+ '#lat-db .lat-t{margin:1px 0 0;font:700 15px/1.2 Georgia,serif;color:#2a2418}',
+ '#lat-db .regdia{margin:0!important;padding:0!important;border:0!important;background:none!important;box-shadow:none!important}',
+ '#lat-db .regdia .mcab2 .k9{display:none!important}',
+ '#lat-db .regdia .mcab2{margin:0 0 6px!important;padding:0!important;border:0!important}',
+ '#lat-db .regdia .rdsub{font:italic 11.5px Georgia,serif!important;color:#6b5140!important;text-transform:none!important;letter-spacing:0!important}',
+ '#lat-db .regdia .rdent{display:flex;gap:6px;margin:0 0 8px!important}',
+ '#lat-db .regdia .rdent input{flex:1;min-width:0;height:32px;box-sizing:border-box;padding:0 10px!important;border:1px solid #c9b28a!important;border-radius:8px!important;background:#fffaf0!important;font:13px var(--sans)!important}',
+ '#lat-db .regdia .rdent button{flex:none;height:32px;margin:0!important;padding:0 12px!important;width:auto!important;border-radius:8px!important}',
+ '#lat-db .regdia .rdl{max-height:220px;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin}'
+].join('\n');document.head.appendChild(st);})();
+
+
+/* ======================= Abas Casa Grande e Missões saem; o botão Operacional sobe para o topo do painel esquerdo ======================= */
+function opTgNoTopo(){var lt=document.getElementById('lat-topo'),bt=document.getElementById('op-tg');if(!lt||!bt)return;var r=lt.querySelector(':scope>.lt-r3');
+ if(!r){r=document.createElement('div');r.className='lt-r3';lt.appendChild(r);}if(bt.parentNode!==r)r.appendChild(bt);}
+(function(){var t0=ttIndice;ttIndice=function(){var x=t0.apply(this,arguments);try{opTgNoTopo();}catch(e){}return x;};})();
+setTimeout(function(){try{opTgNoTopo();}catch(e){}},900);setTimeout(function(){try{opTgNoTopo();}catch(e){}},3500);
+(function(){var st=document.createElement('style');st.id='op-topo-css';st.textContent=[
+ '#tt-indice>button[data-tt="op"],#tt-indice>button[data-tt="camp"]{display:none!important}',
+ '#lat-topo>.lt-r3{display:flex;margin:6px 0 0}',
+ '#lat-topo>.lt-r3>#op-tg{flex:1;display:flex!important;align-items:center;justify-content:center;gap:8px;width:auto!important;height:30px;margin:0!important;padding:0 12px!important;border:1px solid #5a3f2c!important;border-radius:999px!important;background:#f4ead2!important;',
+ ' color:#5a3f2c!important;font:600 10px var(--mono,monospace)!important;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;box-shadow:none!important}',
+ '#lat-topo>.lt-r3>#op-tg svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}',
+ '#lat-topo>.lt-r3>#op-tg:hover,body.op-on #lat-topo>.lt-r3>#op-tg{background:#5a3f2c!important;color:#f4ead2!important}'
+].join('\n');document.head.appendChild(st);})();
 
 })();
 </script>
