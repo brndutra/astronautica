@@ -2379,6 +2379,52 @@ body.claro[data-skin="astro"] .cp-dracmas i.mosaico::after,.cp-dracmas i::after{
 #lat-ac .ac-row{grid-template-columns:1fr!important;margin:0!important;gap:10px}
 
 #lat-quadro:empty,#lat-vx:empty{display:none}
+/* agenda integrada */
+.ag-ev{position:absolute;left:3px;right:3px;bottom:2px;z-index:2;padding:1px 4px;border-radius:4px;background:#5a3f2c;color:#f4ead2;font-size:9.5px;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;pointer-events:auto;cursor:default}
+.ag-ev+.ag-ev{bottom:17px}
+.tbc{position:relative}
+.ag-dia{display:block;margin-top:3px;padding:1px 4px;border-radius:4px;background:#b98c47;color:#fff8e6;font-size:9px;letter-spacing:0;text-transform:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ag-lista{display:flex;flex-direction:column;gap:3px;max-height:260px;overflow:auto}
+.ag-dt{margin-top:6px;font-family:var(--mono);font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--red)}
+.ag-it{display:flex;gap:8px;font-size:12.5px;color:var(--bone);line-height:1.35}
+.ag-it b{flex:none;width:56px;font-weight:600;color:var(--dim);font-size:11.5px}
+.ag-erro{color:#9a4a3a!important}
+.ag-at{width:auto!important;margin:0 0 0 10px!important;padding:0!important;border:0!important;background:none!important;cursor:pointer}
+.ws-ag{grid-column:1/-1}
+.ws-ag .ag-lista{max-height:200px;display:block;column-width:240px;column-gap:24px}
+.ws-ag .ag-dt{break-after:avoid}.ws-ag .ag-it{break-inside:avoid;margin-bottom:3px}
+.sp-bt{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+.sp-bt a{padding:5px 10px;border:1px solid var(--line2);border-radius:999px;font-size:12px;color:var(--bone);text-decoration:none}
+.sp-bt a:first-child{background:#1db954;border-color:#1db954;color:#fff}
+.sp-obs{margin-top:6px!important;font-size:11.5px!important}
+/* rodapé expansível dos apps */
+.rod{position:fixed;left:0;right:0;bottom:0;z-index:58;display:flex;flex-direction:column;background:var(--panel);border-top:1.5px solid var(--line2);box-shadow:0 -10px 30px rgba(40,28,12,.14)}
+@media(min-width:1380px){.rod{left:300px;right:var(--rail-w)}}
+.rod-bar{display:flex!important;align-items:center;gap:14px;width:100%!important;height:42px;margin:0!important;padding:0 16px!important;border:0!important;background:transparent!important;cursor:pointer;color:var(--bone)!important;text-align:left}
+.rod-k{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--red);flex:none}
+.rod-mini{display:flex;gap:16px;min-width:0;overflow:hidden;font-size:12px;color:var(--dim);white-space:nowrap}
+.rod-mini span{display:inline-flex;align-items:center;gap:5px;overflow:hidden;text-overflow:ellipsis}
+.rod-ic{width:14px;height:14px;fill:none;stroke:var(--red);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.rod-seta{margin-left:auto;flex:none;font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--red)}
+.rod-corpo{max-height:0;overflow:hidden;transition:max-height .3s ease}
+.rod.aberto .rod-corpo{max-height:62vh;overflow:auto;padding:4px 14px 14px}
+.rod-corpo .lat{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;padding:0;align-items:start}
+body.com-rodape{padding-bottom:46px}
+
+/* rotina: três cartões separados, cada um com a sua imagem */
+#rt-box.mm{padding:0!important;border:0!important;background:none!important;margin:0 0 22px}
+#rt-box .rt-g{gap:14px}
+#rt-box .mm-col{background:var(--panel);border:1px solid var(--line2);border-top:0;border-radius:14px;padding:0 13px 13px;overflow:hidden}
+#rt-box .mm-col::before{content:"";display:block;height:96px;margin:0 -13px 10px;background:var(--rt-img) center/cover no-repeat;border-bottom:3px solid var(--mc)}
+#rt-box .rt-concha{--rt-img:url("img/acampamento/pavilhao.jpg")}
+#rt-box .rt-insp{--rt-img:url("img/acampamento/placas.jpg")}
+#rt-box .rt-harp{--rt-img:url("img/acampamento/anfiteatro.jpg")}
+#rt-box .mm-col>.mm-k{font-size:18px}
+
+.tb-desfaz{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 10px;padding:8px 12px;border:1px dashed #9a4a3a;border-radius:8px;background:#fbefe6;color:#5a3f2c;font-size:13px}
+.tb-desfaz button{width:auto!important;margin:0!important;padding:5px 12px!important;border:1px solid #5a3f2c!important;background:#5a3f2c!important;color:#f4ead2!important;border-radius:6px;cursor:pointer;font-size:12.5px}
+.tb-desfaz button+button{background:transparent!important;color:#5a3f2c!important}
+
 .rt-novo{display:flex;gap:8px;margin:10px 0}
 .rt-novo input{flex:1;min-width:0;font-size:13px;padding:7px 10px;border:1px solid #5a3f2c;border-radius:6px;background:#fbf5e6;color:#3b2a1d;margin:0}
 .rt-novo button{width:auto!important;margin:0!important;padding:7px 14px!important;border:1px solid #5a3f2c!important;background:#5a3f2c!important;color:#f4ead2!important;border-radius:6px;font-family:Georgia,serif;letter-spacing:.08em;cursor:pointer}
@@ -9412,9 +9458,13 @@ function pintaTb(){
   grava(); pinta(); });
  var ch=0; for(k in (S.tb||{})) if(dias.indexOf(k.split("|")[0])>=0) ch++;
  el("tb-sub").innerHTML=ch?("<b>"+ch+"</b> blocos ocupados nesta semana"):"toque num bloco para escrever o que ocupa a faixa";
- lig("b-tb-lp",function(){ var kk,dd=tbSemana();
-  for(kk in (S.tb||{})) if(dd.indexOf(kk.split("|")[0])>=0) delete S.tb[kk];
-  anota("Grade semanal limpa.",0,false); pinta(); });
+ lig("b-tb-lp",function(){ var kk,dd=tbSemana(),bak={},n=0;
+  for(kk in (S.tb||{})) if(dd.indexOf(kk.split("|")[0])>=0){bak[kk]=S.tb[kk];n++;}
+  if(!n) return;
+  if(!confirm("Limpar os "+n+" blocos desta semana? Dá para desfazer logo depois.")) return;
+  S.tbBak={quando:Date.now(),itens:bak};
+  for(kk in bak) delete S.tb[kk];
+  anota("Grade semanal limpa (dá para desfazer).",0,false); pinta(); });
 }
 function pintaAlerta(){
  var e=el("alerta"); if(!e) return;
@@ -12822,7 +12872,7 @@ document.addEventListener('visibilitychange',function(){if(document.visibilitySt
 (function(){var n0=normaliza;normaliza=function(p){var b=n0(p);if(p&&p.rotina&&typeof p.rotina==='object')b.rotina=p.rotina;if(p&&p.quests&&typeof p.quests==='object')b.quests=p.quests;if(p&&p.lojaAc&&typeof p.lojaAc==='object')b.lojaAc=p.lojaAc;return b;};})();
 (function(){var n0=normaliza;normaliza=function(p){var b=n0(p);b.arsenal=(p&&p.arsenal&&typeof p.arsenal==='object')?p.arsenal:{};return b;};})();
 (function(){var n0=normaliza;normaliza=function(p){var b=n0(p);var a=(p&&p.apps&&typeof p.apps==='object')?p.apps:{};
- b.apps={spotify:typeof a.spotify==='string'?a.spotify:'',agenda:typeof a.agenda==='string'?a.agenda:'',
+ b.apps={spotify:typeof a.spotify==='string'?a.spotify:'',agenda:typeof a.agenda==='string'?a.agenda:'',ics:typeof a.ics==='string'?a.ics:'',
   cidade:(a.cidade&&typeof a.cidade==='object'&&isFinite(a.cidade.lat))?a.cidade:null,
   atalhos:Array.isArray(a.atalhos)?a.atalhos.filter(function(x){return x&&x.u;}).slice(0,12):null};return b;};})();
 (function(){var n0=normaliza;normaliza=function(p){var b=n0(p);var w=(p&&p.ws&&typeof p.ws==='object')?p.ws:{};
@@ -13106,17 +13156,23 @@ function latUrl(u){u=String(u||'').trim();return /^https:\/\/[^\s"'<>]+$/.test(u
 /* Spotify: cola o link de playlist, álbum, faixa ou podcast. O player embutido toca aqui mesmo. */
 function latSpotifyEmbed(u){var m=String(u||'').match(/open\.spotify\.com\/(?:intl-[a-z-]+\/)?(playlist|album|track|episode|show|artist)\/([A-Za-z0-9]+)/);
  return m?'https://open.spotify.com/embed/'+m[1]+'/'+m[2]+'?utm_source=generator&theme=0':'';}
+function latSpotifyUri(u){var m=String(u||'').match(/open\.spotify\.com\/(?:intl-[a-z-]+\/)?(playlist|album|track|episode|show|artist)\/([A-Za-z0-9]+)/);return m?'spotify:'+m[1]+':'+m[2]:u;}
 function latSpotify(){var e=latSpotifyEmbed(latApps().spotify);
  return latCard('lat-spot','musica','Trilha do foco','Spotify',e?
-  '<iframe class="lat-spot" src="'+e+'" height="152" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" title="Spotify"></iframe>':
+  '<iframe class="lat-spot" src="'+e+'" height="152" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" title="Spotify"></iframe>'+
+  '<div class="sp-bt"><a href="'+esc(latSpotifyUri(latApps().spotify))+'">tocar no app do Spotify</a><a href="'+esc(latApps().spotify)+'" target="_blank" rel="noopener">abrir no navegador</a></div>'+
+  '<p class="lat-n sp-obs">Se aparecer <b>Prévia</b>, o player embutido não está vendo o seu login: entre em open.spotify.com neste navegador e libere cookies de terceiros para o site, ou toque pelo app.</p>':
   '<p class="lat-n">Cole o link de uma playlist, álbum ou podcast do Spotify. Ele toca aqui, sem sair do app.</p><div class="lat-f"><input data-lat-in="spotify" placeholder="https://open.spotify.com/playlist/…"><button type="button" data-lat-ok="spotify">tocar</button></div>','spotify');}
 
 /* Agenda Google: a visão "agenda" do calendário embutido. Mostra os eventos se o navegador estiver na sua conta Google. */
-function latAgenda(){var a=latApps().agenda,src='';
+function latAgenda(){var A=latApps(),ics=A.ics||'',a=A.agenda,src='';
+ if(ics){var est=AG.erro?'<p class="lat-n ag-erro">Não consegui atualizar agora ('+esc(AG.erro.slice(0,80))+'). Mostrando a última cópia.</p>':'';
+  return latCard('lat-ag','agenda','Oráculo do dia','Agenda Google',est+(AG.quando||AG.ev.length?agListaHTML(7):'<p class="lat-n">Lendo a agenda…</p>')+'<a class="lat-lk" href="https://calendar.google.com/calendar/r/day" target="_blank" rel="noopener">abrir a agenda</a> <button type="button" class="lat-lk ag-at" onclick="window.agAtualiza&&agAtualiza()">atualizar</button>','agenda');}
  if(a){src='https://calendar.google.com/calendar/embed?src='+encodeURIComponent(a)+'&mode=AGENDA&ctz=America%2FCampo_Grande&showTitle=0&showNav=0&showPrint=0&showTabs=0&showCalendars=0&showTz=0&wkst=1&hl=pt_BR';}
- return latCard('lat-ag','agenda','Oráculo do dia','Agenda Google',src?
-  '<iframe class="lat-ag" src="'+src+'" height="300" loading="lazy" title="Google Agenda"></iframe><a class="lat-lk" href="https://calendar.google.com/calendar/r/day" target="_blank" rel="noopener">abrir a agenda</a>':
-  '<p class="lat-n">Informe o e-mail da sua Agenda Google. Os eventos aparecem aqui se o navegador estiver na mesma conta.</p><div class="lat-f"><input data-lat-in="agenda" placeholder="voce@gmail.com"><button type="button" data-lat-ok="agenda">ligar</button></div>','agenda');}
+ return latCard('lat-ag','agenda','Oráculo do dia','Agenda Google',
+  '<p class="lat-n"><b>Para integrar de verdade</b> (eventos na Grade semanal e no spread do mês): no Google Agenda, abra Configurações › a sua agenda › <b>Endereço secreto no formato iCal</b>, copie e cole aqui.</p><div class="lat-f"><input data-lat-in="ics" placeholder="https://calendar.google.com/calendar/ical/…/basic.ics"><button type="button" data-lat-ok="ics">ligar</button></div>'+
+  (src?'<iframe class="lat-ag" src="'+src+'" height="260" loading="lazy" title="Google Agenda"></iframe>':''),'agenda');}
+window.agAtualiza=function(){agBusca(true);};
 
 /* Clima: Open-Meteo, sem chave. Padrão Campo Grande; a cidade se troca no lápis. */
 var LAT_WMO={0:'céu limpo',1:'quase limpo',2:'parcialmente nublado',3:'nublado',45:'neblina',48:'neblina',51:'garoa fraca',53:'garoa',55:'garoa forte',61:'chuva fraca',63:'chuva',65:'chuva forte',66:'chuva gelada',67:'chuva gelada',71:'neve fraca',73:'neve',75:'neve forte',80:'pancadas fracas',81:'pancadas de chuva',82:'pancadas fortes',95:'trovoada',96:'trovoada com granizo',99:'trovoada com granizo'};
@@ -13173,10 +13229,11 @@ function latMonta(){var e=document.getElementById('lat-e'),d=document.getElement
 function latTroca(id,html){var v=document.getElementById(id);if(v)v.outerHTML=html;}
 function latSalva(k,val){var A=latApps();val=String(val||'').trim();
  if(k==='spotify'){if(val&&!latSpotifyEmbed(val)){alert('Esse link não parece do Spotify. Copie em Compartilhar > Copiar link.');return;}A.spotify=val;grava();latTroca('lat-spot',latSpotify());}
+ if(k==='ics'){if(val&&!/^https:\/\/calendar\.google\.com\/.+\.ics(\?.*)?$/.test(val)){alert('Esse não parece o endereço iCal do Google Agenda. Ele começa com https://calendar.google.com/calendar/ical/ e termina em .ics.');return;}A.ics=val;grava();latTroca('lat-ag',latAgenda());agBusca(true);return;}
  if(k==='agenda'){if(val&&!/^[^\s@]+@[^\s@]+$/.test(val)){alert('Informe o e-mail ou o ID da agenda.');return;}A.agenda=val;grava();latTroca('lat-ag',latAgenda());}}
 function latEdita(k,box){var A=latApps();
  if(k==='spotify'){vxDlg({titulo:'Trilha do foco',texto:'Cole o link de uma playlist, álbum, faixa ou podcast do Spotify. Deixe vazio para tirar.',campos:[{label:'Link do Spotify',valor:A.spotify||''}],ok:'salvar',onOk:function(v){latSalva('spotify',v[0]);}});return;}
- if(k==='agenda'){vxDlg({titulo:'Agenda Google',texto:'E-mail da conta ou ID da agenda (Configurações da agenda > Integrar agenda). Deixe vazio para tirar.',campos:[{label:'Agenda',valor:A.agenda||''}],ok:'salvar',onOk:function(v){latSalva('agenda',v[0]);}});return;}
+ if(k==='agenda'){vxDlg({titulo:'Agenda Google',texto:'Endereço secreto no formato iCal (Configurações da agenda › Integrar agenda). É ele que leva os eventos para a Grade e o spread. Deixe vazio para desligar.',campos:[{label:'Endereço iCal',valor:A.ics||''}],ok:'salvar',onOk:function(v){latSalva('ics',v[0]);}});return;}
  if(k==='clima'){vxDlg({titulo:'Céu de Zeus',texto:'De qual cidade você quer o clima?',campos:[{label:'Cidade',valor:latCidade().n}],ok:'buscar',onOk:function(v){var q=String(v[0]||'').trim();if(!q)return;
    fetch('https://geocoding-api.open-meteo.com/v1/search?count=1&language=pt&name='+encodeURIComponent(q)).then(function(r){return r.json();}).then(function(j){var r=j&&j.results&&j.results[0];
     if(!r){alert('Não achei essa cidade.');return;}A.cidade={n:r.name,lat:r.latitude,lon:r.longitude};grava();latTroca('lat-cl',latClima());latClimaBusca(true);})
@@ -13202,13 +13259,13 @@ function latPosiciona(){var m=latMonta(),larga=LAT_LARGA.matches,nav=document.ge
  var fx=document.getElementById('lat-faixa');
  if(!fx){fx=document.createElement('div');fx.id='lat-faixa';fx.className='lat-faixa';fx.dataset.area='op';}
  fx.dataset.vxHidden='false';
- var tb=document.querySelector('.wrap > .rt')||document.getElementById('ws-box')||document.querySelector('.wrap > .tb');if(tb&&fx.previousElementSibling!==tb)wr.insertBefore(fx,tb.nextSibling);
+ var tb=document.getElementById('rt-box')||document.querySelector('.wrap > div.rt')||document.getElementById('ws-box')||document.querySelector('.wrap > .tb');if(tb&&fx.previousElementSibling!==tb)wr.insertBefore(fx,tb.nextSibling);
  var ri=document.getElementById('rail-in'),q=m.e.querySelector('#lat-quadro'),est=m.d.querySelector('#lat-est'),nos=latEstNos(),ph=document.getElementById('lat-est-ph');
  latSorteio();
  var enf=m.e.querySelector('#lat-enf'),enos=latEnfNos(),eph=document.getElementById('lat-enf-ph');
  if(!eph&&enos.length&&enos[0].parentNode===wr){eph=document.createElement('i');eph.id='lat-enf-ph';eph.hidden=true;wr.insertBefore(eph,enos[0]);}
  if(!ph&&nos.length&&nos[0].parentNode===wr){ph=document.createElement('i');ph.id='lat-est-ph';ph.hidden=true;var c0=document.getElementById('conc')||nos[0];wr.insertBefore(ph,c0.parentNode===wr?c0:nos[0]);}
- if(m.ap&&m.ap.parentNode!==fx)fx.appendChild(m.ap);
+ var rc=rodMonta().querySelector('#rod-corpo');if(m.ap&&m.ap.parentNode!==rc)rc.appendChild(m.ap);try{rodBarra();}catch(e){}
  if(larga&&nav&&rail){latRailCss();
   if(m.e.parentNode!==nav)nav.appendChild(m.e);if(m.d.parentNode!==rail)rail.appendChild(m.d);
   if(ri&&q&&ri.parentNode!==q&&!ri.closest('.cp-mural'))q.appendChild(ri);
@@ -13259,7 +13316,8 @@ function wsHTML(){var W=wsD(),Q=wsSemanas(),mv=W.mes[Q.mes]||{},mk=W.mk[Q.mes]||
   return '<div class="ws-h"><span>'+esc(h.n)+'</span><div>'+row+'</div><button type="button" class="ws-x" data-ws-del="'+esc(h.id)+'" aria-label="remover">×</button></div>';}).join('')||'<p class="lat-n">Nenhum hábito semanal ainda. Ex.: faxina do quarto, revisão da semana, ligar para a família.</p>';
  return '<div class="ws-c3"><section class="ws-card"><span class="k9">Foco do mês</span><textarea data-ws-mes="foco" rows="3" placeholder="Uma intenção para o mês">'+esc(mv.foco||'')+'</textarea></section>'+
   '<section class="ws-card"><span class="k9">Metas do mês</span><textarea data-ws-mes="metas" rows="3" placeholder="O que quero concluir">'+esc(mv.metas||'')+'</textarea></section>'+
-  '<section class="ws-card ws-hab"><span class="k9">Hábitos semanais</span>'+cab+lista+'<div class="ws-add"><input data-ws-in placeholder="novo hábito semanal" maxlength="40"><button type="button" data-ws-add>incluir</button></div></section></div>';}
+  '<section class="ws-card ws-hab"><span class="k9">Hábitos semanais</span>'+cab+lista+'<div class="ws-add"><input data-ws-in placeholder="novo hábito semanal" maxlength="40"><button type="button" data-ws-add>incluir</button></div></section>'+
+  (agIcsUrl()?'<section class="ws-card ws-ag"><span class="k9">Compromissos · próximos 30 dias (Google Agenda)</span>'+agListaHTML(30)+'</section>':'')+'</div>';}
 function wsPinta(){var tb=document.querySelector('.wrap > .tb');if(!tb)return;var b=document.getElementById('ws-box');
  if(!b){b=document.createElement('div');b.id='ws-box';b.className='ws-box';b.dataset.area='op';
   b.addEventListener('click',function(e){var t=e.target.closest('[data-ws-mk],[data-ws-del],[data-ws-add]');if(!t)return;var W=wsD(),Q=wsSemanas();
@@ -13591,7 +13649,7 @@ var RT_IC={concha:'<svg viewBox="0 0 24 24"><path d="M3.5 14.5c3-1 6-4.5 7.5-9.5
 function rtHTML(){var R=rtD(),P=rtInsp(),pm=RT_MANHA.filter(function(x){return P.manha[x[0]];}).length,pn=PL_FIM.filter(function(x){return P.fim[x[0]];}).length,prox=rtProx(),a=rtAgora(),l=rtMin(R.limite);
  var falta=l-a;if(falta<0)falta+=1440;var ronda=rtNaRonda()?'a ronda já começou':'a ronda começa em '+Math.floor(falta/60)+' h '+String(falta%60).padStart(2,'0');
  var lista=function(arr,obj,cls){return '<ul>'+arr.map(function(x){var ok=!!obj[x[0]];return '<li class="'+(ok?'ok':'')+'"><button type="button" class="mm-ck" data-rt-'+cls+'="'+x[0]+'">'+(ok?'✓':'')+'</button><span>'+esc(x[1])+'</span></li>';}).join('')+'</ul>';};
- return '<header class="mm-h"><div><span class="k9">Rotina do acampamento</span><h3>Concha, inspeção e ronda</h3></div><p>A concha marca as horas do dia; a inspeção confere o chalé antes das atividades e antes de dormir; a ronda das harpias fecha o expediente.</p></header>'+
+ return ''+
  '<div class="rt-g">'+
  '<section class="mm-col rt-concha"><span class="mm-k">'+RT_IC.concha+' Toque da Concha</span><small id="rt-prox">'+(prox?'próximo: '+esc(prox.h)+' · '+esc(prox.n):'nenhum toque ligado')+'</small>'+
   '<ul class="rt-tq">'+R.toques.map(function(t,i){return '<li class="'+(t.on?'ok':'')+'"><button type="button" class="mm-ck" data-rt-on="'+i+'" aria-label="ligar">'+(t.on?'✓':'')+'</button><input type="time" value="'+esc(t.h)+'" data-rt-h="'+i+'"><span>'+esc(t.n)+'</span></li>';}).join('')+'</ul>'+
@@ -13604,7 +13662,7 @@ function rtHTML(){var R=rtD(),P=rtInsp(),pm=RT_MANHA.filter(function(x){return P
   '<label class="rt-lim">horário limite para encerrar os estudos <input type="time" value="'+esc(R.limite)+'" data-rt-lim></label>'+
   '<p class="rt-tx">Depois desse horário, se você mexer no app, a tela escurece e as harpias mandam você para o chalé. Pedir mais 10 minutos conta como flagrante.</p>'+
   '<div class="rt-nums"><div><b>'+rtNoitesPaz()+'</b><span>noites em paz</span></div><div><b>'+Object.keys(R.flagras).reduce(function(a2,k){return a2+(R.flagras[k]|0);},0)+'</b><span>flagrantes</span></div></div></section></div>';}
-function rtPinta(){var ref=document.getElementById('ws-box'),wr=document.querySelector('.wrap');if(!ref||!wr)return;var b=document.getElementById('rt-box');
+function rtPinta(){var ref=document.querySelector('.wrap > div.rt')||document.getElementById('ws-box'),wr=document.querySelector('.wrap');if(!ref||!wr)return;var b=document.getElementById('rt-box');
  if(!b){b=document.createElement('section');b.id='rt-box';b.className='mm rt';b.dataset.area='op';rtLiga(b);}
  b.dataset.vxHidden='false';if(ref.nextElementSibling!==b)wr.insertBefore(b,ref.nextSibling);
  var a=document.activeElement;if(a&&b.contains(a)&&a.tagName==='INPUT')return;b.innerHTML=rtHTML();}
@@ -13686,7 +13744,7 @@ function arFotoUrl(k){return 'url("img/acampamento/'+k+'.jpg")';}
 AR_AREA={camp:'f:arquearia',est:'f:templos',dos:'f:armas',fin:'f:taxi'};
 function arFaixas(){try{document.body.style.setProperty('--arte-vale',arUrl('vale'));}catch(e){}Object.keys(AR_AREA).forEach(function(a){var s=document.getElementById('area-'+a);if(!s)return;var k=AR_AREA[a];
  if(s.dataset.arte!==k){s.dataset.arte=k;s.classList.add('com-arte');var foto=k.indexOf('f:')===0,kk=foto?k.slice(2):k;s.style.setProperty('--arte',foto?arFotoUrl(kk):arUrl(kk));s.title=(foto?AR_FOTO[kk]:ARTE_LEG[kk])[0];}});
- try{var pv=document.getElementById('rt-box');if(pv&&!pv.classList.contains('com-foto')){pv.classList.add('com-foto');pv.style.setProperty('--foto',arFotoUrl('pavilhao'));}}catch(e){}}
+ }
 function arPostais(){return Object.keys(AR_FOTO).map(function(k){return 'f:'+k;}).concat(Object.keys(ARTE));}
 function arPostalHTML(){var ks=arPostais(),i=(S.postalI==null?Math.floor(Date.now()/864e5):S.postalI)%ks.length,k=ks[i],foto=k.indexOf('f:')===0,kk=foto?k.slice(2):k,L=foto?AR_FOTO[kk]:ARTE_LEG[kk];
  return '<div class="ar-postal">'+(foto?'<img class="ar-svg" src="img/acampamento/'+kk+'.jpg" alt="'+esc(L[0])+'" loading="lazy">':arSvg(kk))+'<div class="ar-leg"><b>'+esc(L[0])+'</b><small>'+esc(L[1])+'</small></div></div><button type="button" class="arsm-v" data-ar-prox>próximo postal</button>';}
@@ -13767,6 +13825,96 @@ function rtNovoHab(){var rt=document.querySelector('.wrap > div.rt');if(!rt||rt.
  f.querySelector('button').onclick=go;f.querySelector('input').onkeydown=function(e){if(e.key==='Enter'){e.preventDefault();go();}};}
 function neoAplica(){neoImgs();try{rtNovoHab();}catch(e){}['.wrap > div.tb','.wrap > div.rt'].forEach(function(q){var n=document.querySelector(q);if(n)n.classList.add('neo-moldura');});
  ['h-sem','h-rast'].forEach(function(id){var h=document.getElementById(id);if(h)h.classList.add('neo-tit');});try{neoFrontao();}catch(e){}try{ptPinta();}catch(e){}}
+
+/* desfazer a limpeza da semana; se a semana de 23–29/11 ficou vazia sem cópia, devolve o plano dela */
+var TB_PLANO_2311={"06":["Estudo TRF3 6h30–8h","Estudo TRF3 6h30–8h","Estudo TRF3 6h30–8h","Estudo TRF3 6h30–8h","Estudo TRF3 6h30–8h","",""],
+ "09":["Rota do dia · Bloco 1","Rota do dia · Bloco 1","Rota do dia · Bloco 1","Rota do dia · Bloco 1","Rota do dia · Bloco 1","Comprar máquina + itens","Estudo TRF3 · revisão"],
+ "12":["Almoço · ligar natação","Almoço · Bloco 2","Almoço · Bloco 2","Almoço · Bloco 2","Almoço · Bloco 2","Almoço · descanso",""],
+ "15":["Bloco 3 · fechar às 17h","Bloco 3 · fechar às 17h","Bloco 3 · fechar às 17h","Bloco 3 · fechar às 17h","Bloco 3 · fechar às 17h","Quarto: montar e fixar","Planejar semana 30/11"],
+ "18":["Achar academia no trajeto","Natação (a confirmar)","Academia","Natação (a confirmar)","Livre","Livre","Livre"],
+ "21":["Quarto: triar e descartar","Quarto: definir layout","Pesquisar máquina lavar","Quarto: guardar por zona","Livre · games","",""]};
+function tbVazia(){var dd=tbSemana();return !Object.keys(S.tb||{}).some(function(k){return dd.indexOf(k.split('|')[0])>=0&&S.tb[k];});}
+function tbDesfazHTML(){var B=S.tbBak,dd=tbSemana(),temBak=B&&B.itens&&Object.keys(B.itens).some(function(k){return dd.indexOf(k.split('|')[0])>=0;});
+ var plano=dd[0]==='2026-11-23';if(!tbVazia()&&!temBak)return '';
+ if(temBak&&!tbVazia())return '<div class="tb-desfaz"><span>Semana limpa há pouco?</span><button type="button" data-tb-desfaz>desfazer a limpeza</button><button type="button" data-tb-esq>dispensar</button></div>';
+ if(temBak||plano)return '<div class="tb-desfaz"><span>A grade desta semana está vazia.</span><button type="button" data-tb-desfaz>'+(temBak?'desfazer a limpeza':'restaurar o plano da semana 23–29/11')+'</button></div>';return '';}
+function tbDesfazPinta(){var tb=document.querySelector('.wrap > div.tb');if(!tb)return;var w=tb.querySelector('.tb-desfaz-w');if(!w){w=document.createElement('div');w.className='tb-desfaz-w';var cab=tb.querySelector('.tbcab');cab?cab.insertAdjacentElement('afterend',w):tb.insertBefore(w,tb.firstChild);
+  w.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;
+   if(b.dataset.tbEsq!=null){delete S.tbBak;grava();tbDesfazPinta();return;}
+   if(b.dataset.tbDesfaz!=null){var B=S.tbBak,dd=tbSemana();S.tb=S.tb||{};
+    if(B&&B.itens){Object.keys(B.itens).forEach(function(k){if(!S.tb[k])S.tb[k]=B.itens[k];});delete S.tbBak;}
+    else if(dd[0]==='2026-11-23'){Object.keys(TB_PLANO_2311).forEach(function(f){TB_PLANO_2311[f].forEach(function(t,i){var id=dd[i]+'|'+f;if(t&&!S.tb[id])S.tb[id]=t;});});}
+    try{anota('Grade semanal restaurada.',0,false);}catch(z){}grava();pinta();}});}
+ w.innerHTML=tbDesfazHTML();}
+(function(){var p0=pinta;pinta=function(){p0();try{tbDesfazPinta();}catch(e){}};})();
+setTimeout(function(){try{tbDesfazPinta();}catch(e){}},500);
+
+/* ---------- Agenda Google integrada de verdade (endereço secreto iCal) ----------
+   A função agenda-ics do Supabase busca o .ics; aqui o app lê os eventos e põe na Grade semanal,
+   no spread do mês e no cartão da Agenda. Recorrências diárias, semanais, mensais e anuais são expandidas. */
+var AG_FN='https://gubpygurtxadsncthttg.supabase.co/functions/v1/agenda-ics?u=';
+var AG={ev:[],erro:'',quando:0};
+function agIcsUrl(){var a=latApps();return a.ics||'';}
+function agData(v,tz){v=String(v||'');var m=v.match(/^(\d{4})(\d{2})(\d{2})(?:T(\d{2})(\d{2})(\d{2})(Z)?)?/);if(!m)return null;
+ if(!m[4])return {d:new Date(+m[1],+m[2]-1,+m[3]),dia:true};
+ if(m[7])return {d:new Date(Date.UTC(+m[1],+m[2]-1,+m[3],+m[4],+m[5],+m[6])),dia:false};
+ return {d:new Date(+m[1],+m[2]-1,+m[3],+m[4],+m[5],+m[6]),dia:false};}
+function agParse(txt){var L=String(txt).replace(/\r?\n[ \t]/g,'').split(/\r?\n/),out=[],e=null;
+ L.forEach(function(l){if(l==='BEGIN:VEVENT'){e={};return;}if(l==='END:VEVENT'){if(e&&e.ini)out.push(e);e=null;return;}if(!e)return;
+  var i=l.indexOf(':');if(i<0)return;var k=l.slice(0,i),v=l.slice(i+1),nome=k.split(';')[0];
+  if(nome==='SUMMARY')e.t=v.replace(/\\,/g,',').replace(/\;/g,';').replace(/\\n/gi,' ');
+  else if(nome==='DTSTART')e.ini=agData(v);else if(nome==='DTEND')e.fim=agData(v);else if(nome==='RRULE')e.rr=v;
+  else if(nome==='EXDATE'){e.ex=(e.ex||[]);v.split(',').forEach(function(x){var d=agData(x);if(d)e.ex.push(d.d.toDateString());});}
+  else if(nome==='STATUS')e.st=v;else if(nome==='LOCATION')e.loc=v.replace(/\\,/g,',');});
+ return out.filter(function(x){return x.st!=='CANCELLED';});}
+function agExpande(E,de,ate){var r=[];E.forEach(function(e){var dur=e.fim?(e.fim.d-e.ini.d):(e.ini.dia?864e5:36e5);
+ var push=function(d){if(d>=de&&d<=ate&&!(e.ex&&e.ex.indexOf(d.toDateString())>=0))r.push({t:e.t||'(sem título)',ini:new Date(d),fim:new Date(d.getTime()+dur),dia:e.ini.dia,loc:e.loc||''});};
+ if(!e.rr){if(e.ini.d<=ate&&new Date(e.ini.d.getTime()+dur)>=de)r.push({t:e.t||'(sem título)',ini:e.ini.d,fim:new Date(e.ini.d.getTime()+dur),dia:e.ini.dia,loc:e.loc||''});return;}
+ var P={};e.rr.split(';').forEach(function(p){var kv=p.split('=');P[kv[0]]=kv[1];});var iv=+(P.INTERVAL||1),cnt=P.COUNT?+P.COUNT:1e9,ate2=P.UNTIL?(agData(P.UNTIL)||{d:ate}).d:ate;if(ate2>ate)ate2=ate;
+ var DIAS={SU:0,MO:1,TU:2,WE:3,TH:4,FR:5,SA:6},by=P.BYDAY?P.BYDAY.split(',').map(function(x){return DIAS[x.slice(-2)];}):null,n=0,d=new Date(e.ini.d),g=0;
+ while(d<=ate2&&n<cnt&&g<3000){g++;
+  if(P.FREQ==='WEEKLY'&&by){var semIni=new Date(d);semIni.setDate(d.getDate()-d.getDay());
+   for(var k=0;k<7&&n<cnt;k++){var x=new Date(semIni);x.setDate(semIni.getDate()+k);x.setHours(e.ini.d.getHours(),e.ini.d.getMinutes(),0,0);if(x<e.ini.d||x>ate2||by.indexOf(x.getDay())<0)continue;n++;push(x);}
+   d.setDate(d.getDate()-d.getDay()+7*iv);d.setHours(e.ini.d.getHours(),e.ini.d.getMinutes(),0,0);continue;}
+  n++;push(d);var nd=new Date(d);
+  if(P.FREQ==='DAILY')nd.setDate(d.getDate()+iv);else if(P.FREQ==='WEEKLY')nd.setDate(d.getDate()+7*iv);else if(P.FREQ==='MONTHLY')nd.setMonth(d.getMonth()+iv);else if(P.FREQ==='YEARLY')nd.setFullYear(d.getFullYear()+iv);else break;d=nd;}});
+ return r.sort(function(a,b){return a.ini-b.ini;});}
+function agBusca(forca){var u=agIcsUrl();if(!u){AG.ev=[];return;}var k='astro_ics',c=null;try{c=JSON.parse(localStorage.getItem(k)||'null');}catch(e){}
+ var usa=function(txt){var E=agParse(txt),de=new Date();de.setHours(0,0,0,0);de.setDate(de.getDate()-14);var ate=new Date();ate.setDate(ate.getDate()+120);AG.ev=agExpande(E,de,ate);AG.erro='';AG.quando=Date.now();agPintaTudo();};
+ if(!forca&&c&&c.u===u&&Date.now()-c.t<20*60e3){usa(c.txt);return;}
+ fetch(AG_FN+encodeURIComponent(u)).then(function(r){return r.text().then(function(t){if(!r.ok)throw new Error(t||('erro '+r.status));return t;});})
+  .then(function(t){try{localStorage.setItem(k,JSON.stringify({u:u,t:Date.now(),txt:t}));}catch(e){}usa(t);})
+  .catch(function(e){AG.erro=String(e.message||e);if(c&&c.u===u)usa(c.txt);else agPintaTudo();});}
+function agDoDia(d){var a=new Date(d+'T00:00:00'),b=new Date(d+'T23:59:59');return AG.ev.filter(function(x){return x.ini<=b&&x.fim>a&&!(x.dia&&x.fim.getTime()===a.getTime());});}
+function agHora(x){return x.dia?'dia todo':String(x.ini.getHours()).padStart(2,'0')+':'+String(x.ini.getMinutes()).padStart(2,'0');}
+var AG_FX=['06','09','12','15','18','21'];
+function agFaixa(h){var f='06';AG_FX.forEach(function(x){if(h>=+x)f=x;});return f;}
+/* na Grade semanal: compromissos com hora vão para a faixa; os de dia inteiro, para o cabeçalho do dia */
+function agNaGrade(){var g=document.getElementById('tb-g');if(!g)return;Array.prototype.forEach.call(g.querySelectorAll('.ag-ev,.ag-dia'),function(n){n.remove();});if(!AG.ev.length)return;
+ var dias=tbSemana(),heads=g.querySelectorAll('.tbh');dias.forEach(function(d,i){var evs=agDoDia(d),hd=heads[i+1];
+  var tod=evs.filter(function(x){return x.dia;});if(hd&&tod.length){var s=document.createElement('span');s.className='ag-dia';s.title=tod.map(function(x){return x.t;}).join(' · ');s.textContent=tod.length===1?tod[0].t:tod.length+' eventos';hd.appendChild(s);}
+  evs.filter(function(x){return !x.dia;}).forEach(function(x){var f=agFaixa(x.ini.getHours()),c=g.querySelector('[data-tb="'+d+'|'+f+'"]');if(!c)return;var cell=c.parentNode,s=document.createElement('span');s.className='ag-ev';s.title=agHora(x)+' · '+x.t+(x.loc?' · '+x.loc:'');s.textContent=agHora(x)+' '+x.t;cell.appendChild(s);});});}
+function agListaHTML(dias){var hj=new Date();hj.setHours(0,0,0,0);var ate=new Date(hj);ate.setDate(hj.getDate()+dias);var L=AG.ev.filter(function(x){return x.fim>hj&&x.ini<ate;}).slice(0,40),ult='',h='';
+ if(!L.length)return '<p class="lat-n">Nada marcado nos próximos '+dias+' dias.</p>';
+ var DS=['dom','seg','ter','qua','qui','sex','sáb'];L.forEach(function(x){var dd=new Date(Math.max(x.ini,hj)),k=dd.toDateString();if(k!==ult){ult=k;h+='<div class="ag-dt">'+(k===hj.toDateString()?'hoje':DS[dd.getDay()])+' · '+dd.getDate()+'/'+(dd.getMonth()+1)+'</div>';}
+  h+='<div class="ag-it"><b>'+esc(agHora(x))+'</b><span>'+esc(x.t)+'</span></div>';});return '<div class="ag-lista">'+h+'</div>';}
+function agPintaTudo(){try{agNaGrade();}catch(e){}var c=document.getElementById('lat-ag');if(c&&agIcsUrl())latTroca('lat-ag',latAgenda());try{wsPinta();}catch(e){}try{rodBarra();}catch(e){}}
+(function(){var p0=pinta;pinta=function(){p0();try{agNaGrade();}catch(e){}};})();
+setInterval(function(){agBusca(false);},21*60e3);setTimeout(function(){agBusca(false);},1500);
+
+/* ---------- Rodapé expansível com os apps (Agenda, Clima, Spotify, Atalhos) ---------- */
+function rodMonta(){var r=document.getElementById('rod-apps');if(r)return r;r=document.createElement('section');r.id='rod-apps';r.className='rod';
+ r.innerHTML='<button type="button" class="rod-bar" id="rod-bar" aria-expanded="false"><span class="rod-k">apps do acampamento</span><span class="rod-mini" id="rod-mini"></span><span class="rod-seta">abrir ▴</span></button><div class="rod-corpo" id="rod-corpo"></div>';
+ document.body.appendChild(r);r.querySelector('#rod-bar').onclick=function(){var on=!r.classList.contains('aberto');r.classList.toggle('aberto',on);this.setAttribute('aria-expanded',on);r.querySelector('.rod-seta').textContent=on?'fechar ▾':'abrir ▴';try{localStorage.setItem('astro_rod',on?'1':'0');}catch(e){}};
+ try{if(localStorage.getItem('astro_rod')==='1'){r.classList.add('aberto');r.querySelector('.rod-seta').textContent='fechar ▾';}}catch(e){}
+ document.body.classList.add('com-rodape');return r;}
+function rodBarra(){var m=document.getElementById('rod-mini');if(!m)return;var h='',c=null;try{c=JSON.parse(localStorage.getItem('astro_clima')||'null');}catch(e){}
+ if(c&&c.d&&c.d.current)h+='<span>'+CR_IC.agua.replace('<svg','<svg class="rod-ic"')+Math.round(c.d.current.temperature_2m)+'° '+esc(LAT_WMO[c.d.current.weather_code]||'')+'</span>';
+ var hj=hoje(),pr=AG.ev.filter(function(x){return x.fim>new Date();})[0];if(pr)h+='<span>'+LAT_IC.agenda.replace('<svg','<svg class="rod-ic"')+esc((pr.ini.toDateString()===new Date().toDateString()?'':pr.ini.getDate()+'/'+(pr.ini.getMonth()+1)+' ')+agHora(pr)+' '+pr.t)+'</span>';
+ else if(!agIcsUrl())h+='<span>'+LAT_IC.agenda.replace('<svg','<svg class="rod-ic"')+'agenda não ligada</span>';
+ if(latApps().spotify)h+='<span>'+LAT_IC.musica.replace('<svg','<svg class="rod-ic"')+'trilha pronta</span>';
+ m.innerHTML=h;}
+setInterval(function(){try{rodBarra();}catch(e){}},60e3);
 /* a Grade semanal é o painel principal: logo abaixo do índice */
 function latGradeTopo(){var wr=document.querySelector('.wrap'),h=document.getElementById('h-sem'),ix=document.getElementById('tt-indice');if(!wr||!h)return;
  var tb=h.nextElementSibling&&h.nextElementSibling.classList.contains('tb')?h.nextElementSibling:document.querySelector('.wrap > .tb');
@@ -13780,7 +13928,7 @@ function latGradeTopo(){var wr=document.querySelector('.wrap'),h=document.getEle
  try{arFaixas();}catch(e){console.error('arte:',e);}
  try{neoAplica();}catch(e){console.error('neoclássico:',e);}
  /* rastreador de hábitos (grade mensal) logo abaixo do painel da semana */
- try{var hr=document.getElementById('h-rast'),rt=hr&&hr.nextElementSibling&&hr.nextElementSibling.classList.contains('rt')?hr.nextElementSibling:document.querySelector('.wrap > .rt'),wb=document.getElementById('rt-box')||document.getElementById('ws-box')||tb;
+ try{var hr=document.getElementById('h-rast'),rt=hr&&hr.nextElementSibling&&hr.nextElementSibling.classList.contains('rt')?hr.nextElementSibling:document.querySelector('.wrap > .rt'),wb=document.getElementById('ws-box')||tb;
   if(hr&&wb){[hr,rt].forEach(function(n){if(n){n.dataset.area='op';n.dataset.vxHidden='false';}});if(wb.nextElementSibling!==hr)wr.insertBefore(hr,wb.nextSibling);if(rt&&hr.nextElementSibling!==rt)wr.insertBefore(rt,hr.nextSibling);}}catch(e){console.error('rastreador:',e);}
  try{arsPinta();}catch(e){console.error('arsenal:',e);}
  try{mmPinta();}catch(e){console.error('mural de missões:',e);}}
