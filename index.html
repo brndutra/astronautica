@@ -17212,6 +17212,147 @@ setTimeout(function(){try{opTgNoTopo();}catch(e){}},900);setTimeout(function(){t
  '#lat-topo>.lt-r3>#op-tg:hover,body.op-on #lat-topo>.lt-r3>#op-tg{background:#5a3f2c!important;color:#f4ead2!important}'
 ].join('\n');document.head.appendChild(st);})();
 
+
+/* ======================= Fio de Ariadne no pé do painel esquerdo; Píthos de Pandora no rodapé do Diário de bordo =======================
+   O Fio de Ariadne (leitura e retomadas) sai do Quadro do rodapé e vira o último cartão do painel esquerdo.
+   O Píthos (captura e caixa) sai de dentro dele e passa a ser o rodapé do cartão Diário de bordo. */
+function fioNoPainel(){var e=document.getElementById('lat-e'),pc=document.getElementById('qa-d-pc');if(!e||!pc)return;if(pc.parentNode!==e)e.appendChild(pc);pc.classList.add('lat-fio');}
+function pithosNoDiario(){var db=document.getElementById('lat-db'),ri=document.getElementById('rail-in');if(!db||!ri)return;var f=db.querySelector(':scope>.db-pithos');
+ if(!f){f=document.createElement('div');f.className='db-pithos';f.innerHTML='<div class="dp-cab"><span class="dp-k">Píthos de Pandora</span><small>o jarro guarda tudo · despeje antes de perder</small><i class="dp-n"></i></div><div class="dp-slot"></div>';db.appendChild(f);}
+ var sl=f.querySelector('.dp-slot'),novos=['.rcap','.rlist','.rbt'].map(function(q){return ri.querySelector(':scope>'+q);});
+ if(novos.some(function(x){return x;})){sl.innerHTML='';novos.forEach(function(x){if(x)sl.appendChild(x);});var c=ri.querySelector(':scope>.rcab.cer');if(c)c.remove();}
+ var n=sl.querySelectorAll('.rlist li:not(.rvz)').length,ni=f.querySelector('.dp-n'),t=n+' na caixa';if(ni.textContent!==t)ni.textContent=t;}
+qaHermesQtd=function(){return document.querySelectorAll('.rlist li:not(.rvz)').length;};
+(function(){var t=null,mo=new MutationObserver(function(){if(t)return;t=requestAnimationFrame(function(){t=null;try{fioNoPainel();pithosNoDiario();}catch(e){}});});
+ var liga=function(){var ri=document.getElementById('rail-in'),e=document.getElementById('lat-e');if(!ri||!e)return false;mo.observe(ri,{childList:true});mo.observe(e,{childList:true});fioNoPainel();pithosNoDiario();return true;};
+ var n=0,tt=setInterval(function(){if(liga()||++n>20)clearInterval(tt);},700);})();
+(function(){var st=document.createElement('style');st.id='fio-pithos-css';st.textContent=[
+ '#lat-e>#qa-d-pc{order:20;--lc:#7a6a2a;margin:0 12px!important;padding:0!important;box-sizing:border-box;background:#fbf5e6!important;border:1px solid #d6c69c!important;border-top:3px solid var(--lc)!important;border-radius:10px!important;box-shadow:0 1px 0 #e9dcbc!important;overflow:hidden}',
+ '#lat-e>#qa-d-pc>summary{padding:12px 14px!important;cursor:pointer}',
+ '#lat-e>#qa-d-pc>.qa-sb{padding:0 14px 14px!important}',
+ '#lat-e>#qa-d-pc .qa-sb>*{margin:0 0 10px!important;border:0!important;background:none!important;padding:0!important;box-shadow:none!important}',
+ '#lat-e>#qa-d-pc .pctabs{display:flex;flex-wrap:wrap;gap:4px}',
+ '#lat-e>#qa-hermes{display:none!important}',
+ '#lat-db .db-pithos{margin:12px 0 0;padding:10px 0 0;border-top:1px dashed #c9b28a}',
+ '#lat-db .dp-cab{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 8px;margin:0 0 7px}',
+ '#lat-db .dp-k{font:700 8.5px var(--mono,monospace);letter-spacing:.14em;text-transform:uppercase;color:#9a4a30}',
+ '#lat-db .dp-k::before{content:"⚱ "}',
+ '#lat-db .dp-cab small{flex:1 1 100%;order:3;font:italic 11.5px Georgia,serif;color:#6b5140}',
+ '#lat-db .dp-n{margin-left:auto;font:700 8.5px var(--mono,monospace);font-style:normal;letter-spacing:.1em;text-transform:uppercase;color:#8a6f55}',
+ '#lat-db .db-pithos .rcap{display:flex!important;gap:6px;margin:0 0 6px}',
+ '#lat-db .db-pithos .rcap input{flex:1;min-width:0;height:32px;box-sizing:border-box;padding:0 10px!important;border:1px solid #c9b28a!important;border-radius:8px!important;background:#fffaf0!important;font:13px var(--sans)!important}',
+ '#lat-db .db-pithos .rcap button{flex:none;height:32px;margin:0!important;padding:0 12px!important;width:auto!important;border-radius:8px!important}',
+ '#lat-db .db-pithos .rlist{margin:0 0 6px!important;padding:0!important;list-style:none;max-height:180px;overflow-y:auto}',
+ '#lat-db .db-pithos .rlist li.rvz{font:italic 12px Georgia,serif;color:#8a6f55}',
+ '#lat-db .db-pithos .rbt{display:flex;gap:6px}#lat-db .db-pithos .rbt button{margin:0!important;width:auto!important;padding:3px 10px!important;font-size:11px!important}',
+ '#lat-db .db-pithos .rlist li{display:flex!important;align-items:center;gap:4px;margin:0 0 4px!important;padding:5px 8px!important;border:1px solid #e2d4b0!important;border-radius:7px!important;background:#fffaf0!important}',
+ '#lat-db .db-pithos .rlist li>span{flex:1;min-width:0;font:13px var(--sans);color:#2a2418;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}',
+ '#lat-db .db-pithos .rlist li>button{flex:none;width:auto!important;height:22px;margin:0!important;padding:0 7px!important;border:1px solid #c9b28a!important;border-radius:999px!important;background:transparent!important;font:600 10px var(--mono,monospace)!important;letter-spacing:.06em;color:#6b5140!important}',
+ '#lat-db .db-pithos .rlist li>button:hover{background:#5a3f2c!important;color:#fbf5e6!important}',
+ '#lat-e>#qa-d-pc>summary{display:flex!important;align-items:center;flex-wrap:wrap;gap:2px 10px;list-style:none;position:relative;padding-right:34px!important}',
+ '#lat-e>#qa-d-pc>summary::-webkit-details-marker{display:none}',
+ '#lat-e>#qa-d-pc>summary::after{content:"+";position:absolute;right:12px;top:50%;transform:translateY(-50%);width:22px;height:22px;display:grid;place-items:center;border:1px solid rgba(90,63,44,.45);border-radius:50%;font:700 14px/1 var(--sans);color:#5a3f2c}',
+ '#lat-e>#qa-d-pc[open]>summary::after{content:"−"}',
+ '#lat-e>#qa-d-pc>summary .qa-ic{grid-row:span 2;flex:none;width:30px!important;height:30px!important;display:grid;place-items:center;border:1px solid #c9b28a;border-radius:50%;background:#f4ead2;order:0}',
+ '#lat-e>#qa-d-pc>summary .qa-ic svg{width:16px!important;height:16px!important;fill:none!important;stroke:var(--lc)!important;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}',
+ '#lat-e>#qa-d-pc>summary>div,#lat-e>#qa-d-pc>summary>span:not(.qa-ic),#lat-e>#qa-d-pc>summary>b{min-width:0}',
+ '#lat-e>#qa-d-pc>summary .qa-sk{flex:1 1 calc(100% - 44px);order:1;font:700 8.5px var(--mono,monospace);letter-spacing:.12em;text-transform:uppercase;color:var(--lc)}',
+ '#lat-e>#qa-d-pc>summary>b{order:2;margin-left:40px;font:700 15px/1.2 Georgia,serif;color:#2a2418}',
+ '#lat-e>#qa-d-pc>summary .qa-deus{order:3;font:600 9px var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase;color:#8a6f55}',
+ '#lat-e>#qa-d-pc .pctop>.k5{display:none!important}',
+ '#lat-e>#qa-d-pc .pctabs button{width:auto!important;margin:0!important;padding:3px 8px!important;font-size:9.5px!important;border-radius:999px!important}',
+ '#lat-e>#qa-d-pc .pcint{font:italic 11.5px/1.4 Georgia,serif!important;text-transform:none!important;letter-spacing:0!important;color:#6b5140!important}',
+ '#lat-e>#qa-d-pc .pcnovo{display:flex;flex-direction:column;gap:6px}',
+ '#lat-e>#qa-d-pc .pctabs button.on,#lat-e>#qa-d-pc .pctabs button[aria-selected="true"],#lat-e>#qa-d-pc .pctabs .on{background:#5a3f2c!important;color:#fbf5e6!important}',
+ '#lat-e>#qa-d-pc .pcnovo input{min-height:32px!important;height:32px;box-sizing:border-box;padding:0 10px!important;border:1px solid #c9b28a!important;border-radius:8px!important;background:#fffaf0!important;font:13px var(--sans)!important}',
+ '#lat-e>#qa-d-pc .pcnovo button{align-self:flex-start;width:auto!important;margin:0!important;padding:5px 14px!important;border-radius:8px!important}'
+].join('\n');document.head.appendChild(st);})();
+
+
+/* ======================= Foco do dia (ex-Ação do dia): termos mais claros no cartão da Arena ======================= */
+var AR_TERMOS={'linha de tiro · treinos e missões':'arena · foco e entregas','Ação do dia':'Foco do dia','minutos de foco hoje':'min de foco hoje','missões abertas':'entregas abertas',
+ 'frentes ativas':'projetos ativos','Treino na Arena · aguardando o alvo':'sem alvo definido','+ Novo treino':'+ Novo alvo','Um alvo antes de cada flecha.':'Qual é o próximo alvo?',
+ 'Escolha uma entrega concreta e o primeiro movimento. O fim do treino guarda o ponto de volta.':'Diga o que vai entregar e o primeiro passo. Ao encerrar, fica anotado onde você parou.',
+ 'Declarar o primeiro treino':'Definir alvo','Fim do treino · relatório do dia':'Encerrar o dia · resumo','Quadro da arena':'Alvos','Nenhum treino neste filtro.':'Nenhum alvo neste filtro.',
+ 'Ajustar a arena':'Ajustes do foco','Filtro: Hoje e pendentes':'Mostrando: hoje e pendentes'};
+function arTermos(){var a=document.getElementById('lat-arena');if(!a)return;var w=document.createTreeWalker(a,NodeFilter.SHOW_TEXT),n;
+ while(n=w.nextNode()){var t=n.textContent,k=t.trim();if(AR_TERMOS[k]){n.textContent=t.replace(k,AR_TERMOS[k]);}}}
+(function(){var t=null,mo=new MutationObserver(function(){if(t)return;t=requestAnimationFrame(function(){t=null;try{arTermos();}catch(e){}});});
+ var n=0,tt=setInterval(function(){var a=document.getElementById('lat-arena');if(a){mo.observe(a,{childList:true,subtree:true,characterData:true});arTermos();clearInterval(tt);}else if(++n>20)clearInterval(tt);},600);})();
+
+
+/* ======================= Tarefas e Missões em lista única checável =======================
+   Botão "lista única" no alto do mural: recolhe os cartões e mostra só os itens marcáveis, em uma lista corrida,
+   com a origem de cada um (chalé, diária, conselho, oráculo). Outro toque volta aos cartões. Fica guardado. */
+function mmListaOn(){try{return localStorage.getItem('astro_mm_lista')==='1';}catch(e){return false;}}
+function mmListaAplica(){var m=document.querySelector('#tp-real #mm-box');if(!m)return;var on=mmListaOn();if(m.classList.contains('mm-lista')!==on)m.classList.toggle('mm-lista',on);
+ var b=m.querySelector(':scope>.mm-modo');if(!b){b=document.createElement('button');b.type='button';b.className='mm-modo';m.insertBefore(b,m.firstChild);}
+ var t=on?'▦ cartões':'☰ lista única';if(b.textContent!==t){b.textContent=t;b.title=on?'voltar aos cartões':'recolher em uma lista só, para marcar';b.setAttribute('aria-pressed',String(on));}}
+tpDobAplica=(function(f0){return function(){var r=f0.apply(this,arguments);try{mmListaAplica();}catch(e){}return r;};})(tpDobAplica);
+document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('#tp-real .mm-modo');if(!b)return;e.preventDefault();e.stopPropagation();
+ try{localStorage.setItem('astro_mm_lista',mmListaOn()?'0':'1');}catch(z){}mmListaAplica();},true);
+setTimeout(function(){try{mmListaAplica();}catch(e){}},1500);
+(function(){var L='#tp-real #mm-box.mm-lista';var st=document.createElement('style');st.id='mm-lista-css';st.textContent=[
+ '#tp-real #mm-box>.mm-modo{order:-1;align-self:flex-end;margin:0 0 -6px!important;padding:4px 11px!important;width:auto!important;border:1px solid #5a3f2c!important;border-radius:999px!important;background:#f4ead2!important;color:#5a3f2c!important;font:700 9px var(--mono,monospace)!important;letter-spacing:.14em;text-transform:uppercase;cursor:pointer}',
+ '#tp-real #mm-box>.mm-modo:hover,#tp-real #mm-box>.mm-modo[aria-pressed="true"]{background:#5a3f2c!important;color:#fbf5e6!important}',
+ L+'{gap:0!important}',
+ L+'>.mm-modo{margin-bottom:8px!important}',
+ L+' .mm-grp,'+L+' .mm-prof,'+L+' .tp-dobra{display:none!important}',
+ L+' :is(.mm-col,.mm-gab){order:2!important;display:block!important;margin:0!important;padding:0 12px!important;background:#fbf5e6!important;border:1px solid #d6c69c!important;border-top:0!important;border-bottom:0!important;border-radius:0!important;box-shadow:none!important}',
+ L+' .mm-chale{order:1!important;border-top:3px solid #5a3f2c!important;border-radius:10px 10px 0 0!important;padding-top:8px!important}',
+ L+' .mm-quest{order:2!important}'+L+' .mm-gab{order:3!important}',
+ L+' .mm-orac-col{order:4!important;border-bottom:1px solid #d6c69c!important;border-radius:0 0 10px 10px!important;padding-bottom:8px!important}',
+ L+' :is(.mm-col,.mm-gab)::before,'+L+' :is(.mm-col,.mm-gab)::after{display:none!important}',
+ L+' :is(.mm-col,.mm-gab)>:not(ul){display:none!important}',
+ L+' :is(.mm-col,.mm-gab)>ul{margin:0!important;max-height:none!important;-webkit-mask-image:none!important;mask-image:none!important;overflow:visible!important;gap:0!important}',
+ L+' :is(.mm-col,.mm-gab)>ul>li{margin:0!important;padding:7px 2px!important;border:0!important;border-bottom:1px dashed #e0d1ad!important;border-radius:0!important;background:none!important;box-shadow:none!important;display:flex;align-items:center;gap:8px}',
+ L+' .mm-gab>ul>li small,'+L+' .mm-gab>ul>li .mm-gbar{display:none!important}',
+ L+' .mm-gab>ul>li b{font:400 13.5px var(--sans)!important;color:#2a2418}',
+ L+' .mm-orac-col li:has(.mm-or-in:placeholder-shown){display:none!important}',
+ L+' .mm-orac-col .mm-or-in{border:0!important;background:none!important;padding:0!important;height:auto!important;box-shadow:none!important}',
+ L+' li::after{margin-left:auto;flex:none;font:700 8px var(--mono,monospace);letter-spacing:.12em;text-transform:uppercase;color:#a08b6c}',
+ L+' .mm-chale li::after{content:"chalé"}'+L+' .mm-quest li::after{content:"diária"}'+L+' .mm-gab li::after{content:"conselho"}'+L+' .mm-orac-col li::after{content:"oráculo"}',
+ L+' li .mm-x{order:3}',
+ L+' :is(.mm-col,.mm-gab)>ul>li.mm-vz,'+L+' :is(.mm-col,.mm-gab)>ul:empty{display:none!important}'
+].join('\n');document.head.appendChild(st);})();
+
+
+/* ======================= Frontão e topo do templo direito no mesmo padrão das molduras =======================
+   Frontão: triângulo e letras na cor da moldura (ocre), friso de dentículos logo abaixo e pilastras com capitel e base
+   ladeando o banner, no lugar da grega dourada. Templo direito: a Concha vira a cornija (papel do templo, filetes e
+   tríglifos na cor da moldura) e assenta direto sobre o friso de dentículos. */
+function frontaoMoldura(){var h=document.getElementById('hero-box');if(!h||h.dataset.mold)return;var im;try{im=colSvgs({st:'ionica',c:'#f6d99a',k:'#8a5a14'});}catch(e){return;}
+ h.dataset.mold='1';h.style.setProperty('--neo-cap',im.cap);h.style.setProperty('--neo-fuste',im.fuste);h.style.setProperty('--neo-base',im.base);h.style.setProperty('--neo-ent',im.ent);h.style.setProperty('--col-c','#f6d99a');h.style.setProperty('--col-k','#8a5a14');}
+setTimeout(function(){try{frontaoMoldura();}catch(e){}},900);setTimeout(function(){try{frontaoMoldura();}catch(e){}},3000);
+(function(){var st=document.createElement('style');st.id='frontao-mold-css';st.textContent=[
+ '#hero-box[data-mold] .neo-frontao{height:auto!important}',
+ '#hero-box[data-mold] .neo-frontao svg path,#hero-box[data-mold] .neo-frontao svg circle{stroke:var(--col-k)!important}',
+ '#hero-box[data-mold] .neo-frontao svg path:first-child{fill:#f4ead2!important;stroke-width:2.6!important}',
+ '#hero-box[data-mold] .neo-frontao svg circle[r="7"]{fill:var(--col-k)!important}',
+ '#hero-box[data-mold] .neo-frontao svg text{fill:var(--col-k)!important}',
+ '#hero-box[data-mold] .neo-arquitrave{height:40px!important;margin:-2px 0 0!important;border:1px solid var(--col-k)!important;border-bottom:0!important;background:var(--neo-ent) 0 0/240px 40px repeat-x,#f4ead2!important;box-shadow:none!important}',
+ '#hero-box[data-mold] .bn-slot{position:relative;margin:0 14px!important;padding:0 46px 0!important;border:1px solid var(--col-k);border-top:0;background:',
+ '  var(--neo-cap) 2px 0/42px 29px no-repeat,var(--neo-cap) calc(100% - 2px) 0/42px 29px no-repeat,',
+ '  var(--neo-fuste) 2px 29px/42px calc(100% - 44px) no-repeat,var(--neo-fuste) calc(100% - 2px) 29px/42px calc(100% - 44px) no-repeat,',
+ '  var(--neo-base) 2px 100%/42px 15px no-repeat,var(--neo-base) calc(100% - 2px) 100%/42px 15px no-repeat,#f4ead2!important}',
+ '#hero-box[data-mold] .vx-hero::after{display:none!important}',
+ '#hero-box[data-mold] .vx-hero{border:0!important;border-radius:0!important;box-shadow:none!important}',
+ /* templo direito: Concha como cornija */
+ '#tp-painel:has(#tp-real) #tp-friso{background:var(--neo-papel,none),#f4ead2!important;border:0!important;border-top:1px solid var(--tp-k,#9a4a30)!important;border-bottom:1px solid var(--tp-k,#9a4a30)!important;',
+ ' box-shadow:inset 0 3px 0 #f4ead2,inset 0 4px 0 var(--tp-k,#9a4a30)!important;padding:6px 0 0!important}',
+ '#tp-friso .tf-met{padding:2px 10px 3px!important;border-bottom:1px solid var(--tp-k,#9a4a30)!important}',
+ '#tp-friso .tf-m{border-radius:0!important;padding:3px 0!important;background:none!important;box-shadow:none!important}',
+ '#tp-friso .tf-m.prox{background:#f4ead2!important;border:1.5px solid var(--tp-k,#9a4a30)!important;box-shadow:0 0 0 2px #f4ead2,0 0 0 3px var(--tp-k,#9a4a30)!important;border-radius:2px!important;margin:0 4px}',
+ '#tp-friso .tf-m b{font:700 11px Georgia,serif!important;letter-spacing:.04em}',
+ '#tp-friso .tf-tri{width:10px!important;background:repeating-linear-gradient(90deg,var(--tp-k,#9a4a30) 0 2px,transparent 2px 4px)!important;opacity:.9!important;margin:3px 2px!important}',
+ '#tp-friso .tf-leg{justify-content:center;padding:4px 10px 5px!important;background:none!important}',
+ '#tp-friso .tf-leg span{flex:0 1 auto!important;font:italic 11px Georgia,serif!important;color:#5a3f2c!important}',
+ '#tp-entab .te-band{box-shadow:none!important;border-left:0;border-right:0}',
+ /* base do painel ocupa o pé mesmo com pouco conteúdo */
+ '#tp-painel:has(#tp-real) #tp-real{flex:1 0 auto;display:flex;flex-direction:column}',
+ '#tp-real>:is(#tm-painel,#recreio):not([hidden]){flex:1 0 auto}'
+].join('\n');document.head.appendChild(st);})();
+
 })();
 </script>
 </body>
