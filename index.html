@@ -4784,6 +4784,8 @@ dialog.ave-dlg::before{content:'';display:block;height:12px;margin:6px 8px 0;bac
 .mm .mm-gbar{display:block;height:4px;border-radius:999px;background:#e6d8b6;overflow:hidden}
 .mm .mm-gbar i{display:block;height:100%;background:#5f8a3f}
 .mm .mm-gq.venc .mm-gbar i{background:#b4463a}
+.cv-rec header .cv-bio{display:block;font:italic 11.5px Georgia,serif;color:#8a6f55}
+.ave-dlg .ad-corvo footer{}
 </style>
 </head>
 <body>
@@ -14934,6 +14936,7 @@ function satAvatar(humor){humor=humor||'calmo';
   '<path d="M17 31c-5-1-8-4-8-7 3 0 6 1 9 3M47 31c5-1 8-4 8-7-3 0-6 1-9 3" fill="#e2b98c"/>'+
   '<path d="M18 33c0-10 6-15 14-15s14 5 14 15c0 9-5 17-14 17s-14-8-14-17z" fill="#ecc89c"/>'+
   '<path d="M18.5 27c-1-4 1-7 4-7-1-3 2-5 4.5-3.5 1-2.6 4-3 5.5-1 1.6-2 4.6-1.6 5.4 1 2.6-1.5 5.4.5 4.4 3.5 3 0 4.8 3 3.8 7-2-3-4-3-5.8-2-1.5-2.4-4-2.4-5.6-.6-1.6-1.8-4.4-1.8-5.6.2-1.8-1.4-4-1.2-5.2.8-1.6-1-3.6-.6-5.4 1.6z" fill="#7a5532"/>'+
+  '<path d="M19.5 25c.6-7.5 5.6-11.5 12.5-11.5S43.9 17.5 44.5 25c-4-1.6-8.2-2.3-12.5-2.3S23.5 23.4 19.5 25z" fill="#5b8db8"/><path d="M43.5 23.6c4.4-.3 8.2.6 10.5 2.6-3.4 1.2-7.6 1.4-11.4.4" fill="#3f6f99"/><path d="M32 14v3" stroke="#f6ecd4"/><text x="28.6" y="22" font-size="5.5" font-family="Georgia,serif" fill="#f6ecd4" stroke="none">♒</text>'+
   sobr+olho+'<path d="M31 37.5c.6 1 1.4 1 2 0"/>'+boca+
   '<path d="M28 50c1 4 3 6 4 7 1-1 3-3 4-7" fill="#7a5532"/>'+
   '<g transform="translate(43 44) rotate(-18)"><rect x="0" y="0" width="16" height="9" rx="1.5" fill="#d9b46a"/><path d="M3 0v9M6 0v8M9 0v7M12 0v6" stroke="#8a6232" stroke-width="1"/></g></svg>';}
@@ -14967,19 +14970,19 @@ function satSessaoHTML(R){var hj=hoje(),G={};R.forEach(function(r){(G[r.s.date]=
       return '<li><span class="sat-n">'+esc(i.n)+'</span><div><b>'+esc(i.cnj)+'</b><small>'+esc(i.cl.replace(/APELAÇÃO CÍVEL/,'ApCiv').replace(/AGRAVO DE INSTRUMENTO/,'AI').replace(/REMESSA NECESSÁRIA CÍVEL/,'RemNec'))+' · '+esc(i.as)+(i.jg?' · '+esc(i.jg):'')+(i.dupla?' · em dupla':'')+(i.pend?' · '+i.pend+' pendência'+(i.pend>1?'s':''):'')+'</small></div><button type="button" class="sat-cp" data-satcp="'+esc(i.cnj)+'" title="copiar o número">copiar</button></li>';}).join('')+'</ul></details>':'')+'</div>';}).join('');
   return '<section class="sat-ses"><header><b>Sessão '+esc(g.s.nome)+'</b><span>'+[m.entregaMinutas?'entrega '+gabDM(m.entregaMinutas):'',gabPrazo(g.s,'corrigir')?'liberação '+gabDM(gabPrazo(g.s,'corrigir')):''].filter(Boolean).join(' · ')+(g.s.date===hj?' · <em>hoje</em>':'')+'</span></header>'+linhas+'</section>';}).join('');}
 function satPainelHTML(){var c=satCfg(),R=gabResumo(),F=satFala();
- var h=satFicha()+'<div class="sat-fala sat-'+F.h+'"><span class="sat-k">Kálamo diz</span><p>'+esc(F.t)+'</p></div>';
+ var h=satFicha()+'<div class="sat-fala sat-'+F.h+'"><span class="sat-k">Sully diz</span><p>'+esc(F.t)+'</p></div>';
  h+='<div class="sat-gab"><header><div><span class="sat-k">quests do gabinete · fecham sozinhas</span><b>Designações nas pautas do Ex Officio</b></div><div class="sat-acoes"><button type="button" data-satatt>'+(GAB.carregando?'farejando…':'atualizar')+'</button><a href="https://gabinete-cmt.com/office" target="_blank" rel="noopener">abrir Ex Officio ↗</a></div></header>'+
   '<p class="sat-meta">'+(GAB.em?'lido às '+new Date(GAB.em).toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'}):'ainda não lido')+(GAB.erro?' · último faro falhou ('+esc(GAB.erro)+')':'')+' · farejando por <input data-satnome value="'+esc(c.nome)+'" size="9" aria-label="Seu nome na pauta"></p>'+
   (R.length?satSessaoHTML(R):'<p class="sat-vz">'+(GAB.em?'Nenhum processo com o seu nome nas pautas publicadas a partir de hoje.':'Sem leitura ainda.')+'</p>')+'</div>';
  return h;}
 /* ---------- aba no painel direito ---------- */
 PD_ICON.sat='<path d="M8.5 8C7 6.5 6.5 4.5 7.5 3c.4 1.4 1.2 2.4 2.6 3.2M15.5 8c1.5-1.5 2-3.5 1-5-.4 1.4-1.2 2.4-2.6 3.2"/><path d="M7 13c0-3.6 2.2-5.6 5-5.6s5 2 5 5.6c0 3.4-2 6.4-5 6.4s-5-3-5-6.4z"/><path d="M10 12.5h.01M14 12.5h.01M10.6 15.6c.9.6 1.9.6 2.8 0"/>';
-if(!PD_ABAS.some(function(a){return a[0]==='sat';}))PD_ABAS.push(['sat','Kálamo · sátiro']);
+if(!PD_ABAS.some(function(a){return a[0]==='sat';}))PD_ABAS.push(['sat','Sully · sátiro']);
 function satAba(){var pd=document.getElementById('painel-dir');if(!pd||pd.querySelector('[data-pane="sat"]'))return;
  var ab=pd.querySelector('.pd-abas'),nv=pd.querySelector('.pd-nav'),cp=pd.querySelector('.pd-corpo');
- if(ab){var b=document.createElement('button');b.type='button';b.setAttribute('role','tab');b.className='pd-ic';b.dataset.pd='sat';b.title='Kálamo · sátiro';b.setAttribute('aria-label',b.title);
+ if(ab){var b=document.createElement('button');b.type='button';b.setAttribute('role','tab');b.className='pd-ic';b.dataset.pd='sat';b.title='Sully · sátiro';b.setAttribute('aria-label',b.title);
   b.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'+PD_ICON.sat+'</svg>';ab.appendChild(b);}
- if(nv){var n=document.createElement('button');n.type='button';n.setAttribute('role','tab');n.className='pd-nb';n.dataset.pd='sat';n.textContent='Kálamo · sátiro';nv.appendChild(n);}
+ if(nv){var n=document.createElement('button');n.type='button';n.setAttribute('role','tab');n.className='pd-nb';n.dataset.pd='sat';n.textContent='Sully · sátiro';nv.appendChild(n);}
  if(cp){var p=document.createElement('div');p.className='pd-pane';p.dataset.pane='sat';p.hidden=true;cp.appendChild(p);}}
 function satPinta(){var pd=document.getElementById('painel-dir'),p=pd&&pd.querySelector('[data-pane="sat"]');if(!p||p.hidden)return;var a=document.activeElement;if(a&&p.contains(a)&&a.tagName==='INPUT')return;
  var abertos=[].map.call(p.querySelectorAll('details[open]'),function(d,i){return i;}),h='<div id="sat-painel">'+satPainelHTML()+'</div>';
@@ -14994,14 +14997,14 @@ document.addEventListener('click',function(e){var t=e.target;if(!t.closest)retur
 document.addEventListener('change',function(e){var i=e.target;if(!i||i.dataset.satnome==null)return;var v=i.value.trim();if(!v)return;satCfg().nome=v;try{grava();}catch(z){}gabBusca(true);});
 /* botão na pílula do índice */
 function satIndice(){var n=document.getElementById('tt-indice'),p=n&&n.querySelector('.pd-pilula');if(!p)return;var b=p.querySelector('[data-ic="sat"]');
- if(!b){b=document.createElement('button');b.type='button';b.className='tt-ic sat-ic';b.dataset.ic='sat';b.dataset.satir='1';b.title='Kálamo · sátiro e designações do gabinete';b.setAttribute('aria-label',b.title);p.appendChild(b);}
- var R=gabResumo(),rest=0,venc=false;R.forEach(function(r){rest+=Math.max(0,r.meta-r.fh);if(r.venc&&r.rest)venc=true;});b.title='Kálamo · sátiro e designações do gabinete'+(rest?' · faltam '+rest+' para a meta de hoje':'');
+ if(!b){b=document.createElement('button');b.type='button';b.className='tt-ic sat-ic';b.dataset.ic='sat';b.dataset.satir='1';b.title='Sully · sátiro, ritos e designações';b.setAttribute('aria-label',b.title);p.appendChild(b);}
+ var R=gabResumo(),rest=0,venc=false;R.forEach(function(r){rest+=Math.max(0,r.meta-r.fh);if(r.venc&&r.rest)venc=true;});b.title='Sully · sátiro, ritos e designações'+(rest?' · faltam '+rest+' para a meta de hoje':'');
  var h='<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'+PD_ICON.sat+'</svg>'+(rest?'<em class="'+(venc?'venc':'')+'">'+rest+'</em>':'');
  if(b.innerHTML!==h)b.innerHTML=h;if(p.lastElementChild!==b)p.appendChild(b);}
 (function(){var i0=ttIcones;ttIcones=function(){i0();try{satIndice();}catch(e){}};})();
 /* ---------- no Posto de comando ---------- */
 function satOpTop(){var F=satFala(),nv=satNivel(satCfg().xp);
- return '<button type="button" class="op-sat sat-'+F.h+'" data-satir="1" title="'+esc(F.t)+'">'+satAvatar(F.h)+'<span><small>Kálamo · nível '+nv.n+'</small><b>'+esc(F.t)+'</b></span></button>';}
+ return '<button type="button" class="op-sat sat-'+F.h+'" data-satir="1" title="'+esc(F.t)+'">'+satAvatar(F.h)+'<span><small>Sully Brookhaven · nível '+nv.n+'</small><b>'+esc(F.t)+'</b></span></button>';}
 function satQOk(R){return R.filter(function(r){return r.meta&&r.fh>=r.meta;}).length;}
 function satOpGrupo(){var R=gabResumo().filter(function(r){return r.rest||r.fh;}).slice(0,3);if(!R.length&&!GAB.em)return '';
  return '<div class="op-grp op-gab"><span class="op-k">quests do gabinete · '+satQOk(R)+'/'+R.filter(function(r){return r.meta;}).length+'</span><ul>'+(R.map(function(r){var cls=r.venc&&r.rest?'venc':(r.rest&&r.dias<=2?'perto':'');
@@ -15045,10 +15048,10 @@ function corvoPilha(){var p=document.getElementById('corvo-pilha');if(!p){p=docu
 function corvoDiz(linhas,gab){if(!linhas.length)return;var c=corvoCfg(),hm=new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
  c.log.unshift({d:hoje(),h:hm,t:linhas});if(c.log.length>25)c.log.length=25;try{grava();}catch(e){}
  var p=corvoPilha(),d=document.createElement('section');d.className='cv-card';
- d.innerHTML=corvoAve()+'<div class="cv-tx"><span class="cv-k">Kórax · corvo de Apolo · '+hm+'</span><b>Crá!</b><ul>'+linhas.map(function(l){return '<li>'+esc(l)+'</li>';}).join('')+'</ul>'+
+ d.innerHTML=corvoAve()+'<div class="cv-tx"><span class="cv-k">Polly McCaw · corvo de Apolo · '+hm+'</span><b>Crá!</b><ul>'+linhas.map(function(l){return '<li>'+esc(l)+'</li>';}).join('')+'</ul>'+
   '<div class="cv-bt"><button type="button" data-cvok>ok, ouvi</button>'+(gab?'<button type="button" data-satir="1" data-cvok>ver quests</button>':'')+'</div></div>';
  p.appendChild(d);while(p.children.length>3)p.firstChild.remove();
- try{if(window.Notification&&Notification.permission==='granted'&&document.hidden)new Notification('Kórax · corvo de Apolo',{body:linhas.join('\n'),tag:'korax-'+Date.now()});}catch(e){}
+ try{if(window.Notification&&Notification.permission==='granted'&&document.hidden)new Notification('Polly McCaw · corvo de Apolo',{body:linhas.join('\n'),tag:'korax-'+Date.now()});}catch(e){}
  try{satPinta();}catch(e){}}
 function corvoChecar(){if(!GAB.em)return;var c=corvoCfg(),hj=hoje(),am=gabMais(hj,1),i=0,a=opMin(),L=[],gab=false,util=gabUtil(hj);
  while(!gabUtil(am)&&i<15){am=gabMais(am,1);i++;}
@@ -15068,7 +15071,7 @@ function corvoChecar(){if(!GAB.em)return;var c=corvoCfg(),hj=hoje(),am=gabMais(h
  /* meta do dia à tarde */
  var meta=0,fh=0;R.forEach(function(r){meta+=r.meta;fh+=Math.min(r.fh,r.meta);});
  if(util&&meta&&fh<meta&&a>=16*60)uma('m16|'+hj,'São 16h e a meta de hoje está em '+fh+'/'+meta+'. Faltam '+(meta-fh)+'.',true);
- if(util&&meta&&fh>=meta)uma('mok|'+hj,'Meta de hoje cumprida ('+meta+'). Kálamo já está tocando a siringe.',false);
+ if(util&&meta&&fh>=meta)uma('mok|'+hj,'Meta de hoje cumprida ('+meta+'). Sully já está tocando a flauta.',false);
  /* agenda do gabinete */
  GAB.agenda.forEach(function(g){var hm=g.h?rtMin(g.h):null;
   if(g.d===hj){if(hm!=null&&hm-a<=30&&hm-a>=0)uma('agh|'+g.t+'|'+g.d,'Em '+(hm-a)+' min: '+g.t+'.',false);else uma('ag|'+g.t+'|'+g.d,'Hoje: '+g.t+(g.h?' às '+g.h:'')+'.',false);}
@@ -15080,7 +15083,7 @@ satXP=(function(f0){return function(){var r=f0.apply(this,arguments);try{corvoCh
 setInterval(function(){try{corvoChecar();}catch(e){}},60000);
 /* recados do corvo no painel do sátiro */
 satPainelHTML=(function(f0){return function(){var h=f0.apply(this,arguments),c=corvoCfg(),perm=window.Notification?Notification.permission:'indisp';
- var rc='<div class="cv-rec"><header>'+corvoAve()+'<div><span class="sat-k">recados do corvo</span><b>Kórax, mensageiro de Apolo</b></div>'+
+ var rc='<div class="cv-rec"><header>'+corvoAve()+'<div><span class="sat-k">recados do corvo</span><b>Polly McCaw, corvo de Apolo</b></div>'+
   (perm==='default'?'<button type="button" data-cvperm>avisar também fora da aba</button>':perm==='granted'?'<small>avisa também fora da aba</small>':'')+'</header><ul>'+
   (c.log.slice(0,8).map(function(x){return '<li><span>'+esc(gabDM(x.d)+' · '+x.h)+'</span><div>'+x.t.map(esc).join('<br>')+'</div></li>';}).join('')||'<li class="cv-vz">nenhum recado ainda</li>')+'</ul></div>';
  return h.replace('<div class="sat-gab">',rc+'<div class="sat-gab">');};})(satPainelHTML);
@@ -15146,7 +15149,7 @@ function opReforma(){var o=document.getElementById('modo-op');if(!o||o.dataset.g
 (function(){var m0=opMonta;opMonta=function(){var o=m0.apply(this,arguments);try{opReforma();}catch(e){console.error(e);}return o;};
  var p0=opPinta;opPinta=function(){p0.apply(this,arguments);var o=document.getElementById('modo-op');if(!o||!document.body.classList.contains('op-on'))return;
   var a=document.activeElement,foco=a&&o.contains(a)&&/INPUT|TEXTAREA/.test(a.tagName);
-  var set=function(sel,h){var n=o.querySelector(sel);if(n&&n.innerHTML!==h&&!(foco&&n.contains(a)))n.innerHTML=h;};
+  var set=function(sel,h){var n=o.querySelector(sel);if(n&&n._h!==h&&!(foco&&n.contains(a))){n.innerHTML=h;n._h=h;}};
   try{set('.op-ritos',opRitosHTML());}catch(e){}try{set('.op-estudo',opEstudoHTML());}catch(e){console.error(e);}};})();
 /* ---------- Anais do dia (registro diário de ações e notas) no rodapé, ao lado do registro ---------- */
 function rodLog(){var top=document.querySelector('#rod-apps .rod-top'),rd=document.querySelector('.regdia');if(!top||!rd)return;
@@ -15179,15 +15182,15 @@ function aveDlg(){var d=document.getElementById('ave-dlg');if(d)return d;d=docum
  d.addEventListener('close',limpa);return d;}
 function aveAvisa(quem,tit,linhas,gab){if(!linhas||!linhas.length)return;var d=aveDlg(),L=d.querySelector('.ad-lista'),s=document.createElement('section');
  s.className='ad-msg ad-'+quem;if(gab)s.dataset.gab='1';
- s.innerHTML=(quem==='corvo'?corvoAve():satAvatar('festa'))+'<div><span class="ad-k">'+esc(tit)+'</span><b>'+(quem==='corvo'?'Crá!':'Kálamo diz')+'</b><ul>'+linhas.map(function(l){return '<li>'+esc(l)+'</li>';}).join('')+'</ul></div>';
+ s.innerHTML=(quem==='corvo'?corvoAve():satAvatar('festa'))+'<div><span class="ad-k">'+esc(tit)+'</span><b>'+(quem==='corvo'?'Crá! Entrega expressa.':'Sully diz')+'</b><ul>'+linhas.map(function(l){return '<li>'+esc(l)+'</li>';}).join('')+'</ul></div>';
  L.appendChild(s);while(L.children.length>4)L.firstChild.remove();
  d.querySelector('.ad-q').hidden=!L.querySelector('[data-gab]');
  if(!d.open){try{d.showModal();}catch(e){d.setAttribute('open','');}}
  try{if(window.Notification&&Notification.permission==='granted'&&document.hidden)new Notification(tit,{body:linhas.join('\n'),tag:'astro-'+quem+'-'+Date.now()});}catch(e){}}
 corvoDiz=function(linhas,gab){if(!linhas.length)return;var c=corvoCfg(),hm=new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
  c.log.unshift({d:hoje(),h:hm,t:linhas});if(c.log.length>25)c.log.length=25;try{grava();}catch(e){}
- aveAvisa('corvo','Kórax · corvo de Apolo · '+hm,linhas,gab);try{satPinta();}catch(e){}};
-satToast=function(t){aveAvisa('satiro','Kálamo · sátiro do Hékatos',[t],true);};
+ aveAvisa('corvo','Polly McCaw · corvo de Apolo · '+hm,linhas,gab);try{satPinta();}catch(e){}};
+satToast=function(t){aveAvisa('satiro','Sully Brookhaven · sátiro do Hékatos',[t],true);};
 /* cada cartão do Posto vira um pequeno templo: frontão gravado, colunas com capitel e base na cor do seu deus,
    numeral grego de sorte no topo e uma placa com a foto do lugar do acampamento */
 var OP_TEMPLO={
@@ -15219,9 +15222,90 @@ function mmGabHTML(){var R=[];try{R=gabResumo().filter(function(r){return r.rest
    '<span class="mm-gbar"><i style="width:'+(r.tot?Math.round(r.ok/r.tot*100):0)+'%"></i></span></div></li>';}).join('');
  return '<section class="mm-gab"><header><div><span class="mm-k">Quests do gabinete</span><small>Arena sob Têmis · designações nas pautas do Ex Officio · fecham sozinhas ao bater a meta · +10 XP por entrega</small></div>'+
   '<span class="mm-gcont">'+(meta?fh+'/'+meta+' hoje':'—')+'</span><button type="button" data-satir="1">ver processos</button></header>'+
-  '<ul>'+(li||'<li class="mm-vz">'+(GAB.em?'Nada com o seu nome em aberto nas pautas publicadas.':'Kálamo ainda está farejando as pautas…')+'</li>')+'</ul></section>';}
+  '<ul>'+(li||'<li class="mm-vz">'+(GAB.em?'Nada com o seu nome em aberto nas pautas publicadas.':'Sully ainda está farejando as pautas…')+'</li>')+'</ul></section>';}
 mmHTML=(function(f0){return function(){var h=f0.apply(this,arguments),g='';try{g=mmGabHTML();}catch(e){}return h.replace('<div class="mm-g">',g+'<div class="mm-g">');};})(mmHTML);
 satRepinta=(function(f0){return function(){f0.apply(this,arguments);try{var b=document.getElementById('mm-box'),a=document.activeElement;if(b&&!(a&&b.contains(a)&&a.tagName==='INPUT')){var s=b.querySelector('.mm-gab'),h=mmGabHTML();if(s){var t=document.createElement('div');t.innerHTML=h;if(s.outerHTML!==t.firstChild.outerHTML)s.replaceWith(t.firstChild);}else mmPinta();}}catch(e){}};})(satRepinta);
+/* ======================= papéis: Kórax = gabinete; Kálamo = a vida do Hékatos =======================
+   O corvo é o mensageiro dos deuses para quem o Chase faz umas pontas: só ele fala do gabinete.
+   O sátiro cuida do resto: ritos, estudo, revisões e foco. */
+function satDia(){var H=S.hab||[],hj=hoje(),f=H.filter(function(x){return (x.hist||[]).indexOf(hj)>=0;}),p=H.filter(function(x){return (x.hist||[]).indexOf(hj)<0;});
+ var m=0,meta=90,disc='',rv=[],fo=null,fn=0;try{m=ccHojeMin();meta=CONC.minDia||90;}catch(e){}
+ try{var at=blocoAtual();disc=at?discNome(at):'';}catch(e){}
+ try{rv=((S.est&&S.est.mapas)||[]).filter(function(x){return !x.next||diaN(x.next)<=hojeN();});}catch(e){}
+ try{fo=tdD().foco;fn=tdHojeFoco().n;}catch(e){}
+ return {H:H,feitos:f,pend:p,min:m,meta:meta,disc:disc,rv:rv,foco:fo,blocos:fn};}
+function satLista(arr,n){var nomes=arr.slice(0,n).map(function(x){return x.nome||x;});return nomes.join(', ')+(arr.length>n?' e mais '+(arr.length-n):'');}
+satHumor=function(){var D=satDia(),h=new Date().getHours();
+ var ritosOk=D.H.length&&!D.pend.length,estOk=D.min>=D.meta;
+ if(ritosOk&&estOk)return 'festa';
+ if(h>=21&&D.min===0&&D.pend.length>D.H.length/2)return 'panico';
+ if((h>=18&&D.pend.length)||(h>=15&&D.min===0)||D.rv.length>2)return 'alerta';
+ return 'calmo';};
+satFala=function(){var D=satDia(),h=new Date().getHours(),f=[];
+ f.push(h<12?'Bom dia, cara.':h<18?'Boa tarde, cara.':'Noite, cara.');
+ if(D.foco)f.push('Você está em foco: '+(D.foco.rot||'bloco')+'. Fico de olho nas harpias.');
+ if(D.H.length){if(!D.pend.length)f.push('Todos os '+D.H.length+' ritos de hoje feitos.');else f.push('Ritos: '+D.feitos.length+'/'+D.H.length+'. Falta'+(D.pend.length>1?'m':'')+' '+satLista(D.pend,3)+'.');}
+ if(D.min>=D.meta)f.push('Esfinge: '+D.min+' min hoje, meta cumprida.');
+ else f.push('Esfinge: '+D.min+'/'+D.meta+' min hoje'+(D.disc?'; a flecha da vez é '+D.disc:'')+'.');
+ if(D.rv.length)f.push(D.rv.length+' revis'+(D.rv.length>1?'ões vencem':'ão vence')+' hoje.');
+ if(D.blocos)f.push(D.blocos+' bloco'+(D.blocos>1?'s':'')+' de foco no escudo.');
+ return {h:satHumor(),t:f.join(' ')};};
+/* recados do corvo que não precisam de diálogo (entregas): ficam só nos recados */
+function corvoNota(t){var c=corvoCfg(),hm=new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});c.log.unshift({d:hoje(),h:hm,t:[t]});if(c.log.length>25)c.log.length=25;}
+satXP=function(){var c=satCfg(),hj=hoje(),antes=satNivel(c.xp).n,ganho=0,novos={};
+ GAB.ses.forEach(function(s){s.itens.forEach(function(i){if(!i.em)return;var k=s.date+'|'+i.cnj+'|'+i.p;if(c.feitos[k])return;c.feitos[k]=s.date;
+  if(c.semente){ganho+=10;var nk=i.p+'|'+s.date;novos[nk]=(novos[nk]||0)+1;}});});
+ if(!c.semente)c.semente=hj;
+ var R=gabResumo(),meta=0,fh=0;R.forEach(function(r){meta+=r.meta;fh+=Math.min(r.fh,r.meta);});
+ if(meta>0&&fh>=meta&&!c.metas[hj]){c.metas[hj]=1;ganho+=30;}
+ Object.keys(c.feitos).forEach(function(k){if(c.feitos[k]<gabMais(hj,-90))delete c.feitos[k];});
+ Object.keys(c.metas).forEach(function(k){if(k<gabMais(hj,-60))delete c.metas[k];});
+ var ks=Object.keys(novos);if(ks.length)corvoNota('Entregas registradas no gabinete: '+ks.map(function(k){var p=k.split('|'),n=novos[k];return n+' '+(p[0]==='minutar'?'minuta'+(n>1?'s':''):'correç'+(n>1?'ões':'ão'))+' ('+gabDM(p[1])+')';}).join(', ')+'. +'+(ganho)+' XP para o Sully.');
+ if(ganho){c.xp+=ganho;var nv=satNivel(c.xp);if(nv.n>antes)satToast('Subi para o nível '+nv.n+' · '+nv.nome+'. Sua trilha está ficando mais segura, Hékatos.');}
+ try{grava();}catch(e){}try{corvoChecar();}catch(e){console.error(e);}};
+/* XP da vida: rito +5, cada 10 min de estudo +2, bloco de foco +5, revisão feita +3 */
+function satPessoal(){var c=satCfg(),hj=hoje(),D=satDia();c.dia=c.dia||{};
+ var rv=0;try{rv=((S.est&&S.est.mapas)||[]).filter(function(x){return x.ult===hj;}).length;}catch(e){}
+ var agora={r:D.feitos.length,m:Math.floor(D.min/10),f:D.blocos,v:rv};
+ if(!c.pesSeed){c.pesSeed=hj;c.dia[hj]=agora;try{grava();}catch(e){}return;}
+ var st=c.dia[hj]||(c.dia[hj]={r:0,m:0,f:0,v:0}),ganho=0,antes=satNivel(c.xp).n;
+ ganho+=Math.max(0,agora.r-st.r)*5+Math.max(0,agora.m-st.m)*2+Math.max(0,agora.f-st.f)*5+Math.max(0,agora.v-(st.v|0))*3;
+ c.dia[hj]={r:Math.max(st.r,agora.r),m:Math.max(st.m,agora.m),f:Math.max(st.f,agora.f),v:Math.max(st.v|0,agora.v)};
+ Object.keys(c.dia).forEach(function(k){if(k<gabMais(hj,-3))delete c.dia[k];});
+ if(ganho){c.xp+=ganho;var nv=satNivel(c.xp);if(nv.n>antes)satToast('Subi para o nível '+nv.n+' · '+nv.nome+'. Cada rito seu é um passo meu.');try{grava();}catch(e){}try{satPinta();}catch(e){}}}
+/* lembretes do sátiro: só da vida, uma vez por motivo no dia */
+function satLembra(){var c=satCfg(),hj=hoje(),h=new Date().getHours(),D=satDia(),L=[];c.vistos=c.vistos||{};
+ var uma=function(k,t){k=k+'|'+hj;if(c.vistos[k])return;c.vistos[k]=hj;L.push(t);};
+ if(h>=9&&D.rv.length)uma('rv',(D.rv.length>1?D.rv.length+' revisões vencem':'Uma revisão vence')+' hoje no Campo de arquearia: '+satLista(D.rv,3)+'.');
+ if(h>=10&&D.H.length&&!D.feitos.length)uma('r10','Nenhum rito marcado ainda. Comece pelo mais fácil: '+(D.pend[0]&&D.pend[0].nome)+'.');
+ if(h>=15&&D.min===0&&D.disc)uma('e15','Nenhuma flecha na Esfinge hoje. Que tal 25 min de '+D.disc+' antes do jantar?');
+ if(h>=20&&D.pend.length)uma('r20','Falta'+(D.pend.length>1?'m':'')+' '+D.pend.length+' rito'+(D.pend.length>1?'s':'')+': '+satLista(D.pend,4)+'. Dá tempo antes do toque de recolher.');
+ if(D.H.length&&!D.pend.length)uma('rok','Todos os ritos de hoje feitos. Isso merece uma latinha de refri. Para comer, claro.');
+ if(D.min>=D.meta)uma('eok','Meta de estudo cumprida: '+D.min+' min. A Esfinge recuou um passo.');
+ Object.keys(c.vistos).forEach(function(k){if(c.vistos[k]<gabMais(hj,-7))delete c.vistos[k];});
+ if(L.length){try{grava();}catch(e){}aveAvisa('satiro','Sully Brookhaven · sátiro do Hékatos',L,false);}}
+function satCiclo(){try{satPessoal();}catch(e){console.error(e);}try{satLembra();}catch(e){console.error(e);}}
+setTimeout(satCiclo,2500);setInterval(satCiclo,60000);
+window.KALAMO.fala=function(){return satFala();};window.KALAMO.ciclo=satCiclo;
+(function(){var p0=pinta;pinta=function(){var x=p0.apply(this,arguments);try{satPessoal();}catch(e){}return x;};})();
+/* a ficha conta como o sátiro sobe */
+satFicha=(function(f0){return function(){return f0.apply(this,arguments).replace('+10 XP por minuta ou correção sua entregue · +30 XP quando a meta do dia fecha','rito +5 · cada 10 min de estudo +2 · bloco de foco +5 · revisão +3 · entrega no gabinete +10 · meta do gabinete +30')
+ .replace('manter o Hékatos vivo, inteiro e dentro do prazo','cuidar do Hékatos: ritos, estudo, foco e descanso. Do gabinete quem fala é o corvo.');};})(satFicha);
+/* ======================= companheiros com sotaque americano =======================
+   Sully Brookhaven: sátiro aquariano de Long Island (Aquário, a Casa 11 do Hékatos), o protetor.
+   Polly McCaw (Pollux): corvo geminiano de Apolo, entregador expresso dos deuses do gabinete. */
+satFicha=function(){var c=satCfg(),nv=satNivel(c.xp);
+ return '<div class="sat-ficha">'+satAvatar(satHumor())+'<div class="sat-id"><span class="sat-k">sátiro protetor do Hékatos · Brookhaven, Long Island</span><b class="sat-nm">Sully Brookhaven</b>'+
+  '<span class="sat-nv">nível '+nv.n+' · '+esc(nv.nome)+'</span><div class="sat-xp" title="'+c.xp+' XP"><i style="width:'+nv.pct+'%"></i></div><small>'+c.xp+' XP'+(nv.ate?' · faltam '+(nv.ate-c.xp)+' para '+esc(SAT_NV[nv.n][1]):' · nível máximo')+'</small></div></div>'+
+  '<dl class="sat-tr"><dt>céu</dt><dd>Sol em Aquário, Lua em Peixes. Aquário é o signo da sua Casa 11, a dos amigos: ele é o amigo que o seu mapa pede. "Sully" vem de Sadalsuud, a estrela de Aquário chamada "a sorte das sortes"</dd>'+
+  '<dt>origem</dt><dd>cresceu nos brejos de Brookhaven, a meia hora do acampamento. O Conselho o mandou buscar você em Austin; ele odiou o calor do Texas e nunca mais tirou o boné</dd>'+
+  '<dt>dom</dt><dd>fareja monstro e procrastinação; sente o Hotel Lótus a três quarteirões</dd>'+
+  '<dt>mania</dt><dd>inventa engenhocas com lata reciclada e grava um podcast para as dríades que ninguém pediu</dd>'+
+  '<dt>fraqueza</dt><dd>latinha de refrigerante, que ele come junto com a lata, e enchiladas de posto de gasolina</dd>'+
+  '<dt>juramento</dt><dd>cuidar do Hékatos: ritos, estudo, foco e descanso. Do gabinete quem fala é a Polly</dd>'+
+  '<dt>como sobe</dt><dd>rito +5 · cada 10 min de estudo +2 · bloco de foco +5 · revisão +3 · entrega no gabinete +10 · meta do gabinete +30</dd></dl>';};
+satPainelHTML=(function(f0){return function(){return f0.apply(this,arguments).replace('<b>Polly McCaw, corvo de Apolo</b>',
+ '<b>Polly McCaw, corvo de Apolo</b><small class="cv-bio">Sol em Gêmeos, ascendente em Libra · entregador expresso dos deuses do gabinete · batizado Pollux, odeia que o chamem de papagaio</small>');};})(satPainelHTML);
 setInterval(pintaProgresso,60000);
 })();
 </script>
