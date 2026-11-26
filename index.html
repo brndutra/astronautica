@@ -4242,6 +4242,22 @@ h2.sec.neo-tit[data-nivel]>span{color:var(--fase)!important}
 #lat-orb .lat-ic svg{fill:none;stroke:#5a3f2c;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 #cerbox .qa-sec,#cerbox #lat-orb{position:relative}
 #cerbox .qa-sec::after,#cerbox #lat-orb::after{content:'';position:absolute;left:12px;right:12px;bottom:0;height:3px;background:repeating-linear-gradient(90deg,#c9a45a 0 6px,transparent 6px 9px);opacity:.55;pointer-events:none}
+
+/* ===== Tesouro refeito: sem couro marrom; papel rústico mais escuro, moldura ocre como os outros painéis ===== */
+#tesouro.neo-moldura{position:relative;margin:30px 0 18px!important;padding:62px 50px 30px!important;border-radius:3px!important;color:#3b2a1d!important;box-shadow:none!important;border:1.5px solid #7a5418!important;
+ background:var(--neo-ent) left top/240px 40px repeat-x,
+  var(--neo-cap) left 4px top 42px/42px 29px no-repeat,var(--neo-cap) right 4px top 42px/42px 29px no-repeat,
+  var(--neo-fuste) left 4px top 70px/42px calc(100% - 70px - 20px) no-repeat,var(--neo-fuste) right 4px top 70px/42px calc(100% - 70px - 20px) no-repeat,
+  var(--neo-base) left 4px bottom 4px/42px 15px no-repeat,var(--neo-base) right 4px bottom 4px/42px 15px no-repeat,
+  var(--neo-papel),var(--neo-papel),linear-gradient(180deg,#e3cfa2,#d8c08c)!important}
+#tesouro.neo-moldura .ts-cab{position:absolute;top:2px;left:50%;transform:translateX(-50%);z-index:2;margin:0!important;padding:7px 26px 6px;white-space:nowrap;text-align:center;
+ border:1.5px solid var(--fase,#b48a4a);border-radius:2px;background:var(--neo-papel),#f4ead2;box-shadow:0 0 0 4px #f4ead2,0 0 0 5.5px var(--fase,#b48a4a);display:flex;align-items:baseline;gap:12px}
+#tesouro.neo-moldura .ts-cab .ts-k{order:2;font:9px var(--mono,monospace)!important;letter-spacing:.16em!important;color:var(--fase,#8a6f55)!important}
+#tesouro.neo-moldura .ts-cab .ts-k::before{content:'// '}
+#tesouro.neo-moldura .ts-cab h2{order:1;margin:0!important;font:700 17px Georgia,serif!important;color:#5a3f2c!important;letter-spacing:.02em}
+#tesouro.neo-moldura .ts-cab p,#tesouro .ts-orn{display:none!important}
+#tesouro.neo-moldura .lat-c,#tesouro.neo-moldura .sec-card{background:#f4ead2!important;border:1px solid #c9a45a!important;box-shadow:0 3px 10px rgba(90,60,20,.18)!important}
+@media(max-width:800px){#tesouro.neo-moldura{padding-left:18px!important;padding-right:18px!important}#tesouro.neo-moldura .ts-cab .ts-k{display:none}}
 </style>
 </head>
 <body>
@@ -14065,7 +14081,8 @@ var COL_PAINEL={
  tb:{q:'.wrap > div.tb',st:'ionica',c:'#b9c2e8',k:'#4a5590',num:'Ζ',numT:'7 · o número de Apolo e do chalé 7',sim:['sol','lira']},
  rt:{q:'.wrap > div.rt',st:'ionica',c:'#d8c0c6',k:'#7a4a58',num:'Θ',numT:'9 · as nove Musas',sim:['louro','estrela']},
  tm:{q:'#tm-painel',st:'dorica',c:'#f2c3ab',k:'#9a4a30',num:'Γ',numT:'3 · três missões por dia',sim:['arco','nike']},
- rc:{q:'#recreio',st:'corintia',c:'#efe3b4',k:'#7a6a2a',num:'ΙΒ',numT:'12 · os doze olimpianos',sim:['louro','lira']}};
+ rc:{q:'#recreio',st:'corintia',c:'#efe3b4',k:'#7a6a2a',num:'ΙΒ',numT:'12 · os doze olimpianos',sim:['louro','lira']},
+ ts:{q:'#tesouro',st:'ionica',c:'#e6c47e',k:'#7a5418',num:'Ζ',numT:'7 · o número de Apolo',sim:['louro','estrela']}};
 var COL_SIM={sol:'<circle cx="12" cy="12" r="4"/><path d="M12 3v2.5M12 18.5V21M3 12h2.5M18.5 12H21M5.6 5.6l1.8 1.8M16.6 16.6l1.8 1.8M18.4 5.6l-1.8 1.8M7.4 16.6l-1.8 1.8"/>',
  lira:'<path d="M7 4c-2 3-2 8 1 11h8c3-3 3-8 1-11"/><path d="M8 15v4h8v-4M10 7v8M12 6v9M14 7v8"/>',
  louro:'<path d="M12 21V8"/><path d="M12 10c-3-1-5-3-5-6 3 0 5 2 5 6zM12 10c3-1 5-3 5-6-3 0-5 2-5 6zM12 15c-3-1-5-3-5-5 3 0 5 2 5 5zM12 15c3-1 5-3 5-5-3 0-5 2-5 5z"/>',
@@ -14090,7 +14107,7 @@ function colAplica(){if(typeof neoImgs==='function')neoImgs();Object.keys(COL_PA
   var o=document.createElement('div');o.className='col-orn';o.setAttribute('aria-hidden','true');
   o.innerHTML='<i class="co-med co-l" title="'+cf.numT+'">'+cf.num+'</i><i class="co-med co-r" title="'+cf.numT+'">'+cf.num+'</i><i class="co-sim co-sl">'+sv(cf.sim[0])+'</i><i class="co-sim co-sr">'+sv(cf.sim[1])+'</i>';
   n.appendChild(o);}});
- var ts=document.getElementById('tesouro');if(ts&&!ts.querySelector('.ts-orn')){var c=ts.querySelector('.ts-cab');if(c){var o2=document.createElement('div');o2.className='ts-orn';o2.setAttribute('aria-hidden','true');
+ var ts=document.getElementById('tesouro');if(ts)ts.classList.add('neo-moldura');if(false){var c=ts.querySelector('.ts-cab');if(c){var o2=document.createElement('div');o2.className='ts-orn';o2.setAttribute('aria-hidden','true');
   o2.innerHTML='<i>'+'<svg viewBox="0 0 24 24">'+COL_SIM.louro+'</svg></i><b title="7 · o número de Apolo">Ζ</b><i><svg viewBox="0 0 24 24">'+COL_SIM.estrela+'</svg></i><b title="12 · os doze olimpianos">ΙΒ</b><i><svg viewBox="0 0 24 24">'+COL_SIM.louro+'</svg></i>';c.insertBefore(o2,c.firstChild);}}}
 (function(){var r0=vxRender;vxRender=function(){var x=r0.apply(this,arguments);try{colAplica();}catch(e){console.error('colunas:',e);}return x;};})();
 setTimeout(function(){try{colAplica();}catch(e){}},400);setTimeout(function(){try{colAplica();}catch(e){}},1600);
