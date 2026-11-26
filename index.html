@@ -2345,6 +2345,19 @@ body[data-vx-view="op"] #rail{display:block}
 .fc-abre span{display:grid;gap:2px;flex:1}.fc-abre b{font:800 18px var(--display,Georgia,serif);letter-spacing:.03em}
 .fc-abre small{font:13px var(--sans);color:#6f6553}.fc-abre i{font:600 13px var(--sans);font-style:normal;color:var(--a-op)}
 #vx .vx-hero .hk-av{cursor:pointer}
+
+/* cartões lado a lado */
+.wrap{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:18px;align-content:start;grid-auto-flow:row dense}
+.wrap > *{grid-column:1/-1;min-width:0}
+.wrap > .sec-card.meia{grid-column:auto}
+.sec-card{margin:0 0 18px;padding:14px 18px 16px;border-radius:16px;border:1px solid var(--line);background:color-mix(in srgb,var(--panel) 55%,transparent)}
+.sec-card > h2.sec{margin-top:0}
+body[data-skin="astro"] .narr{display:none!important}
+.arq-antigo{margin:0 0 18px;border:1px dashed var(--line2);border-radius:14px;background:var(--panel)}
+.arq-antigo > summary{cursor:pointer;padding:14px 18px;font:700 16px var(--display,Georgia,serif);color:var(--bone)}
+.arq-antigo > summary small{margin-left:10px;font:13px var(--sans);color:var(--dim)}
+.arq-antigo[open] > summary{border-bottom:1px dashed var(--line2);margin-bottom:12px}
+@media(max-width:1000px){.wrap{grid-template-columns:1fr}.wrap > .sec-card.meia{grid-column:1/-1}}
 </style>
 </head>
 <body>
@@ -6803,6 +6816,25 @@ cfMonta=function(){var c0=document.getElementById('fc-dlg-c'),f=document.getElem
 document.addEventListener('click',function(e){var t=e.target;
  if(t.classList&&t.classList.contains('hk-av')){e.preventDefault();fcAbreDlg();return;}
  var nb=t.closest&&t.closest('#nav-l [data-nv="topo"]');if(nb){e.preventDefault();e.stopImmediatePropagation();fcAbreDlg();}},true);
+
+/* ---------- Cartões: cada seção vira um cartão; as curtas ficam lado a lado; o arquivo antigo recolhe ---------- */
+var SEC_MEIA={'h-orb':1,'h-wp':1,'h-prov':1,'h-rec':1,'h-apt':1,'h-mapas':1,'h-proj':1,'h-mc':1};
+function secCartoes(){var w=document.querySelector('.wrap');if(!w||w.dataset.cartoes)return;w.dataset.cartoes='1';
+ var filhos=Array.from(w.children),card=null,arq=null;
+ filhos.forEach(function(n){if(n.id==='vx')return;
+  var corte=n.matches('h2.sec')||n.classList.contains('area-cab')||n.id==='ars-sec'||n.id==='fin-wrap';
+  var area=n.dataset.area||'dos';
+  if(area==='dos'&&n.id!=='ars-sec'&&!n.classList.contains('area-cab')){
+   if(!arq){arq=document.createElement('details');arq.id='arq-antigo';arq.className='arq-antigo';arq.dataset.area='dos';
+    arq.innerHTML='<summary>Arquivo antigo do mutante <small>ficha, poderes, limitador e diagnóstico do tema anterior, guardados aqui</small></summary>';w.insertBefore(arq,n);}
+   arq.appendChild(n);card=null;return;}
+  if(n.matches('h2.sec')){card=document.createElement('div');card.className='sec-card'+(SEC_MEIA[n.id]?' meia':'');card.dataset.area=area;card.id='c-'+n.id;
+   w.insertBefore(card,n);card.appendChild(n);return;}
+  if(corte){card=null;return;}
+  if(card)card.appendChild(n);});}
+(function(){var l0=vxLayout;vxLayout=function(){vxOrganiza();secCartoes();l0();
+ var arq=document.getElementById('arq-antigo'),s=document.getElementById('ars-sec');if(arq&&s&&s.nextElementSibling!==arq)s.parentNode.insertBefore(arq,s.nextSibling);
+ var fc=document.getElementById('area-fin'),fw=document.getElementById('fin-wrap');if(fc&&fw&&fc.nextElementSibling!==fw)fc.parentNode.insertBefore(fw,fc.nextSibling);};})();
 
 /* ---------- Planner do dia (tema Astronáutica) ----------
    Relógio, calendário do mês, três prioridades e checklist de fim de dia,
