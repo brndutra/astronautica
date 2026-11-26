@@ -17731,6 +17731,21 @@ if(TV_ON){setInterval(function(){try{tvFrontao();}catch(e){}},1200);setTimeout(f
   'body.tv #tp-friso{background:'+I('vh-no-h.svg')+' 0 100%/32px 16px repeat-x,#f3ecd6!important;padding-bottom:16px!important}'
  ].join('\n');document.head.appendChild(st);})();}
 
+
+/* ======================= Valhala: portal de entrelaçado =======================
+   Colunas cobertas de entrelaçado (no lugar dos postes lisos) com capitel de volutas e base canelada, nos templos e no Posto;
+   o banner vira o portão do salão: pilastras de entrelaçado dos dois lados, verga de nós no alto e moldura de couro com filete de ouro. */
+if(TV_ON){(function(){var I=function(n){return 'url("img/acampamento/'+n+'?v=3")';};var st=document.createElement('style');st.id='tv-portal-css';st.textContent=[
+ 'body.tv .neo-moldura{--neo-fuste:'+I('vh-fuste.svg')+'!important;--neo-cap:'+I('vh-capitel.svg')+'!important;--neo-base:'+I('vh-base.svg')+'!important}',
+ 'body.tv #modo-op .op-templo{--t-fuste:'+I('vh-fuste.svg')+'!important;--t-cap:'+I('vh-capitel.svg')+'!important;--t-base:'+I('vh-base.svg')+'!important}',
+ 'body.tv #hero-box .bn-slot{position:relative;margin:0 6px!important;padding:0 50px!important;background:',
+ '  '+I('vh-capitel.svg')+' 2px 0/46px 31px no-repeat,'+I('vh-capitel.svg')+' calc(100% - 2px) 0/46px 31px no-repeat,',
+ '  '+I('vh-fuste.svg')+' 2px 31px/46px 40px repeat-y,'+I('vh-fuste.svg')+' calc(100% - 2px) 31px/46px 40px repeat-y,#e9e6d6!important}',
+ 'body.tv #hero-box .bn-slot::after{content:"";position:absolute;left:2px;right:2px;bottom:0;height:14px;background:'+I('vh-base.svg')+' 0 0/46px 14px no-repeat,'+I('vh-base.svg')+' 100% 0/46px 14px no-repeat}',
+ 'body.tv #hero-box .vx-hero{border:2px solid #1d4a2c!important;box-shadow:inset 0 0 0 3px #e9e6d6,inset 0 0 0 4.5px #d4ad4f!important;border-radius:4px!important}',
+ 'body.tv #hero-box .vx-hero::after{-webkit-mask-size:24px 24px!important;mask-size:24px 24px!important;background:#1d4a2c!important;opacity:.85}'
+].join('\n');document.head.appendChild(st);})();}
+
 })();
 </script>
 </body>
