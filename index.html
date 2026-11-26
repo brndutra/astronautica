@@ -17470,6 +17470,19 @@ setTimeout(function(){try{placasTons();}catch(e){}},1200);setTimeout(function(){
  '.neo-moldura .mf-alca:hover span,.neo-moldura .mf-alca[aria-expanded="true"] span{color:#f4ead2!important}'
 ].join('\n');document.head.appendChild(st);})();
 
+
+/* ======================= Painéis expansíveis (Bolsa, Bunker 9, Laptop, Enfermaria, Sully) abrem no centro =======================
+   Em tela larga ocupam exatamente a coluna do meio, no lugar do templo central: painel esquerdo, faixa do dia,
+   templo da direita e rodapé continuam à vista. */
+(function(){var st=document.createElement('style');st.id='pd-centro-css';st.textContent=[
+ 'body.op-on #rod-apps{left:0!important;right:0!important}',
+ '@media(min-width:1380px){',
+ ' body.com-dia #painel-dir.pd.on{left:calc(var(--dia-l,300px) + 62px)!important;right:var(--dia-r,460px)!important}',
+ ' body:not(.com-dia) #painel-dir.pd.on{left:300px!important;right:var(--rail-w,460px)!important}',
+ ' #painel-dir.pd.on{width:auto!important;max-width:none!important;top:0!important;bottom:71px!important;height:auto!important;transform:none!important;border-radius:0 0 12px 12px;box-shadow:0 0 0 1px #c9b28a,0 18px 40px -12px rgba(40,25,10,.45)!important}',
+ '}'
+].join('\n');document.head.appendChild(st);})();
+
 })();
 </script>
 </body>
