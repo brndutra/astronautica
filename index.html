@@ -4960,6 +4960,31 @@ dialog.ave-dlg::before{content:'';display:block;height:12px;margin:6px 8px 0;bac
 #modo-op .op-vprox b{font:700 12px var(--mono,monospace);color:#5a3f2c}
 #modo-op .op-vprox span{flex:1;min-width:0;font:12.5px Georgia,serif;color:#2a2418;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 #modo-op .op-vprox em{font:italic 11px Georgia,serif;color:#b4463a}
+/* antagonista do bloco pesado */
+#modo-op .op-vseg.op-pesado{box-shadow:inset 0 0 0 2px #7a4a58}
+#modo-op .op-antag{display:inline-flex;align-items:center;gap:3px;margin-top:2px;padding:1px 6px;border-radius:999px;background:#2a2418;color:#f6ecd4;font:700 9px var(--mono,monospace);font-style:normal;letter-spacing:.06em;white-space:nowrap}
+#modo-op .op-antag svg{width:10px;height:10px}
+#modo-op .op-antag.vencido{background:#5f8a3f;text-decoration:line-through}
+#modo-op .op-antag.fugiu{background:#8a6f55}
+#modo-op .op-antbt{flex:none;display:flex!important;align-items:center;gap:6px;width:auto!important;margin:6px 0 0!important;padding:5px 8px!important;border:1.5px solid #7a4a58!important;border-radius:6px!important;background:#f7e9ec!important;color:#2a2418!important;cursor:pointer;text-align:left}
+#modo-op .op-antbt span{flex:none;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;background:#7a4a58;color:#fff}
+#modo-op .op-antbt span svg{width:13px;height:13px}
+#modo-op .op-antbt{flex-wrap:wrap}#modo-op .op-antbt b{flex:1;min-width:0;font:13px/1.15 Georgia,serif;white-space:normal}#modo-op .op-antbt small{width:100%;padding-left:28px}
+#modo-op .op-antbt small{font:700 8px var(--mono,monospace);letter-spacing:.12em;text-transform:uppercase;color:#7a4a58}
+#modo-op .op-antbt.vencido{border-color:#5f8a3f!important;background:#eef3e2!important}#modo-op .op-antbt.vencido span{background:#5f8a3f}
+.ant-dlg .ant-msg{display:flex;gap:12px;align-items:flex-start;padding:10px 0}
+.ant-dlg .ant-ic{flex:none;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:#2a2418;color:#f6ecd4;box-shadow:0 0 0 3px #f6ecd4,0 0 0 4px #7a4a58}
+.ant-dlg .ant-ic svg{width:26px;height:26px}
+.ant-dlg .ant-msg b{display:block;font:400 22px Georgia,serif;font-variant:small-caps;letter-spacing:.04em}
+.ant-dlg .ant-msg small{display:block;font:italic 13px Georgia,serif;color:#8a6f55}
+.ant-dlg .ant-des{margin:8px 0 0;padding:8px 10px;border-left:3px solid #7a4a58;background:#fbf5e6;font:15px/1.45 Georgia,serif;color:#2a2418}
+.ant-dlg .ant-des em{display:block;font:700 8px var(--mono,monospace);font-style:normal;letter-spacing:.18em;text-transform:uppercase;color:#7a4a58;margin-bottom:2px}
+.ant-dlg .ant-st{margin:6px 0 0;font:italic 13px Georgia,serif;color:#8a6f55}.ant-dlg .ant-st.ok{color:#4f7a35}
+.ant-dlg .ant-fx{padding:8px 0 4px;border-top:1px dashed #c9a45a}
+.ant-dlg .ant-fx div{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-top:5px}
+.ant-dlg .ant-fx button{display:flex!important;flex-direction:column;align-items:center;width:auto!important;margin:0!important;padding:4px!important;border:1px solid #c9b28a!important;border-radius:6px!important;background:#fbf5e6!important;color:#2a2418!important;font:700 11px var(--mono,monospace)!important;cursor:pointer}
+.ant-dlg .ant-fx button small{font:10px Georgia,serif;color:#8a6f55}
+.ant-dlg .ant-fx button.on{border-color:#7a4a58!important;background:#f7e9ec!important;box-shadow:inset 0 0 0 1px #7a4a58}
 </style>
 <link rel="stylesheet" href="pontes.css">
 <script src="pontes.js" defer></script>
@@ -15854,6 +15879,65 @@ opLinhaHTML=(function(f0){return function(){var h=f0.apply(this,arguments),a=opM
  var px=clepProx(),rest=px?px.m-a:0;
  h+='<div class="op-vprox">'+(px?'<small>próximo</small><b>'+esc(px.h)+'</b><span>'+esc(px.t)+'</span><em>em '+(rest>=60?Math.floor(rest/60)+'h'+String(rest%60).padStart(2,'0'):rest+' min')+'</em>':'<small>próximo</small><span>nada mais marcado hoje</span>')+'</div>';
  return h;};})(opLinhaHTML);
+
+/* ======================= Antagonista do bloco pesado =======================
+   Todo dia um monstro (ou desafio) é sorteado para o bloco mais pesado. Ele aparece na faixa da Clepsidra,
+   anuncia-se num diálogo quando o bloco começa, e vencer dá XP ao Sully e entra nos Anais do dia.
+   Fugir não tem castigo: o monstro volta amanhã. Só criaturas, nenhum deus. */
+var ANTAG=[
+ {k:'hidra',n:'Hidra de Lerna',o:'pendências que se multiplicam',d:'Feche três cabeças em sequência: três itens terminados sem abrir nenhum novo no meio.'},
+ {k:'medusa',n:'Medusa',o:'travar diante da tarefa',d:'Não encare de frente: comece pelo canto mais fácil por 5 minutos, pelo reflexo do escudo.'},
+ {k:'minotauro',n:'Minotauro',o:'o processo longo e confuso',d:'Leve o fio de Ariadne: a cada 25 minutos, escreva em uma linha onde você está no labirinto.'},
+ {k:'leao',n:'Leão de Nemeia',o:'a tarefa difícil sem atalho',d:'Nada de flecha: 50 minutos corpo a corpo na parte mais difícil, sem trocar de tarefa.'},
+ {k:'sereias',n:'Sereias',o:'notificações e feed infinito',d:'Cera nos ouvidos: celular em outro cômodo durante o bloco inteiro.'},
+ {k:'empousa',n:'Empousa',o:'a tentação de abrir rede social',d:'Ela se disfarça de "só uma olhadinha": nenhuma rede social até o fim do bloco.'},
+ {k:'telquines',n:'Telquines',o:'sistema travando, PJe caindo',d:'Se algo travar, anote e passe para o próximo item. Conserto fica para depois do bloco.'},
+ {k:'quimera',n:'Quimera',o:'tarefa com três problemas misturados',d:'Separe as três cabeças no papel antes de começar e resolva uma de cada vez.'},
+ {k:'ciclope',n:'Ciclope',o:'teimar num caminho que não rende',d:'Se em 20 minutos não andar, mude de ângulo: outra peça, outro modelo, outra pergunta.'},
+ {k:'nevoa',n:'Névoa',o:'cabeça embaçada',d:'Antes da primeira flecha: um copo de água e dois minutos de ar na janela.'},
+ {k:'procusto',n:'Procusto',o:'o bloco que estica além da hora',d:'O bloco termina na hora marcada. Nem um minuto a mais na cama de Procusto.'},
+ {k:'lotus',n:'Lotófagos',o:'o hiperfoco errado que come as horas',d:'Timer visível do começo ao fim; quando tocar, levante da cadeira.'},
+ {k:'harpias',n:'Harpias',o:'bagunça que rouba a atenção',d:'Mesa limpa e só uma aba aberta antes de começar.'},
+ {k:'esfinge',n:'Esfinge',o:'questões e enigmas',d:'Dez enigmas em sequência antes de qualquer pausa, sem olhar a resposta no meio.'},
+ {k:'caribdis',n:'Caríbdis',o:'o redemoinho do e-mail e do WhatsApp',d:'Caixa de entrada fechada durante o bloco; abra só nos últimos 5 minutos.'},
+ {k:'ladon',n:'Ládon',o:'o dragão que guarda a recompensa',d:'A recompensa do dia (café, série, jogo) só depois de vencer este bloco.'},
+ {k:'gerioes',n:'Gerião',o:'três frentes ao mesmo tempo',d:'Escolha uma das três frentes e esconda as outras duas até o fim.'},
+ {k:'cila',n:'Cila',o:'perder um pedaço de cada vez para as distrações',d:'Toda vez que desviar, risque um tracinho. Termine o bloco com menos de três.'}];
+function antD(){S.antag=S.antag||{};var A=S.antag;A.dia=A.dia||{};if(!A.faixa)A.faixa='09';return A;}
+function antHoje(){var A=antD(),hj=hoje(),x=A.dia[hj];
+ if(!x){var n=0;for(var i=0;i<hj.length;i++)n=(n*31+hj.charCodeAt(i))%9973;var ant=A.ult||'';var m=ANTAG[n%ANTAG.length];if(m.k===ant)m=ANTAG[(n+5)%ANTAG.length];
+  x=A.dia[hj]={fx:A.faixa,m:m.k,st:'aberto',rer:0,anun:0};A.ult=m.k;Object.keys(A.dia).forEach(function(k){if(k<gabMais(hj,-20))delete A.dia[k];});try{grava();}catch(e){}}
+ return x;}
+function antMonstro(k){return ANTAG.filter(function(m){return m.k===k;})[0]||ANTAG[0];}
+var ANT_IC='<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 17.5L3 6V3h3l11.5 11.5M13 19l6-6M16 16l4 4M19 21l2-2"/><path d="M9.5 17.5L21 6V3h-3L6.5 14.5M11 19l-6-6M8 16l-4 4M5 21l-2-2"/></svg>';
+function antDlg(){var d=document.getElementById('ant-dlg');if(d)return d;d=document.createElement('dialog');d.id='ant-dlg';d.className='ave-dlg ant-dlg';d.setAttribute('aria-label','Antagonista do bloco pesado');document.body.appendChild(d);
+ d.addEventListener('click',function(e){var b=e.target.closest('button');if(!b){if(e.target===d)d.close();return;}var x=antHoje(),A=antD(),c=b.dataset;
+  if(c.antfx){x.fx=c.antfx;A.faixa=c.antfx;x.anun=0;try{grava();}catch(z){}antPinta();try{opPinta();}catch(z){}return;}
+  if(c.antrer!=null&&x.rer<1&&x.st==='aberto'){var i=ANTAG.findIndex(function(m){return m.k===x.m;}),j=(i+1+Math.floor(Math.random()*(ANTAG.length-1)))%ANTAG.length;x.m=ANTAG[j].k;x.rer=1;A.ult=x.m;try{grava();}catch(z){}antPinta();try{opPinta();}catch(z){}return;}
+  if(c.antok!=null&&x.st==='aberto'){x.st='vencido';var m=antMonstro(x.m);try{var sc=satCfg(),antes=satNivel(sc.xp).n;sc.xp+=20;var nv=satNivel(sc.xp);anota('Antagonista vencido: '+m.n+' no bloco das '+x.fx+'h. +20 XP para o Sully.',0,false,true);grava();if(nv.n>antes)setTimeout(function(){satToast('Subi para o nível '+nv.n+' · '+nv.nome+'. Você derrubou '+(m.n)+', cara!');},400);}catch(z){}
+   antPinta();try{opPinta();pinta();}catch(z){}return;}
+  if(c.antfuga!=null&&x.st==='aberto'){x.st='fugiu';try{anota('O '+antMonstro(x.m).n+' escapou hoje. Sem castigo: amanhã tem outro.',0,false,true);grava();}catch(z){}antPinta();try{opPinta();}catch(z){}return;}
+  if(c.antx!=null)d.close();});
+ return d;}
+function antPinta(){var d=document.getElementById('ant-dlg');if(!d)return;var x=antHoje(),m=antMonstro(x.m);
+ var fxs=(typeof TD_H!=='undefined'?TD_H:['06','09','12','15','18','21']).map(function(H){return '<button type="button" class="'+(x.fx===H?'on':'')+'" data-antfx="'+H+'">'+H+'h<small>'+esc(tdFaixaNome?tdFaixaNome(H):'')+'</small></button>';}).join('');
+ var st=x.st==='vencido'?'<p class="ant-st ok">Vencido. +20 XP para o Sully, e já está nos Anais do dia.</p>':x.st==='fugiu'?'<p class="ant-st">Escapou hoje. Sem castigo: amanhã tem outro.</p>':'';
+ d.innerHTML='<div class="ad-lista"><section class="ant-msg"><span class="ant-ic">'+ANT_IC+'</span><div><span class="ad-k">antagonista do bloco pesado · '+x.fx+'h</span><b>'+esc(m.n)+'</b><small>'+esc(m.o)+'</small>'+
+  '<p class="ant-des"><em>desafio</em>'+esc(m.d)+'</p>'+st+'</div></section>'+
+  '<div class="ant-fx"><span class="ad-k">qual é o bloco mais pesado hoje?</span><div>'+fxs+'</div></div></div>'+
+  '<footer>'+(x.st==='aberto'?(x.rer<1?'<button type="button" data-antrer>sortear outro</button>':'')+'<button type="button" data-antfuga>escapou hoje</button><button type="button" class="ad-ok" data-antok>venci</button>':'<button type="button" class="ad-ok" data-antx>fechar</button>')+'</footer>';}
+function antAbre(){var d=antDlg();antPinta();if(!d.open){try{d.showModal();}catch(e){d.setAttribute('open','');}}}
+/* na Clepsidra: a faixa pesada leva o monstro; embaixo, uma placa para abrir o desafio */
+opLinhaHTML=(function(f0){return function(){var h=f0.apply(this,arguments),x=antHoje(),m=antMonstro(x.m);
+ var tag='<em class="op-antag'+(x.st!=='aberto'?' '+x.st:'')+'">'+ANT_IC+esc(m.n)+'</em>';
+ h=h.replace(new RegExp('(<button type="button" class="op-vseg[^"]*" data-opfx="'+x.fx+'"[^>]*>)'),function(s){return s.replace('class="op-vseg','class="op-vseg op-pesado')+tag;});
+ h=h.replace('<div class="op-vprox">','<button type="button" class="op-antbt'+(x.st!=='aberto'?' '+x.st:'')+'" data-antabre><span>'+ANT_IC+'</span><b>'+esc(m.n)+'</b><small>'+(x.st==='vencido'?'vencido':x.st==='fugiu'?'escapou':'bloco das '+x.fx+'h')+'</small></button><div class="op-vprox">');
+ return h;};})(opLinhaHTML);
+document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-antabre]');if(!b)return;e.preventDefault();e.stopImmediatePropagation();antAbre();},true);
+/* anuncia quando o bloco pesado começa (uma vez por dia) */
+function antAnuncia(){var x=antHoje();if(x.anun||x.st!=='aberto')return;var a=opMin(),ini=+x.fx*60;if(a<ini||a>ini+180)return;x.anun=1;try{grava();}catch(e){}antAbre();}
+setInterval(function(){try{antAnuncia();}catch(e){}},60000);setTimeout(function(){try{antAnuncia();}catch(e){}},4000);
+window.KALAMO.antag=antAbre;
 
 })();
 </script>
