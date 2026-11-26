@@ -4786,6 +4786,8 @@ dialog.ave-dlg::before{content:'';display:block;height:12px;margin:6px 8px 0;bac
 .mm .mm-gq.venc .mm-gbar i{background:#b4463a}
 .cv-rec header .cv-bio{display:block;font:italic 11.5px Georgia,serif;color:#8a6f55}
 .ave-dlg .ad-corvo footer{}
+.ave-dlg .ad-cass{background:linear-gradient(90deg,rgba(180,70,58,.08),transparent);border-radius:8px;padding-left:6px!important}
+.ave-dlg .ad-cass .ad-k{color:#b4463a}
 </style>
 </head>
 <body>
@@ -15306,6 +15308,25 @@ satFicha=function(){var c=satCfg(),nv=satNivel(c.xp);
   '<dt>como sobe</dt><dd>rito +5 · cada 10 min de estudo +2 · bloco de foco +5 · revisão +3 · entrega no gabinete +10 · meta do gabinete +30</dd></dl>';};
 satPainelHTML=(function(f0){return function(){return f0.apply(this,arguments).replace('<b>Polly McCaw, corvo de Apolo</b>',
  '<b>Polly McCaw, corvo de Apolo</b><small class="cv-bio">Sol em Gêmeos, ascendente em Libra · entregador expresso dos deuses do gabinete · batizado Pollux, odeia que o chamem de papagaio</small>');};})(satPainelHTML);
+/* ======================= os gêmeos McCaw =======================
+   Polly (Pollux, o imortal) traz as entregas e avisos; Cass (Castor, o gêmeo mortal) traz as más notícias:
+   prazo vencido e meta atrasada. Como no mito, dividem a imortalidade: um dia cada um no céu. */
+function corvoAveG(cass){var s=corvoAve();if(!cass)return s;return s.replace('fill="#e8a33c"','fill="#b4463a"').replace('class="cv-ave"','class="cv-ave cv-cass"').replace('</svg>','<path d="M30 20c4-3 10-3 14 0" stroke="#b4463a" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg>');}
+var CV_RUIM=/vencid|venceu|São 16h|atrasad/i;
+corvoDiz=function(linhas,gab){if(!linhas.length)return;var c=corvoCfg(),hm=new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+ var ruins=linhas.filter(function(l){return CV_RUIM.test(l);}),boas=linhas.filter(function(l){return !CV_RUIM.test(l);});
+ if(boas.length)c.log.unshift({d:hoje(),h:hm,t:boas,q:'polly'});if(ruins.length)c.log.unshift({d:hoje(),h:hm,t:ruins,q:'cass'});if(c.log.length>25)c.log.length=25;try{grava();}catch(e){}
+ if(boas.length)aveAvisa('corvo','Polly McCaw · corvo de Apolo · '+hm,boas,gab);
+ if(ruins.length)aveAvisa('cass','Cass McCaw · o gêmeo da Polly · '+hm,ruins,gab);
+ try{satPinta();}catch(e){}};
+aveAvisa=(function(f0){return function(quem,tit,linhas,gab){if(quem!=='cass')return f0.apply(this,arguments);
+ f0.call(this,'corvo',tit,linhas,gab);var d=document.getElementById('ave-dlg'),L=d&&d.querySelector('.ad-lista'),s=L&&L.lastElementChild;
+ if(s){s.classList.remove('ad-corvo');s.classList.add('ad-cass');var sv=s.querySelector('svg');if(sv)sv.outerHTML=corvoAveG(true);var b=s.querySelector('b');if(b)b.textContent='Crá. Notícia ruim, e quem traz sou eu.';}};})(aveAvisa);
+satPainelHTML=(function(f0){return function(){var h=f0.apply(this,arguments);
+ h=h.replace('<span class="sat-k">recados do corvo</span><b>Polly McCaw, corvo de Apolo</b>','<span class="sat-k">recados dos corvos</span><b>Polly e Cass McCaw, corvos gêmeos de Apolo</b>')
+  .replace(/<small class="cv-bio">[^<]*<\/small>/,'<small class="cv-bio">Sol em Gêmeos, ascendente em Libra · Polly (Pollux, o imortal) traz as entregas; Cass (Castor, o gêmeo mortal) só aparece com notícia ruim · dividem a imortalidade, um dia cada · aparentam 36 · photoplayer dos dois: Chris Colfer (Cass de jaqueta de couro)</small>');
+ return h;};})(satPainelHTML);
+satFicha=(function(f0){return function(){return f0.apply(this,arguments).replace('<dt>origem</dt>','<dt>idade</dt><dd>58 anos de sátiro, aparenta 29: sátiros envelhecem na metade do ritmo dos humanos</dd><dt>photoplayer</dt><dd>Jeremy Shada (Boise, Idaho; nascido em 21/01/1997, aquariano de carteirinha)</dd><dt>origem</dt>');};})(satFicha);
 setInterval(pintaProgresso,60000);
 })();
 </script>
