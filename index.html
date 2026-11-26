@@ -17666,7 +17666,7 @@ if(TV_ON){document.body.classList.add('tv');
   'body.tv #hero-box .nf2 .nf-tri path.t3{fill:#1d4a2c!important}body.tv #hero-box .nf2 .nf-tri path.t2{fill:#d4ad4f!important}',
   'body.tv #hero-box .nf2 .nf-txt{color:#e9c87a!important;text-shadow:0 1px 0 rgba(0,0,0,.5)!important}',
   'body.tv #hero-box .nf2 .nf-louro,body.tv #hero-box .nf2 .nf-acro{display:none!important}',
-  'body.tv #hero-box .nf2 .fr-lira{content:'+I('vh-medalhao.svg')+';box-shadow:0 0 0 3px #1d4a2c,0 0 0 4.5px #d4ad4f!important}',
+  'body.tv #hero-box .nf2 .fr-lira{content:'+I('vh-bindrune.svg')+';box-shadow:0 0 0 3px #1d4a2c,0 0 0 4.5px #d4ad4f!important}',
   'body.tv #hero-box .nf2 .nf-c2{background:radial-gradient(circle at 50% 50%,#d4ad4f 0 3px,#8a6a1e 3px 4px,transparent 4.5px) 0 0/12px 8px,#1d4a2c!important}',
   'body.tv #hero-box .nf2>.pd-pilula{border-color:#d4ad4f!important;background:linear-gradient(180deg,#256139,#143a22)!important;box-shadow:0 0 0 3px #1d4a2c,0 0 0 4.5px #d4ad4f,0 6px 12px -6px rgba(0,0,0,.6)!important}',
   'body.tv #hero-box .nf2>.pd-pilula button{color:#e9c87a!important;border-left-color:#3f6f4a!important}',
@@ -17702,6 +17702,34 @@ if(TV_ON){document.body.classList.add('tv');
   'body.tv #hero-box .cp-postal .fr{background:linear-gradient(rgba(10,15,30,.35),rgba(10,15,30,.55)),'+I('vh-salao.svg')+' center/cover!important}'
  ].join('\n');document.head.appendChild(st);})();
 }
+
+
+/* ======================= Valhala: frontão em arquitetura nórdica (empena de stavkirke) e adornos =======================
+   Empena íngreme de telhas em escama, beiral dourado, tábuas cruzadas com cabeças de dragão no alto, viga de entrelaçado,
+   medalhão com runa-amarração (desenho próprio) e entrelaçado no lugar da grega também nas placas e no Posto. */
+function tvFrontao(){if(!TV_ON)return;var f=document.querySelector('#hero-box .neo-frontao.nf2');if(!f)return;var l0=f.querySelector('.fr-lira');if(l0&&l0.tagName==='IMG'&&l0.getAttribute('src')!=='img/acampamento/vh-bindrune.svg')l0.src='img/acampamento/vh-bindrune.svg';if(f.querySelector('.vh-front'))return;
+ var d=document.createElement('div');d.className='vh-front';d.setAttribute('aria-hidden','true');d.innerHTML='<i class="vh-beiral"></i><i class="vh-telhado"></i><i class="vh-chifres"></i><i class="vh-viga"></i>';f.insertBefore(d,f.firstChild);
+ var l=f.querySelector('.fr-lira');if(l&&l.tagName==='IMG')l.src='img/acampamento/vh-bindrune.svg';}
+if(TV_ON){setInterval(function(){try{tvFrontao();}catch(e){}},1200);setTimeout(function(){try{tvFrontao();}catch(e){}},700);
+ (function(){var I=function(n){return 'url("img/acampamento/'+n+'")';};var st=document.createElement('style');st.id='tv-nordico-css';st.textContent=[
+  'body.tv #hero-box .nf2 .nf-tri,body.tv #hero-box .nf2 .nf-cornija,body.tv #hero-box .nf2 .nf-acro,body.tv #hero-box .nf2 .nf-louro{display:none!important}',
+  'body.tv #hero-box .neo-frontao.nf2{height:170px!important;margin-top:34px!important}',
+  'body.tv .vh-front{position:absolute;inset:0;pointer-events:none}',
+  'body.tv .vh-beiral{position:absolute;left:-4px;right:-4px;top:0;height:152px;background:linear-gradient(180deg,#e9c870,#b58a2e);clip-path:polygon(0 100%,50% 0,100% 100%);filter:drop-shadow(0 3px 2px rgba(0,0,0,.3))}',
+  'body.tv .vh-telhado{position:absolute;left:14px;right:14px;top:12px;height:140px;background:'+I('vh-telha.svg')+' 0 0/24px 16px repeat,#123321;clip-path:polygon(0 100%,50% 0,100% 100%)}',
+  'body.tv .vh-chifres{position:absolute;left:50%;top:-34px;width:150px;height:76px;transform:translateX(-50%);background:'+I('vh-chifres.svg')+' center/contain no-repeat;filter:drop-shadow(0 2px 2px rgba(0,0,0,.35))}',
+  'body.tv .vh-viga{position:absolute;left:-6px;right:-6px;top:150px;height:18px;background:'+I('vh-no-h.svg')+' 0 0/32px 16px repeat-x,#1d4a2c;border:1px solid #8a6a1e;box-shadow:0 2px 0 #b58a2e}',
+  'body.tv #hero-box .nf2 .fr-lira{top:44px!important;width:70px!important;height:70px!important;background:none!important;box-shadow:0 0 0 3px #123321,0 0 0 5px #d4ad4f!important}',
+  'body.tv #hero-box .nf2 .nf-txt{top:104px!important;padding:4px 6px 4px 12px;font-size:13px!important;letter-spacing:.42em!important;color:#f3d88a!important;background:#123321;border:1px solid #d4ad4f;box-shadow:0 0 0 2px #123321;text-shadow:none!important}',
+  'body.tv #hero-box .nf2 .nf-txt-l{right:calc(50% + 70px)!important}body.tv #hero-box .nf2 .nf-txt-r{left:calc(50% + 70px)!important}',
+  'body.tv #hero-box .nf2>.pd-pilula{top:146px!important}',
+  /* placas e réguas com entrelaçado */
+  'body.tv h2.sec.neo-tit.placa-tom,body.tv #tp-real>:is(#tm-painel,#recreio)>.tm-cab{border-color:#d4ad4f!important;background:linear-gradient(180deg,#256139,#1d4a2c)!important;color:#f3e6c4!important;box-shadow:0 0 0 3px #123321,0 0 0 4.5px #d4ad4f!important}',
+  'body.tv h2.sec.neo-tit.placa-tom>span,body.tv #tp-real .tm-cab .tp-placa button{color:#e9c870!important}',
+  'body.tv #tp-real .tm-cab .tp-placa button[aria-pressed="true"],body.tv #tp-real .tm-cab .tp-placa .on{color:#fff!important}',
+  'body.tv #modo-op .op-gr,body.tv #modo-op>header+*{background-image:'+I('vh-no-h.svg')+'!important}',
+  'body.tv #tp-friso{background:'+I('vh-no-h.svg')+' 0 100%/32px 16px repeat-x,#f3ecd6!important;padding-bottom:16px!important}'
+ ].join('\n');document.head.appendChild(st);})();}
 
 })();
 </script>
