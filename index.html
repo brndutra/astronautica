@@ -18092,6 +18092,20 @@ if(TV_ON){(function(){var U=function(n){return 'url("img/acampamento/'+n+'.svg?v
  'body.tv #hero-box .bn-slot::before{background:'+U('vh-soleira-heroi')+' 0 0/120px 30px repeat-x!important;border-bottom-color:#6b5424!important}'
 ].join('\n');document.head.appendChild(st);})();}
 
+if(TV_ON){(function(){var U=function(n){return 'url("img/acampamento/'+n+'.svg?v=1")';};var F='body.tv #dia-faixa#dia-faixa';var st=document.createElement('style');st.id='vh-totem-css';st.textContent=[
+ '/* Faixa da cronologia do dia no Valhala: totem de proa de drakkar — cabeça de dragão no alto, haste entalhada em losangos, corda no trilho, escudos nos toques e voluta da popa no pé; latão sobre creme */',
+ F+'{background:'+U('vh-totem-borda')+' left 2px top/8px 24px repeat-y,'+U('vh-totem-borda')+' right 2px top/8px 24px repeat-y,linear-gradient(180deg,#f4ead2,#ece0c2)!important;border:1px solid #6b5424!important;box-shadow:inset 0 0 0 1px #dccb98!important}',
+ F+' .df-trilho{border-left:0!important;background:'+U('vh-totem-corda')+' left top/5px 10px repeat-y!important}',
+ F+' .df-toq{width:11px!important;height:11px!important;left:-3px!important;margin-top:-1.5px;border:0!important;border-radius:50%!important;background:'+U('vh-totem-escudo')+' center/100% 100% no-repeat!important;box-shadow:0 1px 2px rgba(60,40,10,.35)!important}',
+ F+' .df-toq:not(.foi){opacity:.55}',
+ F+' .df-h{color:#6b5424!important}',
+ F+' .df-cap{background:var(--neo-papel,none),#f4ead2!important;border:1.5px solid #6b5424!important;border-radius:6px!important;box-shadow:0 0 0 2px #f4ead2,0 0 0 3px #6b5424!important;color:#2a2418!important}',
+ F+' .df-cap>i{color:#6b5424!important}',
+ F+' .df-cap>svg{display:none!important}',
+ F+' .df-cap::before{content:"";display:block;width:30px;height:27px;margin:-2px 0 -1px;background:'+U('vh-totem-cabeca')+' center/contain no-repeat}',
+ F+' .df-cap.df-n::before{background-image:'+U('vh-totem-cauda')+'}'
+].join('\n');document.head.appendChild(st);})();}
+
 })();
 </script>
 </body>
