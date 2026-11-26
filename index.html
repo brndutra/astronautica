@@ -5165,6 +5165,62 @@ dialog.ave-dlg::before{content:'';display:block;height:12px;margin:6px 8px 0;bac
 #tp-painel .tp-rel{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:8px;padding:8px 10px;border:1px solid #3a6ea5;border-radius:8px;background:#eef3f8}
 #tp-painel .tp-rel>b{font:400 22px Georgia,serif;color:#23407a}#tp-painel .tp-rel span{font:12.5px var(--sans);color:#3b4a66}
 #tp-painel .tp-vz{margin:0;color:#8a6f55;font:italic 12.5px Georgia,serif}
+/* pacote do dia */
+.d-toast{position:fixed;z-index:10000;left:50%;top:80px;max-width:250px;padding:7px 12px;border:1.5px solid #5a3f2c;border-radius:10px;background:#fbf5e6;color:#2a2418;font:13px Georgia,serif;box-shadow:0 8px 20px rgba(60,40,20,.25);opacity:0;transform:translateY(-6px);transition:.25s;pointer-events:none}
+.d-toast.on{opacity:1;transform:none}
+/* primeira flecha */
+#modo-op .op-pflecha{align-self:stretch;text-align:left}
+.op-pflecha>div,.pf-templo>div{padding:6px 9px;border:1.5px solid #c9a45a;border-radius:8px;background:linear-gradient(90deg,#fff8e6,#fbf5e6)}
+.op-pflecha small,.pf-templo small{display:block;font:700 8px var(--mono,monospace);letter-spacing:.18em;text-transform:uppercase;color:#9a6b3a}
+.op-pflecha b,.pf-templo b{display:block;font:14px/1.25 Georgia,serif;color:#2a2418}
+.op-pflecha .pf-vz span,.pf-templo .pf-vz span{font:italic 12px Georgia,serif;color:#8a6f55}
+.op-pflecha .pf-ok span{font:13px Georgia,serif;color:#4f7a35}
+.pf-bt{display:flex;gap:5px;margin-top:4px}
+.pf-bt button{width:auto!important;margin:0!important;padding:3px 9px!important;border:1.3px solid #5a3f2c!important;border-radius:999px!important;background:#fbf5e6!important;color:#5a3f2c!important;font:700 9px var(--mono,monospace)!important;letter-spacing:.1em;text-transform:uppercase;cursor:pointer}
+.pf-bt button[data-pfok]{background:#eef3e2!important;border-color:#5f8a3f!important;color:#3f6a2a!important}
+.pf-templo{max-width:856px;margin:0 auto 10px}
+.pf-templo .pf-on{display:grid;grid-template-columns:1fr auto;align-items:center;gap:2px 12px}.pf-templo .pf-on small,.pf-templo .pf-on b{grid-column:1}.pf-templo .pf-bt{grid-column:2;grid-row:1/3;margin:0}
+/* tracinhos e fogueira no topo do Posto */
+#modo-op .op-topr{display:flex;gap:6px;align-items:center}
+#modo-op .op-cila,#modo-op .op-fogo{width:auto!important;margin:0!important;padding:6px 12px!important;border:1.5px solid #7a4a58!important;border-radius:999px!important;background:#f7e9ec!important;color:#5a2f3c!important;font:700 10px var(--mono,monospace)!important;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;white-space:nowrap}
+#modo-op .op-cila em{font-style:normal;margin-left:4px;padding:0 6px;border-radius:999px;background:#7a4a58;color:#fff}
+#modo-op .op-fogo{border-color:#b4463a!important;background:#fdeee6!important;color:#8a2f1f!important}
+/* mapa da Cila no painel do Sully */
+.ci-mapa{border:1px solid #b9a77a;border-radius:12px;background:#fbf5e6;padding:10px 14px}
+.ci-mapa header{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}.ci-mapa header b{font:400 16px Georgia,serif;color:#2a2418;flex:1}.ci-mapa header small{font:11px var(--mono,monospace);color:#7a4a58}
+.ci-grid{display:grid;grid-template-columns:30px repeat(6,1fr);gap:3px;margin:8px 0 6px}
+.ci-grid .ci-h,.ci-grid .ci-d{font:9px var(--mono,monospace);color:#8a6f55;text-align:center;align-self:center}
+.ci-grid i{height:20px;border-radius:4px;background:rgba(122,74,88,calc(.08 + var(--a)*.85));font:700 10px/20px var(--mono,monospace);font-style:normal;text-align:center;color:#fff}
+.ci-mapa p{margin:0;font:italic 12.5px/1.4 Georgia,serif;color:#5a3f2c}
+/* sono por horário */
+.cp-reg .cr-pop .sn-hm{display:flex;gap:8px}
+.cp-reg .cr-pop .sn-hm label{flex:1;display:flex;flex-direction:column;gap:2px;font:700 8px var(--mono,monospace);letter-spacing:.14em;text-transform:uppercase;color:#715a86}
+.cp-reg .cr-pop .sn-hm input{width:100%!important;margin:0!important;padding:5px 6px!important;border:1px solid #c9b28a!important;border-radius:6px!important;background:#fffaf0!important;font:14px var(--mono,monospace)!important;color:#2a2418!important}
+.cp-reg .cr-pop .sn-calc{margin:6px 0;font:13px Georgia,serif;color:#3b2a1d}.cp-reg .cr-pop .sn-calc b{color:#715a86}
+.cp-reg .cr-pop .sn-ja{margin:4px 0 0;font:italic 12px Georgia,serif;color:#4f7a35}
+/* fogueira */
+#rod-apps .rod-fogo::after{background:#b4463a!important}
+#rod-apps .rod-fogo .fg-ic{border-color:#b4463a!important;background:radial-gradient(circle at 50% 70%,#f2b632 0 25%,#e8743c 26% 45%,#fdeee6 46%)!important}
+.fg-dlg{width:min(520px,calc(100vw - 32px))!important}
+.fg-dlg .fg-msg{display:flex;gap:12px;align-items:center;padding:10px 0 6px}
+.fg-dlg .fg-chama{flex:none;width:50px;height:50px;border-radius:50%;background:radial-gradient(circle at 50% 72%,#fff3b0 0 14%,#f2b632 15% 30%,#e8743c 31% 48%,#b4463a 49% 58%,#fbf5e6 59%);box-shadow:0 0 0 3px #fbf5e6,0 0 0 4px #b4463a;animation:fgArde 1.6s ease-in-out infinite alternate}
+@keyframes fgArde{to{filter:brightness(1.15) saturate(1.2);transform:scale(1.04)}}
+.fg-dlg .fg-msg b{display:block;font:400 22px Georgia,serif;font-variant:small-caps}.fg-dlg .fg-msg small{font:italic 13px Georgia,serif;color:#8a6f55}
+.fg-dlg .fg-bloco{padding:8px 0;border-top:1px dashed #c9a45a;display:flex;flex-direction:column;gap:5px}
+.fg-dlg .fg-bloco ul{margin:0;padding-left:18px;font:14px/1.45 Georgia,serif;color:#2a2418}
+.fg-dlg .fg-v li::marker{content:'✓ ';color:#4f7a35}
+.fg-dlg .fg-vz,.fg-dlg .fg-nota{margin:0;font:italic 13px Georgia,serif;color:#8a6f55}
+.fg-dlg input{width:100%!important;margin:0!important;padding:6px 9px!important;border:1px solid #c9b28a!important;border-radius:6px!important;background:#fffaf0!important;font:14px Georgia,serif!important;color:#2a2418!important}
+.fg-dlg .fg-sug{display:flex;flex-wrap:wrap;gap:5px}
+.fg-dlg .fg-sug button{width:auto!important;margin:0!important;padding:3px 9px!important;border:1px solid #c9a45a!important;border-radius:999px!important;background:#fbf5e6!important;color:#5a3f2c!important;font:12px Georgia,serif!important;cursor:pointer}
+.fg-dlg .fg-bau{text-align:center;padding:18px 6px 10px}
+.fg-dlg .fg-bau b{display:block;font:400 22px Georgia,serif;margin:4px 0 6px;color:#2a2418}
+.fg-dlg .fg-bau p{margin:4px 0;font:14px Georgia,serif;color:#3b2a1d}.fg-dlg .fg-bau .fg-boa{font-style:italic;color:#8a6f55}
+.fg-dlg .fg-cofre{width:84px;height:62px;margin:0 auto 8px;position:relative;border:2px solid #5a3f2c;border-radius:8px 8px 6px 6px;background:linear-gradient(180deg,#d9b46a,#b08a45)}
+.fg-dlg .fg-cofre::before{content:'';position:absolute;left:-2px;right:-2px;top:-24px;height:26px;border:2px solid #5a3f2c;border-radius:30px 30px 4px 4px;background:linear-gradient(180deg,#e2c27c,#c49a50);transform-origin:10% 100%;animation:fgAbreTampa .9s .2s ease-out forwards}
+.fg-dlg .fg-cofre i{position:absolute;left:50%;top:-6px;width:40px;height:40px;margin-left:-20px;border-radius:50%;background:radial-gradient(circle,#fff3b0,rgba(242,182,50,0));opacity:0;animation:fgBrilho 1.2s .5s ease-out forwards}
+@keyframes fgAbreTampa{to{transform:rotate(-38deg) translate(-4px,-6px)}}
+@keyframes fgBrilho{to{opacity:1;transform:translateY(-18px) scale(1.8)}}
 </style>
 <link rel="stylesheet" href="pontes.css">
 <script src="pontes.js" defer></script>
@@ -6169,6 +6225,7 @@ function ACCA(a){var c=ACC(),m=/^#([0-9a-f]{6})$/i.exec(c);if(!m)return c;var n=
 (function(){
 "use strict";
 var KEY="arquivo-sigma-vertice-v2", LIMIAR=60, LASTRO_T=0.6;
+var KEY_RAW0=null;try{KEY_RAW0=localStorage.getItem(KEY);}catch(e){}
 var ARS=[
  ["reg","Regulador de amplitude","AMPLITUDE GOVERNOR",60,300,
   "O continente que o mapa n\u00e3o deu, em hardware: a corrente aceita mais antes de virar fogo.",
@@ -15249,6 +15306,10 @@ function opBotao(){var n=document.getElementById('tt-indice');if(!n||document.ge
 setInterval(function(){try{opPinta();}catch(e){}},1000);
 setTimeout(function(){try{opBotao();if(localStorage.getItem('astro_modo')==='op')opModo(true);}catch(e){}},900);
 document.addEventListener('keydown',function(e){if(e.altKey&&(e.key==='o'||e.key==='O')){e.preventDefault();opModo();}});
+/* guarda de verdade o estado dos companheiros e do pacote do dia: o normaliza só mantinha chaves conhecidas */
+var EXTRA_K=['satiro','corvo','antag','flecha','cila','fogueira','vales','fogConv'];
+(function(){var n0=normaliza;normaliza=function(p){var b=n0(p);EXTRA_K.forEach(function(k){if(p&&p[k]!==undefined&&p[k]!==null)b[k]=p[k];});return b;};})();
+(function(){try{var r=JSON.parse(KEY_RAW0||'null');if(!r)return;var mud=false;EXTRA_K.forEach(function(k){if(r[k]!==undefined&&S[k]===undefined){S[k]=r[k];mud=true;}});if(mud)try{grava();}catch(e){}}catch(e){}})();
 /* ======================= KÁLAMO · o sátiro protetor do chalé 7 =======================
    Fareja as designações do gabinete (pautas publicadas no Ex Officio · procs-muta/acervo/sessoes),
    calcula o que falta, o prazo e a meta de hoje, e sobe de nível quando o Hékatos entrega.
@@ -16635,6 +16696,128 @@ setInterval(function(){try{tpBase();}catch(e){}},20000);setTimeout(function(){tr
  '#tp-base .tb-d2 em{display:block;font:700 9px var(--mono,monospace);font-style:normal;letter-spacing:.12em;text-transform:uppercase;color:#5a3f2c;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}',
  '#tp-base .tb-d3{height:9px;margin:0;border-bottom:1px solid #9a7b4a;background:repeating-linear-gradient(90deg,#e6d3a6 0 22px,#d9c08c 22px 23px)}'
 ].join('\n');document.head.appendChild(st);})();
+
+/* ======================= pacote do dia: Primeira flecha, Tracinhos da Cila, Sono por horário, Fogueira ======================= */
+function dHoje(){return hoje();}
+function dAmanha(){return gabMais(hoje(),1);}
+function dHM(m){m=((m%1440)+1440)%1440;return String(Math.floor(m/60)).padStart(2,'0')+':'+String(m%60).padStart(2,'0');}
+function dMin(s){if(!s||!/^\d{1,2}:\d{2}$/.test(s))return null;return +s.split(':')[0]*60+ +s.split(':')[1];}
+function dToast(t,el){var d=document.createElement('div');d.className='d-toast';d.textContent=t;document.body.appendChild(d);
+ if(el&&el.getBoundingClientRect){var r=el.getBoundingClientRect();d.style.left=Math.min(innerWidth-260,Math.max(10,r.left))+'px';d.style.top=(r.bottom+8)+'px';}
+ setTimeout(function(){d.classList.add('on');},10);setTimeout(function(){d.classList.remove('on');setTimeout(function(){d.remove();},300);},2600);}
+function dXP(n){try{var c=satCfg(),antes=satNivel(c.xp).n;c.xp+=n;var nv=satNivel(c.xp);if(nv.n>antes)setTimeout(function(){satToast('Subi para o nível '+nv.n+' · '+nv.nome+'. Isso é trabalho em equipe, cara.');},500);}catch(e){}}
+
+/* ---------- 1. Primeira flecha ---------- */
+function pfD(){var f=S.flecha;return f&&f.d===dHoje()&&f.t?f:null;}
+function pfHTML(){var f=pfD();if(!f)return '<div class="pf-vz"><small>primeira flecha</small><span>escolha na Fogueira de hoje à noite</span></div>';
+ if(f.ok)return '<div class="pf-ok"><small>primeira flecha</small><span>✓ '+esc(f.t)+'</span></div>';
+ return '<div class="pf-on"><small>primeira flecha de hoje</small><b>'+esc(f.t)+'</b><div class="pf-bt"><button type="button" data-pf5>só 5 minutos</button><button type="button" data-pfok>acertei</button></div></div>';}
+document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-pf5],[data-pfok]');if(!b)return;var f=pfD();if(!f)return;e.preventDefault();
+ if(b.hasAttribute('data-pf5')){try{tdFocoIni(5,'Primeira flecha · '+f.t);}catch(z){}dToast('Cinco minutos. Só começar já vale.',b);}
+ else{f.ok=1;try{anota('Primeira flecha acertada: '+esc(f.t)+'. +10 XP para o Sully.',0,false,true);}catch(z){}dXP(10);try{grava();}catch(z){}dToast('Flecha no alvo. +10 XP.',b);}
+ try{opPinta();}catch(z){}try{pfTemplo();}catch(z){}},true);
+/* no templo: placa logo acima do índice do dia, enquanto a flecha não for acertada */
+function pfTemplo(){var f=pfD(),n=document.getElementById('pf-templo'),hb=document.getElementById('hero-box');if(!hb)return;
+ if(!f||f.ok){if(n)n.remove();return;}
+ if(!n){n=document.createElement('div');n.id='pf-templo';n.className='pf-templo';hb.insertAdjacentElement('beforebegin',n);}
+ var h=pfHTML();if(n._h!==h){n.innerHTML=h;n._h=h;}}
+
+/* ---------- 4. Tracinhos da Cila ---------- */
+function ciD(){S.cila=S.cila||{};var c=S.cila;c.dia=c.dia||{};return c;}
+function ciHoje(){return (ciD().dia[dHoje()]||[]).length;}
+function ciMarca(el){var c=ciD(),hj=dHoje(),a=opMin();(c.dia[hj]=c.dia[hj]||[]).push(a);
+ Object.keys(c.dia).forEach(function(k){if(k<gabMais(hj,-42))delete c.dia[k];});try{grava();}catch(e){}
+ var n=c.dia[hj].length,fr=['Tracinho anotado. Sem culpa: volta pro alvo.','Anotado. A Cila só ganha se você não voltar.','Desviou, percebeu, voltou. Isso é treino.','Mais um tracinho. Respira e retoma de onde parou.'];
+ dToast(n+'º tracinho · '+fr[n%fr.length],el);try{opPinta();}catch(e){}try{satPinta();}catch(e){}}
+function ciMapaHTML(){var c=ciD(),F=['06','09','12','15','18','21'],DS=['seg','ter','qua','qui','sex','sáb','dom'],M={},max=0,tot=0;
+ Object.keys(c.dia).forEach(function(k){if(k<gabMais(dHoje(),-28))return;var wd=(new Date(k+'T12:00:00').getDay()+6)%7;c.dia[k].forEach(function(m){var fi=Math.max(0,Math.min(5,Math.floor((m-360)/180)));var key=wd+'|'+fi;M[key]=(M[key]||0)+1;if(M[key]>max)max=M[key];tot++;});});
+ var g='<div class="ci-grid"><span></span>'+F.map(function(f){return '<span class="ci-h">'+f+'h</span>';}).join('');
+ DS.forEach(function(d,wi){g+='<span class="ci-d">'+d+'</span>';F.forEach(function(f,fi){var v=M[wi+'|'+fi]||0;g+='<i style="--a:'+(max?(v/max):0).toFixed(2)+'" title="'+d+' '+f+'h · '+v+'">'+(v||'')+'</i>';});});g+='</div>';
+ var top=Object.keys(M).sort(function(a,b){return M[b]-M[a];})[0],frase='Ainda sem tracinhos: toque em "desviei" no Posto, ou Alt+D, sempre que perceber que saiu do alvo.';
+ if(top){var p=top.split('|');frase='Nas últimas 4 semanas, '+tot+' tracinho'+(tot>1?'s':'')+'. A Cila ataca mais '+['nas segundas','nas terças','nas quartas','nas quintas','nas sextas','nos sábados','nos domingos'][+p[0]]+' entre '+F[+p[1]]+'h e '+(+F[+p[1]]+3)+'h: vale pôr ali um bloco mais leve ou um antagonista.';}
+ return '<div class="ci-mapa"><header><span class="sat-k">tracinhos da Cila</span><b>Onde a atenção escapa</b><small>hoje: '+ciHoje()+'</small></header>'+g+'<p>'+frase+'</p></div>';}
+satPainelHTML=(function(f0){return function(){var h=f0.apply(this,arguments);return h.replace('<div class="cv-rec">',ciMapaHTML()+'<div class="cv-rec">');};})(satPainelHTML);
+document.addEventListener('keydown',function(e){if(e.altKey&&(e.key==='d'||e.key==='D')){e.preventDefault();ciMarca(document.querySelector('#modo-op [data-cila]'));}});
+document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-cila]');if(!b)return;e.preventDefault();ciMarca(b);},true);
+
+/* ---------- Posto de comando: flecha no Escudo, botões no topo ---------- */
+(function(){var p0=opPinta;opPinta=function(){p0.apply(this,arguments);var o=document.getElementById('modo-op');if(!o||!document.body.classList.contains('op-on'))return;
+ var fc=o.querySelector('.op-foco'),hd=fc&&fc.querySelector(':scope > .op-cab');
+ if(hd){var pf=fc.querySelector(':scope > .op-pflecha');if(!pf){pf=document.createElement('div');pf.className='op-pflecha';hd.insertAdjacentElement('afterend',pf);}var h=pfHTML();if(pf._h!==h){pf.innerHTML=h;pf._h=h;}}
+ var tr=o.querySelector('.op-topr');if(tr){var bt=tr.querySelector('[data-cila]');if(!bt){bt=document.createElement('button');bt.type='button';bt.className='op-cila';bt.dataset.cila='1';bt.title='Desviei do alvo (Alt+D)';tr.insertBefore(bt,tr.firstChild);}
+  var hh='desviei <em>'+ciHoje()+'</em>';if(bt._h!==hh){bt.innerHTML=hh;bt._h=hh;}
+  var fg=tr.querySelector('[data-fogo]'),mostra=opMin()>=18*60&&!fgFeita();if(mostra&&!fg){fg=document.createElement('button');fg.type='button';fg.className='op-fogo';fg.dataset.fogo='1';fg.textContent='acender a fogueira';tr.insertBefore(fg,bt.nextSibling);}else if(!mostra&&fg)fg.remove();}};})();
+
+/* ---------- Sono: hora de deitar e de acordar no cartão do rodapé, com cálculo automático ---------- */
+function snUlt(){var H=S.sonoHM||{},k=Object.keys(H).sort().pop();return k?H[k]:null;}
+latRegHTML=(function(f0){var w=function(){var h=f0.apply(this,arguments),u=snUlt(),reg=S.sono&&S.sono[dHoje()]!==undefined;
+ var d=(u&&u.d)||'23:30',a=(u&&u.a)||'07:00';
+ var novo='<p>Que horas você deitou e acordou?</p><div class="sn-hm"><label>deitei<input type="time" data-sn="d" value="'+d+'"></label><label>acordei<input type="time" data-sn="a" value="'+a+'"></label></div>'+
+  '<p class="sn-calc" data-sncalc>'+snTexto(d,a)+'</p>'+(reg?'<p class="sn-ja">sono de hoje já registrado: '+String(S.sono[dHoje()]).replace('.',',')+' h</p>':'<button type="button" class="cr-t" data-snok>registrar sono</button>');
+ return h.replace(/<p>Horas dormidas na última noite<\/p><div class="cr-row">[\s\S]*?<\/div>/,novo);};w.aberto=f0.aberto;return w;})(latRegHTML);
+function snHoras(d,a){var dm=dMin(d),am=dMin(a);if(dm==null||am==null)return null;var m=am-dm;if(m<=0)m+=1440;return m;}
+function snTexto(d,a){var m=snHoras(d,a);if(m==null)return 'preencha os dois horários';var h=Math.round(m/3)/20;
+ return '= <b>'+Math.floor(m/60)+'h'+String(m%60).padStart(2,'0')+'</b> de sono ('+String(h.toFixed(1)).replace('.',',')+' h)'+(m<360?' · abaixo de 6 h, pega leve hoje':m>=420?' · noite cheia':'');}
+document.addEventListener('input',function(e){var i=e.target;if(!i||!i.dataset||!i.dataset.sn)return;var pop=i.closest('.cr-pop');if(!pop)return;
+ var d=pop.querySelector('[data-sn="d"]').value,a=pop.querySelector('[data-sn="a"]').value,c=pop.querySelector('[data-sncalc]');if(c)c.innerHTML=snTexto(d,a);});
+document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-snok]');if(!b)return;e.preventDefault();e.stopPropagation();var pop=b.closest('.cr-pop');
+ var d=pop.querySelector('[data-sn="d"]').value,a=pop.querySelector('[data-sn="a"]').value,m=snHoras(d,a);if(m==null)return;
+ var sd=document.getElementById('sn-d'),sa=document.getElementById('sn-a');if(!sd||!sa)return;sd.value=d;sa.value=a;
+ try{latRegClica('#b-sonoh');latRegClica('#b-sono');}catch(z){var x=document.getElementById('b-sonoh');if(x)x.click();var y=document.getElementById('b-sono');if(y)y.click();}
+ latRegHTML.aberto='';try{latRegPinta();}catch(z){}dToast('Sono registrado: '+String((Math.round(m/3)/20).toFixed(1)).replace('.',',')+' h.');},true);
+
+/* ---------- 6. Fogueira: fechar o dia em um minuto ---------- */
+function fgD(){S.fogueira=S.fogueira||{};return S.fogueira;}
+function fgFeita(){return !!fgD()[dHoje()];}
+function fgVenci(){var V=[],hj=dHoje();
+ try{var D=satDia();if(D.feitos.length)V.push(D.feitos.length+' rito'+(D.feitos.length>1?'s':'')+' de '+D.H.length);if(D.min)V.push(D.min+' min de estudo');if(D.blocos)V.push(D.blocos+' bloco'+(D.blocos>1?'s':'')+' de foco');}catch(e){}
+ try{var fh=0;gabResumo().forEach(function(r){fh+=r.fh;});if(fh)V.push(fh+' entrega'+(fh>1?'s':'')+' no gabinete');}catch(e){}
+ try{var x=antHoje();if(x.st==='vencido')V.push('venceu '+antMonstro(x.m).n);}catch(e){}
+ try{var f=pfD();if(f&&f.ok)V.push('acertou a primeira flecha');}catch(e){}
+ try{var n=(S.log||[]).filter(function(l){return l.dia===hj&&!l.bad;}).length;if(n)V.push(n+' registro'+(n>1?'s':'')+' nos Anais');}catch(e){}
+ return V;}
+function fgFica(){var F=[];try{var D=satDia();if(D.pend.length)F.push(D.pend.length+' rito'+(D.pend.length>1?'s':'')+' ('+satLista(D.pend,2)+')');if(D.min<D.meta)F.push((D.meta-D.min)+' min de estudo');}catch(e){}
+ try{gabResumo().forEach(function(r){if(r.rest)F.push(r.rest+' '+SAT_PAPEL[r.p][0]+' da pauta de '+gabDM(r.s.date));});}catch(e){}return F.slice(0,5);}
+function fgSugestoes(){var S2=[];try{var R=gabResumo().filter(function(r){return r.rest;});if(R[0])S2.push((R[0].p==='minutar'?'Minutar ':'Corrigir ')+Math.max(1,Math.min(R[0].rest,R[0].meta||3))+' da pauta de '+gabDM(R[0].s.date));}catch(e){}
+ try{var D=satDia();if(D.disc)S2.push('25 min de '+D.disc);if(D.pend[0])S2.push(D.pend[0].nome);}catch(e){}
+ try{var c=(document.querySelector('#rail-in .rlist li:not(.rvz)')||{}).textContent;if(c)S2.push(c.trim().slice(0,60));}catch(e){}return S2.slice(0,4);}
+var FG_BAU=[{t:'dr',v:15,n:'15 dracmas de ouro'},{t:'dr',v:30,n:'30 dracmas de ouro'},{t:'xp',v:20,n:'+20 XP para o Sully'},{t:'vale',n:'vale pausa longa: 30 minutos sem culpa amanhã'},{t:'vale',n:'vale episódio: um episódio de série sem contar como fuga'},{t:'dr',v:50,n:'50 dracmas: o baú veio cheio'}];
+function fgAbre(){var d=document.getElementById('fg-dlg');if(!d){d=document.createElement('dialog');d.id='fg-dlg';d.className='ave-dlg fg-dlg';d.setAttribute('aria-label','Fogueira: fechar o dia');document.body.appendChild(d);
+  d.addEventListener('click',function(e){var b=e.target.closest('button');if(!b){if(e.target===d)d.close();return;}
+   if(b.dataset.fgsug){d.querySelector('#fg-flecha').value=b.dataset.fgsug;return;}
+   if(b.hasAttribute('data-fgx')){d.close();return;}
+   if(b.hasAttribute('data-fgok'))fgFecha(d);});}
+ var V=fgVenci(),F=fgFica(),SG=fgSugestoes(),fx=S.flecha&&S.flecha.d===dAmanha()?S.flecha.t:'';
+ d.innerHTML='<div class="ad-lista"><section class="fg-msg"><span class="fg-chama"></span><div><span class="ad-k">fogueira do chalé · '+new Date().toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'long'})+'</span><b>Fechar o dia</b><small>um minuto, três toques, nenhuma culpa</small></div></section>'+
+  '<div class="fg-bloco"><span class="ad-k">1 · venci</span>'+(V.length?'<ul class="fg-v">'+V.map(function(v){return '<li>'+esc(v)+'</li>';}).join('')+'</ul>':'<p class="fg-vz">Dia difícil também conta: você está aqui fechando.</p>')+'<input id="fg-mais" maxlength="90" placeholder="mais alguma vitória? (opcional)"></div>'+
+  '<div class="fg-bloco"><span class="ad-k">2 · fica para amanhã</span>'+(F.length?'<ul class="fg-f">'+F.map(function(v){return '<li>'+esc(v)+'</li>';}).join('')+'</ul><p class="fg-nota">Continua tudo onde está. Amanhã é outro dia, não uma dívida.</p>':'<p class="fg-vz">Nada pendurado. Raro e merecido.</p>')+'</div>'+
+  '<div class="fg-bloco"><span class="ad-k">3 · primeira flecha de amanhã</span><input id="fg-flecha" maxlength="80" placeholder="a primeira coisa que você vai fazer" value="'+esc(fx)+'">'+(SG.length?'<div class="fg-sug">'+SG.map(function(s){return '<button type="button" data-fgsug="'+esc(s)+'">'+esc(s)+'</button>';}).join('')+'</div>':'')+'</div></div>'+
+  '<footer><button type="button" data-fgx>depois</button><button type="button" class="ad-ok" data-fgok>acender e abrir o baú</button></footer>';
+ if(!d.open){try{d.showModal();}catch(e){d.setAttribute('open','');}}}
+function fgFecha(d){var hj=dHoje(),V=fgVenci(),mais=(d.querySelector('#fg-mais').value||'').trim(),fl=(d.querySelector('#fg-flecha').value||'').trim();if(mais)V.push(mais);
+ if(fl)S.flecha={d:dAmanha(),t:fl,ok:0};
+ var p=FG_BAU[Math.floor(Math.random()*FG_BAU.length)];
+ if(p.t==='dr'){var L=drD();L.bonus=(L.bonus|0)+p.v;}else if(p.t==='xp')dXP(p.v);else{S.vales=S.vales||[];S.vales.push({d:hj,n:p.n});}
+ fgD()[hj]={v:V,f:fl,b:p.n};Object.keys(fgD()).forEach(function(k){if(k<gabMais(hj,-60))delete fgD()[k];});
+ try{anota('Fogueira acesa. Venci: '+esc(V.join(', ')||'estar aqui')+'.'+(fl?' Primeira flecha de amanhã: '+esc(fl)+'.':'')+' Baú: '+esc(p.n)+'.',0,false,true);}catch(e){}
+ try{grava();}catch(e){}try{drAplica();}catch(e){}
+ d.querySelector('.ad-lista').innerHTML='<section class="fg-bau"><div class="fg-cofre"><i></i></div><span class="ad-k">o baú da fogueira</span><b>'+esc(p.n)+'</b>'+(fl?'<p>Amanhã cedo, a primeira flecha estará no seu escudo: <em>'+esc(fl)+'</em></p>':'<p>Sem flecha escolhida: amanhã o Sully te ajuda a decidir.</p>')+'<p class="fg-boa">Agora é tela longe e cama. Boa noite, Hékatos.</p></section>';
+ d.querySelector('footer').innerHTML='<button type="button" class="ad-ok" data-fgx>boa noite</button>';
+ try{opPinta();pinta();}catch(e){}}
+drSaldo=(function(f0){return function(){return f0.apply(this,arguments)+(drD().bonus|0);};})(drSaldo);
+document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-fogo]');if(!b)return;e.preventDefault();fgAbre();},true);
+/* às 21h a fogueira se oferece sozinha, uma vez */
+function fgConvida(){var hj=dHoje();if(fgFeita()||opMin()<21*60)return;S.fogConv=S.fogConv||'';if(S.fogConv===hj)return;S.fogConv=hj;try{grava();}catch(e){}fgAbre();}
+setInterval(function(){try{fgConvida();}catch(e){}try{pfTemplo();}catch(e){}},60000);setTimeout(function(){try{fgConvida();pfTemplo();}catch(e){}},4500);
+/* no rodapé, ao lado dos Anais */
+function fgRod(){var top=document.querySelector('#rod-apps .rod-top'),lg=document.getElementById('rod-log');if(!top||!lg)return;var b=document.getElementById('rod-fogo');
+ if(!b){b=document.createElement('button');b.type='button';b.id='rod-fogo';b.className='rod-log rod-fogo';b.dataset.fogo='1';b.title='Fogueira: fechar o dia';}
+ if(lg.nextSibling!==b)lg.insertAdjacentElement('afterend',b);var f=fgFeita(),h='<span class="cr-ico fg-ic"></span><span class="cr-lb"><small>fogueira</small><b>'+(f?'acesa ✓':'fechar o dia')+'</b></span>';if(b._h!==h){b.innerHTML=h;b._h=h;}}
+(function(){var p0=pinta;pinta=function(){var x=p0.apply(this,arguments);try{fgRod();pfTemplo();}catch(e){}return x;};})();
+setTimeout(function(){try{fgRod();}catch(e){}},1600);
+/* o Sully lembra a primeira flecha */
+satFala=(function(f0){return function(){var r=f0.apply(this,arguments),f=pfD();if(f&&!f.ok)r.t=r.t.replace(/^([^.]*\.)/,'$1 Primeira flecha: '+f.t+'.');return r;};})(satFala);
+window.KALAMO.fogueira=fgAbre;window.KALAMO.cila=ciMarca;
 
 })();
 </script>
