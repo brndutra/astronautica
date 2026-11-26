@@ -6,7 +6,7 @@ var DIAS = ['dom', 'seg', 'ter', 'qua', 'qui', 'sex', 'sáb'];
 var MESES = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'];
 /* humor: o mesmo 1 a 5 da "leitura do ciclo" do app (5 pico ... 1 colapso) */
 var HUM = [[5, 'Radiante', '#d8b44a'], [4, 'Firme', '#6f8a57'], [3, 'Morno', '#c9b48a'], [2, 'Nublado', '#7d8fa3'], [1, 'Esgotado', '#9b5a46']];
-var CORES = ['#e0702b', '#c9a227', '#4f7a43', '#2f6b9a', '#b2472f', '#7d5a96'];
+var CORES = ['#d99b52', '#d8c16e', '#7f9a68', '#6b8fb3', '#b86b5a', '#9a7bb0'];
 var CONT_PADRAO = [{ id: 'c-flexoes', n: 'Flexões', u: 'repetições', meta: 30 }, { id: 'c-leitura', n: 'Leitura', u: 'páginas', meta: 20 }];
 var AGUA_META = 8, CIRC = 2 * Math.PI * 47;
 var estado = null, fila = [], contDefs = [], relogio = null;
@@ -157,10 +157,9 @@ function pintaHumor() {
   $('semana').innerHTML = h;
 }
 
-var COR_CONT = ['#2f6b9a', '#e0702b', '#4f7a43', '#7d5a96', '#b2472f', '#c9a227'];
-function linhaCont(id, nome, un, meta, v, removivel, k) {
+function linhaCont(id, nome, un, meta, v, removivel) {
   var p = Math.min(100, Math.round(v / meta * 100));
-  return '<div class="ct' + (v >= meta ? ' ok' : '') + '" style="--cc:' + COR_CONT[(k || 0) % COR_CONT.length] + '"><div class="nm">' + esc(nome) +
+  return '<div class="ct' + (v >= meta ? ' ok' : '') + '"><div class="nm">' + esc(nome) +
     (removivel ? ' <button class="x" data-rm="' + esc(id) + '" title="remover contador" aria-label="remover ' + esc(nome) + '">✕</button>' : '') +
     '<span>meta ' + meta + ' ' + esc(un) + (v >= meta ? ' · fechou' : '') + '</span></div>' +
     '<div class="ctl"><button data-c="' + esc(id) + '" data-d="-1" aria-label="menos ' + esc(nome) + '">−</button><b>' + v + '</b>' +
@@ -168,8 +167,8 @@ function linhaCont(id, nome, un, meta, v, removivel, k) {
     '<div class="barra"><i style="width:' + p + '%"></i></div></div>';
 }
 function pintaCont() {
-  var h = linhaCont('agua', 'Água', 'copos', AGUA_META, aguaHoje(), false, 0);
-  contDefs.forEach(function (c, i) { h += linhaCont(c.id, c.n, c.u, c.meta, contValor(c.id), true, i + 1); });
+  var h = linhaCont('agua', 'Água', 'copos', AGUA_META, aguaHoje(), false);
+  contDefs.forEach(function (c) { h += linhaCont(c.id, c.n, c.u, c.meta, contValor(c.id), true); });
   $('cont').innerHTML = h;
 }
 
