@@ -3847,6 +3847,12 @@ body.com-rodape .td-disco{bottom:78px!important}
 #rail #c-h-cup .sb,#rail #c-h-cup .an2{grid-template-columns:1fr!important}
 #rail #c-h-cup .sb>*,#rail #c-h-cup .an2>*{border-left:0!important;border-right:0!important}
 #rail #c-h-cup .pctabs,#rail #c-h-cup .pcnovo,#rail #c-h-cup .rdent{flex-wrap:wrap}
+
+/* Enfermaria só no painel direito; corrente dentro da Inspeção */
+#lat-enf-c{display:none!important}
+.enf-med{margin:0 0 12px;border:1px solid var(--line);border-radius:14px;background:var(--panel);overflow:hidden}.enf-med .lat-medh{border-bottom:0}
+#rt-cor-slot .td-cor{margin:12px 0 6px;padding:10px 0 0;border:0;border-top:1px dashed var(--line);border-radius:0;background:none}
+#rt-cor-slot .td-cor ol{flex-direction:column}
 </style>
 </head>
 <body>
@@ -11944,8 +11950,14 @@ document.addEventListener('keydown',function(e){var d=document.getElementById('f
 /* ---------- junção das duas versões (esta conversa + a outra) ----------
    Painel direito de ícones fica só com Bolsa de Dracmas e Bunker 9: Enfermaria e Laptop de Dédalo
    já moram nos painéis laterais e não podem ser disputados pelos dois. */
-PD_ABAS.splice(0,PD_ABAS.length,['lap','Laptop'],['fin','Bolsa de Dracmas'],['b9','Bunker 9']);
-delete PD_CONT.enf;delete PD_NV['h-ctn'];
+PD_ABAS.splice(0,PD_ABAS.length,['fin','Bolsa de Dracmas'],['b9','Bunker 9'],['lap','Laptop'],['enf','Enfermaria']);
+/* a Enfermaria volta ao painel direito expansível: sai do cartão da esquerda, leva junto a medicação do dia */
+latEnfNos=function(){return [];};
+function enfMed(){var pd=document.getElementById('painel-dir'),pane=pd&&pd.querySelector('[data-pane="enf"]'),med=document.getElementById('lat-med');
+ if(!pane||!med)return;med.classList.add('enf-med');if(pane.firstChild!==med)pane.insertBefore(med,pane.firstChild);}
+(function(){var m0=pdMonta;pdMonta=function(){var pd=m0.apply(this,arguments);try{enfMed();}catch(e){}return pd;};
+ var a0=pdAbre;pdAbre=function(k){var x=a0.apply(this,arguments);try{enfMed();}catch(e){}return x;};})();
+document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('#tt-indice [data-ic="enf"]');if(!b)return;e.preventDefault();e.stopImmediatePropagation();try{pdAbre('enf');}catch(z){}},true);
 /* o Laptop de Dédalo agora é o Eumátheia do painel direito: a coluna direita antiga não pega mais as peças de estudo */
 latEstNos=function(){return [];};
 document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('#tt-indice [data-ic="laptop"]');if(!b)return;e.preventDefault();e.stopImmediatePropagation();try{pdAbre('lap');}catch(z){}},true);
@@ -11969,6 +11981,16 @@ function temaIc(){var bm=document.getElementById('bn-min');if(!bm)return;var row
  var claro=document.body.classList.contains('claro'),h=claro?TEMA_IC.lua:TEMA_IC.sol;if(b.innerHTML!==h)b.innerHTML=h;
  b.title=claro?'Mudar para o modo escuro':'Mudar para o modo claro';b.setAttribute('aria-label',b.title);}
 (function(){var r0=vxRender;vxRender=function(){var x=r0.apply(this,arguments);try{temaIc();}catch(e){}return x;};setTimeout(function(){try{temaIc();}catch(e){}},300);})();
+
+/* Corrente do dia mora dentro da Inspeção dos Chalés. A rotina redesenha o cartão inteiro a cada clique;
+   a corrente é guardada e devolvida ao encaixe, e os cliques dela não chegam à rotina. */
+var RT_COR=null;
+function rtCorEncaixa(){var sl=document.getElementById('rt-cor-slot');if(!sl)return;var c=document.getElementById('td-cor')||RT_COR;
+ if(!c){try{tdCorrente();}catch(e){}c=document.getElementById('td-cor');}if(!c)return;RT_COR=c;
+ if(!c.dataset.rtIsola){c.dataset.rtIsola='1';['click','change','input','keydown'].forEach(function(t){c.addEventListener(t,function(e){e.stopPropagation();});});}
+ if(c.parentNode!==sl)sl.appendChild(c);}
+(function(){var t0=tdCorrente;tdCorrente=function(){if(RT_COR&&!RT_COR.isConnected){var sl=document.getElementById('rt-cor-slot');if(sl)sl.appendChild(RT_COR);}var x=t0.apply(this,arguments);try{rtCorEncaixa();}catch(e){}return x;};
+ var p0=rtPinta;rtPinta=function(){var x=p0.apply(this,arguments);try{rtCorEncaixa();var b=document.getElementById('rt-box');if(b&&!b.dataset.rtCorObs){b.dataset.rtCorObs='1';new MutationObserver(function(){if(RT_COR&&!RT_COR.isConnected)rtCorEncaixa();}).observe(b,{childList:true});}}catch(e){}return x;};})();
 
 /* ---------- Tarefas e Missões num painel 3×2 (rotina em cima, mural embaixo) + Trabalhos de Hércules ---------- */
 function tmPainel(ref){var wr=document.querySelector('.wrap');if(!wr)return null;var p=document.getElementById('tm-painel');
@@ -12781,9 +12803,10 @@ function rtHTML(){var R=rtD(),P=rtInsp(),pm=RT_MANHA.filter(function(x){return P
   '<div class="mm-add"><button type="button" data-rt-teste>ouvir a concha</button>'+(window.Notification&&Notification.permission!=='granted'?'<button type="button" data-rt-notif>avisar também fora da aba</button>':'')+'</div><small class="rt-obs">Toca enquanto o app estiver aberto em alguma aba.</small></section>'+
  '<section class="mm-col rt-insp"><span class="mm-k">'+RT_IC.insp+' Inspeção dos Chalés</span><small>conselheiros e harpias conferem o chalé 7</small>'+
   '<b class="rt-st">Manhã · antes das atividades <em>'+pm+'/'+RT_MANHA.length+'</em></b>'+lista(RT_MANHA,P.manha,'m')+
-  '<b class="rt-st">Noite · antes do recolher <em>'+pn+'/'+PL_FIM.length+'</em></b>'+lista(PL_FIM,P.fim,'n')+
-  '<p class="rt-sel">'+(pm===RT_MANHA.length&&pn===PL_FIM.length?'Chalé 7 aprovado na inspeção de hoje.':pm===RT_MANHA.length?'Manhã aprovada. Falta a inspeção da noite.':'O chalé ainda não passou pela inspeção.')+'</p></section>'+
+  '<div id="rt-cor-slot"></div>'+
+  '<p class="rt-sel">'+(pm===RT_MANHA.length&&pn===PL_FIM.length?'Chalé 7 aprovado na inspeção de hoje.':pm===RT_MANHA.length?'Manhã aprovada. Falta a inspeção da noite, na Ronda.':'O chalé ainda não passou pela inspeção.')+'</p></section>'+
  '<section class="mm-col rt-harp"><span class="mm-k">'+RT_IC.harpia+' Ronda das Harpias</span><small id="rt-ronda">'+ronda+'</small>'+
+  '<b class="rt-st">Noite · antes do recolher <em>'+pn+'/'+PL_FIM.length+'</em></b>'+lista(PL_FIM,P.fim,'n')+
   '<label class="rt-lim">horário limite para encerrar os estudos <input type="time" value="'+esc(R.limite)+'" data-rt-lim></label>'+
   '<p class="rt-tx">Depois desse horário, se você mexer no app, a tela escurece e as harpias mandam você para o chalé. Pedir mais 10 minutos conta como flagrante.</p>'+
   '<div class="rt-nums"><div><b>'+rtNoitesPaz()+'</b><span>noites em paz</span></div><div><b>'+Object.keys(R.flagras).reduce(function(a2,k){return a2+(R.flagras[k]|0);},0)+'</b><span>flagrantes</span></div></div></section></div>';}
