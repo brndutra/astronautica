@@ -71,7 +71,9 @@ function pintaTicker(){var z=Z().rss,t=document.getElementById('pz-ticker'),it=r
  var lin=it.map(function(i){return '<a href="'+esc(i.l)+'" target="_blank" rel="noopener noreferrer"><i>'+esc(i.f)+'</i>'+esc(i.t)+'</a>';}).join('<span class="pz-tk-s">·</span>');
  t.innerHTML='<span class="pz-tk-k">Hefesto TV · ao vivo</span><div class="pz-tk-v"><div class="pz-tk-trilho" style="--pz-dur:'+Math.max(40,it.length*9)+'s">'+lin+'<span class="pz-tk-s">·</span>'+lin+'</div></div><button type="button" class="pz-tk-x" title="esconder até amanhã" aria-label="esconder o boletim até amanhã">✕</button>';
  document.body.classList.add('pz-com-ticker');posTicker();}
-function posTicker(){var t=document.getElementById('pz-ticker'),r=document.getElementById('rod-apps');if(!t)return;
+/* a faixa mora dentro do rodapé, na largura dele: não cobre o painel esquerdo nem o templo */
+function tickerNoRodape(){var t=document.getElementById('pz-ticker'),r=document.getElementById('rod-apps');if(!t||!r)return false;if(t.parentNode!==r||r.firstElementChild!==t)r.insertBefore(t,r.firstChild);t.classList.add('pz-no-rod');return true;}
+function posTicker(){var t=document.getElementById('pz-ticker'),r=document.getElementById('rod-apps');if(!t)return;if(tickerNoRodape()){t.style.bottom='';return;}
  var h=r?Math.max(0,window.innerHeight-r.getBoundingClientRect().top):0;t.style.bottom=h+'px';}
 
 /* ======================= Hermes Express (Raindrop) ======================= */
@@ -294,7 +296,7 @@ function arranca(){try{Z();}catch(e){return setTimeout(arranca,800);}
  pintaTicker();pintaPontes();pintaLaptop();
  setTimeout(function(){ciclo(true);},2500);
  setInterval(function(){ciclo(false);},60e3);
- setInterval(function(){pintaPontes();pintaLaptop();posTicker();},5000);
+ setInterval(function(){pintaPontes();pintaLaptop();if(!document.getElementById('pz-ticker')&&RSS.itens.length)pintaTicker();else posTicker();},5000);
  document.addEventListener('visibilitychange',function(){if(document.visibilityState==='visible')setTimeout(function(){ciclo(false);},1500);});
  window.addEventListener('resize',posTicker);
  /* hábito marcado no app vai para o Habitica sem esperar o ciclo */

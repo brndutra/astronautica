@@ -6,6 +6,8 @@
  backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
 body.pz-com-ticker{padding-bottom:calc(46px + 24px)!important}
 body:has(.rod.aberto) #pz-ticker{display:none}
+#rod-apps>#pz-ticker.pz-no-rod{position:static;left:auto;right:auto;bottom:auto!important;flex:none;width:auto;border-top:0;border-bottom:1px solid var(--line);border-radius:0}
+body.pz-com-ticker #rod-apps:has(>#pz-ticker){height:auto}
 .pz-tk-k{flex:none;font-family:var(--mono);font-size:8px;letter-spacing:.22em;text-transform:uppercase;color:var(--red)}
 .pz-tk-v{flex:1;min-width:0;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 3%,#000 97%,transparent);mask-image:linear-gradient(90deg,transparent,#000 3%,#000 97%,transparent)}
 .pz-tk-trilho{display:inline-flex;align-items:center;white-space:nowrap;animation:pz-tk var(--pz-dur,80s) linear infinite}

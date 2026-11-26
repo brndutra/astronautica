@@ -9508,7 +9508,7 @@ var AC_REGRAS=['O expediente termina no horário marcado.','Um bloco de foco ant
  'Água em toda refeição.','Toque de recolher às 22h: telas desligadas.','Decisão pequena se toma sozinho.'];
 function acVitorias(){var n=0;Object.keys(S.cb||{}).forEach(function(k){if(S.cb[k]&&S.cb[k].ok)n++;});return n;}
 (function(){var x0=gmXP;gmXP=function(){var x=x0(),c=20*acVitorias();x.captura=c;x.total+=c;return x;};})();
-function acListas(){if(typeof GM_REGRAS!=='undefined'&&!GM_REGRAS.some(function(r){return /captura/.test(r[0]);}))GM_REGRAS.push(['três missões do dia','+5 cada'],['toque de recolher completo','+10'],['captura da bandeira (semana)','+20']);
+function acListas(){if(typeof GM_REGRAS!=='undefined'&&!GM_REGRAS.some(function(r){return /captura/.test(r[0]);}))GM_REGRAS.push(['missões do Oráculo (as três do dia)','+5 cada'],['toque de recolher completo','+10'],['captura da bandeira (semana)','+20']);
  if(typeof PL_FIM!=='undefined'&&!PL_FIM.some(function(f){return f[0]==='oferenda';})){PL_FIM.push(['oferenda','Oferenda: anotei uma gratidão do dia']);try{vxRender();}catch(e){}}}
 function acCaptura(){var k=acSemana(),c=(S.cb&&S.cb[k])||{d:'Simulado de sexta: uma prova completa',ok:false},v=acVitorias();
  return '<div class="ac-k">captura da bandeira &middot; desafio da semana</div>'+
@@ -9966,7 +9966,7 @@ var AC_GUIA=[
  ['Bem-vindo, meio-sangue','Se você abriu isto, o pior já passou: alguém te reconheceu, você chegou inteiro e ganhou um chalé. Este app é o acampamento inteiro no bolso. Ele não exige que você seja um herói o dia todo. Exige só o próximo passo.'],
  ['As regras da casa','<ol><li><b>Um bloco de cada vez.</b> Quíron nunca cobrou a lista inteira de ninguém.</li><li><b>Três missões por dia, no máximo.</b> Profecias longas demais terminam mal.</li><li><b>Dia ruim também conta.</b> Sobreviver é uma atividade oficial do acampamento.</li><li><b>Anote antes de esquecer.</b> A Névoa apaga tudo o que fica só na cabeça.</li><li><b>Fechou o dia, apaga a fogueira.</b> O checklist de fim de dia existe por um motivo.</li></ol>'],
  ['O dia no acampamento','<ul class="ac-horas"><li><b>06h</b> alvorada e treino leve</li><li><b>09h</b> treino na arena: o bloco mais pesado do dia</li><li><b>12h</b> almoço no pavilhão</li><li><b>15h</b> atividades do acampamento</li><li><b>18h</b> jantar e oferenda à fogueira</li><li><b>21h</b> fogueira e toque de recolher</li></ul>A faixa de agora aparece na Casa Grande e na extensão. O que você escreve na Semana vira a escala de cada faixa.'],
- ['As abas e os painéis','<ul><li><b>Casa Grande</b>: o banner com o mural e o registro do dia, a Grade semanal, o spread do mês e o rastreador de hábitos.</li><li><b>Missões</b>: o Mural de Missões (Tarefas do chalé, Quests diárias e Grandes Profecias) e o Bunker 9, com projetos e retomadas.</li><li><b>Laptop de Dédalo</b>, à direita: Táticas de Guerra (concurso e roda do ciclo) e Grego Antigo e Outras (línguas).</li><li><b>Arsenal</b>: o kit do Hékatos e a forja abrem pelo menu de ferramentas ou pelo cartão do Arsenal, à esquerda.</li><li><b>Bolsa de Dracmas</b>: o seu dinheiro de verdade, com Diário de Bordo, Carga, Enfermaria e Bunker 9.</li><li><b>À esquerda</b>: nível, arsenal, Dracmas de Ouro, Copa dos Chalés, colar, bandeira, vitórias e a Enfermaria do Acampamento.</li></ul>'],
+ ['As abas e os painéis','<ul><li><b>Casa Grande</b>: o banner com o mural e o registro do dia, a Grade semanal, o spread do mês e o rastreador de hábitos.</li><li><b>Missões</b>: o Mural de Missões (tarefas do Chalé, Diárias e do Conselho, as missões do Oráculo e o desafio da Profecia) e o Bunker 9, com projetos e retomadas.</li><li><b>Laptop de Dédalo</b>, à direita: Táticas de Guerra (concurso e roda do ciclo) e Grego Antigo e Outras (línguas).</li><li><b>Arsenal</b>: o kit do Hékatos e a forja abrem pelo menu de ferramentas ou pelo cartão do Arsenal, à esquerda.</li><li><b>Bolsa de Dracmas</b>: o seu dinheiro de verdade, com Diário de Bordo, Carga, Enfermaria e Bunker 9.</li><li><b>À esquerda</b>: nível, arsenal, Dracmas de Ouro, Copa dos Chalés, colar, bandeira, vitórias e a Enfermaria do Acampamento.</li></ul>'],
  ['Dracmas, XP e nível','Foco, estudo, hábitos, missões e etapas rendem XP. A cada 100 XP você sobe de nível. As <b>Dracmas de Ouro</b> são a moeda do acampamento: 10 por hora de foco ou de estudo. Com elas você compra temas de chalé, insígnias do crachá e sons ambientes na Loja do acampamento (ícone de ferramentas, no alto). A <b>Bolsa de Dracmas</b> é outra coisa: é o seu dinheiro de verdade, na aba 05.'],
  ['Colar de contas','No fim de cada verão os campistas ganham uma conta com o símbolo do que viveram. Aqui é uma por mês: toque na conta do mês, escreva o marco e escolha o símbolo. Em dezembro você tem o ano inteiro pendurado no pescoço.'],
  ['Captura da Bandeira','Toda semana tem uma bandeira: a meta que, se cair até sexta, vale a semana. Escreva qual é na segunda, capture até sexta (com tolerância até domingo) e ganhe +20 XP. As bandeiras das últimas semanas ficam marcadas embaixo.'],
@@ -13965,16 +13965,16 @@ function mmHTML(){var Q=mmD(),hj=hoje(),fe=Q.feitas[hj]||[];
    '<ul>'+(p.passos||[]).map(function(s,i){return '<li class="'+(s.ok?'ok':'')+'"><button type="button" class="mm-ck" data-mm-pp="'+p.id+':'+i+'">'+(s.ok?'✓':'')+'</button><span>'+esc(s.t)+'</span></li>';}).join('')+'</ul>'+
    (p.ok?'':'<div class="mm-add"><input data-mm-in="passo:'+p.id+'" placeholder="+ etapa" maxlength="80">'+(n&&f===n?'<button type="button" class="mm-cumpre" data-mm-cumpre="'+p.id+'">cumprir a profecia</button>':'')+'</div>')+'</article>';}).join('');
  return '<header class="mm-h"><div><span class="k9">Missões · o que você tem a fazer</span><h3>Mural de Missões</h3></div>'+
-  '<p>Três pesos diferentes. <b>Tarefa do chalé</b> é a vida prática, feita uma vez. <b>Quest</b> é o treino curto de estudo que volta todo dia. <b>Grande Profecia</b> é o alvo longo, com prazo e etapas.</p></header>'+
+  '<p><b>Tarefas</b>: Chalé (casa, uma vez), Diárias (voltam todo dia) e Conselho (designações do gabinete). <b>Missões</b>: o Oráculo, as três do dia. <b>Desafio</b>: a Profecia, alvo longo com prazo e etapas.</p></header>'+
   '<div class="mm-g">'+
-  '<section class="mm-col mm-chale"><span class="mm-k">Tarefas do chalé</span><small>casa e vida prática · uma vez · +3 XP</small><ul>'+(ch||'<li class="mm-vz">Nada pendente na casa.</li>')+'</ul>'+
+  '<section class="mm-col mm-chale"><span class="mm-k">Chalé</span><small>tarefas · casa e vida prática · uma vez · +3 XP</small><ul>'+(ch||'<li class="mm-vz">Nada pendente na casa.</li>')+'</ul>'+
    '<div class="mm-add"><input data-mm-in="chale" placeholder="+ tarefa da casa" maxlength="80"></div>'+
    '<details class="mm-drop" id="mm-drop"'+(function(){try{return localStorage.getItem('astro_mm_drop')==='1'?' open':'';}catch(e){return '';}})()+'><summary><span>Mais tarefas</span><small>baralho do oráculo · Trabalhos de Hércules</small></summary>'+
-   '<button type="button" class="mm-orac" data-mm-sort><b>Puxar uma ficha do baralho</b><small>quest do oráculo · o sorteio escolhe a próxima tarefa</small></button>'+
+   '<button type="button" class="mm-orac" data-mm-sort><b>Puxar uma ficha do baralho</b><small>ficha do Oráculo · o sorteio escolhe a próxima tarefa</small></button>'+
    '<span class="mm-dk">Trabalhos de Hércules · metas longas, pagam em dracmas</span><div id="mm-herc-slot"></div></details></section>'+
-  '<section class="mm-col mm-quest"><span class="mm-k">Quests diárias</span><small>revisão e exercícios · renovam todo dia · +5 XP</small><ul>'+(qd||'<li class="mm-vz">Ex.: 10 questões Vunesp, revisar o mapa do dia, ler um artigo de lei seca.</li>')+'</ul>'+
-   '<div class="mm-add"><input data-mm-in="dia" placeholder="+ quest diária" maxlength="80"></div><small class="mm-cont">'+fe.length+' de '+Q.dia.length+' feitas hoje</small></section>'+
-  '<section class="mm-col mm-prof"><span class="mm-k">Grandes Profecias</span><small>provas, TCC, projetos longos · +10 por etapa · +50 ao cumprir</small>'+(pf||'<p class="mm-vz">Nenhuma profecia lançada.</p>')+
+  '<section class="mm-col mm-quest"><span class="mm-k">Diárias</span><small>tarefas · revisão, exercícios e o que volta todo dia · +5 XP</small><ul>'+(qd||'<li class="mm-vz">Ex.: 10 questões Vunesp, revisar o mapa do dia, ler um artigo de lei seca.</li>')+'</ul>'+
+   '<div class="mm-add"><input data-mm-in="dia" placeholder="+ diária" maxlength="80"></div><small class="mm-cont">'+fe.length+' de '+Q.dia.length+' feitas hoje</small></section>'+
+  '<section class="mm-col mm-prof"><span class="mm-k">Profecia</span><small>desafio · provas, TCC, projetos longos · +10 por etapa · +50 ao cumprir</small>'+(pf||'<p class="mm-vz">Nenhuma profecia lançada.</p>')+
    '<div class="mm-add mm-novapf"><input data-mm-pf="t" placeholder="+ nova profecia" maxlength="80"><input type="date" data-mm-pf="d" aria-label="prazo"><button type="button" data-mm-novapf>lançar</button></div></section></div>';}
 function mmPinta(){var sep=document.getElementById('area-camp'),wr=document.querySelector('.wrap');if(!sep||!wr)return;var b=document.getElementById('mm-box');
  if(!b){b=document.createElement('section');b.id='mm-box';b.className='mm';b.dataset.area='camp';mmLiga(b);}
@@ -13987,7 +13987,7 @@ function mmLiga(b){
   if(d.mmCh){var c=Q.chale.filter(function(x){return x.id===d.mmCh;})[0];if(c){c.ok=c.ok?false:hj;}mmSalva();return;}
   if(d.mmDia){var f=Q.feitas[hj]=Q.feitas[hj]||[],i=f.indexOf(d.mmDia);if(i>=0)f.splice(i,1);else f.push(d.mmDia);mmSalva();return;}
   if(d.mmPp){var pp=d.mmPp.split(':'),p=Q.prof.filter(function(x){return x.id===pp[0];})[0];if(p&&p.passos[+pp[1]]){p.passos[+pp[1]].ok=!p.passos[+pp[1]].ok;}mmSalva();return;}
-  if(d.mmCumpre){var p2=Q.prof.filter(function(x){return x.id===d.mmCumpre;})[0];if(p2){p2.ok=true;p2.fim=hj;try{anota('Grande Profecia cumprida: '+p2.t,0,false);}catch(z){}try{acLouros('Profecia cumprida','uma conta nova no colar');}catch(z){}}mmSalva();try{vxRender();}catch(z){}return;}
+  if(d.mmCumpre){var p2=Q.prof.filter(function(x){return x.id===d.mmCumpre;})[0];if(p2){p2.ok=true;p2.fim=hj;try{anota('Profecia cumprida: '+p2.t,0,false);}catch(z){}try{acLouros('Profecia cumprida','uma conta nova no colar');}catch(z){}}mmSalva();try{vxRender();}catch(z){}return;}
   if(d.mmDel){var k=d.mmDel.split(':');var it=Q[k[0]].filter(function(x){return x.id===k[1];})[0];if(!it)return;if(k[0]==='prof'&&!confirm('Tirar a profecia "'+it.t+'" do mural?'))return;Q[k[0]]=Q[k[0]].filter(function(x){return x!==it;});mmSalva();return;}
   if(d.mmNovapf!=null){var ti=b.querySelector('[data-mm-pf="t"]'),dt=b.querySelector('[data-mm-pf="d"]');if(!ti.value.trim()){ti.focus();return;}Q.prof.push({id:mmId(),t:ti.value.trim().slice(0,80),prazo:dt.value||'',passos:[],ok:false});mmSalva();return;}});
  b.addEventListener('keydown',function(e){var t=e.target;if(e.key!=='Enter'||!t.dataset)return;var Q=mmD(),v=(t.value||'').trim();
@@ -14000,10 +14000,10 @@ function mmLiga(b){
 (function(){var g0=gmXP;gmXP=function(){var x=g0(),Q=S.quests||{},q=0;
  (Q.chale||[]).forEach(function(t){if(t.ok)q+=3;});Object.keys(Q.feitas||{}).forEach(function(d){q+=5*((Q.feitas[d]||[]).length);});
  (Q.prof||[]).forEach(function(p){(p.passos||[]).forEach(function(s){if(s.ok)q+=10;});if(p.ok)q+=50;});x.quests=q;x.total+=q;return x;};})();
-try{GM_REGRAS.push(['tarefa do chalé feita','+3'],['quest diária feita','+5'],['etapa de Grande Profecia','+10'],['Grande Profecia cumprida','+50']);}catch(e){}
+try{GM_REGRAS.push(['tarefa do Chalé feita','+3'],['Diária feita','+5'],['etapa da Profecia','+10'],['Profecia cumprida','+50']);}catch(e){}
 /* profecias cumpridas penduram uma conta especial no colar */
 (function(){var c0=acColarHTML;acColarHTML=function(){var h=c0(),P=((S.quests&&S.quests.prof)||[]).filter(function(p){return p.ok;});if(!P.length)return h;
- var ex=P.map(function(p){return '<span class="ac-conta ok ac-prof" style="--cc:#c9a227" title="Grande Profecia: '+esc(p.t)+'">Ω</span>';}).join('');
+ var ex=P.map(function(p){return '<span class="ac-conta ok ac-prof" style="--cc:#c9a227" title="Profecia: '+esc(p.t)+'">Ω</span>';}).join('');
  return h.replace('</div><p class="ac-nota">',ex+'</div><p class="ac-nota">');};})();
 
 /* ---------- Dracmas de Ouro: moeda do jogo, ganha com horas de foco e estudo ----------
@@ -14089,7 +14089,7 @@ function cpHTML(){var W=cpSemanas(8),META=10.5,mx=Math.max(META*1.15,1),i,w=260,
    Harpias: depois do horário limite, a tela escurece e lembra de encerrar; ficar mais conta como flagrante. */
 var RT_TOQUES0=[{h:'06:00',n:'Alvorada · início do dia',on:true},{h:'09:00',n:'Treino na arena · bloco pesado',on:true},{h:'12:00',n:'Almoço no Pavilhão',on:true},
  {h:'15:00',n:'Atividades do acampamento',on:false},{h:'18:00',n:'Jantar no Pavilhão',on:true},{h:'22:00',n:'Toque de recolher nos chalés',on:true}];
-var RT_MANHA=[['cama','Cama arrumada'],['agua','Um copo de água'],['remedio','Remédio da manhã'],['grade','Olhei a Grade e as três missões'],['mochila','Mochila e roupa prontas']];
+var RT_MANHA=[['cama','Cama arrumada'],['agua','Um copo de água'],['remedio','Remédio da manhã'],['grade','Olhei a Grade e as missões do Oráculo'],['mochila','Mochila e roupa prontas']];
 function rtD(){var R=S.rotina;if(!R||typeof R!=='object')R=S.rotina={};if(!Array.isArray(R.toques))R.toques=JSON.parse(JSON.stringify(RT_TOQUES0));
  if(!R.limite)R.limite='22:30';R.flagras=R.flagras||{};R.paz=R.paz||{};if(!R.avisa||typeof R.avisa!=='object')R.avisa={ag:true,gr:true,ant:10};return R;}
 /* compromissos que também tocam a concha: Agenda Google (com hora) e horários escritos na Grade de hoje (ex.: 6h30, 17h, 14:00) */
@@ -14623,7 +14623,7 @@ function cgCards(){var e=document.getElementById('lat-e');if(!e)return;
 
 /* ---------- Trabalhos de Hércules: as provas antigas, contadas pelo app do acampamento ----------
    Pagam em dracmas de ouro (metade do antigo valor em lastro, para a loja não inflar). */
-var TRAB={pv1:['Os estábulos de Áugias','Cumprir 20 Tarefas do chalé.'],
+var TRAB={pv1:['Os estábulos de Áugias','Cumprir 20 tarefas do Chalé.'],
  pv2:['O leão de Nemeia','Sete dias com a Enfermaria em 70 ou mais.'],
  pv3:['A corça de Cerineia','Declarar a Profecia em 10 ciclos.'],
  pv4:['As aves do Estínfalo','Levar 30 termos ao estágio dominado em Grego Antigo e Outras.'],
@@ -14993,7 +14993,7 @@ setTimeout(function(){try{qaIcones();}catch(e){}},900);
 var COL_PAINEL={
  tb:{q:'.wrap > div.tb',st:'ionica',c:'#b9c2e8',k:'#4a5590',num:'Ζ',numT:'7 · o número de Apolo e do chalé 7',sim:['sol','lira']},
  rt:{q:'.wrap > div.rt',st:'ionica',c:'#d8c0c6',k:'#7a4a58',num:'Θ',numT:'9 · as nove Musas',sim:['louro','estrela']},
- tm:{q:'#tm-painel',st:'dorica',c:'#f2c3ab',k:'#9a4a30',num:'Γ',numT:'3 · três missões por dia',sim:['arco','nike']},
+ tm:{q:'#tm-painel',st:'dorica',c:'#f2c3ab',k:'#9a4a30',num:'Γ',numT:'3 · as três missões do Oráculo',sim:['arco','nike']},
  rc:{q:'#recreio',st:'corintia',c:'#efe3b4',k:'#7a6a2a',num:'ΙΒ',numT:'12 · os doze olimpianos',sim:['louro','lira']},
  ts:{q:'#tesouro',st:'ionica',c:'#e6c47e',k:'#7a5418',num:'Ζ',numT:'7 · o número de Apolo',sim:['louro','estrela']}};
 var COL_SIM={sol:'<circle cx="12" cy="12" r="4"/><path d="M12 3v2.5M12 18.5V21M3 12h2.5M18.5 12H21M5.6 5.6l1.8 1.8M16.6 16.6l1.8 1.8M18.4 5.6l-1.8 1.8M7.4 16.6l-1.8 1.8"/>',
@@ -15194,11 +15194,11 @@ function opFocoHTML(){var f=tdD().foco,P=tdPref(),H=tdHojeFoco(),nm='';try{nm=td
 function opFazerHTML(){var Q=mmD(),hj=hoje(),fe=Q.feitas[hj]||[],lim=function(arr,n){return {v:arr.slice(0,n),r:Math.max(0,arr.length-n)};};
  var ch=lim(Q.chale.filter(function(t){return !t.ok||t.ok===hj;}),6),qd=lim(Q.dia,5),pf=Q.prof.filter(function(p){return !p.ok;}).slice(0,3);
  var li=function(ok,attr,t){return '<li class="'+(ok?'ok':'')+'"><button type="button" class="op-ck" '+attr+'>'+(ok?'✓':'')+'</button><span>'+esc(t)+'</span></li>';};
- var h='<div class="op-grp"><span class="op-k">tarefas do chalé</span><ul>'+(ch.v.map(function(t){return li(!!t.ok,'data-opch="'+t.id+'"',t.t);}).join('')||'<li class="op-vz">nada pendente</li>')+(ch.r?'<li class="op-mais">+'+ch.r+' no mural</li>':'')+'</ul></div>';
- h+='<div class="op-grp"><span class="op-k">quests de hoje · '+fe.length+'/'+Q.dia.length+'</span><ul>'+(qd.v.map(function(t){return li(fe.indexOf(t.id)>=0,'data-opq="'+t.id+'"',t.t);}).join('')||'<li class="op-vz">sem quests</li>')+(qd.r?'<li class="op-mais">+'+qd.r+'</li>':'')+'</ul></div>';
- h+='<div class="op-grp"><span class="op-k">grandes profecias · próxima etapa</span><ul>'+(pf.map(function(p){var i=(p.passos||[]).findIndex(function(x){return !x.ok;}),dd=p.prazo?mmDias(p.prazo):null;
+ var h='<div class="op-grp"><span class="op-k">chalé</span><ul>'+(ch.v.map(function(t){return li(!!t.ok,'data-opch="'+t.id+'"',t.t);}).join('')||'<li class="op-vz">nada pendente</li>')+(ch.r?'<li class="op-mais">+'+ch.r+' no mural</li>':'')+'</ul></div>';
+ h+='<div class="op-grp"><span class="op-k">diárias · '+fe.length+'/'+Q.dia.length+'</span><ul>'+(qd.v.map(function(t){return li(fe.indexOf(t.id)>=0,'data-opq="'+t.id+'"',t.t);}).join('')||'<li class="op-vz">sem quests</li>')+(qd.r?'<li class="op-mais">+'+qd.r+'</li>':'')+'</ul></div>';
+ h+='<div class="op-grp"><span class="op-k">profecia · próxima etapa</span><ul>'+(pf.map(function(p){var i=(p.passos||[]).findIndex(function(x){return !x.ok;}),dd=p.prazo?mmDias(p.prazo):null;
    return i>=0?li(false,'data-oppp="'+p.id+':'+i+'"',p.passos[i].t+' · '+p.t):'<li class="op-vz">'+esc(p.t)+(dd!=null?' · faltam '+dd+' dias':'')+' · sem etapa</li>';}).join('')||'<li class="op-vz">nenhuma profecia</li>')+'</ul></div>';
- return h+'<div class="op-add"><input data-opadd placeholder="+ tarefa do chalé" maxlength="80"></div>';}
+ return h+'<div class="op-add"><input data-opadd placeholder="+ tarefa do Chalé" maxlength="80"></div>';}
 function opEscudo(){var f=tdD().foco;if(!f)return tdEscudo(0,'parado');var rest=tdFocoRest(),fr=f.dur?rest/f.dur:0,modo=f.pausa!=null?'pausado':(rest<=60000?'fim':(f.pausaModo?'pausa':'rodando'));
  return tdEscudo(fr,modo,tdMMSS(rest),f.pausa!=null?'pausado':(f.pausaModo?'pausa':''));}
 function opLadoHTML(){var it=[];Array.prototype.forEach.call(document.querySelectorAll('#rail-in .rlist li:not(.rvz)'),function(l){var t=(l.childNodes[0]&&l.childNodes[0].textContent||l.textContent).trim();if(t)it.push(t);});
@@ -15356,7 +15356,7 @@ function satSessaoHTML(R){var hj=hoje(),G={};R.forEach(function(r){(G[r.s.date]=
   return '<section class="sat-ses"><header><b>Sessão '+esc(g.s.nome)+'</b><span>'+[m.entregaMinutas?'entrega '+gabDM(m.entregaMinutas):'',gabPrazo(g.s,'corrigir')?'liberação '+gabDM(gabPrazo(g.s,'corrigir')):''].filter(Boolean).join(' · ')+(g.s.date===hj?' · <em>hoje</em>':'')+'</span></header>'+linhas+'</section>';}).join('');}
 function satPainelHTML(){var c=satCfg(),R=gabResumo(),F=satFala();
  var h=satFicha()+'<div class="sat-fala sat-'+F.h+'"><span class="sat-k">Sully diz</span><p>'+esc(F.t)+'</p></div>';
- h+='<div class="sat-gab"><header><div><span class="sat-k">quests do gabinete · fecham sozinhas</span><b>Designações nas pautas do Ex Officio</b></div><div class="sat-acoes"><button type="button" data-satatt>'+(GAB.carregando?'farejando…':'atualizar')+'</button><a href="https://gabinete-cmt.com/office" target="_blank" rel="noopener">abrir Ex Officio ↗</a></div></header>'+
+ h+='<div class="sat-gab"><header><div><span class="sat-k">conselho · fecham sozinhas</span><b>Designações nas pautas do Ex Officio</b></div><div class="sat-acoes"><button type="button" data-satatt>'+(GAB.carregando?'farejando…':'atualizar')+'</button><a href="https://gabinete-cmt.com/office" target="_blank" rel="noopener">abrir Ex Officio ↗</a></div></header>'+
   '<p class="sat-meta">'+(GAB.em?'lido às '+new Date(GAB.em).toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'}):'ainda não lido')+(GAB.erro?' · último faro falhou ('+esc(GAB.erro)+')':'')+' · farejando por <input data-satnome value="'+esc(c.nome)+'" size="9" aria-label="Seu nome na pauta"></p>'+
   (R.length?satSessaoHTML(R):'<p class="sat-vz">'+(GAB.em?'Nenhum processo com o seu nome nas pautas publicadas a partir de hoje.':'Sem leitura ainda.')+'</p>')+'</div>';
  return h;}
@@ -15392,10 +15392,10 @@ function satOpTop(){var F=satFala(),nv=satNivel(satCfg().xp);
  return '<button type="button" class="op-sat sat-'+F.h+'" data-satir="1" title="'+esc(F.t)+'">'+satAvatar(F.h)+'<span><small>Sully Brookhaven · nível '+nv.n+'</small><b>'+esc(F.t)+'</b></span></button>';}
 function satQOk(R){return R.filter(function(r){return r.meta&&r.fh>=r.meta;}).length;}
 function satOpGrupo(){var R=gabResumo().filter(function(r){return r.rest||r.fh;}).slice(0,3);if(!R.length&&!GAB.em)return '';
- return '<div class="op-grp op-gab"><span class="op-k">quests do gabinete · '+satQOk(R)+'/'+R.filter(function(r){return r.meta;}).length+'</span><ul>'+(R.map(function(r){var cls=r.venc&&r.rest?'venc':(r.rest&&r.dias<=2?'perto':'');
+ return '<div class="op-grp op-gab"><span class="op-k">conselho · '+satQOk(R)+'/'+R.filter(function(r){return r.meta;}).length+'</span><ul>'+(R.map(function(r){var cls=r.venc&&r.rest?'venc':(r.rest&&r.dias<=2?'perto':'');
   var qok=r.meta&&r.fh>=r.meta;return '<li class="op-gl '+cls+(qok?' qok':'')+'" data-satir="1"><i class="op-gck">'+(qok?'✓':'')+'</i><b>'+SAT_PAPEL[r.p][1]+(r.meta?' '+r.meta:'')+' · '+gabDM(r.s.date)+'</b><span>'+(r.meta?Math.min(r.fh,r.meta)+'/'+r.meta+' · ':'')+(r.rest?r.rest+' restam · '+(r.venc?'venceu '+gabDM(r.prazo):'até '+gabDM(r.prazo)):'tudo entregue')+'</span></li>';}).join('')||'<li class="op-vz">nada com o seu nome em aberto</li>')+'</ul></div>';}
 opFazerHTML=(function(f0){return function(){var g=satOpGrupo(),h=f0.apply(this,arguments);if(!g)return h;
- h=h.replace(/(tarefas do chalé<\/span><ul>)([\s\S]*?)(<\/ul>)/,function(x,a,b,c){var lis=b.match(/<li[\s\S]*?<\/li>/g)||[];if(lis.length>4){var mais=lis.filter(function(l){return /op-mais/.test(l);});var nm=lis.filter(function(l){return !/op-mais/.test(l);});var extra=nm.length-4+(mais.length?+((mais[0].match(/\+(\d+)/)||[0,0])[1]):0);lis=nm.slice(0,4).concat(extra>0?['<li class="op-mais">+'+extra+' no mural</li>']:[]);}return a+lis.join('')+c;});
+ h=h.replace(/(chalé<\/span><ul>)([\s\S]*?)(<\/ul>)/,function(x,a,b,c){var lis=b.match(/<li[\s\S]*?<\/li>/g)||[];if(lis.length>4){var mais=lis.filter(function(l){return /op-mais/.test(l);});var nm=lis.filter(function(l){return !/op-mais/.test(l);});var extra=nm.length-4+(mais.length?+((mais[0].match(/\+(\d+)/)||[0,0])[1]):0);lis=nm.slice(0,4).concat(extra>0?['<li class="op-mais">+'+extra+' no mural</li>']:[]);}return a+lis.join('')+c;});
  return g+h;};})(opFazerHTML);
 opLadoHTML=(function(f0){return function(){var h=f0.apply(this,arguments),hj=hoje(),add='';
  GAB.agenda.forEach(function(a){if(a.d===hj)add+='<li class="op-gab"><b>'+esc(a.h||'dia')+'</b><span>'+esc(a.t)+'</span></li>';});
@@ -15560,7 +15560,7 @@ diaGaveta=function(){var g=document.getElementById('dia-gav');if(g)g.remove();va
 setTimeout(function(){try{diaGaveta();}catch(e){}},1300);
 /* ---------- avisos do sátiro e do corvo num diálogo próprio, por cima de qualquer tela (templo, Posto, painéis) ---------- */
 function aveDlg(){var d=document.getElementById('ave-dlg');if(d)return d;d=document.createElement('dialog');d.id='ave-dlg';d.className='ave-dlg';d.setAttribute('aria-label','Avisos do acampamento');
- d.innerHTML='<div class="ad-lista"></div><footer><button type="button" class="ad-q" data-adq>ver quests do gabinete</button><button type="button" class="ad-ok" data-adok>ok, ouvi</button></footer>';
+ d.innerHTML='<div class="ad-lista"></div><footer><button type="button" class="ad-q" data-adq>ver o Conselho</button><button type="button" class="ad-ok" data-adok>ok, ouvi</button></footer>';
  document.body.appendChild(d);var limpa=function(){d.querySelector('.ad-lista').innerHTML='';};
  d.addEventListener('click',function(e){var b=e.target.closest('button');if(!b){if(e.target===d){d.close();}return;}
   if(b.dataset.adok!=null)d.close();else if(b.dataset.adq!=null){d.close();try{if(document.body.classList.contains('op-on'))opModo(false);pdAbre('sat');}catch(z){}}});
@@ -15605,7 +15605,7 @@ function mmGabHTML(){var R=[];try{R=gabResumo().filter(function(r){return r.rest
   return '<li class="mm-gq '+cls+(ok?' ok':'')+'"><span class="mm-ck mm-auto" aria-hidden="true">'+(ok?'✓':'')+'</span><div><b>'+(r.p==='minutar'?'Minutar':'Corrigir')+(r.meta?' '+r.meta+' hoje':'')+' · pauta de '+gabDM(r.s.date)+'</b>'+
    '<small>'+(r.meta?Math.min(r.fh,r.meta)+'/'+r.meta+' hoje · ':'')+r.ok+'/'+r.tot+' feitas · '+(r.rest?r.rest+' restam · '+(r.venc?'prazo venceu em '+gabDM(r.prazo):'prazo '+gabDM(r.prazo)+' ('+r.dias+' dia'+(r.dias===1?'':'s')+' út'+(r.dias===1?'il':'eis')+')'):'tudo entregue')+'</small>'+
    '<span class="mm-gbar"><i style="width:'+(r.tot?Math.round(r.ok/r.tot*100):0)+'%"></i></span></div></li>';}).join('');
- return '<section class="mm-gab"><header><div><span class="mm-k">Quests do gabinete</span><small>o Labirinto · designações nas pautas do Ex Officio · fecham sozinhas ao bater a meta · +10 XP por entrega</small></div>'+
+ return '<section class="mm-gab"><header><div><span class="mm-k">Conselho</span><small>tarefas · atribuições de Conselheiro-Chefe · o Labirinto · designações nas pautas do Ex Officio · fecham sozinhas ao bater a meta · +10 XP por entrega</small></div>'+
   '<span class="mm-gcont">'+(meta?fh+'/'+meta+' hoje':'—')+'</span><button type="button" data-satir="1">ver processos</button></header>'+
   '<ul>'+(li||'<li class="mm-vz">'+(GAB.em?'Nada com o seu nome em aberto nas pautas publicadas.':'Sully ainda está farejando as pautas…')+'</li>')+'</ul></section>';}
 mmHTML=(function(f0){return function(){var h=f0.apply(this,arguments),g='';try{g=mmGabHTML();}catch(e){}return h.replace('<div class="mm-g">',g+'<div class="mm-g">');};})(mmHTML);
@@ -15829,17 +15829,17 @@ function op2Fila(){var o=opx(),hj=hoje(),Q=mmD(),fe=Q.feitas[hj]||[],L=[],sk=o.s
  /* fio de Ariadne: onde parei no último expediente */
  if(trab){var ds=Object.keys(o.proc).filter(function(d){return d<hj&&o.proc[d]&&o.proc[d].ar&&!o.arOk[d];}).sort();
   if(ds.length){var d0=ds[ds.length-1];add({k:'ar:'+d0,tag:'fio de Ariadne · retomar',t:o.proc[d0].ar,tipo:'ar',d:d0});}}
- var x=plDia(hj);if(x.top[0]&&(x.top[0].t||'').trim()&&!x.top[0].ok)add({k:'pl:'+hj+':0',tag:'flecha de ouro',t:x.top[0].t,tipo:'pl',i:0});
+ var x=plDia(hj);if(x.top[0]&&(x.top[0].t||'').trim()&&!x.top[0].ok)add({k:'pl:'+hj+':0',tag:'oráculo · flecha de ouro',t:x.top[0].t,tipo:'pl',i:0});
  var gab=function(){try{gabResumo().forEach(function(r){if(!r.rest)return;var ab=r.abertos;if(r.p==='corrigir'){var pr=ab.filter(function(i){return i.mi;});if(pr.length)ab=pr;}
   ab.slice(0,6).forEach(function(i){add({k:'gab:'+i.cnj+':'+r.p,tag:'processo da vez · '+SAT_PAPEL[r.p][1],t:i.cnj,sub:(i.cl||'').replace(/APELAÇÃO CÍVEL/,'ApCiv').replace(/AGRAVO DE INSTRUMENTO/,'AI').replace(/REMESSA NECESSÁRIA CÍVEL/,'RemNec')+(i.as?' · '+i.as:'')+' · sessão '+r.s.nome+(r.venc?' · prazo vencido':' · prazo '+gabDM(r.prazo)),
    tipo:'gab',cnj:i.cnj,cont:'hoje '+Math.min(r.fh,r.meta||r.fh)+'/'+(r.meta||'—')});});});}catch(e){}};
- var prof=function(){Q.prof.filter(function(p){return !p.ok;}).forEach(function(p){var i=(p.passos||[]).findIndex(function(s){return !s.ok;});if(i>=0)add({k:'pf:'+p.id+':'+i,tag:'grande profecia · próxima etapa',t:p.passos[i].t,sub:p.t,tipo:'pf',id:p.id,i:i});});};
- var quests=function(){Q.dia.forEach(function(q){if(fe.indexOf(q.id)<0)add({k:'q:'+q.id,tag:'quest de hoje',t:q.t,tipo:'q',id:q.id});});};
+ var prof=function(){Q.prof.filter(function(p){return !p.ok;}).forEach(function(p){var i=(p.passos||[]).findIndex(function(s){return !s.ok;});if(i>=0)add({k:'pf:'+p.id+':'+i,tag:'profecia · próxima etapa',t:p.passos[i].t,sub:p.t,tipo:'pf',id:p.id,i:i});});};
+ var quests=function(){Q.dia.forEach(function(q){if(fe.indexOf(q.id)<0)add({k:'q:'+q.id,tag:'diária',t:q.t,tipo:'q',id:q.id});});};
  if(trab)gab();
  if(estudo){prof();quests();}
- [1,2].forEach(function(i){var t=x.top[i];if(t&&(t.t||'').trim()&&!t.ok)add({k:'pl:'+hj+':'+i,tag:'missão do dia',t:t.t,tipo:'pl',i:i});});
+ [1,2].forEach(function(i){var t=x.top[i];if(t&&(t.t||'').trim()&&!t.ok)add({k:'pl:'+hj+':'+i,tag:'oráculo',t:t.t,tipo:'pl',i:i});});
  quests();
- Q.chale.forEach(function(c){if(!c.ok)add({k:'ch:'+c.id,tag:'tarefa do chalé',t:c.t,tipo:'ch',id:c.id});});
+ Q.chale.forEach(function(c){if(!c.ok)add({k:'ch:'+c.id,tag:'chalé',t:c.t,tipo:'ch',id:c.id});});
  prof();
  if(fx)add({k:'fx:'+hj+':'+H0,tag:'faixa de agora · '+tdFaixaNome(H0),t:fx,tipo:'fx'});
  return L;}
@@ -16387,6 +16387,132 @@ setTimeout(function(){try{tpReal();}catch(e){}},3200);
  '#tp-real .mm-h>*{max-width:none!important;width:auto!important}',
  '#tp-real .mm-g{display:flex!important;flex-direction:column!important;gap:12px!important;grid-template-columns:1fr!important}'
 ].join('\n');document.head.appendChild(st);})();
+
+
+/* ======================= Oráculo no Mural · faixa vertical do dia =======================
+   1. Missões do Oráculo: as três prioridades do dia (plDia().top, a primeira é a flecha de ouro) ganham coluna no Mural.
+   2. Entre a coluna do meio e o Templo das Tarefas, uma faixa vertical com a linha do dia (06h–24h): blocos da Grade,
+      toques da Concha, a hora das harpias e o "agora". No alto, o cartão Manhã · antes das atividades; no pé,
+      Noite · antes do recolher (os mesmos checklists da Inspeção dos Chalés). */
+var OR_PH=['a primeira · flecha de ouro','a segunda','a terceira'];
+mmHTML=(function(f0){return function(){var h=f0.apply(this,arguments),x=plDia(hoje()),
+ li=x.top.slice(0,3).map(function(t,i){var ok=!!t.ok,tx=(t.t||'').trim();return '<li class="'+(ok?'ok':'')+'"><button type="button" class="mm-ck" data-mmor="'+i+'" aria-label="cumprida"'+(tx?'':' disabled')+'>'+(ok?'✓':'')+'</button><input class="mm-or-in" data-mmorx="'+i+'" value="'+esc(tx)+'" placeholder="'+OR_PH[i]+'" maxlength="90" aria-label="missão '+(i+1)+'"></li>';}).join('');
+ var sec='<section class="mm-col mm-orac-col"><span class="mm-k">Oráculo</span><small>missões · as três do dia · a primeira é a flecha de ouro · +5 XP</small><ul class="mm-or">'+li+'</ul><small class="mm-cont">'+x.top.slice(0,3).filter(function(t){return t.ok;}).length+' de 3 cumpridas hoje</small></section>';
+ var k=h.indexOf('<section class="mm-col mm-prof">');return k>=0?h.slice(0,k)+sec+h.slice(k):h;};})(mmHTML);
+document.addEventListener('click',function(e){var b=e.target.closest('[data-mmor]');if(!b)return;var x=plDia(hoje()),t=x.top[+b.dataset.mmor];if(!t||!(t.t||'').trim())return;t.ok=!t.ok;try{grava();}catch(z){}try{vxRender();}catch(z){}try{mmPinta();}catch(z){}try{diaPinta();}catch(z){}});
+document.addEventListener('change',function(e){var i=e.target.closest('[data-mmorx]');if(!i)return;var x=plDia(hoje()),t=x.top[+i.dataset.mmorx];if(!t)return;t.t=i.value.trim().slice(0,90);if(!t.t)t.ok=false;try{grava();}catch(z){}try{mmPinta();}catch(z){}});
+
+var DIA_INI=360,DIA_FIM=1440,DIA_W=62;
+function diaPct(m){return Math.max(0,Math.min(100,(m-DIA_INI)/(DIA_FIM-DIA_INI)*100));}
+function diaHM(m){return String(Math.floor(m/60)).padStart(2,'0')+':'+String(m%60).padStart(2,'0');}
+function diaAtivo(){var r=document.getElementById('rail');if(!r)return false;var c=getComputedStyle(r);return c.display!=='none'&&c.position==='fixed'&&r.offsetWidth>200&&innerWidth>=1100;}
+function diaContagem(){var P=rtInsp();return {m:RT_MANHA.filter(function(x){return P.manha[x[0]];}).length,n:PL_FIM.filter(function(x){return P.fim[x[0]];}).length};}
+function diaHTML(){var hj=hoje(),tb=S.tb||{},a=opMin(),c=diaContagem(),R=rtD(),h='';
+ h+='<button type="button" class="df-cap df-m'+(c.m===RT_MANHA.length?' ok':'')+'" data-dfcard="m" aria-label="Inspeção dos Chalés · manhã, antes das atividades" title="Inspeção dos Chalés · manhã, antes das atividades">'+
+  RT_IC.insp+'<b>Inspeção</b><i>'+c.m+'/'+RT_MANHA.length+'</i></button>';
+ h+='<div class="df-trilho">';
+ TD_H.forEach(function(H){var m0=+H*60,m1=Math.min(m0+180,DIA_FIM),cor=OP_FX_COR[H]||['#eee','#333'],txt=(tb[hj+'|'+H]||'').trim(),st=a>=m1?' passou':(a>=m0?' atual':'');
+  h+='<div class="df-seg'+st+'" style="top:'+diaPct(m0)+'%;height:'+(diaPct(m1)-diaPct(m0))+'%;--b:'+cor[0]+';--t:'+cor[1]+'" title="'+esc(H+'–'+(+H+3)+'h · '+tdFaixaNome(H)+(txt?' · '+txt:''))+'"><span>'+esc(tdFaixaNome(H))+'</span></div>';});
+ for(var hh=6;hh<=24;hh+=3)h+='<i class="df-h" style="top:'+diaPct(hh*60)+'%">'+String(hh).padStart(2,'0')+'</i>';
+ (R.toques||[]).forEach(function(t){if(!t.on)return;var m=rtMin(t.h);if(m<DIA_INI)return;h+='<em class="df-toq'+(a>=m?' foi':'')+'" style="top:'+diaPct(m)+'%" title="'+esc(t.h+' · '+t.n)+'"></em>';});
+ var lim=rtMin(R.limite);if(lim>=DIA_INI)h+='<em class="df-lim" style="top:'+diaPct(lim)+'%" title="'+esc(R.limite+' · as harpias começam a ronda')+'"></em>';
+ if(a>=DIA_INI&&a<=DIA_FIM)h+='<div class="df-agora" style="top:'+diaPct(a)+'%"><b>'+diaHM(a)+'</b></div>';
+ h+='</div>';
+ h+='<button type="button" class="df-cap df-n'+(c.n===PL_FIM.length?' ok':'')+'" data-dfcard="n" aria-label="Ronda das Harpias · noite, antes do recolher" title="Ronda das Harpias · noite, antes do recolher">'+
+  RT_IC.harpia+'<b>Ronda</b><i>'+c.n+'/'+PL_FIM.length+'</i></button>';
+ return h;}
+function diaCardHTML(k){var P=rtInsp(),arr=k==='m'?RT_MANHA:PL_FIM,obj=k==='m'?P.manha:P.fim,n=arr.filter(function(x){return obj[x[0]];}).length;
+ return '<header><div><span class="df-k">'+(k==='m'?'manhã · antes das atividades':'noite · antes do recolher · harpias às '+esc(rtD().limite))+'</span><b>'+(k==='m'?'Inspeção dos Chalés':'Ronda das Harpias')+'</b></div><em>'+n+'/'+arr.length+'</em><button type="button" class="df-x" data-dfx aria-label="fechar">✕</button></header>'+
+  '<ul>'+arr.map(function(x){var ok=!!obj[x[0]];return '<li class="'+(ok?'ok':'')+'"><button type="button" class="mm-ck" data-dfck="'+k+':'+x[0]+'" aria-pressed="'+ok+'">'+(ok?'✓':'')+'</button><span>'+esc(x[1])+'</span></li>';}).join('')+'</ul>'+
+  '<p>'+(n===arr.length?(k==='m'?'Manhã aprovada. O chalé 7 pode sair para as atividades.':'Pronto para o recolher. Boa noite, campista.'):(k==='m'?'Feche a lista antes do primeiro bloco.':'Feche a lista antes do toque de recolher.'))+'</p>';}
+var DIA_ABERTO='';
+function diaPinta(){var f=document.getElementById('dia-faixa'),on=diaAtivo();document.body.classList.toggle('com-dia',on);
+ if(!on){if(f)f.hidden=true;diaFecha();return;}
+ var r=document.getElementById('rail');document.body.style.setProperty('--dia-r',r.offsetWidth+'px');
+ var rod=document.getElementById('rod-apps'),baixo=rod?Math.max(0,innerHeight-rod.getBoundingClientRect().top):0;
+ if(!f){f=document.createElement('aside');f.id='dia-faixa';f.setAttribute('aria-label','Linha do dia');document.body.appendChild(f);
+  f.addEventListener('click',function(e){var b=e.target.closest('[data-dfcard]');if(b){var k=b.dataset.dfcard;if(DIA_ABERTO===k)diaFecha();else diaAbre(k);}});}
+ f.hidden=false;f.style.bottom=baixo+'px';var h=diaHTML();if(f._h!==h){f._h=h;f.innerHTML=h;}
+ if(DIA_ABERTO)diaAbre(DIA_ABERTO,true);}
+function diaAbre(k,so){var p=document.getElementById('df-pop');
+ if(!p){p=document.createElement('div');p.id='df-pop';p.className='df-pop';p.setAttribute('role','dialog');document.body.appendChild(p);
+  p.addEventListener('click',function(e){if(e.target.closest('[data-dfx]')){diaFecha();return;}var b=e.target.closest('[data-dfck]');if(!b)return;var q=b.dataset.dfck.split(':'),P=rtInsp();
+   if(q[0]==='m'){P.manha[q[1]]=!P.manha[q[1]];if(RT_MANHA.every(function(x){return P.manha[x[0]];}))try{acLouros('Inspeção da manhã','chalé 7 em ordem');}catch(z){}}
+   else{P.fim[q[1]]=!P.fim[q[1]];if(PL_FIM.every(function(x){return P.fim[x[0]];}))try{acLouros('Inspeção da noite','pronto para o recolher');}catch(z){}}
+   try{grava();}catch(z){}try{var rb=document.getElementById('rt-box');if(rb)rb.innerHTML=rtHTML();}catch(z){}try{vxRender();}catch(z){}diaPinta();});}
+ DIA_ABERTO=k;p.dataset.k=k;var h=diaCardHTML(k);if(p._h!==h){p._h=h;p.innerHTML=h;}p.hidden=false;
+ var f=document.getElementById('dia-faixa');if(f){var fr=f.getBoundingClientRect();p.style.right=(innerWidth-fr.left+8)+'px';
+  if(k==='m'){p.style.top=(fr.top+8)+'px';p.style.bottom='';}else{p.style.bottom=(innerHeight-fr.bottom+8)+'px';p.style.top='';}}
+ Array.prototype.forEach.call(document.querySelectorAll('#dia-faixa [data-dfcard]'),function(b){b.setAttribute('aria-expanded',String(b.dataset.dfcard===k));});
+ if(!so){var c=p.querySelector('.mm-ck');if(c)try{c.focus({preventScroll:true});}catch(z){}}}
+function diaFecha(){DIA_ABERTO='';var p=document.getElementById('df-pop');if(p)p.hidden=true;
+ Array.prototype.forEach.call(document.querySelectorAll('#dia-faixa [data-dfcard]'),function(b){b.setAttribute('aria-expanded','false');});}
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&DIA_ABERTO)diaFecha();});
+document.addEventListener('pointerdown',function(e){if(!DIA_ABERTO)return;if(e.target.closest('#df-pop,#dia-faixa'))return;diaFecha();});
+window.addEventListener('resize',function(){try{diaPinta();}catch(e){}});
+setInterval(function(){try{diaPinta();}catch(e){}},30000);
+(function(){var r0=vxRender;vxRender=function(){var x=r0.apply(this,arguments);try{diaPinta();}catch(e){}return x;};})();
+setTimeout(function(){try{diaPinta();}catch(e){}},1500);setTimeout(function(){try{diaPinta();}catch(e){}},4000);
+(function(){var st=document.createElement('style');st.id='dia-css';st.textContent=[
+ 'body.com-dia .wrap{margin-right:calc(var(--dia-r,390px) + '+DIA_W+'px)!important}',
+ 'body.com-dia #fer-w{right:calc(var(--dia-r,390px) + '+(DIA_W+14)+'px)!important}',
+ '#dia-faixa{position:fixed;top:0;right:var(--dia-r,390px);width:'+DIA_W+'px;z-index:40;display:flex;flex-direction:column;gap:6px;padding:8px 6px;box-sizing:border-box;',
+ ' background:linear-gradient(180deg,#f3e8cc,#ecdcb6);border-left:1px solid #c9b28a;border-right:1px solid #c9b28a;box-shadow:inset 0 0 0 3px #f6eed8,inset 0 0 0 4px #d8c39a}',
+ '#dia-faixa[hidden]{display:none}',
+ '#dia-faixa .df-cap{flex:none;width:100%!important;margin:0!important;padding:6px 2px!important;display:flex;flex-direction:column;align-items:center;gap:2px;border:1px solid #9a6b3a!important;border-radius:8px!important;background:#fbf3df!important;color:#5a3f2c!important;cursor:pointer}',
+ '#dia-faixa .df-cap svg{width:20px;height:20px;fill:none;stroke:#9a6b3a;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}',
+ '#dia-faixa .df-cap b{font:400 11px Georgia,serif;font-variant:small-caps;letter-spacing:.04em;color:#2a2418}',
+ '#dia-faixa .df-cap i{font:700 9px var(--mono,monospace);font-style:normal;color:#8a6f55}',
+ '#dia-faixa .df-cap.ok{background:#eef3e2!important;border-color:#7d9a55!important}#dia-faixa .df-cap.ok i{color:#4f7a35}',
+ '#dia-faixa .df-cap[aria-expanded="true"]{background:#e9c87a!important}',
+ '#dia-faixa .df-trilho{position:relative;flex:1;min-height:200px;margin:4px 0 4px 16px;border-left:2px solid #b89c72}',
+ '#dia-faixa .df-seg{position:absolute;left:3px;right:0;box-sizing:border-box;border-radius:5px;background:var(--b);border:1px solid rgba(0,0,0,.06);overflow:hidden;display:flex;align-items:center;justify-content:center}',
+ '#dia-faixa .df-seg span{writing-mode:vertical-rl;transform:rotate(180deg);font:700 8px var(--mono,monospace);letter-spacing:.12em;text-transform:uppercase;color:var(--t);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-height:100%}',
+ '#dia-faixa .df-seg.passou{opacity:.42}#dia-faixa .df-seg.atual{box-shadow:0 0 0 2px #9a6b3a}',
+ '#dia-faixa .df-h{position:absolute;left:-17px;transform:translateY(-50%);font:700 7.5px var(--mono,monospace);font-style:normal;color:#8a6f55;letter-spacing:0}',
+ '#dia-faixa .df-toq{position:absolute;left:-5px;width:8px;height:8px;margin-top:-4px;border-radius:50%;background:#fbf3df;border:1.5px solid #9a6b3a;z-index:2}',
+ '#dia-faixa .df-toq.foi{background:#9a6b3a}',
+ '#dia-faixa .df-lim{position:absolute;left:-6px;right:-2px;height:0;border-top:2px dashed #5a3f8a;z-index:2}',
+ '#dia-faixa .df-agora{position:absolute;left:-8px;right:-4px;height:0;border-top:2px solid #b4463a;z-index:3}',
+ '#dia-faixa .df-agora::before{content:"";position:absolute;left:-3px;top:-5px;width:8px;height:8px;border-radius:50%;background:#b4463a}',
+ '#dia-faixa .df-agora b{position:absolute;right:0;top:-15px;padding:0 3px;border-radius:3px;background:#b4463a;color:#fff;font:700 8.5px var(--mono,monospace)}',
+ '.df-pop{position:fixed;z-index:60;width:290px;padding:12px 14px;border:1px solid #9a6b3a;border-radius:10px;background:#f7eed8;box-shadow:0 14px 34px rgba(60,40,15,.28),inset 0 0 0 3px #f7eed8,inset 0 0 0 4px #d8c39a;color:#2a2418}',
+ '.df-pop[hidden]{display:none}',
+ '.df-pop header{display:flex;align-items:flex-start;gap:8px;padding-bottom:8px;border-bottom:1px dashed #c9a45a}',
+ '.df-pop header>div{flex:1;min-width:0}.df-pop .df-k{display:block;font:700 8.5px var(--mono,monospace);letter-spacing:.18em;text-transform:uppercase;color:#9a6b3a}',
+ '.df-pop header b{display:block;font:400 16px Georgia,serif;font-variant:small-caps;letter-spacing:.03em}',
+ '.df-pop header em{font:700 11px var(--mono,monospace);font-style:normal;color:#5a3f2c;border:1px solid #c9a45a;border-radius:999px;padding:1px 7px;background:#fbf5e6}',
+ '.df-pop .df-x{width:auto!important;margin:0!important;padding:0 4px!important;border:0!important;background:none!important;color:#8a6f55!important;cursor:pointer}',
+ '.df-pop ul{list-style:none;margin:8px 0;padding:0;display:flex;flex-direction:column;gap:5px}',
+ '.df-pop li{display:flex;align-items:center;gap:8px;padding:5px 8px;border:1px solid #d8c39a;border-radius:7px;background:#fbf5e6;font:13.5px Georgia,serif}',
+ '.df-pop li.ok{background:#eef3e2;border-color:#b8cc94}.df-pop li.ok span{color:#5f6e48;text-decoration:line-through;text-decoration-color:rgba(95,110,72,.5)}',
+ '.df-pop .mm-ck{flex:none;width:20px!important;height:20px!important;margin:0!important;padding:0!important;border:1.5px solid #9a6b3a!important;border-radius:50%!important;background:#fffaf0!important;color:#fff!important;font:700 11px/1 sans-serif!important;cursor:pointer;display:grid;place-items:center}',
+ '.df-pop .mm-ck[aria-pressed="true"]{background:#5f8a3f!important;border-color:#5f8a3f!important}',
+ '.df-pop p{margin:0;font:italic 12.5px Georgia,serif;color:#6b5140}',
+ '.mm-or{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:5px}',
+ '.mm-or li{display:flex;align-items:center;gap:7px}',
+ '.mm-or .mm-or-in{flex:1;min-width:0;height:30px;box-sizing:border-box;padding:0 8px;border:1px solid #c9b28a;border-radius:7px;background:#fffaf0;font:13.5px Georgia,serif;color:#2a2418}',
+ '.mm-or li:first-child .mm-or-in{border-color:#c9a227;box-shadow:inset 3px 0 0 #c9a227}',
+ '.mm-or li.ok .mm-or-in{background:#eef3e2;color:#5f6e48;text-decoration:line-through}'
+].join('\n');document.head.appendChild(st);})();
+
+
+/* ======================= nenhuma imagem repetida =======================
+   Cada foto do acampamento aparece num lugar só. Onde havia repetição, entra uma ilustração própria em sépia:
+   Diárias (relógio de sol), Culture Vulture (máscaras), e as cinco placas do Posto de comando
+   (aurora de Hélio, arco de Apolo, fios das Moiras, pergaminho das Musas, caminhos de Hermes). O louro sai do fundo da Profecia. */
+(function(){var T={'.op-l':'ilustra-aurora.svg','.op-col1':'ilustra-arco-apolo.svg','.op-fazer':'ilustra-moiras.svg','.op-estudo':'ilustra-musas.svg','.op-lado':'ilustra-hermes.svg'};
+ try{Object.keys(T).forEach(function(k){if(OP_TEMPLO[k])OP_TEMPLO[k].img=T[k];});}catch(e){}
+ var st=document.createElement('style');st.id='img-unicas-css';st.textContent=[
+  '#mm-box .mm-quest{--mm-img:url("img/acampamento/ilustra-relogio-sol.svg")!important}',
+  '#recreio #lat-cv,#lat-cv{--c-img:url("img/acampamento/ilustra-mascaras.svg")!important}',
+  '.mm-prof{background:linear-gradient(180deg,rgba(251,247,236,.8),var(--panel) 130px)!important}',
+  '#modo-op .op-ritos>.op-cab,#modo-op .op-foco~* .op-cab{--t-foto:none!important}'
+ ].join('\n');document.head.appendChild(st);
+ /* numa coluna do Posto com dois cabeçalhos, a placa com foto fica só no primeiro */
+ function opUmaFoto(){Array.prototype.forEach.call(document.querySelectorAll('.op-templo,.op-c'),function(col){Array.prototype.forEach.call(col.querySelectorAll('.op-cab'),function(c,i){if(i>0)c.style.setProperty('--t-foto','none');});});}
+ try{var t0=opTemplo;opTemplo=function(){var r=t0.apply(this,arguments);try{opUmaFoto();}catch(e){}return r;};}catch(e){}
+ setTimeout(function(){try{if(typeof opTemplo==='function')opTemplo();}catch(e){}},1200);})();
 
 })();
 </script>
