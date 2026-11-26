@@ -17353,6 +17353,26 @@ function frontaoMoldura(){var h=document.getElementById('hero-box');if(!h||h.dat
  '#tp-real>:is(#tm-painel,#recreio):not([hidden]){flex:1 0 auto}'
 ].join('\n');document.head.appendChild(st);})();
 
+
+/* ======================= Fio de Ariadne como rodapé expansível do painel esquerdo; cartões mais largos ======================= */
+(function(){var st=document.createElement('style');st.id='fio-rodape-css';st.textContent=[
+ '#lat-e{padding-bottom:0!important}',
+ '#lat-e>:is(#lat-arena,#lat-band,#lat-cp,#lat-db),#lat-e>#lat-gm>.gm,#lat-e>#lat-vx>.vx-card{margin-left:6px!important;margin-right:6px!important}',
+ '#lat-e>.lat-grp{margin-left:8px!important;margin-right:8px!important}',
+ '#lat-e>#qa-d-pc{order:99!important;position:sticky!important;bottom:0;z-index:6;margin:4px 0 0!important;border-radius:10px 10px 0 0!important;border-bottom:0!important;',
+ ' box-shadow:0 -8px 16px -8px rgba(60,40,20,.35)!important;background:#f4ead2!important}',
+ '#lat-e>#qa-d-pc>summary{padding:9px 14px!important}',
+ '#lat-e>#qa-d-pc>summary .qa-sk{display:none!important}',
+ '#lat-e>#qa-d-pc>summary>b{margin-left:0!important}',
+ '#lat-e>#qa-d-pc>summary .qa-ic{width:26px!important;height:26px!important}',
+ '#lat-e>#qa-d-pc[open]>summary::after{content:"▾"!important}',
+ '#lat-e>#qa-d-pc:not([open])>summary::after{content:"▴"!important}',
+ '#lat-e>#qa-d-pc>summary .qa-deus{margin-right:30px}',
+ '#lat-e>#qa-d-pc .pctabs button{color:#5a3f2c!important;background:#f4ead2!important;border:1px solid #c9b28a!important}',
+ '#lat-e>#qa-d-pc .pctabs button:is(.on,.at,.ativo,[aria-pressed="true"],[aria-selected="true"]){background:#5a3f2c!important;color:#fbf5e6!important;border-color:#5a3f2c!important}',
+ '#lat-e>#qa-d-pc[open]>.qa-sb{max-height:min(58vh,520px);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin}'
+].join('\n');document.head.appendChild(st);})();
+
 })();
 </script>
 </body>
