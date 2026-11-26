@@ -2122,14 +2122,28 @@ body[data-skin="astro"][data-vx-view="fin"]{--red:var(--a-fin)}
  --ax-display:var(--display);--ax-sans:var(--sans);--ax-mono:var(--mono);--ax-escuro:var(--app-bone)}
 /* as regras gerais de botão e campo do app não valem dentro do cofre */
 .ax-html :where(button,input,select,textarea,label,h1,h2,h3,h4,p,ul,ol,li,a,table,th,td){all:revert}
-#fin-wrap>.ax-html{position:relative;border:2px solid var(--line2);border-radius:8px;overflow:clip}
+#fin-wrap>.ax-html{position:relative;border:0;border-radius:0;overflow:clip;background:transparent}
+/* sem cabeçalho próprio: a navegação do cofre vira sub-abas do app, e o fundo é o da página */
+#fin-wrap .axis-weekbar,#fin-wrap .awb-dialog-backdrop:not(.open){display:none!important}
+#fin-wrap .ax-body,#fin-wrap .ax-html.habit .ax-body{background:transparent!important}
+#fin-wrap .ax-html.habit .ax-body:before{display:none!important}
+.loja-nav{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 14px}
+.loja-nav button{width:auto;margin:0;padding:7px 13px;border:1px solid var(--line);border-radius:10px;background:var(--panel);color:var(--dim);cursor:pointer;
+ font:700 10.5px/1 system-ui,-apple-system,"Segoe UI",sans-serif;letter-spacing:.14em;text-transform:uppercase;display:inline-flex;align-items:center;gap:7px}
+.loja-nav button:hover{border-color:var(--red);color:var(--ink)}
+.loja-nav button.at{background:var(--red);border-color:var(--red);color:var(--onred,#fff)}
+.loja-nav .lj-sep{flex:1}
+.loja-nav .lj-mini{letter-spacing:.06em;text-transform:none;font-weight:600}
 /* o AxisHub vivia sozinho na tela: barra e fundos presos à janela passam a ficar dentro do Tesouro */
 #fin-wrap .axis-weekbar{position:sticky!important;inset:auto!important;top:0!important;width:auto!important}
 #fin-wrap .ax-body{padding-top:0!important;min-height:0!important}
 #fin-wrap .ax-html.habit .ax-body:before{position:absolute!important}
-#fin-wrap .ax-html.habit header{position:sticky!important;left:auto!important;top:62px!important}
-#fin-wrap #toolDock{position:absolute!important;top:62px!important;height:calc(100% - 62px)!important}
-#fin-wrap #toolDock .td-panel{position:sticky!important;top:62px!important;max-height:calc(100vh - 80px)!important;margin-left:auto}
+#fin-wrap .ax-html.habit header{display:none!important}
+#fin-wrap #toolDock{left:0!important;width:100%!important}
+#fin-wrap #toolDock .td-panel{width:100%!important;border-radius:14px!important;box-shadow:none!important}
+#fin-wrap #toolDock .td-phd{display:none!important}
+#fin-wrap #toolDock{position:absolute!important;top:0!important;height:100%!important}
+#fin-wrap #toolDock .td-panel{position:sticky!important;top:12px!important;max-height:calc(100vh - 24px)!important;margin-left:auto}
 body[data-vx-view="fin"] #rail{display:none}
 
 body[data-vx-view="fin"] #gm-vx{display:none}
@@ -11045,7 +11059,7 @@ function axMudou(){clearTimeout(AX.t);AX.t=setTimeout(function(){try{nvPor(FIN_T
 function axMonta(){var w=finWrap();if(!w||(AX.raiz&&AX.raiz.isConnected))return;
  var tpl=document.getElementById('ax-tpl'),js=document.getElementById('ax-js');if(!tpl||!js)return;
  var frag=tpl.content.cloneNode(true),css=frag.querySelector('#ax-css');if(css&&!document.getElementById('ax-css-on')){css.id='ax-css-on';document.head.appendChild(css);}
- var H=frag.querySelector('.ax-html');w.insertBefore(H,w.firstChild);AX.raiz=H;var B=H.querySelector('.ax-body');
+ var H=frag.querySelector('.ax-html');w.insertBefore(H,w.firstChild);AX.raiz=H;var B=H.querySelector('.ax-body');axNav(w,H);
  function ouve(alvo,t,f,o){alvo.addEventListener(t,f,o);AX.ouv.push([alvo,t,f,o]);}
  var doc={readyState:'complete',body:B,documentElement:H,
   getElementById:function(i){return document.getElementById(i);},
@@ -11062,6 +11076,23 @@ function axMonta(){var w=finWrap();if(!w||(AX.raiz&&AX.raiz.isConnected))return;
  function si(){var id=setInterval.apply(window,arguments);AX.timers.push(id);return id;}
  try{(new Function('document','location','localStorage','setInterval',js.textContent)).call(window,doc,loc,ls,si);}
  catch(e){console.error('AxisHub:',e);}}
+/* sub-abas da Loja: Tesouro, Diário de Bordo, Carga, Enfermaria e Rotas, mais exportar e importar */
+var AX_NAV=[['finance','Tesouro'],['habit','Diário de Bordo'],['mapa','Carga'],['sono','Enfermaria'],['projects','Rotas']];
+function axBotao(k){return AX.raiz&&AX.raiz.querySelector('.awb-nav [data-awb-tab="'+k+'"],.awb-nav [data-awb-action="'+k+'"]');}
+function axNavPinta(){var n=document.getElementById('loja-nav');if(!n)return;
+ var painel=AX.raiz&&AX.raiz.querySelector('.awb-nav .panel-on');
+ Array.prototype.forEach.call(n.querySelectorAll('[data-lj]'),function(b){var o=axBotao(b.dataset.lj);
+  b.classList.toggle('at',!!(o&&(painel?o.classList.contains('panel-on'):o.classList.contains('on'))));});}
+function axNav(w,H){var n=document.getElementById('loja-nav');
+ if(!n){n=document.createElement('nav');n.id='loja-nav';n.className='loja-nav';n.setAttribute('aria-label','Seções da Loja do Acampamento');
+  n.innerHTML=AX_NAV.map(function(x){return '<button type="button" data-lj="'+x[0]+'">'+x[1]+'</button>';}).join('')+
+   '<span class="lj-sep"></span><button type="button" class="lj-mini" data-lj-x="fin-exp">Exportar</button><button type="button" class="lj-mini" data-lj-x="fin-imp">Importar</button>';
+  n.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;
+   if(b.dataset.lj==='finance'||b.dataset.lj==='habit'){var fx=document.getElementById('dockClose');if(fx&&AX.raiz.querySelector('.awb-nav .panel-on'))fx.click();}
+   var o=b.dataset.lj?axBotao(b.dataset.lj):document.getElementById(b.dataset.ljX);if(o)o.click();setTimeout(axNavPinta,60);});}
+ w.insertBefore(n,H);
+ try{new MutationObserver(axNavPinta).observe(H.querySelector('.awb-nav')||H,{subtree:true,attributes:true,attributeFilter:['class']});}catch(e){}
+ setTimeout(axNavPinta,50);}
 /* dados das finanças mudaram por fora (nuvem ou extensão): desmonta e monta de novo */
 function axRemonta(){if(!AX.raiz)return;AX.timers.forEach(clearInterval);AX.timers=[];
  AX.ouv.forEach(function(x){x[0].removeEventListener(x[1],x[2],x[3]);});AX.ouv=[];
@@ -11570,9 +11601,9 @@ var ICO_P={
  balanca:'<path d="M12 4v16M7 20h10M5 7h14M5 7l-3 6a3 3 0 0 0 6 0zM19 7l-3 6a3 3 0 0 0 6 0z"/>',
  ponto:'<circle cx="12" cy="12" r="3.5"/>'};
 var ICO_M={};(function(){var g={cal:'📅📆🗓',graf:'📊📈📉',pasta:'🗂📁📂',nota:'📝📋🗒',livro:'📚📒📓📖',aviao:'✈',bussola:'🧭',mapa:'🗺',pino:'📍📌',
- carrinho:'🛒',sacola:'🛍',cartao:'💳',moeda:'💰💵💸🪙',cadeado:'🔒🔐',aberto:'🔓',corrente:'⛓',f5:'😄😀😁🤩',f4:'🙂☺😊',f3:'😐😶',f2:'😕😟🙁',f1:'😫😣😩😖',
+ carrinho:'🛒',sacola:'🛍🎒👛👜',cartao:'💳',moeda:'💰💵💸🪙',cadeado:'🔒🔐',aberto:'🔓',corrente:'⛓',f5:'😄😀😁🤩',f4:'🙂☺😊',f3:'😐😶',f2:'😕😟🙁',f1:'😫😣😩😖',
  lua:'🌙🌛',prato:'🍽🍳🥗',relogio:'⏰⏱⏳⌛⌚⏲',alvo:'🎯',medalha:'🏅🥇🥈🥉🏆',estrela:'⭐🌟',broto:'🌱🌿',pilula:'💊',saude:'🩺🧪🧴🏥',tela:'💻🖥',
- jogo:'🎮🎲🧩🎬🎧🤖',gota:'💧',peso:'🏋🚲🏃',mao:'✋🤝👋',roupa:'👗👕👖👟🧢🎒👛👚',casa:'🏠🏡',ferramenta:'🔧⚒🛠',verde:'🟢',amarelo:'🟡',vermelho:'🔴',
+ jogo:'🎮🎲🧩🎬🎧🤖',gota:'💧',peso:'🏋🚲🏃',mao:'✋🤝👋',roupa:'👗👕👖👟🧢👚',casa:'🏠🏡',ferramenta:'🔧⚒🛠',verde:'🟢',amarelo:'🟡',vermelho:'🔴',
  proibido:'🚫⛔',ok:'✅',sino:'🔔',coracao:'❤',lapis:'✏',ciclo:'🔁🔄',mente:'🧠',caixa:'📥📦',pena:'🪶',alerta:'⚠',fogo:'🔥',balanca:'⚖'};
  for(var k in g)Array.from(g[k]).forEach(function(c){ICO_M[c]=k;});})();
 var ICO_FONTE='(?:[\\u{1F000}-\\u{1FAFF}]|[\\u231A\\u231B\\u23F0-\\u23FA\\u2705\\u2708\\u270B\\u270F\\u2696\\u2692\\u26A0\\u2764\\u2B50\\u263A\\u26D3\\u26D4])\\uFE0F?(?:\\u200D(?:[\\u{1F000}-\\u{1FAFF}]|[\\u2640\\u2642\\u2695])\\uFE0F?)*';
