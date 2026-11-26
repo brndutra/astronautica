@@ -16541,6 +16541,65 @@ setTimeout(function(){try{tpPlaca();}catch(e){}},1500);
  '#tp-real .tp-placa button:not([aria-selected="true"]):hover{color:#5a3f2c!important;text-decoration:underline;text-underline-offset:3px}'
 ].join('\n');document.head.appendChild(st);})();
 
+
+/* ======================= Toque da Concha vira friso sobre o templo =======================
+   Inspeção e Ronda já moram na faixa do dia; o que sobra da Rotina do chalé, a Concha, vira um friso no alto do Templo
+   das Tarefas: os toques do dia como métopas, o já tocado esmaecido e o próximo em ouro. O cartão da rotina sai do Mural;
+   clicar no friso abre as configurações da Concha (o mesmo #rt-box, só com a coluna da Concha). */
+function frisoNome(n){n=String(n||'').split(' · ')[0];if(/recolher/i.test(n))return 'Recolher';return n.split(' ')[0];}
+function frisoHTML(){var R=rtD(),a=rtAgora(),L=R.toques.filter(function(t){return t.on;}).sort(function(x,y){return rtMin(x.h)-rtMin(y.h);}),prox=null;
+ L.forEach(function(t){if(!prox&&rtMin(t.h)>a)prox=t;});
+ var p=rtProx(),falta=p?((p.m!=null?p.m:rtMin(p.h))-a):0;if(falta<0)falta+=1440;
+ return '<div class="tf-met">'+(L.length?L.map(function(t){var m=rtMin(t.h),cls=t===prox?' prox':(m<=a?' foi':'');return '<span class="tf-m'+cls+'" title="'+esc(t.h+' · '+t.n)+'"><b>'+esc(t.h)+'</b><i>'+esc(frisoNome(t.n))+'</i></span>';}).join('<em class="tf-tri" aria-hidden="true"></em>'):'<span class="tf-vz">nenhum toque ligado</span>')+'</div>'+
+  '<div class="tf-leg">'+RT_IC.concha+'<span>Toque da Concha'+(p?' · próximo '+esc(p.h)+' · '+esc(p.n)+' · em '+(falta>=60?Math.floor(falta/60)+'h'+String(falta%60).padStart(2,'0'):falta+' min'):'')+'</span><b>ajustar ▾</b></div>';}
+var TP_FRISO=null;
+function tpFriso(){var p=document.getElementById('tp-painel');if(!p)return;var fr=p.querySelector('.tp-fr');if(!fr)return;
+ if(!TP_FRISO){TP_FRISO=document.createElement('button');TP_FRISO.type='button';TP_FRISO.id='tp-friso';TP_FRISO.className='tp-friso';TP_FRISO.setAttribute('aria-expanded','false');TP_FRISO.setAttribute('aria-label','Toque da Concha · ajustar os toques');
+  TP_FRISO.addEventListener('click',function(e){e.stopPropagation();concha(!document.body.classList.contains('concha-aberta'));});}
+ if(TP_FRISO.parentNode!==fr||fr.firstElementChild!==TP_FRISO)fr.insertBefore(TP_FRISO,fr.firstChild);
+ var h=frisoHTML();if(TP_FRISO._h!==h){TP_FRISO._h=h;TP_FRISO.innerHTML=h;}}
+function concha(on){document.body.classList.toggle('concha-aberta',!!on);if(TP_FRISO)TP_FRISO.setAttribute('aria-expanded',String(!!on));
+ if(on&&TP_FRISO){var r=TP_FRISO.getBoundingClientRect();document.body.style.setProperty('--concha-top',Math.round(r.bottom+6)+'px');document.body.style.setProperty('--concha-right',Math.round(innerWidth-r.right)+'px');document.body.style.setProperty('--concha-w',Math.round(r.width)+'px');
+  try{var b=document.getElementById('rt-box');if(b)b.innerHTML=rtHTML();}catch(e){}}}
+document.addEventListener('pointerdown',function(e){if(!document.body.classList.contains('concha-aberta'))return;if(e.target.closest('#tm-r1,#tp-friso'))return;concha(false);});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&document.body.classList.contains('concha-aberta'))concha(false);});
+(function(){var t0=tpReal;tpReal=function(){var r=t0.apply(this,arguments);try{tpFriso();}catch(e){}return r;};})();
+setInterval(function(){try{tpFriso();}catch(e){}},30000);setTimeout(function(){try{tpFriso();}catch(e){}},1600);
+['click','change'].forEach(function(ev){document.addEventListener(ev,function(e){if(e.target.closest&&e.target.closest('#tm-r1'))setTimeout(function(){try{tpFriso();}catch(z){}},60);},true);});
+/* o horário das harpias passa para o cartão da Ronda, na faixa do dia */
+diaCardHTML=(function(f0){return function(k){var h=f0.apply(this,arguments);if(k!=='n')return h;var R=rtD();
+ return h.replace('</ul>','</ul><label class="df-lim">as harpias começam a ronda às <input type="time" data-dflim value="'+esc(R.limite)+'"></label>');};})(diaCardHTML);
+document.addEventListener('change',function(e){var i=e.target.closest('[data-dflim]');if(!i)return;var R=rtD();R.limite=i.value||'22:30';try{grava();}catch(z){}try{diaPinta();}catch(z){}});
+(function(){var st=document.createElement('style');st.id='tp-friso-css';st.textContent=[
+ '#tp-real #tm-r1,#tp-real .tm-lb:has(+ #tm-r1){display:none!important}',
+ '#tp-painel:has(#tp-real) #tp-friso{order:0}',
+ '#tp-friso{display:block;width:auto!important;margin:0 4px 12px!important;padding:0!important;border:1px solid #9a7b4a!important;border-radius:4px!important;cursor:pointer;text-align:left;color:#2a2418;',
+ ' background:linear-gradient(180deg,#efe0bb,#e6d3a6)!important;box-shadow:inset 0 2px 0 #f7eed8,inset 0 -2px 0 #c9a45a,0 2px 0 #b9a77a}',
+ '#tp-friso .tf-met{display:flex;align-items:stretch;padding:5px 6px 4px;border-bottom:1px solid #c9a45a}',
+ '#tp-friso .tf-m{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;gap:1px;padding:3px 0;border-radius:3px}',
+ '#tp-friso .tf-m b{font:700 11px var(--mono,monospace);color:#5a3f2c;letter-spacing:.02em}',
+ '#tp-friso .tf-m i{font:400 10.5px Georgia,serif;font-style:normal;font-variant:small-caps;color:#6b5140;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}',
+ '#tp-friso .tf-m.foi{opacity:.45}',
+ '#tp-friso .tf-m.prox{background:#e9c87a;box-shadow:inset 0 0 0 1px #9a6b3a}#tp-friso .tf-m.prox b{color:#2a1c05}',
+ '#tp-friso .tf-tri{flex:none;width:8px;margin:2px 1px;background:repeating-linear-gradient(90deg,#9a7b4a 0 1.5px,transparent 1.5px 3.2px);opacity:.75}',
+ '#tp-friso .tf-vz{flex:1;text-align:center;font:italic 12px Georgia,serif;color:#8a6f55}',
+ '#tp-friso .tf-leg{display:flex;align-items:center;gap:6px;padding:4px 8px 5px}',
+ '#tp-friso .tf-leg svg{flex:none;width:15px;height:15px;fill:none;stroke:#9a6b3a;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}',
+ '#tp-friso .tf-leg span{flex:1;min-width:0;font:10.5px var(--sans);color:#5a4433;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}',
+ '#tp-friso .tf-leg b{flex:none;font:700 8.5px var(--mono,monospace);letter-spacing:.14em;text-transform:uppercase;color:#9a6b3a}',
+ '#tp-friso[aria-expanded="true"] .tf-leg b{color:#2a1c05}',
+ /* configurações da Concha: o #tm-r1 vira cartão flutuante só com a coluna da Concha */
+ 'body.concha-aberta #tp-real #tm-r1{display:block!important;position:fixed;top:var(--concha-top,80px);right:var(--concha-right,20px);width:var(--concha-w,340px);max-height:calc(100vh - var(--concha-top,80px) - 90px);overflow:auto;z-index:65;',
+ ' margin:0!important;padding:10px!important;background:#f7eed8!important;border:1px solid #9a6b3a!important;border-radius:10px!important;box-shadow:0 14px 34px rgba(60,40,15,.28)!important}',
+ 'body.concha-aberta #tp-real #tm-r1 #cl-rt{display:none!important}',
+ 'body.concha-aberta #tp-real #tm-r1 #rt-box{display:block!important;margin:0!important}',
+ 'body.concha-aberta #tp-real #tm-r1 .rt-g{display:block!important}',
+ 'body.concha-aberta #tp-real #tm-r1 .rt-g>:not(.rt-concha){display:none!important}',
+ 'body.concha-aberta #tp-real #tm-r1 .rt-concha::before{display:none!important}',
+ '.df-pop .df-lim{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 0 8px;font:12.5px Georgia,serif;color:#5a3f2c}',
+ '.df-pop .df-lim input{height:28px;padding:0 6px;border:1px solid #c9b28a;border-radius:6px;background:#fffaf0;font:12px var(--mono,monospace)}'
+].join('\n');document.head.appendChild(st);})();
+
 })();
 </script>
 </body>
