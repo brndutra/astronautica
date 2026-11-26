@@ -15327,6 +15327,34 @@ satPainelHTML=(function(f0){return function(){var h=f0.apply(this,arguments);
   .replace(/<small class="cv-bio">[^<]*<\/small>/,'<small class="cv-bio">Sol em Gêmeos, ascendente em Libra · Polly (Pollux, o imortal) traz as entregas; Cass (Castor, o gêmeo mortal) só aparece com notícia ruim · dividem a imortalidade, um dia cada · aparentam 36 · photoplayer dos dois: Chris Colfer (Cass de jaqueta de couro)</small>');
  return h;};})(satPainelHTML);
 satFicha=(function(f0){return function(){return f0.apply(this,arguments).replace('<dt>origem</dt>','<dt>idade</dt><dd>58 anos de sátiro, aparenta 29: sátiros envelhecem na metade do ritmo dos humanos</dd><dt>photoplayer</dt><dd>Jeremy Shada (Boise, Idaho; nascido em 21/01/1997, aquariano de carteirinha)</dd><dt>origem</dt>');};})(satFicha);
+/* ======================= o fundo do Hall das Epopeias =======================
+   Sully é Sátiro Protetor do Comitê dos Cascos Fendidos (o sindicato dos sátiros do Monte Ida);
+   os níveis seguem a hierarquia do Comitê. Os gêmeos McCaw descendem do Corvus, o corvo que Apolo
+   mandou buscar água na Cratera. */
+SAT_NV.splice(0,SAT_NV.length,[0,'Cabrito do Monte Ida'],[100,'Sátiro Protetor Júnior'],[300,'Sátiro Protetor Sênior'],[600,'Sátiro Buscador'],[1000,'Sátiro Ancião'],[1600,'Voz do Comitê dos Cascos Fendidos']);
+/* rosto do Sully: cachos ruivos, sardas, chifres curvos, camiseta vermelha com girassol e violão pintado de flores */
+satAvatar=function(humor){humor=humor||'calmo';
+ var boca={calmo:'<path d="M27 43c3 2.4 7 2.4 10 0"/>',alerta:'<path d="M28 44h8"/>',panico:'<ellipse cx="32" cy="44.5" rx="3.2" ry="2.6" fill="#3b2a1d"/>',festa:'<path d="M26 42c3 4.5 9 4.5 12 0z" fill="#fff"/>'}[humor]||'';
+ var olho=humor==='panico'?'<circle cx="25.5" cy="34" r="2.6" fill="#fff"/><circle cx="25.5" cy="34" r="1.3" fill="#3b2a1d"/><circle cx="38.5" cy="34" r="2.6" fill="#fff"/><circle cx="38.5" cy="34" r="1.3" fill="#3b2a1d"/>':
+  humor==='festa'?'<path d="M23 34.5c1.5-2 3.5-2 5 0M36 34.5c1.5-2 3.5-2 5 0"/>':'<circle cx="25.5" cy="34" r="1.6" fill="#3b2a1d"/><circle cx="38.5" cy="34" r="1.6" fill="#3b2a1d"/>';
+ var sobr=humor==='panico'?'<path d="M22 29l6 1.5M42 29l-6 1.5"/>':humor==='alerta'?'<path d="M22.5 30h6M35.5 30h6"/>':'<path d="M22.5 30c2-1.2 4-1.2 6 0M35.5 30c2-1.2 4-1.2 6 0"/>';
+ var sard='<g fill="#c46a3a" stroke="none"><circle cx="23" cy="38" r=".7"/><circle cx="25.5" cy="39.3" r=".7"/><circle cx="21.6" cy="40" r=".6"/><circle cx="41" cy="38" r=".7"/><circle cx="38.5" cy="39.3" r=".7"/><circle cx="42.4" cy="40" r=".6"/></g>';
+ return '<svg class="sat-av sat-'+humor+'" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="#3b2a1d" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">'+
+  '<path d="M21 22c-5-2-7-7-4-11 1 3 3 5 6 6" fill="#8a6a4a"/><path d="M43 22c5-2 7-7 4-11-1 3-3 5-6 6" fill="#8a6a4a"/>'+
+  '<path d="M17 31c-5-1-8-4-8-7 3 0 6 1 9 3M47 31c5-1 8-4 8-7-3 0-6 1-9 3" fill="#f0c9a0"/>'+
+  '<path d="M23 50c2 4 5 7 9 7s7-3 9-7" fill="#c8453a"/><circle cx="32" cy="54" r="2.4" fill="#f2b632" stroke-width="1"/><circle cx="32" cy="54" r=".9" fill="#5a3a1a" stroke="none"/>'+
+  '<path d="M18 33c0-10 6-15 14-15s14 5 14 15c0 9-5 17-14 17s-14-8-14-17z" fill="#f3d2ad"/>'+
+  '<path d="M17.5 29c-2-3-1-7 2-8-1-3 1-6 4-5 0-3 3-5 6-3 1-2.5 4-3 6-1 2-2 5.5-1 6 2 3-1 5.5 1.5 4.5 4.5 3 1 3.5 5 1.5 8-1.5-2-3.5-2.8-5.5-2.4-1-2.2-3.4-3-5.4-2-1.6-1.8-4.4-1.8-6 0-2-1.2-4.4-.6-5.4 1.4-2.2-.4-4.2.4-5.7 2.5z" fill="#e08a3c"/>'+
+  sobr+olho+sard+'<path d="M31 37.5c.6 1 1.4 1 2 0"/>'+boca+
+  '<g transform="translate(41 41) rotate(28)"><ellipse cx="6" cy="10" rx="6" ry="7.5" fill="#f1dcb4"/><circle cx="6" cy="9" r="2.2" fill="#3b2a1d" stroke="none"/><path d="M6 2V-12" stroke-width="2.2"/><path d="M2 13c1 1 2 1 3 0M7 14c1 .8 2 .8 3 0" stroke="#d0605a" stroke-width="1"/></g></svg>';};
+satFicha=(function(f0){return function(){var h=f0.apply(this,arguments);
+ h=h.replace('sátiro protetor do Hékatos · Brookhaven, Long Island','Sátiro Protetor do Hékatos · Comitê dos Cascos Fendidos');
+ h=h.replace(/<dt>photoplayer<\/dt><dd>[\s\S]*?<\/dd>/,'<dt>photoplayer</dt><dd>Ed Sheeran: aquariano (17/02/1991), ruivo de cachos e sardas, e não larga o violão</dd><dt>aparência</dt><dd>cachos ruivos, sardas, chifres curvos, pernas de cervo malhadas e rabo de leão; camiseta vermelha com um girassol estampado</dd>');
+ h=h.replace(/<dt>origem<\/dt><dd>[\s\S]*?<\/dd>/,'<dt>origem</dt><dd>cresceu nos brejos de Brookhaven, Long Island. Na sua visitação, aos 13, quando o seu éter começou a atrair monstros, o Comitê dos Cascos Fendidos o mandou a Austin. Ele se disfarçou de violeiro de rua na Sixth Street e guiou você até a Acrópole do Monte Ida, no extremo leste da ilha. Voltou com sardas novas do sol do Texas</dd>');
+ h=h.replace(/<dt>instrumento<\/dt><dd>[\s\S]*?<\/dd>/,'');
+ h=h.replace(/<dt>mania<\/dt><dd>/,'<dt>instrumento</dt><dd>violão pintado de flores, o mesmo do disfarce em Austin; a flauta de junco fica para as dríades</dd><dt>sindicato</dt><dd>filiado ao Comitê dos Cascos Fendidos; sonha subir a Sátiro Buscador e ser quem acha Pã</dd><dt>mania</dt><dd>');
+ return h;};})(satFicha);
+satPainelHTML=(function(f0){return function(){return f0.apply(this,arguments).replace(/(<small class="cv-bio">)/,'$1Netos do Corvus: Apolo mandou o avô buscar água na Cratera, ele parou para esperar os figos amadurecerem, mentiu culpando a Hidra e virou constelação, de penas pretas para sempre. Os gêmeos trabalham para limpar o nome da família: nunca atrasam uma entrega, e o Cass sempre diz a verdade, mesmo quando é ruim. · ');};})(satPainelHTML);
 setInterval(pintaProgresso,60000);
 })();
 </script>
