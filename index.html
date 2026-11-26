@@ -2484,6 +2484,16 @@ body:not(.claro) .fc{filter:brightness(.92)}
 .cf-lista p{margin:4px 0 0;font:14px/1.6 Georgia,serif;color:#2f261d}
 .cf-lista .vz{border:0;background:none;color:#6f6553;font:13px var(--sans)}
 #vx .ac-cb{display:flex!important;flex-direction:row;align-items:center;gap:10px;grid-template-columns:none}
+
+/* painel lateral direito mais largo (Quadro de avisos, leitura e atalhos) */
+@media(min-width:1380px){
+ :root{--rail-w:clamp(290px,22vw,380px)}
+ #rail.rail{width:var(--rail-w)!important}
+ .wrap{margin-right:var(--rail-w)!important}
+ .wrap::after{right:calc(var(--rail-w) + 6px)!important}
+ #rail .rcab b,#rail .rm b{font-size:18px}
+ #rail input,#rail textarea{font-size:13px}
+}
 </style>
 </head>
 <body>
