@@ -2379,6 +2379,19 @@ body.claro[data-skin="astro"] .cp-dracmas i.mosaico::after,.cp-dracmas i::after{
 #lat-ac .ac-row{grid-template-columns:1fr!important;margin:0!important;gap:10px}
 
 #lat-quadro:empty,#lat-vx:empty{display:none}
+/* concept art */
+.area-sep.com-arte{position:relative;min-height:150px;align-items:flex-end;padding:0 18px 14px!important;border:1px solid var(--line2)!important;border-radius:16px;overflow:hidden;
+ background:var(--arte) center/cover no-repeat;box-shadow:inset 0 -70px 60px -30px rgba(40,30,18,.55)}
+.area-sep.com-arte span,.area-sep.com-arte b{position:relative;z-index:1;color:#fff8e6!important;text-shadow:0 2px 10px rgba(0,0,0,.45)}
+.area-sep.com-arte span{color:#f6d58a!important}
+.ar-postal{position:relative;border-radius:8px;overflow:hidden;border:6px solid #fbf7ec;box-shadow:0 6px 14px rgba(40,28,12,.18);margin-bottom:8px;transform:rotate(-1deg)}
+.ar-svg{display:block;width:100%;height:auto;aspect-ratio:2.6/1}
+body.bn-mini .bn-min{background:linear-gradient(90deg,rgba(251,247,236,.96) 35%,rgba(251,247,236,.4)),var(--arte-vale) center/cover!important}
+.ar-leg{position:absolute;left:0;right:0;bottom:0;padding:16px 9px 6px;background:linear-gradient(transparent,rgba(30,22,12,.7));color:#fff8e6}
+.ar-leg b{display:block;font-family:var(--display);font-size:14px} .ar-leg small{display:block;font-size:11px;opacity:.9}
+.rt-harte{margin:-22px -24px 10px;height:120px;overflow:hidden;border-radius:16px 16px 0 0}
+.rt-harte .ar-svg{height:120px;aspect-ratio:auto}
+
 /* Rotina do acampamento */
 .rt-g{display:grid;grid-template-columns:1.1fr 1fr 1fr;gap:12px}
 @media(max-width:1000px){.rt-g{grid-template-columns:1fr}}
@@ -13083,7 +13096,7 @@ function latRsVai(){var F=[['inspira','in'],['segura','cheio'],['solta','out'],[
  passo();latRs.t=setInterval(passo,1000);}
 
 function latMonta(){var e=document.getElementById('lat-e'),d=document.getElementById('lat-d');
- if(!e){e=document.createElement('div');e.id='lat-e';e.className='lat';e.innerHTML='<div id="lat-quadro"></div><div id="lat-gm"></div>'+latCard('lat-ars','arco','Arsenal do Hékatos','O kit e a forja','<div id="lat-ars-b"></div>')+latCard('lat-dr','moeda','Moeda do acampamento','Dracmas de Ouro','<div id="lat-dr-b"></div>')+latCard('lat-cp','copa','Pontos do chalé 7 por semana','Copa dos Chalés','<div id="lat-cp-b"></div>')+'<div id="lat-ac"></div><div id="lat-vx" class="tt-area"></div>'+latCard('lat-enf-c','cruz','Sono, água, movimento, comida, remédios','Enfermaria do Acampamento','<div id="lat-med"></div><div id="lat-enf"></div>');
+ if(!e){e=document.createElement('div');e.id='lat-e';e.className='lat';e.innerHTML='<div id="lat-quadro"></div><div id="lat-gm"></div>'+latCard('lat-postal','carta','Cartão-postal do acampamento','Postal do dia','<div id="lat-postal-b"></div>')+latCard('lat-ars','arco','Arsenal do Hékatos','O kit e a forja','<div id="lat-ars-b"></div>')+latCard('lat-dr','moeda','Moeda do acampamento','Dracmas de Ouro','<div id="lat-dr-b"></div>')+latCard('lat-cp','copa','Pontos do chalé 7 por semana','Copa dos Chalés','<div id="lat-cp-b"></div>')+'<div id="lat-ac"></div><div id="lat-vx" class="tt-area"></div>'+latCard('lat-enf-c','cruz','Sono, água, movimento, comida, remédios','Enfermaria do Acampamento','<div id="lat-med"></div><div id="lat-enf"></div>');
   var ap=document.createElement('div');ap.id='lat-apps';ap.className='lat';ap.innerHTML=latAgenda()+latClima()+latSpotify()+latAtalhos();latMonta.apps=ap;}
  if(!d){d=document.createElement('div');d.id='lat-d';d.className='lat';d.innerHTML='<div class="lat-esth"><span class="lat-ic">'+LAT_IC.livro+'</span><div><span class="k9">Partenon · painel de estudos</span><b>Laptop de Dédalo</b></div>'+
   '<button type="button" class="lat-ed" id="lat-exp" title="expandir o painel (ou arraste a borda)" aria-label="expandir o painel">'+LAT_IC.expandir+'</button></div><h4 class="lat-sh">Táticas de Guerra <small>concurso TRF3</small></h4><div id="lat-est"></div><h4 class="lat-sh">Grego Antigo e Outras <small>línguas</small></h4><div id="lat-lin"></div>';}
@@ -13503,7 +13516,7 @@ function rtHarpias(porAcao){var R=rtD(),dia=rtDiaRonda(),ad='astro_harpia_'+dia,
  document.body.classList.add('harpias');var o=document.getElementById('rt-harpia');if(o)return;
  o=document.createElement('div');o.id='rt-harpia';o.className='rt-harpia';o.setAttribute('role','alertdialog');
  var n=(R.flagras[dia]|0);
- o.innerHTML='<div class="rt-hbox"><span class="rt-hic">'+RT_IC.harpia+'</span><span class="k9">Ronda das Harpias · '+esc(R.limite)+'</span><h3>Campista fora do chalé depois do recolher.</h3>'+
+ o.innerHTML='<div class="rt-hbox"><div class="rt-harte">'+arSvg('fogueira')+'</div><span class="rt-hic">'+RT_IC.harpia+'</span><span class="k9">Ronda das Harpias · '+esc(R.limite)+'</span><h3>Campista fora do chalé depois do recolher.</h3>'+
   '<p>As harpias da limpeza já estão patrulhando. O estudo de hoje termina aqui: amanhã a mira agradece o sono.</p>'+(n?'<p class="rt-hf">Flagrantes nesta noite: <b>'+n+'</b></p>':'')+
   '<div class="rt-hb"><button type="button" data-rt-h="fechar">voltar para o chalé</button><button type="button" data-rt-h="mais">só mais 10 minutos</button></div></div>';
  document.body.appendChild(o);
@@ -13553,6 +13566,65 @@ function rtLiga(b){
 (function(){var g0=gmXP;gmXP=function(){var x=g0(),q=0,P=S.plan||{};Object.keys(P).forEach(function(d){var m=P[d]&&P[d].manha;if(m&&RT_MANHA.every(function(i){return m[i[0]];}))q+=5;});x.total+=q;x.insp=q;return x;};})();
 try{GM_REGRAS.push(['inspeção da manhã completa','+5']);}catch(e){}
 setInterval(function(){try{rtTick();}catch(e){}},30000);setTimeout(function(){try{rtTick();}catch(e){}},3000);
+
+/* ---------- Concept art do acampamento (ilustrações originais em SVG, geradas aqui) ----------
+   Paisagens em tons de papel e sépia: vale, arena de arquearia, templo, forja, porto, fogueira e lago.
+   Usadas nas faixas de abertura de cada parte, no cartão-postal da coluna esquerda e na ronda das harpias. */
+function arRnd(seed){var s=seed>>>0||1;return function(){s=(s*1664525+1013904223)>>>0;return s/4294967296;};}
+function arCeu(id,c1,c2,c3){return '<defs><linearGradient id="ceu'+id+'" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="'+c1+'"/><stop offset=".62" stop-color="'+c2+'"/><stop offset="1" stop-color="'+c3+'"/></linearGradient>'+
+ '<filter id="pap'+id+'"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="3"/><feColorMatrix values="0 0 0 0 .35  0 0 0 0 .27  0 0 0 0 .16  0 0 0 .09 0"/><feComposite in2="SourceGraphic" operator="in"/></filter>'+
+ '<radialGradient id="sol'+id+'"><stop offset="0" stop-color="#fff4cf"/><stop offset=".35" stop-color="#f6d58a" stop-opacity=".9"/><stop offset="1" stop-color="#f6d58a" stop-opacity="0"/></radialGradient></defs>'+
+ '<rect width="1200" height="300" fill="url(#ceu'+id+')"/>';}
+function arSol(id,x,y,r){return '<circle cx="'+x+'" cy="'+y+'" r="'+(r*3.2)+'" fill="url(#sol'+id+')"/><circle cx="'+x+'" cy="'+y+'" r="'+r+'" fill="#fff1c7" opacity=".95"/>';}
+function arMorro(seed,base,amp,cor,op,passo){var R=arRnd(seed),d='M0 300 L0 '+base,x;for(x=0;x<=1200;x+=passo){d+=' Q'+(x+passo/2)+' '+(base-amp*(.4+R()*.9))+' '+(x+passo)+' '+(base-amp*R()*.5);}return '<path d="'+d+' L1200 300Z" fill="'+cor+'" opacity="'+op+'"/>';}
+function arPinho(x,y,h,cor){var w=h*.42,s='<g fill="'+cor+'">';for(var i=0;i<3;i++){var yy=y-h*(.25+i*.28),ww=w*(1-i*.25);s+='<path d="M'+(x-ww/2)+' '+(yy+h*.3)+' L'+x+' '+(yy-h*.12)+' L'+(x+ww/2)+' '+(yy+h*.3)+'Z"/>';}return s+'<rect x="'+(x-h*.03)+'" y="'+(y-h*.05)+'" width="'+(h*.06)+'" height="'+(h*.1)+'"/></g>';}
+function arPinhos(seed,n,y0,y1,h0,h1,cor){var R=arRnd(seed),s='';for(var i=0;i<n;i++){var x=R()*1200,y=y0+R()*(y1-y0);s+=arPinho(x,y,h0+R()*(h1-h0),cor);}return s;}
+function arChale(x,y,w,cor,teto){return '<g><rect x="'+x+'" y="'+(y-w*.55)+'" width="'+w+'" height="'+(w*.55)+'" fill="'+cor+'"/><path d="M'+(x-w*.08)+' '+(y-w*.55)+' L'+(x+w/2)+' '+(y-w*.95)+' L'+(x+w*1.08)+' '+(y-w*.55)+'Z" fill="'+teto+'"/><rect x="'+(x+w*.42)+'" y="'+(y-w*.3)+'" width="'+(w*.16)+'" height="'+(w*.3)+'" fill="#3b2f22" opacity=".7"/></g>';}
+function arAgua(y,cor){var s='<rect x="0" y="'+y+'" width="1200" height="'+(300-y)+'" fill="'+cor+'"/>';for(var i=0;i<14;i++){var yy=y+8+i*7;s+='<path d="M'+(i*83%1100)+' '+yy+' h'+(60+i*9%50)+'" stroke="#fff6dc" stroke-width="1.2" opacity=".45"/>';}return s;}
+function arGrao(id){return '<rect width="1200" height="300" filter="url(#pap'+id+')"/>';}
+var ARTE={
+ vale:function(){var id='va';return arCeu(id,'#f1dcae','#f4e6c6','#efe2c4')+arSol(id,930,95,26)+
+  '<rect x="0" y="150" width="1200" height="10" fill="#b9c2bb" opacity=".6"/>'+arMorro(11,170,40,'#c9b892',.8,150)+arMorro(12,205,55,'#a99a72',.9,120)+
+  arPinhos(5,26,190,215,22,36,'#6f6648')+arPinho(170,165,90,'#5b5240')+'<path d="M150 104 l22 -6 l18 9 l-20 5z" fill="#d9a73a"/>'+
+  '<g>'+[0,1,2,3,4,5,6,7,8,9,10,11].map(function(i){var a=Math.PI*(i/11),cx=640+Math.cos(a)*170,cy=250-Math.sin(a)*38;return arChale(cx-14,cy,28,i===6?'#d8b45a':['#cdbb93','#bfae88','#d4c4a0'][i%3],i===6?'#a87d2c':'#8d7a5a');}).join('')+'</g>'+
+  arMorro(13,262,18,'#8f8463',1,200)+'<g stroke="#9b4a3a" stroke-width="3" stroke-dasharray="2 7" opacity=".7">'+[0,1,2,3,4].map(function(i){return '<path d="M'+(60+i*20)+' 300 L'+(300+i*30)+' 262"/>';}).join('')+'</g>'+arGrao(id);},
+ arena:function(){var id='ar';return arCeu(id,'#f6d9a2','#f5e7c8','#efe3c6')+arSol(id,210,120,30)+arMorro(21,175,45,'#c4b38c',.85,160)+arPinhos(7,30,165,190,24,40,'#6f6648')+
+  '<rect x="0" y="210" width="1200" height="90" fill="#cdbf98"/>'+'<path d="M0 232 H1200" stroke="#8d7a5a" stroke-width="2" opacity=".5"/>'+
+  [300,560,820].map(function(x,i){return '<g><path d="M'+(x-22)+' 250 l10 -48 M'+(x+22)+' 250 l-10 -48" stroke="#6b5a40" stroke-width="5"/><circle cx="'+x+'" cy="190" r="34" fill="#f4ead2" stroke="#6b5a40" stroke-width="3"/><circle cx="'+x+'" cy="190" r="24" fill="#3f5a6b"/><circle cx="'+x+'" cy="190" r="15" fill="#b4463a"/><circle cx="'+x+'" cy="190" r="6" fill="#e3b545"/>'+(i===1?'<path d="M'+(x-90)+' 150 L'+(x+3)+' 189" stroke="#3b2f22" stroke-width="2.5"/><path d="M'+(x-90)+' 150 l-10 -6 m10 6 l-4 -11" stroke="#a87d2c" stroke-width="2.5"/>':'')+'</g>';}).join('')+
+  '<g stroke="#5b5240" stroke-width="3" fill="none"><path d="M1030 260 q-38 -70 0 -140"/><path d="M1030 260 V120" stroke-width="1.2"/></g>'+arGrao(id);},
+ partenon:function(){var id='pt';var col='';for(var i=0;i<8;i++)col+='<rect x="'+(470+i*36)+'" y="128" width="16" height="88" fill="#efe4c9" stroke="#8d7a5a" stroke-width="1.2"/>';
+  return arCeu(id,'#e9c58f','#f2dcb2','#efe1c2')+arSol(id,1010,150,34)+arMorro(31,190,40,'#c2ae86',.85,150)+arMorro(32,225,30,'#a99a72',.95,180)+
+  '<path d="M452 128 L620 78 L788 128Z" fill="#e8dcbe" stroke="#8d7a5a" stroke-width="1.5"/><rect x="452" y="124" width="336" height="10" fill="#d9caa4"/>'+col+'<rect x="440" y="216" width="360" height="12" fill="#d9caa4"/><rect x="428" y="228" width="384" height="10" fill="#cbbb93"/>'+
+  [180,300,900,1060].map(function(x){return '<g fill="#7d7356"><circle cx="'+x+'" cy="214" r="22"/><circle cx="'+(x+18)+'" cy="222" r="16"/><rect x="'+(x+2)+'" y="226" width="5" height="22" fill="#5b5240"/></g>';}).join('')+arMorro(33,262,14,'#8f8463',1,240)+arGrao(id);},
+ forja:function(){var id='fo';var R=arRnd(9),fa='';for(var i=0;i<30;i++)fa+='<circle cx="'+(600+R()*120-60)+'" cy="'+(150-R()*120)+'" r="'+(1+R()*1.8)+'" fill="#f7b24a" opacity="'+(.4+R()*.6)+'"/>';
+  return arCeu(id,'#5b4a5e','#a9746a','#d9a777')+arMorro(41,180,50,'#4a3f3c',.85,150)+arPinhos(17,34,175,215,26,46,'#2f2a28')+
+  '<path d="M470 300 L470 220 Q600 120 730 220 L730 300Z" fill="#3a302c"/><path d="M560 300 V240 Q600 205 640 240 V300Z" fill="#f2a13a"/><path d="M575 300 V246 Q600 222 625 246 V300Z" fill="#ffe08a" opacity=".85"/>'+
+  '<rect x="650" y="150" width="26" height="70" fill="#3a302c"/><path d="M663 150 q-10 -30 6 -60 q12 -24 -4 -46" stroke="#cfc3b8" stroke-width="6" fill="none" opacity=".35"/>'+fa+
+  '<g fill="#221c1a"><path d="M380 270 h70 v-10 h-20 v-14 h28 v-10 h-86 v10 h28 v14 h-20z"/></g>'+arGrao(id);},
+ porto:function(){var id='po';return arCeu(id,'#f0c98d','#f5dcae','#e9d6b0')+arSol(id,600,150,32)+'<rect x="0" y="160" width="1200" height="6" fill="#d7b98a" opacity=".6"/>'+arAgua(166,'#9fb0ab')+
+  '<path d="M560 166 L640 166 L620 300 L580 300Z" fill="#fff1c7" opacity=".35"/>'+
+  [[250,215],[880,230],[1010,205]].map(function(b){return '<g><path d="M'+(b[0]-40)+' '+b[1]+' h80 l-12 16 h-56z" fill="#6b5a40"/><path d="M'+b[0]+' '+b[1]+' V'+(b[1]-70)+'" stroke="#4a3f30" stroke-width="2.5"/><path d="M'+(b[0]+2)+' '+(b[1]-66)+' L'+(b[0]+40)+' '+(b[1]-8)+' H'+(b[0]+2)+'Z" fill="#efe4c9"/></g>';}).join('')+
+  '<rect x="0" y="244" width="430" height="10" fill="#7d6a4c"/>'+[20,90,160,230,300,370].map(function(x){return '<rect x="'+x+'" y="244" width="8" height="56" fill="#5b4a36"/>';}).join('')+
+  '<g fill="#d9a73a">'+[[120,232],[140,236],[160,230]].map(function(c){return '<ellipse cx="'+c[0]+'" cy="'+c[1]+'" rx="9" ry="3.5"/>';}).join('')+'</g>'+arGrao(id);},
+ fogueira:function(){var id='fg';var R=arRnd(4),st='';for(var i=0;i<70;i++)st+='<circle cx="'+(R()*1200)+'" cy="'+(R()*150)+'" r="'+(R()*1.4+.3)+'" fill="#fff4cf" opacity="'+(.3+R()*.7)+'"/>';var fa='';for(i=0;i<26;i++)fa+='<circle cx="'+(600+R()*160-80)+'" cy="'+(200-R()*150)+'" r="'+(1+R()*1.6)+'" fill="#ffc35a" opacity="'+(.3+R()*.7)+'"/>';
+  return arCeu(id,'#1d1a2b','#3a2f45','#5a4048')+st+arMorro(51,180,40,'#2a2433',.95,150)+arPinhos(27,30,175,205,24,42,'#1b1722')+
+  '<ellipse cx="600" cy="262" rx="420" ry="60" fill="#3b2f2a"/>'+[0,1,2].map(function(r){return '<path d="M'+(250-r*60)+' '+(262+r*14)+' Q600 '+(212+r*20)+' '+(950+r*60)+' '+(262+r*14)+'" stroke="#6b5a4c" stroke-width="7" fill="none"/>';}).join('')+
+  '<radialGradient id="fgg"><stop offset="0" stop-color="#ffcf6a" stop-opacity=".8"/><stop offset="1" stop-color="#ffcf6a" stop-opacity="0"/></radialGradient><circle cx="600" cy="230" r="150" fill="url(#fgg)"/>'+
+  '<path d="M560 250 Q570 190 600 150 Q615 200 640 250Z" fill="#f2a13a"/><path d="M580 250 Q590 205 602 180 Q612 215 622 250Z" fill="#ffe08a"/><path d="M555 252 l90 -8 M555 244 l90 10" stroke="#5b4030" stroke-width="7"/>'+fa+arGrao(id);},
+ lago:function(){var id='la';return arCeu(id,'#e6d2a8','#efe2c4','#e9dcc0')+arSol(id,300,110,22)+arMorro(61,160,45,'#b6a681',.85,150)+arPinhos(37,40,150,175,24,40,'#6f6648')+arAgua(178,'#a8b6ad')+
+  '<path d="M640 300 L700 210 H760 L740 300Z" fill="#8d7a5a"/>'+[0,1,2,3].map(function(i){return '<rect x="'+(705+i*14)+'" y="210" width="4" height="90" fill="#5b4a36"/>';}).join('')+
+  '<g><path d="M300 238 q60 14 120 0 q-60 8 -120 0z" fill="#9b4a3a"/><path d="M360 232 l18 -16" stroke="#4a3f30" stroke-width="3"/></g><g><path d="M880 214 q44 10 88 0 q-44 6 -88 0z" fill="#3f5a6b"/></g>'+arGrao(id);}};
+var ARTE_LEG={vale:['O vale do acampamento','Colina, pinheiro e os chalés em ferradura ao amanhecer.'],arena:['Arena de arquearia','O campo do chalé 7 antes do primeiro treino.'],partenon:['Templo da colina','Onde se estuda para a prova do tribunal.'],
+ forja:['A forja na mata','A oficina escondida: fogo aceso, metal esperando forma.'],porto:['Porto do estreito','Barcos no fim da tarde, dracmas na mesa do mercador.'],fogueira:['Fogueira do anfiteatro','Canto à noite, antes do toque de recolher.'],lago:['Lago das canoas','Água parada, píer e duas canoas esperando.']};
+var arCache={};
+function arUrl(k){if(!arCache[k]){var svg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" preserveAspectRatio="xMidYMid slice">'+ARTE[k]()+'</svg>';arCache[k]='url("data:image/svg+xml,'+encodeURIComponent(svg)+'")';}return arCache[k];}
+function arSvg(k){return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" preserveAspectRatio="xMidYMid slice" class="ar-svg" role="img" aria-label="'+esc(ARTE_LEG[k][0])+'">'+ARTE[k]()+'</svg>';}
+var AR_AREA={camp:'arena',est:'partenon',dos:'forja',fin:'porto'};
+function arFaixas(){try{document.body.style.setProperty('--arte-vale',arUrl('vale'));}catch(e){}Object.keys(AR_AREA).forEach(function(a){var s=document.getElementById('area-'+a);if(!s)return;var k=AR_AREA[a];
+ if(s.dataset.arte!==k){s.dataset.arte=k;s.classList.add('com-arte');s.style.setProperty('--arte',arUrl(k));s.title=ARTE_LEG[k][0];}});}
+function arPostalHTML(){var ks=Object.keys(ARTE),i=(S.postalI==null?Math.floor(Date.now()/864e5):S.postalI)%ks.length,k=ks[i];
+ return '<div class="ar-postal">'+arSvg(k)+'<div class="ar-leg"><b>'+esc(ARTE_LEG[k][0])+'</b><small>'+esc(ARTE_LEG[k][1])+'</small></div></div><button type="button" class="arsm-v" data-ar-prox>próximo postal</button>';}
+document.addEventListener('click',function(e){if(!e.target.closest('[data-ar-prox]'))return;var ks=Object.keys(ARTE);S.postalI=((S.postalI==null?Math.floor(Date.now()/864e5):S.postalI)+1)%ks.length;var c=document.getElementById('lat-postal-b');if(c)c.innerHTML=arPostalHTML();});
 /* a Grade semanal é o painel principal: logo abaixo do índice */
 function latGradeTopo(){var wr=document.querySelector('.wrap'),h=document.getElementById('h-sem'),ix=document.getElementById('tt-indice');if(!wr||!h)return;
  var tb=h.nextElementSibling&&h.nextElementSibling.classList.contains('tb')?h.nextElementSibling:document.querySelector('.wrap > .tb');
@@ -13563,6 +13635,7 @@ function latGradeTopo(){var wr=document.querySelector('.wrap'),h=document.getEle
  if(tb&&h.nextElementSibling!==tb)wr.insertBefore(tb,h.nextSibling);
  try{wsPinta();}catch(e){console.error('spread:',e);}
  try{rtPinta();}catch(e){console.error('rotina:',e);}
+ try{arFaixas();}catch(e){console.error('arte:',e);}
  /* rastreador de hábitos (grade mensal) logo abaixo do painel da semana */
  try{var hr=document.getElementById('h-rast'),rt=hr&&hr.nextElementSibling&&hr.nextElementSibling.classList.contains('rt')?hr.nextElementSibling:document.querySelector('.wrap > .rt'),wb=document.getElementById('rt-box')||document.getElementById('ws-box')||tb;
   if(hr&&wb){[hr,rt].forEach(function(n){if(n){n.dataset.area='op';n.dataset.vxHidden='false';}});if(wb.nextElementSibling!==hr)wr.insertBefore(hr,wb.nextSibling);if(rt&&hr.nextElementSibling!==rt)wr.insertBefore(rt,hr.nextSibling);}}catch(e){console.error('rastreador:',e);}
@@ -13712,6 +13785,7 @@ function latNarrativo(){var g=document.getElementById('lat-gm');if(g){g.innerHTM
  var a=document.getElementById('lat-ars-b');if(a)a.innerHTML=arsMini();
  var dr=document.getElementById('lat-dr-b');if(dr)dr.innerHTML='<div class="dr-mini"><b>'+drSaldo()+'</b><span>dracmas de ouro<br><small>10 por hora de foco ou estudo</small></span></div><button type="button" class="arsm-v" onclick="ferAbre(\'loja\')">abrir a loja do acampamento</button>';
  var cp=document.getElementById('lat-cp-b');if(cp)cp.innerHTML=cpHTML();
+ var pc=document.getElementById('lat-postal-b');if(pc&&!pc.firstChild)pc.innerHTML=arPostalHTML();
  var md=document.getElementById('lat-med');if(md)md.innerHTML='<div class="lat-medh"><span class="k9">remédios de hoje</span><div class="cr-row">'+latMedHTML()+'</div></div>';
  try{drAplica();}catch(e){}}
 function arsMini(){var prox=null,h='<div class="arsm-g">'+ARS_KIT.map(function(k){var T=arsTier(k),nx=k.t[T.i+1];
