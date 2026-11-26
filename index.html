@@ -16270,6 +16270,81 @@ cerAbre=(function(c0){return function(x){var r=document.getElementById('rod-apps
  if(r&&q){if(x){r.classList.add('aberto');setTimeout(function(){try{q.scrollIntoView({block:'start',behavior:'smooth'});}catch(e){}},320);var i=document.getElementById('r-cap');if(i)try{i.focus({preventScroll:true});}catch(e){}}return;}
  return c0.apply(this,arguments);};})(cerAbre);
 
+
+/* ======================= Bolsa de Dracmas sem fundo branco · Culture Vulture integrado ao Recreações =======================
+   1. O AxisHub mora num shadow DOM com tema próprio (#f4f0e7); no modo claro, o fundo dele fica transparente
+      e os cartões ganham o pergaminho do app.
+   2. O Culture Vulture usava a classe .cv-card, que é a do balão do corvo (fundo branco, borda preta, layout lado a lado).
+      Agora é um cartão .cg-c como os vizinhos, com resumo no cabeçalho, captura rápida e as listas secundárias em gavetas. */
+var FIN_SOMBRA_CSS='\n:host(.claro) .axhtml,:host(.claro) .axbody{background:transparent!important}'+
+ '\n:host(.claro) .axhtml{--bg:transparent;--paper:#f6eed8;--brass-soft:#efe2c2}';
+function finSombra(){var c=document.body.classList.contains('claro');['ax-hub','ax-topo'].forEach(function(id){var h=document.getElementById(id);if(!h)return;h.classList.toggle('claro',c);
+ var r=h.shadowRoot;if(r&&!r.getElementById('fin-sombra')){var st=document.createElement('style');st.id='fin-sombra';st.textContent=FIN_SOMBRA_CSS;r.appendChild(st);}});}
+new MutationObserver(finSombra).observe(document.body,{attributes:true,attributeFilter:['class']});
+setTimeout(finSombra,600);setTimeout(finSombra,2500);
+(function(){var a0=pdAbre;pdAbre=function(){var r=a0.apply(this,arguments);try{finSombra();}catch(e){}return r;};})();
+
+var CV_GRUPOS=['','Achados','Prazeres'];
+function cvConta(D,k){return (D&&D[k]||[]).filter(function(x){return x&&String(x).trim();}).length;}
+function cvAberto(si,v){var o={};try{o=JSON.parse(localStorage.getItem('astro_cv_gav')||'{}')||{};}catch(e){}if(v===undefined)return !!o[si];o[si]=v?1:0;try{localStorage.setItem('astro_cv_gav',JSON.stringify(o));}catch(e){}}
+function cvResumo(){var D=cvD();if(!D)return '';var p=CV_SEC[0].c.map(function(c){return c[1]+' '+cvConta(D,c[0]);}).join(' · ');
+ var resto=0;CV_SEC.slice(1).forEach(function(sec){if(sec.t==='cols')sec.c.forEach(function(c){resto+=cvConta(D,c[0]);});});
+ return p+(resto?' · '+resto+' achado'+(resto>1?'s':'')+' e prazeres':'');}
+cvHTML=function(){var D=cvD();if(!D)return '<p class="lat-n">Carregando a estante…</p>';
+ var op='';CV_SEC.forEach(function(sec){if(sec.t==='cols')sec.c.forEach(function(c){op+='<option value="'+c[0]+'">'+c[1]+'</option>';});});
+ var h='<form class="cv-cap" data-cvcap><input class="cv-cap-in" maxlength="140" placeholder="uma ideia que não pode evaporar: filme, livro, álbum, link…" aria-label="ideia para guardar"><select aria-label="onde guardar">'+op+'</select><button type="submit">guardar</button></form>';
+ var gi=0;
+ CV_SEC.forEach(function(sec,si){
+  if(sec.t==='cols'){
+   var cols='<div class="cv-cols">'+sec.c.map(function(c){var arr=D[c[0]]||[],li='',n=Math.min(sec.n,Math.max(arr.filter(Boolean).length+1,3));
+     for(var i=0;i<n;i++)li+='<input class="cv-in" data-cv="'+c[0]+':'+i+'" value="'+esc(arr[i]||'')+'" placeholder="…">';
+     return '<div class="cv-col"><span class="cv-k">'+c[1]+'<i>'+cvConta(D,c[0])+'</i></span>'+li+'</div>';}).join('')+'</div>';
+   if(gi===0)h+=cols;
+   else{var tot=sec.c.map(function(c){return c[1]+' '+cvConta(D,c[0]);}).join(' · ');
+    h+='<details class="cv-mais" data-cvg="'+si+'"'+(cvAberto(si)?' open':'')+'><summary><b>'+CV_GRUPOS[gi]+'</b><span>'+esc(tot)+'</span></summary>'+cols+'</details>';}
+   gi++;}
+  else if(sec.t==='txt')h+='<label class="cv-tx"><span class="cv-k">'+sec.l+'</span><textarea data-cvt="'+sec.k+'" rows="2" placeholder="…">'+esc(D[sec.k]||'')+'</textarea></label>';
+  else{var sel=D[sec.k]||[];h+='<div class="cv-ch"><span class="cv-k">'+sec.l+'</span>'+sec.o.map(function(o){return '<button type="button" class="'+(sel.indexOf(o)>=0?'on':'')+'" data-cvc="'+sec.k+':'+o+'">'+o+'</button>';}).join('')+'</div>';}});
+ return h;};
+function cvAjusta(){var c=document.getElementById('lat-cv');if(!c)return;
+ if(c.classList.contains('cv-card')){c.classList.remove('cv-card');c.classList.add('cg-c','cv-rc');}
+ if(!c.dataset.cvx){c.dataset.cvx=1;
+  c.addEventListener('submit',function(e){var f=e.target.closest('[data-cvcap]');if(!f)return;e.preventDefault();var D=cvD();if(!D)return;
+   var inp=f.querySelector('input'),v=(inp.value||'').trim(),k=f.querySelector('select').value;if(!v)return;
+   var arr=(D[k]=D[k]||[]),i=arr.findIndex(function(x){return !x||!String(x).trim();});if(i<0)i=arr.length;arr[i]=v;
+   try{AX.save();}catch(z){}var nome=f.querySelector('select').selectedOptions[0].textContent;inp.value='';
+   var b=c.querySelector('#lat-cv-b');if(b){b.innerHTML=cvHTML();var ni=b.querySelector('.cv-cap-in'),ns=b.querySelector('.cv-cap select');if(ns)ns.value=k;if(ni)ni.focus();}
+   cvAjustaCab();try{vxMsg('Guardado em '+nome+'. Não evapora mais.');}catch(z){}});
+  c.addEventListener('toggle',function(e){var d=e.target;if(d&&d.dataset&&d.dataset.cvg)cvAberto(d.dataset.cvg,d.open);},true);
+  c.addEventListener('input',function(){clearTimeout(c._cvt);c._cvt=setTimeout(cvAjustaCab,500);});}
+ cvAjustaCab();}
+function cvAjustaCab(){var c=document.getElementById('lat-cv');if(!c)return;var d=c.querySelector(':scope > header > div');if(!d)return;
+ var sm=d.querySelector('.cv-res');if(!sm){sm=document.createElement('small');sm.className='cv-res';d.appendChild(sm);}var t=cvResumo();if(sm.textContent!==t)sm.textContent=t;}
+(function(){var c0=cvCard;cvCard=function(){var r=c0.apply(this,arguments);try{cvAjusta();}catch(e){}return r;};})();
+(function(){var st=document.createElement('style');st.id='cv-rc-css';st.textContent=[
+ '#recreio #lat-cv.cv-rc{display:block!important;background:#f4ead1!important;border:1px solid #d6c69c!important;border-radius:10px!important;padding:10px 12px!important;box-shadow:none!important;animation:none!important;color:inherit}',
+ '#lat-cv.cv-rc>header{display:flex!important;align-items:center;gap:10px;margin:0}',
+ '#lat-cv.cv-rc>header>div{flex:1;min-width:0}',
+ '#lat-cv.cv-rc .cv-res{display:block;margin-top:2px;font:12px Georgia,serif;color:#7a6047;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}',
+ '#lat-cv.cv-rc>.lat-b{margin-top:10px;padding-top:10px;border-top:1px dashed #c9b28a}',
+ '#lat-cv.cv-rc .cv-cap{display:flex;gap:6px;margin:0 0 12px}',
+ '#lat-cv.cv-rc .cv-cap input{flex:1;min-width:0;height:34px;box-sizing:border-box;border:1px solid #c9b28a;border-radius:8px;background:#fbf3df;padding:0 10px;font:14px Georgia,serif;color:#3b2a1d}',
+ '#lat-cv.cv-rc .cv-cap select{width:auto;height:34px;border:1px solid #c9b28a;border-radius:8px;background:#fbf3df;font:13px Georgia,serif;color:#5a3f2c;padding:0 6px}',
+ '#lat-cv.cv-rc .cv-cap button{width:auto!important;margin:0!important;height:34px;padding:0 14px!important;border:1px solid #9a6b3a!important;border-radius:8px!important;background:#e9c87a!important;color:#3b2a1d!important;font:700 9px var(--mono,monospace)!important;letter-spacing:.14em;text-transform:uppercase;cursor:pointer}',
+ '#lat-cv.cv-rc .cv-k{display:flex;align-items:center;gap:6px}',
+ '#lat-cv.cv-rc .cv-k i{font-style:normal;min-width:16px;height:16px;padding:0 4px;border-radius:8px;background:#e9dcb8;color:#7a5a32;font:700 9px var(--mono,monospace);display:inline-grid;place-items:center;letter-spacing:0}',
+ '#lat-cv.cv-rc details.cv-mais{margin:0 0 10px;padding-bottom:4px;border-bottom:1px dashed #c9b28a}',
+ '#lat-cv.cv-rc details.cv-mais>summary{list-style:none;cursor:pointer;display:flex;align-items:baseline;gap:10px;padding:4px 0}',
+ '#lat-cv.cv-rc details.cv-mais>summary::-webkit-details-marker{display:none}',
+ '#lat-cv.cv-rc details.cv-mais>summary b{font:700 9px var(--mono,monospace);letter-spacing:.18em;text-transform:uppercase;color:#9a6b3a}',
+ '#lat-cv.cv-rc details.cv-mais>summary span{flex:1;font:12px Georgia,serif;color:#7a6047}',
+ '#lat-cv.cv-rc details.cv-mais>summary::after{content:"abrir ▾";font:700 8.5px var(--mono,monospace);letter-spacing:.14em;text-transform:uppercase;color:#5a3f2c}',
+ '#lat-cv.cv-rc details.cv-mais[open]>summary::after{content:"recolher ▴"}',
+ '#lat-cv.cv-rc details.cv-mais .cv-cols{margin:8px 0 6px;padding-bottom:0;border-bottom:0}',
+ '@media(max-width:800px){#lat-cv.cv-rc .cv-cap{flex-wrap:wrap}#lat-cv.cv-rc .cv-cap input{flex-basis:100%}}'
+].join('\n');document.head.appendChild(st);})();
+setTimeout(function(){try{cvCard();}catch(e){}},1600);
+
 })();
 </script>
 </body>
