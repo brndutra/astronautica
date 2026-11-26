@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 200" preserveAspectRatio="xMidYMid slice"><defs><filter id="m" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".006 .011" numOctaves="4" seed="167"/>
-<feColorMatrix values="0 0 0 0 .55  0 0 0 0 .40  0 0 0 0 .26  0 0 0 1.25 -.5"/></filter>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 200" preserveAspectRatio="xMidYMid slice"><defs><filter id="m" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".0025 .09" numOctaves="3" seed="167"/>
+<feColorMatrix values="0 0 0 0 .30  0 0 0 0 .19  0 0 0 0 .10  0 0 0 1.6 -.55"/></filter>
 <radialGradient id="v" cx=".5" cy=".5" r=".75"><stop offset=".5" stop-color="#1c120a" stop-opacity="0"/><stop offset="1" stop-color="#1c120a" stop-opacity=".45"/></radialGradient></defs>
 <rect width="600" height="200" fill="#5a3c22"/><rect width="600" height="200" filter="url(#m)" opacity=".55"/><rect width="600" height="200" fill="url(#v)"/>
 <path d="M0 8H600M0 192H600" stroke="#cfd5da" stroke-width="2" opacity=".6"/><g transform="translate(250 50)"><path d="M8 50C24 26 76 26 92 50C76 74 24 74 8 50Z" fill="#cfd5da" stroke="#efe8dc" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/><circle cx="50" cy="50" r="14" fill="#3b2717" stroke="#efe8dc" stroke-width="2.2"/><circle cx="50" cy="50" r="5" fill="#efe8dc"/><path d="M50 10V22M50 78V90" fill="none" stroke="#efe8dc" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/></g></svg>
