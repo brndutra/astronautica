@@ -4212,6 +4212,36 @@ h2.sec.neo-tit[data-nivel]>span{color:var(--fase)!important}
 #ac-guia.folheto .acg-foto.acg-band{float:right;width:70px;margin:2px 0 6px 10px;transform:rotate(2deg)}
 #ac-guia.folheto .acg-foto.acg-band img{height:auto;object-fit:contain}
 @media(max-width:900px){#ac-guia.folheto .acg-corpo{columns:1}#ac-guia.folheto .acg-bx{background:linear-gradient(180deg,#fbf3df,#f1e3c3)!important;padding:18px!important}#ac-guia.folheto .acg-cab{grid-template-columns:60px 1fr}#ac-guia.folheto .acg-cab .acg-lira{display:none}}
+
+/* adornos de sorte e sucesso nas molduras */
+.neo-moldura>.col-orn{position:absolute;inset:0;pointer-events:none;z-index:1}
+.col-orn .co-med{position:absolute;top:50%;width:30px;height:30px;margin-top:-15px;display:grid;place-items:center;border-radius:50%;background:var(--col-c,#f4ead2);border:1.5px solid var(--col-k,#5a3f2c);box-shadow:0 0 0 3px #f4ead2,0 0 0 4px var(--col-k,#5a3f2c);
+ font:700 13px Georgia,serif;font-style:normal;color:var(--col-k,#5a3f2c);letter-spacing:-.02em;pointer-events:auto}
+.col-orn .co-l{left:10px}.col-orn .co-r{right:10px}
+.col-orn .co-sim{position:absolute;top:14px;width:22px;height:22px;display:grid;place-items:center;border-radius:50%;background:#f4ead2;border:1px solid var(--col-k,#5a3f2c)}
+.col-orn .co-sim svg{width:14px;height:14px;fill:none;stroke:var(--col-k,#5a3f2c);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.col-orn .co-sl{left:calc(25% - 11px)}.col-orn .co-sr{right:calc(25% - 11px)}
+#tm-painel .col-orn .co-sim,#recreio .col-orn .co-sim{top:12px}
+.neo-moldura[data-col]{border-color:var(--col-k)!important}
+@media(max-width:700px){.col-orn{display:none}}
+#tesouro .ts-orn{display:flex;align-items:center;justify-content:center;gap:12px;margin:0 0 10px}
+#tesouro .ts-orn i{display:grid;place-items:center;width:24px;height:24px}
+#tesouro .ts-orn svg{width:18px;height:18px;fill:none;stroke:#d8b46a;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+#tesouro .ts-orn b{display:grid;place-items:center;min-width:30px;height:30px;padding:0 5px;border-radius:50%;border:1.5px solid #d8b46a;font:700 13px Georgia,serif;color:#f4d99a}
+
+.neo-moldura[data-col="tb"]>.col-orn .co-med{top:auto;bottom:40px;margin-top:0}
+/* Quadro de avisos temático */
+#cerbox #rail-in .rcab.cer .k9::before{content:''!important}
+#cerbox #rail-in .rcab.cer .k9{display:none!important}
+#cerbox #rail-in .qa-nm{display:flex;flex-direction:column;gap:1px;flex:1;min-width:0}
+#cerbox #rail-in .qa-nm b{font:400 16px Georgia,serif;color:#3b2a1d}
+#cerbox #rail-in .qa-nm small{font:700 8.5px var(--mono,monospace);letter-spacing:.14em;text-transform:uppercase;color:#9a6b3a}
+#cerbox #rail-in .rcab.cer>i{order:9}
+#cerbox .qa-sec>summary .qa-deus{grid-column:2;font:italic 11.5px Georgia,serif;color:#8a6f55}
+#cerbox .qa-ic,#lat-orb .lat-ic{background:radial-gradient(circle at 35% 30%,#fbf0cf,#e9c87a)!important;border:1.5px solid #9a6b3a!important;box-shadow:0 0 0 2px #f4ead2,0 0 0 3px #c9a45a}
+#lat-orb .lat-ic svg{fill:none;stroke:#5a3f2c;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+#cerbox .qa-sec,#cerbox #lat-orb{position:relative}
+#cerbox .qa-sec::after,#cerbox #lat-orb::after{content:'';position:absolute;left:12px;right:12px;bottom:0;height:3px;background:repeating-linear-gradient(90deg,#c9a45a 0 6px,transparent 6px 9px);opacity:.55;pointer-events:none}
 </style>
 </head>
 <body>
@@ -13957,7 +13987,7 @@ function diaGaveta(){var tb=document.querySelector('.wrap > div.tb'),rd=document
 setTimeout(function(){try{diaGaveta();}catch(e){}},120);
 /* Quadro de avisos reorganizado por frequência de uso:
    caixa de entrada e em andamento abertos; retomadas, notas e diário em seções que abrem e fecham */
-var QA_SEC=[['qa-d-pc','Registros diversos','sistema de armazenamento · onde as coisas ficam quando você sai','ret'],['qa-d-nt','Notas e rascunhos','buscar, guardar e etiquetar','nota'],['qa-d-dj','Diário do ciclo','uma entrada por ciclo · a semana em quadrinhos','diario']];
+var QA_SEC=[['qa-d-pc','Biblioteca de Atena','registros diversos · onde as coisas ficam quando você sai','ret'],['qa-d-nt','Pergaminhos','notas e rascunhos · buscar, guardar e etiquetar','nota'],['qa-d-dj','Crônicas do chalé','diário · uma entrada por ciclo, a semana em quadrinhos','diario']];
 function qaOrganiza(){var cb=document.getElementById('cerbox');if(!cb)return;
  var sb=cb.querySelector('.sb'),pcs=document.querySelector('.pcs');
  if(sb){if(sb.children[0]&&!sb.children[0].id)sb.children[0].id='qa-nt-in';if(sb.children[1]&&!sb.children[1].id)sb.children[1].id='qa-dj-in';}
@@ -13971,7 +14001,7 @@ function qaOrganiza(){var cb=document.getElementById('cerbox');if(!cb)return;
   var bx=d.querySelector('.qa-sb');if(no.parentNode!==bx)bx.appendChild(no);
   if(ref&&ref.parentNode===cb){if(ref.nextElementSibling!==d)ref.insertAdjacentElement('afterend',d);}else if(d.parentNode!==cb)cb.appendChild(d);ref=d;});
  if(sb&&!sb.children.length)sb.hidden=true;
- var h=document.getElementById('h-cup'),sp=h&&h.querySelector('span');if(sp&&sp.textContent.indexOf('registros diversos')<0)sp.textContent='// caixa de entrada, em andamento, registros diversos, notas e diário';}
+ var h=document.getElementById('h-cup'),sp=h&&h.querySelector('span');if(sp&&sp.textContent.indexOf('Moiras')<0)sp.textContent='// Hermes, as Moiras, Atena e Apolo guardam o que você deixa aqui';}
 /* Recreações: painel próprio depois de Missões, com Atividades do acampamento e Menu de recarga */
 function reorgRecreio(){var wr=document.querySelector('.wrap'),tp=document.getElementById('tm-painel');if(!wr||!tp)return;var r=document.getElementById('recreio');
  if(!r){r=document.createElement('section');r.id='recreio';r.className='neo-moldura rc-neo';r.dataset.area='op';
@@ -14017,7 +14047,7 @@ function bandPinta(forca){var b=document.getElementById('lat-band-b');if(!b)retu
 (function(){var r0=vxRender;vxRender=function(){var x=r0.apply(this,arguments);try{bandCard();}catch(e){}return x;};})();
 setTimeout(function(){try{bandCard();}catch(e){}},500);
 /* ---------- mais imagens e ícones nos painéis; Guia do Campista como folheto ---------- */
-var QA_IC={'rail-in':'<path d="M4 13h4l2 3h4l2-3h4"/><path d="M5 13l2-7h10l2 7v6H5z"/>','qa-d-pc':'<rect x="4" y="4" width="16" height="5" rx="1"/><rect x="4" y="10" width="16" height="5" rx="1"/><rect x="4" y="16" width="16" height="4" rx="1"/><path d="M10 6.5h4M10 12.5h4"/>',
+var QA_IC_VELHO={'rail-in':'<path d="M4 13h4l2 3h4l2-3h4"/><path d="M5 13l2-7h10l2 7v6H5z"/>','qa-d-pc':'<rect x="4" y="4" width="16" height="5" rx="1"/><rect x="4" y="10" width="16" height="5" rx="1"/><rect x="4" y="16" width="16" height="4" rx="1"/><path d="M10 6.5h4M10 12.5h4"/>',
  'qa-d-nt':'<path d="M18 3l3 3-11 11-4 1 1-4z"/><path d="M4 21h16"/>','qa-d-dj':'<path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path d="M5 17a3 3 0 0 1 3-3h11M9 8h6"/>'};
 function qaIcones(){Object.keys(QA_IC).forEach(function(id){var n=document.getElementById(id);if(!n)return;var alvo=id==='rail-in'?n.querySelector('.rcab.cer'):n.querySelector(':scope > summary');if(!alvo||alvo.querySelector('.qa-ic'))return;
  var s=document.createElement('span');s.className='qa-ic';s.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true">'+QA_IC[id]+'</svg>';alvo.insertBefore(s,alvo.firstChild);});}
@@ -14030,6 +14060,54 @@ function guiaFolheto(){var g=document.getElementById('ac-guia');if(!g||g.dataset
 document.addEventListener('click',function(e){if(e.target.closest&&e.target.closest('.cp-guia,[data-guia]'))setTimeout(guiaFolheto,30);});
 (function(){var r0=vxRender;vxRender=function(){var x=r0.apply(this,arguments);try{qaIcones();guiaFolheto();}catch(e){}return x;};})();
 setTimeout(function(){try{qaIcones();}catch(e){}},900);
+/* ---------- colunas coloridas por painel (cartela pastel) e adornos de sorte e sucesso ---------- */
+var COL_PAINEL={
+ tb:{q:'.wrap > div.tb',st:'ionica',c:'#b9c2e8',k:'#4a5590',num:'Ζ',numT:'7 · o número de Apolo e do chalé 7',sim:['sol','lira']},
+ rt:{q:'.wrap > div.rt',st:'ionica',c:'#d8c0c6',k:'#7a4a58',num:'Θ',numT:'9 · as nove Musas',sim:['louro','estrela']},
+ tm:{q:'#tm-painel',st:'dorica',c:'#f2c3ab',k:'#9a4a30',num:'Γ',numT:'3 · três missões por dia',sim:['arco','nike']},
+ rc:{q:'#recreio',st:'corintia',c:'#efe3b4',k:'#7a6a2a',num:'ΙΒ',numT:'12 · os doze olimpianos',sim:['louro','lira']}};
+var COL_SIM={sol:'<circle cx="12" cy="12" r="4"/><path d="M12 3v2.5M12 18.5V21M3 12h2.5M18.5 12H21M5.6 5.6l1.8 1.8M16.6 16.6l1.8 1.8M18.4 5.6l-1.8 1.8M7.4 16.6l-1.8 1.8"/>',
+ lira:'<path d="M7 4c-2 3-2 8 1 11h8c3-3 3-8 1-11"/><path d="M8 15v4h8v-4M10 7v8M12 6v9M14 7v8"/>',
+ louro:'<path d="M12 21V8"/><path d="M12 10c-3-1-5-3-5-6 3 0 5 2 5 6zM12 10c3-1 5-3 5-6-3 0-5 2-5 6zM12 15c-3-1-5-3-5-5 3 0 5 2 5 5zM12 15c3-1 5-3 5-5-3 0-5 2-5 5z"/>',
+ estrela:'<path d="M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.4 6.7 19.4l1.2-6L3.4 9.3l6-.7z"/>',
+ arco:'<path d="M6 3c8 3 8 15 0 18"/><path d="M6 3v18M3 12h17M17 9l3 3-3 3"/>',
+ nike:'<path d="M3 15c4-1 7-4 9-9 1 4 0 7-2 9 3-1 6-1 11 1-5 2-9 3-13 2-2 0-4-1-5-3z"/>'};
+function colSvgs(cf){var P=cf.c,K=cf.k,cap='',ent='';
+ if(cf.st==='dorica'){cap='<g fill="'+P+'" stroke="'+K+'" stroke-width="1.3"><rect x="5" y="2" width="50" height="9"/><path d="M9 11 Q30 26 51 11 Z"/><rect x="13" y="19" width="34" height="4"/><rect x="13" y="25" width="34" height="3"/></g>';}
+ else if(cf.st==='corintia'){cap='<g fill="'+P+'" stroke="'+K+'" stroke-width="1.2"><rect x="6" y="2" width="48" height="6"/><path d="M12 8h36l-4 30H16z"/>'+
+   '<path d="M14 9c-6 0-8 6-3 7M46 9c6 0 8 6 3 7" fill="none"/><path d="M22 38c-3-6-1-12 4-14-1 5 0 9-4 14zM38 38c3-6 1-12-4-14 1 5 0 9 4 14zM30 37c-4-7-3-14 0-19 3 5 4 12 0 19z"/><path d="M18 38c-2-3-2-6 0-8M42 38c2-3 2-6 0-8" fill="none"/></g>';}
+ else{var t0=NEO_TINTA,p0=NEO_PAPEL;NEO_TINTA=K;NEO_PAPEL=P;cap=neoCapitel(30,2,46);NEO_TINTA=t0;NEO_PAPEL=p0;}
+ var fus='<rect x="12.5" y="0" width="35" height="40" fill="'+P+'" stroke="'+K+'" stroke-width="1.3"/>';for(var i=1;i<6;i++)fus+='<rect x="'+(12.5+i*35/6-2)+'" y="0" width="4" height="40" fill="'+K+'" opacity=".22"/>';
+ var base='<g fill="'+P+'" stroke="'+K+'" stroke-width="1.3"><rect x="9" y="1" width="42" height="5" rx="2.5"/><rect x="6" y="6" width="48" height="10"/></g>';
+ var t0b=NEO_TINTA,p0b=NEO_PAPEL;NEO_TINTA=K;NEO_PAPEL=P;ent=neoEntab(240,1,38);NEO_TINTA=t0b;NEO_PAPEL=p0b;
+ var vb='0 0 60 '+(cf.st==='corintia'?40:40);
+ return {cap:'url("data:image/svg+xml,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="'+vb+'">'+cap+'</svg>')+'")',fuste:neoUrl(fus,'0 0 60 40'),
+  base:'url("data:image/svg+xml,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 18">'+base+'</svg>')+'")',ent:neoUrl(ent,'0 0 240 40')};}
+var COL_CACHE={};
+function colAplica(){if(typeof neoImgs==='function')neoImgs();Object.keys(COL_PAINEL).forEach(function(k){var cf=COL_PAINEL[k],n=document.querySelector(cf.q);if(!n||!n.classList.contains('neo-moldura'))return;
+ var im=COL_CACHE[k]||(COL_CACHE[k]=colSvgs(cf));if(n.dataset.col!==k){n.dataset.col=k;n.style.setProperty('--neo-cap',im.cap);n.style.setProperty('--neo-fuste',im.fuste);n.style.setProperty('--neo-base',im.base);n.style.setProperty('--neo-ent',im.ent);n.style.setProperty('--col-c',cf.c);n.style.setProperty('--col-k',cf.k);}
+ if(!n.querySelector(':scope > .col-orn')){var sv=function(nm){return '<svg viewBox="0 0 24 24" aria-hidden="true">'+COL_SIM[nm]+'</svg>';};
+  var o=document.createElement('div');o.className='col-orn';o.setAttribute('aria-hidden','true');
+  o.innerHTML='<i class="co-med co-l" title="'+cf.numT+'">'+cf.num+'</i><i class="co-med co-r" title="'+cf.numT+'">'+cf.num+'</i><i class="co-sim co-sl">'+sv(cf.sim[0])+'</i><i class="co-sim co-sr">'+sv(cf.sim[1])+'</i>';
+  n.appendChild(o);}});
+ var ts=document.getElementById('tesouro');if(ts&&!ts.querySelector('.ts-orn')){var c=ts.querySelector('.ts-cab');if(c){var o2=document.createElement('div');o2.className='ts-orn';o2.setAttribute('aria-hidden','true');
+  o2.innerHTML='<i>'+'<svg viewBox="0 0 24 24">'+COL_SIM.louro+'</svg></i><b title="7 · o número de Apolo">Ζ</b><i><svg viewBox="0 0 24 24">'+COL_SIM.estrela+'</svg></i><b title="12 · os doze olimpianos">ΙΒ</b><i><svg viewBox="0 0 24 24">'+COL_SIM.louro+'</svg></i>';c.insertBefore(o2,c.firstChild);}}}
+(function(){var r0=vxRender;vxRender=function(){var x=r0.apply(this,arguments);try{colAplica();}catch(e){console.error('colunas:',e);}return x;};})();
+setTimeout(function(){try{colAplica();}catch(e){}},400);setTimeout(function(){try{colAplica();}catch(e){}},1600);
+/* Quadro de avisos com nomes do acampamento e emblemas dos deuses */
+var QA_IC={'rail-in':'<path d="M12 3v18"/><circle cx="12" cy="4" r="1.4"/><path d="M8 7c2 2 6 2 8 0M7 11c3 3 7 3 10 0M9 15c2 1.5 4 1.5 6 0"/><path d="M5 6l3-2M19 6l-3-2"/>',
+ 'lat-orb':'<path d="M7 3h10M7 21h10"/><path d="M9 3c0 5 6 6 6 9s-6 4-6 9M15 3c0 5-6 6-6 9s6 4 6 9"/>',
+ 'qa-d-pc':'<path d="M12 20c-4 0-7-3-7-7 0-3 2-6 4-7l3 2 3-2c2 1 4 4 4 7 0 4-3 7-7 7z"/><circle cx="9.5" cy="12" r="1.6"/><circle cx="14.5" cy="12" r="1.6"/><path d="M11 15.5l1 1 1-1"/>',
+ 'qa-d-nt':'<path d="M7 4h11v14a2 2 0 0 1-2 2H6"/><path d="M7 4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2"/><path d="M10 8h5M10 11h5M10 14h3"/>',
+ 'qa-d-dj':'<circle cx="12" cy="12" r="4"/><path d="M12 3v2.5M12 18.5V21M3 12h2.5M18.5 12H21M5.6 5.6l1.8 1.8M16.6 16.6l1.8 1.8M18.4 5.6l-1.8 1.8M7.4 16.6l-1.8 1.8"/>'};
+var QA_DEUS={'rail-in':['Caixa de Hermes','o mensageiro leva tudo · despeje antes de perder'],'lat-orb':['Tear das Moiras','em andamento · os fios que estão girando agora'],
+ 'qa-d-pc':['Atena','sabedoria'],'qa-d-nt':['Hermes','escrita'],'qa-d-dj':['Apolo','memória']};
+function qaDeuses(){var ri=document.getElementById('rail-in');if(ri){var c=ri.querySelector('.rcab.cer');if(c&&!c.querySelector('.qa-nm')){var t=document.createElement('span');t.className='qa-nm';t.innerHTML='<b>'+QA_DEUS['rail-in'][0]+'</b><small>'+QA_DEUS['rail-in'][1]+'</small>';c.appendChild(t);}}
+ var o=document.getElementById('lat-orb');if(o){var hd=o.querySelector('header');if(hd){var b=hd.querySelector('b'),k=hd.querySelector('.k9');if(b&&b.textContent!==QA_DEUS['lat-orb'][0])b.textContent=QA_DEUS['lat-orb'][0];if(k&&k.textContent!==QA_DEUS['lat-orb'][1])k.textContent=QA_DEUS['lat-orb'][1];
+  var ic=hd.querySelector('.lat-ic');if(ic&&!ic.dataset.qa){ic.dataset.qa=1;ic.innerHTML='<svg viewBox="0 0 24 24">'+QA_IC['lat-orb']+'</svg>';}}}
+ ['qa-d-pc','qa-d-nt','qa-d-dj'].forEach(function(id){var d=document.getElementById(id);if(!d)return;var su=d.querySelector(':scope > summary');if(!su||su.querySelector('.qa-deus'))return;var g=document.createElement('span');g.className='qa-deus';g.textContent=QA_DEUS[id][0]+' · '+QA_DEUS[id][1];su.appendChild(g);});}
+(function(){var r0=vxRender;vxRender=function(){var x=r0.apply(this,arguments);try{qaIcones();qaDeuses();}catch(e){}return x;};})();
+setTimeout(function(){try{qaIcones();qaDeuses();}catch(e){}},1000);
 setInterval(pintaProgresso,60000);
 })();
 </script>
