@@ -4392,6 +4392,52 @@ h2.sec.neo-tit[data-nivel]{margin-top:12px!important}
 #dj-h .dj-x{position:absolute;top:6px;right:4px;width:auto!important;min-width:22px;height:22px;margin:0!important;padding:0 6px!important;border:1px solid #c9b28a!important;border-radius:999px!important;background:#fbf3df!important;color:#8a6f55!important;font:11px var(--sans)!important;cursor:pointer;line-height:1}
 #dj-h .dj-x:hover{color:#b4463a!important;border-color:#b4463a!important}
 #dj-h .dj-x.conf{background:#b4463a!important;border-color:#b4463a!important;color:#fff!important;font:700 9px var(--mono,monospace)!important;letter-spacing:.1em;text-transform:uppercase}
+
+/* Culture Vulture no Recreações: ocupa a largura toda, abaixo dos outros dois */
+#recreio .rc-g>#lat-cv{grid-column:1/-1}
+#recreio #lat-cv{--c-img:url("img/acampamento/anfiteatro.jpg")}
+#lat-cv .cv-cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:0 0 12px;padding-bottom:12px;border-bottom:1px dashed #c9b28a}
+#lat-cv .cv-col{display:flex;flex-direction:column;gap:4px;min-width:0}
+#lat-cv .cv-k{display:block;font:700 9px var(--mono,monospace);letter-spacing:.18em;text-transform:uppercase;color:#9a6b3a;margin-bottom:2px}
+#lat-cv .cv-in{width:100%;box-sizing:border-box;height:28px;padding:0 4px!important;border:0!important;border-bottom:1px dotted #b89c72!important;border-radius:0!important;background:transparent!important;font:14px Georgia,serif;color:#3b2a1d}
+#lat-cv .cv-in:focus{outline:0;border-bottom-color:#9a6b3a!important}
+#lat-cv .cv-tx{display:block;margin:0 0 10px}#lat-cv .cv-tx textarea{width:100%;box-sizing:border-box;border:1px solid #c9b28a;border-radius:8px;background:#fbf3df;padding:8px;font:14px Georgia,serif;color:#3b2a1d}
+#lat-cv .cv-ch{display:flex;flex-wrap:wrap;align-items:center;gap:6px}#lat-cv .cv-ch .cv-k{width:100%}
+#lat-cv .cv-ch button{width:auto!important;margin:0!important;padding:5px 12px!important;border:1px solid #b89c72!important;border-radius:999px!important;background:#fbf3df!important;color:#5a3f2c!important;font:13px Georgia,serif!important}
+#lat-cv .cv-ch button.on{background:#e9c87a!important;border-color:#9a6b3a!important}
+@media(max-width:800px){#lat-cv .cv-cols{grid-template-columns:1fr}}
+
+/* ===== Reinos, Profecia e Dossiê no padrão das primeiras páginas do livro ===== */
+#lv .lv-folha:is([data-folha="reinos"],[data-folha="profecia"],[data-folha^="dos-"]) .lv-corpo{
+ --mono:Georgia,'EB Garamond',serif;--sans:Georgia,'EB Garamond',serif;--display:Georgia,serif;--red:#9b3a2a;--bone:#24304f;--ink:#24304f;--dim:#8a6f55;
+ --panel:transparent;--panel2:transparent;--well:transparent;--bg:transparent;--line:#c9b28a;--line2:#c9b28a;--blk:transparent;color:#24304f}
+#lv .lv-folha:is([data-folha="reinos"],[data-folha="profecia"],[data-folha^="dos-"]) .lv-corpo :is(div,section,article,aside,details,header,footer,table,thead,tbody,tr,td,th,ul,ol,li,form,fieldset,label,nav):not(.lv-corpo){
+ background-color:transparent!important;background-image:none!important;box-shadow:none!important;border-radius:0!important;border-color:#d6c49c!important}
+#lv .lv-folha:is([data-folha="reinos"],[data-folha="profecia"],[data-folha^="dos-"]) .lv-corpo :is(h2,h3,h4,b,strong){font-family:Georgia,'EB Garamond',serif!important;color:#2a2418!important}
+#lv .lv-folha:is([data-folha="reinos"],[data-folha="profecia"],[data-folha^="dos-"]) .lv-corpo :is(.k9,.k5,.k6,.fc-k,.ars-k,.mm-k,.ac-k,small.k,.esp-eb){font:700 10px Georgia,serif!important;letter-spacing:.2em!important;text-transform:uppercase;color:#9b3a2a!important}
+#lv .lv-folha:is([data-folha="reinos"],[data-folha="profecia"],[data-folha^="dos-"]) .lv-corpo h2.sec{border:0!important;border-bottom:1px solid #b89c72!important;padding:0 0 4px!important;margin:6px 0 10px!important;font:400 20px Georgia,serif!important;color:#2a2418!important}
+#lv .lv-folha:is([data-folha="reinos"],[data-folha="profecia"],[data-folha^="dos-"]) .lv-corpo h2.sec::before{display:none!important}
+#lv .lv-folha:is([data-folha="reinos"],[data-folha="profecia"],[data-folha^="dos-"]) .lv-corpo h2.sec span{font:italic 12px Georgia,serif!important;letter-spacing:0!important;color:#8a6f55!important;margin-left:8px}
+#lv .lv-folha:is([data-folha="reinos"],[data-folha="profecia"],[data-folha^="dos-"]) .lv-corpo button{border-radius:2px!important;border:1px solid #b89c72!important;background:transparent!important;color:#5a3f2c!important;font-family:Georgia,serif!important;box-shadow:none!important}
+#lv .lv-folha:is([data-folha="reinos"],[data-folha="profecia"],[data-folha^="dos-"]) .lv-corpo :is(input,textarea,select){background:transparent!important;border:0!important;border-bottom:1px dotted #b89c72!important;border-radius:0!important;font-family:Georgia,serif!important;color:#24304f!important}
+#lv .lv-folha:is([data-folha="reinos"],[data-folha="profecia"],[data-folha^="dos-"]) .lv-corpo img{border:6px solid #fff!important;border-bottom-width:16px!important;box-shadow:0 4px 10px rgba(60,40,20,.25)!important;transform:rotate(-1.5deg)}
+/* Reinos como índice de capítulo: nome, descrição e linha pontilhada */
+#lv [data-folha="reinos"] .fc-reino-bt{display:flex!important;flex-direction:column;gap:0!important}
+#lv [data-folha="reinos"] .fc-reino-bt button{display:grid!important;grid-template-columns:34px auto 1fr;align-items:baseline;gap:10px;width:100%!important;padding:12px 4px!important;border:0!important;border-bottom:1px dotted #b89c72!important;text-align:left!important;counter-increment:reino}
+#lv [data-folha="reinos"] .fc-reino-bt{counter-reset:reino}
+#lv [data-folha="reinos"] .fc-reino-bt button::before{content:counter(reino,upper-roman);font:700 12px Georgia,serif;color:#9b3a2a;letter-spacing:.1em}
+#lv [data-folha="reinos"] .fc-reino-bt button b{font:400 22px Georgia,serif!important}
+#lv [data-folha="reinos"] .fc-reino-bt button small{font:italic 14px Georgia,serif!important;color:#6b5140!important;justify-self:end;text-align:right}
+#lv [data-folha="reinos"] .fc-reino-bt button[aria-pressed="true"] b{color:#9b3a2a!important}
+#lv [data-folha="reinos"] .fc-reinos>h3{display:none}
+/* Profecia: citação como no livro */
+#lv [data-folha="profecia"] .lv-prof blockquote,#lv [data-folha="profecia"] .lv-prof [class*="decl"],#lv [data-folha="profecia"] .lv-prof [class*="afirm"]{border-left:3px solid #9b3a2a!important;padding-left:14px!important;font-style:italic}
+
+#lv .lv-folha[data-folha="reinos"] .lv-corpo .fc-reino-bt button[data-reino]{border:0!important;border-bottom:1px dotted #b89c72!important;border-radius:0!important}
+#lv .lv-folha[data-folha="reinos"] .lv-corpo .fc-reino-bt button[data-reino]:hover{background:rgba(201,164,90,.12)!important}
+
+#cerbox #rail-in .rcap button{background:#f4ead2!important;color:#5a3f2c!important;border:1px solid #5a3f2c!important}
+#cerbox #rail-in .rcap button:hover{background:#e9c87a!important}
 </style>
 </head>
 <body>
@@ -9444,7 +9490,7 @@ function axEncaixa(dentro){var h=document.getElementById('ax-topo');if(!h)return
  if(dentro){var c=document.querySelector('#painel-dir .pd-corpo'),hub=document.getElementById('ax-hub');var pane=hub&&hub.parentNode;if(pane&&h.parentNode!==pane)pane.insertBefore(h,hub);}
  else{var wr=document.querySelector('.wrap');if(wr&&h.parentNode!==wr)wr.insertBefore(h,wr.firstChild);}}
 /* ---- os quatro reinos dentro da Ficha do Campista ---- */
-var AX_REINOS=[['espelho','Urðarbrunnr','Espelho · mapa astral, numerologia e vocação'],['alimentacao','Vanaheim','Cultura · Ikigai e decisões'],['tarefas','Niflheim','Self-therapy · desembaralhar o que sente'],['asgard','Asgard','Vision board · áreas da vida e metas']];
+var AX_REINOS=[['espelho','Urðarbrunnr','Espelho · mapa astral, numerologia e vocação'],['tarefas','Niflheim','Self-therapy · desembaralhar o que sente'],['asgard','Asgard','Vision board · áreas da vida e metas']];
 AX.noReino=false;
 function axReino(id){if(!AX.ok)return;var palco=document.getElementById('fc-reino-palco');if(!palco)return;
  var hB=document.getElementById('ax-hub'),hA=document.getElementById('ax-topo');
@@ -9460,7 +9506,7 @@ function axReinoSai(){if(!AX.noReino)return;AX.noReino=false;var hB=document.get
  Array.prototype.forEach.call(document.querySelectorAll('[data-reino]'),function(b){b.setAttribute('aria-pressed','false');});}
 function axReinosSec(){var c=document.getElementById('fc-dlg-c');if(!c)return null;var s=document.getElementById('fc-reinos');
  if(!s){s=document.createElement('section');s.id='fc-reinos';s.className='fc-reinos';
-  s.innerHTML='<div class="fc-k">os quatro reinos &middot; só você vê</div><h3>Reinos da árvore</h3><div class="fc-reino-bt">'+
+  s.innerHTML='<div class="fc-k">os reinos da árvore &middot; só você vê</div><h3>Reinos da árvore</h3><div class="fc-reino-bt">'+
    AX_REINOS.map(function(r){return '<button type="button" data-reino="'+r[0]+'" aria-pressed="false"><b>'+r[1]+'</b><small>'+r[2]+'</small></button>';}).join('')+
    '</div><div id="fc-reino-palco" hidden></div>';
   s.addEventListener('click',function(e){var b=e.target.closest('[data-reino]');if(!b)return;if(b.getAttribute('aria-pressed')==='true'){axReinoSai();return;}axReino(b.getAttribute('data-reino'));});}
@@ -12337,7 +12383,7 @@ var LV_FOLHAS=[
  {id:'dos-painel',sec:'Dossiê',cap:'Apêndice',t:'Dossiê · fogo interno',dupla:true},
  {id:'dos-lim',sec:'Dossiê',cap:'Apêndice',t:'Dossiê · ponto fraco',dupla:true},
  {id:'dos-diag',sec:'Dossiê',cap:'Apêndice',t:'Dossiê · oráculo',dupla:true}];
-LV_FOLHAS.splice(7,0,{id:'profecia',sec:'Profecia',cap:'Capítulo VII',t:'Profecia do ciclo'});
+LV_FOLHAS.splice(7,0,{id:'profecia',sec:'Profecia',cap:'Capítulo VII',t:'Profecia do ciclo',dupla:true});
 var LV_DOS_CORTE={'h-sec':'dos-ficha','h-painel':'dos-painel','h-lim':'dos-lim','h-diag':'dos-diag'};
 var LV_ESTREITO=window.matchMedia?window.matchMedia('(max-width: 880px)'):{matches:false};
 var LV_SOL='<svg viewBox="0 0 100 100" aria-hidden="true"><defs><radialGradient id="lvWax" cx="38%" cy="32%" r="75%"><stop offset="0%" stop-color="#d8a94a"/><stop offset="45%" stop-color="#a87a2a"/><stop offset="100%" stop-color="#6b4a16"/></radialGradient></defs>'+
@@ -12466,7 +12512,7 @@ cfMonta=function(){fcDlg();lvMonta();};
 arqNoDialogo=function(){lvMonta();};
 axReinosSec=function(){var s=document.getElementById('fc-reinos');
  if(!s){s=document.createElement('section');s.id='fc-reinos';s.className='fc-reinos';
-  s.innerHTML='<div class="fc-k">os quatro reinos &middot; só você vê</div><h3>Reinos da árvore</h3><div class="fc-reino-bt">'+
+  s.innerHTML='<div class="fc-k">os reinos da árvore &middot; só você vê</div><h3>Reinos da árvore</h3><div class="fc-reino-bt">'+
    AX_REINOS.map(function(r){return '<button type="button" data-reino="'+r[0]+'" aria-pressed="false"><b>'+r[1]+'</b><small>'+r[2]+'</small></button>';}).join('')+
    '</div><div id="fc-reino-palco" hidden></div>';
   s.addEventListener('click',function(e){var b=e.target.closest('[data-reino]');if(!b)return;if(b.getAttribute('aria-pressed')==='true'){axReinoSai();return;}axReino(b.getAttribute('data-reino'));});}
@@ -14371,6 +14417,25 @@ document.addEventListener('click',function(e){var x=e.target.closest&&e.target.c
  if(d===hoje()){var t=document.getElementById('dj-t');if(t)t.value='';}try{pinta();}catch(z){}djApagaBotoes();},true);
 (function(){var p0=pinta;pinta=function(){var r=p0.apply(this,arguments);try{djApagaBotoes();}catch(e){}return r;};})();
 setTimeout(djApagaBotoes,800);
+/* ---------- Culture Vulture no Recreações (mesmos dados do reino Vanaheim: state.planners.culture) ---------- */
+var CV_SEC=[{t:'cols',c:[['watch','Assistir'],['read','Ler'],['listen','Ouvir']],n:8},{t:'cols',c:[['viral','Vídeos virais'],['sites','Sites'],['podcasts','Podcasts']],n:5},
+ {t:'cols',c:[['cheap','Entretenimento barato'],['trash','Trashy stuff'],['guilty','Guilty pleasures']],n:5},{t:'txt',k:'notes',l:'Notas'},{t:'chips',k:'reference',l:'Usar como referência',o:['Blog','Conversa casual','Provar hipness']}];
+function cvD(){try{if(!AX.ok)return null;var st=AX.st();st.planners=st.planners||{};return st.planners.culture=st.planners.culture||{};}catch(e){return null;}}
+function cvHTML(){var D=cvD();if(!D)return '<p class="lat-n">Carregando a estante…</p>';var h='';
+ CV_SEC.forEach(function(sec,si){if(sec.t==='cols'){h+='<div class="cv-cols">'+sec.c.map(function(c){var arr=D[c[0]]||[],li='';var n=Math.max(1,arr.filter(Boolean).length+1);n=Math.min(sec.n,Math.max(n,3));
+   for(var i=0;i<n;i++)li+='<input class="cv-in" data-cv="'+c[0]+':'+i+'" value="'+esc(arr[i]||'')+'" placeholder="…">';return '<div class="cv-col"><span class="cv-k">'+c[1]+'</span>'+li+'</div>';}).join('')+'</div>';}
+  else if(sec.t==='txt')h+='<label class="cv-tx"><span class="cv-k">'+sec.l+'</span><textarea data-cvt="'+sec.k+'" rows="2" placeholder="…">'+esc(D[sec.k]||'')+'</textarea></label>';
+  else{var sel=D[sec.k]||[];h+='<div class="cv-ch"><span class="cv-k">'+sec.l+'</span>'+sec.o.map(function(o){return '<button type="button" class="'+(sel.indexOf(o)>=0?'on':'')+'" data-cvc="'+sec.k+':'+o+'">'+o+'</button>';}).join('')+'</div>';}});
+ return h;}
+function cvCard(){var rc=document.getElementById('recreio');if(!rc)return;var g=rc.querySelector('.rc-g');if(!g)return;var c=document.getElementById('lat-cv');
+ if(!c){var t=document.createElement('div');t.innerHTML=latCard('lat-cv','alvo','assistir, ler e ouvir sem deixar boas ideias evaporarem','Culture Vulture','<div id="lat-cv-b"></div>');c=t.firstChild;c.classList.add('cv-card');
+  var tm=0;c.addEventListener('input',function(e){var D=cvD();if(!D)return;var x=e.target;
+   if(x.dataset.cv){var p=x.dataset.cv.split(':'),arr=(D[p[0]]=D[p[0]]||[]);arr[+p[1]]=x.value;var col=x.parentNode,ins=col.querySelectorAll('.cv-in');if(x===ins[ins.length-1]&&x.value&&ins.length<8){var n=document.createElement('input');n.className='cv-in';n.placeholder='…';n.dataset.cv=p[0]+':'+ins.length;col.appendChild(n);}}
+   else if(x.dataset.cvt!=null)D[x.dataset.cvt]=x.value;clearTimeout(tm);tm=setTimeout(function(){try{AX.save();}catch(z){}},400);});
+  c.addEventListener('click',function(e){var b=e.target.closest('[data-cvc]');if(!b)return;var D=cvD();if(!D)return;var p=b.dataset.cvc.split(':'),arr=(D[p[0]]=D[p[0]]||[]),i=arr.indexOf(p[1]);if(i>=0)arr.splice(i,1);else arr.push(p[1]);b.classList.toggle('on',i<0);try{AX.save();}catch(z){}});}
+ if(c.parentNode!==g)g.appendChild(c);var b=c.querySelector('#lat-cv-b'),a=document.activeElement;if(a&&c.contains(a))return;var h=cvHTML();if(b.innerHTML!==h)b.innerHTML=h;}
+(function(){var r0=vxRender;vxRender=function(){var x=r0.apply(this,arguments);try{cvCard();}catch(e){}return x;};})();
+setTimeout(function(){try{cvCard();}catch(e){}},1200);setTimeout(function(){try{cvCard();}catch(e){}},3000);
 setInterval(pintaProgresso,60000);
 })();
 </script>
