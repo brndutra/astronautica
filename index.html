@@ -2400,6 +2400,17 @@ body[data-skin="astro"] .narr{display:none!important}
 .pd.largo .pd-corpo{width:min(1240px,calc(100vw - 60px))}
 .pd.largo.on .pd-abas{right:min(1240px,calc(100vw - 60px))}
 .pd-pane #ax-topo{position:sticky;top:64px;z-index:3}
+
+/* reinos na ficha */
+.fc-reinos{margin:18px 0 0;padding:18px 20px;border:1px solid var(--line);border-radius:14px;background:var(--panel)}
+.fc-reinos h3{margin:2px 0 12px;font:800 20px var(--display,Georgia,serif);color:var(--bone)}
+.fc-reino-bt{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.fc-reino-bt button{display:grid;gap:4px;text-align:left;padding:12px 14px;border:1px solid var(--line);border-left:4px solid #c2611f;border-radius:12px;background:var(--bg);color:var(--bone);cursor:pointer;font:inherit}
+.fc-reino-bt button:nth-child(2){border-left-color:#9c7a1e}.fc-reino-bt button:nth-child(3){border-left-color:#715a86}.fc-reino-bt button:nth-child(4){border-left-color:#2f7a55}
+.fc-reino-bt button b{font:800 15px var(--display,Georgia,serif)}.fc-reino-bt button small{font-size:12px;opacity:.75;line-height:1.35}
+.fc-reino-bt button[aria-pressed="true"]{background:var(--bone);color:var(--bg)}
+#fc-reino-palco{margin-top:14px;border-top:1px dashed var(--line);padding-top:12px}
+@media(max-width:800px){.fc-reino-bt{grid-template-columns:repeat(2,minmax(0,1fr))}}
 </style>
 </head>
 <body>
@@ -6884,7 +6895,7 @@ function arqNoDialogo(){var arq=document.getElementById('arq-antigo');if(!arq)re
   if(sm)sm.innerHTML='Dossiê do semideus <small>dons, fogo interno, ponto fraco e oráculo</small>';}
  else if(c.lastElementChild!==arq)c.appendChild(arq);
  arq.hidden=!CF.chave;}
-(function(){var t0=cfTela;cfTela=function(){t0();try{arqNoDialogo();}catch(e){}};})();
+(function(){var t0=cfTela;cfTela=function(){t0();try{arqNoDialogo();}catch(e){}try{axReinosSec();if(!CF.chave)axReinoSai();}catch(e){}};})();
 var ARQ_NV={'h-sec':1,'h-painel':1,'h-lim':1,'h-diag':1};
 document.addEventListener('click',function(e){var nb=e.target.closest&&e.target.closest('#nav-l [data-nv]');if(!nb)return;var k=nb.getAttribute('data-nv');
  if(!ARQ_NV[k])return;e.preventDefault();e.stopImmediatePropagation();fcAbreDlg();
@@ -7099,9 +7110,14 @@ function axInit(){
  var hB=document.createElement('div');hB.id='ax-hub';pane.appendChild(hB);
  var A=raiz(hA,AX_TOPO,'\n.axhtml,.axbody{background:transparent!important;min-height:0!important;height:auto!important;width:auto!important;padding:0!important;margin:0!important;overflow:visible!important}'+
   '\n.axis-weekbar{position:relative!important;inset:auto!important;width:auto!important;height:auto!important;min-height:62px;flex-wrap:wrap!important;row-gap:10px!important;margin:0 0 14px!important;border-radius:18px!important;border:1px solid var(--line,#d8d0bf)!important;z-index:5!important}'+
+  '\n:host(.na-ficha) .axis-weekbar{display:none!important}#awbRaven{display:inline-flex!important;align-items:center;gap:2px;white-space:nowrap}.awb-nav #ravenBadge{position:static!important;inset:auto!important;transform:none!important;box-shadow:none!important;border:0!important}.awb-badge{display:none;margin-left:4px;min-width:16px;height:16px;border-radius:8px;background:#c2611f;color:#fff;font:700 10px system-ui;place-items:center;padding:0 4px}'+
   '\n.awb-nav [data-awb-tab="habit"],.awb-nav [data-awb-tab="mapa"]{display:none!important}'+
   '\n.awb-nav{flex:1 1 auto!important;overflow:visible!important;flex-wrap:wrap}.awb-trackers{margin-left:0!important;flex-wrap:wrap}.awb-status{margin-left:auto!important}');
- var B=raiz(hB,AX_HUB,'\n.axhtml,.axbody{min-height:0!important;height:auto!important;padding-top:0!important;padding-left:0!important}\n.axhtml:not(.habit) .planner-edge-tabs{display:none!important}');
+ var B=raiz(hB,AX_HUB,'\n.axhtml,.axbody{min-height:0!important;height:auto!important;padding-top:0!important;padding-left:0!important}\n.axhtml:not(.habit) .planner-edge-tabs{display:none!important}'+
+  '\n:host(.na-ficha) .axhtml,:host(.na-ficha) .axbody{background:transparent!important}:host(.na-ficha) .wrap{display:block!important;padding:0!important;margin:0!important;max-width:none!important;width:auto!important}'+
+  ':host(.na-ficha) .wrap>header{display:block!important;position:static!important;width:auto!important;height:auto!important;min-height:0!important;padding:0 0 10px!important;margin:0!important;border:0!important;background:none!important;box-shadow:none!important;overflow:visible!important}'+
+  ':host(.na-ficha) .wrap>header>.brandline,:host(.na-ficha) .wrap>header>.monthnav,:host(.na-ficha) .wrap>header>#mgQuickTrk{display:none!important}'+
+  ':host(.na-ficha) #flipzone,:host(.na-ficha) main{margin:0!important;width:auto!important;max-width:none!important}');
  AX.A=A;AX.B=B;
  var hh=[A.querySelector('.axhtml'),B.querySelector('.axhtml')],bb=[A.querySelector('.axbody'),B.querySelector('.axbody')];
  var DE=axEspelho(hh),BO=axEspelho(bb);
@@ -7130,6 +7146,7 @@ function axInit(){
  try{AXRUN(D,AXD,MO);}catch(e){console.error('AxisHub:',e);}
  AX.financas=function(){try{if(!DE.classList.contains('financehub-page')||DE.classList.contains('habit'))window.openFinanceHub();}catch(e){}};
  AX.financas();
+ try{axBotoesExtra();AX.selo();setInterval(AX.selo,60000);}catch(e){}
  /* barra do topo: abas e ações do AxisHub abrem o painel direito */
  window.addEventListener('click',function(e){var p=e.composedPath&&e.composedPath();var t=p&&p[0];if(!t||!t.closest||t.getRootNode()!==A)return;var b=t.closest('[data-awb-action="finance"]');if(b&&typeof pdAbre==='function')setTimeout(function(){pdAbre('fin');},0);},true);
 }
@@ -7137,6 +7154,36 @@ function axInit(){
 function axEncaixa(dentro){var h=document.getElementById('ax-topo');if(!h)return;dentro=false;if(dentro===false&&AX.financas&&document.getElementById('painel-dir')&&document.getElementById('painel-dir').classList.contains('largo'))AX.financas();
  if(dentro){var c=document.querySelector('#painel-dir .pd-corpo'),hub=document.getElementById('ax-hub');var pane=hub&&hub.parentNode;if(pane&&h.parentNode!==pane)pane.insertBefore(h,hub);}
  else{var wr=document.querySelector('.wrap');if(wr&&h.parentNode!==wr)wr.insertBefore(h,wr.firstChild);}}
+/* ---- os quatro reinos dentro da Ficha do Campista ---- */
+var AX_REINOS=[['espelho','Urðarbrunnr','Espelho · mapa astral, numerologia e vocação'],['alimentacao','Vanaheim','Cultura · Ikigai e decisões'],['tarefas','Niflheim','Self-therapy · desembaralhar o que sente'],['asgard','Asgard','Vision board · áreas da vida e metas']];
+AX.noReino=false;
+function axReino(id){if(!AX.ok)return;var palco=document.getElementById('fc-reino-palco');if(!palco)return;
+ var hB=document.getElementById('ax-hub'),hA=document.getElementById('ax-topo');
+ hA.classList.add('na-ficha');hB.classList.add('na-ficha');palco.appendChild(hA);palco.appendChild(hB);AX.noReino=true;
+ try{AX.B.querySelector('.axhtml').classList.remove('financehub-page');AX.A.querySelector('.axhtml').classList.remove('financehub-page');AX.selectWorld(id);}catch(e){console.error(e);}
+ Array.prototype.forEach.call(document.querySelectorAll('[data-reino]'),function(b){b.setAttribute('aria-pressed',String(b.getAttribute('data-reino')===id));});
+ palco.hidden=false;palco.scrollIntoView({block:'start',behavior:'smooth'});}
+function axReinoSai(){if(!AX.noReino)return;AX.noReino=false;var hB=document.getElementById('ax-hub'),hA=document.getElementById('ax-topo');
+ var pane=document.querySelector('#painel-dir [data-pane="fin"]');if(pane&&hB){hB.classList.remove('na-ficha');pane.appendChild(hB);}
+ if(hA){hA.classList.remove('na-ficha');var wr=document.querySelector('.wrap');if(wr)wr.insertBefore(hA,wr.firstChild);}
+ try{AX.selectWorld('financeiro');}catch(e){}if(AX.financas)AX.financas();
+ var palco=document.getElementById('fc-reino-palco');if(palco)palco.hidden=true;
+ Array.prototype.forEach.call(document.querySelectorAll('[data-reino]'),function(b){b.setAttribute('aria-pressed','false');});}
+function axReinosSec(){var c=document.getElementById('fc-dlg-c');if(!c)return null;var s=document.getElementById('fc-reinos');
+ if(!s){s=document.createElement('section');s.id='fc-reinos';s.className='fc-reinos';
+  s.innerHTML='<div class="fc-k">os quatro reinos &middot; só você vê</div><h3>Reinos da árvore</h3><div class="fc-reino-bt">'+
+   AX_REINOS.map(function(r){return '<button type="button" data-reino="'+r[0]+'" aria-pressed="false"><b>'+r[1]+'</b><small>'+r[2]+'</small></button>';}).join('')+
+   '</div><div id="fc-reino-palco" hidden></div>';
+  s.addEventListener('click',function(e){var b=e.target.closest('[data-reino]');if(!b)return;if(b.getAttribute('aria-pressed')==='true'){axReinoSai();return;}axReino(b.getAttribute('data-reino'));});}
+ var arq=document.getElementById('arq-antigo');if(arq&&arq.parentNode===c){if(s.nextSibling!==arq)c.insertBefore(s,arq);}else if(s.parentNode!==c)c.appendChild(s);
+ s.hidden=!(typeof CF!=='undefined'&&CF.chave);return s;}
+/* barra: corvo e captura rápida ao lado de Projetos */
+function axBotoesExtra(){if(!AX.A)return;var nav=AX.A.querySelector('.awb-nav');if(!nav||AX.A.getElementById('awbRaven'))return;var pj=nav.querySelector('[data-awb-action="projects"]');
+ function bt(id,txt,k){var b=document.createElement('button');b.type='button';b.id=id;b.innerHTML=txt;b.addEventListener('click',function(){AX.gt(k);});return b;}
+ var r=bt('awbRaven','\u2691 Corvo <span id="ravenBadge" class="awb-badge"></span>','raven');
+ var cp=bt('awbCaptura','\u270e Captura','captura');
+ if(pj&&pj.nextSibling){nav.insertBefore(cp,pj.nextSibling);nav.insertBefore(r,cp);}else{nav.appendChild(r);nav.appendChild(cp);}
+ try{AX.gt&&0;}catch(e){}}
 
 function AXRUN(document,AXD,MutationObserver){
 
@@ -9505,6 +9552,7 @@ load();paintTabs();renderAll();refreshSyncBadge();selectWorld('habitos');showWor
   if(!confirm('Substituir os dados das finanças deste aparelho pelo backup?'))return;localStorage.setItem(K,JSON.stringify(o));location.reload();});};}
  if(document.readyState!=='loading')poe();else document.addEventListener('DOMContentLoaded',poe);})();
 ;try{var __s0=save;save=function(){var r=__s0.apply(this,arguments);try{axSalvou();}catch(e){}return r;};}catch(e){}
+AX.selectWorld=function(id){selectWorld(id);};AX.gt=function(k){openGT(k);};AX.selo=function(){try{updateRavenBadge();}catch(e){}};
 AX.recarrega=function(){try{load();renderAll();if(typeof refreshAwbTrackers==="function")refreshAwbTrackers();if(typeof updateRavenBadge==="function")updateRavenBadge();}catch(e){console.error(e);}};
 }
 /* ---------- Caixa de entrada da extensão do Chrome ----------
