@@ -2204,6 +2204,80 @@ body[data-skin="astro"] .v4-leg .fx-06{background:var(--p-06)} body[data-skin="a
 #vx .pl-top input[type=text]{width:auto!important}
 #vx .pl-fim label{display:flex!important;flex-direction:row;align-items:center;gap:10px;grid-template-columns:none}
 #vx .pl-cal span{display:block;height:26px;line-height:26px;padding:0}
+
+/* =====================================================================
+   ASTRONÁUTICA · visual de diário de bordo (modo claro)
+   Mesma linguagem da extensão: papel envelhecido, verde-mata,
+   cabeçalho em cartão-postal, ouro como destaque, títulos em serifa.
+   ===================================================================== */
+body.claro[data-skin="astro"]{
+ --void:#eadfbe;--bg:#eadfbe;--panel:#f4ead1;--panel2:#fbf6e8;--well:#e2d4ab;
+ --line:rgba(95,70,35,.22);--line2:rgba(95,70,35,.36);
+ --bone:#2f261d;--ink:#3d3226;--dim:#6f6553;
+ --mata:#141a12;--mata2:#263321;--musgo:#3d4c36;--ouro:#b98c47;--terra:#8e3b2a;--azulm:#1d3c6b;
+ --a-op:#b5711f;--a-camp:#3d6b35;--a-est:#1d3c6b;--a-dos:#8e3b2a;--a-fin:#9a6a1f;--verde:#3d6b35;
+ --p-06:#f6e3c4;--p-09:#f5ecc6;--p-12:#e3ead0;--p-15:#dfe6e4;--p-18:#e8e0d6;--p-21:#f1dcd2;
+ background-color:#eadfbe;
+ background-image:radial-gradient(circle at 12% 8%,rgba(255,250,232,.7),transparent 40%),
+  radial-gradient(circle at 90% 95%,rgba(142,171,122,.18),transparent 40%),
+  repeating-linear-gradient(0deg,rgba(120,90,40,.03) 0 1px,transparent 1px 3px);
+ background-size:auto}
+/* laterais em papel mais escuro */
+body.claro[data-skin="astro"] #nav,body.claro[data-skin="astro"] #rail{background:#e2d4ab;border-color:var(--line)}
+body.claro[data-skin="astro"] #nav .navh,body.claro[data-skin="astro"] #rail .rcab{background:transparent}
+body.claro[data-skin="astro"] #nav .navh b{font-family:Georgia,serif;color:#263a2e}
+body.claro[data-skin="astro"] #nav button.at{background:#f4ead1;box-shadow:inset 3px 0 0 var(--ouro)}
+body.claro[data-skin="astro"] #nav button.at b{color:var(--terra)}
+body.claro[data-skin="astro"] #rail input,body.claro[data-skin="astro"] #rail button{background:#fbf6e8;border-color:var(--line)}
+
+/* cabeçalho em cartão-postal verde-mata */
+body.claro[data-skin="astro"] #vx .vx-hero{padding:30px 22px 18px;border-radius:14px;color:#f0e6c9;align-items:center;
+ background:linear-gradient(rgba(20,26,18,.2),rgba(20,26,18,.45)),
+  radial-gradient(circle at 85% 15%,rgba(255,255,255,.16),transparent 24%),
+  linear-gradient(135deg,#172719,#536b44 52%,#1d2b1e);
+ box-shadow:inset 0 0 0 2px rgba(234,223,190,.35),0 14px 28px -18px rgba(20,26,18,.8)}
+body.claro[data-skin="astro"] #vx .vx-hero::before{top:10px;left:16px;right:16px;background-color:#f1d58d;opacity:.55}
+body.claro[data-skin="astro"] #vx .vx-hero .vx-k{color:rgba(240,230,201,.8)}
+body.claro[data-skin="astro"] #vx .vx-hero > div:first-child > .vx-k{display:inline-block;font:italic 600 15px/1 cursive;letter-spacing:0;text-transform:none;color:#fff5d8;transform:rotate(-2deg);transform-origin:left}
+body.claro[data-skin="astro"] #vx .vx-hero h2{color:#efe0c1;font-family:var(--display);text-transform:uppercase;letter-spacing:.03em;
+ font-size:clamp(26px,3vw,40px);text-shadow:2px 2px 0 rgba(142,59,42,.75),0 2px 10px rgba(0,0,0,.45)}
+body.claro[data-skin="astro"] #vx .vx-hero button{background:rgba(240,230,201,.12);border:1px solid rgba(240,230,201,.45);color:#f0e6c9}
+body.claro[data-skin="astro"] #vx .vx-hero button *{color:inherit}
+body.claro[data-skin="astro"] #vx .vx-main{border-top:0}
+
+/* abas em bloco único, ativa em verde-mata */
+body.claro[data-skin="astro"] #vx .vx-tabs{gap:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;width:max-content;max-width:100%;background:#f4ead1}
+body.claro[data-skin="astro"] #vx .vx-tabs button[data-view]{border:0;border-radius:0;background:#f4ead1;color:var(--dim);box-shadow:none;
+ font:700 11px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;padding:12px 18px}
+body.claro[data-skin="astro"] #vx .vx-tabs button[data-view]+button[data-view]{border-left:1px solid var(--line)}
+body.claro[data-skin="astro"] #vx .vx-tabs button[data-view][aria-selected=true]{background:var(--mata2);color:#f0e6c9;box-shadow:inset 0 -3px 0 var(--tab)}
+
+/* cartões de papel */
+body.claro[data-skin="astro"] #vx .vx-card,body.claro[data-skin="astro"] .gm,body.claro[data-skin="astro"] .cc-hd,body.claro[data-skin="astro"] .cc-cd,
+body.claro[data-skin="astro"] .cc-card,body.claro[data-skin="astro"] .cc-k,body.claro[data-skin="astro"] .cc-ed,body.claro[data-skin="astro"] .pl-w{
+ background:#f4ead1;border:1px solid var(--line);border-radius:12px;box-shadow:inset 0 1px 0 rgba(255,255,255,.6),0 6px 16px -14px rgba(60,40,15,.6)}
+body.claro[data-skin="astro"] #vx .vx-card h3,body.claro[data-skin="astro"] #vx .vx-card h4,body.claro[data-skin="astro"] h2.sec,
+body.claro[data-skin="astro"] .pl-cal-h{font-family:Georgia,serif;color:#263a2e}
+body.claro[data-skin="astro"] .pl-k,body.claro[data-skin="astro"] #vx .vx-metrics span small{color:var(--ouro)}
+body.claro[data-skin="astro"] #vx .vx-metrics span{border-left-color:var(--ouro)}
+body.claro[data-skin="astro"] #vx .vx-metrics b{font-family:Georgia,serif;color:#263a2e}
+body.claro[data-skin="astro"] #vx input,body.claro[data-skin="astro"] #vx textarea,body.claro[data-skin="astro"] #vx select{background:#fbf6e8;border-color:var(--line)}
+body.claro[data-skin="astro"] #vx button{border-color:var(--line)}
+body.claro[data-skin="astro"] input[type=checkbox]{accent-color:var(--mata2)}
+
+/* planner do dia no papel */
+body.claro[data-skin="astro"] .pl-flip b{background:#fbf6e8;font-family:Georgia,serif;color:#263a2e}
+body.claro[data-skin="astro"] .pl-cal span.hj{background:var(--mata2);color:#f0e6c9}
+body.claro[data-skin="astro"] .pl-cal span.mc{box-shadow:inset 0 0 0 2px var(--ouro)}
+body.claro[data-skin="astro"] .pl-n{color:var(--ouro)}
+body.claro[data-skin="astro"] .pl-top li{background:#fbf6e8!important;border-left:3px solid var(--ouro)}
+body.claro[data-skin="astro"] .pl-top li:nth-child(2){border-left-color:var(--terra)}
+body.claro[data-skin="astro"] .pl-top li:nth-child(3){border-left-color:var(--azulm)}
+body.claro[data-skin="astro"] .pl-w input[type=checkbox]{accent-color:var(--mata2)}
+/* gamificação */
+body.claro[data-skin="astro"] .gm-bar{background:#e2d4ab;border-color:var(--line)}
+body.claro[data-skin="astro"] .gm-bar i{background:linear-gradient(90deg,var(--musgo),var(--ouro))}
+body.claro[data-skin="astro"] .gm-sq b{color:var(--terra)}
 </style>
 </head>
 <body>
