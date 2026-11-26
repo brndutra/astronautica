@@ -19,7 +19,9 @@ O projeto na Vercel está ligado a este repositório: cada push na `main` public
 
 ## Tesouro (finanças)
 
-- `financas.html` é o AxisHub (WeekHub, FinanceHub, Mapa, Saúde, Projetos), aberto na aba **05 / Tesouro** direto no FinanceHub.
+- A aba **05 / Tesouro** traz o antigo AxisHub (agora **Cofre da Argo**) rodando dentro da própria página, sem iframe: Tesouro (finanças), Diário de Bordo (semana), Carga (guarda-roupa, itinerário e consumo), Enfermaria (saúde) e Rotas (projetos).
+- A marcação, o CSS (escopado em `.ax-html`) e os scripts do cofre ficam no `index.html`, entre os marcadores `AXISHUB`, em blocos inertes (`#ax-tpl` e `#ax-js`). O app monta tudo quando a aba Tesouro abre; os scripts rodam num escopo próprio e usam as fontes e a paleta do app.
+- `financas.html` ficou como cópia de referência do AxisHub original e não é mais carregado pelo app.
 - A versão publicada começa vazia. Os dados entram pelo botão **Importar** (backup JSON) e sobem para o Supabase nas colunas `financas` e `fin_ts`, com relógio próprio.
 - Nunca coloque backups de finanças neste repositório.
 
