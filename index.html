@@ -13642,11 +13642,11 @@ function reorgOrb(){var o=document.getElementById('lat-orb'),cb=document.getElem
  var sb=cb.querySelector(':scope > .sb');o.classList.add('qa-orb');if(sb){if(sb.previousElementSibling!==o)cb.insertBefore(o,sb);}else if(o.parentNode!==cb)cb.appendChild(o);}
 function reorgTesouro(){var wr=document.querySelector('.wrap');if(!wr)return;var t=document.getElementById('tesouro');
  if(!t){t=document.createElement('section');t.id='tesouro';t.className='tesouro';t.dataset.area='op';
-  t.innerHTML='<header class="ts-cab"><span class="ts-k">o tesouro do chalé 7</span><h2>Arsenal, dracmas e prêmios</h2><p>O que o treino rende: a forja do Hékatos, a moeda do acampamento e o que ela compra.</p></header>'+
+  t.innerHTML='<header class="ts-cab"><span class="ts-k">o tesouro do chalé 7</span><h2>Arsenal, dracmas e prêmios</h2><p>O que o treino rende: a forja do Hékatos, a moeda do acampamento, o que ela compra e o menu de recarga para os dias ruins.</p></header>'+
    '<div class="ts-g"><div class="ts-col" id="ts-a"></div><div class="ts-col" id="ts-b"></div></div>';}
  t.dataset.vxHidden='false';if(wr.lastElementChild!==t)wr.appendChild(t);
  var a=t.querySelector('#ts-a'),b=t.querySelector('#ts-b');
- ['lat-ars','lat-dr'].forEach(function(id){var n=document.getElementById(id);if(n&&n.parentNode!==a){n.dataset.vxHidden='false';a.appendChild(n);}});
+ ['lat-ars','lat-dr','lat-rec'].forEach(function(id){var n=document.getElementById(id);if(n&&n.parentNode!==a){n.dataset.vxHidden='false';a.appendChild(n);}});
  var r=document.getElementById('c-h-rec');if(r&&r.parentNode!==b){r.hidden=false;r.dataset.vxHidden='false';b.appendChild(r);}
  Array.prototype.forEach.call(wr.querySelectorAll(':scope > .area-cab'),function(ac){var n=ac.nextElementSibling,vis=false;while(n&&!n.classList.contains('area-cab')&&n.id!=='tesouro'){if(n.offsetHeight>2){vis=true;break;}n=n.nextElementSibling;}if(ac.id==='area-camp')vis=true;ac.classList.toggle('ts-oculta',!vis);});}
 /* o cabeçalho "02 Missões" (que ficou vazio) vira o do Treino na Arena, logo acima dela */
