@@ -6,6 +6,7 @@
 <title>Astronáutica</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Cinzel:wght@600;800&display=swap" rel="stylesheet">
 <style>
 /* Dossiê de registro mutante. Preto, osso, vermelho — um acento só.
@@ -2539,6 +2540,153 @@ body[data-skin="astro"] .area-cab span{color:rgba(240,230,201,.75)}
 .pd-abas .pd-ic[data-pd="enf"]{border-left:4px solid #2f7a55;color:#2f7a55}.pd-abas .pd-ic[data-pd="lap"]{border-left:4px solid #3a6ea5;color:#3a6ea5}.pd-abas .pd-ic[data-pd="fin"]{border-left:4px solid #8d672b;color:#8d672b}.pd-abas .pd-ic[data-pd="b9"]{border-left:4px solid #2a2f36;color:#2a2f36}
 body:not(.claro) .pd-abas .pd-ic[data-pd="b9"]{color:var(--bone)}
 .pd-abas .pd-ic[aria-selected="true"]{background:var(--bone);color:var(--bg)!important}
+
+/* ---------- Ficha do Campista como livro ---------- */
+.lv [hidden],.lv-folha[hidden]{display:none!important}
+.lv button{width:auto;min-width:0}
+.fc-dlg{--lv-ink:#2b211a;--lv-soft:#5a4733;--lv-faint:#8a7355;--lv-perg:#ece0c4;--lv-perg-l:#f3e9d2;--lv-perg-d:#ddcca6;--lv-linha:#cdbb95;--lv-linha-s:#d9c9a6;--lv-cera:#8c2f2a;--lv-ouro:#a4843f}
+#fc-dlg.fc-dlg{width:min(1240px,97vw);max-height:96vh;background:transparent;box-shadow:none;border-radius:0;overflow:visible}
+#fc-dlg .fc-dlg-c{padding:0}
+#fc-dlg .fc-x{z-index:20}
+.lv{font-family:"EB Garamond",Georgia,serif;color:var(--lv-ink)}
+/* capa trancada */
+.lv-capa{min-height:min(640px,86vh);border-radius:12px;padding:clamp(18px,3vw,40px);display:grid;place-items:center;position:relative;
+ background:radial-gradient(120% 80% at 30% 10%,#4a2e1c,transparent 60%),linear-gradient(160deg,#3a2417,#23130b 55%,#1a0e07);
+ box-shadow:0 2px 0 #4a311f inset,0 -2px 0 #120a05 inset,0 40px 80px -30px rgba(0,0,0,.85)}
+.lv-capa::before{content:"";position:absolute;inset:12px;border-radius:8px;border:1.5px dashed rgba(196,164,92,.5);pointer-events:none}
+.lv-capa::after{content:"";position:absolute;inset:26px;border:1px solid rgba(196,164,92,.25);border-radius:4px;pointer-events:none}
+.lv-capa-in{position:relative;z-index:1;text-align:center;display:grid;justify-items:center;gap:8px;max-width:420px;color:#e9d6a6}
+.lv-capa-k{font-family:"IM Fell English SC",Georgia,serif;letter-spacing:.2em;font-size:12px;color:#c4a45c}
+.lv-capa h2{margin:0;font-family:"IM Fell English",Georgia,serif;font-weight:400;font-size:clamp(34px,5vw,54px);line-height:.95;color:#f0dfb0;text-shadow:0 2px 0 rgba(0,0,0,.5),0 0 18px rgba(196,164,92,.25)}
+.lv-capa-s{font-family:"IM Fell English",Georgia,serif;font-style:italic;font-size:18px;color:#c4a45c}
+.lv-capa-p{font-family:"IM Fell English SC",Georgia,serif;font-size:11px;letter-spacing:.16em;color:rgba(196,164,92,.7)}
+.lv-lacre{width:96px;height:96px;margin:10px 0 4px;filter:drop-shadow(0 8px 8px rgba(0,0,0,.55));animation:lvPress .8s .2s cubic-bezier(.2,1.3,.4,1) both}
+.lv-lacre svg{width:100%;height:100%}
+@keyframes lvPress{from{opacity:0;transform:rotate(-8deg) scale(.4)}to{opacity:1;transform:rotate(-8deg) scale(1)}}
+#lv-cofre{width:100%}
+.lv-capa .cf{background:rgba(243,233,210,.08);border:1px solid rgba(196,164,92,.35);border-radius:6px;padding:12px;color:#e9d6a6;margin:4px 0 0}
+.lv-capa .cf-lock{display:block;text-align:center}
+.lv-capa .cf-ico{display:none}
+.lv-capa .cf-lock b{display:none}
+.lv-capa .cf-lock p{font-family:"EB Garamond",Georgia,serif;font-size:15px;color:#e9d6a6;margin:0 0 10px}
+.lv-capa .cf-f{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.lv-capa .cf-f input{flex:1 1 160px;background:rgba(236,224,196,.92);border:1px solid #a4843f;border-radius:3px;padding:8px 10px;font-family:"EB Garamond",Georgia,serif;font-size:16px;color:#2b211a}
+.lv-capa .cf-f button{background:linear-gradient(#a8453c,#8c2f2a);color:#f3e7cf;border:1px solid #5f1f1c;border-radius:3px;padding:8px 16px;font-family:"IM Fell English SC",Georgia,serif;letter-spacing:.12em;cursor:pointer}
+.lv-capa .cf-msg{display:block;margin-top:6px;color:#f0c9a0}
+/* livro aberto */
+.lv-livro{border-radius:12px;padding:clamp(10px,1.4vw,20px);position:relative;
+ background:linear-gradient(160deg,#3a2417,#23130b 55%,#1a0e07);box-shadow:0 2px 0 #4a311f inset,0 -2px 0 #120a05 inset,0 40px 80px -30px rgba(0,0,0,.85)}
+.lv-livro::before{content:"";position:absolute;inset:6px;border-radius:7px;border:1.5px dashed rgba(164,132,63,.45);pointer-events:none}
+.lv-topo{display:flex;align-items:flex-end;gap:10px;padding:0 54px 0 10px;position:relative;z-index:2}
+.lv-fitas{display:flex;gap:4px;flex-wrap:wrap;flex:1}
+.lv-fita{--c:#8c2f2a;position:relative;border:0;cursor:pointer;padding:7px 14px 11px;color:#f3e7cf;font-family:"IM Fell English SC",Georgia,serif;font-size:13px;letter-spacing:.08em;
+ background:var(--c);clip-path:polygon(0 0,100% 0,100% 100%,50% 82%,0 100%);transform:translateY(4px);transition:transform .18s ease,filter .18s ease;opacity:.82}
+.lv-fita:hover{transform:translateY(1px);opacity:1}
+.lv-fita.on{transform:translateY(10px);opacity:1;filter:saturate(1.15)}
+.lv-fita.f1{--c:#a4843f}.lv-fita.f2{--c:#34422c}.lv-fita.f3{--c:#5b2f61}.lv-fita.f4{--c:#234a78}.lv-fita.f5{--c:#6b4a27}.lv-fita.f6{--c:#3b3b3b}
+.lv-tr{display:inline-flex;align-items:center;gap:6px;background:rgba(243,233,210,.08);border:1px solid rgba(196,164,92,.45);color:#e9d6a6;border-radius:4px;padding:6px 10px;cursor:pointer;
+ font-family:"IM Fell English SC",Georgia,serif;letter-spacing:.1em;font-size:12px;margin-bottom:6px}
+.lv-tr svg,.lv-pe svg,.lv-canto svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.lv-tr:hover{background:rgba(243,233,210,.16)}
+.lv-spread{position:relative;display:grid;grid-template-columns:minmax(0,1fr) 2px minmax(0,1fr);border-radius:4px;box-shadow:0 0 0 1px #110a05;margin-top:6px;
+ height:min(700px,calc(96vh - 140px));overflow:hidden;background:var(--lv-perg)}
+.lv-spread.so1{grid-template-columns:minmax(0,1fr)}
+.lv-spread.so1 .lv-gutter{display:none}
+.lv-gutter{grid-column:2;grid-row:1;background:#7a5a36;z-index:5;box-shadow:-18px 0 28px -16px rgba(40,20,8,.75),18px 0 28px -16px rgba(40,20,8,.75)}
+.lv-folha{grid-row:1;position:relative;min-width:0;overflow:auto;display:flex;flex-direction:column;padding:clamp(18px,2.2vw,30px) clamp(18px,2.4vw,34px) 14px;scrollbar-width:thin;scrollbar-color:#a4843f transparent;
+ background:radial-gradient(140% 120% at 30% 0%,var(--lv-perg-l),transparent 55%),radial-gradient(120% 120% at 100% 100%,var(--lv-perg-d),transparent 50%),var(--lv-perg)}
+.lv-folha[data-lado="esq"]{grid-column:1;box-shadow:inset -26px 0 34px -28px rgba(60,35,12,.55)}
+.lv-folha[data-lado="dir"]{grid-column:3;box-shadow:inset 26px 0 34px -28px rgba(60,35,12,.55)}
+.lv-folha[data-lado="dupla"]{grid-column:1/-1}
+.lv-folha::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.45;mix-blend-mode:multiply;
+ background:radial-gradient(60px 40px at 88% 14%,rgba(120,80,30,.10),transparent 70%),radial-gradient(90px 70px at 8% 92%,rgba(120,80,30,.08),transparent 70%)}
+.lv-cab{display:flex;align-items:baseline;gap:10px;border-bottom:1px solid var(--lv-faint);padding-bottom:8px;margin-bottom:16px;position:relative}
+.lv-cap{font-family:"IM Fell English SC",Georgia,serif;font-size:12px;letter-spacing:.18em;color:var(--lv-cera)}
+.lv-t{font-family:"IM Fell English",Georgia,serif;font-size:clamp(22px,2.4vw,30px);line-height:1;color:var(--lv-ink)}
+.lv-num{margin-top:auto;padding-top:22px;text-align:center;font-family:"IM Fell English",Georgia,serif;font-style:italic;color:var(--lv-faint);font-size:14px}
+.lv-corpo{position:relative;flex:0 0 auto}
+.lv-branca .lv-corpo{flex:1 1 auto}
+.lv-branca .lv-corpo{height:100%;display:grid;place-items:center;align-content:center;gap:10px;color:var(--lv-ouro);opacity:.6}
+.lv-branca .lv-astro{width:130px;height:130px}
+.lv-branca p{font-family:"IM Fell English",Georgia,serif;font-style:italic;margin:0;color:var(--lv-faint)}
+/* virar página */
+.lv-spread.vira-p .lv-folha:not([hidden]){animation:lvViraP .42s ease both}
+.lv-spread.vira-a .lv-folha:not([hidden]){animation:lvViraA .42s ease both}
+.lv-spread.vira-p .lv-folha[data-lado="dir"],.lv-spread.vira-a .lv-folha[data-lado="esq"]{animation-delay:.08s}
+@keyframes lvViraP{from{opacity:0;transform:perspective(1400px) rotateY(-10deg) translateX(18px);transform-origin:left center}to{opacity:1;transform:none}}
+@keyframes lvViraA{from{opacity:0;transform:perspective(1400px) rotateY(10deg) translateX(-18px);transform-origin:right center}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.lv-spread .lv-folha{animation:none!important}.lv-lacre{animation:none}}
+/* cantos e rodapé */
+.lv-canto{position:absolute;bottom:0;z-index:6;width:44px;height:44px;border:0;cursor:pointer;color:var(--lv-soft);display:grid;place-items:center}
+.lv-ant{left:0;background:linear-gradient(to top right,var(--lv-perg-d) 50%,transparent 50%);border-top-right-radius:4px}
+.lv-prox{right:0;background:linear-gradient(to top left,var(--lv-perg-d) 50%,transparent 50%);border-top-left-radius:4px}
+.lv-ant svg{transform:translate(-7px,7px)}.lv-prox svg{transform:translate(7px,7px)}
+.lv-canto:hover{color:var(--lv-cera);filter:brightness(1.05)}
+.lv-canto:disabled,.lv-pe button:disabled{opacity:.25;cursor:default}
+.lv-pe{display:flex;align-items:center;justify-content:center;gap:14px;padding:10px 0 2px;color:#e9d6a6;position:relative;z-index:2}
+.lv-pe button{display:inline-flex;align-items:center;gap:6px;background:none;border:0;color:#e9d6a6;cursor:pointer;font-family:"IM Fell English SC",Georgia,serif;letter-spacing:.1em;font-size:13px}
+.lv-pe button:hover:not(:disabled){color:#fff3cf}
+.lv-pos{font-family:"IM Fell English",Georgia,serif;font-style:italic;font-size:15px;min-width:150px;text-align:center}
+/* conteúdo antigo vestido de pergaminho */
+.lv-folha .fc,.lv-folha .cf-dia,.lv-folha .fc-reinos{background:none!important;border:0!important;box-shadow:none!important;padding:0!important;margin:0!important;filter:none!important;color:var(--lv-ink)}
+.lv-folha .fc::before,.lv-folha .fc::after{display:none}
+.lv-folha .fc-top{border-bottom:1px solid var(--lv-faint)}
+.lv-folha .fc-top h3{font-family:"IM Fell English",Georgia,serif;font-weight:400;font-size:30px;letter-spacing:0;text-transform:none}
+.lv-folha .fc-k,.lv-folha .fc-f span,.lv-folha .fc-sec>b,.lv-folha .fc-at>span:first-child{font-family:"IM Fell English SC",Georgia,serif;letter-spacing:.14em;color:var(--lv-cera)}
+.lv-folha .fc-f b,.lv-folha .fc-sec li,.lv-folha .fc-sec p,.lv-folha .fc-obs{font-family:"EB Garamond",Georgia,serif;font-size:16px;color:var(--lv-ink)}
+.lv-folha .fc-f b{font-family:"Caveat","EB Garamond",cursive;font-size:21px;font-weight:600;color:#23314f;line-height:1.15}
+.lv-folha .fc-grid{grid-template-columns:1fr;gap:0}
+.lv-folha .fc-f{border-bottom:1.5px dotted var(--lv-faint);padding:5px 0}
+.lv-folha .fc-sec>b{display:block;font-size:13px;margin:0 0 10px}
+.lv-folha .fc-at{font-family:"EB Garamond",Georgia,serif}
+.lv-folha .fc-at small{font-style:italic;color:var(--lv-soft)}
+.lv-folha .fc-two{grid-template-columns:1fr;gap:18px}
+.lv-folha .fc-sec li em,.lv-folha .fc-sec p em{color:var(--lv-cera)}
+.lv-folha .fc-prof p{font-family:"IM Fell English",Georgia,serif;font-style:italic;font-size:19px;line-height:1.5}
+.lv-folha .fc-falha{border-left:3px solid var(--lv-cera);padding-left:12px}
+.lv-folha .fc-obs{font-family:"Caveat","EB Garamond",cursive;font-size:21px;color:var(--lv-soft);border-top:1px solid var(--lv-linha);padding-top:10px}
+/* diário: folha pautada */
+.lv-folha .cf-dh .fc-k{font-family:"IM Fell English SC",Georgia,serif}
+.lv-folha .cf-dh h3{display:none}
+.lv-folha #cf-nova{width:100%;min-height:168px;border:0;outline:0;resize:vertical;font-family:"Caveat","EB Garamond",cursive;font-size:21px;line-height:28px;color:var(--lv-ink);
+ background-color:transparent;background-image:repeating-linear-gradient(transparent,transparent 27px,var(--lv-linha-s) 27px,var(--lv-linha-s) 28px);background-position:0 6px;padding:0 4px}
+.lv-folha #cf-nova:focus{background-color:rgba(164,132,63,.07)}
+.lv-folha .cf-acoes button{background:linear-gradient(#a8453c,#8c2f2a);color:#f3e7cf;border:1px solid #5f1f1c;border-radius:3px;padding:7px 14px;font-family:"IM Fell English SC",Georgia,serif;letter-spacing:.1em;cursor:pointer}
+.lv-folha .cf-lista{list-style:none;padding:0;margin:8px 0 0;display:grid;gap:0}
+.lv-folha .cf-lista li{border-top:1px solid var(--lv-linha);padding:10px 0}
+.lv-folha .cf-lista time{font-family:"IM Fell English SC",Georgia,serif;font-size:12px;letter-spacing:.14em;color:var(--lv-cera)}
+.lv-folha .cf-lista p{font-family:"EB Garamond",Georgia,serif;font-size:16px;line-height:1.55;margin:4px 0 0}
+/* folha livre */
+.lv-ferr{display:flex;align-items:center;gap:4px;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--lv-linha)}
+.lv-ferr button{width:34px;height:30px;display:grid;place-items:center;border-radius:4px;cursor:pointer;color:var(--lv-soft);border:1px solid transparent;background:transparent}
+.lv-ferr button svg{width:18px;height:18px;fill:currentColor;stroke:currentColor;stroke-width:1.4}
+.lv-ferr button:hover{color:var(--lv-cera);background:rgba(140,47,42,.07)}
+.lv-ferr button[aria-pressed="true"]{color:var(--lv-cera);border-color:var(--lv-cera);background:rgba(140,47,42,.09)}
+.lv-ferr-n{margin-left:auto;font-family:"IM Fell English SC",Georgia,serif;font-size:10.5px;letter-spacing:.14em;color:var(--lv-faint)}
+.lv-tela{position:relative;border:1px solid var(--lv-linha);border-radius:3px;min-height:460px;padding:16px 16px 16px 54px;background-color:rgba(255,255,255,.1);outline:none;
+ font-family:"Caveat","EB Garamond",cursive;font-size:21px;line-height:28px;color:var(--lv-ink);white-space:pre-wrap}
+.lv-tela::before{content:"";position:absolute;top:0;bottom:0;left:40px;width:1.5px;background:rgba(140,47,42,.5)}
+.lv-tela:empty::after{content:attr(data-ph);color:var(--lv-faint);font-family:"EB Garamond",Georgia,serif;font-style:italic;font-size:15px}
+.lv-tela.dots{background-image:radial-gradient(var(--lv-linha) 1.1px,transparent 1.1px);background-size:22px 22px;background-position:8px 8px}
+.lv-tela.grid{background-image:linear-gradient(var(--lv-linha-s) 1px,transparent 1px),linear-gradient(90deg,var(--lv-linha-s) 1px,transparent 1px);background-size:24px 24px;background-position:8px 8px}
+.lv-tela.lines{background-image:repeating-linear-gradient(transparent,transparent 27px,var(--lv-linha-s) 27px,var(--lv-linha-s) 28px);background-position:0 14px}
+.lv-tela.blank{background-image:none}
+.lv-salvo{display:block;text-align:right;font-family:"IM Fell English",Georgia,serif;font-style:italic;font-size:13px;color:var(--lv-faint);min-height:18px;margin-top:4px}
+/* reinos e dossiê */
+.lv-folha .fc-reinos h3{display:none}
+.lv-folha .fc-reino-bt button{background:rgba(255,255,255,.18);border:1px solid var(--lv-linha);color:var(--lv-ink);font-family:"EB Garamond",Georgia,serif}
+.lv-folha .fc-reino-bt button b{font-family:"IM Fell English",Georgia,serif;font-size:18px;font-weight:400}
+.lv-folha .fc-reino-bt button[aria-pressed="true"]{border-color:var(--lv-cera);background:rgba(140,47,42,.09)}
+.lv-folha[data-folha^="dos-"] .lv-corpo{zoom:.94}
+/* tela estreita: uma página por vez */
+@media (max-width:880px){
+ .lv-spread{height:min(76vh,calc(96vh - 150px))}
+ .lv-topo{padding-right:44px}
+ .lv-fita{padding:6px 10px 10px;font-size:12px}
+ .lv-fitas{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding-bottom:10px}
+ .lv-fita{flex:0 0 auto}
+ .lv-pe span:not(.lv-pos){display:none}
+}
 </style>
 </head>
 <body>
@@ -9863,6 +10011,174 @@ function nvCaixa(){if(cxRodando||!nv.user||!nv.cli||nv.est!=='ok')return;var b=n
 setInterval(function(){if(document.visibilityState==='visible')nvCaixa();},30000);
 document.addEventListener('visibilitychange',function(){if(document.visibilityState==='visible')setTimeout(nvCaixa,1500);});
 (function(){var e0=nvEstado;nvEstado=function(e){e0(e);if(e==='ok')setTimeout(nvCaixa,300);};})();
+
+/* ---------- Ficha do Campista como livro: cada seção é uma página, duas por vez ----------
+   Capa de couro trancada (a senha do cofre abre). Aberto, mostra as páginas lado a lado,
+   com fitas marcadoras por seção e setas para virar. As páginas largas (Reinos e Dossiê)
+   ocupam as duas folhas. Em tela estreita, uma página por vez. */
+var LV={pg:0,alvo:null,folhaT:0};
+var LV_FOLHAS=[
+ {id:'registro',sec:'Registro',cap:'Capítulo I',t:'Registro do campista'},
+ {id:'atrib',sec:'Atributos',cap:'Capítulo II',t:'Atributos'},
+ {id:'dons',sec:'Dons',cap:'Capítulo III',t:'Dons e atividades'},
+ {id:'destino',sec:'Destino',cap:'Capítulo IV',t:'Falha, matriz e missão'},
+ {id:'diario',sec:'Diário',cap:'Capítulo V',t:'Diário do Semideus'},
+ {id:'folha',sec:'Diário',cap:'Capítulo V',t:'Folha livre'},
+ {id:'reinos',sec:'Reinos',cap:'Capítulo VI',t:'Reinos da árvore',dupla:true},
+ {id:'dos-id',sec:'Dossiê',cap:'Apêndice',t:'Dossiê · identidade',dupla:true},
+ {id:'dos-ficha',sec:'Dossiê',cap:'Apêndice',t:'Dossiê · dons e técnicas',dupla:true},
+ {id:'dos-painel',sec:'Dossiê',cap:'Apêndice',t:'Dossiê · fogo interno',dupla:true},
+ {id:'dos-lim',sec:'Dossiê',cap:'Apêndice',t:'Dossiê · ponto fraco',dupla:true},
+ {id:'dos-diag',sec:'Dossiê',cap:'Apêndice',t:'Dossiê · oráculo',dupla:true}];
+var LV_DOS_CORTE={'h-sec':'dos-ficha','h-painel':'dos-painel','h-lim':'dos-lim','h-diag':'dos-diag'};
+var LV_ESTREITO=window.matchMedia?window.matchMedia('(max-width: 880px)'):{matches:false};
+var LV_SOL='<svg viewBox="0 0 100 100" aria-hidden="true"><defs><radialGradient id="lvWax" cx="38%" cy="32%" r="75%"><stop offset="0%" stop-color="#d8a94a"/><stop offset="45%" stop-color="#a87a2a"/><stop offset="100%" stop-color="#6b4a16"/></radialGradient></defs>'+
+ '<path fill="url(#lvWax)" d="M50 6c7 0 9 6 16 8s12-2 16 5-1 11 2 17 8 7 6 15-9 8-11 15 1 12-5 16-11-2-17 1-8 8-15 8-9-5-16-7-12 3-17-3 1-11-2-17-8-7-6-15 9-8 11-15-1-12 5-16 11 2 17-1 7-6 13-6z"/>'+
+ '<circle cx="50" cy="50" r="27" fill="none" stroke="#5a3a10" stroke-width="2" opacity=".5"/><g stroke="#fbe6b0" stroke-width="2.4" stroke-linecap="round" opacity=".9"><circle cx="50" cy="50" r="9" fill="none"/>'+
+ '<path d="M50 30v7M50 63v7M30 50h7M63 50h7M36 36l5 5M59 59l5 5M64 36l-5 5M41 59l-5 5"/></g></svg>';
+var LV_ASTRO='<svg class="lv-astro" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><circle cx="50" cy="50" r="46"/><circle cx="50" cy="50" r="36" stroke-dasharray="2 4"/><circle cx="50" cy="50" r="18"/><path d="M50 2v96M2 50h96"/><path d="M50 14l3 7-3 3-3-3z" fill="currentColor" stroke="none" opacity=".7"/></svg>';
+var LV_ICO={prev:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>',prox:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>',
+ tranca:'<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="1.6"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>'};
+function lvCorpo(id){return document.querySelector('#lv [data-folha="'+id+'"] .lv-corpo');}
+function lvEstrutura(){var c=document.getElementById('fc-dlg-c');if(!c)return null;var lv=document.getElementById('lv');if(lv&&lv.parentNode===c)return lv;
+ if(!lv){lv=document.createElement('div');lv.id='lv';lv.className='lv';
+  var fitas=[];LV_FOLHAS.forEach(function(f){if(fitas.indexOf(f.sec)<0)fitas.push(f.sec);});
+  lv.innerHTML='<div class="lv-capa" id="lv-capa"><div class="lv-capa-in"><span class="lv-capa-k">Acampamento Meio-Sangue &middot; chal&eacute; 7</span>'+
+   '<h2>Ficha do Campista</h2><span class="lv-capa-s">e Di&aacute;rio do Semideus</span><div class="lv-lacre">'+LV_SOL+'</div><div id="lv-cofre"></div>'+
+   '<span class="lv-capa-p">registro particular &middot; s&oacute; abre com a senha</span></div></div>'+
+   '<div class="lv-livro" id="lv-livro" hidden><div class="lv-topo"><nav class="lv-fitas" aria-label="Seções da ficha">'+
+   fitas.map(function(s,i){return '<button type="button" class="lv-fita f'+i+'" data-lvsec="'+s+'">'+s+'</button>';}).join('')+'</nav>'+
+   '<button type="button" class="lv-tr" data-lvtr title="Trancar a ficha">'+LV_ICO.tranca+'<span>trancar</span></button></div>'+
+   '<div class="lv-spread" id="lv-spread">'+LV_FOLHAS.map(function(f,i){return '<section class="lv-folha" data-folha="'+f.id+'"'+(f.dupla?' data-dupla="1"':'')+' hidden>'+
+    '<header class="lv-cab"><span class="lv-cap">'+f.cap+'</span><span class="lv-t">'+f.t+'</span></header><div class="lv-corpo"></div><footer class="lv-num">&mdash; '+(i+1)+' &mdash;</footer></section>';}).join('')+
+   '<section class="lv-folha lv-branca" data-folha="branca" hidden><div class="lv-corpo">'+LV_ASTRO+'<p>verso em branco</p></div></section>'+
+   '<div class="lv-gutter" aria-hidden="true"></div>'+
+   '<button type="button" class="lv-canto lv-ant" data-lvvai="-1" aria-label="Página anterior">'+LV_ICO.prev+'</button>'+
+   '<button type="button" class="lv-canto lv-prox" data-lvvai="1" aria-label="Próxima página">'+LV_ICO.prox+'</button></div>'+
+   '<div class="lv-pe"><button type="button" data-lvvai="-1">'+LV_ICO.prev+'<span>anterior</span></button><span class="lv-pos" id="lv-pos"></span><button type="button" data-lvvai="1"><span>pr&oacute;xima</span>'+LV_ICO.prox+'</button></div></div>'+
+   '<div id="lv-guarda" hidden></div>';
+  lv.addEventListener('click',function(e){var t=e.target.closest('[data-lvvai],[data-lvsec],[data-lvtr],[data-lvpapel]');if(!t)return;
+   if(t.hasAttribute('data-lvvai')){lvVira(+t.getAttribute('data-lvvai'));return;}
+   if(t.hasAttribute('data-lvsec')){lvIrSec(t.getAttribute('data-lvsec'));return;}
+   if(t.hasAttribute('data-lvtr')){var d=document.getElementById('fc-dlg');CF.chave=null;try{cfTela();}catch(z){}lvEstado();return;}
+   if(t.hasAttribute('data-lvpapel')){lvPapel(t.getAttribute('data-lvpapel'));}});
+  lv.addEventListener('input',function(e){if(e.target.id==='lv-folha-ed')lvFolhaSalva();});
+  var x0=0;lv.addEventListener('touchstart',function(e){x0=e.touches[0].clientX;},{passive:true});
+  lv.addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>70&&!e.target.closest('input,textarea,[contenteditable="true"]'))lvVira(dx<0?1:-1);},{passive:true});}
+ c.insertBefore(lv,c.firstChild);return lv;}
+
+/* cofre (senha) mora na capa */
+function lvCofre(){var h=document.getElementById('lv-cofre');if(!h)return;var c=document.getElementById('cf-cofre');
+ if(!c){c=document.createElement('div');c.id='cf-cofre';c.className='cf';
+  c.addEventListener('click',function(e){if(e.target.hasAttribute('data-cfok'))cfAbre();if(e.target.hasAttribute('data-cftr')){CF.chave=null;cfTela();}});
+  c.addEventListener('keydown',function(e){if(e.key==='Enter'&&e.target.tagName==='INPUT')cfAbre();});
+  if(!lvCofre.lig){lvCofre.lig=1;document.addEventListener('click',function(e){if(e.target.hasAttribute&&e.target.hasAttribute('data-cfadd'))cfAdd();});}
+  h.appendChild(c);cfTela();}
+ if(c.parentNode!==h)h.appendChild(c);}
+
+/* leva cada parte da ficha para a sua página */
+function lvMonta(){var lv=lvEstrutura();if(!lv)return;lvCofre();
+ var f=document.getElementById('fc-ficha');
+ if(!f){f=document.createElement('div');f.id='fc-ficha';f.className='fc';f.innerHTML=FC_HTML;}
+ f.hidden=false;f.style.display='';
+ var reg=lvCorpo('registro');if(f.parentNode!==reg)reg.appendChild(f);
+ if(!f.dataset.lv){f.dataset.lv='1';
+  var at=f.querySelector(':scope > .fc-sec');if(at)lvCorpo('atrib').appendChild(at);
+  var dois=f.querySelectorAll(':scope > .fc-two');if(dois[0])lvCorpo('dons').appendChild(dois[0]);
+  var dest=lvCorpo('destino');if(dois[1])dest.appendChild(dois[1]);
+  Array.prototype.forEach.call(f.querySelectorAll(':scope > .fc-prof, :scope > .fc-obs'),function(n){dest.appendChild(n);});}
+ var di=document.getElementById('cf-diario');if(di&&di.parentNode!==lvCorpo('diario'))lvCorpo('diario').appendChild(di);
+ lvFolhaMonta();
+ var rs=axReinosSec();if(rs&&rs.parentNode!==lvCorpo('reinos'))lvCorpo('reinos').appendChild(rs);
+ var arq=document.getElementById('arq-antigo');
+ if(arq){var g=document.getElementById('lv-guarda');if(arq.parentNode!==g)g.appendChild(arq);
+  var filhos=Array.prototype.filter.call(arq.children,function(n){return n.tagName!=='SUMMARY';});
+  if(filhos.length){var alvo='dos-id';filhos.forEach(function(n){if(LV_DOS_CORTE[n.id])alvo=LV_DOS_CORTE[n.id];n.dataset.vxHidden='false';lvCorpo(alvo).appendChild(n);});}
+  arq.hidden=true;}
+ lvEstado();}
+function lvFolhas(){return LV_FOLHAS.filter(function(f){if(f.id.indexOf('dos-')===0||f.id==='reinos'){var c=lvCorpo(f.id);return c&&c.children.length>0;}return true;});}
+function lvSpreads(){var L=lvFolhas(),r=[],i=0;
+ if(LV_ESTREITO.matches)return L.map(function(f){return [f.id];});
+ while(i<L.length){var a=L[i];if(a.dupla){r.push([a.id]);i++;continue;}var b=L[i+1];
+  if(b&&!b.dupla){r.push([a.id,b.id]);i+=2;}else{r.push([a.id,'branca']);i++;}}
+ return r;}
+function lvEstado(){var capa=document.getElementById('lv-capa'),liv=document.getElementById('lv-livro');if(!capa||!liv)return;
+ var aberto=!!CF.chave;if(capa.hidden!==aberto)capa.hidden=aberto;if(liv.hidden!==!aberto)liv.hidden=!aberto;
+ var d=document.getElementById('fc-dlg');if(d)d.classList.toggle('lv-aberta',aberto);
+ if(aberto){if(LV.alvo){var a=LV.alvo;LV.alvo=null;lvIrNo(a);}lvPinta();}}
+function lvPinta(anim){var S2=lvSpreads();if(!S2.length)return;LV.pg=Math.max(0,Math.min(LV.pg,S2.length-1));
+ try{localStorage.setItem('astro_lv_pg',LV.pg);}catch(e){}
+ var vis=S2[LV.pg],L=lvFolhas();
+ Array.prototype.forEach.call(document.querySelectorAll('#lv .lv-folha'),function(s){var id=s.getAttribute('data-folha'),k=vis.indexOf(id);
+  var lado=k<0?'':(vis.length===1?'dupla':(k===0?'esq':'dir'));
+  if(s.hidden!==(k<0))s.hidden=k<0;if((s.getAttribute('data-lado')||'')!==lado)s.setAttribute('data-lado',lado);
+  if(k>=0&&!anim)s.scrollTop=0;});
+ var sp=document.getElementById('lv-spread');if(sp){sp.classList.toggle('so1',vis.length===1);
+  if(anim){sp.classList.remove('vira-p','vira-a');void sp.offsetWidth;sp.classList.add(anim>0?'vira-p':'vira-a');
+   Array.prototype.forEach.call(sp.querySelectorAll('.lv-folha:not([hidden])'),function(s){s.scrollTop=0;});}}
+ var secs=vis.map(function(id){var f=LV_FOLHAS.filter(function(x){return x.id===id;})[0];return f&&f.sec;});
+ Array.prototype.forEach.call(document.querySelectorAll('#lv [data-lvsec]'),function(b){var on=secs.indexOf(b.getAttribute('data-lvsec'))>=0;if(b.classList.contains('on')!==on)b.classList.toggle('on',on);});
+ var nums=vis.filter(function(id){return id!=='branca';}).map(function(id){return L.map(function(f){return f.id;}).indexOf(id)+1;});
+ var pos=document.getElementById('lv-pos'),txt='página'+(nums.length>1?'s ':' ')+nums.join('–')+' de '+L.length;if(pos&&pos.textContent!==txt)pos.textContent=txt;
+ Array.prototype.forEach.call(document.querySelectorAll('#lv [data-lvvai]'),function(b){var v=+b.getAttribute('data-lvvai');var off=(v<0&&LV.pg===0)||(v>0&&LV.pg===S2.length-1);if(b.disabled!==off)b.disabled=off;});
+ if(vis.indexOf('folha')>=0)lvFolhaCarrega();}
+function lvVira(d){var n=lvSpreads().length;var p=Math.max(0,Math.min(n-1,LV.pg+d));if(p===LV.pg)return;LV.pg=p;lvPinta(d);}
+function lvIrNo(id){var S2=lvSpreads();for(var i=0;i<S2.length;i++){if(S2[i].indexOf(id)>=0){var d=i>LV.pg?1:-1;LV.pg=i;lvPinta(d);return true;}}return false;}
+function lvIrSec(sec){var f=lvFolhas().filter(function(x){return x.sec===sec;})[0];if(f)lvIrNo(f.id);}
+/* vai até a página que contém um elemento (atalhos do sumário para o Dossiê) */
+function lvIrEl(elId){var el=document.getElementById(elId);var s=el&&el.closest('.lv-folha');if(!s)return false;lvIrNo(s.getAttribute('data-folha'));setTimeout(function(){try{el.scrollIntoView({block:'start',behavior:'smooth'});}catch(e){}},120);return true;}
+try{var p0=+localStorage.getItem('astro_lv_pg');if(p0>0)LV.pg=p0;}catch(e){}
+if(LV_ESTREITO.addEventListener)LV_ESTREITO.addEventListener('change',function(){LV.pg=0;lvPinta();});
+
+/* folha livre: anotações à mão, cifradas com a mesma chave do diário */
+function lvFolhaMonta(){var c=lvCorpo('folha');if(!c||document.getElementById('lv-folha-ed'))return;var m='dots';try{m=localStorage.getItem('astro_lv_papel')||'dots';}catch(e){}
+ c.innerHTML='<div class="lv-ferr" role="toolbar" aria-label="Estilo do papel">'+
+  [['dots','Pontilhado','<circle cx="5" cy="5" r="1.3"/><circle cx="12" cy="5" r="1.3"/><circle cx="19" cy="5" r="1.3"/><circle cx="5" cy="12" r="1.3"/><circle cx="12" cy="12" r="1.3"/><circle cx="19" cy="12" r="1.3"/><circle cx="5" cy="19" r="1.3"/><circle cx="12" cy="19" r="1.3"/><circle cx="19" cy="19" r="1.3"/>'],
+   ['grid','Quadriculado','<path d="M3 8h18M3 16h18M8 3v18M16 3v18" fill="none"/>'],['lines','Pautado','<path d="M4 7h16M4 12h16M4 17h16" fill="none"/>'],['blank','Liso','<rect x="4" y="4" width="16" height="16" rx="2" fill="none"/>']]
+  .map(function(p){return '<button type="button" data-lvpapel="'+p[0]+'" title="'+p[1]+'" aria-label="'+p[1]+'" aria-pressed="'+(m===p[0])+'"><svg viewBox="0 0 24 24" aria-hidden="true">'+p[2]+'</svg></button>';}).join('')+
+  '<span class="lv-ferr-n">anota&ccedil;&otilde;es de campo &middot; cifradas</span></div>'+
+  '<div class="lv-tela '+m+'" id="lv-folha-ed" contenteditable="true" spellcheck="false" data-ph="esboços, mapas, flechas, listas soltas, o que vier à cabeça…"></div>'+
+  '<span class="lv-salvo" id="lv-salvo"></span>';}
+function lvPapel(m){var t=document.getElementById('lv-folha-ed');if(!t)return;t.className='lv-tela '+m;try{localStorage.setItem('astro_lv_papel',m);}catch(e){}
+ Array.prototype.forEach.call(document.querySelectorAll('#lv [data-lvpapel]'),function(b){b.setAttribute('aria-pressed',String(b.getAttribute('data-lvpapel')===m));});}
+async function lvFolhaCarrega(){var t=document.getElementById('lv-folha-ed');if(!t||!CF.chave||t.dataset.ok)return;t.dataset.ok='1';
+ var o=S.cofre&&S.cofre.folha;if(!o){t.innerText='';return;}try{t.innerText=await cfDecifra(o);}catch(e){t.innerText='';}}
+function lvFolhaSalva(){clearTimeout(LV.folhaT);var m=document.getElementById('lv-salvo');if(m)m.textContent='…';
+ LV.folhaT=setTimeout(async function(){var t=document.getElementById('lv-folha-ed');if(!t||!CF.chave||!S.cofre)return;
+  try{S.cofre.folha=await cfCifra(t.innerText);grava();if(m)m.textContent='guardada';}catch(e){if(m)m.textContent='não consegui guardar';}},800);}
+function lvFolhaLimpa(){var t=document.getElementById('lv-folha-ed');if(t){t.innerText='';delete t.dataset.ok;}}
+
+/* as funções antigas de encaixe passam a usar o livro */
+fcFicha=function(){fcDlg();lvMonta();
+ /* no Arsenal fica só o cartão que abre o livro */
+ var s=arsSec();if(s&&!document.getElementById('fc-abre')){s.innerHTML='<button type="button" id="fc-abre" class="fc-abre"><img alt="" src="'+(typeof ARTE_R!=='undefined'?ARTE_R:'')+'">'+
+  '<span><b>Ficha do Campista</b><small>e Diário do Semideus · abre com senha</small></span><i>🔒 abrir</i></button>';
+  document.getElementById('fc-abre').onclick=fcAbreDlg;}};
+cfMonta=function(){fcDlg();lvMonta();};
+arqNoDialogo=function(){lvMonta();};
+axReinosSec=function(){var s=document.getElementById('fc-reinos');
+ if(!s){s=document.createElement('section');s.id='fc-reinos';s.className='fc-reinos';
+  s.innerHTML='<div class="fc-k">os quatro reinos &middot; só você vê</div><h3>Reinos da árvore</h3><div class="fc-reino-bt">'+
+   AX_REINOS.map(function(r){return '<button type="button" data-reino="'+r[0]+'" aria-pressed="false"><b>'+r[1]+'</b><small>'+r[2]+'</small></button>';}).join('')+
+   '</div><div id="fc-reino-palco" hidden></div>';
+  s.addEventListener('click',function(e){var b=e.target.closest('[data-reino]');if(!b)return;if(b.getAttribute('aria-pressed')==='true'){axReinoSai();return;}axReino(b.getAttribute('data-reino'));});}
+ var c=lvCorpo('reinos');if(c&&s.parentNode!==c)c.appendChild(s);s.hidden=false;return s;};
+(function(){var t0=cfTela;cfTela=function(){t0.apply(this,arguments);if(!CF.chave)lvFolhaLimpa();try{lvEstado();}catch(e){}};})();
+/* o Dossiê saiu do <details>: a tradução para o acampamento percorre as páginas dele */
+dossieCamp=function(){Array.prototype.forEach.call(document.querySelectorAll('#lv .lv-folha[data-folha^="dos-"] .lv-corpo'),function(root){
+ var tw=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,null),n;
+ while((n=tw.nextNode())){var v=n.nodeValue;if(!v||!v.trim())continue;var nv=dsTraduz(v);if(nv!==v)n.nodeValue=nv;}
+ Array.prototype.forEach.call(root.querySelectorAll('[placeholder]'),function(i){var v=i.getAttribute('placeholder'),nv=dsTraduz(v);if(nv!==v)i.setAttribute('placeholder',nv);});});};
+/* botão do Diário no topo: abre direto na página do diário */
+dsVai=function(){if(!lvIrNo('diario'))return false;var t=document.getElementById('cf-nova');if(t)setTimeout(function(){try{t.focus({preventScroll:true});}catch(e){}},380);return true;};
+/* atalhos do sumário que apontavam para o arquivo antigo: abrem o livro na página certa */
+window.addEventListener('click',function(e){var nb=e.target.closest&&e.target.closest('#nav-l [data-nv]');if(!nb)return;var k=nb.getAttribute('data-nv');
+ if(!ARQ_NV[k])return;if(CF.chave){setTimeout(function(){lvIrEl(k);},80);return;}var el=document.getElementById(k),s=el&&el.closest('.lv-folha');LV.alvo=s?s.getAttribute('data-folha'):null;},true);
+cfDiario=(function(d0){return function(){var r=d0.apply(this,arguments);try{lvMonta();}catch(e){}return r;};})(cfDiario);
+document.addEventListener('keydown',function(e){var d=document.getElementById('fc-dlg');if(!d||!d.open||!CF.chave)return;
+ var t=e.target;if(t&&(t.isContentEditable||/^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName)))return;
+ if(e.key==='ArrowRight'||e.key==='PageDown'){e.preventDefault();lvVira(1);}if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();lvVira(-1);}});
+
 
 ler(); cicloNovo();
 /* Semente da semana 23–29/11/2026: preenche só células vazias e cria os projetos uma vez. */
