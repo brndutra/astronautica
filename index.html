@@ -16969,27 +16969,41 @@ document.addEventListener('click',function(e){var b=e.target.closest&&e.target.c
 ].join('\n');document.head.appendChild(st);})();
 
 
-/* ======================= Vetores do acampamento: um por cartão, nenhum repetido =======================
-   Estilo único: figura em terracota com contorno creme sobre papel marmorizado (img/acampamento/vet-*.svg).
-   Chalé = chalé 7 · Diárias = alvo · Conselho = estandartes · Oráculo = trípode · Profecia = colar de contas
-   Concha = concha · Inspeção = lanterna · Ronda = fogueira · Atividades = canoa · Recarga = bandeirolas e caneca
-   Culture Vulture = máscaras · Arsenal = espada e escudo · Arena = arco · Posto: Hélio = sol, Apolo = lira,
-   Moiras = fuso, Tática = elmo, Hermes = sandália alada. */
-(function(){var T={'.op-l':'vet-sol.svg','.op-col1':'vet-lira.svg','.op-fazer':'vet-fuso.svg','.op-estudo':'vet-elmo.svg','.op-lado':'vet-sandalia.svg'};
+/* ======================= Imagens estéticas nos cartões; vetor só na Fogueira do rodapé =======================
+   Cada foto num lugar só. Tarefas e Missões: Chalé = chalé de Apolo, Diárias = alvos no bosque, Conselho = Quíron entre estandartes,
+   Oráculo = raios entre as árvores, Profecia = colar de contas. Concha = pavilhão, Inspeção = dentro do chalé, Ronda = fogueira à noite.
+   Atividades = canoas, Recarga = refeitório com bandeirolas, Culture Vulture = anfiteatro no bosque. Posto: Hélio = armadura no lago,
+   Apolo = linha de tiro pintada, Tática = hoplitas, Hermes = trilha dos templos (Moiras segue com o fuso ilustrado).
+   Rodapé: o cartão da Fogueira ganha o forno vetorial (terracota e creme). */
+(function(){var T={'.op-l':'armadura-lago.webp','.op-col1':'arquearia-pintura.webp','.op-estudo':'hoplitas.webp','.op-lado':'templos.jpg'};
  try{Object.keys(T).forEach(function(k){if(OP_TEMPLO[k])OP_TEMPLO[k].img=T[k];});}catch(e){}
- var I=function(n){return 'url("img/acampamento/vet-'+n+'.svg")';};
- var st=document.createElement('style');st.id='vetores-css';st.textContent=[
- '#mm-box .mm-chale{--mm-img:'+I('chale-7')+'!important}#mm-box .mm-quest{--mm-img:'+I('alvo')+'!important}#mm-box .mm-gab{--mm-img:'+I('estandartes')+'!important}',
- '#mm-box .mm-orac-col{--mm-img:'+I('tripe')+'!important}#mm-box .mm-prof{--mm-img:'+I('contas')+'!important}',
- '#mm-box :is(.mm-col,.mm-gab)::before{background-position:center!important;background-size:cover!important;filter:none!important}',
- '#tp-real #mm-box .mm-gab::before{content:"";display:block;flex:none;height:78px;margin:-12px -14px 12px;background:var(--mm-img) center/cover no-repeat;border-bottom:2px solid var(--mc)}',
- '#rt-box .rt-concha{--rt-img:'+I('concha')+'!important}#rt-box .rt-insp{--rt-img:'+I('lanterna')+'!important}#rt-box .rt-harp{--rt-img:'+I('fogueira')+'!important}',
- '#rt-box :is(.rt-concha,.rt-insp,.rt-harp)::before{background-position:center!important;filter:none!important}',
- '#recreio #lat-apt,#lat-apt{--c-img:'+I('canoa')+'!important}#lat-rec{--c-img:'+I('recarga')+'!important}#recreio #lat-cv,#lat-cv{--c-img:'+I('mascaras')+'!important}',
- '#tesouro #lat-ars,#lat-ars{--c-img:'+I('arsenal')+'!important}#lat-e #lat-arena,#lat-arena{--c-img:'+I('arco')+'!important}',
- ':is(#lat-apt,#lat-rec,#lat-cv,#lat-ars,#lat-arena)::before{background-position:center!important;filter:none!important}',
- '#modo-op .op-templo{--t-foto-pos:center}'
+ var I=function(n){return 'url("img/acampamento/'+n+'")';};
+ var st=document.createElement('style');st.id='fotos-cartoes-css';st.textContent=[
+ '#mm-box .mm-chale{--mm-img:'+I('chale-apolo.webp')+'!important;--mm-pos:center 40%}',
+ '#mm-box .mm-quest{--mm-img:'+I('alvos-bosque.webp')+'!important;--mm-pos:center 57%}',
+ '#mm-box .mm-gab{--mm-img:'+I('quiron-estandartes.webp')+'!important;--mm-pos:center 38%}',
+ '#mm-box .mm-orac-col{--mm-img:'+I('raios-quiron.webp')+'!important;--mm-pos:center 42%}',
+ '#mm-box .mm-prof{--mm-img:'+I('contas-colar.webp')+'!important;--mm-pos:center 46%}',
+ '#mm-box :is(.mm-col,.mm-gab)::before{background-position:var(--mm-pos,center)!important;background-size:cover!important}',
+ '#tp-real #mm-box .mm-gab::before{content:"";display:block;flex:none;height:78px;margin:-12px -14px 12px;background:var(--mm-img) var(--mm-pos,center)/cover no-repeat;border-bottom:2px solid var(--mc);filter:sepia(.15)}',
+ '#rt-box .rt-insp{--rt-img:'+I('chale-interior.webp')+'!important}#rt-box .rt-insp::before{background-position:center 28%!important}',
+ '#rt-box .rt-harp{--rt-img:'+I('fogueira-noite.webp')+'!important}#rt-box .rt-harp::before{background-position:center 62%!important}',
+ '#recreio #lat-apt,#lat-apt{--c-img:'+I('canoas.webp')+'!important}#lat-apt::before{background-position:center 45%!important}',
+ '#lat-rec{--c-img:'+I('refeitorio-bandeirolas.webp')+'!important}#lat-rec::before{background-position:center 38%!important}',
+ '#recreio #lat-cv,#lat-cv{--c-img:'+I('anfiteatro-bosque.webp')+'!important}#lat-cv::before{background-position:center 55%!important}',
+ /* Fogueira do rodapé: o forno vetorial no lugar da bolinha */
+ '#rod-apps .rod-fogo .fg-ic{width:44px!important;height:30px!important;flex:none;border:0!important;border-radius:0!important;box-shadow:none!important;background:'+I('vet-forno.svg')+' center/contain no-repeat!important}',
+ '#rod-apps .rod-fogo .fg-ic>*{display:none!important}',
+ '#rod-apps .rod-fogo .fg-ic::before,#rod-apps .rod-fogo .fg-ic::after{content:none!important}'
  ].join('\n');document.head.appendChild(st);})();
+
+
+/* ======================= Rodapé sem o cartão de Hábitos; placa dos Rastreados centrada no entablamento ======================= */
+(function(){var st=document.createElement('style');st.id='rod-rast-css';st.textContent=[
+ '#rod-apps .cr-bar>.cr-hab{display:none!important}',
+ '.wrap>.tb.neo-moldura+#h-rast,#h-rast.neo-tit{margin:-4px auto -32px!important;width:max-content!important;max-width:calc(100% - 120px)!important}',
+ '.wrap>.rt.neo-moldura,.wrap>#rt-box .rt.neo-moldura{padding-top:48px!important}'
+].join('\n');document.head.appendChild(st);})();
 
 })();
 </script>
