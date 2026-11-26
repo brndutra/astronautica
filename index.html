@@ -17644,9 +17644,9 @@ function tvBotao(){var r=document.querySelector('#lat-topo>.lt-r2');if(!r)return
  b.title=TV_ON?'Voltar ao Acampamento Meio-Sangue':'Tema Hotel Valhala';b.setAttribute('aria-label',b.title);if(b.parentNode!==r)r.appendChild(b);}
 setInterval(function(){try{tvBotao();}catch(e){}},1500);setTimeout(function(){try{tvBotao();}catch(e){}},800);
 (function(){var st=document.createElement('style');st.id='tv-botao-css';st.textContent=[
- '#lat-topo>.lt-r2>#tv-tg{order:100;flex:none;display:grid!important;place-items:center;width:26px!important;height:24px;margin:0!important;padding:0!important;border:1px solid #1f2c45!important;border-radius:999px!important;background:#f4ead2!important;color:#1f2c45!important;cursor:pointer}',
+ '#lat-topo>.lt-r2>#tv-tg{order:100;flex:none;display:grid!important;place-items:center;width:26px!important;height:24px;margin:0!important;padding:0!important;border:1px solid #1d4a2c!important;border-radius:999px!important;background:#f4ead2!important;color:#1d4a2c!important;cursor:pointer}',
  '#lat-topo>.lt-r2>#tv-tg svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linejoin:round}',
- 'body.tv #lat-topo>.lt-r2>#tv-tg{background:#1f2c45!important;color:#e9c87a!important;border-color:#c9a245!important}'
+ 'body.tv #lat-topo>.lt-r2>#tv-tg{background:#1d4a2c!important;color:#e9c87a!important;border-color:#d4ad4f!important}'
 ].join('\n');document.head.appendChild(st);})();
 if(TV_ON){document.body.classList.add('tv');
  (function(){var fila=[],t=null;var mo=new MutationObserver(function(rs){rs.forEach(function(r){if(r.type==='characterData')fila.push(r.target);else r.addedNodes.forEach(function(n){fila.push(n);});});
@@ -17655,29 +17655,29 @@ if(TV_ON){document.body.classList.add('tv');
   setTimeout(function(){mo.disconnect();tvNo(document.body);mo.observe(document.body,{childList:true,subtree:true,characterData:true});},3000);})();
  try{document.title=tvTxt(document.title);}catch(e){}
  var I=function(n){return 'url("img/acampamento/'+n+'")';};
- try{['.op-l','.op-col1','.op-fazer','.op-estudo','.op-lado'].forEach(function(k,i){if(OP_TEMPLO[k]){OP_TEMPLO[k].img=['vh-sol.svg','vh-martelo.svg','vh-fuso.svg','vh-olho.svg','vh-valknut.svg'][i];OP_TEMPLO[k].c='#d9c58a';OP_TEMPLO[k].k='#1f2c45';}});}catch(e){}
+ try{['.op-l','.op-col1','.op-fazer','.op-estudo','.op-lado'].forEach(function(k,i){if(OP_TEMPLO[k]){OP_TEMPLO[k].img=['vh-sol.svg','vh-martelo.svg','vh-fuso.svg','vh-olho.svg','vh-valknut.svg'][i];OP_TEMPLO[k].c='#d9c58a';OP_TEMPLO[k].k='#1d4a2c';}});}catch(e){}
  (function(){var st=document.createElement('style');st.id='tv-css';st.textContent=[
   /* paleta */
-  'body.tv{--n-frontao:#b08a2e;--n-entab:#1f2c45;--n-colun:#8e2a2a;--n-atrio:#3f5a3a;--n-tesouro:#b08a2e;background-color:#e7e4da!important}',
-  'body.tv .neo-moldura{--col-k:#1f2c45!important;--col-c:#d9c58a!important;--neo-ent:'+I('vh-escudos.svg')+'!important;--neo-cap:'+I('vh-capitel.svg')+'!important;--neo-fuste:'+I('vh-fuste.svg')+'!important;--neo-base:'+I('vh-base.svg')+'!important}',
-  'body.tv .wrap>.tb.neo-moldura{--col-k:#1f2c45!important}body.tv .wrap>.rt.neo-moldura{--col-k:#8e2a2a!important}',
+  'body.tv{--n-frontao:#b08a2e;--n-entab:#1d4a2c;--n-colun:#8e2a2a;--n-atrio:#3f5a3a;--n-tesouro:#b08a2e;background-color:#e9e6d6!important}',
+  'body.tv .neo-moldura{--col-k:#1d4a2c!important;--col-c:#d9c58a!important;--neo-ent:'+I('vh-escudos.svg')+'!important;--neo-cap:'+I('vh-capitel.svg')+'!important;--neo-fuste:'+I('vh-fuste.svg')+'!important;--neo-base:'+I('vh-base.svg')+'!important}',
+  'body.tv .wrap>.tb.neo-moldura{--col-k:#1d4a2c!important}body.tv .wrap>.rt.neo-moldura{--col-k:#8e2a2a!important}',
   'body.tv #tp-real>:is(#tm-painel,#recreio){--col-k:#3f5a3a!important;--col-c:#cfd8bd!important}',
   /* frontão: telhado de escudos dourados, tímpano azul-noite, valknut */
-  'body.tv #hero-box .nf2 .nf-tri path.t3{fill:#1f2c45!important}body.tv #hero-box .nf2 .nf-tri path.t2{fill:#c9a245!important}',
+  'body.tv #hero-box .nf2 .nf-tri path.t3{fill:#1d4a2c!important}body.tv #hero-box .nf2 .nf-tri path.t2{fill:#d4ad4f!important}',
   'body.tv #hero-box .nf2 .nf-txt{color:#e9c87a!important;text-shadow:0 1px 0 rgba(0,0,0,.5)!important}',
   'body.tv #hero-box .nf2 .nf-louro,body.tv #hero-box .nf2 .nf-acro{display:none!important}',
-  'body.tv #hero-box .nf2 .fr-lira{content:'+I('vh-medalhao.svg')+';box-shadow:0 0 0 3px #1f2c45,0 0 0 4.5px #c9a245!important}',
-  'body.tv #hero-box .nf2 .nf-c2{background:radial-gradient(circle at 50% 50%,#c9a245 0 3px,#8a6a1e 3px 4px,transparent 4.5px) 0 0/12px 8px,#1f2c45!important}',
-  'body.tv #hero-box .nf2>.pd-pilula{border-color:#c9a245!important;background:linear-gradient(180deg,#26365a,#1a253b)!important;box-shadow:0 0 0 3px #1f2c45,0 0 0 4.5px #c9a245,0 6px 12px -6px rgba(0,0,0,.6)!important}',
-  'body.tv #hero-box .nf2>.pd-pilula button{color:#e9c87a!important;border-left-color:#3a4a6a!important}',
+  'body.tv #hero-box .nf2 .fr-lira{content:'+I('vh-medalhao.svg')+';box-shadow:0 0 0 3px #1d4a2c,0 0 0 4.5px #d4ad4f!important}',
+  'body.tv #hero-box .nf2 .nf-c2{background:radial-gradient(circle at 50% 50%,#d4ad4f 0 3px,#8a6a1e 3px 4px,transparent 4.5px) 0 0/12px 8px,#1d4a2c!important}',
+  'body.tv #hero-box .nf2>.pd-pilula{border-color:#d4ad4f!important;background:linear-gradient(180deg,#256139,#143a22)!important;box-shadow:0 0 0 3px #1d4a2c,0 0 0 4.5px #d4ad4f,0 6px 12px -6px rgba(0,0,0,.6)!important}',
+  'body.tv #hero-box .nf2>.pd-pilula button{color:#e9c87a!important;border-left-color:#3f6f4a!important}',
   /* banner: entrelaçado no lugar da grega */
-  'body.tv #hero-box .vx-hero::after{-webkit-mask-image:'+I('vh-no.svg')+'!important;mask-image:'+I('vh-no.svg')+'!important;-webkit-mask-size:24px 24px!important;mask-size:24px 24px!important;background:#1f2c45!important}',
-  'body.tv #hero-box .vx-hero h2{color:#1a253b!important}',
+  'body.tv #hero-box .vx-hero::after{-webkit-mask-image:'+I('vh-no.svg')+'!important;mask-image:'+I('vh-no.svg')+'!important;-webkit-mask-size:24px 24px!important;mask-size:24px 24px!important;background:#1d4a2c!important}',
+  'body.tv #hero-box .vx-hero h2{color:#143a22!important}',
   /* painel esquerdo: faixas de entrelaçado */
   '@media(min-width:1380px){body.tv #nav.navdr{background-image:'+I('vh-no-v.svg')+','+I('vh-no-v.svg')+'!important;background-size:14px 24px!important}}',
   /* placas e cartões: ouro sobre azul */
-  'body.tv h2.sec.neo-tit.placa-tom,body.tv #tp-real>:is(#tm-painel,#recreio)>.tm-cab{--pk:#1f2c45}',
-  'body.tv #lat-e>:is(#lat-arena,#lat-band,#lat-cp,#lat-db),body.tv #lat-e>#lat-gm>.gm{--lc:#1f2c45}',
+  'body.tv h2.sec.neo-tit.placa-tom,body.tv #tp-real>:is(#tm-painel,#recreio)>.tm-cab{--pk:#1d4a2c}',
+  'body.tv #lat-e>:is(#lat-arena,#lat-band,#lat-cp,#lat-db),body.tv #lat-e>#lat-gm>.gm{--lc:#1d4a2c}',
   'body.tv #lat-e>#lat-db{--lc:#8e2a2a}body.tv #lat-e>#lat-arena{--lc:#b08a2e}',
   /* vetores nórdicos no lugar das fotos (um por lugar) */
   'body.tv #mm-box .mm-chale{--mm-img:'+I('vh-salao.svg')+'!important;--mm-pos:center}body.tv #mm-box .mm-quest{--mm-img:'+I('vh-machado.svg')+'!important;--mm-pos:center}',
@@ -17694,7 +17694,10 @@ if(TV_ON){document.body.classList.add('tv');
   /* fogueira do rodapé vira o salão do banquete; Concha do friso */
   'body.tv #rod-apps .rod-fogo .fg-ic{background-image:'+I('vh-valknut.svg')+'!important;background-size:cover!important;border-radius:6px!important}',
   'body.tv #hero-box#hero-box .vx-hero.bn2 .bn-id .cp-guia::before{content:"folheto do hotel · andar 19"!important}',
-  'body.tv #modo-op .op-templo{--t-cap:'+I('vh-capitel.svg')+'!important;--t-fuste:'+I('vh-fuste.svg')+'!important;--t-base:'+I('vh-base.svg')+'!important;--t-ent:'+I('vh-escudos.svg')+'!important;--t-k:#1f2c45!important}',
+  'body.tv #modo-op .op-templo{--t-cap:'+I('vh-capitel.svg')+'!important;--t-fuste:'+I('vh-fuste.svg')+'!important;--t-base:'+I('vh-base.svg')+'!important;--t-ent:'+I('vh-escudos.svg')+'!important;--t-k:#1d4a2c!important}',
+  'body.tv #hero-box .nf2 .nf-tri path.t3{fill:#1d4a2c!important}',
+  'body.tv #hero-box .vx-hero{background:radial-gradient(ellipse at 30% 20%,rgba(255,255,255,.35),transparent 60%),linear-gradient(135deg,#f1ecd8,#e4dcc0)!important}',
+  'body.tv #hero-box .vx-hero h2{font-family:Georgia,serif!important;letter-spacing:.01em}',
   /* postal */
   'body.tv #hero-box .cp-postal .fr{background:linear-gradient(rgba(10,15,30,.35),rgba(10,15,30,.55)),'+I('vh-salao.svg')+' center/cover!important}'
  ].join('\n');document.head.appendChild(st);})();
