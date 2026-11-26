@@ -4059,6 +4059,18 @@ nav#tt-indice.tt-indice{flex-wrap:wrap!important;row-gap:0!important}
 .mf-g-dia .regdia .rdent{display:flex;gap:6px}.mf-g-dia .regdia .rdent input{flex:1;min-width:0}
 .mf-g-dia .regdia .rdent button{width:auto!important}
 .wrap > div.tb > .dia-gav{position:static;display:block!important;margin:0!important;padding:0!important;border:0!important;background:none!important}
+
+/* Tarefas e Missões com a moldura grega: entablamento, colunas, título em placa, réguas duplas */
+#tm-painel.tm-neo{margin:30px 0 18px!important;border-radius:3px!important;padding-top:58px!important}
+#tm-painel.tm-neo>.tm-cab{position:absolute;top:2px;left:50%;transform:translateX(-50%);z-index:2;flex-direction:row;align-items:baseline;gap:12px;margin:0;padding:7px 26px 6px;
+ border:1.5px solid #5a3f2c;border-radius:2px;background:var(--neo-papel),#f4ead2;box-shadow:0 0 0 4px #f4ead2,0 0 0 5.5px #5a3f2c;white-space:nowrap;max-width:calc(100% - 120px)}
+#tm-painel.tm-neo>.tm-cab b{order:1;font:700 17px Georgia,serif!important;color:#5a3f2c!important;letter-spacing:.02em}
+#tm-painel.tm-neo>.tm-cab .k9{order:2;font:9px var(--mono,monospace)!important;letter-spacing:.16em!important;color:#8a6f55!important;text-transform:none}
+#tm-painel.tm-neo>.tm-cab .k9::before{content:'// '}
+#tm-painel.tm-neo>.tm-lb{display:flex;align-items:center;gap:14px;margin:18px 0 12px!important;font:400 11px Georgia,serif!important;letter-spacing:.32em;text-transform:uppercase;color:#5a3f2c!important}
+#tm-painel.tm-neo>.tm-lb::before,#tm-painel.tm-neo>.tm-lb::after{content:'';flex:1;border-top:3px double #5a3f2c;opacity:.75}
+#tm-painel.tm-neo>.tm-lb:first-of-type{margin-top:4px!important}
+@media(max-width:700px){#tm-painel.tm-neo>.tm-cab .k9{display:none}#tm-painel.tm-neo{padding-left:18px!important;padding-right:18px!important}}
 </style>
 </head>
 <body>
@@ -13800,7 +13812,7 @@ function diaGaveta(){var tb=document.querySelector('.wrap > div.tb'),rd=document
  var b=g.querySelector('header b');if(b){var t=new Date().toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'short'});if(b.textContent!==t)b.textContent=t;}}
 (function(){var p0=pinta;pinta=function(){var x=p0.apply(this,arguments);try{diaGaveta();}catch(e){}return x;};})();
 setTimeout(function(){try{diaGaveta();}catch(e){}},120);
-function reorg(){try{reorgProf();}catch(e){}try{reorgArena();}catch(e){}try{pdPilula();}catch(e){}try{reorgOrb();}catch(e){}try{reorgTesouro();}catch(e){}}
+function reorg(){try{var tp=document.getElementById('tm-painel');if(tp)tp.classList.add('neo-moldura','tm-neo');}catch(e){}try{reorgProf();}catch(e){}try{reorgArena();}catch(e){}try{pdPilula();}catch(e){}try{reorgOrb();}catch(e){}try{reorgTesouro();}catch(e){}}
 (function(){var r0=vxRender;vxRender=function(){var x=r0.apply(this,arguments);reorg();return x;};var p0=pinta;pinta=function(){var x=p0.apply(this,arguments);reorg();return x;};})();
 setTimeout(reorg,50);setTimeout(reorg,900);
 setInterval(pintaProgresso,60000);
