@@ -16968,6 +16968,29 @@ document.addEventListener('click',function(e){var b=e.target.closest&&e.target.c
  '.rdi:hover .rd-x,.rdi .rd-x:focus{opacity:1}.rdi .rd-x:hover{background:#9a4a30;color:#fff}'
 ].join('\n');document.head.appendChild(st);})();
 
+
+/* ======================= Vetores do acampamento: um por cartão, nenhum repetido =======================
+   Estilo único: figura em terracota com contorno creme sobre papel marmorizado (img/acampamento/vet-*.svg).
+   Chalé = chalé 7 · Diárias = alvo · Conselho = estandartes · Oráculo = trípode · Profecia = colar de contas
+   Concha = concha · Inspeção = lanterna · Ronda = fogueira · Atividades = canoa · Recarga = bandeirolas e caneca
+   Culture Vulture = máscaras · Arsenal = espada e escudo · Arena = arco · Posto: Hélio = sol, Apolo = lira,
+   Moiras = fuso, Tática = elmo, Hermes = sandália alada. */
+(function(){var T={'.op-l':'vet-sol.svg','.op-col1':'vet-lira.svg','.op-fazer':'vet-fuso.svg','.op-estudo':'vet-elmo.svg','.op-lado':'vet-sandalia.svg'};
+ try{Object.keys(T).forEach(function(k){if(OP_TEMPLO[k])OP_TEMPLO[k].img=T[k];});}catch(e){}
+ var I=function(n){return 'url("img/acampamento/vet-'+n+'.svg")';};
+ var st=document.createElement('style');st.id='vetores-css';st.textContent=[
+ '#mm-box .mm-chale{--mm-img:'+I('chale-7')+'!important}#mm-box .mm-quest{--mm-img:'+I('alvo')+'!important}#mm-box .mm-gab{--mm-img:'+I('estandartes')+'!important}',
+ '#mm-box .mm-orac-col{--mm-img:'+I('tripe')+'!important}#mm-box .mm-prof{--mm-img:'+I('contas')+'!important}',
+ '#mm-box :is(.mm-col,.mm-gab)::before{background-position:center!important;background-size:cover!important;filter:none!important}',
+ '#tp-real #mm-box .mm-gab::before{content:"";display:block;flex:none;height:78px;margin:-12px -14px 12px;background:var(--mm-img) center/cover no-repeat;border-bottom:2px solid var(--mc)}',
+ '#rt-box .rt-concha{--rt-img:'+I('concha')+'!important}#rt-box .rt-insp{--rt-img:'+I('lanterna')+'!important}#rt-box .rt-harp{--rt-img:'+I('fogueira')+'!important}',
+ '#rt-box :is(.rt-concha,.rt-insp,.rt-harp)::before{background-position:center!important;filter:none!important}',
+ '#recreio #lat-apt,#lat-apt{--c-img:'+I('canoa')+'!important}#lat-rec{--c-img:'+I('recarga')+'!important}#recreio #lat-cv,#lat-cv{--c-img:'+I('mascaras')+'!important}',
+ '#tesouro #lat-ars,#lat-ars{--c-img:'+I('arsenal')+'!important}#lat-e #lat-arena,#lat-arena{--c-img:'+I('arco')+'!important}',
+ ':is(#lat-apt,#lat-rec,#lat-cv,#lat-ars,#lat-arena)::before{background-position:center!important;filter:none!important}',
+ '#modo-op .op-templo{--t-foto-pos:center}'
+ ].join('\n');document.head.appendChild(st);})();
+
 })();
 </script>
 </body>
