@@ -17323,7 +17323,7 @@ setTimeout(function(){try{mmListaAplica();}catch(e){}},1500);
    tríglifos na cor da moldura) e assenta direto sobre o friso de dentículos. */
 function frontaoMoldura(){var h=document.getElementById('hero-box');if(!h||h.dataset.mold)return;var im;try{im=colSvgs({st:'ionica',c:'#f6d99a',k:'#8a5a14'});}catch(e){return;}
  h.dataset.mold='1';h.style.setProperty('--neo-cap',im.cap);h.style.setProperty('--neo-fuste',im.fuste);h.style.setProperty('--neo-base',im.base);h.style.setProperty('--neo-ent',im.ent);h.style.setProperty('--col-c','#f6d99a');h.style.setProperty('--col-k','#8a5a14');}
-setTimeout(function(){try{frontaoMoldura();}catch(e){}},900);setTimeout(function(){try{frontaoMoldura();}catch(e){}},3000);
+/* desligado a pedido: o frontão volta ao visual anterior (dourado) */
 (function(){var st=document.createElement('style');st.id='frontao-mold-css';st.textContent=[
  '#hero-box[data-mold] .neo-frontao{height:auto!important}',
  '#hero-box[data-mold] .neo-frontao svg path,#hero-box[data-mold] .neo-frontao svg circle{stroke:var(--col-k)!important}',
