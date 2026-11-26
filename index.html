@@ -17875,7 +17875,7 @@ if(TV_ON){(function(){var I=function(n){return 'url("img/acampamento/'+n+'.svg?v
    Paleta do kit: verde pinho #203936, latão antigo #A88750, marfim #F5EBD6, azul fiorde #526D78, borgonha #713E48.
    Frontão art déco escalonado com o brasão, placa de título, friso entrelaçado, pilastra de latão e ícones do hotel
    (um por cartão). Substitui as camadas anteriores do tema. */
-if(TV_ON){(function(){var K=function(n){return 'url("img/acampamento/kit/'+n+'.svg?v=1")';};
+if(TV_ON){(function(){var K=function(n){return 'url("img/acampamento/'+(/^vh-/.test(n)?'':'kit/')+n+'.svg?v=2")';};
  var P='#203936',L='#A88750',LL='#D4BD82',M='#F5EBD6',M2='#EFE3CA',F='#526D78',B='#713E48';
  var ic=function(sel,n,v){return 'body.tv '+sel+'{'+v+':'+K(n)+'!important}';};
  var st=document.createElement('style');st.id='kit-valhala-css';st.textContent=[
@@ -17886,25 +17886,28 @@ if(TV_ON){(function(){var K=function(n){return 'url("img/acampamento/kit/'+n+'.s
   'body.tv .neo-moldura,body.tv #tp-real>:is(#tm-painel,#recreio){background-color:'+M2+'!important;border-color:'+L+'!important}',
   'body.tv #rod-apps,body.tv #rod-apps .rod-top{background:'+M2+'!important}',
   /* frontão do kit */
-  'body.tv #hero-box .nf2 :is(.vh-front,.nf-tri,.nf-cornija,.nf-acro,.nf-louro,.nf-txt,.fr-lira){display:none!important}',
-  'body.tv #hero-box .neo-frontao.nf2{height:178px!important;margin-top:10px!important;margin-bottom:22px!important;background:'+K('frontao-deco')+' center bottom/100% auto no-repeat!important}',
+  'body.tv #hero-box .nf2 .fr-lira{content:'+K('brasao-yggdrasil')+'!important;background:none!important;box-shadow:none!important;border-radius:0!important;width:92px!important;height:92px!important;top:30px!important}',
+  'body.tv #hero-box .nf2 .nf-txt{background:'+P+'!important;border:1.5px solid '+L+'!important;box-shadow:0 0 0 2px '+P+',0 0 0 3px #D4BD82!important;padding:5px 8px 5px 14px!important;color:'+M+'!important;font-size:13px!important;text-shadow:none!important}',
+  'body.tv .vh-viga{display:block!important;background:'+K('vh-no-h-kit')+' 0 0/40px 20px repeat-x,'+P+'!important;height:20px!important;border-color:'+L+'!important;box-shadow:0 2px 0 '+L+'!important}',
+  'body.tv .vh-beiral{background:linear-gradient(180deg,#D4BD82,'+L+')!important}',
+  'body.tv .vh-chifres{filter:sepia(.9) saturate(1.6) brightness(.85) drop-shadow(0 2px 2px rgba(0,0,0,.35))!important}',
+  'body.tv #hero-box .neo-frontao.nf2{margin-bottom:22px!important}',
   'body.tv #hero-box .nf2>.pd-pilula{top:auto!important;bottom:-20px!important;background:'+P+'!important;border:1.5px solid '+L+'!important;box-shadow:0 0 0 3px '+M+',0 0 0 4px '+L+'!important}',
   'body.tv #hero-box .nf2>.pd-pilula button{color:'+M+'!important;border-left-color:#3a5552!important}',
   'body.tv #hero-box .nf2>.pd-pilula button:hover{background:#2c4b47!important}',
   /* banner: pilastras de latão, moldura e entrelaçado em latão */
-  'body.tv #hero-box .bn-slot{background:'+K('pil-cap')+' 4px 0/42px 13px no-repeat,'+K('pil-cap')+' calc(100% - 4px) 0/42px 13px no-repeat,'+K('pil-fuste')+' 4px 13px/42px 40px repeat-y,'+K('pil-fuste')+' calc(100% - 4px) 13px/42px 40px repeat-y,'+M+'!important}',
-  'body.tv #hero-box .bn-slot::after{background:'+K('pil-base')+' 4px 0/42px 14px no-repeat,'+K('pil-base')+' calc(100% - 4px) 0/42px 14px no-repeat!important}',
+  'body.tv #hero-box .bn-slot{background:'+K('vh-capitel-kit')+' 2px 0/46px 31px no-repeat,'+K('vh-capitel-kit')+' calc(100% - 2px) 0/46px 31px no-repeat,'+K('vh-fuste-kit')+' 2px 31px/46px 40px repeat-y,'+K('vh-fuste-kit')+' calc(100% - 2px) 31px/46px 40px repeat-y,'+M+'!important}',
+  'body.tv #hero-box .bn-slot::after{background:'+K('vh-base-kit')+' 0 0/46px 14px no-repeat,'+K('vh-base-kit')+' 100% 0/46px 14px no-repeat!important}',
   'body.tv #hero-box .vx-hero{background:linear-gradient(135deg,#FBF4E4,#F1E5CC)!important;border:1.5px solid '+L+'!important;box-shadow:inset 0 0 0 4px #FBF4E4,inset 0 0 0 5px '+LL+'!important}',
   'body.tv #hero-box .vx-hero::after{background:'+L+'!important;opacity:.75}',
   'body.tv #hero-box .cp-postal .fr{background:'+P+'!important;border-color:'+L+'!important}',
   /* templos: pilastra, friso entrelaçado, placa de título */
-  'body.tv .neo-moldura,body.tv .wrap>.tb.neo-moldura,body.tv .wrap>.rt.neo-moldura,body.tv .wrap>#rt-box .rt.neo-moldura{--neo-fuste:'+K('pil-fuste')+'!important;--neo-cap:'+K('pil-cap')+'!important;--neo-base:'+K('pil-base')+'!important;--neo-ent:'+K('friso-tile')+'!important;--col-k:'+P+'!important}',
-  'body.tv #modo-op .op-templo{--t-fuste:'+K('pil-fuste')+'!important;--t-cap:'+K('pil-cap')+'!important;--t-base:'+K('pil-base')+'!important;--t-ent:'+K('friso-tile')+'!important;--t-k:'+P+'!important}',
+  'body.tv .neo-moldura,body.tv .wrap>.tb.neo-moldura,body.tv .wrap>.rt.neo-moldura,body.tv .wrap>#rt-box .rt.neo-moldura{--neo-fuste:'+K('vh-fuste-kit')+'!important;--neo-cap:'+K('vh-capitel-kit')+'!important;--neo-base:'+K('vh-base-kit')+'!important;--neo-ent:'+K('vh-ent-kit')+'!important;--col-k:'+P+'!important}',
+  'body.tv #modo-op .op-templo{--t-fuste:'+K('vh-fuste-kit')+'!important;--t-cap:'+K('vh-capitel-kit')+'!important;--t-base:'+K('vh-base-kit')+'!important;--t-ent:'+K('vh-ent-kit')+'!important;--t-k:'+P+'!important}',
   'body.tv h2.sec.neo-tit.placa-tom,body.tv #tp-real>:is(#tm-painel,#recreio)>.tm-cab{background:'+K('placa-titulo')+' center/100% 100% no-repeat!important;border:0!important;box-shadow:none!important;padding-left:44px!important;padding-right:44px!important;color:'+M+'!important}',
   'body.tv h2.sec.neo-tit.placa-tom>span,body.tv #tp-real .tm-cab .tp-placa button{color:'+LL+'!important}',
-  'body.tv .vh-viga{display:none!important}',
-  'body.tv #tp-friso{background:'+K('friso-tile')+' 0 100%/220px 24px repeat-x,'+M+'!important;padding-bottom:24px!important}',
-  '@media(min-width:1380px){body.tv #nav.navdr{background-image:'+K('friso-v')+','+K('friso-v')+'!important;background-size:20px 412px!important;background-repeat:repeat-y!important;background-position:left top,right top!important;padding-left:20px!important;padding-right:20px!important}}',
+  'body.tv #tp-friso{background:'+K('vh-no-h-kit')+' 0 100%/40px 20px repeat-x,'+M+'!important;padding-bottom:20px!important}',
+  '@media(min-width:1380px){body.tv #nav.navdr{background-image:'+K('vh-no-v-kit')+','+K('vh-no-v-kit')+'!important;background-size:20px 40px!important;background-repeat:repeat-y!important;background-position:left top,right top!important;padding-left:20px!important;padding-right:20px!important}}',
   /* ícones do hotel nos cartões (um por lugar) */
   'body.tv :is(#mm-box .mm-col,#mm-box .mm-gab,#rt-box .rt-concha,#rt-box .rt-insp,#rt-box .rt-harp,#lat-apt,#lat-rec,#lat-cv,#lat-ars,#lat-arena,#lat-e>#lat-gm>.gm,#lat-e>#lat-db)::before{background-size:auto 60px!important;background-repeat:no-repeat!important;background-position:center!important;background-color:#ECE0C4!important;filter:none!important;border-bottom:1.5px solid '+L+'!important}',
   ic('#mm-box .mm-chale','porta-suite','--mm-img'),ic('#mm-box .mm-quest','elevador','--mm-img'),ic('#mm-box .mm-gab','corvos','--mm-img'),ic('#mm-box .mm-orac-col','brasao-yggdrasil','--mm-img'),ic('#mm-box .mm-prof','valquiria','--mm-img'),
