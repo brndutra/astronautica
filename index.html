@@ -2379,6 +2379,43 @@ body.claro[data-skin="astro"] .cp-dracmas i.mosaico::after,.cp-dracmas i::after{
 #lat-ac .ac-row{grid-template-columns:1fr!important;margin:0!important;gap:10px}
 
 #lat-quadro:empty,#lat-vx:empty{display:none}
+/* Rotina do acampamento */
+.rt-g{display:grid;grid-template-columns:1.1fr 1fr 1fr;gap:12px}
+@media(max-width:1000px){.rt-g{grid-template-columns:1fr}}
+.rt-concha{--mc:#9a6b3a}.rt-insp{--mc:var(--red)}.rt-harp{--mc:#5b4a6b}
+.rt .mm-k{display:flex;align-items:center;gap:7px}
+.rt .mm-k svg,.cr-concha svg,.rt-aic svg,.rt-hic svg{width:18px;height:18px;fill:none;stroke:var(--mc,var(--red));stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.rt-tq li{align-items:center!important}
+.rt-tq input[type=time]{width:92px;font-size:12px;padding:3px 5px;border:1px solid var(--line2);border-radius:6px;background:transparent;color:var(--bone);margin:0}
+.rt-tq span{font-size:12.5px}
+.rt-obs{font-size:11px!important;color:var(--dim)!important;letter-spacing:0!important;text-transform:none!important;font-family:inherit!important}
+.rt-st{display:flex;justify-content:space-between;margin-top:4px;font-size:12.5px;color:var(--bone)} .rt-st em{font-style:normal;color:var(--mc)}
+.rt-sel{margin:4px 0 0;font-size:12px;color:var(--dim);font-style:italic}
+.rt-lim{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--bone)}
+.rt-lim input{width:110px;font-size:13px;padding:4px 6px;border:1px solid var(--line2);border-radius:6px;background:transparent;color:var(--bone)}
+.rt-tx{margin:0;font-size:12px;line-height:1.45;color:var(--dim)}
+.rt-nums{display:flex;gap:10px;margin-top:auto}
+.rt-nums div{flex:1;padding:7px 8px;border:1px solid var(--line);border-radius:9px;display:flex;flex-direction:column}
+.rt-nums b{font-family:var(--display);font-size:22px;color:var(--bone)} .rt-nums span{font-size:11px;color:var(--dim)}
+.cp-reg .cr-concha{display:flex;align-items:center;gap:6px;margin-left:6px;--mc:#9a6b3a}
+.cp-reg .cr-concha small{display:block;font:8px/1.2 var(--mono),monospace;text-transform:uppercase;letter-spacing:.08em;color:#817969}
+.cp-reg .cr-concha b{display:block;font-size:12px;color:var(--bone)}
+.rt-aviso{position:fixed;right:18px;bottom:18px;z-index:260;display:flex;align-items:center;gap:12px;max-width:360px;padding:12px 14px;border:1px solid #ddd2bd;border-left:4px solid #9a6b3a;border-radius:12px;background:#fffdf8;color:#24332b;box-shadow:0 16px 40px rgba(0,0,0,.2);--mc:#9a6b3a;animation:rtIn .3s ease}
+.rt-aviso b{display:block;font-family:var(--display);font-size:15px} .rt-aviso small{display:block;font-size:12.5px;color:#5d5a50}
+.rt-aviso button{width:auto!important;margin:0 0 0 auto!important;padding:0 4px!important;border:0!important;background:transparent!important;font-size:18px;color:#817969!important;cursor:pointer}
+@keyframes rtIn{from{transform:translateY(12px);opacity:0}to{transform:none;opacity:1}}
+body.harpias .wrap,body.harpias #nav,body.harpias #rail{filter:grayscale(.7) brightness(.55);transition:filter .6s}
+.rt-harpia{position:fixed;inset:0;z-index:300;display:grid;place-items:center;padding:20px;background:rgba(18,14,22,.55);--mc:#c9b7e0}
+.rt-hbox{max-width:440px;padding:22px 24px;border-radius:16px;background:#1f1a26;color:#efe6f7;border:1px solid #5b4a6b;box-shadow:0 30px 70px rgba(0,0,0,.5);text-align:center}
+.rt-hic svg{width:44px;height:44px;stroke-width:1.3}
+.rt-hbox .k9{display:block;margin-top:6px;font-family:var(--mono);font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:#c9b7e0}
+.rt-hbox h3{margin:6px 0 8px;font-family:var(--display);font-size:22px;color:#fff}
+.rt-hbox p{margin:0 0 8px;font-size:13.5px;line-height:1.5;color:#d9cfe3}
+.rt-hf b{color:#ffb4a8}
+.rt-hb{display:flex;gap:8px;justify-content:center;margin-top:10px;flex-wrap:wrap}
+.rt-hb button{width:auto!important;margin:0!important;padding:8px 14px!important;border-radius:9px;cursor:pointer;font-size:13px;border:1px solid #c9b7e0!important;background:#c9b7e0!important;color:#1f1a26!important}
+.rt-hb button+button{background:transparent!important;color:#c9b7e0!important}
+
 /* Laptop de Dédalo: seções */
 .lat-sh{margin:6px 2px 0;font-family:var(--display);font-size:16px;color:var(--bone);display:flex;align-items:baseline;gap:8px;border-top:1px solid var(--line);padding-top:10px}
 .lat-sh small{font-family:var(--mono);font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--red)}
@@ -2431,7 +2468,10 @@ body.claro[data-skin="astro"] .cp-dracmas i.mosaico::after,.cp-dracmas i::after{
 .mm-h{display:flex;gap:18px;align-items:flex-end;margin-bottom:12px}
 .mm-h .k9{display:block;font-family:var(--mono);font-size:8.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--red)}
 .mm-h h3{margin:3px 0 0;font-family:var(--display);font-size:24px;color:var(--bone);white-space:nowrap}
-.tt-indice{padding-right:52px!important}
+.tt-indice{padding-right:50px!important}
+.tt-indice button{padding:7px 10px!important;font-size:11px!important}
+.rt-tq li.ok>span{text-decoration:none!important;opacity:1!important}
+.rt-tq li:not(.ok)>span{opacity:.55}
 .mm-h p{margin:0 0 0 auto;max-width:64ch;font-size:12.5px;line-height:1.5;color:var(--dim)} .mm-h p b{color:var(--bone)}
 .mm-g{display:grid;grid-template-columns:1fr 1fr 1.3fr;gap:12px}
 @media(max-width:1000px){.mm-g{grid-template-columns:1fr}.mm-h{flex-direction:column;align-items:flex-start}.mm-h p{margin:0}}
@@ -12710,7 +12750,7 @@ document.addEventListener('visibilitychange',function(){if(document.visibilitySt
 (function(){var e0=nvEstado;nvEstado=function(e){e0(e);if(e==='ok')setTimeout(nvCaixa,300);};})();
 
 /* campos novos (apps, spread da semana, mural, arsenal) entram na normalização antes do primeiro carregamento */
-(function(){var n0=normaliza;normaliza=function(p){var b=n0(p);if(p&&p.quests&&typeof p.quests==='object')b.quests=p.quests;if(p&&p.lojaAc&&typeof p.lojaAc==='object')b.lojaAc=p.lojaAc;return b;};})();
+(function(){var n0=normaliza;normaliza=function(p){var b=n0(p);if(p&&p.rotina&&typeof p.rotina==='object')b.rotina=p.rotina;if(p&&p.quests&&typeof p.quests==='object')b.quests=p.quests;if(p&&p.lojaAc&&typeof p.lojaAc==='object')b.lojaAc=p.lojaAc;return b;};})();
 (function(){var n0=normaliza;normaliza=function(p){var b=n0(p);b.arsenal=(p&&p.arsenal&&typeof p.arsenal==='object')?p.arsenal:{};return b;};})();
 (function(){var n0=normaliza;normaliza=function(p){var b=n0(p);var a=(p&&p.apps&&typeof p.apps==='object')?p.apps:{};
  b.apps={spotify:typeof a.spotify==='string'?a.spotify:'',agenda:typeof a.agenda==='string'?a.agenda:'',
@@ -13423,6 +13463,96 @@ function cpHTML(){var W=cpSemanas(8),META=10.5,mx=Math.max(META*1.15,1),i,w=260,
   '<line x1="0" x2="'+w+'" y1="'+y(META)+'" y2="'+y(META)+'" class="cp-atena"/>'+(pts.length>1?'<polyline points="'+pts.join(' ')+'" class="cp-hermes"/>':'')+
   W.map(function(s,j){return '<text x="'+(j*bw+bw/2)+'" y="'+(h+11)+'">'+s.ini.getDate()+'/'+(s.ini.getMonth()+1)+'</text>';}).join('')+'</svg>'+
   '<p class="cp-leg"><span class="a">Apolo · você</span> <b>'+at.toFixed(1)+' h</b> nesta semana = <b>'+pts7+'</b> pontos · <span class="t">Atena: meta 10,5 h</span> · <span class="h">Hermes: sua média de 4 semanas</span></p>';}
+
+/* ---------- Rotina do acampamento: Toque da Concha, Inspeção dos Chalés e Ronda das Harpias ----------
+   Concha: soa nos horários do dia (início, refeições no Pavilhão, recolher), com som e aviso do navegador.
+   Inspeção: checklist da manhã (antes das atividades) e da noite (o mesmo checklist do toque de recolher).
+   Harpias: depois do horário limite, a tela escurece e lembra de encerrar; ficar mais conta como flagrante. */
+var RT_TOQUES0=[{h:'06:00',n:'Alvorada · início do dia',on:true},{h:'09:00',n:'Treino na arena · bloco pesado',on:true},{h:'12:00',n:'Almoço no Pavilhão',on:true},
+ {h:'15:00',n:'Atividades do acampamento',on:false},{h:'18:00',n:'Jantar no Pavilhão',on:true},{h:'22:00',n:'Toque de recolher nos chalés',on:true}];
+var RT_MANHA=[['cama','Cama arrumada'],['agua','Um copo de água'],['remedio','Remédio da manhã'],['grade','Olhei a Grade e as três missões'],['mochila','Mochila e roupa prontas']];
+function rtD(){var R=S.rotina;if(!R||typeof R!=='object')R=S.rotina={};if(!Array.isArray(R.toques))R.toques=JSON.parse(JSON.stringify(RT_TOQUES0));
+ if(!R.limite)R.limite='22:30';R.flagras=R.flagras||{};R.paz=R.paz||{};return R;}
+function rtMin(h){var p=String(h||'0:0').split(':');return (+p[0])*60+(+p[1]||0);}
+function rtAgora(){var d=new Date();return d.getHours()*60+d.getMinutes();}
+function rtProx(){var R=rtD(),a=rtAgora(),L=R.toques.filter(function(t){return t.on;}).sort(function(x,y){return rtMin(x.h)-rtMin(y.h);});
+ for(var i=0;i<L.length;i++)if(rtMin(L[i].h)>a)return L[i];return L[0]||null;}
+/* som de concha: sopro grave com harmônicos, subida curta e vibrato */
+function rtConcha(){var C=window.AudioContext||window.webkitAudioContext;if(!C)return;var ctx=drSom.ctx||(drSom.ctx=new C());if(ctx.state==='suspended')ctx.resume();
+ var t=ctx.currentTime,g=ctx.createGain(),f=ctx.createBiquadFilter();f.type='lowpass';f.frequency.value=900;f.Q.value=4;g.connect(ctx.destination);f.connect(g);
+ g.gain.setValueAtTime(0.0001,t);g.gain.exponentialRampToValueAtTime(0.35,t+0.35);g.gain.setValueAtTime(0.35,t+1.6);g.gain.exponentialRampToValueAtTime(0.0001,t+2.6);
+ var vib=ctx.createOscillator(),vg=ctx.createGain();vib.frequency.value=5.5;vg.gain.value=3;vib.connect(vg);
+ [[146.8,1],[293.7,.45],[440.4,.22],[587,.1]].forEach(function(h){var o=ctx.createOscillator(),og=ctx.createGain();o.type='sawtooth';o.frequency.setValueAtTime(h[0]*0.94,t);o.frequency.linearRampToValueAtTime(h[0],t+0.4);
+  vg.connect(o.frequency);og.gain.value=h[1];o.connect(og);og.connect(f);o.start(t);o.stop(t+2.7);});vib.start(t);vib.stop(t+2.7);}
+function rtAviso(tit,txt){var w=document.getElementById('rt-aviso');if(w)w.remove();w=document.createElement('div');w.id='rt-aviso';w.className='rt-aviso';w.setAttribute('role','status');
+ w.innerHTML='<span class="rt-aic">'+RT_IC.concha+'</span><div><b>'+esc(tit)+'</b><small>'+esc(txt)+'</small></div><button type="button" aria-label="fechar">×</button>';
+ w.querySelector('button').onclick=function(){w.remove();};document.body.appendChild(w);setTimeout(function(){if(w.parentNode)w.remove();},20000);
+ try{if(window.Notification&&Notification.permission==='granted')new Notification(tit,{body:txt,tag:'concha'});}catch(e){}}
+function rtTick(){var R=rtD(),a=rtAgora(),hj=hoje(),k='astro_concha_'+hj,feitos;try{feitos=JSON.parse(localStorage.getItem(k)||'[]');}catch(e){feitos=[];}
+ R.toques.forEach(function(t){if(!t.on)return;var m=rtMin(t.h);if(a>=m&&a<m+3&&feitos.indexOf(t.h)<0){feitos.push(t.h);try{localStorage.setItem(k,JSON.stringify(feitos));}catch(e){}
+  try{rtConcha();}catch(e){}rtAviso('Toque da Concha · '+t.h,t.n);}});
+ rtHarpias(false);try{rtPintaStatus();}catch(e){}}
+/* Ronda das Harpias */
+function rtNaRonda(){var R=rtD(),a=rtAgora(),l=rtMin(R.limite);return a>=l||a<5*60;}
+function rtDiaRonda(){var d=new Date();if(d.getHours()<5)d.setDate(d.getDate()-1);return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+function rtHarpias(porAcao){var R=rtD(),dia=rtDiaRonda(),ad='astro_harpia_'+dia,est;try{est=JSON.parse(localStorage.getItem(ad)||'{}');}catch(e){est={};}
+ if(!rtNaRonda()){document.body.classList.remove('harpias');return;}
+ if(est.ate&&Date.now()<est.ate)return;
+ if(est.fechou)return;
+ if(!porAcao&&!est.visto)return; /* só aparece quando você mexe no app depois do limite */
+ document.body.classList.add('harpias');var o=document.getElementById('rt-harpia');if(o)return;
+ o=document.createElement('div');o.id='rt-harpia';o.className='rt-harpia';o.setAttribute('role','alertdialog');
+ var n=(R.flagras[dia]|0);
+ o.innerHTML='<div class="rt-hbox"><span class="rt-hic">'+RT_IC.harpia+'</span><span class="k9">Ronda das Harpias · '+esc(R.limite)+'</span><h3>Campista fora do chalé depois do recolher.</h3>'+
+  '<p>As harpias da limpeza já estão patrulhando. O estudo de hoje termina aqui: amanhã a mira agradece o sono.</p>'+(n?'<p class="rt-hf">Flagrantes nesta noite: <b>'+n+'</b></p>':'')+
+  '<div class="rt-hb"><button type="button" data-rt-h="fechar">voltar para o chalé</button><button type="button" data-rt-h="mais">só mais 10 minutos</button></div></div>';
+ document.body.appendChild(o);
+ o.addEventListener('click',function(e){var b=e.target.closest('[data-rt-h]');if(!b)return;
+  if(b.dataset.rtH==='fechar'){est.fechou=true;if(!(R.flagras[dia]|0))R.paz[dia]=true;}else{est.ate=Date.now()+10*60e3;R.flagras[dia]=(R.flagras[dia]|0)+1;delete R.paz[dia];}
+  try{localStorage.setItem(ad,JSON.stringify(est));}catch(z){}grava();o.remove();document.body.classList.remove('harpias');try{rtPintaStatus();}catch(z){}});}
+document.addEventListener('pointerdown',function(e){if(e.target.closest&&e.target.closest('#rt-harpia'))return;if(!rtNaRonda())return;
+ var dia=rtDiaRonda(),ad='astro_harpia_'+dia,est;try{est=JSON.parse(localStorage.getItem(ad)||'{}');}catch(z){est={};}if(!est.visto){est.visto=true;try{localStorage.setItem(ad,JSON.stringify(est));}catch(z){}}
+ rtHarpias(true);},true);
+/* Inspeção dos Chalés */
+function rtInsp(){var d=hoje(),p=plDia(d);p.manha=p.manha||{};p.fim=p.fim||{};return p;}
+function rtNoitesPaz(){var R=rtD();return Object.keys(R.paz).length;}
+var RT_IC={concha:'<svg viewBox="0 0 24 24"><path d="M3.5 14.5c3-1 6-4.5 7.5-9.5 3 2 8 4.5 9.5 9-2.5 3.5-9 5.5-17 .5z"/><path d="M11 5c.5 3.5 2 6.5 4.5 9M11 5c-.5 3.5-.5 7 .5 10.5M11 5c2 2.5 5 5 9.5 9.5"/></svg>',
+ insp:'<svg viewBox="0 0 24 24"><path d="M8 4h8v3H8z"/><path d="M6 5.5H5v15h14v-15h-1"/><path d="M8.5 12l2 2 4-4.5M8.5 17h7"/></svg>',
+ harpia:'<svg viewBox="0 0 24 24"><path d="M12 7.5c-2 0-3 1.4-3 3.5 0 2.5 1.3 4 3 4s3-1.5 3-4c0-2.1-1-3.5-3-3.5z"/><path d="M9.5 10.5L2.5 6.5c1 3.5 3 6 6.8 7M14.5 10.5l7-4c-1 3.5-3 6-6.8 7M10.5 15l-1 4M13.5 15l1 4M10.8 9.5h.01M13.2 9.5h.01"/></svg>'};
+function rtHTML(){var R=rtD(),P=rtInsp(),pm=RT_MANHA.filter(function(x){return P.manha[x[0]];}).length,pn=PL_FIM.filter(function(x){return P.fim[x[0]];}).length,prox=rtProx(),a=rtAgora(),l=rtMin(R.limite);
+ var falta=l-a;if(falta<0)falta+=1440;var ronda=rtNaRonda()?'a ronda já começou':'a ronda começa em '+Math.floor(falta/60)+' h '+String(falta%60).padStart(2,'0');
+ var lista=function(arr,obj,cls){return '<ul>'+arr.map(function(x){var ok=!!obj[x[0]];return '<li class="'+(ok?'ok':'')+'"><button type="button" class="mm-ck" data-rt-'+cls+'="'+x[0]+'">'+(ok?'✓':'')+'</button><span>'+esc(x[1])+'</span></li>';}).join('')+'</ul>';};
+ return '<header class="mm-h"><div><span class="k9">Rotina do acampamento</span><h3>Concha, inspeção e ronda</h3></div><p>A concha marca as horas do dia; a inspeção confere o chalé antes das atividades e antes de dormir; a ronda das harpias fecha o expediente.</p></header>'+
+ '<div class="rt-g">'+
+ '<section class="mm-col rt-concha"><span class="mm-k">'+RT_IC.concha+' Toque da Concha</span><small id="rt-prox">'+(prox?'próximo: '+esc(prox.h)+' · '+esc(prox.n):'nenhum toque ligado')+'</small>'+
+  '<ul class="rt-tq">'+R.toques.map(function(t,i){return '<li class="'+(t.on?'ok':'')+'"><button type="button" class="mm-ck" data-rt-on="'+i+'" aria-label="ligar">'+(t.on?'✓':'')+'</button><input type="time" value="'+esc(t.h)+'" data-rt-h="'+i+'"><span>'+esc(t.n)+'</span></li>';}).join('')+'</ul>'+
+  '<div class="mm-add"><button type="button" data-rt-teste>ouvir a concha</button>'+(window.Notification&&Notification.permission!=='granted'?'<button type="button" data-rt-notif>avisar também fora da aba</button>':'')+'</div><small class="rt-obs">Toca enquanto o app estiver aberto em alguma aba.</small></section>'+
+ '<section class="mm-col rt-insp"><span class="mm-k">'+RT_IC.insp+' Inspeção dos Chalés</span><small>conselheiros e harpias conferem o chalé 7</small>'+
+  '<b class="rt-st">Manhã · antes das atividades <em>'+pm+'/'+RT_MANHA.length+'</em></b>'+lista(RT_MANHA,P.manha,'m')+
+  '<b class="rt-st">Noite · antes do recolher <em>'+pn+'/'+PL_FIM.length+'</em></b>'+lista(PL_FIM,P.fim,'n')+
+  '<p class="rt-sel">'+(pm===RT_MANHA.length&&pn===PL_FIM.length?'Chalé 7 aprovado na inspeção de hoje.':pm===RT_MANHA.length?'Manhã aprovada. Falta a inspeção da noite.':'O chalé ainda não passou pela inspeção.')+'</p></section>'+
+ '<section class="mm-col rt-harp"><span class="mm-k">'+RT_IC.harpia+' Ronda das Harpias</span><small id="rt-ronda">'+ronda+'</small>'+
+  '<label class="rt-lim">horário limite para encerrar os estudos <input type="time" value="'+esc(R.limite)+'" data-rt-lim></label>'+
+  '<p class="rt-tx">Depois desse horário, se você mexer no app, a tela escurece e as harpias mandam você para o chalé. Pedir mais 10 minutos conta como flagrante.</p>'+
+  '<div class="rt-nums"><div><b>'+rtNoitesPaz()+'</b><span>noites em paz</span></div><div><b>'+Object.keys(R.flagras).reduce(function(a2,k){return a2+(R.flagras[k]|0);},0)+'</b><span>flagrantes</span></div></div></section></div>';}
+function rtPinta(){var ref=document.getElementById('ws-box'),wr=document.querySelector('.wrap');if(!ref||!wr)return;var b=document.getElementById('rt-box');
+ if(!b){b=document.createElement('section');b.id='rt-box';b.className='mm rt';b.dataset.area='op';rtLiga(b);}
+ b.dataset.vxHidden='false';if(ref.nextElementSibling!==b)wr.insertBefore(b,ref.nextSibling);
+ var a=document.activeElement;if(a&&b.contains(a)&&a.tagName==='INPUT')return;b.innerHTML=rtHTML();}
+function rtPintaStatus(){var p=document.getElementById('rt-prox'),r=document.getElementById('rt-ronda');if(!p&&!r)return;var b=document.getElementById('rt-box');var a=document.activeElement;if(b&&!(a&&b.contains(a)))b.innerHTML=rtHTML();}
+function rtLiga(b){
+ b.addEventListener('click',function(e){var t=e.target.closest('button');if(!t)return;var R=rtD(),P=rtInsp(),d=t.dataset;
+  if(d.rtOn){var q=R.toques[+d.rtOn];q.on=!q.on;}
+  else if(d.rtM){P.manha[d.rtM]=!P.manha[d.rtM];if(RT_MANHA.every(function(x){return P.manha[x[0]];}))try{acLouros('Inspeção da manhã','chalé 7 em ordem');}catch(z){}}
+  else if(d.rtN){P.fim[d.rtN]=!P.fim[d.rtN];if(PL_FIM.every(function(x){return P.fim[x[0]];}))try{acLouros('Inspeção da noite','pronto para o recolher');}catch(z){}grava();try{vxRender();}catch(z){}}
+  else if(d.rtTeste!=null){rtConcha();rtAviso('Toque da Concha','assim ela soa nos horários marcados');return;}
+  else if(d.rtNotif!=null){try{Notification.requestPermission().then(function(){b.innerHTML=rtHTML();});}catch(z){}return;}
+  grava();b.innerHTML=rtHTML();});
+ b.addEventListener('change',function(e){var t=e.target,R=rtD();if(t.dataset.rtH){R.toques[+t.dataset.rtH].h=t.value||R.toques[+t.dataset.rtH].h;}else if(t.dataset.rtLim!=null){R.limite=t.value||'22:30';}else return;grava();b.innerHTML=rtHTML();});}
+/* inspeção da manhã completa vale +5 XP */
+(function(){var g0=gmXP;gmXP=function(){var x=g0(),q=0,P=S.plan||{};Object.keys(P).forEach(function(d){var m=P[d]&&P[d].manha;if(m&&RT_MANHA.every(function(i){return m[i[0]];}))q+=5;});x.total+=q;x.insp=q;return x;};})();
+try{GM_REGRAS.push(['inspeção da manhã completa','+5']);}catch(e){}
+setInterval(function(){try{rtTick();}catch(e){}},30000);setTimeout(function(){try{rtTick();}catch(e){}},3000);
 /* a Grade semanal é o painel principal: logo abaixo do índice */
 function latGradeTopo(){var wr=document.querySelector('.wrap'),h=document.getElementById('h-sem'),ix=document.getElementById('tt-indice');if(!wr||!h)return;
  var tb=h.nextElementSibling&&h.nextElementSibling.classList.contains('tb')?h.nextElementSibling:document.querySelector('.wrap > .tb');
@@ -13432,8 +13562,9 @@ function latGradeTopo(){var wr=document.querySelector('.wrap'),h=document.getEle
  var ref=ant?ant.nextSibling:wr.firstChild;if(h!==ref)wr.insertBefore(h,ref);
  if(tb&&h.nextElementSibling!==tb)wr.insertBefore(tb,h.nextSibling);
  try{wsPinta();}catch(e){console.error('spread:',e);}
+ try{rtPinta();}catch(e){console.error('rotina:',e);}
  /* rastreador de hábitos (grade mensal) logo abaixo do painel da semana */
- try{var hr=document.getElementById('h-rast'),rt=hr&&hr.nextElementSibling&&hr.nextElementSibling.classList.contains('rt')?hr.nextElementSibling:document.querySelector('.wrap > .rt'),wb=document.getElementById('ws-box')||tb;
+ try{var hr=document.getElementById('h-rast'),rt=hr&&hr.nextElementSibling&&hr.nextElementSibling.classList.contains('rt')?hr.nextElementSibling:document.querySelector('.wrap > .rt'),wb=document.getElementById('rt-box')||document.getElementById('ws-box')||tb;
   if(hr&&wb){[hr,rt].forEach(function(n){if(n){n.dataset.area='op';n.dataset.vxHidden='false';}});if(wb.nextElementSibling!==hr)wr.insertBefore(hr,wb.nextSibling);if(rt&&hr.nextElementSibling!==rt)wr.insertBefore(rt,hr.nextSibling);}}catch(e){console.error('rastreador:',e);}
  try{arsPinta();}catch(e){console.error('arsenal:',e);}
  try{mmPinta();}catch(e){console.error('mural de missões:',e);}}
@@ -13484,7 +13615,8 @@ function crData(){var d=new Date(),dias=['domingo','segunda-feira','terça-feira
  return '<div class="cr-dt"><b>'+dias[d.getDay()]+', '+d.getDate()+' '+ms[d.getMonth()]+'</b><small>semana '+sem+' · '+seg.getDate()+' '+ms[seg.getMonth()]+' – '+dom.getDate()+' '+ms[dom.getMonth()]+'</small></div>';}
 function latRegHTML(){var ab=latRegHTML.aberto||'';
  var bar=CR_K.map(function(k){return '<button type="button" class="cr-p cr-'+k[0]+(ab===k[0]?' on':'')+'" data-cr-pop="'+k[0]+'" title="'+k[1]+'" aria-expanded="'+(ab===k[0])+'"><span class="cr-ico">'+CR_IC[k[0]]+'</span><span class="cr-lb"><small>'+k[1]+'</small><b>'+esc(crVal(k[0]))+'</b></span></button>';}).join('');
- return '<div class="cr-bar"><span class="cr-k2">Registro do dia</span>'+bar+'<span class="cr-sep"></span>'+crData()+'</div>'+
+ var pt=null;try{pt=rtProx();}catch(e){}
+ return '<div class="cr-bar"><span class="cr-k2">Registro do dia</span>'+bar+'<span class="cr-sep"></span>'+crData()+(pt?'<span class="cr-concha" title="próximo Toque da Concha">'+RT_IC.concha+'<span><small>concha</small><b>'+esc(pt.h)+'</b></span></span>':'')+'</div>'+
   (ab?'<div class="cr-pop" data-k="'+ab+'"><header><b>'+CR_K.filter(function(x){return x[0]===ab;})[0][1]+'</b><button type="button" class="cr-px" data-cr-pop="'+ab+'" aria-label="fechar">×</button></header>'+crCtl(ab)+'</div>':'');}
 /* gastos e medicação vêm do Cofre (Loja): mesmo armazenamento do AxisHub */
 function latAx(){try{return JSON.parse(localStorage.getItem('sfp_bruno_v4')||'null');}catch(e){return null;}}
