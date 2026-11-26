@@ -5001,6 +5001,46 @@ dialog.ave-dlg::before{content:'';display:block;height:12px;margin:6px 8px 0;bac
 #lat-cv.cl-off>:not(header){display:none!important}
 #lat-cv>header{display:flex!important}
 #tesouro #ts-b #c-h-rec{max-height:540px;overflow:auto;scrollbar-width:thin}
+
+/* ===== painel direito · padrão único ===== */
+#painel-dir .pd-pane.pd2{--pd-ac:#23407a}
+#painel-dir .pd-pane.pd2:not([hidden]){display:flex;flex-direction:column;gap:14px}
+#painel-dir .pd-pane[hidden]{display:none!important}
+#painel-dir .pd-pane[data-pane="enf"]{--pd-ac:#3f7656}
+#painel-dir .pd-pane[data-pane="lap"]{--pd-ac:#23407a}
+#painel-dir .pd-pane[data-pane="fin"]{--pd-ac:#b8892f}
+#painel-dir .pd-pane[data-pane="b9"]{--pd-ac:#a8432f}
+/* cabeçalho: o mesmo do Laptop, na cor da aba */
+#painel-dir .pd2 .pd-cab{margin:0;padding:22px 24px;border-radius:18px;background:var(--panel,#fbf4e3);border:1px solid var(--line,#d8c7a2);border-top:5px solid var(--pd-ac)}
+#painel-dir .pd2 .pd-cab h2{margin:4px 0 2px;font:800 28px var(--display,Georgia,serif);color:var(--bone,#2a2418);letter-spacing:.01em}
+#painel-dir .pd2 .pd-cab p{margin:0;color:var(--dim,#6b5140);font-size:14px}
+#painel-dir .pd2 .pd-cab .eu-k{color:var(--pd-ac)}
+/* o cartão antigo some: o conteúdo fica direto no painel, como no Laptop */
+#painel-dir .pd2>.sec-card{margin:0!important;padding:0!important;border:0!important;background:none!important;box-shadow:none!important}
+#painel-dir .pd2>.sec-card::before,#painel-dir .pd2>.sec-card::after{display:none!important}
+#painel-dir .pd2>.sec-card>h2.sec{display:none!important}
+/* cartões internos */
+#painel-dir .pd2 :is(#lat-med,.ctn,.corpo>div,.narr,.vx-item:not(.vx-item .vx-item)){box-sizing:border-box;margin:0;padding:16px 18px;border-radius:14px;background:var(--panel,#fbf4e3);border:1px solid var(--line,#d8c7a2);border-top:3px solid color-mix(in srgb,var(--pd-ac) 55%,transparent);box-shadow:none}
+#painel-dir .pd2 .corpo{display:grid!important;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr))!important;gap:14px}
+#painel-dir .pd2 .corpo>div{min-width:0}
+#painel-dir .pd2 .op3>div{display:flex;flex-direction:column;gap:14px}
+#painel-dir .pd2 #pj-l{display:flex;flex-direction:column;gap:14px}
+#painel-dir .pd2 .vx-item:not(.vx-item .vx-item){border-left:1px solid var(--line,#d8c7a2)!important}
+#painel-dir .pd2 .vx-item .vx-item{border:0!important;border-top:1px dashed var(--line,#d8c7a2)!important;border-radius:0!important;background:none!important;padding:8px 0!important;box-shadow:none!important}
+/* rótulos, números e textos */
+#painel-dir .pd2 :is(.k5,.k9,.vx-tag,.sec-k,.frm label,.frm .lbl){font:700 11px var(--mono,monospace)!important;letter-spacing:.14em!important;text-transform:uppercase;color:var(--pd-ac)!important}
+#painel-dir .pd2 :is(.big2,.v3){font-family:var(--display,Georgia,serif)!important;color:var(--bone,#2a2418)}
+#painel-dir .pd2 :is(.sub2,.vx-muted,.n1){font-size:13px;color:var(--dim,#6b5140)}
+/* botões e campos com a mesma medida em todas as abas */
+#painel-dir .pd2:not([data-pane="fin"]):not([data-pane="lap"]) button:not(.cx):not(.rmp){min-height:34px;padding:0 14px;border-radius:8px;border:1px solid var(--line,#d8c7a2);background:var(--panel2,#f4ead2);color:var(--bone,#2a2418);font:600 13px var(--sans);box-shadow:none;text-transform:none;letter-spacing:0}
+#painel-dir .pd2:not([data-pane="fin"]):not([data-pane="lap"]) button:not(.cx):not(.rmp):hover{border-color:var(--pd-ac)}
+#painel-dir .pd2:not([data-pane="fin"]):not([data-pane="lap"]) :is(.op-pri,.pri,button[type="submit"],#b-pj){background:var(--pd-ac)!important;border-color:var(--pd-ac)!important;color:#fff!important}
+#painel-dir .pd2:not([data-pane="fin"]) :is(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),select){box-sizing:border-box;min-height:34px;padding:0 10px;border-radius:8px;border:1px solid var(--line,#d8c7a2);background:#fffaf0;font:14px var(--sans);color:var(--bone,#2a2418)}
+#painel-dir .pd2:not([data-pane="fin"]) textarea{border-radius:8px;border:1px solid var(--line,#d8c7a2);background:#fffaf0;font:14px var(--sans)}
+/* Sully em diálogo */
+.sat-dlg{width:min(760px,94vw);max-height:88vh}
+.sat-dlg .sat-dlg-c{max-height:calc(88vh - 40px);overflow:auto;padding:4px}
+@media(max-width:700px){#painel-dir .pd2 .corpo{grid-template-columns:1fr!important}#painel-dir .pd2 .corpo>*{grid-column:1/-1!important}#painel-dir .pd2 .pd-cab{padding:16px}#painel-dir .pd2 .pd-cab h2{font-size:24px}}
 </style>
 <link rel="stylesheet" href="pontes.css">
 <script src="pontes.js" defer></script>
@@ -15978,6 +16018,35 @@ function clCulture(){var c=document.getElementById('lat-cv');if(!c)return;var hd
 function clTudo(){try{clRotina();}catch(e){}try{clCulture();}catch(e){}}
 (function(){var r0=vxRender;vxRender=function(){var x=r0.apply(this,arguments);clTudo();return x;};var p0=pinta;pinta=function(){var x=p0.apply(this,arguments);clTudo();return x;};})();
 setTimeout(clTudo,1400);setInterval(function(){try{clRotina();}catch(e){}},60000);
+
+/* ======================= PAINEL DIREITO · padrão único e Sully em diálogo =======================
+   Todas as abas (Enfermaria, Laptop, Bolsa de Dracmas, Bunker 9) ganham o mesmo cabeçalho do Laptop,
+   a mesma cor de aba, os mesmos cartões, botões e campos. O Sully sai do painel e vira diálogo. */
+(function(){for(var i=PD_ABAS.length-1;i>=0;i--)if(PD_ABAS[i][0]==='sat')PD_ABAS.splice(i,1);})();
+var PD2_CAB={
+ enf:['cuidados de filho de Apolo','Enfermaria','remédios, sono, água, movimento e refeições do ciclo'],
+ lap:['painel de estudos','Laptop','tática, concurso, instruções e a Eumátheia, a estante de leitura'],
+ fin:['tesouro do chalé','Bolsa de Dracmas','mês, previsão, planejamento e metas · exporte e importe a planilha'],
+ b9:['a oficina dos projetos · o corvo vigia','Bunker 9','projetos com critério de conclusão, etapas e prazo']};
+satAba=function(){var pd=document.getElementById('painel-dir');if(!pd)return;[].forEach.call(pd.querySelectorAll('[data-pd="sat"],[data-pane="sat"]'),function(n){n.remove();});};
+function pd2Cab(){var pd=document.getElementById('painel-dir');if(!pd)return;
+ [].forEach.call(pd.querySelectorAll('.pd-pane'),function(p){var k=p.getAttribute('data-pane');if(!PD2_CAB[k])return;p.classList.add('pd2');
+  if(k==='lap'){var ec=p.querySelector('.eu-cab');if(ec)ec.classList.add('pd-cab');return;}
+  var c=p.querySelector(':scope>.pd-cab');if(!c){c=document.createElement('header');c.className='eu-cab pd-cab';var t=PD2_CAB[k];
+   c.innerHTML='<div><span class="eu-k">'+esc(t[0])+'</span><h2>'+esc(t[1])+'</h2><p>'+esc(t[2])+'</p></div>';p.insertBefore(c,p.firstChild);}
+  else if(c!==p.firstElementChild)p.insertBefore(c,p.firstChild);});}
+(function(){var m0=pdMonta;pdMonta=function(){var pd=m0.apply(this,arguments);try{satAba();pd2Cab();}catch(e){}return pd;};
+ var a0=pdAbre;pdAbre=function(k){if(k==='sat'){satDlgAbre();return;}var x=a0.apply(this,arguments);try{pd2Cab();}catch(e){}return x;};})();
+/* ---------- Sully em diálogo ---------- */
+function satDlg(){var d=document.getElementById('sat-dlg');if(d)return d;
+ d=document.createElement('dialog');d.id='sat-dlg';d.className='fc-dlg sat-dlg';d.setAttribute('aria-label','Sully · sátiro');
+ d.innerHTML='<button type="button" class="fc-x" aria-label="Fechar">✕</button><div class="sat-dlg-c"></div>';document.body.appendChild(d);
+ d.querySelector('.fc-x').onclick=function(){d.close();};d.addEventListener('click',function(e){if(e.target===d)d.close();});return d;}
+function satDlgAbre(){var d=satDlg();satPinta();if(!d.open){try{d.showModal();}catch(e){d.setAttribute('open','');}}try{gabBusca(false);}catch(e){}}
+satPinta=function(){var d=document.getElementById('sat-dlg'),p=d&&d.querySelector('.sat-dlg-c');if(!p||!d.open&&p.innerHTML)return;var a=document.activeElement;if(a&&p.contains(a)&&a.tagName==='INPUT')return;
+ var h='<div id="sat-painel">'+satPainelHTML()+'</div>';if(p.innerHTML!==h){var ds0=[].map.call(p.querySelectorAll('details'),function(x){return x.open;});p.innerHTML=h;[].forEach.call(p.querySelectorAll('details'),function(x,i){if(ds0[i])x.open=true;});}};
+document.addEventListener('click',function(e){var t=e.target;if(!t.closest)return;if(t.closest('[data-satir]')){e.preventDefault();e.stopImmediatePropagation();satDlgAbre();}},true);
+setTimeout(function(){try{satAba();pd2Cab();}catch(e){}},1200);
 
 })();
 </script>
