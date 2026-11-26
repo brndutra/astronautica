@@ -4985,6 +4985,22 @@ dialog.ave-dlg::before{content:'';display:block;height:12px;margin:6px 8px 0;bac
 .ant-dlg .ant-fx button{display:flex!important;flex-direction:column;align-items:center;width:auto!important;margin:0!important;padding:4px!important;border:1px solid #c9b28a!important;border-radius:6px!important;background:#fbf5e6!important;color:#2a2418!important;font:700 11px var(--mono,monospace)!important;cursor:pointer}
 .ant-dlg .ant-fx button small{font:10px Georgia,serif;color:#8a6f55}
 .ant-dlg .ant-fx button.on{border-color:#7a4a58!important;background:#f7e9ec!important;box-shadow:inset 0 0 0 1px #7a4a58}
+/* templo completo mais compacto */
+.wrap>.neo-moldura,.wrap>#tm-painel,.wrap>#recreio,.wrap>#tesouro{padding-top:44px!important;padding-bottom:20px!important}
+#tm-r1 .cl-bar{display:grid!important;grid-template-columns:1fr auto;align-items:center;gap:1px 12px;width:100%!important;margin:0 0 10px!important;padding:9px 14px!important;border:1.5px solid #9a6b3a!important;border-radius:10px!important;background:#fbf5e6!important;color:#2a2418!important;text-align:left;cursor:pointer}
+#tm-r1 .cl-bar .cl-k{grid-column:1;font:700 8px var(--mono,monospace);letter-spacing:.2em;text-transform:uppercase;color:#9a6b3a}
+#tm-r1 .cl-bar b{grid-column:1;font:400 17px Georgia,serif;font-variant:small-caps;letter-spacing:.04em}
+#tm-r1 .cl-bar small{grid-column:1;font:12px Georgia,serif;color:#6f5a44}
+#tm-r1 .cl-bar em{grid-column:2;grid-row:1/4;font:700 9px var(--mono,monospace);font-style:normal;letter-spacing:.14em;text-transform:uppercase;color:#5a3f2c;border:1px solid #c9b28a;border-radius:999px;padding:5px 10px}
+#tm-r1.cl-off #rt-box{display:none!important}
+#tm-r1.cl-off{min-height:0!important}
+#lat-cv>header.cl-hd{cursor:pointer;position:relative;display:flex!important;align-items:center}
+#lat-cv>header .cl-seta{margin-left:auto;font:700 9px var(--mono,monospace);font-style:normal;letter-spacing:.14em;text-transform:uppercase;color:#5a3f2c;border:1px solid #c9b28a;border-radius:999px;padding:4px 9px}
+#lat-cv>header .cl-seta::before{content:'recolher ▴'}
+#lat-cv.cl-off>header .cl-seta::before{content:'abrir ▾'}
+#lat-cv.cl-off>:not(header){display:none!important}
+#lat-cv>header{display:flex!important}
+#tesouro #ts-b #c-h-rec{max-height:540px;overflow:auto;scrollbar-width:thin}
 </style>
 <link rel="stylesheet" href="pontes.css">
 <script src="pontes.js" defer></script>
@@ -15938,6 +15954,30 @@ document.addEventListener('click',function(e){var b=e.target.closest&&e.target.c
 function antAnuncia(){var x=antHoje();if(x.anun||x.st!=='aberto')return;var a=opMin(),ini=+x.fx*60;if(a<ini||a>ini+180)return;x.anun=1;try{grava();}catch(e){}antAbre();}
 setInterval(function(){try{antAnuncia();}catch(e){}},60000);setTimeout(function(){try{antAnuncia();}catch(e){}},4000);
 window.KALAMO.antag=antAbre;
+
+/* ======================= templo completo mais compacto =======================
+   Rotina do chalé (Concha, Inspeção, Ronda) e Culture Vulture viram gavetas recolhidas com resumo;
+   Prêmios rola por dentro na altura do Arsenal; molduras com menos respiro. */
+function clEstado(k,v){var o={};try{o=JSON.parse(localStorage.getItem('astro_cl')||'{}')||{};}catch(e){}if(v===undefined)return o[k]!==undefined?o[k]:1;o[k]=v;try{localStorage.setItem('astro_cl',JSON.stringify(o));}catch(e){}}
+function clResumoRt(){var t=0,on=0;try{var T=rtD().toques||[];t=T.length;on=T.filter(function(x){return x.on;}).length;}catch(e){}
+ var prox='';try{var a=opMin();var L=(rtD().toques||[]).filter(function(x){return x.on&&rtMin(x.h)>a;}).sort(function(p,q){return rtMin(p.h)-rtMin(q.h);});if(L[0])prox=' · próximo toque '+L[0].h+' '+L[0].n;}catch(e){}
+ return on+' de '+t+' toques da concha ligados'+prox;}
+function clRotina(){var r1=document.getElementById('tm-r1'),rb=document.getElementById('rt-box');if(!r1||!rb)return;var b=document.getElementById('cl-rt');
+ if(!b){b=document.createElement('button');b.type='button';b.id='cl-rt';b.className='cl-bar';
+  b.addEventListener('click',function(){var off=!r1.classList.contains('cl-off');r1.classList.toggle('cl-off',off);clEstado('rt',off?1:0);clRotina();});}
+ if(r1.firstElementChild!==b)r1.insertBefore(b,r1.firstChild);
+ var off=!!clEstado('rt');r1.classList.toggle('cl-off',off);
+ var h='<span class="cl-k">rotina do chalé</span><b>Toque da Concha · Inspeção · Ronda</b><small>'+esc(clResumoRt())+'</small><em>'+(off?'abrir ▾':'recolher ▴')+'</em>';
+ if(b._h!==h){b.innerHTML=h;b._h=h;}b.setAttribute('aria-expanded',String(!off));}
+function clCulture(){var c=document.getElementById('lat-cv');if(!c)return;var hd=c.querySelector(':scope > header');if(!hd)return;
+ if(!hd.dataset.cl){hd.dataset.cl=1;hd.classList.add('cl-hd');hd.setAttribute('role','button');hd.tabIndex=0;
+  var t=function(){var off=!c.classList.contains('cl-off');c.classList.toggle('cl-off',off);clEstado('cv',off?1:0);};
+  hd.addEventListener('click',t);hd.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();t();}});
+  var s=document.createElement('em');s.className='cl-seta';hd.appendChild(s);}
+ c.classList.toggle('cl-off',!!clEstado('cv'));}
+function clTudo(){try{clRotina();}catch(e){}try{clCulture();}catch(e){}}
+(function(){var r0=vxRender;vxRender=function(){var x=r0.apply(this,arguments);clTudo();return x;};var p0=pinta;pinta=function(){var x=p0.apply(this,arguments);clTudo();return x;};})();
+setTimeout(clTudo,1400);setInterval(function(){try{clRotina();}catch(e){}},60000);
 
 })();
 </script>
