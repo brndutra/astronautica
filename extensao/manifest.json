@@ -2,8 +2,8 @@
   "manifest_version": 3,
   "name": "Astronáutica",
   "short_name": "Astronáutica",
-  "version": "0.1.0",
-  "description": "Registro rápido da Astronáutica: captura, foco, hábitos, água, prioridades, gastos e aviso de cada faixa do dia.",
+  "version": "0.2.0",
+  "description": "Acampamento Meio-Sangue: foco com pausa, ciclo de estudos, humor, contadores, captura, hábitos, prioridades, gastos e aviso de cada faixa do dia.",
   "icons": {
     "16": "icones/icone-16.png",
     "32": "icones/icone-32.png",
@@ -11,7 +11,7 @@
     "128": "icones/icone-128.png"
   },
   "action": {
-    "default_title": "Astronáutica",
+    "default_title": "Acampamento Meio-Sangue",
     "default_popup": "popup.html",
     "default_icon": {
       "16": "icones/icone-16.png",

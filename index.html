@@ -6415,12 +6415,46 @@ function cxGasto(d){var k='sfp_bruno_v4',st;try{st=JSON.parse(localStorage.getIt
 function cxAplica(ev){var d=ev.dados||{},dia=d.dia||hoje();
  switch(ev.tipo){
   case 'captura':if(!d.t)return false;S.cap=S.cap||[];S.cap.unshift({t:String(d.t).slice(0,300),d:dia});return true;
-  case 'agua':S.agua=S.agua||{};S.agua[dia]=(+S.agua[dia]||0)+1;return true;
+  case 'agua':S.agua=S.agua||{};S.agua[dia]=Math.max(0,(+S.agua[dia]||0)+(+d.d===-1?-1:1));return true;
   case 'habito':var h=(S.hab||[]).filter(function(x){return x.id===d.id;})[0];if(!h)return false;h.hist=h.hist||[];if(h.hist.indexOf(dia)<0)h.hist.push(dia);return true;
   case 'foco':var m=Math.max(1,Math.min(240,+d.min||0));vxData().sessions.push({id:'ext'+ev.id,day:dia,task:'extensao',minutes:m,result:String(d.tarefa||'foco pela extensão').slice(0,120)});return true;
   case 'prioridade':if(typeof plDia!=='function')return false;var x=plDia(dia),i=+d.i;if(!x.top[i])return false;x.top[i].ok=!!d.ok;return true;
-  case 'gasto':return cxGasto(d);}
+  case 'gasto':return cxGasto(d);
+  case 'humor':var hv=+d.v|0;if(hv<1||hv>5)return false;S.estado=S.estado||{};S.estado[dia]=hv;
+   anota('Humor pela extensão: '+hv+'/5'+(d.nota?' — '+esc(String(d.nota).slice(0,120)):'')+'.',0,false);return true;
+  case 'contador':return cxCont(d,dia);
+  case 'ciclo':return cxCiclo(d,dia);}
  return false;}
+/* Contadores criados na extensão: S.cont.def (lista) e S.cont.dia[AAAA-MM-DD][id] (valor do dia). */
+function cxCont(d,dia){if(!d.id)return false;S.cont=S.cont||{};var C=S.cont;C.def=Array.isArray(C.def)?C.def:[];C.dia=C.dia||{};
+ if(d.acao==='remover'){C.def=C.def.filter(function(x){return x.id!==d.id;});return true;}
+ var df=C.def.filter(function(x){return x.id===d.id;})[0];
+ if(!df){df={id:String(d.id).slice(0,40),n:String(d.n||'contador').slice(0,30),u:String(d.u||'vezes').slice(0,20),meta:Math.max(1,+d.meta|0||10)};C.def.push(df);}
+ else{if(d.n)df.n=String(d.n).slice(0,30);if(d.meta)df.meta=Math.max(1,+d.meta|0);}
+ var o=C.dia[dia]=C.dia[dia]||{};o[df.id]=Math.max(0,(+o[df.id]||0)+(+d.d===-1?-1:1));return true;}
+/* Ciclo de estudos pela extensão: fecha o bloco com os minutos do foco ou pula a vez.
+   Só avança a roda se o bloco informado ainda for o da vez. */
+function cxCiclo(d,dia){var E=S.est;if(!E||!Array.isArray(E.disc)||typeof ordemCiclo!=='function')return false;var o=ordemCiclo();if(!o.length)return false;
+ var at=blocoAtual();
+ if(d.acao==='pular'){if(d.disc&&d.disc!==at)return false;E.at++;if(E.at%o.length===0)E.volta++;anota('Bloco pulado pela extensão.',0,false);return true;}
+ if(d.acao!=='fechar')return false;
+ var m=Math.max(1,Math.min(400,+d.min|0)),D=E.disc.filter(function(x){return x.id===d.disc;})[0];if(!D)return false;
+ D.min=(D.min|0)+m;E.blocos=Array.isArray(E.blocos)?E.blocos:[];
+ E.blocos.unshift({id:'b'+Date.now()+Math.random().toString(36).slice(2,5),data:dia,h:hora(),disc:D.id,min:m,plat:'',top:'',como:'foco pela extensão',quest:'',prox:'',volta:E.volta});
+ if(E.blocos.length>60)E.blocos.length=60;
+ if(d.disc===at){E.at++;if(E.at%o.length===0)E.volta++;}
+ anota('Bloco fechado pela extensão — '+esc(D.nome)+': '+m+' min.',0,false);return true;}
+(function(){var n0=normaliza;normaliza=function(p){var b=n0(p);if(p&&p.cont&&typeof p.cont==='object')b.cont=p.cont;return b;};})();
+/* Mostra os contadores da extensão no painel do corpo, abaixo da leitura do ciclo. */
+function ctPinta(){var box=document.querySelector('.corpo');if(!box)return;var c=document.getElementById('ext-ct'),C=S.cont,defs=(C&&Array.isArray(C.def))?C.def:[];
+ if(!defs.length){if(c)c.remove();return;}
+ if(!c){c=document.createElement('div');c.id='ext-ct';c.style.gridColumn='span 2';box.appendChild(c);}
+ var v=(C.dia&&C.dia[hoje()])||{};
+ c.innerHTML='<span class="k5">Contadores da extensão</span>'+defs.map(function(x){var n=+v[x.id]||0,p=Math.min(100,Math.round(n/x.meta*100));
+  return '<div style="display:grid;grid-template-columns:1fr auto;gap:4px 10px;align-items:baseline;margin-top:10px"><b style="font-family:var(--sans);font-size:13px;color:var(--bone)">'+esc(x.n)+'</b>'+
+   '<span style="font-family:var(--mono);font-size:10px;color:var(--dim)">'+n+' / '+x.meta+' '+esc(x.u)+'</span>'+
+   '<div style="grid-column:span 2;height:5px;background:var(--well);border:1px solid var(--line2)"><i style="display:block;height:100%;width:'+p+'%;background:var(--red)"></i></div></div>';}).join('');}
+(function(){var p0=pinta;pinta=function(){p0();try{ctPinta();}catch(e){console.error('contadores:',e);}};})();
 var cxRodando=false;
 function nvCaixa(){if(cxRodando||!nv.user||!nv.cli||nv.est!=='ok')return;var b=nvBase();if(!b||b.u!==nv.user.id||b.ts==null)return;cxRodando=true;
  nv.cli.from('vertice_inbox').select('id,tipo,dados,criado').order('id',{ascending:true}).limit(100).then(function(r){

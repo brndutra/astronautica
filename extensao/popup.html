@@ -2,61 +2,110 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<title>Astronáutica</title>
+<title>Acampamento Meio-Sangue</title>
 <link rel="stylesheet" href="popup.css">
 </head>
 <body>
 <header class="cab">
-  <img src="icones/icone-48.png" alt="" width="28" height="28">
-  <div><b>Astronáutica</b><span id="data">—</span></div>
-  <button id="sair" class="lnk" hidden>sair</button>
+  <small>Greetings from</small>
+  <h1>Camp<br>Half-Blood</h1>
+  <div class="sub">Chalé 7 · Long Island Sound</div>
+  <div class="lado">
+    <span class="dia" id="data">—</span>
+    <div class="dracma" id="dracmas" title="Dracmas de hoje: uma por bloco de foco, uma por meta de contador batida">0</div>
+  </div>
 </header>
 
-<section id="login" hidden>
-  <p class="nota">Entre com a mesma conta do app. Os registros feitos aqui aparecem lá na próxima sincronização.</p>
+<section id="login" class="card" hidden>
+  <h2>Portão do acampamento</h2>
+  <p class="lead">Entre com a mesma conta do app. O que você marcar aqui aparece lá na próxima sincronização.</p>
   <label>E-mail<input id="email" type="email" autocomplete="email"></label>
   <label>Senha<input id="senha" type="password" autocomplete="current-password"></label>
   <button id="entrar" class="pri">Entrar</button>
 </section>
 
 <main id="painel" hidden>
-  <section class="agora" id="agora"></section>
+  <div class="colar"><span class="k">contas do dia</span><div class="fio" id="fio"></div></div>
 
-  <section class="card">
-    <h2>Foco</h2>
-    <div id="foco-parado" class="linha">
-      <input id="foco-tarefa" placeholder="no que vai focar?" maxlength="80">
-      <button data-min="25" class="pri">25 min</button>
-      <button data-min="50">50 min</button>
+  <nav class="abas" role="tablist">
+    <button role="tab" aria-selected="true" data-aba="arena">Arena</button>
+    <button role="tab" aria-selected="false" data-aba="chale">Chalé</button>
+    <button role="tab" aria-selected="false" data-aba="reg">Registro</button>
+  </nav>
+
+  <section class="aba on" id="arena">
+    <div class="card agora" id="agora"></div>
+
+    <div class="card">
+      <h2>Treino na Arena <i id="modo">foco</i></h2>
+      <p class="lead">Um bloco de cada vez. Quíron não cobra a lista inteira.</p>
+      <div class="foco">
+        <div class="anel" id="anel">
+          <svg viewBox="0 0 112 112" aria-hidden="true"><circle class="trilho" cx="56" cy="56" r="47"/><circle class="arco" id="arco" cx="56" cy="56" r="47"/></svg>
+          <div class="t"><b id="tempo">25:00</b><span id="tlabel">pronto</span></div>
+        </div>
+        <div class="fcol">
+          <input id="tarefa" placeholder="no que vai treinar?" maxlength="80">
+          <div class="fbt" id="parado">
+            <button class="pri" data-min="25">25 min</button><button data-min="50">50 min</button><button id="pausa5">pausa 5</button>
+          </div>
+          <div class="fbt" id="rodando" hidden>
+            <button class="pri" id="pp">pausar</button><button id="enc">encerrar</button>
+          </div>
+          <div class="fstat" id="fstat"></div>
+        </div>
+      </div>
     </div>
-    <div id="foco-rodando" class="linha" hidden>
-      <b id="foco-resta">—</b><span id="foco-nome" class="nota"></span>
-      <button id="foco-parar">encerrar</button>
+
+    <div class="card">
+      <h2>Ciclo de Estudos <i id="volta">—</i></h2>
+      <p class="lead">A roda gira na ordem. Fechou o bloco, passa para o próximo.</p>
+      <div id="ciclo"></div>
+      <div class="cbt" id="cbt">
+        <button class="ouro" id="treinar">treinar a da vez · 50 min</button>
+        <button id="pular">pular</button>
+      </div>
     </div>
   </section>
 
-  <section class="card">
-    <h2>Captura</h2>
-    <div class="linha"><input id="cap" placeholder="despeje antes de perder" maxlength="300"><button id="cap-ok" class="pri">guardar</button></div>
+  <section class="aba" id="chale">
+    <div class="card">
+      <h2>Como você chega à fogueira? <i>humor</i></h2>
+      <p class="lead">Um toque já registra. Vale mudar ao longo do dia.</p>
+      <div class="humor" id="humor"></div>
+      <div class="linha mt"><input id="hnota" placeholder="o que pesou ou ajudou (opcional)" maxlength="120"><button class="pri" id="hok">anotar</button></div>
+      <div class="semana" id="semana"></div>
+    </div>
+
+    <div class="card">
+      <h2>Contadores do Chalé <i>hoje</i></h2>
+      <p class="lead">Toque no + a cada vez. A barra fecha na meta.</p>
+      <div class="cont" id="cont"></div>
+      <div class="linha mt"><input id="novo" placeholder="novo contador · ex.: páginas" maxlength="30"><input id="novoMeta" class="val" inputmode="numeric" placeholder="meta"><button id="add">criar</button></div>
+    </div>
   </section>
 
-  <section class="card" id="sec-top">
-    <h2>Três prioridades</h2>
-    <ol id="top"></ol>
+  <section class="aba" id="reg">
+    <div class="card">
+      <h2>Captura <i>Quadro de Avisos</i></h2>
+      <div class="linha mt"><input id="cap" placeholder="despeje antes de perder" maxlength="300"><button class="pri" id="cap-ok">guardar</button></div>
+    </div>
+    <div class="card chk">
+      <h2>Missões do dia <i>três</i></h2>
+      <ol id="top" class="mt"></ol>
+    </div>
+    <div class="card chk">
+      <h2>Hábitos <i>treinos</i></h2>
+      <ul id="habitos" class="mt"></ul>
+    </div>
+    <div class="card">
+      <h2>Gasto <i>Loja do Acampamento</i></h2>
+      <div class="linha mt"><input id="g-desc" placeholder="almoço, uber, farmácia…" maxlength="80"><input id="g-val" class="val" inputmode="decimal" placeholder="R$ 0,00"><button class="pri" id="g-ok">ok</button></div>
+    </div>
   </section>
-
-  <section class="card">
-    <h2>Hábitos de hoje <button id="agua" class="mini">+1 copo d'água <span id="agua-n"></span></button></h2>
-    <ul id="habitos"></ul>
-  </section>
-
-  <section class="card">
-    <h2>Gasto</h2>
-    <div class="linha"><input id="g-desc" placeholder="almoço, uber, farmácia…" maxlength="80"><input id="g-val" inputmode="decimal" placeholder="R$ 0,00" class="val"><button id="g-ok" class="pri">registrar</button></div>
-  </section>
-
-  <footer class="rod"><span id="msg" role="status"></span><a id="abrir" target="_blank" rel="noopener" hidden>abrir o app ↗</a></footer>
 </main>
+
+<footer class="rod"><span id="msg" role="status"></span><span class="dir"><a id="abrir" target="_blank" rel="noopener" hidden>abrir o app ↗</a><button id="sair" class="sem" hidden>sair</button></span></footer>
 <script src="api.js"></script>
 <script src="popup.js"></script>
 </body>

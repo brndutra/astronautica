@@ -27,7 +27,14 @@ O projeto na Vercel está ligado a este repositório: cada push na `main` public
 
 - Instalar: `chrome://extensions` → ativar **Modo do desenvolvedor** → **Carregar sem compactação** → escolher a pasta `extensao`.
 - Atalho: **Alt+Shift+A** abre o registro rápido.
-- Faz: captura (vai para o Cérebro), timer de foco de 25 ou 50 min com aviso no fim, +1 copo d'água, marcar hábitos e as três prioridades do dia, registrar gasto (vai para o Tesouro), aviso no começo de cada faixa da grade (06, 09, 12, 15, 18 e 21h).
+- Visual do Acampamento Meio-Sangue, em três abas:
+  - **Arena**: faixa de agora na grade, timer de foco de 25 ou 50 min com pausa e retomada, pausa de 5 min, e o ciclo de estudos do app ("treinar a da vez" abre 50 min na disciplina da vez e, ao terminar, fecha o bloco; "pular" passa a vez).
+  - **Chalé**: humor do dia (o mesmo 1 a 5 da leitura do ciclo) com nota opcional, e contadores com meta (água e os que você criar).
+  - **Registro**: captura (vai para o Cérebro), três prioridades, hábitos e gasto (vai para o Tesouro).
+- Colar de contas e dracmas no topo: uma conta por bloco de foco do dia; uma dracma por bloco e por meta de contador batida. São só leitura do dia, nada é gravado à parte.
+- Aviso no começo de cada faixa da grade (06, 09, 12, 15, 18 e 21h).
 - Como conversa com o app: entra na mesma conta do Supabase, lê só grade, hábitos, prioridades e água, e deposita eventos na tabela `vertice_inbox`. O app aplica os eventos e os apaga. A extensão nunca regrava o registro inteiro.
+- Os contadores criados na extensão ficam no registro em `cont` (`def` com a lista e `dia` com o valor de cada dia) e aparecem no painel do corpo, no Convés.
+- A migração `0004_vertice_inbox_tipos.sql` libera os eventos `humor`, `contador` e `ciclo` na fila. Sem ela, esses eventos ficam guardados na extensão até a migração ser aplicada.
 - Sem rede, os eventos ficam guardados e saem sozinhos a cada 5 minutos.
 - Em `extensao/api.js`, `CFG.app` recebe o endereço do site publicado para mostrar o botão "abrir o app".
