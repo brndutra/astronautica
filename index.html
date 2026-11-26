@@ -16936,7 +16936,7 @@ setTimeout(function(){try{tpEntab();}catch(e){}},1600);setTimeout(function(){try
    Antes de cada ação dessas guarda uma cópia do estado; se algo mudou, aparece "desfazer" por 8 s. Ctrl+Z desfaz a última.
    O Registro do dia ganha × em cada linha de hoje. */
 var DZ={pilha:[],t:null};
-var DZ_ACOES=[['[data-cila]','Tracinho anotado'],['[data-hb]','Hábito marcado'],['[data-hx],[data-delhab],[data-ws-del]','Hábito removido'],
+var DZ_ACOES=[['[data-cila]','Tracinho anotado'],['[data-cilamenos]','Tracinho retirado'],['[data-rthx]','Hábito excluído'],['[data-hb]','Hábito marcado'],['[data-hx],[data-delhab],[data-ws-del]','Hábito removido'],
  ['[data-hd],[data-hw],[data-ws-mk]','Hábito alterado'],['#b-hab,[data-ws-add]','Hábito criado'],['[data-mm-ch],[data-mm-cumpre],[data-mm-dia],[data-mm-pp]','Tarefa marcada'],
  ['[data-mm-del]','Tarefa removida'],['[data-dfck]','Inspeção alterada'],['#b-rd','Registro anotado'],['[data-rdx]','Registro apagado'],['[data-lvx],[data-lcx],[data-px]','Item removido'],
  ['#tp-real input[type=checkbox],.rt input[type=checkbox]','Marcação alterada']];
@@ -17003,6 +17003,45 @@ document.addEventListener('click',function(e){var b=e.target.closest&&e.target.c
  '#rod-apps .cr-bar>.cr-hab{display:none!important}',
  '.wrap>.tb.neo-moldura+#h-rast,#h-rast.neo-tit{margin:-4px auto -32px!important;width:max-content!important;max-width:calc(100% - 120px)!important}',
  '.wrap>.rt.neo-moldura,.wrap>#rt-box .rt.neo-moldura{padding-top:48px!important}'
+].join('\n');document.head.appendChild(st);})();
+
+
+/* ======================= Tirar tracinho e excluir hábito =======================
+   "desviei" ganha um − ao lado (retira o último tracinho de hoje). Na grade mensal dos Rastreados, cada hábito ganha um ×:
+   o primeiro toque pergunta "excluir?", o segundo exclui (e ainda dá para desfazer). */
+function ciMenos(){var c=ciD(),hj=dHoje(),L=c.dia[hj]||[];if(!L.length)return;L.pop();if(!L.length)delete c.dia[hj];try{grava();}catch(e){}try{opPinta();}catch(e){}try{ciMenosBt();}catch(e){}}
+function ciMenosBt(){var bt=document.querySelector('#modo-op [data-cila]');if(!bt)return;var m=bt.parentNode.querySelector('[data-cilamenos]');
+ if(!m){m=document.createElement('button');m.type='button';m.className='op-cila-menos';m.dataset.cilamenos='1';m.title='tirar o último tracinho de hoje';m.setAttribute('aria-label','tirar o último tracinho de hoje');m.textContent='−';}
+ if(bt.nextSibling!==m)bt.insertAdjacentElement('afterend',m);m.hidden=!ciHoje();}
+(function(){var p0=opPinta;opPinta=function(){var r=p0.apply(this,arguments);try{ciMenosBt();}catch(e){}return r;};})();
+document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-cilamenos]');if(!b)return;e.preventDefault();e.stopPropagation();ciMenos();},false);
+pintaRastro=(function(f0){return function(){var r=f0.apply(this,arguments);try{var w=document.getElementById('rt-w');if(w){var tds=w.querySelectorAll('tbody tr:not(.tot)>td.h');
+  Array.prototype.forEach.call(tds,function(td,i){if(td.querySelector('[data-rthx]'))return;var x=document.createElement('button');x.type='button';x.className='rt-hx';x.dataset.rthx=i;x.title='excluir hábito';x.setAttribute('aria-label','excluir hábito');x.textContent='×';td.appendChild(x);});}}catch(e){}return r;};})(pintaRastro);
+document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-rthx]');if(!b)return;e.preventDefault();e.stopPropagation();
+ if(!b.classList.contains('conf')){b.classList.add('conf');b.textContent='excluir?';clearTimeout(b._t);b._t=setTimeout(function(){b.classList.remove('conf');b.textContent='×';},3500);return;}
+ var i=+b.dataset.rthx;if(S.hab&&S.hab[i]){var nm=S.hab[i].nome;S.hab.splice(i,1);try{grava();}catch(z){}try{pinta();}catch(z){}}},false);
+(function(){var st=document.createElement('style');st.id='ci-hab-css';st.textContent=[
+ '#modo-op .op-cila-menos{margin:0 0 0 -4px;padding:0;width:26px!important;min-width:0;height:26px;border:1px solid #7a4a58;border-radius:50%;background:#f4ead2;color:#7a4a58;font:700 15px/1 var(--sans);cursor:pointer;align-self:center}',
+ '#modo-op .op-cila-menos:hover{background:#7a4a58;color:#fff}#modo-op .op-cila-menos[hidden]{display:none}',
+ '.rtg td.h{position:relative;padding-right:22px!important}',
+ '.rtg td.h .rt-hx{position:absolute;right:2px;top:50%;transform:translateY(-50%);margin:0;padding:0 5px;width:auto!important;min-width:0;height:18px;border:0;border-radius:4px;background:transparent;color:#a08b6c;font:14px/1 Georgia,serif;cursor:pointer;opacity:0;transition:opacity .15s}',
+ '.rtg tr:hover td.h .rt-hx,.rtg td.h .rt-hx:focus,.rtg td.h .rt-hx.conf{opacity:1}',
+ '.rtg td.h .rt-hx:hover{background:#9a4a30;color:#fff}',
+ '.rtg td.h .rt-hx.conf{background:#9a4a30;color:#fff;font:700 9px var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase;padding:0 6px;right:2px;z-index:2}'
+].join('\n');document.head.appendChild(st);})();
+
+
+/* ======================= Templo da direita sem o fundo bege em volta =======================
+   Sai a moldura bege (fundo, borda, filetes e respiro) entre o trilho e o templo; o templo encosta nas bordas. */
+(function(){var st=document.createElement('style');st.id='tp-sem-bege-css';st.textContent=[
+ '#tp-painel:has(#tp-real){padding:0!important;background:none!important}',
+ '#tp-painel:has(#tp-real) .tp-fr{background:none!important;border:0!important;border-radius:0!important;box-shadow:none!important;padding:0!important}',
+ '#tp-painel:has(#tp-real) .tp-fr::before,#tp-painel:has(#tp-real) .tp-fr::after{display:none!important}',
+ '#tp-painel:has(#tp-real) #tp-friso{top:0!important;margin:0!important;border-radius:0!important;border-left:0!important;border-right:0!important}',
+ '#tp-entab{top:var(--tp-fh,60px)!important;height:40px!important;padding-top:0!important;margin-bottom:calc(-40px - var(--tp-smt,14px))!important;background:none!important}',
+ '#tp-real>:is(#tm-painel,#recreio)>.tm-cab{top:calc(var(--tp-fh,60px) + 3px)!important}',
+ '#tp-real>:is(#tm-painel,#recreio){margin-left:0!important;margin-right:0!important}',
+ '#rail:has(#tp-real){background:none!important;box-shadow:none!important;padding-bottom:0!important}'
 ].join('\n');document.head.appendChild(st);})();
 
 })();
