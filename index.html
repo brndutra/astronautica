@@ -16975,7 +16975,7 @@ document.addEventListener('click',function(e){var b=e.target.closest&&e.target.c
    Atividades = canoas, Recarga = refeitório com bandeirolas, Culture Vulture = anfiteatro no bosque. Posto: Hélio = armadura no lago,
    Apolo = linha de tiro pintada, Tática = hoplitas, Hermes = trilha dos templos (Moiras segue com o fuso ilustrado).
    Rodapé: o cartão da Fogueira ganha o forno vetorial (terracota e creme). */
-(function(){var T={'.op-l':'armadura-lago.webp','.op-col1':'arquearia-pintura.webp','.op-estudo':'hoplitas.webp','.op-lado':'templos.jpg'};
+(function(){var T={'.op-l':'armadura-lago.webp','.op-col1':'arquearia-pintura.webp','.op-estudo':'ilustra-musas.svg','.op-lado':'templos.jpg'};
  try{Object.keys(T).forEach(function(k){if(OP_TEMPLO[k])OP_TEMPLO[k].img=T[k];});}catch(e){}
  var I=function(n){return 'url("img/acampamento/'+n+'")';};
  var st=document.createElement('style');st.id='fotos-cartoes-css';st.textContent=[
@@ -16987,7 +16987,7 @@ document.addEventListener('click',function(e){var b=e.target.closest&&e.target.c
  '#mm-box :is(.mm-col,.mm-gab)::before{background-position:var(--mm-pos,center)!important;background-size:cover!important}',
  '#tp-real #mm-box .mm-gab::before{content:"";display:block;flex:none;height:78px;margin:-12px -14px 12px;background:var(--mm-img) var(--mm-pos,center)/cover no-repeat;border-bottom:2px solid var(--mc);filter:sepia(.15)}',
  '#rt-box .rt-insp{--rt-img:'+I('chale-interior.webp')+'!important}#rt-box .rt-insp::before{background-position:center 28%!important}',
- '#rt-box .rt-harp{--rt-img:'+I('fogueira-noite.webp')+'!important}#rt-box .rt-harp::before{background-position:center 62%!important}',
+ '#rt-box .rt-harp{--rt-img:'+I('anfiteatro.jpg')+'!important}',
  '#recreio #lat-apt,#lat-apt{--c-img:'+I('canoas.webp')+'!important}#lat-apt::before{background-position:center 45%!important}',
  '#lat-rec{--c-img:'+I('refeitorio-bandeirolas.webp')+'!important}#lat-rec::before{background-position:center 38%!important}',
  '#recreio #lat-cv,#lat-cv{--c-img:'+I('anfiteatro-bosque.webp')+'!important}#lat-cv::before{background-position:center 55%!important}',
@@ -17202,7 +17202,7 @@ setTimeout(function(){try{rodLog();}catch(e){}},1400);setTimeout(function(){try{
 function opTgNoTopo(){var lt=document.getElementById('lat-topo'),bt=document.getElementById('op-tg');if(!lt||!bt)return;var r=lt.querySelector(':scope>.lt-r2')||lt;
  if(bt.parentNode!==r)r.appendChild(bt);var r3=lt.querySelector(':scope>.lt-r3');if(r3)r3.remove();}
 (function(){var t0=ttIndice;ttIndice=function(){var x=t0.apply(this,arguments);try{opTgNoTopo();}catch(e){}return x;};})();
-setTimeout(function(){try{opTgNoTopo();}catch(e){}},900);setTimeout(function(){try{opTgNoTopo();}catch(e){}},3500);
+setTimeout(function(){try{opTgNoTopo();}catch(e){}},900);setInterval(function(){try{opTgNoTopo();}catch(e){}},1500);
 (function(){var st=document.createElement('style');st.id='op-topo-css';st.textContent=[
  '#tt-indice>button[data-tt="op"],#tt-indice>button[data-tt="camp"]{display:none!important}',
  '#lat-topo>.lt-r3{display:flex;margin:6px 0 0}',
@@ -17574,6 +17574,15 @@ document.addEventListener('click',function(e){var m=e.target.closest&&e.target.c
  '#ave-dlg .ad-msg:not(:last-child):not(.ad-aberta) ul{display:none!important}',
  '#ave-dlg .ad-msg:not(:last-child):not(.ad-aberta) b::after{content:" ▸";font-size:11px;color:#9a7b4a}',
  '#ave-dlg footer{padding-top:8px!important}'
+].join('\n');document.head.appendChild(st);})();
+
+
+/* Meta do dia com a falange de hoplitas; Diário de bordo com a fogueira à noite (cada foto num lugar só) */
+(function(){var st=document.createElement('style');st.id='lat-fotos-css';st.textContent=[
+ '#lat-e>#lat-gm>.gm,#lat-e>#lat-db{overflow:hidden}',
+ '#lat-e>#lat-gm>.gm::before,#lat-e>#lat-db::before{content:"";display:block;height:70px;margin:-12px -14px 10px;background:var(--lf) var(--lfp,center)/cover no-repeat;border-bottom:2px solid var(--lc);filter:sepia(.12)}',
+ '#lat-e>#lat-gm>.gm{--lf:url("img/acampamento/hoplitas.webp");--lfp:center 28%}',
+ '#lat-e>#lat-db{--lf:url("img/acampamento/fogueira-noite.webp");--lfp:center 62%}'
 ].join('\n');document.head.appendChild(st);})();
 
 })();
