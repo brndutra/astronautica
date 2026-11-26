@@ -4788,6 +4788,27 @@ dialog.ave-dlg::before{content:'';display:block;height:12px;margin:6px 8px 0;bac
 .ave-dlg .ad-corvo footer{}
 .ave-dlg .ad-cass{background:linear-gradient(90deg,rgba(180,70,58,.08),transparent);border-radius:8px;padding-left:6px!important}
 .ave-dlg .ad-cass .ad-k{color:#b4463a}
+/* Caixa de Hermes: faixa de captura sempre à vista, acima da Biblioteca de Atena */
+#cerbox .qa-hermes{display:flex;align-items:center;gap:8px;margin:0 0 8px;padding:8px 10px;border:1.5px solid #9a6b3a;border-radius:10px;background:linear-gradient(180deg,#fbf5e6,#f4ead1);box-shadow:0 0 0 3px #f4ead2,0 0 0 4px #c9a45a;transition:background .3s}
+#cerbox .qa-hermes.ok{background:#eef3e2}
+#cerbox .qa-hermes .qh-ic{flex:none;width:30px;height:30px;border-radius:50%;border:1.5px solid #9a6b3a;display:grid;place-items:center;background:radial-gradient(circle at 35% 30%,#fffaf0,#ecd9a8)}
+#cerbox .qa-hermes .qh-ic svg{width:16px;height:16px;fill:none;stroke:#7a5532;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+#cerbox .qa-hermes .qh-lb{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px;margin:0}
+#cerbox .qa-hermes .qh-lb small{font:700 8px var(--mono,monospace);letter-spacing:.18em;text-transform:uppercase;color:#9a6b3a}
+#cerbox .qa-hermes #qh-in{width:100%!important;margin:0!important;padding:5px 8px!important;border:1px solid #c9b28a!important;border-radius:6px!important;background:#fffaf0!important;font:13.5px Georgia,serif!important;color:#2a2418!important}
+#cerbox .qa-hermes .qh-ok{flex:none;width:auto!important;margin:0!important;padding:6px 10px!important;border:1.5px solid #5a3f2c!important;border-radius:999px!important;background:#fbf5e6!important;color:#5a3f2c!important;font:700 9px var(--mono,monospace)!important;letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
+#cerbox .qa-hermes .qh-n{flex:none;display:flex!important;flex-direction:column;align-items:center;width:auto!important;margin:0!important;padding:2px 8px!important;border:1px solid #c9b28a!important;border-radius:8px!important;background:transparent!important;color:#5a3f2c!important;cursor:pointer;line-height:1.05}
+#cerbox .qa-hermes .qh-n b{font:700 15px Georgia,serif}
+#cerbox .qa-hermes .qh-n small{font:8px var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase;color:#8a6f55}
+#cerbox .qa-hermes.cheia .qh-n{border-color:#e8a33c!important}
+#cerbox .qa-hermes.cheia .qh-n b{color:#b4463a}
+#qa-d-pc #rail-in{margin:0 0 12px}
+#qa-d-pc #rail-in .rcap{display:none!important}
+/* retrato do Sully */
+.sat-ficha img.sat-foto{width:104px;height:116px;object-fit:contain;filter:drop-shadow(0 6px 10px rgba(60,35,10,.25))}
+.ave-dlg .ad-msg>img.sat-foto{width:60px;height:60px;flex:none;border-radius:50%;object-fit:cover;object-position:50% 18%;border:1.5px solid #9a6b3a;background:#f6ecd4}
+#modo-op .op-sat img.sat-foto{width:42px;height:42px;flex:none;border-radius:50%;object-fit:cover;object-position:50% 16%;border:1.5px solid #9a6b3a;background:#f6ecd4}
+#modo-op .op-sat.sat-panico img.sat-foto{border-color:#b4463a}
 </style>
 </head>
 <body>
@@ -14819,7 +14840,7 @@ function opFazerHTML(){var Q=mmD(),hj=hoje(),fe=Q.feitas[hj]||[],lim=function(ar
 function opEscudo(){var f=tdD().foco;if(!f)return tdEscudo(0,'parado');var rest=tdFocoRest(),fr=f.dur?rest/f.dur:0,modo=f.pausa!=null?'pausado':(rest<=60000?'fim':(f.pausaModo?'pausa':'rodando'));
  return tdEscudo(fr,modo,tdMMSS(rest),f.pausa!=null?'pausado':(f.pausaModo?'pausa':''));}
 function opLadoHTML(){var it=[];Array.prototype.forEach.call(document.querySelectorAll('#rail-in .rlist li:not(.rvz)'),function(l){var t=(l.childNodes[0]&&l.childNodes[0].textContent||l.textContent).trim();if(t)it.push(t);});
- var h='<div class="op-grp"><span class="op-k">caixa de Hermes</span><div class="op-cap"><input data-opcap placeholder="despeje antes de perder" maxlength="140"><button type="button" data-opcapb>guardar</button></div><ul class="op-cl">'+
+ var h='<div class="op-grp"><span class="op-k">píthos · despeje aqui</span><div class="op-cap"><input data-opcap placeholder="despeje antes de perder" maxlength="140"><button type="button" data-opcapb>guardar</button></div><ul class="op-cl">'+
   (it.slice(0,4).map(function(t){return '<li>'+esc(t)+'</li>';}).join('')||'<li class="op-vz">caixa vazia</li>')+(it.length>4?'<li class="op-mais">+'+(it.length-4)+'</li>':'')+'</ul></div>';
  var a=opMin(),L=[];try{rtD().toques.forEach(function(t){if(t.on&&rtMin(t.h)>=a)L.push({m:rtMin(t.h),h:t.h,t:t.n,k:'concha'});});}catch(e){}
  try{agDoDia(hoje()).forEach(function(x){if(x.dia)return;var m=x.ini.getHours()*60+x.ini.getMinutes();if(m>=a)L.push({m:m,h:agHora(x),t:x.t,k:'ag'});});}catch(e){}
@@ -15105,7 +15126,7 @@ function opIcone(k){return '<svg viewBox="0 0 24 24" aria-hidden="true" fill="no
 function opCab(ic,t,p,extra){return '<header class="op-cab"><span class="op-med">'+opIcone(ic)+'</span><div class="op-cabt"><b>'+t+'</b><small>'+p+'</small></div>'+(extra||'')+'</header>';}
 /* Ritos de Héstia: os hábitos de hoje, para preencher com um toque */
 function opRitosHTML(){var H=S.hab||[],hj=hoje(),feitos=H.filter(function(x){return (x.hist||[]).indexOf(hj)>=0;}).length;
- var cab=opCab('chama','Ritos de Héstia','hábitos de hoje','<span class="op-cont">'+feitos+'/'+H.length+'</span>');
+ var cab=opCab('chama','Tear de Penélope','hábitos de hoje','<span class="op-cont">'+feitos+'/'+H.length+'</span>');
  if(!H.length)return cab+'<p class="op-vz">nenhum rito ainda · crie os hábitos na Casa Grande</p>';
  return cab+'<div class="op-ritos-g">'+H.map(function(x,j){var f=(x.hist||[]).indexOf(hj)>=0,w=0;try{w=jan7(x.hist);}catch(e){}
   return '<button type="button" class="op-rito'+(f?' on':'')+'" data-ophb="'+j+'"'+(f?' disabled':'')+' title="'+esc(x.nome)+' · '+w+' de 7 dias"><i>'+(f?'✓':'')+'</i><span>'+esc(x.nome)+'</span><em>'+w+'/7</em></button>';}).join('')+'</div>';}
@@ -15114,7 +15135,7 @@ function opEstudoHTML(){var h=hoje(),dias=0,g={pct:0},sem=0,hj=0,q=0,c={};
  try{c=ccBase();dias=Math.max(0,Math.round((ccDia(CONC.prova)-ccDia(h))/864e5));g=ccGeral();sem=ccSemanaMin();hj=ccHojeMin();q=c.q[ccSemKey()]|0;}catch(e){}
  var C=typeof CONC!=='undefined'?CONC:{minDia:60,metaHoras:10,metaQuest:100};
  var bar=function(f){return '<span class="op-bar"><i style="width:'+Math.round(Math.min(1,f)*100)+'%"></i></span>';};
- var hd=opCab('arco','Campo de arquearia','estudos sob Atena','<span class="op-cd"><b>'+dias+'</b><small>dias · prova</small></span>');
+ var hd=opCab('arco','Campo de arquearia','estudos · enigmas da Esfinge','<span class="op-cd"><b>'+dias+'</b><small>dias · prova</small></span>');
  var k='<div class="op-kp"><div><small>hoje</small><b>'+hj+'<i>/'+C.minDia+' min</i></b>'+bar(hj/(C.minDia||1))+'</div>'+
   '<div><small>semana</small><b>'+String(Math.round(sem/6)/10).replace('.',',')+'<i>/'+String(C.metaHoras).replace('.',',')+' h</i></b>'+bar(sem/60/(C.metaHoras||1))+'</div>'+
   '<div><small>edital</small><b>'+g.pct+'<i>%</i></b>'+bar(g.pct/100)+'</div>'+
@@ -15134,13 +15155,13 @@ function opEstudoHTML(){var h=hoje(),dias=0,g={pct:0},sem=0,hj=0,q=0,c={};
 /* Arena sob Têmis: o gabinete primeiro, depois as tarefas do chalé */
 opFazerHTML=(function(f0){return function(){var R=[],meta=0,fh=0;try{R=gabResumo();R.forEach(function(r){meta+=r.meta;fh+=Math.min(r.fh,r.meta);});}catch(e){}
  var extra='<span class="op-cont" title="meta do gabinete hoje">'+(meta?fh+'/'+meta:'—')+'</span>';
- return opCab('balanca','Arena · ofício','gabinete sob Têmis',extra)+(meta?'<span class="op-bar op-bar-g"><i style="width:'+Math.round(fh/meta*100)+'%"></i></span>':'')+f0.apply(this,arguments);};})(opFazerHTML);
-opLadoHTML=(function(f0){return function(){return opCab('asas','Mensagens de Hermes','captura e agenda')+f0.apply(this,arguments);};})(opLadoHTML);
-opLinhaHTML=(function(f0){return function(){return '<header class="op-cab op-cab-l"><span class="op-med">'+opIcone('carro')+'</span><div class="op-cabt"><b>Carro de Hélio</b><small>linha do dia</small></div></header>'+f0.apply(this,arguments);};})(opLinhaHTML);
+ return opCab('balanca','Arena · ofício','gabinete · o Labirinto',extra)+(meta?'<span class="op-bar op-bar-g"><i style="width:'+Math.round(fh/meta*100)+'%"></i></span>':'')+f0.apply(this,arguments);};})(opFazerHTML);
+opLadoHTML=(function(f0){return function(){return opCab('asas','Píthos de Pandora','captura e agenda')+f0.apply(this,arguments);};})(opLadoHTML);
+opLinhaHTML=(function(f0){return function(){return '<header class="op-cab op-cab-l"><span class="op-med">'+opIcone('carro')+'</span><div class="op-cabt"><b>Clepsidra</b><small>linha do dia</small></div></header>'+f0.apply(this,arguments);};})(opLinhaHTML);
 /* reorganiza o Posto em quatro colunas e liga os botões novos */
 function opReforma(){var o=document.getElementById('modo-op');if(!o||o.dataset.grego)return;o.dataset.grego='1';o.classList.add('op-grego');
  var g=o.querySelector('.op-g');if(!g)return;
- g.innerHTML='<section class="op-c op-col1"><div class="op-foco">'+opCab('sol','Aspís de Apolo','foco')+'<div class="op-esc"></div><div class="op-foco-c"></div></div><div class="op-ritos"></div></section>'+
+ g.innerHTML='<section class="op-c op-col1"><div class="op-foco">'+opCab('sol','Escudo de Aquiles','foco')+'<div class="op-esc"></div><div class="op-foco-c"></div></div><div class="op-ritos"></div></section>'+
   '<section class="op-c op-fazer"></section><section class="op-c op-estudo"></section><section class="op-c op-lado"></section>';
  var t=o.querySelector('.op-top>div:first-child .op-k');if(t)t.innerHTML='posto de comando · chalé 7 · <span class="op-louro">❦</span>';
  o.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;var d=b.dataset;
@@ -15222,7 +15243,7 @@ function mmGabHTML(){var R=[];try{R=gabResumo().filter(function(r){return r.rest
   return '<li class="mm-gq '+cls+(ok?' ok':'')+'"><span class="mm-ck mm-auto" aria-hidden="true">'+(ok?'✓':'')+'</span><div><b>'+(r.p==='minutar'?'Minutar':'Corrigir')+(r.meta?' '+r.meta+' hoje':'')+' · pauta de '+gabDM(r.s.date)+'</b>'+
    '<small>'+(r.meta?Math.min(r.fh,r.meta)+'/'+r.meta+' hoje · ':'')+r.ok+'/'+r.tot+' feitas · '+(r.rest?r.rest+' restam · '+(r.venc?'prazo venceu em '+gabDM(r.prazo):'prazo '+gabDM(r.prazo)+' ('+r.dias+' dia'+(r.dias===1?'':'s')+' út'+(r.dias===1?'il':'eis')+')'):'tudo entregue')+'</small>'+
    '<span class="mm-gbar"><i style="width:'+(r.tot?Math.round(r.ok/r.tot*100):0)+'%"></i></span></div></li>';}).join('');
- return '<section class="mm-gab"><header><div><span class="mm-k">Quests do gabinete</span><small>Arena sob Têmis · designações nas pautas do Ex Officio · fecham sozinhas ao bater a meta · +10 XP por entrega</small></div>'+
+ return '<section class="mm-gab"><header><div><span class="mm-k">Quests do gabinete</span><small>o Labirinto · designações nas pautas do Ex Officio · fecham sozinhas ao bater a meta · +10 XP por entrega</small></div>'+
   '<span class="mm-gcont">'+(meta?fh+'/'+meta+' hoje':'—')+'</span><button type="button" data-satir="1">ver processos</button></header>'+
   '<ul>'+(li||'<li class="mm-vz">'+(GAB.em?'Nada com o seu nome em aberto nas pautas publicadas.':'Sully ainda está farejando as pautas…')+'</li>')+'</ul></section>';}
 mmHTML=(function(f0){return function(){var h=f0.apply(this,arguments),g='';try{g=mmGabHTML();}catch(e){}return h.replace('<div class="mm-g">',g+'<div class="mm-g">');};})(mmHTML);
@@ -15355,6 +15376,67 @@ satFicha=(function(f0){return function(){var h=f0.apply(this,arguments);
  h=h.replace(/<dt>mania<\/dt><dd>/,'<dt>instrumento</dt><dd>violão pintado de flores, o mesmo do disfarce em Austin; a flauta de junco fica para as dríades</dd><dt>sindicato</dt><dd>filiado ao Comitê dos Cascos Fendidos; sonha subir a Sátiro Buscador e ser quem acha Pã</dd><dt>mania</dt><dd>');
  return h;};})(satFicha);
 satPainelHTML=(function(f0){return function(){return f0.apply(this,arguments).replace(/(<small class="cv-bio">)/,'$1Netos do Corvus: Apolo mandou o avô buscar água na Cratera, ele parou para esperar os figos amadurecerem, mentiu culpando a Hidra e virou constelação, de penas pretas para sempre. Os gêmeos trabalham para limpar o nome da família: nunca atrasam uma entrega, e o Cass sempre diz a verdade, mesmo quando é ruim. · ');};})(satPainelHTML);
+/* ======================= Caixa de Hermes dentro da Biblioteca de Atena =======================
+   A caixa mora dentro da Biblioteca, mas a captura fica sempre à vista, numa faixa acima dela,
+   com atalho Alt+H de qualquer lugar. A Biblioteca sobe para o topo do Quadro. */
+function qaHermesQtd(){return document.querySelectorAll('#rail-in .rlist li:not(.rvz)').length;}
+function qaHermesBarra(){var cb=document.getElementById('cerbox'),pc=document.getElementById('qa-d-pc');if(!cb||!pc)return;var b=document.getElementById('qa-hermes');
+ if(!b){b=document.createElement('div');b.id='qa-hermes';b.className='qa-hermes';
+  b.innerHTML='<span class="qh-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6v15M9 9c0-1.7 1.3-3 3-3s3 1.3 3 3-6 2-6 4 6 2 6 4-1.3 3-3 3"/><path d="M12 6c-2-3-6-3.5-9-2 2 .5 3.5 1.8 4 3.5M12 6c2-3 6-3.5 9-2-2 .5-3.5 1.8-4 3.5"/></svg></span>'+
+   '<label class="qh-lb"><small>Píthos de Pandora · Alt+H</small><input id="qh-in" maxlength="140" placeholder="despeje antes de perder e aperte Enter" autocomplete="off"></label>'+
+   '<button type="button" class="qh-ok" data-qhok>guardar</button><button type="button" class="qh-n" data-qhver title="ver a caixa na Biblioteca de Atena"><b>0</b><small>na caixa</small></button>';
+  var guarda=function(){var i=b.querySelector('#qh-in'),r=document.getElementById('r-cap'),bt=document.getElementById('b-rcap');if(!i||!i.value.trim()||!r||!bt)return;
+   r.value=i.value.trim();bt.click();i.value='';b.classList.add('ok');setTimeout(function(){b.classList.remove('ok');qaHermesConta();},700);setTimeout(function(){try{i.focus({preventScroll:true});}catch(z){}},60);};
+  b.addEventListener('keydown',function(e){if(e.key==='Enter'&&e.target.id==='qh-in'){e.preventDefault();guarda();}});
+  b.addEventListener('click',function(e){if(e.target.closest('[data-qhok]'))guarda();else if(e.target.closest('[data-qhver]')){var d=document.getElementById('qa-d-pc');if(d){d.open=true;var ri=document.getElementById('rail-in');(ri||d).scrollIntoView({block:'nearest',behavior:'smooth'});}}});}
+ if(pc.previousElementSibling!==b)pc.insertAdjacentElement('beforebegin',b);qaHermesConta();}
+function qaHermesConta(){var b=document.getElementById('qa-hermes');if(!b)return;var n=qaHermesQtd(),e=b.querySelector('.qh-n b');if(e&&e.textContent!==String(n))e.textContent=n;b.classList.toggle('cheia',n>0);}
+/* ordem do Quadro: Caixa (faixa) + Biblioteca de Atena, depois Tear das Moiras, Pergaminhos e Crônicas */
+latMural=(function(f0){return function(){var pc=document.getElementById('qa-d-pc'),ri=document.getElementById('rail-in');
+ if(!pc||!ri)return f0.apply(this,arguments);try{latRailCss();}catch(e){}
+ var sb=pc.querySelector(':scope > .qa-sb');if(sb&&sb.firstElementChild!==ri)sb.insertBefore(ri,sb.firstChild);};})(latMural);
+qaOrganiza=(function(f0){return function(){f0.apply(this,arguments);var cb=document.getElementById('cerbox'),pc=document.getElementById('qa-d-pc');if(!cb||!pc)return;
+ var ri=document.getElementById('rail-in'),sb=pc.querySelector(':scope > .qa-sb');if(ri&&sb&&sb.firstElementChild!==ri){var a=document.activeElement;if(!(a&&ri.contains(a)))sb.insertBefore(ri,sb.firstChild);}
+ var bt=cb.querySelector(':scope > .cerbt'),hb=document.getElementById('qa-hermes');
+ var alvo=bt?bt.nextElementSibling:cb.firstElementChild;var prim=hb&&hb.parentNode===cb?hb:pc;
+ if(alvo!==prim){var a2=document.activeElement;if(!(a2&&prim.contains(a2))){if(bt)bt.insertAdjacentElement('afterend',prim);else cb.insertBefore(prim,cb.firstChild);}}
+ if(prim===hb&&hb.nextElementSibling!==pc)hb.insertAdjacentElement('afterend',pc);
+ var o=document.getElementById('lat-orb');if(o&&o.parentNode===cb&&pc.nextElementSibling!==o)pc.insertAdjacentElement('afterend',o);
+ var nt=document.getElementById('qa-d-nt'),dj=document.getElementById('qa-d-dj'),last=o&&o.parentNode===cb?o:pc;
+ [nt,dj].forEach(function(x){if(x&&x.parentNode===cb){if(last.nextElementSibling!==x)last.insertAdjacentElement('afterend',x);last=x;}});
+ try{qaHermesBarra();}catch(e){}};})(qaOrganiza);
+reorgOrb=function(){var o=document.getElementById('lat-orb'),cb=document.getElementById('cerbox'),pc=document.getElementById('qa-d-pc');if(!o||!cb)return;o.classList.add('qa-orb');
+ if(pc&&pc.parentNode===cb){if(pc.nextElementSibling!==o)pc.insertAdjacentElement('afterend',o);}else if(o.parentNode!==cb)cb.appendChild(o);};
+/* Alt+H: captura de qualquer lugar (no Posto, vai para a caixa do Posto) */
+document.addEventListener('keydown',function(e){if(!(e.altKey&&(e.key==='h'||e.key==='H')))return;e.preventDefault();
+ if(document.body.classList.contains('op-on')){var oi=document.querySelector('#modo-op [data-opcap]');if(oi){oi.focus();return;}}
+ var i=document.getElementById('qh-in');if(!i){try{qaOrganiza();}catch(z){}i=document.getElementById('qh-in');}if(!i)return;
+ i.scrollIntoView({block:'center',behavior:'smooth'});setTimeout(function(){try{i.focus({preventScroll:true});}catch(z){}},250);});
+setInterval(function(){try{qaHermesConta();}catch(e){}},3000);
+setTimeout(function(){try{qaOrganiza();latMural();}catch(e){}},1300);
+/* ======================= nomes mitológicos sem deuses =======================
+   Píthos de Pandora (captura), Fio de Ariadne (registros e retomadas), Rumo da Argo (em andamento),
+   Tabuinhas de Cadmo (notas), Crônicas do chalé à moda de Homero (diário). */
+QA_SEC.forEach(function(q){if(q[0]==='qa-d-pc'){q[1]='Fio de Ariadne';q[2]='registros diversos · o fio para voltar de onde você saiu';}
+ if(q[0]==='qa-d-nt'){q[1]='Tabuinhas de Cadmo';q[2]='notas e rascunhos · buscar, guardar e etiquetar';}});
+QA_DEUS['rail-in']=['Píthos de Pandora','o jarro guarda tudo · despeje antes de perder'];QA_DEUS['lat-orb']=['Rumo da Argo','em andamento · o que está navegando agora'];
+QA_DEUS['qa-d-pc']=['Ariadne','retomar'];QA_DEUS['qa-d-nt']=['Cadmo','escrita'];QA_DEUS['qa-d-dj']=['Homero','memória'];
+function qaNomes(){var map={'qa-d-pc':QA_SEC[0],'qa-d-nt':QA_SEC[1]};Object.keys(map).forEach(function(id){var d=document.getElementById(id),q=map[id];if(!d||!q)return;var su=d.querySelector(':scope > summary');if(!su)return;
+  var b=su.querySelector(':scope > b'),k=su.querySelector('.qa-sk'),g=su.querySelector('.qa-deus');if(b&&b.textContent!==q[1])b.textContent=q[1];if(k&&k.textContent!==q[2])k.textContent=q[2];var gd=QA_DEUS[id][0]+' · '+QA_DEUS[id][1];if(g&&g.textContent!==gd)g.textContent=gd;});
+ var dj=document.querySelector('#qa-d-dj .qa-deus');if(dj){var t=QA_DEUS['qa-d-dj'][0]+' · '+QA_DEUS['qa-d-dj'][1];if(dj.textContent!==t)dj.textContent=t;}
+ var nm=document.querySelector('#rail-in .qa-nm');if(nm){var bb=nm.querySelector('b'),ss=nm.querySelector('small');if(bb&&bb.textContent!==QA_DEUS['rail-in'][0])bb.textContent=QA_DEUS['rail-in'][0];if(ss&&ss.textContent!==QA_DEUS['rail-in'][1])ss.textContent=QA_DEUS['rail-in'][1];}
+ var h=document.getElementById('h-cup'),sp=h&&h.querySelector('span'),tx='// Pandora, Ariadne, os argonautas e Cadmo guardam o que você deixa aqui';if(sp&&sp.textContent!==tx)sp.textContent=tx;
+ Array.prototype.forEach.call(document.querySelectorAll('#rail-in .rcab.cer *'),function(n){if(n.children.length===0&&/Caixa de Hermes/.test(n.textContent))n.textContent=n.textContent.replace('Caixa de Hermes','Píthos de Pandora');});}
+qaOrganiza=(function(f0){return function(){f0.apply(this,arguments);try{qaNomes();}catch(e){}};})(qaOrganiza);
+(function(){var r0=vxRender;vxRender=function(){var x=r0.apply(this,arguments);try{qaNomes();}catch(e){}return x;};})();
+setTimeout(function(){try{qaNomes();}catch(e){}},1500);
+/* retrato do Sully (imagem do Bruno) no lugar do desenho; photoplayer Jeremy Shada */
+var SAT_SVG=satAvatar;
+satAvatar=function(humor){return '<img class="sat-av sat-foto sat-'+(humor||'calmo')+'" src="img/acampamento/sully.webp" alt="" aria-hidden="true">';};
+satFicha=(function(f0){return function(){var h=f0.apply(this,arguments);
+ h=h.replace(/<dt>photoplayer<\/dt><dd>[\s\S]*?<\/dd>/,'<dt>photoplayer</dt><dd>Jeremy Shada (Boise, Idaho; nascido em 21/01/1997, aquariano de carteirinha)</dd>');
+ h=h.replace(/<dt>aparência<\/dt><dd>[\s\S]*?<\/dd>/,'<dt>aparência</dt><dd>cachos escuros, sardas, chifres de carneiro e orelhas pontudas; boné virado para trás, raminho de oliveira no canto da boca e manto preso por um broche de louro. Das coxas para baixo, pernas de cervo malhadas e rabo de leão</dd>');
+ return h;};})(satFicha);
 setInterval(pintaProgresso,60000);
 })();
 </script>
