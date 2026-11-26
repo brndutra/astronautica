@@ -4005,6 +4005,60 @@ nav#tt-indice.tt-indice{flex-wrap:wrap!important;row-gap:0!important}
 /* botão "apps" do rodapé vai para a esquerda */
 .rod-top{display:flex!important}
 .rod-top .rod-bar{order:-1;border-left:0!important;border-right:1px solid var(--line2)!important}
+
+/* ===== banner inicial revisto ===== */
+#hero-box{position:relative}
+#hero-box:has(#bn-min[aria-expanded="true"])>.bn-row{position:absolute;top:2px;left:0;right:0;z-index:4;margin:0!important;pointer-events:none}
+#hero-box:has(#bn-min[aria-expanded="true"])>.bn-row>*{pointer-events:auto}
+#hero-box:has(#bn-min[aria-expanded="true"]) #tema-ic{width:34px!important;height:34px!important;min-height:0!important}
+#hero-box:has(#bn-min[aria-expanded="true"]) #bn-min{flex:none!important;width:auto!important;margin-left:auto!important;padding:6px 4px!important;background:none!important;border:0!important;box-shadow:none!important}
+#hero-box#hero-box .vx-hero.bn2{display:flex!important;flex-direction:column;align-items:stretch!important;gap:20px;min-height:0!important;padding:40px 46px 30px!important}
+#hero-box#hero-box .vx-hero.bn2 .bn-tit{margin:0!important}
+#hero-box#hero-box .vx-hero.bn2 .bn-tit .vx-k{display:inline-block;letter-spacing:.18em}
+#hero-box#hero-box .vx-hero.bn2 .bn-tit h2{margin:10px 0 0!important}
+#hero-box#hero-box .vx-hero.bn2 #nv-chip{position:static!important;display:inline-flex!important;align-items:center;gap:6px;width:auto!important;height:auto!important;min-height:0!important;margin:0 0 0 12px!important;padding:2px 10px!important;
+ border-radius:999px!important;border:1px solid #d9a99f!important;background:#fbefe9!important;box-shadow:none!important;vertical-align:2px;transform:none!important}
+#hero-box#hero-box .vx-hero.bn2 #nv-chip b{font-size:9.5px!important;letter-spacing:.14em}#hero-box#hero-box .vx-hero.bn2 #nv-chip span{display:none!important}#hero-box#hero-box .vx-hero.bn2 #nv-chip i{width:7px!important;height:7px!important}
+#hero-box#hero-box .vx-hero.bn2 #nv-chip:not(.nv-erro){border-color:#b9cdb2!important;background:#eef4ea!important}
+#hero-box#hero-box .vx-hero.bn2 .bn-id{display:flex;align-items:center;flex-wrap:wrap;gap:12px 14px}
+#hero-box#hero-box .vx-hero.bn2 .bn-id>*{position:static!important;top:auto!important;left:auto!important;right:auto!important;margin:0!important;transform:none!important}
+#hero-box#hero-box .vx-hero.bn2 .bn-id .ac-cracha{flex:0 1 auto;min-width:0}
+#hero-box#hero-box .vx-hero.bn2 .bn-id #vx-diario{flex:none}
+#hero-box#hero-box .vx-hero.bn2 .bn-id .cp-guia{flex:none;padding:9px 16px!important}
+#hero-box#hero-box .vx-hero.bn2 .bn-base{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-top:auto;padding-top:14px;border-top:1px dashed #c9b28a}
+#hero-box#hero-box .vx-hero.bn2 .bn-base>*{position:static!important;top:auto!important;left:auto!important;right:auto!important;bottom:auto!important;margin:0!important;transform:none!important}
+#hero-box#hero-box .vx-hero.bn2 .bn-base .cp-pinbar{border:0!important;padding:0!important}
+#hero-box#hero-box .vx-hero.bn2 .bn-base .cp-pinbar::before,#hero-box#hero-box .vx-hero.bn2 .bn-base .cp-pinbar::after{display:none!important}
+#hero-box#hero-box .vx-hero.bn2 .bn-base .cp-dracmas{display:flex!important}
+@media(min-width:901px){#hero-box#hero-box .vx-hero.bn2 .bn-tit,#hero-box#hero-box .vx-hero.bn2 .bn-id{max-width:calc(100% - 330px)}
+ #hero-box#hero-box .vx-hero.bn2>.cp-postal{top:30px!important;right:40px!important}}
+@media(max-width:900px){#hero-box#hero-box .vx-hero.bn2{padding:30px 22px 22px!important}}
+
+/* Guia do Campista como folheto do acampamento: papel dobrado em três, canto virado */
+#hero-box#hero-box .vx-hero.bn2 .bn-id .cp-guia{position:relative!important;display:flex!important;flex-direction:column;align-items:flex-start;gap:1px;width:auto!important;min-height:0!important;height:auto!important;
+ padding:9px 30px 10px 16px!important;border:1px solid #b89c72!important;border-radius:2px!important;color:#3b2a1d!important;
+ font:700 15px Georgia,'EB Garamond',serif!important;letter-spacing:.01em;text-align:left;cursor:pointer;transform:rotate(-1.6deg)!important;transition:transform .2s,box-shadow .2s;
+ background:linear-gradient(90deg,transparent 33%,rgba(90,63,44,.13) 33.3%,transparent 34%,transparent 66%,rgba(90,63,44,.13) 66.3%,transparent 67%),
+  linear-gradient(180deg,#fbf3df,#efe1c0)!important;
+ box-shadow:2px 3px 0 #d9c7a3,3px 6px 14px rgba(60,40,20,.22)!important}
+#hero-box#hero-box .vx-hero.bn2 .bn-id .cp-guia::before{content:'folheto do acampamento · chalé 7';font:700 8.5px var(--mono,monospace);letter-spacing:.2em;text-transform:uppercase;color:#9a6b3a}
+#hero-box#hero-box .vx-hero.bn2 .bn-id .cp-guia::after{content:'';position:absolute;top:-1px;right:-1px;width:16px;height:16px;background:linear-gradient(225deg,#efe6d2 50%,#d9c7a3 50%);border-left:1px solid #b89c72;border-bottom:1px solid #b89c72;border-radius:0 0 0 2px}
+#hero-box#hero-box .vx-hero.bn2 .bn-id .cp-guia:hover{transform:rotate(0deg) translateY(-2px)!important;box-shadow:2px 3px 0 #d9c7a3,4px 10px 20px rgba(60,40,20,.28)!important}
+#hero-box#hero-box .vx-hero.bn2 .bn-tit .vx-k{display:inline!important}
+
+/* três gavetas na Grade: o mês à esquerda; a semana e o dia à direita */
+.mf-alca-sem{top:calc(50% - 150px)!important}
+.mf-alca-dia{right:2px;top:calc(50% + 70px)!important}
+.tb.gav-dia .mf-alca-dia{background:#5a3f2c!important;color:#f4ead2!important}
+.mf-g-dia{right:44px;border-radius:10px 0 0 10px;box-shadow:-14px 0 30px rgba(60,40,20,.22);transform-origin:right center;transform:translateX(30px) scaleX(.6)}
+.tb.gav-dia .mf-g-dia{transform:none;opacity:1;pointer-events:auto}
+.mf-g-dia{width:min(400px,56%)!important;max-height:440px!important}
+.mf-g-dia .regdia{margin:0!important;padding:0!important;border:0!important;background:none!important;box-shadow:none!important}
+.mf-g-dia .regdia .mcab2 .k9{display:none}
+.mf-g-dia .regdia .rdsub{font-size:9px}
+.mf-g-dia .regdia .rdent{display:flex;gap:6px}.mf-g-dia .regdia .rdent input{flex:1;min-width:0}
+.mf-g-dia .regdia .rdent button{width:auto!important}
+.wrap > div.tb > .dia-gav{position:static;display:block!important;margin:0!important;padding:0!important;border:0!important;background:none!important}
 </style>
 </head>
 <body>
@@ -13324,9 +13378,9 @@ function mfPinta(){var h=document.getElementById('h-sem'),wr=document.querySelec
  if(!b){b=document.createElement('div');b.id='mf-faixa';b.className='mf-faixa';b.dataset.area='op';b.addEventListener('click',function(e){if(e.target.closest('[data-mf]'))mfAbre();});}
  b.dataset.vxHidden='false';var tb0=document.querySelector('.wrap > div.tb');if(!tb0)return;b.className='mf-gav';if(b.parentNode!==tb0)tb0.appendChild(b);
  if(!b.dataset.gav){b.dataset.gav='1';b.addEventListener('click',function(e){var a=e.target.closest('[data-gav]');if(!a)return;var k=a.getAttribute('data-gav'),on=!tb0.classList.contains('gav-'+k);
-  tb0.classList.remove('gav-mes','gav-sem');if(on){tb0.classList.add('gav-'+k);var i=b.querySelector('.mf-g-'+k+' input');if(i)setTimeout(function(){try{i.focus({preventScroll:true});}catch(z){}},320);}
+  tb0.classList.remove('gav-mes','gav-sem','gav-dia');if(on){tb0.classList.add('gav-'+k);var i=b.querySelector('.mf-g-'+k+' input');if(i)setTimeout(function(){try{i.focus({preventScroll:true});}catch(z){}},320);}
   Array.prototype.forEach.call(b.querySelectorAll('.mf-alca'),function(x){x.setAttribute('aria-expanded',String(tb0.classList.contains('gav-'+x.getAttribute('data-gav'))));});});
-  document.addEventListener('keydown',function(e){if(e.key==='Escape')tb0.classList.remove('gav-mes','gav-sem');});}
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')tb0.classList.remove('gav-mes','gav-sem','gav-dia');});}
  var foco=document.activeElement;if(foco&&b.contains(foco)&&foco.tagName==='INPUT')return;
  var W=wsD(),m=wsSemanas().mes,v=W.mes[m]||{},MS=['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
  var RS=revSemana(),R=(wsD().rev||{})[RS.k]||{};
@@ -13722,6 +13776,30 @@ function pdPilula(){var n=document.getElementById('tt-indice');if(!n)return;var 
  bs.forEach(function(b,i){if(p.children[i]!==b)p.insertBefore(b,p.children[i]||null);});
  var tt={fin:'Bolsa de Dracmas',b9:'Bunker 9',laptop:'Laptop · Eumátheia',enf:'Enfermaria'};bs.forEach(function(b){var k=b.dataset.ic||b.dataset.tt;if(tt[k]){b.title=tt[k];b.setAttribute('aria-label',tt[k]);}});}
 (function(){var i0=ttIcones;ttIcones=function(){i0();try{pdPilula();}catch(e){}};})();
+/* banner inicial arrumado: título e data, identidade com ações, base com notas e colar */
+function bnArruma(){var h=document.querySelector('#hero-box .vx-hero');if(!h)return;h.classList.add('bn2');
+ var h2=h.querySelector(':scope > div > h2');if(!h2)return;var tit=h2.parentNode;tit.classList.add('bn-tit');
+ var k=tit.querySelector('.vx-k');if(k&&!k.dataset.bn){var m=(k.textContent.match(/(\d{4})-(\d{2})-(\d{2})/)||[]);
+  if(m.length){var d=new Date(+m[1],+m[2]-1,+m[3]);k.textContent='ciclo de '+d.toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'long'});}k.dataset.bn='1';}
+ var nv=h.querySelector('#nv-chip');if(nv&&k&&nv.previousElementSibling!==k)k.insertAdjacentElement('afterend',nv);
+ var id=h.querySelector(':scope > .bn-id');if(!id){id=document.createElement('div');id.className='bn-id';}
+ if(tit.nextElementSibling!==id)tit.insertAdjacentElement('afterend',id);
+ ['.ac-cracha','#vx-diario','.cp-guia'].forEach(function(q){var n=h.querySelector(':scope > '+q);if(n)id.appendChild(n);});
+ var base=h.querySelector(':scope > .bn-base');if(!base){base=document.createElement('div');base.className='bn-base';h.appendChild(base);}
+ ['.cp-pinbar','.cp-dracmas'].forEach(function(q){var n=h.querySelector(':scope > '+q);if(n)base.appendChild(n);});}
+(function(){var r0=vxRender;vxRender=function(){var x=r0.apply(this,arguments);try{bnArruma();}catch(e){}return x;};})();
+setTimeout(function(){try{bnArruma();}catch(e){}},80);setTimeout(function(){try{bnArruma();}catch(e){}},1000);
+/* Registro do dia vira a terceira gaveta da Grade semanal (o dia, a semana, o mês) */
+function diaGaveta(){var tb=document.querySelector('.wrap > div.tb'),rd=document.querySelector('.regdia');if(!tb||!rd)return;var g=document.getElementById('dia-gav');
+ if(!g){g=document.createElement('div');g.id='dia-gav';g.className='mf-gav dia-gav';
+  g.innerHTML='<button type="button" class="mf-alca mf-alca-dia" data-gavd aria-expanded="false"><span>o dia · registro</span></button>'+
+   '<aside class="mf-g mf-g-dia" aria-label="Registro do dia"><header><span class="k9">registro do dia</span><b>Hoje</b><button type="button" class="comp-x" data-gavd aria-label="fechar">×</button></header><div class="dia-slot"></div></aside>';
+  g.addEventListener('click',function(e){if(!e.target.closest('[data-gavd]'))return;var on=!tb.classList.contains('gav-dia');tb.classList.remove('gav-mes','gav-sem','gav-dia');if(on)tb.classList.add('gav-dia');
+   g.querySelector('.mf-alca-dia').setAttribute('aria-expanded',String(on));if(on){var i=g.querySelector('#rd-in');if(i)setTimeout(function(){try{i.focus({preventScroll:true});}catch(z){}},320);}});}
+ if(g.parentNode!==tb)tb.appendChild(g);var sl=g.querySelector('.dia-slot');if(rd.parentNode!==sl)sl.appendChild(rd);
+ var b=g.querySelector('header b');if(b){var t=new Date().toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'short'});if(b.textContent!==t)b.textContent=t;}}
+(function(){var p0=pinta;pinta=function(){var x=p0.apply(this,arguments);try{diaGaveta();}catch(e){}return x;};})();
+setTimeout(function(){try{diaGaveta();}catch(e){}},120);
 function reorg(){try{reorgProf();}catch(e){}try{reorgArena();}catch(e){}try{pdPilula();}catch(e){}try{reorgOrb();}catch(e){}try{reorgTesouro();}catch(e){}}
 (function(){var r0=vxRender;vxRender=function(){var x=r0.apply(this,arguments);reorg();return x;};var p0=pinta;pinta=function(){var x=p0.apply(this,arguments);reorg();return x;};})();
 setTimeout(reorg,50);setTimeout(reorg,900);
