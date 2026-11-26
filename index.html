@@ -4939,6 +4939,12 @@ dialog.ave-dlg::before{content:'';display:block;height:12px;margin:6px 8px 0;bac
 #modo-op .op-nectar button{padding:5px 10px!important;font-size:12px!important}
 #modo-op .op-foco.op-com-nectar .op-esc{width:min(120px,14vh)!important}
 #modo-op .op-foco.op-com-nectar .op-ch{display:none}
+/* títulos dos cartões do Posto sem corte: quebram em duas linhas e encolhem em telas menores */
+#modo-op.op-grego .op-cabt b{white-space:normal!important;overflow:visible!important;text-overflow:clip!important;line-height:1.08;font-size:15px}
+#modo-op.op-grego .op-cabt small{white-space:normal;line-height:1.25}
+@media(max-width:1500px){#modo-op.op-grego .op-cabt b{font-size:13.5px;letter-spacing:.04em}#modo-op.op-grego .op-cabt small{font-size:7px;letter-spacing:.14em}
+ #modo-op.op-grego .op-templo .op-med{width:26px;height:26px}#modo-op.op-grego .op-templo .op-med svg{width:15px;height:15px}
+ #modo-op.op-grego .op-templo .op-cab{gap:6px;padding:5px 6px!important}#modo-op.op-grego .op-cd{padding:2px 5px}#modo-op.op-grego .op-cd b{font-size:15px}}
 </style>
 <link rel="stylesheet" href="pontes.css">
 <script src="pontes.js" defer></script>
