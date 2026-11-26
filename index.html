@@ -17585,6 +17585,32 @@ document.addEventListener('click',function(e){var m=e.target.closest&&e.target.c
  '#lat-e>#lat-db{--lf:url("img/acampamento/fogueira-noite.webp");--lfp:center 62%}'
 ].join('\n');document.head.appendChild(st);})();
 
+
+/* ======================= Painéis expansíveis cobrem todo o centro logo abaixo do frontão =======================
+   Ao abrir (pelos botões da placa do frontão), a página volta ao topo e o painel ocupa a coluna do meio inteira,
+   do pé do frontão até o rodapé; o frontão com a placa continua à vista para trocar de painel. */
+function pdTopo(){var pd=document.getElementById('painel-dir'),f=document.querySelector('#hero-box .neo-frontao');if(!pd)return;var t=0;
+ if(f&&f.offsetParent){var r=f.getBoundingClientRect(),pl=f.querySelector('.pd-pilula'),bt=r.bottom;if(pl){bt=Math.max(bt,pl.getBoundingClientRect().bottom);}t=Math.max(0,Math.round(bt+6));}document.documentElement.style.setProperty('--pd-top',t+'px');}
+(function(){var era=false,liga=function(){var pd=document.getElementById('painel-dir');if(!pd)return false;
+  new MutationObserver(function(){var on=pd.classList.contains('on');if(on&&!era){try{window.scrollTo({top:0,behavior:'instant'});}catch(e){window.scrollTo(0,0);}}era=on;pdTopo();}).observe(pd,{attributes:true,attributeFilter:['class']});return true;};
+ var n=0,t=setInterval(function(){if(liga()||++n>20)clearInterval(t);},800);
+ window.addEventListener('scroll',function(){if(document.querySelector('#painel-dir.on'))pdTopo();},{passive:true});window.addEventListener('resize',pdTopo);})();
+(function(){var st=document.createElement('style');st.id='pd-sob-frontao-css';st.textContent=[
+ '@media(min-width:1380px){',
+ ' body.com-dia #painel-dir.pd.on .pd-corpo{left:calc(var(--dia-l,300px) + 62px)!important;right:var(--dia-r,460px)!important}',
+ ' body:not(.com-dia) #painel-dir.pd.on .pd-corpo{left:300px!important;right:var(--rail-w,460px)!important}',
+ ' #painel-dir.pd.on .pd-corpo{top:var(--pd-top,0px)!important;bottom:71px!important;width:auto!important;max-width:none!important;height:auto!important;transform:none!important;border-radius:12px!important;box-shadow:0 0 0 1px #c9b28a,0 18px 40px -12px rgba(40,25,10,.45)!important;overflow:auto}',
+ ' #painel-dir.pd.on .pd-abas{display:none!important}',
+ ' #painel-dir.pd.on{pointer-events:none}#painel-dir.pd.on .pd-corpo{pointer-events:auto}',
+ '}'
+].join('\n');document.head.appendChild(st);})();
+
+
+/* a placa do frontão abre os painéis (os atalhos antigos só ouviam a barra do alto) */
+document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('#hero-box .pd-pilula button');if(!b)return;
+ var k=b.dataset.tt==='fin'?'fin':b.dataset.ic==='laptop'?'lap':b.dataset.ic==='enf'?'enf':null;if(!k)return;e.preventDefault();e.stopImmediatePropagation();
+ try{var pd=document.getElementById('painel-dir');if(pd&&pd.classList.contains('on')&&pd.querySelector('[data-pd="'+k+'"][aria-selected="true"]'))pdFecha();else pdAbre(k);}catch(z){}},true);
+
 })();
 </script>
 </body>
