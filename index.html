@@ -16371,12 +16371,14 @@ setTimeout(function(){try{tpReal();}catch(e){}},3200);
  'h2.sec::before{content:none!important;display:none!important}',
  '#tp-painel .tp-corpo:empty{display:none}',
  '#tp-real{display:block;margin-top:12px}',
+ /* a seção leva a própria construção grega (entablamento, colunas, placa); o templo só cede espaço */
+ '#tp-painel:has(#tp-real) .tp-fr{padding-left:8px!important;padding-right:8px!important;background:linear-gradient(180deg,#f7eed8,#f1e4c6)!important}',
+ '#tp-painel:has(#tp-real) .tp-cab,#tp-painel:has(#tp-real) .tp-faces{margin-left:12px;margin-right:12px}',
+ '#tp-real>:is(#tm-painel,#recreio){margin:0!important;width:auto!important;max-width:none!important;min-height:0!important;padding-left:40px!important;padding-right:40px!important}',
+ '#tp-real>:is(#tm-painel,#recreio)>.tm-cab .k9{display:none!important}',
+ '#tp-real>:is(#tm-painel,#recreio)>.tm-cab{max-width:calc(100% - 40px)!important;justify-content:center}',
  '#tp-real[data-face="tm"]>#recreio,#tp-real[data-face="rec"]>#tm-painel{display:none!important}',
  '#tp-real[data-face="tm"]>#tm-painel,#tp-real[data-face="rec"]>#recreio{display:block!important}',
- /* a moldura grega já é a do templo: a da seção sai */
- '#tp-real>:is(#tm-painel,#recreio){margin:0!important;padding:0!important;border:0!important;background:none!important;box-shadow:none!important;min-height:0!important;width:auto!important;max-width:none!important}',
- '#tp-real>:is(#tm-painel,#recreio)::before,#tp-real>:is(#tm-painel,#recreio)::after{content:none!important;display:none!important}',
- '#tp-real>:is(#tm-painel,#recreio)>.col-orn,#tp-real>:is(#tm-painel,#recreio)>.tm-cab{display:none!important}',
  '#tp-real :is(.tm-r,.rc-g){display:flex!important;flex-direction:column!important;gap:12px!important;grid-template-columns:1fr!important}',
  '#tp-real .tm-lb{margin:14px 0 8px!important}',
  '#tp-real .rc-g>*{width:100%!important;max-width:100%!important;min-width:0!important;box-sizing:border-box}',
