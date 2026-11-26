@@ -4381,6 +4381,12 @@ h2.sec.neo-tit[data-nivel]{margin-top:12px!important}
 .td-aspis .td-menu footer span{font:700 8.5px var(--mono,monospace);letter-spacing:.18em;text-transform:uppercase;color:#9a6b3a}
 .td-aspis .td-menu footer b{font:700 13px Georgia,serif;color:#3b2a1d}
 .td-aspis .td-menu footer a{margin-left:auto;font:600 11.5px var(--sans);color:#5a3f2c}
+
+#td-disco .td-ring{cursor:grab;touch-action:none}
+#td-disco.td-arrastando .td-ring{cursor:grabbing;transform:scale(1.06)!important;box-shadow:0 18px 30px -10px rgba(60,35,10,.6)!important}
+#td-disco.td-solto.td-cima{flex-direction:column!important}
+#td-disco.td-solto.td-dir{align-items:flex-end!important}
+#td-disco .td-ring{title:''}
 </style>
 </head>
 <body>
@@ -14308,7 +14314,7 @@ tdDisco=function(forca){var d=document.getElementById('td-disco');
   d.addEventListener('keydown',function(e){if(e.key==='Enter'&&e.target.dataset&&e.target.dataset.tdmin!=null){e.preventDefault();var b=d.querySelector('[data-tdf="livre"]');if(b)b.click();}});}
  d.classList.add('td-aspis');var f=tdD().foco,P=tdPref(),H=tdHojeFoco();
  if(!f){if(forca||d.dataset.m!=='parado'){d.dataset.m='parado';d.classList.remove('rodando','pausado','fim','em-pausa');var nm=tdBlocoCiclo();
-   d.innerHTML='<button type="button" class="td-ring" aria-label="Abrir o foco">'+tdEscudo(0,'parado')+'</button>'+
+   d.innerHTML='<button type="button" class="td-ring" aria-label="Abrir o foco" title="clique para abrir · arraste para mover · duplo clique volta ao canto">'+tdEscudo(0,'parado')+'</button>'+
     '<div class="td-menu"><header><span>aspís do foco</span><b>Começar um bloco</b></header>'+
     '<div class="td-chips">'+[15,25,45,50,90].map(function(m){return '<button type="button" data-tdf="m'+m+'"'+(P.ult===m?' class="on"':'')+'>'+m+'</button>';}).join('')+'</div>'+
     '<div class="td-livre"><input type="number" min="1" max="240" inputmode="numeric" data-tdmin placeholder="min" aria-label="Minutos"><button type="button" data-tdf="livre">começar</button></div>'+
@@ -14333,6 +14339,24 @@ tdDisco=function(forca){var d=document.getElementById('td-disco');
  if(rest<=0&&f.pausa==null&&!f.avisou){f.avisou=1;tdSalva();
   if(f.pausaModo){tdAvisa('Fim da pausa','de volta ao treino?',[['novo bloco',function(){tdFocoFim(false);tdFocoIni(P.ult||25,'bloco de '+(P.ult||25)+' min',-1);}],['parar',function(){tdFocoFim(false);}]],P.som);}
   else tdAvisa('Tempo! '+f.rot,'terminou o bloco de '+Math.round(f.dur/60000)+' min',[['concluí'+(P.pomo?' · pausa':''),function(){if(f.pi>=0){try{var x=plDia(hoje());if(x.top[f.pi])x.top[f.pi].ok=true;}catch(e){}}tdFocoFim(true);if(P.pomo){tdFocoIni(5,'pausa curta',-1);var g=tdD().foco;if(g){g.pausaModo=1;tdSalva();}}}],['mais 5',function(){var g=tdD().foco;if(g){g.dur+=5*60000;g.avisou=0;tdSalva();tdDisco(true);}}],['parar',function(){tdFocoFim(true);}]],P.som);}};
+/* escudo do foco arrastável: arraste pelo escudo; a posição fica guardada; duplo clique volta ao canto */
+function tdPosAplica(){var d=document.getElementById('td-disco');if(!d)return;var p=null;try{p=JSON.parse(localStorage.getItem('astro_disco_pos')||'null');}catch(e){}
+ if(!p){['left','top','bottom','right'].forEach(function(k){d.style.removeProperty(k);});d.classList.remove('td-solto','td-cima');return;}
+ var w=d.querySelector('.td-ring')?104:104,x=Math.max(4,Math.min(window.innerWidth-w-4,p.x)),y=Math.max(4,Math.min(window.innerHeight-w-4,p.y));
+ d.classList.add('td-solto');d.style.setProperty('left',x+'px','important');d.style.setProperty('top',y+'px','important');d.style.setProperty('bottom','auto','important');d.style.setProperty('right','auto','important');
+ d.classList.toggle('td-cima',y<window.innerHeight/2);d.classList.toggle('td-dir',x>window.innerWidth/2);}
+(function(){var arr=null;
+ document.addEventListener('pointerdown',function(e){var r=e.target.closest&&e.target.closest('#td-disco .td-ring');if(!r||e.button>0)return;var d=document.getElementById('td-disco'),b=r.getBoundingClientRect();
+  arr={x0:e.clientX,y0:e.clientY,dx:e.clientX-b.left,dy:e.clientY-b.top,mov:false,id:e.pointerId};},true);
+ document.addEventListener('pointermove',function(e){if(!arr)return;if(!arr.mov&&Math.hypot(e.clientX-arr.x0,e.clientY-arr.y0)<6)return;arr.mov=true;e.preventDefault();
+  var d=document.getElementById('td-disco');d.classList.add('td-arrastando');d.classList.remove('aberto');
+  var p={x:e.clientX-arr.dx,y:e.clientY-arr.dy};try{localStorage.setItem('astro_disco_pos',JSON.stringify(p));}catch(z){}tdPosAplica();},{passive:false});
+ document.addEventListener('pointerup',function(){if(!arr)return;var m=arr.mov;arr=null;var d=document.getElementById('td-disco');if(d)d.classList.remove('td-arrastando');
+  if(m){var bloq=function(ev){ev.stopPropagation();ev.preventDefault();document.removeEventListener('click',bloq,true);};document.addEventListener('click',bloq,true);setTimeout(function(){document.removeEventListener('click',bloq,true);},50);}});
+ document.addEventListener('dblclick',function(e){if(!(e.target.closest&&e.target.closest('#td-disco .td-ring')))return;try{localStorage.removeItem('astro_disco_pos');}catch(z){}tdPosAplica();var d=document.getElementById('td-disco');if(d)d.classList.remove('aberto');});
+ window.addEventListener('resize',tdPosAplica);})();
+tdDisco=(function(t0){return function(){var x=t0.apply(this,arguments);try{var d=document.getElementById('td-disco');if(d&&!d.dataset.pos){d.dataset.pos=1;tdPosAplica();}}catch(e){}return x;};})(tdDisco);
+setTimeout(tdPosAplica,400);
 setInterval(pintaProgresso,60000);
 })();
 </script>
