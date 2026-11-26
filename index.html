@@ -2379,6 +2379,60 @@ body.claro[data-skin="astro"] .cp-dracmas i.mosaico::after,.cp-dracmas i::after{
 #lat-ac .ac-row{grid-template-columns:1fr!important;margin:0!important;gap:10px}
 
 #lat-quadro:empty,#lat-vx:empty{display:none}
+/* hábitos semanais dentro do rastreador */
+.rt .ws-box{margin:14px 0 0!important;padding-top:12px;border-top:1px dashed #5a3f2c}
+.rt .ws-card{background:transparent;border:0;padding:0}
+
+/* spread: só os hábitos semanais */
+.ws-c3.ws-so{grid-template-columns:1fr!important}
+/* foco e metas do mês, acima da Grade */
+.mf-faixa{display:flex;align-items:center;gap:18px;margin:8px 0 10px;padding:9px 14px;border:1px solid var(--line2);border-left:4px solid var(--red);border-radius:10px;background:var(--panel)}
+.mf-i{min-width:0;flex:1;display:flex;flex-direction:column;gap:2px}
+.mf-i .k9{font-family:var(--mono);font-size:8.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--red)}
+.mf-i b{font-family:var(--display);font-size:15px;color:var(--bone);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mf-i em{font-style:italic;font-weight:400;color:var(--dim)}
+.mf-faixa>button{flex:none;width:auto!important;margin:0!important;padding:6px 12px!important;border:1px solid var(--red)!important;background:transparent!important;color:var(--red)!important;border-radius:8px;font-size:12px;cursor:pointer}
+.mf-box label{display:flex;flex-direction:column;gap:5px;margin-bottom:10px;font-family:var(--mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--red)}
+.mf-box textarea{font-family:inherit;font-size:14px;letter-spacing:0;text-transform:none;line-height:1.45;padding:8px 10px;border:1px solid var(--line2);border-radius:8px;background:transparent;color:var(--bone);resize:vertical}
+.mf-bt{display:flex;justify-content:flex-end;gap:8px}
+.mf-bt button{width:auto!important;margin:0!important;padding:7px 14px!important;border:1px solid var(--red)!important;background:transparent!important;color:var(--red)!important;border-radius:8px;cursor:pointer}
+.mf-bt button[data-mf-ok]{background:var(--red)!important;color:#fff8e6!important}
+.fer-dlg[hidden]{display:none!important}
+/* gaveta de compromissos saindo da coluna direita */
+.wrap > div.tb{position:relative;overflow:hidden}
+.comp-alca{position:absolute!important;right:2px;top:50%;z-index:6;transform:translateY(-50%);width:44px!important;height:170px;margin:0!important;padding:0!important;border:1.5px solid #5a3f2c!important;border-radius:22px;
+ background:#f4ead2!important;color:#5a3f2c!important;cursor:pointer;box-shadow:0 4px 12px rgba(60,40,20,.2)}
+.comp-alca span{display:block;writing-mode:vertical-rl;transform:rotate(180deg);margin:auto;font-family:Georgia,serif;font-size:11.5px;letter-spacing:.32em;text-transform:uppercase}
+.comp-alca:hover,.tb.comp-aberto .comp-alca{background:#5a3f2c!important;color:#f4ead2!important}
+.comp-gaveta{position:absolute;top:42px;bottom:20px;right:48px;z-index:5;width:min(340px,48%);overflow:auto;padding:12px 14px;background:#fbf5e6;border:1.5px solid #5a3f2c;border-radius:10px 0 0 10px;
+ box-shadow:-14px 0 30px rgba(60,40,20,.22);transform-origin:right center;transform:translateX(calc(100% + 60px)) scaleX(.6);opacity:0;transition:transform .35s cubic-bezier(.2,.8,.2,1),opacity .25s;color:#3b2a1d}
+.tb.comp-aberto .comp-gaveta{transform:none;opacity:1}
+.comp-gaveta header{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.comp-gaveta header .k9{display:block;font-family:var(--mono);font-size:8.5px;letter-spacing:.22em;text-transform:uppercase;color:#9a6b3a}
+.comp-gaveta header b{font-family:Georgia,serif;font-size:16px}
+.comp-x{margin-left:auto!important;width:26px!important;height:26px!important;padding:0!important;border:1px solid #5a3f2c!important;background:transparent!important;color:#5a3f2c!important;border-radius:50%;font-size:15px;line-height:1;cursor:pointer}
+.comp-gaveta h5{margin:12px 0 4px;font-family:Georgia,serif;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#5a3f2c;border-top:1px solid #d9c7a3;padding-top:8px}
+.comp-dia{list-style:none;margin:0;padding:0 0 0 14px;border-left:2px solid #5a3f2c;display:flex;flex-direction:column;gap:5px}
+.comp-dia li{position:relative;display:flex;align-items:baseline;gap:8px;font-size:13px;line-height:1.35}
+.comp-dia li i{position:absolute;left:-26px;top:-1px;width:22px;height:22px;border-radius:50%;background:#fbf5e6;border:1.5px solid #5a3f2c;display:grid;place-items:center}
+.comp-dia li i svg{width:12px;height:12px;fill:none;stroke:#5a3f2c;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.comp-dia li.comp-agenda i{background:#5a3f2c} .comp-dia li.comp-agenda i svg{stroke:#f4ead2}
+.comp-dia li b{flex:none;width:58px;font-size:12px;color:#6b5140}
+.comp-dia li.passou{opacity:.5}
+.comp-agora span{font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:#b4463a;border-top:1.5px solid #b4463a;padding-top:2px;flex:1}
+.comp-gaveta .ag-dt{color:#9a6b3a} .comp-gaveta .ag-it{color:#3b2a1d} .comp-gaveta .ag-lista{max-height:none}
+.comp-n{margin:8px 0 0;font-size:11.5px;color:#6b5140;font-style:italic}
+
+/* medalhão do ciclo no lugar do pórtico */
+.rd{margin:0!important;padding:8px 0 4px;display:flex;justify-content:center}
+.rd-svg{display:block;width:100%;max-width:380px;height:auto}
+.rd-ab{font-family:Georgia,serif;font-size:10.5px;font-weight:700;letter-spacing:.5px}
+.rd-k{font-family:Georgia,serif;font-size:8.6px;letter-spacing:1.3px;fill:#f4ead2;opacity:.85}
+.rd-d{fill:#e9c87a;opacity:1}
+.rd-n{font-family:Georgia,serif;font-size:25px;font-weight:700;fill:#f4ead2}
+.rd-vz{font-family:Georgia,serif;font-size:13px;fill:#5a3f2c}
+#lat-est .cic-roda>.k5,#lat-est #ci-roda,#lat-est #ci-at{display:none!important}
+
 /* agenda integrada */
 .ag-ev{position:absolute;left:3px;right:3px;bottom:2px;z-index:2;padding:1px 4px;border-radius:4px;background:#5a3f2c;color:#f4ead2;font-size:9.5px;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;pointer-events:auto;cursor:default}
 .ag-ev+.ag-ev{bottom:17px}
@@ -13314,10 +13368,9 @@ function wsHTML(){var W=wsD(),Q=wsSemanas(),mv=W.mes[Q.mes]||{},mk=W.mk[Q.mes]||
   return '<div class="ws-s'+(i===Q.at?' at':'')+'"><span>sem '+(i+1)+'</span><i style="--p:'+pct+'%"></i><b>'+feitos+'/'+tot+'</b></div>';}).join('')+'</div>';
  var lista=W.sem.map(function(h){var row=Q.sem.map(function(w,i){var on=!!(mk[h.id]&&mk[h.id][i]);return '<button type="button" class="ws-c'+(on?' on':'')+(i===Q.at?' at':'')+'" data-ws-mk="'+esc(h.id)+':'+i+'" aria-label="'+esc(h.n)+', semana '+(i+1)+'">'+(on?'✓':'')+'</button>';}).join('');
   return '<div class="ws-h"><span>'+esc(h.n)+'</span><div>'+row+'</div><button type="button" class="ws-x" data-ws-del="'+esc(h.id)+'" aria-label="remover">×</button></div>';}).join('')||'<p class="lat-n">Nenhum hábito semanal ainda. Ex.: faxina do quarto, revisão da semana, ligar para a família.</p>';
- return '<div class="ws-c3"><section class="ws-card"><span class="k9">Foco do mês</span><textarea data-ws-mes="foco" rows="3" placeholder="Uma intenção para o mês">'+esc(mv.foco||'')+'</textarea></section>'+
-  '<section class="ws-card"><span class="k9">Metas do mês</span><textarea data-ws-mes="metas" rows="3" placeholder="O que quero concluir">'+esc(mv.metas||'')+'</textarea></section>'+
-  '<section class="ws-card ws-hab"><span class="k9">Hábitos semanais</span>'+cab+lista+'<div class="ws-add"><input data-ws-in placeholder="novo hábito semanal" maxlength="40"><button type="button" data-ws-add>incluir</button></div></section>'+
-  (agIcsUrl()?'<section class="ws-card ws-ag"><span class="k9">Compromissos · próximos 30 dias (Google Agenda)</span>'+agListaHTML(30)+'</section>':'')+'</div>';}
+ return '<div class="ws-c3 ws-so">'+
+  '<section class="ws-card ws-hab"><span class="k9">Hábitos semanais · uma vez por semana (os diários ficam na grade acima)</span>'+cab+lista+'<div class="ws-add"><input data-ws-in placeholder="novo hábito semanal" maxlength="40"><button type="button" data-ws-add>incluir</button></div></section>'+
+'</div>';}
 function wsPinta(){var tb=document.querySelector('.wrap > .tb');if(!tb)return;var b=document.getElementById('ws-box');
  if(!b){b=document.createElement('div');b.id='ws-box';b.className='ws-box';b.dataset.area='op';
   b.addEventListener('click',function(e){var t=e.target.closest('[data-ws-mk],[data-ws-del],[data-ws-add]');if(!t)return;var W=wsD(),Q=wsSemanas();
@@ -13327,7 +13380,7 @@ function wsPinta(){var tb=document.querySelector('.wrap > .tb');if(!tb)return;va
    grava();b.innerHTML=wsHTML();});
   b.addEventListener('keydown',function(e){if(e.key==='Enter'&&e.target.hasAttribute('data-ws-in')){e.preventDefault();var a=b.querySelector('[data-ws-add]');if(a)a.click();}});
   b.addEventListener('change',function(e){var k=e.target.dataset.wsMes;if(!k)return;var W=wsD(),m=wsSemanas().mes;W.mes[m]=W.mes[m]||{};W.mes[m][k]=e.target.value.slice(0,600);grava();});}
- b.dataset.vxHidden='false';if(b.previousElementSibling!==tb)tb.parentNode.insertBefore(b,tb.nextSibling);
+ b.dataset.vxHidden='false';var rt=document.querySelector('.wrap > div.rt');if(rt){if(b.parentNode!==rt)rt.appendChild(b);}else if(b.previousElementSibling!==tb)tb.parentNode.insertBefore(b,tb.nextSibling);
  var a=document.activeElement;if(!(a&&b.contains(a)))b.innerHTML=wsHTML();}
 
 /* ---------- Ferramentas: o que é para mexer e passar o tempo fica num menu, aberto pelo ícone no índice ---------- */
@@ -13809,8 +13862,40 @@ function ptHTML(){var ini=ptData('2026-11-01'),fim=ptData('2027-02-03'),hj=ptDat
  s+='<circle cx="'+c2+'" cy="'+(cy+40)+'" r="40" fill="'+NEO_TINTA+'"/><text x="'+c2+'" y="'+(cy+30)+'" text-anchor="middle" class="pt-ck">EDITAL</text><text x="'+c2+'" y="'+(cy+52)+'" text-anchor="middle" class="pt-cn2">'+ed+'%</text><text x="'+c2+'" y="'+(cy+66)+'" text-anchor="middle" class="pt-ck">'+ultima.toFixed(1)+' h na semana</text>';
  return '<svg viewBox="0 0 '+Wd+' '+(H+6)+'" class="pt-svg" role="img" aria-label="Linha do tempo da prova: faltam '+dias+' dias">'+s+'</svg>'+
   '<p class="pt-leg">A linha sobe com as horas de estudo de cada semana (topo = meta de 10,5 h). O traço pontilhado é o ritmo planejado até a prova.</p>';}
+
+/* ---------- Medalhão do ciclo (Táticas de Guerra) ----------
+   Círculo com grega em volta, como os medalhões gregos: os blocos da roda formam o anel,
+   o bloco em curso fica em dourado e o centro mostra a disciplina da vez. */
+function rdAbrev(n){n=String(n||'');var m=n.match(/^Proc\.\s*(\S+)/i);if(m)return ('P'+m[1].slice(0,2)).toUpperCase();if(/^Dir\./i.test(n))return 'DH';if(/^Ética/i.test(n))return 'ÉTI';return n.slice(0,3).toUpperCase();}
+function rdPolar(cx,cy,r,a){return [cx+r*Math.cos(a),cy+r*Math.sin(a)];}
+function rdGrega(cx,cy,r0,r1,n,cor){var s='',P=[[0,0],[0,.86],[.74,.86],[.74,.3],[.36,.3],[.36,.6],[.56,.6]];
+ for(var i=0;i<n;i++){var a0=-Math.PI/2+i*2*Math.PI/n,da=2*Math.PI/n;
+  var pts=P.map(function(p){var a=a0+p[0]*da,r=r0+p[1]*(r1-r0);return rdPolar(cx,cy,r,a).map(function(v){return v.toFixed(1);}).join(' ');});
+  s+='<path d="M'+pts.join(' L')+'" fill="none" stroke="'+cor+'" stroke-width="2.1" stroke-linejoin="miter"/>';
+  var b0=rdPolar(cx,cy,r0,a0),b1=rdPolar(cx,cy,r0,a0+da);s+='<path d="M'+b0[0].toFixed(1)+' '+b0[1].toFixed(1)+' A'+r0+' '+r0+' 0 0 1 '+b1[0].toFixed(1)+' '+b1[1].toFixed(1)+'" fill="none" stroke="'+cor+'" stroke-width="2.1"/>';}
+ return s+'<circle cx="'+cx+'" cy="'+cy+'" r="'+(r1+4)+'" fill="none" stroke="'+cor+'" stroke-width="2.4"/><circle cx="'+cx+'" cy="'+cy+'" r="'+(r0-4)+'" fill="none" stroke="'+cor+'" stroke-width="2.4"/>';}
+function rdArco(cx,cy,ri,re,a0,a1){var p=function(r,a){return rdPolar(cx,cy,r,a).map(function(v){return v.toFixed(2);}).join(' ');},g=(a1-a0)>Math.PI?1:0;
+ return 'M'+p(re,a0)+' A'+re+' '+re+' 0 '+g+' 1 '+p(re,a1)+' L'+p(ri,a1)+' A'+ri+' '+ri+' 0 '+g+' 0 '+p(ri,a0)+'Z';}
+function rdHTML(){var T=NEO_TINTA,Pp=NEO_PAPEL,cx=200,cy=200,o=[],at=0,volta=1;try{o=ordemCiclo();at=S.est.at%Math.max(1,o.length);volta=S.est.volta||1;}catch(e){}
+ var n=o.length,s='<circle cx="200" cy="200" r="198" fill="'+Pp+'"/>'+rdGrega(cx,cy,166,190,36,T);
+ if(!n)return '<svg viewBox="0 0 400 400" class="rd-svg">'+s+'<text x="200" y="205" text-anchor="middle" class="rd-vz">inclua disciplinas para montar a roda</text></svg>';
+ var da=2*Math.PI/n,gap=Math.min(.03,da*.12);
+ o.forEach(function(id,i){var a0=-Math.PI/2+i*da+gap/2,a1=a0+da-gap,feito=i<at,atual=i===at,nm=discNome(id);
+  s+='<path d="'+rdArco(cx,cy,116,158,a0,a1)+'" fill="'+(atual?'#c9a045':feito?T:Pp)+'" stroke="'+T+'" stroke-width="1.2" opacity="'+(feito&&!atual?.82:1)+'"><title>'+String(i+1).padStart(2,'0')+' · '+esc(nm)+(atual?' (em curso)':feito?' (feito nesta volta)':'')+'</title></path>';
+  var am=(a0+a1)/2,pt=rdPolar(cx,cy,137,am),rot=am*180/Math.PI+90;if(rot>90&&rot<270)rot+=180;
+  s+='<text x="'+pt[0].toFixed(1)+'" y="'+pt[1].toFixed(1)+'" transform="rotate('+rot.toFixed(1)+' '+pt[0].toFixed(1)+' '+pt[1].toFixed(1)+')" text-anchor="middle" dominant-baseline="central" class="rd-ab" fill="'+(feito&&!atual?Pp:T)+'">'+esc(rdAbrev(nm))+'</text>';});
+ var aa=-Math.PI/2+at*da+da/2,m1=rdPolar(cx,cy,161,aa),m2=rdPolar(cx,cy,159-0,aa);
+ s+='<circle cx="'+m1[0].toFixed(1)+'" cy="'+m1[1].toFixed(1)+'" r="5" fill="#c9a045" stroke="'+T+'" stroke-width="1.4"/>';
+ s+='<circle cx="200" cy="200" r="108" fill="'+T+'"/><circle cx="200" cy="200" r="100" fill="none" stroke="'+Pp+'" stroke-width=".8" opacity=".5"/>';
+ var nome=discNome(o[at]),pal=nome.split(' '),l1=nome,l2='';if(nome.length>13&&pal.length>1){var meio=Math.ceil(pal.length/2);l1=pal.slice(0,meio).join(' ');l2=pal.slice(meio).join(' ');}
+ var dias='';try{var pf=(S.quests&&S.quests.prof||[]).filter(function(p){return p.prazo&&/TRF3/.test(p.t);})[0];var pz=pf?pf.prazo:'2027-01-31';dias=Math.max(0,Math.round((new Date(pz+'T12:00:00')-new Date(hoje()+'T12:00:00'))/864e5));}catch(e){}
+ s+='<text x="200" y="146" text-anchor="middle" class="rd-k">VOLTA '+volta+' · BLOCO '+(at+1)+' DE '+n+'</text>';
+ s+='<text x="200" y="'+(l2?188:200)+'" text-anchor="middle" class="rd-n">'+esc(l1)+'</text>'+(l2?'<text x="200" y="214" text-anchor="middle" class="rd-n">'+esc(l2)+'</text>':'');
+ s+='<path d="M150 232 H250" stroke="'+Pp+'" stroke-width=".8" opacity=".6"/><text x="200" y="252" text-anchor="middle" class="rd-k">'+(n-at)+' BLOCOS PARA FECHAR A VOLTA</text>';
+ if(dias!=='')s+='<text x="200" y="272" text-anchor="middle" class="rd-k rd-d">'+dias+' DIAS ATÉ A PROVA</text>';
+ return '<svg viewBox="0 0 400 400" class="rd-svg" role="img" aria-label="Roda do ciclo: bloco '+(at+1)+' de '+n+', '+esc(nome)+'">'+s+'</svg>';}
 function ptPinta(){var est=document.querySelector('#lat-est');if(!est)return;var b=document.getElementById('pt-box');
- if(!b){b=document.createElement('section');b.id='pt-box';b.className='pt';}if(est.firstChild!==b)est.insertBefore(b,est.firstChild);b.innerHTML=ptHTML();}
+ if(!b){b=document.createElement('section');b.id='pt-box';b.className='pt';}if(est.firstChild!==b)est.insertBefore(b,est.firstChild);b.className='rd';b.innerHTML=rdHTML();}
 /* frontão sobre o banner */
 function neoFrontao(){var hb=document.getElementById('hero-box');if(!hb||hb.querySelector('.neo-frontao'))return;var d=document.createElement('div');d.className='neo-frontao';d.setAttribute('aria-hidden','true');
  d.innerHTML='<svg viewBox="0 0 1000 120" preserveAspectRatio="none"><path d="M10 112 L500 10 L990 112Z" fill="'+NEO_PAPEL+'" stroke="'+NEO_TINTA+'" stroke-width="2"/><path d="M60 104 L500 22 L940 104Z" fill="none" stroke="'+NEO_TINTA+'" stroke-width="1"/>'+
@@ -13898,7 +13983,7 @@ function agListaHTML(dias){var hj=new Date();hj.setHours(0,0,0,0);var ate=new Da
  if(!L.length)return '<p class="lat-n">Nada marcado nos próximos '+dias+' dias.</p>';
  var DS=['dom','seg','ter','qua','qui','sex','sáb'];L.forEach(function(x){var dd=new Date(Math.max(x.ini,hj)),k=dd.toDateString();if(k!==ult){ult=k;h+='<div class="ag-dt">'+(k===hj.toDateString()?'hoje':DS[dd.getDay()])+' · '+dd.getDate()+'/'+(dd.getMonth()+1)+'</div>';}
   h+='<div class="ag-it"><b>'+esc(agHora(x))+'</b><span>'+esc(x.t)+'</span></div>';});return '<div class="ag-lista">'+h+'</div>';}
-function agPintaTudo(){try{agNaGrade();}catch(e){}var c=document.getElementById('lat-ag');if(c&&agIcsUrl())latTroca('lat-ag',latAgenda());try{wsPinta();}catch(e){}try{rodBarra();}catch(e){}}
+function agPintaTudo(){try{agNaGrade();}catch(e){}try{compPinta();}catch(e){}var c=document.getElementById('lat-ag');if(c&&agIcsUrl())latTroca('lat-ag',latAgenda());try{wsPinta();}catch(e){}try{rodBarra();}catch(e){}}
 (function(){var p0=pinta;pinta=function(){p0();try{agNaGrade();}catch(e){}};})();
 setInterval(function(){agBusca(false);},21*60e3);setTimeout(function(){agBusca(false);},1500);
 
@@ -13915,6 +14000,44 @@ function rodBarra(){var m=document.getElementById('rod-mini');if(!m)return;var h
  if(latApps().spotify)h+='<span>'+LAT_IC.musica.replace('<svg','<svg class="rod-ic"')+'trilha pronta</span>';
  m.innerHTML=h;}
 setInterval(function(){try{rodBarra();}catch(e){}},60e3);
+
+/* ---------- Compromissos: gaveta que sai da coluna direita da Grade semanal ----------
+   Junta o Toque da Concha e a Agenda Google numa linha do dia, mais os próximos dias. */
+function compHojeHTML(){var hj=hoje(),it=[],R=rtD(),a=rtAgora();
+ R.toques.forEach(function(t){if(t.on)it.push({m:rtMin(t.h),h:t.h,t:t.n,k:'concha'});});
+ agDoDia(hj).forEach(function(x){if(x.dia)it.unshift({m:-1,h:'dia todo',t:x.t,k:'agenda'});else it.push({m:x.ini.getHours()*60+x.ini.getMinutes(),h:agHora(x),t:x.t+(x.loc?' · '+x.loc:''),k:'agenda'});});
+ it.sort(function(p,q){return p.m-q.m;});var marc=false;
+ return '<ol class="comp-dia">'+it.map(function(x){var agora='';if(!marc&&x.m>a){marc=true;agora='<li class="comp-agora"><span>agora · '+String(Math.floor(a/60)).padStart(2,'0')+':'+String(a%60).padStart(2,'0')+'</span></li>';}
+  return agora+'<li class="comp-'+x.k+(x.m>=0&&x.m<a?' passou':'')+'"><i>'+(x.k==='concha'?RT_IC.concha:LAT_IC.agenda)+'</i><b>'+esc(x.h)+'</b><span>'+esc(x.t)+'</span></li>';}).join('')+(marc?'':'<li class="comp-agora"><span>agora</span></li>')+'</ol>';}
+function compHTML(){var lig=!!agIcsUrl();
+ return '<header><span class="k9">Compromissos</span><b>Hoje no acampamento</b><button type="button" class="comp-x" data-comp-x aria-label="fechar">×</button></header>'+compHojeHTML()+
+  '<h5>Próximos dias</h5>'+(lig?agListaHTML(14):'<p class="comp-n">Ligue a Agenda Google no rodapé (cartão da Agenda, endereço iCal) para os seus compromissos aparecerem aqui e na Grade.</p>')+
+  '<p class="comp-n">Os horários da concha se ajustam no cartão Toque da Concha.</p>';}
+function compPinta(){var tb=document.querySelector('.wrap > div.tb');if(!tb)return;var g=tb.querySelector('.comp-gaveta'),al=tb.querySelector('.comp-alca');
+ if(!al){al=document.createElement('button');al.type='button';al.className='comp-alca';al.setAttribute('aria-expanded','false');al.innerHTML='<span>compromissos</span>';tb.appendChild(al);
+  al.onclick=function(){var on=!tb.classList.contains('comp-aberto');tb.classList.toggle('comp-aberto',on);al.setAttribute('aria-expanded',on);if(on)compPinta();};}
+ if(!g){g=document.createElement('aside');g.className='comp-gaveta';g.setAttribute('aria-label','Compromissos');tb.appendChild(g);
+  g.addEventListener('click',function(e){if(e.target.closest('[data-comp-x]')){tb.classList.remove('comp-aberto');al.setAttribute('aria-expanded','false');}});}
+ if(tb.classList.contains('comp-aberto')||!g.firstChild)g.innerHTML=compHTML();}
+(function(){var p0=pinta;pinta=function(){p0();try{compPinta();}catch(e){}};})();
+setInterval(function(){try{compPinta();}catch(e){}},60e3);
+
+/* ---------- Foco e metas do mês: faixa acima da Grade, editada num diálogo ---------- */
+function mfPinta(){var h=document.getElementById('h-sem'),wr=document.querySelector('.wrap');if(!h||!wr)return;var b=document.getElementById('mf-faixa');
+ if(!b){b=document.createElement('div');b.id='mf-faixa';b.className='mf-faixa';b.dataset.area='op';b.addEventListener('click',function(e){if(e.target.closest('[data-mf]'))mfAbre();});}
+ b.dataset.vxHidden='false';if(h.nextElementSibling!==b)h.parentNode.insertBefore(b,h.nextSibling);
+ var W=wsD(),m=wsSemanas().mes,v=W.mes[m]||{},MS=['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
+ b.innerHTML='<div class="mf-i"><span class="k9">foco de '+MS[+m.slice(5)-1]+'</span><b>'+(v.foco?esc(v.foco.split('\n')[0]):'<em>sem foco definido</em>')+'</b></div>'+
+  '<div class="mf-i"><span class="k9">metas do mês</span><b>'+(v.metas?esc(v.metas.split('\n').filter(Boolean).slice(0,2).join(' · ')):'<em>sem metas</em>')+'</b></div><button type="button" data-mf>editar foco e metas</button>';}
+function mfAbre(){var W=wsD(),m=wsSemanas().mes,v=W.mes[m]||{},d=document.getElementById('mf-dlg');
+ if(!d){d=document.createElement('div');d.id='mf-dlg';d.className='fer-dlg';document.body.appendChild(d);
+  d.addEventListener('click',function(e){if(e.target===d||e.target.closest('[data-mf-x]')){d.hidden=true;return;}
+   if(e.target.closest('[data-mf-ok]')){var W2=wsD(),m2=wsSemanas().mes;W2.mes[m2]=W2.mes[m2]||{};W2.mes[m2].foco=d.querySelector('[data-mf-f]').value.slice(0,600);W2.mes[m2].metas=d.querySelector('[data-mf-m]').value.slice(0,600);grava();d.hidden=true;mfPinta();}});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')d.hidden=true;});}
+ d.innerHTML='<div class="fer-box mf-box" role="dialog" aria-modal="true"><header><span class="lat-ic">'+LAT_IC.copa+'</span><div><span class="k9">o mês</span><b>Foco e metas</b></div><button type="button" class="lat-ed" data-mf-x aria-label="fechar">×</button></header>'+
+  '<label>Foco do mês<textarea data-mf-f rows="3" placeholder="Uma intenção para o mês">'+esc(v.foco||'')+'</textarea></label><label>Metas do mês<textarea data-mf-m rows="5" placeholder="O que quero concluir, uma por linha">'+esc(v.metas||'')+'</textarea></label>'+
+  '<div class="mf-bt"><button type="button" data-mf-x>cancelar</button><button type="button" data-mf-ok>salvar</button></div></div>';
+ d.hidden=false;var t=d.querySelector('textarea');if(t)t.focus();}
 /* a Grade semanal é o painel principal: logo abaixo do índice */
 function latGradeTopo(){var wr=document.querySelector('.wrap'),h=document.getElementById('h-sem'),ix=document.getElementById('tt-indice');if(!wr||!h)return;
  var tb=h.nextElementSibling&&h.nextElementSibling.classList.contains('tb')?h.nextElementSibling:document.querySelector('.wrap > .tb');
@@ -13924,11 +14047,12 @@ function latGradeTopo(){var wr=document.querySelector('.wrap'),h=document.getEle
  var ref=ant?ant.nextSibling:wr.firstChild;if(h!==ref)wr.insertBefore(h,ref);
  if(tb&&h.nextElementSibling!==tb)wr.insertBefore(tb,h.nextSibling);
  try{wsPinta();}catch(e){console.error('spread:',e);}
+ try{mfPinta();compPinta();}catch(e){console.error('foco do mês:',e);}
  try{rtPinta();}catch(e){console.error('rotina:',e);}
  try{arFaixas();}catch(e){console.error('arte:',e);}
  try{neoAplica();}catch(e){console.error('neoclássico:',e);}
  /* rastreador de hábitos (grade mensal) logo abaixo do painel da semana */
- try{var hr=document.getElementById('h-rast'),rt=hr&&hr.nextElementSibling&&hr.nextElementSibling.classList.contains('rt')?hr.nextElementSibling:document.querySelector('.wrap > .rt'),wb=document.getElementById('ws-box')||tb;
+ try{var hr=document.getElementById('h-rast'),rt=hr&&hr.nextElementSibling&&hr.nextElementSibling.classList.contains('rt')?hr.nextElementSibling:document.querySelector('.wrap > .rt'),wb=tb;
   if(hr&&wb){[hr,rt].forEach(function(n){if(n){n.dataset.area='op';n.dataset.vxHidden='false';}});if(wb.nextElementSibling!==hr)wr.insertBefore(hr,wb.nextSibling);if(rt&&hr.nextElementSibling!==rt)wr.insertBefore(rt,hr.nextSibling);}}catch(e){console.error('rastreador:',e);}
  try{arsPinta();}catch(e){console.error('arsenal:',e);}
  try{mmPinta();}catch(e){console.error('mural de missões:',e);}}
