@@ -2380,6 +2380,98 @@ body.claro[data-skin="astro"] #vx .vx-card,body.claro[data-skin="astro"] .gm,bod
 body.claro[data-skin="astro"] h2.sec{font-family:var(--display);color:var(--bone)}
 body.claro[data-skin="astro"]{--blk:#e6d9b4}
 body.claro[data-skin="astro"] .pl-k,body.claro[data-skin="astro"] .k5,body.claro[data-skin="astro"] .k9{color:var(--a-op)}
+/* laterais sem branco: sumário e Quadro de avisos no tom de papel */
+body.claro[data-skin="astro"] #nav{background:#efe8d6;border-right-color:#e2d8c2}
+body.claro[data-skin="astro"] #nav button.at{background:#f7f1e3;box-shadow:inset 3px 0 0 var(--a-op)}
+body.claro[data-skin="astro"] #nav button:hover{background:#f4eddd}
+body.claro[data-skin="astro"] #rail .rcap,body.claro[data-skin="astro"] #rail .rvz,body.claro[data-skin="astro"] #rail .rm,
+body.claro[data-skin="astro"] #rail .rbl,body.claro[data-skin="astro"] #rail .rmis{background:#f1e9d8}
+body.claro[data-skin="astro"] #rail input,body.claro[data-skin="astro"] #rail button{background:#f7f1e3}
+
+/* ficha do alter ego (Profecia) */
+.hk{margin:0 0 18px;padding:18px 20px;border-radius:16px;border:1px solid var(--line);background:var(--panel);box-shadow:0 10px 24px -16px rgba(31,36,48,.3)}
+body[data-skin="astro"] .hk{border-top:4px solid var(--a-op)}
+.hk-k{font:600 11px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--a-op)}
+.hk h3{margin:6px 0 2px;font:800 26px/1.1 var(--display,Georgia,serif);color:var(--bone)}
+.hk h3 i{font-style:italic;font-weight:600;font-size:.7em;color:var(--dim)}
+.hk-sub{margin:0;color:var(--dim);font:13px var(--sans)}
+.hk-af{margin:14px 0;padding:12px 16px;border-left:4px solid var(--a-op);border-radius:10px;background:var(--panel2);font:600 15px/1.5 Georgia,serif;color:var(--bone)}
+.hk-gr{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:12px}
+.hk-gr b{display:block;margin-bottom:6px;font:600 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+.hk ul{margin:0;padding-left:18px;display:grid;gap:4px;font:13.5px/1.45 var(--sans);color:var(--ink)}
+.hk p{margin:0;font:13.5px/1.5 var(--sans);color:var(--ink)}
+.hk table{width:100%;border-collapse:collapse;font:13px/1.35 var(--sans)}
+.hk td{padding:6px 8px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink)}
+.hk td:first-child{color:var(--a-camp)} .hk td:last-child{color:var(--dim);text-decoration:line-through;text-decoration-color:color-mix(in srgb,var(--dim) 50%,transparent)}
+@media(max-width:800px){.hk-gr{grid-template-columns:1fr}}
+
+/* ficha do campista: formulário datilografado */
+.fc{position:relative;margin:0 0 18px;padding:20px 22px;border-radius:12px;border:1px solid #d9ccb2;color:#2f261d;
+ background:repeating-linear-gradient(0deg,transparent 0 27px,rgba(95,70,35,.08) 27px 28px),linear-gradient(#fbf6e8,#f4ead1);
+ box-shadow:0 10px 24px -16px rgba(60,40,15,.5);font-family:"Courier New",ui-monospace,monospace}
+.fc-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;border-bottom:2px solid #2f261d;padding-bottom:8px}
+.fc-k{font:700 10.5px "Courier New",monospace;letter-spacing:.14em;text-transform:uppercase;color:#8e3b2a}
+.fc h3{margin:4px 0 0;font:800 26px/1.05 var(--display,Georgia,serif);letter-spacing:.04em;text-transform:uppercase;color:#2f261d}
+.fc-stamp{transform:rotate(-8deg);padding:6px 12px;border:3px double #c0392b;border-radius:6px;color:#c0392b;font:800 15px "Courier New",monospace;letter-spacing:.2em;text-transform:uppercase;opacity:.85}
+.fc-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px 22px;margin:12px 0}
+.fc-f{display:grid;grid-template-columns:150px 1fr;gap:8px;align-items:baseline;padding:5px 0;border-bottom:1px dotted rgba(95,70,35,.35)}
+.fc-f span,.fc-sec>b,.fc-at>span{font:700 10.5px "Courier New",monospace;letter-spacing:.1em;text-transform:uppercase;color:#6f6553}
+.fc-f b{font:600 13.5px "Courier New",monospace;color:#1d3c6b}
+.fc-sec{margin-top:12px}
+.fc-sec>b{display:block;margin-bottom:6px;color:#8e3b2a}
+.fc-at{display:grid;grid-template-columns:110px auto 26px 1fr;gap:10px;align-items:center;padding:3px 0}
+.fc-bar{display:flex;gap:3px}.fc-bar i{width:12px;height:12px;border:1px solid #6f6553;border-radius:2px}
+.fc-bar i.on{background:#d9822b;border-color:#b5711f}
+.fc-at b{font:700 14px "Courier New",monospace;color:#2f261d}.fc-at small{font:12px "Courier New",monospace;color:#6f6553}
+.fc-two{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.fc ul{margin:0;padding-left:18px;display:grid;gap:4px;font:13px/1.45 "Courier New",monospace}
+.fc p{margin:0;font:13px/1.55 "Courier New",monospace}
+.fc em{font-style:normal;color:#1d3c6b;font-weight:700}
+.fc-falha p{color:#8e3b2a}
+.fc-prof p{font:italic 14px/1.6 Georgia,serif;color:#2f261d}
+.fc-obs{margin-top:14px!important;padding-top:8px;border-top:1px dashed rgba(95,70,35,.4);font-size:12.5px!important;color:#6f6553}
+.fc-obs span{font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#2f261d}
+body:not(.claro) .fc{filter:brightness(.92)}
+@media(max-width:900px){.fc-grid,.fc-two{grid-template-columns:1fr}.fc-at{grid-template-columns:96px auto 22px}.fc-at small{grid-column:1/-1}}
+
+/* rotina do acampamento */
+.fx-n{margin-left:8px;font:600 10px var(--sans);letter-spacing:.04em;text-transform:none;opacity:.85}
+#tb-g .tbf .fx-n{display:block;margin:2px 0 0}
+.ar-t{display:inline-block;margin-left:6px;padding:1px 6px;border-radius:999px;background:color-mix(in srgb,var(--a-camp) 14%,transparent);color:var(--a-camp);font:600 10px var(--sans);vertical-align:middle}
+.ac-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:0 0 16px}
+.ac-w{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px 18px;display:grid;gap:10px;align-content:start;box-shadow:0 1px 2px rgba(31,36,48,.05),0 10px 24px -14px rgba(31,36,48,.25)}
+#ac-cap{border-top:4px solid #c0392b} #ac-reg{border-top:4px solid var(--a-camp)}
+.ac-k{display:flex;justify-content:space-between;align-items:center;font:600 11px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+.ac-cb{display:flex;gap:10px;align-items:center;padding:8px 10px;border-radius:10px;background:var(--panel2)}
+#vx .ac-cb input[type=checkbox]{width:18px!important;height:18px!important;min-width:0!important;min-height:0!important;padding:0!important;margin:0!important;flex:none;appearance:auto;-webkit-appearance:checkbox;accent-color:#c0392b}
+#vx .ac-cb input[type=text]{flex:1;min-width:0;width:auto!important;border:0!important;background:transparent!important;font:14px var(--sans);color:var(--bone);padding:4px 2px}
+.ac-n{margin:0;font:12.5px var(--sans);color:var(--dim)} .ac-n b{color:#c0392b}
+.ac-rl{margin:0;padding-left:20px;display:grid;gap:5px;font:13.5px/1.4 var(--sans);color:var(--ink)}
+#vx .ac-ed{min-height:0;padding:2px 10px;font:600 11px var(--sans);letter-spacing:0;text-transform:none}
+#vx .ac-ta{width:100%;font:13.5px/1.5 var(--sans)}
+@media(max-width:800px){.ac-row{grid-template-columns:1fr}}
+
+/* cofre: ficha e diário com senha */
+.cf{margin:0 0 14px}
+.cf-lock{display:flex;gap:16px;align-items:flex-start;padding:20px 22px;border-radius:12px;border:1px dashed #b6a37b;background:linear-gradient(#fbf6e8,#f4ead1);color:#2f261d}
+.cf-ico{font-size:30px;line-height:1}
+.cf-lock b{font:800 18px var(--display,Georgia,serif);letter-spacing:.03em}
+.cf-lock p{margin:6px 0 12px;font:13.5px/1.5 var(--sans);color:#6f6553}
+.cf-f{display:flex;gap:8px;flex-wrap:wrap}
+#vx .cf-f input{width:200px!important;max-width:100%}
+.cf-msg{display:block;margin-top:8px;font:12.5px var(--sans);color:#3d6b35} .cf-msg.erro{color:#c0392b}
+.cf-bar{display:flex;justify-content:space-between;align-items:center;padding:8px 14px;border-radius:10px;background:var(--panel2);font:600 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
+#vx .cf-bar button{min-height:0;padding:4px 12px;font:600 12px var(--sans);letter-spacing:0;text-transform:none}
+.cf-dia{margin:0 0 18px;padding:20px 22px;border-radius:12px;border:1px solid #d9ccb2;background:linear-gradient(#fbf6e8,#f4ead1);color:#2f261d;display:grid;gap:12px}
+.cf-dh h3{margin:4px 0 0;font:800 24px var(--display,Georgia,serif);letter-spacing:.03em;text-transform:uppercase}
+#vx .cf-dia textarea{width:100%;font:14px/1.55 Georgia,serif;background:#fffdf6!important}
+.cf-acoes{display:flex;gap:12px;align-items:center}
+.cf-lista{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.cf-lista li{padding:10px 14px;border-left:3px solid #b98c47;background:rgba(255,255,255,.5);border-radius:0 8px 8px 0}
+.cf-lista time{display:block;font:700 11px "Courier New",monospace;letter-spacing:.08em;color:#8e3b2a}
+.cf-lista p{margin:4px 0 0;font:14px/1.6 Georgia,serif;color:#2f261d}
+.cf-lista .vz{border:0;background:none;color:#6f6553;font:13px var(--sans)}
+#vx .ac-cb{display:flex!important;flex-direction:row;align-items:center;gap:10px;grid-template-columns:none}
 </style>
 </head>
 <body>
@@ -11166,7 +11258,7 @@ function axNavPinta(){var n=document.getElementById('loja-nav');if(!n)return;
  Array.prototype.forEach.call(n.querySelectorAll('[data-lj]'),function(b){var o=axBotao(b.dataset.lj);
   b.classList.toggle('at',!!(o&&(painel?o.classList.contains('panel-on'):o.classList.contains('on'))));});}
 function axNav(w,H){var n=document.getElementById('loja-nav');
- if(!n){n=document.createElement('nav');n.id='loja-nav';n.className='loja-nav';n.setAttribute('aria-label','Seções da Loja do Acampamento');
+ if(!n){n=document.createElement('nav');n.id='loja-nav';n.className='loja-nav';n.setAttribute('aria-label','Seções da Loja');
   n.innerHTML=AX_NAV.map(function(x){return '<button type="button" data-lj="'+x[0]+'">'+x[1]+'</button>';}).join('')+
    '<span class="lj-sep"></span><button type="button" class="lj-mini" data-lj-x="fin-exp">Exportar</button><button type="button" class="lj-mini" data-lj-x="fin-imp">Importar</button>';
   n.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;
@@ -11189,7 +11281,7 @@ function vxOptions(sel){return '<option value="">Sem projeto</option>'+S.proj.fi
 function vxEdit(t){t=t||{};return '<form id="vx-form" class="vx-fields">'+vxField('vx-title','Entrega / alvo do ciclo',t.title)+vxField('vx-done','Concluído quando…',t.done)+vxField('vx-next','Primeira ação concreta',t.next)+vxField('vx-date','Planejado para',t.date||hoje(),'date')+'<label>Projeto<select id="vx-project">'+vxOptions(t.project)+'</select></label><label>Operação<select id="vx-mode"><option '+(t.mode==='cerco'?'selected':'')+' value="cerco">Cerco · avanço gradual</option><option '+(t.mode==='ruptura'?'selected':'')+' value="ruptura">Ruptura · resolver o nó</option></select></label><details class="vx-wide"><summary>Varredura de futuros · preparar o caminho</summary><div class="vx-fields">'+vxField('vx-obstacle','Obstáculo provável',t.obstacle)+vxField('vx-response','Se acontecer, vou…',t.response)+vxField('vx-minimum','Versão mínima da entrega',t.minimum)+vxField('vx-due','Prazo real (opcional)',t.due,'date')+'</div></details><div class="vx-row vx-wide"><button class="vx-primary" type="submit">'+(t.id?'Salvar rota':'Declarar rota')+'</button><button type="button" data-vx="cancel">Cancelar</button></div></form>';}
 function vxRender(){
  var v=vxData(),t=vxTask(),open=v.tasks.filter(function(x){return x.status!=='done';});
- VX.innerHTML='<div class="vx-top"><div><span class="vx-k">Astronáutica · ciclo '+hoje()+'</span><h2>Escolha o ramo. Faça o movimento.</h2></div><div class="vx-k">'+esc(S.cod)+'<br>Domínio '+S.dominio+' · Lastro '+S.lastro+'</div></div><div class="vx-tabs" role="tablist" aria-label="Vistas"><button role="tab" aria-selected="'+(v.view==='op')+'" data-view="op">01 / Operação</button><button role="tab" aria-selected="'+(v.view==='camp')+'" data-view="camp">02 / Campanha</button><button role="tab" aria-selected="'+(v.view==='est')+'" data-view="est">03 / Estudo</button><button role="tab" aria-selected="'+(v.view==='dos')+'" data-view="dos">04 / Arquivo do mutante</button><button role="tab" aria-selected="'+(v.view==='fin')+'" data-view="fin">05 / Loja do Acampamento</button></div><div class="vx-metrics"><span><b>'+S.carga+'</b>Carga percebida</span><span><b>'+Math.round(vxMinutes())+' / '+v.capacity+'</b>minutos de foco hoje</span><span><b>'+open.length+'</b>rotas abertas</span><span><b>'+vxActiveProjects().length+' / '+v.limit+'</b>frentes ativas</span></div><div id="vx-body"></div>';
+ VX.innerHTML='<div class="vx-top"><div><span class="vx-k">Astronáutica · ciclo '+hoje()+'</span><h2>Escolha o ramo. Faça o movimento.</h2></div><div class="vx-k">'+esc(S.cod)+'<br>Domínio '+S.dominio+' · Lastro '+S.lastro+'</div></div><div class="vx-tabs" role="tablist" aria-label="Vistas"><button role="tab" aria-selected="'+(v.view==='op')+'" data-view="op">01 / Operação</button><button role="tab" aria-selected="'+(v.view==='camp')+'" data-view="camp">02 / Campanha</button><button role="tab" aria-selected="'+(v.view==='est')+'" data-view="est">03 / Estudo</button><button role="tab" aria-selected="'+(v.view==='dos')+'" data-view="dos">04 / Arquivo do mutante</button><button role="tab" aria-selected="'+(v.view==='fin')+'" data-view="fin">05 / Loja</button></div><div class="vx-metrics"><span><b>'+S.carga+'</b>Carga percebida</span><span><b>'+Math.round(vxMinutes())+' / '+v.capacity+'</b>minutos de foco hoje</span><span><b>'+open.length+'</b>rotas abertas</span><span><b>'+vxActiveProjects().length+' / '+v.limit+'</b>frentes ativas</span></div><div id="vx-body"></div>';
  var body=el('vx-body');
  if(v.view==='op'){
  var main='<div class="vx-card vx-main"><div class="vx-top"><span class="vx-k">Alvo do ciclo / '+(t?esc(t.status):'aguardando rota')+'</span><button data-vx="new">+ Nova rota</button></div>';
@@ -11539,9 +11631,23 @@ function gmPinta(){
    de nível) e a paleta. Os dados são os mesmos; a escolha fica em S.ap e sincroniza. */
 var TEMAS={
  astro:{nome:'Astron\u00e1utica',app:'Astron\u00e1utica',titulo:'Astron\u00e1utica',
-  abas:['01 / Chal\u00e9','02 / Miss\u00f5es','03 / Casa Grande','04 / Arsenal','05 / Loja do Acampamento'],
-  grupos:['Chal\u00e9','Miss\u00f5es','Casa Grande','Arsenal'],frase:'Ice as velas. Um remo de cada vez.',sumario:'Astron\u00e1utica',
-  niveis:['Grumete','Remador','Argonauta','Piloto','Her\u00f3i','Constela\u00e7\u00e3o'],seq:'dias de travessia',estudo:'Casa Grande',arquivo:'Arsenal'}};
+  abas:['01 / Casa Grande','02 / Miss\u00f5es','03 / Partenon','04 / Arsenal','05 / Loja'],
+  grupos:['Casa Grande','Miss\u00f5es','Partenon','Arsenal'],frase:'Uma flecha de cada vez.',sumario:'Astron\u00e1utica',
+  niveis:['Indeterminado','Reclamado','Campista','Conselheiro','Her\u00f3i','Constela\u00e7\u00e3o'],seq:'dias no acampamento',estudo:'Partenon',arquivo:'Arsenal',
+  /* nomes do acampamento: troca só rótulos fixos da moldura, nunca o que o usuário escreveu */
+  rotulos:[
+   ['Rotina','Escala do chal\u00e9'],['h\u00e1bitos e menu de recarga','h\u00e1bitos e o que recarrega'],
+   ['Varredura','Tarefas do chal\u00e9'],['Continente','Enfermaria'],['Semana','Programa\u00e7\u00e3o'],
+   ['Opera\u00e7\u00e3o di\u00e1ria','Casa Grande'],['h\u00e1bitos, projetos e menu de recarga','h\u00e1bitos, projetos e o que recarrega'],
+   ['Baralho de Varredura','Tarefas do chal\u00e9'],['Protocolos de conten\u00e7\u00e3o','Enfermaria'],['refor\u00e7o do portador','cuidados de filho de Apolo'],
+   ['Leitura de abertura','chamada da manh\u00e3'],['Como chega a corrente hoje?','Como voc\u00ea chega \u00e0 fogueira hoje?'],
+   ['tr\u00eas prioridades','tr\u00eas miss\u00f5es do dia'],['fim do dia','toque de recolher'],
+   ['rotas abertas','miss\u00f5es abertas'],['ASTROMANTE','CHASE MAVERICK DUKE \u00b7 H\u00c9KATOS'],
+   ['C\u00e9rebro','Quadro de avisos'],['\u00d3rbita','Em andamento'],['Em \u00f3rbita','Em andamento'],
+   ['Grade','Treinos do m\u00eas'],['Rastreador de h\u00e1bitos','Treinos do m\u00eas'],
+   ['Provas','Prova\u00e7\u00f5es'],['Pr\u00eamios','Recompensas'],['Rota','Profecia'],['Declara\u00e7\u00e3o de rota','Profecia do ciclo'],
+   ['Of\u00edcios','Atividades'],['Aptid\u00f5es','Atividades do acampamento'],
+   ['abrir c\u00e9rebro','abrir o quadro'],['Sujeito','Ficha do campista'],['designa\u00e7\u00e3o, origem e kit','registro, chal\u00e9 e atributos']]}};
 var AP_ARQ=/^(Arquivo do mutante|Porão|Arsenal)$/;
 function apTema(){return 'astro';}
 (function(){var n0=normaliza;normaliza=function(p){var b=n0(p);b.ap=(p&&p.ap==='astro')?'astro':'astro-novo';return b;};})();
@@ -11551,7 +11657,19 @@ function apDados(){var t=TEMAS[apTema()];
 document.body.dataset.skin=apTema();document.title=t.titulo;
  if(typeof GM_TIT!=='undefined')GM_TIT.splice.apply(GM_TIT,[0,GM_TIT.length].concat(t.niveis));
  if(typeof GM_SEQ!=='undefined')GM_SEQ=t.seq;}
-function apTextos(){var t=TEMAS[apTema()];if(!VX)return;
+var AP_ROT_SEL='#nav-l button b,#nav-l button span,#nav-l button small,#nav-l button i,h2.sec,h2.sec span,.pl-k,#vx .vx-k,#vx .vx-metrics span,#vx .vx-card h2,#vx .vx-card h3,#vx .vx-card .k5,#vx .vx-card span,#vx .vx-card small,#rail .k9,#rail button';
+function apRotulos(){var t=TEMAS[apTema()];if(!t.rotulos)return;
+ var mapa={};t.rotulos.forEach(function(r){mapa[r[0].toLowerCase()]=r[1];});
+ Array.prototype.forEach.call(document.querySelectorAll(AP_ROT_SEL),function(el){
+  Array.prototype.forEach.call(el.childNodes,function(n){if(n.nodeType!==3)return;
+   var v=n.nodeValue,tr=v.trim();if(!tr)return;
+   var novo=mapa[tr.toLowerCase()];
+   if(novo==null){var m=tr.match(/^(.*?)(\s*(?:\u00b7|\/\/).*)$/);if(m&&mapa[m[1].trim().toLowerCase()]!=null)novo=mapa[m[1].trim().toLowerCase()]+m[2];}
+   if(novo==null){var m2=tr.match(/^(\/\/\s*)(.*)$/);if(m2&&mapa[m2[2].trim().toLowerCase()]!=null)novo=m2[1]+mapa[m2[2].trim().toLowerCase()];}
+   if(novo==null&&/^ASTROMANTE/.test(tr))novo=tr.replace('ASTROMANTE','CHASE MAVERICK DUKE \u00b7 H\u00c9KATOS');
+   if(novo!=null&&tr===tr.toUpperCase()&&tr!==tr.toLowerCase())novo=novo.toUpperCase();
+   if(novo!=null&&novo!==tr)n.nodeValue=v.replace(tr,novo);});});}
+function apTextos(){var t=TEMAS[apTema()];if(!VX)return;try{apRotulos();}catch(e){}
  var ordem=['op','camp','est','dos'];
  ordem.concat(['fin']).forEach(function(v,i){var b=VX.querySelector('.vx-tabs [data-view="'+v+'"]');if(b&&t.abas[i])b.textContent=t.abas[i];});
  var h=VX.querySelector('.vx-top h2');if(h)h.textContent=t.frase;
@@ -11574,6 +11692,200 @@ function apTextos(){var t=TEMAS[apTema()];if(!VX)return;
  var tb=document.getElementById('vx-tema');if(tb&&tb.nextSibling!==s.parentNode)top.insertBefore(s.parentNode,tb.nextSibling);
  s.value=apTema();}
 (function(){var r0=vxRender;vxRender=function(){apDados();r0();try{apTextos();}catch(e){console.error('tema:',e);}};})();
+(function(){if(typeof pinta!=='function')return;var p0=pinta;pinta=function(){var r=p0.apply(this,arguments);try{apRotulos();}catch(e){}return r;};})();
+/* a moldura é redesenhada em vários pontos; um observador reaplica os nomes depois de cada redesenho */
+(function(){var pend=0;function vez(){pend=0;try{apRotulos();}catch(e){}}
+ function agenda(){if(!pend)pend=setTimeout(vez,30);}
+ if(window.MutationObserver)new MutationObserver(agenda).observe(document.documentElement,{childList:true,subtree:true});
+ setTimeout(vez,0);})();
+
+/* ---------- Alter ego: Chase Maverick Duke, o Hékatos (ficha na Profecia) ---------- */
+var HK_FICHA='<div class="hk-cab"><span class="hk-k">alter ego &middot; filho de Apolo</span>'+
+ '<h3>Chase Maverick Duke <i>o H&eacute;katos</i></h3>'+
+ '<p class="hk-sub">&ldquo;O que acerta de longe.&rdquo; Nascido em Austin, Texas, no &uacute;ltimo grau do fogo.</p></div>'+
+ '<blockquote class="hk-af">Eu sou H&eacute;katos. Eu escolho o alvo, firmo os p&eacute;s e acerto de longe. O que &eacute; meu j&aacute; est&aacute; a caminho, e eu caminho at&eacute; ele todos os dias.</blockquote>'+
+ '<div class="hk-gr"><div><b>Quem eu sou</b><ul>'+
+ '<li>Miro antes de soltar: escolho o alvo do dia e ignoro o resto da pilha.</li>'+
+ '<li>Estudo como quem treina arco: todo dia, no mesmo hor&aacute;rio, sem esperar vontade.</li>'+
+ '<li>Leio as pessoas e uso isso a meu favor, sem me perder nelas.</li>'+
+ '<li>Sou o guardi&atilde;o da lei: o meu lugar no tribunal j&aacute; &eacute; meu.</li>'+
+ '<li>Firmo os p&eacute;s antes de correr: durmo, bebo &aacute;gua, como e treino o corpo.</li>'+
+ '<li>N&atilde;o preciso de aplauso para saber que acertei.</li>'+
+ '<li>Re&uacute;no gente com leveza: o meu humor &eacute; for&ccedil;a.</li></ul></div>'+
+ '<div><b>Faz &middot; n&atilde;o faz</b><table>'+
+ '<tr><td>fecha um bloco de foco antes de abrir o celular</td><td>come&ccedil;a o dia respondendo aos outros</td></tr>'+
+ '<tr><td>termina o expediente no hor&aacute;rio</td><td>leva trabalho para a noite</td></tr>'+
+ '<tr><td>decide sozinho as pequenas coisas</td><td>pede opini&atilde;o para validar o &oacute;bvio</td></tr>'+
+ '<tr><td>para quando o corpo pede</td><td>queima at&eacute; apagar</td></tr>'+
+ '<tr><td>revisa a mat&eacute;ria no dia certo</td><td>acumula para a v&eacute;spera</td></tr></table></div></div>'+
+ '<div class="hk-gr"><div><b>Gatilho</b><p>Antes de cada bloco, toque no colar ou na dracma e diga: <em>&ldquo;H&eacute;katos mira.&rdquo;</em></p></div>'+
+ '<div><b>Visualiza&ccedil;&atilde;o &middot; 2 min de manh&atilde;</b><p>Campo de arquearia ao amanhecer, n&eacute;voa baixa. P&eacute;s firmes, corda puxada, respira&ccedil;&atilde;o. A flecha crava no centro dourado, e o som do impacto vira uma porta se abrindo: o seu nome na lista de aprovados do TRF3.</p></div></div>';
+function hkFicha(){var h=document.getElementById('h-rota');if(!h)return;
+ var f=document.getElementById('hk-ficha');
+ if(!f){f=document.createElement('div');f.id='hk-ficha';f.className='hk';f.innerHTML=HK_FICHA;h.parentNode.insertBefore(f,h.nextSibling);}
+ f.setAttribute('data-area',h.getAttribute('data-area')||'camp');
+ f.style.display=(h.offsetParent===null&&getComputedStyle(h).display==='none')?'none':'';}
+(function(){var r0=vxRender;vxRender=function(){r0();try{hkFicha();}catch(e){}};})();
+setTimeout(function(){try{hkFicha();}catch(e){}},0);
+
+/* ---------- Ficha do campista (topo do Arsenal) ---------- */
+function fcAttr(n,v,src){var b='';for(var i=1;i<=10;i++)b+='<i'+(i<=v?' class="on"':'')+'></i>';
+ return '<div class="fc-at"><span>'+n+'</span><span class="fc-bar">'+b+'</span><b>'+v+'</b><small>'+src+'</small></div>';}
+var FC_HTML='<div class="fc-top"><div><span class="fc-k">Acampamento Meio-Sangue &middot; Long Island Sound</span>'+
+ '<h3>Ficha do Campista</h3></div><div class="fc-stamp">Reclamado</div></div>'+
+ '<div class="fc-grid">'+
+ '<div class="fc-f"><span>Nome de registro</span><b>Chase Maverick Duke</b></div>'+
+ '<div class="fc-f"><span>T&iacute;tulo</span><b>H&eacute;katos &middot; &ldquo;o que acerta de longe&rdquo;</b></div>'+
+ '<div class="fc-f"><span>Progenitor divino</span><b>Apolo</b></div>'+
+ '<div class="fc-f"><span>Chal&eacute;</span><b>Apolo &middot; sol, arco, m&uacute;sica e cura</b></div>'+
+ '<div class="fc-f"><span>Nascimento</span><b>20/12/2000 &middot; 14h10 &middot; Sol a 29&deg; de Sagit&aacute;rio</b></div>'+
+ '<div class="fc-f"><span>Cidade natal</span><b>Austin, Texas</b></div>'+
+ '<div class="fc-f"><span>Respons&aacute;vel mortal</span><b>m&atilde;e &middot; revisora de contratos</b></div>'+
+ '<div class="fc-f"><span>Chegada</span><b>aos 13 anos, escoltado por um s&aacute;tiro</b></div>'+
+ '<div class="fc-f"><span>Reclama&ccedil;&atilde;o</span><b>na primeira fogueira, um sol dourado sobre a cabe&ccedil;a</b></div>'+
+ '<div class="fc-f"><span>Situa&ccedil;&atilde;o</span><b>campista de ver&atilde;o &middot; instrutor de arquearia</b></div>'+
+ '<div class="fc-f"><span>Arma</span><b>arco curto de teixo &middot; bolsa de cura da enfermaria</b></div>'+
+ '<div class="fc-f"><span>Colar</span><b id="fc-colar">uma conta por Captura da bandeira vencida</b></div>'+
+ '</div>'+
+ '<div class="fc-sec"><b>Atributos</b>'+
+ fcAttr('Mira',9,'Sol e Merc&uacute;rio em Sagit&aacute;rio')+fcAttr('Percep&ccedil;&atilde;o',9,'Lua em Escorpi&atilde;o, Casa 7')+
+ fcAttr('Saber',8,'Casa 9 &middot; caminho de vida 7')+fcAttr('Iniciativa',8,'Ascendente em &Aacute;ries')+
+ fcAttr('Inova&ccedil;&atilde;o',9,'Urano e V&ecirc;nus em Aqu&aacute;rio na Casa 10, a da carreira')+fcAttr('Carisma',7,'V&ecirc;nus em Aqu&aacute;rio, Casa 10')+fcAttr('Autoridade',7,'Meio do C&eacute;u em Capric&oacute;rnio')+
+ fcAttr('Resist&ecirc;ncia',4,'nenhum planeta pessoal em terra')+'</div>'+
+ '<div class="fc-two"><div class="fc-sec"><b>Dons</b><ul>'+
+ '<li><em>A flecha que sabe o alvo</em> &middot; escolhe o que importa na pilha</li>'+
+ '<li><em>A escuta do or&aacute;culo</em> &middot; l&ecirc; a sala antes de algu&eacute;m falar</li>'+
+ '<li><em>A palavra que re&uacute;ne</em> &middot; agrega gente pelo humor e pela conversa</li>'+
+ '<li><em>O mestre do templo</em> &middot; ensina e guarda a regra</li>'+
+ '<li><em>A centelha de Urano</em> &middot; inventa o atalho que ningu&eacute;m viu e constr&oacute;i as pr&oacute;prias ferramentas</li></ul></div>'+
+ '<div class="fc-sec"><b>Atividades</b><ul>'+
+ '<li>Arquearia &middot; <em>mestre</em></li><li>Captura da bandeira &middot; <em>olheiro</em></li>'+
+ '<li>Fogueira &middot; <em>puxa a conversa e as hist&oacute;rias</em></li><li>Enfermaria &middot; <em>cura os outros, esquece de si</em></li></ul></div></div>'+
+ '<div class="fc-two"><div class="fc-sec fc-falha"><b>Falha fatal</b><p>A queima: corre no sol at&eacute; se consumir. Agrava com o impulso de &Aacute;ries e a vontade de aplauso. Corre&ccedil;&atilde;o: firmar os p&eacute;s antes de soltar a flecha.</p></div>'+
+ '<div class="fc-sec"><b>Matriz do destino</b><p>20 Julgamento &middot; 12 Enforcado &middot; 2 Sacerdotisa &middot; 7 Carro &middot; <em>centro 5, Hierofante</em></p></div></div>'+
+ '<div class="fc-sec fc-prof"><b>Miss&atilde;o atual &middot; a prova do tribunal</b><p>Do Texas ao estreito, o arqueiro do &uacute;ltimo grau<br>atravessa o inverno com a lei debaixo do bra&ccedil;o.<br>Fala de vi&eacute;s e acerta de frente;<br>queima se corre, vence se rege.</p></div>'+
+ '<p class="fc-obs"><span>Obs. do conselheiro:</span> excelente na mira e na leitura de campo. Lembrar de dormir, beber &aacute;gua e comer antes dos treinos.</p>';
+function fcFicha(){var vb=document.getElementById('vx-body');if(!vb)return;
+ var f=document.getElementById('fc-ficha');
+ if(!f||f.parentNode!==vb){if(f)f.remove();f=document.createElement('div');f.id='fc-ficha';f.className='fc';f.innerHTML=FC_HTML;vb.insertBefore(f,vb.firstChild);}
+ f.style.display=document.body.getAttribute('data-vx-view')==='dos'?'':'none';}
+(function(){var r0=vxRender;vxRender=function(){r0();try{fcFicha();}catch(e){}};})();
+setTimeout(function(){try{fcFicha();}catch(e){}},0);
+
+/* ---------- Rotina do acampamento: faixas, áreas de treino, captura da bandeira, regras, oferenda ---------- */
+var FX_NOMES={'06':'Alvorada','09':'Treinos','12':'Refeitório','15':'Arena','18':'Jantar','21':'Fogueira'};
+var AREAS=[[/nata|piscin/i,'Lago das canoas'],[/academ|muscul|malha|treino/i,'Muro de escalada'],[/quest/i,'Arena'],
+ [/estud|trf|concurso|revis/i,'Campo de arquearia'],[/ler|leitura|livro/i,'Biblioteca'],[/água|agua/i,'Fonte'],
+ [/sono|dormir|cama/i,'Chalé'],[/medit|respir/i,'Bosque'],[/corr|caminh|passo/i,'Trilha']];
+function acSemana(d){d=d||new Date();var x=new Date(d.getFullYear(),d.getMonth(),d.getDate());var w=(x.getDay()+6)%7;x.setDate(x.getDate()-w);
+ return x.getFullYear()+'-'+String(x.getMonth()+1).padStart(2,'0')+'-'+String(x.getDate()).padStart(2,'0');}
+(function(){var n0=normaliza;normaliza=function(p){var b=n0(p);
+ b.cb=(p&&p.cb&&typeof p.cb==='object')?p.cb:{};
+ b.regras=(p&&Array.isArray(p.regras))?p.regras:null;
+ b.cofre=(p&&p.cofre&&typeof p.cofre==='object')?p.cofre:null;
+ b.dsd=(p&&Array.isArray(p.dsd))?p.dsd:[];
+ return b;};})();
+var AC_REGRAS=['O expediente termina no horário marcado.','Um bloco de foco antes de abrir o celular.','Estudo no horário fixo, sem esperar vontade.',
+ 'Água em toda refeição.','Toque de recolher às 22h: telas desligadas.','Decisão pequena se toma sozinho.'];
+function acVitorias(){var n=0;Object.keys(S.cb||{}).forEach(function(k){if(S.cb[k]&&S.cb[k].ok)n++;});return n;}
+(function(){var x0=gmXP;gmXP=function(){var x=x0(),c=20*acVitorias();x.captura=c;x.total+=c;return x;};})();
+function acListas(){if(typeof GM_REGRAS!=='undefined'&&!GM_REGRAS.some(function(r){return /captura/.test(r[0]);}))GM_REGRAS.push(['três missões do dia','+5 cada'],['toque de recolher completo','+10'],['captura da bandeira (semana)','+20']);
+ if(typeof PL_FIM!=='undefined'&&!PL_FIM.some(function(f){return f[0]==='oferenda';})){PL_FIM.push(['oferenda','Oferenda: anotei uma gratidão do dia']);try{vxRender();}catch(e){}}}
+function acCaptura(){var k=acSemana(),c=(S.cb&&S.cb[k])||{d:'Simulado de sexta: uma prova completa',ok:false},v=acVitorias();
+ return '<div class="ac-k">captura da bandeira &middot; desafio da semana</div>'+
+  '<label class="ac-cb"><input type="checkbox" data-accb'+(c.ok?' checked':'')+'><input type="text" data-acd maxlength="80" value="'+esc(c.d||'')+'" aria-label="Desafio da semana"></label>'+
+  '<p class="ac-n">Vale +20 XP e uma conta no colar. Bandeiras capturadas: <b>'+v+'</b></p>';}
+function acRegras(){var r=S.regras||AC_REGRAS;
+ return '<div class="ac-k">regras do chalé <button type="button" class="ac-ed" data-acre>editar</button></div>'+
+  '<ol class="ac-rl">'+r.map(function(t){return '<li>'+esc(t)+'</li>';}).join('')+'</ol>'+
+  '<textarea class="ac-ta" data-acta rows="6" hidden>'+esc(r.join('\n'))+'</textarea>';}
+function acCards(){var pl=document.getElementById('pl-row');if(!pl)return;
+ var w=document.getElementById('ac-row');
+ if(!w){w=document.createElement('div');w.id='ac-row';w.className='ac-row';
+  w.innerHTML='<div class="ac-w" id="ac-cap"></div><div class="ac-w" id="ac-reg"></div>';
+  w.addEventListener('change',function(e){var t=e.target,k=acSemana();S.cb=S.cb||{};
+   if(t.hasAttribute('data-accb')){var c=S.cb[k]||{};c.ok=t.checked;c.d=w.querySelector('[data-acd]').value;S.cb[k]=c;
+    if(t.checked)try{anota('Captura da bandeira vencida: '+c.d,0,false);}catch(z){}grava();acPintaCards(true);try{vxRender();}catch(z){}}
+   if(t.hasAttribute('data-acd')){var c2=S.cb[k]||{ok:false};c2.d=t.value;S.cb[k]=c2;grava();}
+   if(t.hasAttribute('data-acta')){S.regras=t.value.split('\n').map(function(x){return x.trim();}).filter(Boolean);grava();acPintaCards(true);}});
+  w.addEventListener('click',function(e){if(!e.target.hasAttribute('data-acre'))return;var ta=w.querySelector('[data-acta]'),ol=w.querySelector('.ac-rl');
+   ta.hidden=!ta.hidden;ol.hidden=!ta.hidden;e.target.textContent=ta.hidden?'editar':'pronto';if(!ta.hidden)ta.focus();});}
+ if(w.previousElementSibling!==pl)pl.parentNode.insertBefore(w,pl.nextSibling);
+ var ver=pl.offsetParent!==null;if(w.style.display!==(ver?'':'none'))w.style.display=ver?'':'none';acPintaCards(false);}
+function acPintaCards(forca){var a=document.getElementById('ac-cap'),b=document.getElementById('ac-reg');if(!a||!b)return;
+ if(forca||!a.firstChild)a.innerHTML=acCaptura();if(forca||!b.firstChild)b.innerHTML=acRegras();}
+function acFaixas(){Array.prototype.forEach.call(document.querySelectorAll('.v4-h,#tb-g .tbf'),function(el){
+  if(el.querySelector('.fx-n'))return;var m=el.textContent.match(/^(\d\d)/);if(!m||!FX_NOMES[m[1]])return;
+  var sp=document.createElement('span');sp.className='fx-n';sp.textContent=FX_NOMES[m[1]];el.appendChild(sp);});}
+function acAreas(){var w=document.getElementById('rt-w');if(!w||!S.hab)return;
+ var nomes={};S.hab.forEach(function(h){var a=null;AREAS.forEach(function(r){if(!a&&r[0].test(h.nome||''))a=r[1];});if(a)nomes[(h.nome||'').trim()]=a;});
+ Array.prototype.forEach.call(w.querySelectorAll('*'),function(el){if(el.children.length||el.classList.contains('ar-t'))return;
+  var t=(el.textContent||'').trim();if(nomes[t]&&!(el.nextElementSibling&&el.nextElementSibling.classList.contains('ar-t'))){
+   var sp=document.createElement('span');sp.className='ar-t';sp.textContent=nomes[t];el.parentNode.insertBefore(sp,el.nextSibling);}});}
+function acColar(){var c=document.getElementById('fc-colar');if(!c)return;var v=acVitorias(),txt=v+(v===1?' conta':' contas')+' · uma por Captura da bandeira vencida';
+ if(c.textContent!==txt)c.textContent=txt;}
+
+/* ---------- Cofre: a Ficha do Campista e o Diário do Semideus abrem com senha ----------
+   A senha nunca é guardada. Dela sai uma chave (PBKDF2, 250 mil voltas) que cifra cada
+   entrada do diário com AES-GCM; no navegador e no Supabase só ficam textos cifrados.
+   Sem a senha, as entradas não podem ser recuperadas. */
+var CF={chave:null};
+function cfB64(u){var s='';u=new Uint8Array(u);for(var i=0;i<u.length;i++)s+=String.fromCharCode(u[i]);return btoa(s);}
+function cfU8(b){var s=atob(b),u=new Uint8Array(s.length);for(var i=0;i<s.length;i++)u[i]=s.charCodeAt(i);return u;}
+async function cfDeriva(senha,sal){var base=await crypto.subtle.importKey('raw',new TextEncoder().encode(senha),'PBKDF2',false,['deriveKey']);
+ return crypto.subtle.deriveKey({name:'PBKDF2',salt:sal,iterations:250000,hash:'SHA-256'},base,{name:'AES-GCM',length:256},false,['encrypt','decrypt']);}
+async function cfCifra(txt){var iv=crypto.getRandomValues(new Uint8Array(12));
+ var ct=await crypto.subtle.encrypt({name:'AES-GCM',iv:iv},CF.chave,new TextEncoder().encode(txt));return {iv:cfB64(iv),ct:cfB64(ct)};}
+async function cfDecifra(o,k){var pt=await crypto.subtle.decrypt({name:'AES-GCM',iv:cfU8(o.iv)},k||CF.chave,cfU8(o.ct));return new TextDecoder().decode(pt);}
+function cfMsg(t,erro){var m=document.getElementById('cf-msg');if(m){m.textContent=t;m.className='cf-msg'+(erro?' erro':'');}}
+function cfTela(){var c=document.getElementById('cf-cofre');if(!c)return;var f=document.getElementById('fc-ficha');
+ if(CF.chave){c.innerHTML='<div class="cf-bar"><span>🔓 cofre aberto</span><button type="button" data-cftr>trancar</button></div>';
+  if(f)f.hidden=false;cfDiario();return;}
+ if(f)f.hidden=true;var d=document.getElementById('cf-diario');if(d)d.remove();
+ var nova=!S.cofre;
+ c.innerHTML='<div class="cf-lock"><div class="cf-ico">🔒</div><div><b>Ficha do Campista &middot; Diário do Semideus</b>'+
+  '<p>'+(nova?'Crie uma senha para trancar a ficha e o diário. Guarde bem: sem ela, as entradas do diário não podem ser recuperadas.':'Trancado. Digite a senha para abrir.')+'</p>'+
+  '<div class="cf-f"><input type="password" id="cf-s1" placeholder="senha" autocomplete="'+(nova?'new-password':'current-password')+'">'+
+  (nova?'<input type="password" id="cf-s2" placeholder="repita a senha" autocomplete="new-password">':'')+
+  '<button type="button" data-cfok>'+(nova?'criar e abrir':'abrir')+'</button></div><span id="cf-msg" class="cf-msg"></span></div></div>';}
+async function cfAbre(){var s1=document.getElementById('cf-s1'),s2=document.getElementById('cf-s2');var senha=s1?s1.value:'';
+ if(!window.crypto||!crypto.subtle){cfMsg('Este navegador não permite cifrar. Abra pelo endereço https.',true);return;}
+ if(senha.length<4){cfMsg('Use ao menos 4 caracteres.',true);return;}
+ try{if(!S.cofre){if(!s2||s2.value!==senha){cfMsg('As senhas não conferem.',true);return;}
+   var sal=crypto.getRandomValues(new Uint8Array(16));CF.chave=await cfDeriva(senha,sal);
+   var chk=await cfCifra('hekatos');S.cofre={sal:cfB64(sal),chk:chk};grava();}
+  else{var k=await cfDeriva(senha,cfU8(S.cofre.sal));
+   try{if(await cfDecifra(S.cofre.chk,k)!=='hekatos')throw 0;}catch(e){cfMsg('Senha incorreta.',true);return;}CF.chave=k;}
+  cfTela();}catch(e){cfMsg('Não consegui abrir o cofre.',true);}}
+async function cfDiario(){var c=document.getElementById('cf-cofre');if(!c||!CF.chave)return;
+ var d=document.getElementById('cf-diario');
+ if(!d){d=document.createElement('div');d.id='cf-diario';d.className='cf-dia';
+  var f=document.getElementById('fc-ficha');(f||c).parentNode.insertBefore(d,(f||c).nextSibling);}
+ var itens=[];for(var i=(S.dsd||[]).length-1;i>=0;i--){var e=S.dsd[i];var t='';try{t=await cfDecifra(e);}catch(z){t='(entrada cifrada com outra senha)';}
+  itens.push('<li><time>'+esc(e.em||'')+'</time><p>'+esc(t).replace(/\n/g,'<br>')+'</p></li>');}
+ d.innerHTML='<div class="cf-dh"><span class="fc-k">diário do semideus &middot; só você lê</span><h3>Diário do Semideus</h3></div>'+
+  '<textarea id="cf-nova" rows="4" placeholder="O que aconteceu hoje no acampamento?"></textarea>'+
+  '<div class="cf-acoes"><button type="button" data-cfadd>guardar entrada</button><span id="cf-msg2" class="cf-msg"></span></div>'+
+  '<ol class="cf-lista">'+(itens.join('')||'<li class="vz">Nenhuma entrada ainda.</li>')+'</ol>';}
+async function cfAdd(){var ta=document.getElementById('cf-nova');var t=(ta&&ta.value||'').trim();if(!t||!CF.chave)return;
+ var o=await cfCifra(t),n=new Date();o.em=n.toLocaleDateString('pt-BR')+' · '+String(n.getHours()).padStart(2,'0')+'h'+String(n.getMinutes()).padStart(2,'0');
+ S.dsd=S.dsd||[];S.dsd.push(o);grava();try{anota('Entrada no Diário do Semideus',0,false);}catch(z){}cfDiario();}
+function cfMonta(){var vb=document.getElementById('vx-body'),f=document.getElementById('fc-ficha');if(!vb||!f)return;
+ var c=document.getElementById('cf-cofre');
+ if(!c){c=document.createElement('div');c.id='cf-cofre';c.className='cf';vb.insertBefore(c,f);
+  c.addEventListener('click',function(e){if(e.target.hasAttribute('data-cfok'))cfAbre();if(e.target.hasAttribute('data-cftr')){CF.chave=null;cfTela();}});
+  c.addEventListener('keydown',function(e){if(e.key==='Enter'&&e.target.tagName==='INPUT')cfAbre();});
+  document.addEventListener('click',function(e){if(e.target.hasAttribute&&e.target.hasAttribute('data-cfadd'))cfAdd();});
+  cfTela();}
+ if(c.nextElementSibling!==f)vb.insertBefore(c,f);
+ var dos=document.body.getAttribute('data-vx-view')==='dos';c.style.display=dos?'':'none';
+ if(!CF.chave&&!f.hidden)f.hidden=true;
+ var d=document.getElementById('cf-diario');if(d)d.style.display=dos?'':'none';}
+
+function acTudo(){try{acListas();}catch(e){}try{acCards();}catch(e){}try{acFaixas();}catch(e){}try{acAreas();}catch(e){}try{acColar();}catch(e){}try{cfMonta();}catch(e){}}
+(function(){var pend=0;function vez(){pend=0;acTudo();}
+ if(window.MutationObserver)new MutationObserver(function(){if(!pend)pend=setTimeout(vez,40);}).observe(document.documentElement,{childList:true,subtree:true});
+ setTimeout(vez,0);})();
 
 /* ---------- Planner do dia (tema Astronáutica) ----------
    Relógio, calendário do mês, três prioridades e checklist de fim de dia,
@@ -11678,8 +11990,8 @@ function acPos(){var v=vxData();if(v.view!=='op'||v.edit)return;var body=documen
 var AC_GUIA=[
  ['Bem-vindo, meio-sangue','Se você abriu isto, o pior já passou: alguém te reconheceu, você chegou inteiro e ganhou um chalé. Este app é o acampamento inteiro no bolso. Ele não exige que você seja um herói o dia todo. Exige só o próximo passo.'],
  ['As regras da casa','<ol><li><b>Um bloco de cada vez.</b> Quíron nunca cobrou a lista inteira de ninguém.</li><li><b>Três missões por dia, no máximo.</b> Profecias longas demais terminam mal.</li><li><b>Dia ruim também conta.</b> Sobreviver é uma atividade oficial do acampamento.</li><li><b>Anote antes de esquecer.</b> A Névoa apaga tudo o que fica só na cabeça.</li><li><b>Fechou o dia, apaga a fogueira.</b> O checklist de fim de dia existe por um motivo.</li></ol>'],
- ['O dia no acampamento','<ul class="ac-horas"><li><b>06h</b> alvorada e treino leve</li><li><b>09h</b> treino na arena: o bloco mais pesado do dia</li><li><b>12h</b> almoço no pavilhão</li><li><b>15h</b> atividades do acampamento</li><li><b>18h</b> jantar e oferenda à fogueira</li><li><b>21h</b> fogueira e toque de recolher</li></ul>A faixa de agora aparece no Chalé e na extensão. O que você escreve na Semana vira a escala de cada faixa.'],
- ['As abas','<ul><li><b>Chalé</b>: o seu dia, com nível, missões, colar de contas e bandeira da semana.</li><li><b>Missões</b>: projetos grandes, em etapas, com prazo.</li><li><b>Casa Grande</b>: estudo, concurso, idiomas e runas.</li><li><b>Arsenal</b>: o que você guarda para usar depois.</li><li><b>Loja do Acampamento</b>: dinheiro, Diário de Bordo, Carga, Enfermaria e Rotas.</li></ul>'],
+ ['O dia no acampamento','<ul class="ac-horas"><li><b>06h</b> alvorada e treino leve</li><li><b>09h</b> treino na arena: o bloco mais pesado do dia</li><li><b>12h</b> almoço no pavilhão</li><li><b>15h</b> atividades do acampamento</li><li><b>18h</b> jantar e oferenda à fogueira</li><li><b>21h</b> fogueira e toque de recolher</li></ul>A faixa de agora aparece na Casa Grande e na extensão. O que você escreve na Semana vira a escala de cada faixa.'],
+ ['As abas','<ul><li><b>Casa Grande</b>: o seu dia, com nível, missões do dia, colar de contas, bandeira e carta da semana.</li><li><b>Missões</b>: projetos grandes, em etapas, com prazo.</li><li><b>Partenon</b>: estudo, concurso, idiomas e runas.</li><li><b>Arsenal</b>: a ficha do campista e o que você guarda para usar depois.</li><li><b>Loja</b>: dinheiro, Diário de Bordo, Carga, Enfermaria e Rotas.</li></ul>'],
  ['Dracmas, XP e nível','Foco, estudo, hábitos, etapas e prioridades rendem XP. A cada 100 XP você sobe de nível. As dracmas mostram o que você conquistou hoje. Não se compra nada com elas, mas até Hermes respeita quem junta.'],
  ['Colar de contas','No fim de cada verão os campistas ganham uma conta com o símbolo do que viveram. Aqui é uma por mês: toque na conta do mês, escreva o marco e escolha o símbolo. Em dezembro você tem o ano inteiro pendurado no pescoço.'],
  ['Captura da Bandeira','Toda semana tem uma bandeira: a meta que, se cair até sexta, vale a semana. Escreva qual é na segunda, capture até sexta (com tolerância até domingo) e ganhe +20 XP. As bandeiras das últimas semanas ficam marcadas embaixo.'],
@@ -11727,7 +12039,7 @@ function acMedalhaPos(){var x=gmXP(),nv=gmNivel(x.total),c=acCampista();
   g.querySelector('.ac-medalha-bt').onclick=acEditaCampista;}
  var h=document.querySelector('#vx .vx-hero');if(!h)return;var k=h.querySelector(':scope>.vx-k');
  if(k&&!k.querySelector('.ac-cracha-bt')){k.classList.add('ac-cracha');
-  k.innerHTML='<button type="button" class="ac-cracha-bt" title="Editar ficha do campista">'+acMedalha(nv.n,46)+'</button><span><b>'+esc(c.nome)+' · Chalé '+esc(c.chale)+'</b><br>nível '+nv.n+' · '+x.total+' XP</span>';
+  k.innerHTML='<button type="button" class="ac-cracha-bt" title="Editar ficha do campista">'+acMedalha(nv.n,46)+'</button><span><b>Chase Maverick '+esc(c.nome)+' · o Hékatos</b><br>Chalé '+esc(c.chale)+' · nível '+nv.n+' · '+x.total+' XP</span>';
   k.querySelector('.ac-cracha-bt').onclick=acEditaCampista;}}
 /* o cartão de nível e o cabeçalho são redesenhados por outras partes do app: o medalhão volta sempre que somem */
 var acDecT=0;function acDecora(){clearTimeout(acDecT);acDecT=setTimeout(function(){try{acMedalhaPos();}catch(e){console.error('medalhão:',e);}},30);}
