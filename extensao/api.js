@@ -5,7 +5,7 @@ var CFG = {
   url: 'https://gubpygurtxadsncthttg.supabase.co',
   chave: 'sb_publishable_O9whelpXkVZ8tvgD_8t2EA_LPaeDcmy',
   /* endereço do app publicado; vazio esconde o botão "abrir o app" */
-  app: ''
+  app: 'https://oargonauta.pro'
 };
 var FAIXAS = ['06', '09', '12', '15', '18', '21'];
 
