@@ -2236,15 +2236,36 @@ body.claro[data-skin="astro"]{--void:#eadfbe;--bg:#eadfbe;--panel:#f4ead1;--pane
   radial-gradient(circle at 85% 90%,rgba(142,171,122,.18),transparent 36%),
   linear-gradient(90deg,rgba(95,70,35,.035) 1px,transparent 1px),linear-gradient(rgba(95,70,35,.03) 1px,transparent 1px);
  background-size:auto,auto,42px 42px,42px 42px}
-/* cabeçalho em forma de cartão-postal */
-body.claro[data-skin="astro"] #vx .vx-hero{position:relative;border-radius:14px;padding:20px 22px 18px!important;color:#efe0c1;overflow:hidden;
- background:linear-gradient(rgba(20,26,18,.22),rgba(20,26,18,.42)),radial-gradient(circle at 82% 18%,rgba(255,255,255,.16),transparent 22%),linear-gradient(135deg,#172719,#536b44 52%,#1d2b1e)!important;
- box-shadow:inset 0 0 0 2px rgba(234,223,190,.35),0 14px 30px rgba(20,26,18,.22)}
-body.claro[data-skin="astro"] #vx .vx-hero::before{display:none}
-body.claro[data-skin="astro"] #vx .vx-hero h2{color:#efe0c1!important;font-weight:900;text-transform:uppercase;letter-spacing:.03em;
- text-shadow:2px 2px 0 rgba(142,59,42,.75),0 2px 10px rgba(0,0,0,.45)}
-body.claro[data-skin="astro"] #vx .vx-hero .vx-k,body.claro[data-skin="astro"] #vx .vx-hero small,body.claro[data-skin="astro"] #vx .vx-hero span{color:rgba(240,230,201,.82)}
-body.claro[data-skin="astro"] #vx .vx-hero button{background:rgba(240,230,201,.1)!important;color:#f0e6c9!important;border-color:rgba(240,230,201,.4)!important}
+/* cabeçalho: painel de papel com mapas antigos ao fundo, cartão-postal inclinado e dracmas */
+body.claro[data-skin="astro"] #vx .vx-hero{position:relative;overflow:hidden;border-radius:26px;padding:24px 340px 22px 26px!important;min-height:236px;color:var(--ink);
+ background:linear-gradient(135deg,rgba(45,61,42,.07),rgba(210,183,111,.12)),rgba(238,228,202,.82)!important;
+ box-shadow:0 14px 34px rgba(60,45,20,.16),inset 0 0 0 1px rgba(255,255,255,.6)!important}
+body.claro[data-skin="astro"] #vx .vx-hero::before{content:"";display:block!important;position:absolute;right:-60px;top:-30px;width:520px;height:330px;opacity:.26!important;pointer-events:none;
+ border:12px solid #ded5b9!important;transform:rotate(-8deg);transition:transform .55s ease;-webkit-mask:none;mask:none;
+ background:radial-gradient(ellipse at 32% 34%,#c5b76d 0 13%,transparent 14%),radial-gradient(ellipse at 70% 60%,#b79b55 0 12%,transparent 13%),
+  radial-gradient(ellipse at 56% 28%,#8a9a6a 0 23%,transparent 24%),linear-gradient(23deg,#b7b38a,#d3c17f 47%,#a8a070 48% 66%,#c9bf8b 67%)!important;background-size:auto!important}
+body.claro[data-skin="astro"] #vx .vx-hero:hover::before{transform:rotate(-10deg) translate(-10px,-6px)}
+body.claro[data-skin="astro"] #vx .vx-hero>*:not(.cp-postal):not(.cp-dracmas){position:relative;z-index:1}
+body.claro[data-skin="astro"] #vx .vx-hero>.cp-postal,body.claro[data-skin="astro"] #vx .vx-hero>.cp-dracmas{position:absolute}
+body.claro[data-skin="astro"] #vx .vx-hero h2{color:#2f261d!important;font-weight:700;text-transform:none;letter-spacing:0;text-shadow:none}
+body.claro[data-skin="astro"] #vx .vx-hero .vx-k{color:#7b5b23}
+body.claro[data-skin="astro"] #vx .vx-hero button{background:rgba(255,250,236,.7)!important;color:var(--ink)!important;border-color:var(--line2)!important}
+.cp-postal,.cp-dracmas{display:none}
+body.claro[data-skin="astro"] .cp-postal{display:grid;position:absolute;right:30px;top:24px;z-index:2;width:290px;height:172px;border-radius:18px;padding:11px;
+ background:linear-gradient(135deg,rgba(255,255,255,.88),rgba(234,218,183,.95)),#e9dfc5;border:1px solid rgba(116,77,41,.35);
+ box-shadow:0 20px 38px rgba(40,30,15,.32);transform:rotate(-4deg);transition:transform .35s ease,box-shadow .35s ease}
+body.claro[data-skin="astro"] .cp-postal:hover{transform:rotate(-2deg) translateY(-6px);box-shadow:0 26px 48px rgba(40,30,15,.38)}
+.cp-postal .fr{border:2px solid rgba(107,67,38,.35);border-radius:12px;display:grid;place-items:center;text-align:center;color:#f4e8d0;
+ background:linear-gradient(rgba(30,30,30,.32),rgba(30,30,30,.26)),radial-gradient(circle at 80% 25%,rgba(255,255,255,.22),transparent 18%),linear-gradient(135deg,#172719,#536b44 46%,#1d2b1e)}
+.cp-postal small{display:block;margin-bottom:6px;font:600 15px/1 cursive;color:#fff5d8;transform:rotate(-5deg)}
+.cp-postal b{display:block;font:900 27px/.94 Georgia,serif;letter-spacing:.03em;text-transform:uppercase;color:#efe0c1;text-shadow:3px 3px 0 rgba(78,26,22,.55),0 2px 10px rgba(0,0,0,.5)}
+.cp-postal span{display:block;margin-top:6px;font:600 13px/1 cursive;color:#fff5d8;transform:rotate(-2deg)}
+body.claro[data-skin="astro"] .cp-dracmas{display:flex;position:absolute;right:46px;bottom:16px;z-index:3;gap:7px}
+.cp-dracmas i{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font:900 14px/1 Georgia,serif;font-style:normal;color:#65400f;
+ background:radial-gradient(circle at 30% 22%,#fff0a8,transparent 18%),radial-gradient(circle at 68% 72%,#8d5f1e,transparent 18%),linear-gradient(135deg,#b57a25,#f5dc80 45%,#8f5a18 78%);
+ box-shadow:0 6px 11px rgba(0,0,0,.3),inset 0 0 0 3px rgba(255,238,150,.28),inset 0 0 0 1px #7d4b16;transition:transform .25s ease}
+.cp-dracmas i:hover{transform:translateY(-5px) rotate(14deg)}
+@media(max-width:900px){body.claro[data-skin="astro"] #vx .vx-hero{padding-right:26px!important}body.claro[data-skin="astro"] .cp-postal,body.claro[data-skin="astro"] .cp-dracmas{display:none}}
 /* abas como as da extensão */
 body.claro[data-skin="astro"] #vx .vx-tabs button{border-radius:10px!important;font-family:system-ui,-apple-system,"Segoe UI",sans-serif!important;font-weight:700!important;
  font-size:11px!important;letter-spacing:.16em!important;text-transform:uppercase;background:var(--panel)!important;color:var(--dim)!important;border:1px solid var(--line)!important;box-shadow:none!important}
@@ -2254,7 +2275,6 @@ body.claro[data-skin="astro"] #vx .vx-tabs button[aria-selected="true"],body.cla
 body.claro[data-skin="astro"] #vx .vx-card,body.claro[data-skin="astro"] .gm,body.claro[data-skin="astro"] .pl-w,body.claro[data-skin="astro"] .cc-card{
  background:var(--panel)!important;border:1px solid var(--line)!important;border-radius:12px!important;box-shadow:0 1px 0 rgba(255,255,255,.55) inset,0 6px 16px rgba(60,45,20,.07)!important}
 body.claro[data-skin="astro"] h2.sec{font-family:var(--display);color:var(--bone)}
-body.claro[data-skin="astro"] #vx .vx-hero b,body.claro[data-skin="astro"] #vx .vx-hero strong{color:#f0e6c9!important}
 body.claro[data-skin="astro"]{--blk:#e6d9b4}
 body.claro[data-skin="astro"] .pl-k,body.claro[data-skin="astro"] .k5,body.claro[data-skin="astro"] .k9{color:var(--a-op)}
 </style>
@@ -11479,6 +11499,11 @@ function plPos(){if(apTema()!=='astro')return;var v=vxData();if(v.view!=='op'||v
  row.addEventListener('keydown',function(e){if(e.key==='Enter'&&e.target.dataset.pltx!=null){e.preventDefault();e.target.blur();}});}
 setInterval(function(){var r=document.getElementById('pl-relogio');if(r&&document.visibilityState==='visible')r.innerHTML=plRelogio();},1000);
 (function(){var r0=vxRender;vxRender=function(){r0();try{plPos();}catch(e){console.error('planner:',e);}};})();
+/* enfeites do cabeçalho no visual do acampamento (só aparecem no modo claro) */
+function cpEnfeita(){var h=document.querySelector('#vx .vx-hero');if(!h||h.querySelector('.cp-postal'))return;
+ h.insertAdjacentHTML('beforeend','<div class="cp-postal" aria-hidden="true"><div class="fr"><div><small>Greetings from</small><b>Camp<br>Half-Blood</b><span>Long Island, N.Y.</span></div></div></div>'+
+  '<div class="cp-dracmas" title="dracmas"><i>Δ</i><i>Ω</i><i>Ψ</i><i>Δ</i></div>');}
+(function(){var r0=vxRender;vxRender=function(){r0();try{cpEnfeita();}catch(e){console.error('cabeçalho:',e);}};})();
 
 /* ---------- Caixa de entrada da extensão do Chrome ----------
    A extensão nunca grava o registro inteiro: ela deposita eventos em
