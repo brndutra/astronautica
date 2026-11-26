@@ -4345,6 +4345,42 @@ h2.sec.neo-tit[data-nivel]{margin-top:12px!important}
 
 .wrap>#lat-faixa:not(:has(*:not(:empty))){margin:0!important}
 @media(min-width:1380px){.wrap>#lat-faixa{margin:0!important}}
+
+/* roda do ciclo na Tática */
+.ci-circ{display:flex;justify-content:center;margin:4px 0 10px}
+.ci-circ .rd-svg{width:100%;max-width:340px;height:auto}
+.ci-det{margin:0 0 10px;border:1px solid #c9b28a;border-radius:10px;background:#fbf3df}
+.ci-det>summary{cursor:pointer;padding:8px 12px;font:700 9.5px var(--mono,monospace);letter-spacing:.16em;text-transform:uppercase;color:#8a6f55}
+.ci-det>#ci-roda{padding:0 10px 10px}
+/* ===== escudo do foco ===== */
+.td-aspis .td-ring{width:104px!important;height:104px!important;background:none!important;box-shadow:0 10px 22px -8px rgba(60,35,10,.55)!important;border-radius:50%!important;transition:transform .2s}
+.td-aspis .td-ring:hover{transform:rotate(-4deg) scale(1.03)}
+.td-aspis .td-ring svg{position:static;width:100%;height:100%}
+.td-aspis .td-st1{font:700 11px Georgia,serif;letter-spacing:.3em;fill:#5a3f2c}
+.td-aspis .td-st2{font:700 19px Georgia,serif;fill:#3b2a1d;font-variant-numeric:tabular-nums}
+.td-aspis .td-st3{font:700 7px var(--mono,monospace);letter-spacing:.2em;fill:#8a6f55;text-transform:uppercase}
+.td-aspis .td-fg2{transition:stroke-dashoffset 1s linear}
+.td-aspis.fim .td-ring{animation:tdPulsa 1.2s ease-in-out infinite}
+@keyframes tdPulsa{50%{transform:scale(1.05)}}
+.td-aspis .td-menu{width:250px;padding:12px!important;border:1px solid #c9b28a!important;border-radius:12px!important;background:linear-gradient(180deg,#fbf3df,#f1e3c3)!important;box-shadow:0 14px 30px rgba(60,40,20,.3)!important;gap:8px!important}
+.td-aspis .td-menu header{display:flex;flex-direction:column;gap:1px;padding-bottom:7px;border-bottom:3px double #5a3f2c}
+.td-aspis .td-menu header span{font:700 8.5px var(--mono,monospace);letter-spacing:.2em;text-transform:uppercase;color:#9a6b3a}
+.td-aspis .td-menu header b{font:400 17px Georgia,serif!important;color:#3b2a1d!important}
+.td-aspis .td-chips{display:grid;grid-template-columns:repeat(5,1fr);gap:4px}
+.td-aspis .td-chips button{display:grid!important;place-items:center;height:34px;padding:0!important;border-radius:50%!important;aspect-ratio:1;width:auto!important;border:1.5px solid #9a6b3a!important;background:#f4ead2!important;font:700 13px Georgia,serif!important;color:#5a3f2c!important;text-align:center!important}
+.td-aspis .td-chips button.on,.td-aspis .td-chips button:hover{background:#e9c87a!important}
+.td-aspis .td-livre{display:flex;gap:5px}.td-aspis .td-livre input{flex:1;min-width:0;height:32px;padding:0 10px;border:1px solid #c9b28a;border-radius:8px;background:#fbf3df;font:14px var(--sans);color:#3b2a1d}
+.td-aspis .td-livre button{width:auto!important;display:inline-block!important;padding:0 12px!important;height:32px;border-radius:8px!important;border:1px solid #5a3f2c!important;background:#f4ead2!important;color:#5a3f2c!important;font:700 10px var(--mono,monospace)!important;letter-spacing:.14em;text-transform:uppercase}
+.td-aspis .td-l{padding:7px 10px!important;border:1px solid #c9b28a!important;border-radius:8px!important;background:#fbf3df!important;color:#3b2a1d!important;font:13px var(--sans)!important}
+.td-aspis .td-l.td-5{background:#e9c87a!important;border-color:#9a6b3a!important;font-weight:700!important}
+.td-aspis .td-dois,.td-aspis .td-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px}
+.td-aspis .td-grid button{padding:7px 8px!important;border:1px solid #c9b28a!important;border-radius:8px!important;background:#fbf3df!important;color:#3b2a1d!important;font:600 12.5px var(--sans)!important;text-align:center!important}
+.td-aspis .td-opt{display:flex;gap:5px}.td-aspis .td-opt button{flex:1;padding:5px 8px!important;border:1px dashed #b89c72!important;border-radius:999px!important;background:transparent!important;font:700 9px var(--mono,monospace)!important;letter-spacing:.1em;text-transform:uppercase;color:#8a6f55!important;text-align:center!important}
+.td-aspis .td-opt button[aria-pressed="true"]{border-style:solid!important;color:#5a3f2c!important;background:#f4ead2!important}
+.td-aspis .td-menu footer{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 8px;padding-top:7px;border-top:1px dashed #b89c72}
+.td-aspis .td-menu footer span{font:700 8.5px var(--mono,monospace);letter-spacing:.18em;text-transform:uppercase;color:#9a6b3a}
+.td-aspis .td-menu footer b{font:700 13px Georgia,serif;color:#3b2a1d}
+.td-aspis .td-menu footer a{margin-left:auto;font:600 11.5px var(--sans);color:#5a3f2c}
 </style>
 </head>
 <body>
@@ -14224,6 +14260,79 @@ function latTopo(){var e=document.getElementById('lat-e');if(!e||typeof gmXP!=='
  if(t.innerHTML!==html)t.innerHTML=html;}
 (function(){var r0=vxRender;vxRender=function(){var x=r0.apply(this,arguments);try{latTopo();}catch(e){}return x;};})();
 setTimeout(function(){try{latTopo();}catch(e){}},300);setInterval(function(){try{latTopo();}catch(e){}},60e3);
+/* ---------- roda do ciclo de volta à Tática: medalhão circular; a lista de blocos fica num menu abaixo ---------- */
+function ciCirculo(){var r=document.getElementById('ci-roda');if(!r||!r.parentNode)return;var c=document.getElementById('ci-circ');
+ if(!c){c=document.createElement('div');c.id='ci-circ';c.className='rd ci-circ';r.parentNode.insertBefore(c,r);}
+ var det=document.getElementById('ci-det');if(!det){det=document.createElement('details');det.id='ci-det';det.className='ci-det';det.innerHTML='<summary>todos os blocos da volta · pular para um</summary>';c.insertAdjacentElement('afterend',det);}
+ if(r.parentNode!==det)det.appendChild(r);var h='';try{h=rdHTML();}catch(e){}if(c.innerHTML!==h)c.innerHTML=h;}
+pintaCiclo=(function(p0){return function(){var x=p0.apply(this,arguments);try{ciCirculo();}catch(e){}return x;};})(pintaCiclo);
+setTimeout(function(){try{ciCirculo();}catch(e){}},600);
+
+/* ---------- disco de foco como escudo grego (aspís): bronze, grega, sol de Apolo; mais tempos e funções ---------- */
+function tdPref(){var td=tdD();td.pref=td.pref||{pomo:true,som:true,ult:25};return td.pref;}
+function tdHojeFoco(){var n=0,m=0;try{(vxData().sessions||[]).forEach(function(x){if(x.day===hoje()){n++;m+=+x.minutes||0;}});}catch(e){}return {n:n,m:Math.round(m)};}
+function tdBlocoCiclo(){try{var id=blocoAtual();return id?discNome(id):'';}catch(e){return '';}}
+function tdEscudo(fr,modo,txt,sub){var cx=60,cy=60,T='#5a3f2c',ouro='#e2b85a';
+ var s='<defs><radialGradient id="tdBr" cx="38%" cy="32%" r="75%"><stop offset="0" stop-color="#f1d08a"/><stop offset=".55" stop-color="#c38f3c"/><stop offset="1" stop-color="#7c5218"/></radialGradient>'+
+  '<radialGradient id="tdCampo" cx="45%" cy="40%" r="70%"><stop offset="0" stop-color="#fbf3df"/><stop offset="1" stop-color="#ead9b0"/></radialGradient></defs>';
+ s+='<circle cx="60" cy="60" r="58" fill="url(#tdBr)" stroke="'+T+'" stroke-width="1.6"/>';
+ s+=(typeof rdGrega==='function'?rdGrega(cx,cy,43,51,16,'#5a3f2c'):'');
+ var R=55,C=2*Math.PI*R;
+ s+='<circle cx="60" cy="60" r="'+R+'" fill="none" stroke="rgba(60,35,10,.35)" stroke-width="3.2"/>';
+ if(modo!=='parado')s+='<circle class="td-fg2" cx="60" cy="60" r="'+R+'" fill="none" stroke="'+(modo==='pausado'?'#bdb3a0':modo==='fim'?'#c0392b':modo==='pausa'?'#7fa36a':'#fff2c8')+'" stroke-width="3.6" stroke-linecap="round" stroke-dasharray="'+C.toFixed(1)+'" stroke-dashoffset="'+(C*(1-fr)).toFixed(1)+'" transform="rotate(-90 60 60)"/>';
+ s+='<circle cx="60" cy="60" r="37" fill="url(#tdCampo)" stroke="'+T+'" stroke-width="1.4"/>';
+ if(modo==='parado'){s+='<g fill="none" stroke="#9a6b3a" stroke-width="1.6" stroke-linecap="round"><circle cx="60" cy="52" r="8"/>';for(var i=0;i<12;i++){var a=i*Math.PI/6,p1=rdPolar(60,52,11,a),p2=rdPolar(60,52,15.5,a);s+='<path d="M'+p1[0].toFixed(1)+' '+p1[1].toFixed(1)+' L'+p2[0].toFixed(1)+' '+p2[1].toFixed(1)+'"/>';}s+='</g>';
+  s+='<text x="60" y="81" text-anchor="middle" class="td-st1">FOCO</text>';}
+ else{s+='<text x="60" y="'+(sub?63:66)+'" text-anchor="middle" class="td-st2">'+txt+'</text>'+(sub?'<text x="60" y="77" text-anchor="middle" class="td-st3">'+sub+'</text>':'');
+  for(var j=0;j<4;j++){var q=rdPolar(60,60,31,-Math.PI/2+j*Math.PI/2);s+='<circle cx="'+q[0].toFixed(1)+'" cy="'+q[1].toFixed(1)+'" r="1.4" fill="#9a6b3a"/>';}}
+ return '<svg viewBox="0 0 120 120" aria-hidden="true">'+s+'</svg>';}
+tdDisco=function(forca){var d=document.getElementById('td-disco');
+ if(!d){d=document.createElement('div');d.id='td-disco';d.className='td-disco td-aspis';document.body.appendChild(d);
+  d.addEventListener('click',function(e){var b=e.target.closest('[data-tdf]');if(!b){if(e.target.closest('.td-ring'))d.classList.toggle('aberto');return;}
+   var k=b.getAttribute('data-tdf'),td=tdD(),f=td.foco,P=tdPref();
+   if(k==='5')tdSo5();
+   else if(/^m\d+$/.test(k)){var m=+k.slice(1);P.ult=m;tdFocoIni(m,'bloco de '+m+' min',-1);}
+   else if(k==='livre'){var inp=d.querySelector('[data-tdmin]'),v=Math.max(1,Math.min(240,parseInt(inp&&inp.value,10)||0));if(!v){if(inp)inp.focus();return;}P.ult=v;tdFocoIni(v,'bloco de '+v+' min',-1);}
+   else if(k==='ciclo'){var nm=tdBlocoCiclo();tdFocoIni(P.ult||25,nm?'Tática · '+nm:'bloco do ciclo',-1);}
+   else if(k==='pausa5'){tdFocoIni(5,'pausa curta',-1);var g=tdD().foco;if(g)g.pausaModo=1;}
+   else if(k==='pausa15'){tdFocoIni(15,'pausa longa',-1);var g2=tdD().foco;if(g2)g2.pausaModo=1;}
+   else if(k==='pomo'){P.pomo=!P.pomo;}
+   else if(k==='som'){P.som=!P.som;}
+   else if(k==='pausa'&&f){if(f.pausa==null){f.pausa=tdFocoRest();}else{f.ini=Date.now()-(f.dur-f.pausa);f.pausa=null;}}
+   else if(k==='mais'&&f){f.dur+=5*60000;if(f.pausa!=null)f.pausa+=5*60000;f.avisou=0;}
+   else if(k==='menos'&&f){var r=tdFocoRest();if(r>5*60000){f.dur-=5*60000;if(f.pausa!=null)f.pausa-=5*60000;}}
+   else if(k==='fim')tdFocoFim(!(f&&f.pausaModo));
+   else if(k==='descarta'){td.foco=null;}
+   else if(k==='acomp'&&f){f.acomp=!f.acomp;}
+   tdSalva();tdDisco(true);});
+  d.addEventListener('keydown',function(e){if(e.key==='Enter'&&e.target.dataset&&e.target.dataset.tdmin!=null){e.preventDefault();var b=d.querySelector('[data-tdf="livre"]');if(b)b.click();}});}
+ d.classList.add('td-aspis');var f=tdD().foco,P=tdPref(),H=tdHojeFoco();
+ if(!f){if(forca||d.dataset.m!=='parado'){d.dataset.m='parado';d.classList.remove('rodando','pausado','fim','em-pausa');var nm=tdBlocoCiclo();
+   d.innerHTML='<button type="button" class="td-ring" aria-label="Abrir o foco">'+tdEscudo(0,'parado')+'</button>'+
+    '<div class="td-menu"><header><span>aspís do foco</span><b>Começar um bloco</b></header>'+
+    '<div class="td-chips">'+[15,25,45,50,90].map(function(m){return '<button type="button" data-tdf="m'+m+'"'+(P.ult===m?' class="on"':'')+'>'+m+'</button>';}).join('')+'</div>'+
+    '<div class="td-livre"><input type="number" min="1" max="240" inputmode="numeric" data-tdmin placeholder="min" aria-label="Minutos"><button type="button" data-tdf="livre">começar</button></div>'+
+    '<button type="button" class="td-l td-5" data-tdf="5">só 5 minutos · o menor passo</button>'+
+    (nm?'<button type="button" class="td-l" data-tdf="ciclo">bloco do ciclo · <b>'+tdEsc(nm)+'</b> · '+(P.ult||25)+' min</button>':'')+
+    '<div class="td-dois"><button type="button" class="td-l" data-tdf="pausa5">pausa curta · 5</button><button type="button" class="td-l" data-tdf="pausa15">pausa longa · 15</button></div>'+
+    '<div class="td-opt"><button type="button" data-tdf="pomo" aria-pressed="'+!!P.pomo+'">'+(P.pomo?'✓ ':'')+'pausa ao terminar</button><button type="button" data-tdf="som" aria-pressed="'+!!P.som+'">'+(P.som?'✓ ':'')+'som</button></div>'+
+    '<footer><span>hoje</span><b>'+H.n+' bloco'+(H.n===1?'':'s')+' · '+tdHM(H.m)+'</b><a href="https://www.focusmate.com/" target="_blank" rel="noopener">estudar acompanhado ↗</a></footer></div>';}
+  return;}
+ var rest=tdFocoRest(),fr=f.dur?rest/f.dur:0,modo=f.pausa!=null?'pausado':(rest<=60000?'fim':(f.pausaModo?'pausa':'rodando'));
+ if(d.dataset.m!=='rodando')d.classList.remove('aberto');
+ if(forca||d.dataset.m!=='rodando'){d.dataset.m='rodando';d.classList.add('rodando');
+  d.innerHTML='<button type="button" class="td-ring" aria-label="Controles do foco"></button>'+
+   '<div class="td-menu"><header><span class="td-rotk"></span><b class="td-rot"></b></header>'+
+   '<div class="td-grid"><button type="button" data-tdf="pausa" class="td-pb"></button><button type="button" data-tdf="mais">+5 min</button><button type="button" data-tdf="menos">−5 min</button><button type="button" data-tdf="acomp" class="td-ac"></button></div>'+
+   '<button type="button" class="td-l td-5" data-tdf="fim">encerrar e registrar</button><button type="button" class="td-l" data-tdf="descarta">descartar sem registrar</button>'+
+   '<footer><span>hoje</span><b>'+H.n+' bloco'+(H.n===1?'':'s')+' · '+tdHM(H.m)+'</b><a href="https://www.focusmate.com/" target="_blank" rel="noopener">abrir o Focusmate ↗</a></footer></div>';}
+ var ring=d.querySelector('.td-ring'),svg=tdEscudo(fr,modo,tdMMSS(rest),f.pausa!=null?'pausado':(f.pausaModo?'pausa':''));if(ring.dataset.s!==svg){ring.dataset.s=svg;ring.innerHTML=svg;}
+ d.querySelector('.td-rot').textContent=f.rot;d.querySelector('.td-rotk').textContent=f.pausaModo?'respire · pausa':'em foco';
+ d.querySelector('.td-pb').textContent=f.pausa!=null?'retomar':'pausar';d.querySelector('.td-ac').textContent=f.acomp?'✓ acompanhado':'acompanhado';
+ d.classList.toggle('pausado',f.pausa!=null);d.classList.toggle('fim',modo==='fim');d.classList.toggle('em-pausa',!!f.pausaModo);
+ if(rest<=0&&f.pausa==null&&!f.avisou){f.avisou=1;tdSalva();
+  if(f.pausaModo){tdAvisa('Fim da pausa','de volta ao treino?',[['novo bloco',function(){tdFocoFim(false);tdFocoIni(P.ult||25,'bloco de '+(P.ult||25)+' min',-1);}],['parar',function(){tdFocoFim(false);}]],P.som);}
+  else tdAvisa('Tempo! '+f.rot,'terminou o bloco de '+Math.round(f.dur/60000)+' min',[['concluí'+(P.pomo?' · pausa':''),function(){if(f.pi>=0){try{var x=plDia(hoje());if(x.top[f.pi])x.top[f.pi].ok=true;}catch(e){}}tdFocoFim(true);if(P.pomo){tdFocoIni(5,'pausa curta',-1);var g=tdD().foco;if(g){g.pausaModo=1;tdSalva();}}}],['mais 5',function(){var g=tdD().foco;if(g){g.dur+=5*60000;g.avisou=0;tdSalva();tdDisco(true);}}],['parar',function(){tdFocoFim(true);}]],P.som);}};
 setInterval(pintaProgresso,60000);
 })();
 </script>
