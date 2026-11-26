@@ -2379,6 +2379,13 @@ body.claro[data-skin="astro"] .cp-dracmas i.mosaico::after,.cp-dracmas i::after{
 #lat-ac .ac-row{grid-template-columns:1fr!important;margin:0!important;gap:10px}
 
 #lat-quadro:empty,#lat-vx:empty{display:none}
+.ar-postal img.ar-svg{object-fit:cover}
+#rt-box.com-foto{background:linear-gradient(180deg,rgba(251,247,236,.25),var(--panel) 190px),var(--foto) top center/100% auto no-repeat,var(--panel)}
+#rt-box.com-foto .mm-h{min-height:150px;align-items:flex-end;padding:10px 12px;margin:-16px -16px 12px;border-radius:16px 16px 0 0;background:linear-gradient(transparent,rgba(30,22,12,.62))}
+#rt-box.com-foto .mm-h h3,#rt-box.com-foto .mm-h p,#rt-box.com-foto .mm-h p b{color:#fff8e6!important;text-shadow:0 1px 6px rgba(0,0,0,.5)}
+#rt-box.com-foto .mm-h .k9{color:#f6d58a}
+.mm-prof{background:linear-gradient(180deg,rgba(251,247,236,.8),var(--panel) 130px),url("img/acampamento/louros.jpg") center 35%/cover no-repeat}
+
 /* concept art */
 .area-sep.com-arte{position:relative;min-height:150px;align-items:flex-end;padding:0 18px 14px!important;border:1px solid var(--line2)!important;border-radius:16px;overflow:hidden;
  background:var(--arte) center/cover no-repeat;box-shadow:inset 0 -70px 60px -30px rgba(40,30,18,.55)}
@@ -13620,11 +13627,21 @@ var arCache={};
 function arUrl(k){if(!arCache[k]){var svg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" preserveAspectRatio="xMidYMid slice">'+ARTE[k]()+'</svg>';arCache[k]='url("data:image/svg+xml,'+encodeURIComponent(svg)+'")';}return arCache[k];}
 function arSvg(k){return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" preserveAspectRatio="xMidYMid slice" class="ar-svg" role="img" aria-label="'+esc(ARTE_LEG[k][0])+'">'+ARTE[k]()+'</svg>';}
 var AR_AREA={camp:'arena',est:'partenon',dos:'forja',fin:'porto'};
+
+/* fotos enviadas pelo Bruno (só cenários, sem rosto em primeiro plano), em img/acampamento/ */
+var AR_FOTO={pinheiro:['O pinheiro da colina','A fronteira do acampamento: daqui para dentro, ninguém entra sem convite.'],colina:['A colina do pinheiro','O primeiro lugar que se vê ao chegar.'],
+ pavilhao:['Pavilhão do refeitório','Os estandartes dos chalés sobre as mesas de pedra. É aqui que a concha chama.'],anfiteatro:['O anfiteatro e a cachoeira','Fogueira à noite, aulas de dia.'],
+ templos:['O caminho dos chalés','Templos na mata, estátuas e braseiros acesos.'],armas:['O arsenal','Lâminas e maças esperando quem treina.'],placas:['A placa dos caminhos','Deméter, Hefesto, Poseidon: cada seta é um chalé.'],
+ louros:['Louros','A coroa que Apolo dá a quem acerta.'],arquearia:['Campo de arquearia','Fileira de arqueiros, alvos na sombra das árvores.'],taxi:['O táxi das Irmãs Cinzentas','Aceita dracma como pagamento. Não recomenda o cinto.']};
+function arFotoUrl(k){return 'url("img/acampamento/'+k+'.jpg")';}
+AR_AREA={camp:'f:arquearia',est:'f:templos',dos:'f:armas',fin:'f:taxi'};
 function arFaixas(){try{document.body.style.setProperty('--arte-vale',arUrl('vale'));}catch(e){}Object.keys(AR_AREA).forEach(function(a){var s=document.getElementById('area-'+a);if(!s)return;var k=AR_AREA[a];
- if(s.dataset.arte!==k){s.dataset.arte=k;s.classList.add('com-arte');s.style.setProperty('--arte',arUrl(k));s.title=ARTE_LEG[k][0];}});}
-function arPostalHTML(){var ks=Object.keys(ARTE),i=(S.postalI==null?Math.floor(Date.now()/864e5):S.postalI)%ks.length,k=ks[i];
- return '<div class="ar-postal">'+arSvg(k)+'<div class="ar-leg"><b>'+esc(ARTE_LEG[k][0])+'</b><small>'+esc(ARTE_LEG[k][1])+'</small></div></div><button type="button" class="arsm-v" data-ar-prox>próximo postal</button>';}
-document.addEventListener('click',function(e){if(!e.target.closest('[data-ar-prox]'))return;var ks=Object.keys(ARTE);S.postalI=((S.postalI==null?Math.floor(Date.now()/864e5):S.postalI)+1)%ks.length;var c=document.getElementById('lat-postal-b');if(c)c.innerHTML=arPostalHTML();});
+ if(s.dataset.arte!==k){s.dataset.arte=k;s.classList.add('com-arte');var foto=k.indexOf('f:')===0,kk=foto?k.slice(2):k;s.style.setProperty('--arte',foto?arFotoUrl(kk):arUrl(kk));s.title=(foto?AR_FOTO[kk]:ARTE_LEG[kk])[0];}});
+ try{var pv=document.getElementById('rt-box');if(pv&&!pv.classList.contains('com-foto')){pv.classList.add('com-foto');pv.style.setProperty('--foto',arFotoUrl('pavilhao'));}}catch(e){}}
+function arPostais(){return Object.keys(AR_FOTO).map(function(k){return 'f:'+k;}).concat(Object.keys(ARTE));}
+function arPostalHTML(){var ks=arPostais(),i=(S.postalI==null?Math.floor(Date.now()/864e5):S.postalI)%ks.length,k=ks[i],foto=k.indexOf('f:')===0,kk=foto?k.slice(2):k,L=foto?AR_FOTO[kk]:ARTE_LEG[kk];
+ return '<div class="ar-postal">'+(foto?'<img class="ar-svg" src="img/acampamento/'+kk+'.jpg" alt="'+esc(L[0])+'" loading="lazy">':arSvg(kk))+'<div class="ar-leg"><b>'+esc(L[0])+'</b><small>'+esc(L[1])+'</small></div></div><button type="button" class="arsm-v" data-ar-prox>próximo postal</button>';}
+document.addEventListener('click',function(e){if(!e.target.closest('[data-ar-prox]'))return;var ks=arPostais();S.postalI=((S.postalI==null?Math.floor(Date.now()/864e5):S.postalI)+1)%ks.length;var c=document.getElementById('lat-postal-b');if(c)c.innerHTML=arPostalHTML();});
 /* a Grade semanal é o painel principal: logo abaixo do índice */
 function latGradeTopo(){var wr=document.querySelector('.wrap'),h=document.getElementById('h-sem'),ix=document.getElementById('tt-indice');if(!wr||!h)return;
  var tb=h.nextElementSibling&&h.nextElementSibling.classList.contains('tb')?h.nextElementSibling:document.querySelector('.wrap > .tb');
