@@ -3950,6 +3950,13 @@ h2.sec.neo-tit+.neo-moldura{margin-top:0!important}
 .mm-dk{display:block;margin:0 12px 6px;font:700 9px var(--mono,monospace);letter-spacing:.14em;text-transform:uppercase;color:var(--mc,#9a6b3a)}
 #mm-herc-slot{padding:0 10px}#mm-herc-slot .provas{display:flex!important;flex-direction:column;gap:8px;grid-template-columns:none!important}
 #mm-herc-slot .pv{margin:0!important;padding:9px 10px!important}
+
+/* Enfermaria só cuida do corpo: o gasto em dinheiro fica no rodapé e na Bolsa; sai a sobra do "limiar de combustão" */
+#enf-gasto,#c-h-ctn .idx>p:has(#ct-l){display:none!important}
+
+/* medicação: fica só o P-05 da Enfermaria; sai o botão dos Anais do Quadro de avisos */
+#lat-med.enf-med{display:none!important}
+#cerbox .cerbt,#b-anais{display:none!important}
 </style>
 </head>
 <body>
