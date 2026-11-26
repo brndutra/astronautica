@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Astronáutica</title>
+<link rel="stylesheet" href="popup.css">
+</head>
+<body>
+<header class="cab">
+  <img src="icones/icone-48.png" alt="" width="28" height="28">
+  <div><b>Astronáutica</b><span id="data">—</span></div>
+  <button id="sair" class="lnk" hidden>sair</button>
+</header>
+
+<section id="login" hidden>
+  <p class="nota">Entre com a mesma conta do app. Os registros feitos aqui aparecem lá na próxima sincronização.</p>
+  <label>E-mail<input id="email" type="email" autocomplete="email"></label>
+  <label>Senha<input id="senha" type="password" autocomplete="current-password"></label>
+  <button id="entrar" class="pri">Entrar</button>
+</section>
+
+<main id="painel" hidden>
+  <section class="agora" id="agora"></section>
+
+  <section class="card">
+    <h2>Foco</h2>
+    <div id="foco-parado" class="linha">
+      <input id="foco-tarefa" placeholder="no que vai focar?" maxlength="80">
+      <button data-min="25" class="pri">25 min</button>
+      <button data-min="50">50 min</button>
+    </div>
+    <div id="foco-rodando" class="linha" hidden>
+      <b id="foco-resta">—</b><span id="foco-nome" class="nota"></span>
+      <button id="foco-parar">encerrar</button>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Captura</h2>
+    <div class="linha"><input id="cap" placeholder="despeje antes de perder" maxlength="300"><button id="cap-ok" class="pri">guardar</button></div>
+  </section>
+
+  <section class="card" id="sec-top">
+    <h2>Três prioridades</h2>
+    <ol id="top"></ol>
+  </section>
+
+  <section class="card">
+    <h2>Hábitos de hoje <button id="agua" class="mini">+1 copo d'água <span id="agua-n"></span></button></h2>
+    <ul id="habitos"></ul>
+  </section>
+
+  <section class="card">
+    <h2>Gasto</h2>
+    <div class="linha"><input id="g-desc" placeholder="almoço, uber, farmácia…" maxlength="80"><input id="g-val" inputmode="decimal" placeholder="R$ 0,00" class="val"><button id="g-ok" class="pri">registrar</button></div>
+  </section>
+
+  <footer class="rod"><span id="msg" role="status"></span><a id="abrir" target="_blank" rel="noopener" hidden>abrir o app ↗</a></footer>
+</main>
+<script src="api.js"></script>
+<script src="popup.js"></script>
+</body>
+</html>

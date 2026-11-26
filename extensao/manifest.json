@@ -1,0 +1,40 @@
+{
+  "manifest_version": 3,
+  "name": "Astronáutica",
+  "short_name": "Astronáutica",
+  "version": "0.1.0",
+  "description": "Registro rápido da Astronáutica: captura, foco, hábitos, água, prioridades, gastos e aviso de cada faixa do dia.",
+  "icons": {
+    "16": "icones/icone-16.png",
+    "32": "icones/icone-32.png",
+    "48": "icones/icone-48.png",
+    "128": "icones/icone-128.png"
+  },
+  "action": {
+    "default_title": "Astronáutica",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icones/icone-16.png",
+      "32": "icones/icone-32.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": [
+    "storage",
+    "alarms",
+    "notifications"
+  ],
+  "host_permissions": [
+    "https://gubpygurtxadsncthttg.supabase.co/*"
+  ],
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Alt+Shift+A"
+      },
+      "description": "Abrir o registro rápido"
+    }
+  }
+}
