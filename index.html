@@ -2243,6 +2243,35 @@ body[data-skin="astro"] .hk{border-top:4px solid var(--a-op)}
 .hk td{padding:6px 8px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink)}
 .hk td:first-child{color:var(--a-camp)} .hk td:last-child{color:var(--dim);text-decoration:line-through;text-decoration-color:color-mix(in srgb,var(--dim) 50%,transparent)}
 @media(max-width:800px){.hk-gr{grid-template-columns:1fr}}
+
+/* ficha do campista: formulário datilografado */
+.fc{position:relative;margin:0 0 18px;padding:20px 22px;border-radius:12px;border:1px solid #d9ccb2;color:#2f261d;
+ background:repeating-linear-gradient(0deg,transparent 0 27px,rgba(95,70,35,.08) 27px 28px),linear-gradient(#fbf6e8,#f4ead1);
+ box-shadow:0 10px 24px -16px rgba(60,40,15,.5);font-family:"Courier New",ui-monospace,monospace}
+.fc-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;border-bottom:2px solid #2f261d;padding-bottom:8px}
+.fc-k{font:700 10.5px "Courier New",monospace;letter-spacing:.14em;text-transform:uppercase;color:#8e3b2a}
+.fc h3{margin:4px 0 0;font:800 26px/1.05 var(--display,Georgia,serif);letter-spacing:.04em;text-transform:uppercase;color:#2f261d}
+.fc-stamp{transform:rotate(-8deg);padding:6px 12px;border:3px double #c0392b;border-radius:6px;color:#c0392b;font:800 15px "Courier New",monospace;letter-spacing:.2em;text-transform:uppercase;opacity:.85}
+.fc-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px 22px;margin:12px 0}
+.fc-f{display:grid;grid-template-columns:150px 1fr;gap:8px;align-items:baseline;padding:5px 0;border-bottom:1px dotted rgba(95,70,35,.35)}
+.fc-f span,.fc-sec>b,.fc-at>span{font:700 10.5px "Courier New",monospace;letter-spacing:.1em;text-transform:uppercase;color:#6f6553}
+.fc-f b{font:600 13.5px "Courier New",monospace;color:#1d3c6b}
+.fc-sec{margin-top:12px}
+.fc-sec>b{display:block;margin-bottom:6px;color:#8e3b2a}
+.fc-at{display:grid;grid-template-columns:110px auto 26px 1fr;gap:10px;align-items:center;padding:3px 0}
+.fc-bar{display:flex;gap:3px}.fc-bar i{width:12px;height:12px;border:1px solid #6f6553;border-radius:2px}
+.fc-bar i.on{background:#d9822b;border-color:#b5711f}
+.fc-at b{font:700 14px "Courier New",monospace;color:#2f261d}.fc-at small{font:12px "Courier New",monospace;color:#6f6553}
+.fc-two{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.fc ul{margin:0;padding-left:18px;display:grid;gap:4px;font:13px/1.45 "Courier New",monospace}
+.fc p{margin:0;font:13px/1.55 "Courier New",monospace}
+.fc em{font-style:normal;color:#1d3c6b;font-weight:700}
+.fc-falha p{color:#8e3b2a}
+.fc-prof p{font:italic 14px/1.6 Georgia,serif;color:#2f261d}
+.fc-obs{margin-top:14px!important;padding-top:8px;border-top:1px dashed rgba(95,70,35,.4);font-size:12.5px!important;color:#6f6553}
+.fc-obs span{font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#2f261d}
+body:not(.claro) .fc{filter:brightness(.92)}
+@media(max-width:900px){.fc-grid,.fc-two{grid-template-columns:1fr}.fc-at{grid-template-columns:96px auto 22px}.fc-at small{grid-column:1/-1}}
 </style>
 </head>
 <body>
@@ -6372,7 +6401,7 @@ var TEMAS={
    ['Grade','Treinos do m\u00eas'],['Rastreador de h\u00e1bitos','Treinos do m\u00eas'],
    ['Provas','Prova\u00e7\u00f5es'],['Pr\u00eamios','Recompensas'],['Rota','Profecia'],['Declara\u00e7\u00e3o de rota','Profecia do ciclo'],
    ['Of\u00edcios','Atividades'],['Aptid\u00f5es','Atividades do acampamento'],
-   ['abrir c\u00e9rebro','abrir o quadro']]}};
+   ['abrir c\u00e9rebro','abrir o quadro'],['Sujeito','Ficha do campista'],['designa\u00e7\u00e3o, origem e kit','registro, chal\u00e9 e atributos']]}};
 var AP_ARQ=/^(Arquivo do mutante|Porão)$/;
 function apTema(){return 'astro';}
 (function(){var n0=normaliza;normaliza=function(p){var b=n0(p);b.ap=(p&&p.ap==='astro')?'astro':'astro-novo';return b;};})();
@@ -6452,6 +6481,49 @@ function hkFicha(){var h=document.getElementById('h-rota');if(!h)return;
  f.style.display=(h.offsetParent===null&&getComputedStyle(h).display==='none')?'none':'';}
 (function(){var r0=vxRender;vxRender=function(){r0();try{hkFicha();}catch(e){}};})();
 setTimeout(function(){try{hkFicha();}catch(e){}},0);
+
+/* ---------- Ficha do campista (topo do Arsenal) ---------- */
+function fcAttr(n,v,src){var b='';for(var i=1;i<=10;i++)b+='<i'+(i<=v?' class="on"':'')+'></i>';
+ return '<div class="fc-at"><span>'+n+'</span><span class="fc-bar">'+b+'</span><b>'+v+'</b><small>'+src+'</small></div>';}
+var FC_HTML='<div class="fc-top"><div><span class="fc-k">Acampamento Meio-Sangue &middot; Long Island Sound</span>'+
+ '<h3>Ficha do Campista</h3></div><div class="fc-stamp">Reclamado</div></div>'+
+ '<div class="fc-grid">'+
+ '<div class="fc-f"><span>Nome de registro</span><b>Chase Maverick Duke</b></div>'+
+ '<div class="fc-f"><span>T&iacute;tulo</span><b>H&eacute;katos &middot; &ldquo;o que acerta de longe&rdquo;</b></div>'+
+ '<div class="fc-f"><span>Progenitor divino</span><b>Apolo</b></div>'+
+ '<div class="fc-f"><span>Chal&eacute;</span><b>Apolo &middot; sol, arco, m&uacute;sica e cura</b></div>'+
+ '<div class="fc-f"><span>Nascimento</span><b>20/12/2000 &middot; 14h10 &middot; Sol a 29&deg; de Sagit&aacute;rio</b></div>'+
+ '<div class="fc-f"><span>Cidade natal</span><b>Austin, Texas</b></div>'+
+ '<div class="fc-f"><span>Respons&aacute;vel mortal</span><b>m&atilde;e &middot; revisora de contratos</b></div>'+
+ '<div class="fc-f"><span>Chegada</span><b>aos 13 anos, escoltado por um s&aacute;tiro</b></div>'+
+ '<div class="fc-f"><span>Reclama&ccedil;&atilde;o</span><b>na primeira fogueira, um sol dourado sobre a cabe&ccedil;a</b></div>'+
+ '<div class="fc-f"><span>Situa&ccedil;&atilde;o</span><b>campista de ver&atilde;o &middot; instrutor de arquearia</b></div>'+
+ '<div class="fc-f"><span>Arma</span><b>arco curto de teixo &middot; secund&aacute;ria: lira</b></div>'+
+ '<div class="fc-f"><span>Colar</span><b>uma conta por ver&atilde;o &middot; a deste ano: o sol no grau 29</b></div>'+
+ '</div>'+
+ '<div class="fc-sec"><b>Atributos</b>'+
+ fcAttr('Mira',9,'Sol e Merc&uacute;rio em Sagit&aacute;rio')+fcAttr('Percep&ccedil;&atilde;o',9,'Lua em Escorpi&atilde;o, Casa 7')+
+ fcAttr('Saber',8,'Casa 9 &middot; caminho de vida 7')+fcAttr('Iniciativa',8,'Ascendente em &Aacute;ries')+
+ fcAttr('Carisma',7,'V&ecirc;nus e Urano em Aqu&aacute;rio, Casa 11')+fcAttr('Autoridade',7,'Meio do C&eacute;u em Capric&oacute;rnio')+
+ fcAttr('Resist&ecirc;ncia',4,'nenhum planeta pessoal em terra')+'</div>'+
+ '<div class="fc-two"><div class="fc-sec"><b>Dons</b><ul>'+
+ '<li><em>A flecha que sabe o alvo</em> &middot; escolhe o que importa na pilha</li>'+
+ '<li><em>A escuta do or&aacute;culo</em> &middot; l&ecirc; a sala antes de algu&eacute;m falar</li>'+
+ '<li><em>O canto que re&uacute;ne</em> &middot; agrega gente pelo humor</li>'+
+ '<li><em>O mestre do templo</em> &middot; ensina e guarda a regra</li></ul></div>'+
+ '<div class="fc-sec"><b>Atividades</b><ul>'+
+ '<li>Arquearia &middot; <em>mestre</em></li><li>Captura da bandeira &middot; <em>olheiro</em></li>'+
+ '<li>Cantoria da fogueira &middot; <em>puxa o coro</em></li><li>Enfermaria &middot; <em>cura os outros, esquece de si</em></li></ul></div></div>'+
+ '<div class="fc-two"><div class="fc-sec fc-falha"><b>Falha fatal</b><p>A queima: corre no sol at&eacute; se consumir. Agrava com o impulso de &Aacute;ries e a vontade de aplauso. Corre&ccedil;&atilde;o: firmar os p&eacute;s antes de soltar a flecha.</p></div>'+
+ '<div class="fc-sec"><b>Matriz do destino</b><p>20 Julgamento &middot; 12 Enforcado &middot; 2 Sacerdotisa &middot; 7 Carro &middot; <em>centro 5, Hierofante</em></p></div></div>'+
+ '<div class="fc-sec fc-prof"><b>Miss&atilde;o atual &middot; a prova do tribunal</b><p>Do Texas ao estreito, o arqueiro do &uacute;ltimo grau<br>atravessa o inverno com a lei debaixo do bra&ccedil;o.<br>Fala de vi&eacute;s e acerta de frente;<br>queima se corre, vence se rege.</p></div>'+
+ '<p class="fc-obs"><span>Obs. do conselheiro:</span> excelente na mira e na leitura de campo. Lembrar de dormir, beber &aacute;gua e comer antes dos treinos.</p>';
+function fcFicha(){var vb=document.getElementById('vx-body');if(!vb)return;
+ var f=document.getElementById('fc-ficha');
+ if(!f||f.parentNode!==vb){if(f)f.remove();f=document.createElement('div');f.id='fc-ficha';f.className='fc';f.innerHTML=FC_HTML;vb.insertBefore(f,vb.firstChild);}
+ f.style.display=document.body.getAttribute('data-vx-view')==='dos'?'':'none';}
+(function(){var r0=vxRender;vxRender=function(){r0();try{fcFicha();}catch(e){}};})();
+setTimeout(function(){try{fcFicha();}catch(e){}},0);
 
 /* ---------- Planner do dia (tema Astronáutica) ----------
    Relógio, calendário do mês, três prioridades e checklist de fim de dia,
