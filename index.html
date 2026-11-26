@@ -17746,6 +17746,37 @@ if(TV_ON){(function(){var I=function(n){return 'url("img/acampamento/'+n+'?v=3")
  'body.tv #hero-box .vx-hero::after{-webkit-mask-size:24px 24px!important;mask-size:24px 24px!important;background:#1d4a2c!important;opacity:.85}'
 ].join('\n');document.head.appendChild(st);})();}
 
+
+/* ======================= Valhala com tons por templo (como o Acampamento tinha um tom por templo) =======================
+   Ferro (Programação, Hélio no Posto, Meta do dia), sangue de escudo (Rastreados, Moiras, Saga do dia), madeira de salão
+   (frontão, banner, faixas do painel esquerdo, Foco do dia, Hermes) e verde-couro só no templo das Tarefas e no Posto de Apolo. */
+if(TV_ON){(function(){var I=function(n){return 'url("img/acampamento/'+n+'.svg?v=4")';};
+ var tom=function(sel,t,k){return sel+'{--neo-fuste:'+I('vh-fuste-'+t)+'!important;--neo-cap:'+I('vh-capitel-'+t)+'!important;--neo-base:'+I('vh-base-'+t)+'!important;--neo-ent:'+I('vh-escudos-'+t)+'!important;--col-k:'+k+'!important;border-color:'+k+'!important}';};
+ var op=function(sel,t,k){return 'body.tv #modo-op '+sel+'.op-templo{--t-fuste:'+I('vh-fuste-'+t)+'!important;--t-cap:'+I('vh-capitel-'+t)+'!important;--t-base:'+I('vh-base-'+t)+'!important;--t-ent:'+I('vh-escudos-'+t)+'!important;--t-k:'+k+'!important}';};
+ var st=document.createElement('style');st.id='tv-tons-css';st.textContent=[
+  tom('body.tv .wrap>.tb.neo-moldura','ferro','#2d3a4a'),tom('body.tv .wrap>.rt.neo-moldura,body.tv .wrap>#rt-box .rt.neo-moldura','sangue','#6a1e1e'),
+  op('.op-l','ferro','#2d3a4a'),op('.op-fazer','sangue','#6a1e1e'),op('.op-estudo','madeira','#5b3b22'),op('.op-lado','ferro','#2d3a4a'),
+  'body.tv #modo-op .op-l{--t-foto:'+I('vh-sol-ferro')+'!important}body.tv #modo-op .op-fazer{--t-foto:'+I('vh-fuso-sangue')+'!important}body.tv #modo-op .op-estudo{--t-foto:'+I('vh-olho-madeira')+'!important}body.tv #modo-op .op-lado{--t-foto:'+I('vh-valknut-ferro')+'!important}',
+  /* placas no tom do seu templo */
+  'body.tv h2.sec.neo-tit.placa-tom{background:linear-gradient(180deg,color-mix(in srgb,var(--pk) 82%,#fff),var(--pk))!important;box-shadow:0 0 0 3px #e9e6d6,0 0 0 4.5px #d4ad4f!important}',
+  /* frontão e banner em madeira com ouro */
+  'body.tv .vh-telhado{background:'+I('vh-telha-madeira')+' 0 0/24px 16px repeat,#3a2414!important}',
+  'body.tv .vh-viga{background:'+I('vh-no-h-madeira')+' 0 0/32px 16px repeat-x,#5b3b22!important}',
+  'body.tv #hero-box .nf2 .nf-txt{background:#3a2414!important;box-shadow:0 0 0 2px #3a2414!important}',
+  'body.tv #hero-box .nf2>.pd-pilula{background:linear-gradient(180deg,#6e4a2c,#4a2f1a)!important;box-shadow:0 0 0 3px #3a2414,0 0 0 4.5px #d4ad4f,0 6px 12px -6px rgba(0,0,0,.6)!important}',
+  'body.tv #hero-box .nf2>.pd-pilula button{border-left-color:#7a5636!important}',
+  'body.tv #hero-box .bn-slot{background:'+I('vh-capitel-madeira')+' 2px 0/46px 31px no-repeat,'+I('vh-capitel-madeira')+' calc(100% - 2px) 0/46px 31px no-repeat,'+I('vh-fuste-madeira')+' 2px 31px/46px 40px repeat-y,'+I('vh-fuste-madeira')+' calc(100% - 2px) 31px/46px 40px repeat-y,#e9e6d6!important}',
+  'body.tv #hero-box .bn-slot::after{background:'+I('vh-base-madeira')+' 0 0/46px 14px no-repeat,'+I('vh-base-madeira')+' 100% 0/46px 14px no-repeat!important}',
+  'body.tv #hero-box .vx-hero{border-color:#5b3b22!important}body.tv #hero-box .vx-hero::after{background:#5b3b22!important}',
+  /* painel esquerdo: faixas de madeira e cartões em tons variados */
+  '@media(min-width:1380px){body.tv #nav.navdr{background-image:'+I('vh-no-v-madeira')+','+I('vh-no-v-madeira')+'!important}}',
+  'body.tv #lat-e>#lat-gm>.gm{--lf:'+I('vh-elmo-ferro')+';--lc:#2d3a4a}',
+  'body.tv #lat-e>#lat-db{--lf:'+I('vh-livro-sangue')+';--lc:#6a1e1e}',
+  'body.tv #lat-arena{--c-img:'+I('vh-runas-madeira')+'!important}body.tv #lat-e>#lat-arena{--lc:#5b3b22}',
+  'body.tv #lat-ars{--c-img:'+I('vh-escudo-ferro')+'!important}',
+  'body.tv #rod-apps .rod-fogo .fg-ic{background-image:'+I('vh-valknut-sangue')+'!important}'
+ ].join('\n');document.head.appendChild(st);})();}
+
 })();
 </script>
 </body>
