@@ -2393,6 +2393,19 @@ body.bn-mini .bn-min .bn-t{display:block}
 body.bn-mini .bn-min .bn-a::after{content:" ▾"}
 body.bn-mini #hero-box .bn-slot{display:none}
 #hero-box .bn-slot>.vx-hero{margin:0}
+/* registro do dia como rodapé do banner: cartões retangulares encostados na base */
+#hero-box .bn-slot>.vx-hero{border-bottom-left-radius:0!important;border-bottom-right-radius:0!important}
+#hero-box>.cp-reg{margin:-1px 0 0!important;padding:0!important;border:1px solid var(--line2)!important;border-top:0!important;border-radius:0 0 16px 16px;background:var(--line)!important;overflow:hidden}
+body.bn-mini #hero-box>.cp-reg{border-top:1px solid var(--line2)!important;border-radius:16px;margin-top:6px!important}
+#hero-box>.cp-reg .cr-k{display:none}
+#hero-box>.cp-reg .cr-g{display:flex!important;flex-wrap:wrap;gap:1px!important}
+#hero-box>.cp-reg .cr-i{flex:1 1 168px;background:var(--panel);padding:9px 11px 10px;gap:6px;justify-content:space-between;min-height:74px}
+#hero-box>.cp-reg .cr-i>span{font-family:var(--mono);font-size:8.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--red)}
+#hero-box>.cp-reg .cr-i>span b{font-family:var(--display);font-size:15px;letter-spacing:0;text-transform:none;color:var(--bone)}
+#hero-box>.cp-reg .cr-hb{flex:2 1 300px}
+#hero-box>.cp-reg .cr-n{min-width:27px;height:27px!important}
+#hero-box>.cp-reg .cr-t{padding:5px 8px!important}
+#hero-box>.cp-reg input{height:27px!important}
 .cp-mural #rail-in input{height:30px!important;min-height:0!important;padding:4px 8px!important}
 .cp-mural #rail-in button{height:30px!important;min-height:0!important;padding:0 10px!important;line-height:1!important}
 .cp-mural .rbt button{height:26px!important}
