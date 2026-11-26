@@ -4139,7 +4139,7 @@ h2.sec.neo-tit[data-nivel]>span{color:var(--fase)!important}
 @media(max-width:900px){#templo-fio{display:none}}
 
 /* emblema do acampamento no lugar do medalhão do nível */
-#lat-gm .ac-medalha-bt{width:96px!important;height:96px!important;background:url(img/acampamento/camp.webp) center/contain no-repeat!important;border-radius:50%;filter:drop-shadow(0 5px 9px rgba(60,40,10,.3))}
+#lat-gm .ac-medalha-bt{width:104px!important;height:100px!important;background:url(img/acampamento/logo-camp.webp) center/contain no-repeat!important;border-radius:0}
 #lat-gm .ac-medalha-bt svg{visibility:hidden}
 /* lira de Apolo no centro do frontão */
 #hero-box .neo-frontao.com-lira svg circle,#hero-box .neo-frontao.com-lira svg path:not(:first-child):not(:nth-child(2)){display:none}
@@ -4155,6 +4155,19 @@ h2.sec.neo-tit[data-nivel]>span{color:var(--fase)!important}
 #fer-corpo #tirbox{display:block!important;position:static!important;inset:auto!important;transform:none!important;width:auto!important;height:auto!important;max-height:none!important;margin:0!important;border:0!important;background:none!important;padding:0!important;box-shadow:none!important}
 #fer-corpo #tirbox>.cerhd{display:none!important}
 #fer-corpo #tirbox button span,#fer-corpo #tirbox .tirx,#fer-corpo #tirbox>button:first-child{display:none!important}
+
+/* Captura da bandeira com a bandeira do acampamento */
+#lat-band .band-g{display:grid;grid-template-columns:62px minmax(0,1fr);gap:12px;align-items:start}
+#lat-band .band-mastro{position:relative;padding-left:5px}
+#lat-band .band-mastro::before{content:'';position:absolute;left:0;top:-4px;bottom:-14px;width:3px;border-radius:2px;background:#5a3f2c}
+#lat-band .band-mastro img{display:block;width:100%;height:auto;border-radius:0 3px 3px 0;box-shadow:2px 3px 6px rgba(60,40,20,.25);filter:saturate(.35) brightness(.95);transform:translateY(26px) scaleY(.92);transform-origin:top left;transition:filter .4s,transform .5s}
+#lat-band.band-ok .band-mastro img{filter:none;transform:none}
+#lat-band .ac-card{margin:0!important;padding:0!important;border:0!important;background:none!important;box-shadow:none!important}
+#lat-band .ac-cab .ac-n{display:none}
+#lat-band .ac-meta{width:100%;box-sizing:border-box}
+
+#lat-gm .ac-medalha-bt,#lat-gm .ac-medalha-bt.mosaico{box-shadow:none!important;border:0!important;outline:0!important;background-color:transparent!important}
+#lat-gm .ac-medalha-bt::before,#lat-gm .ac-medalha-bt::after{display:none!important}
 </style>
 </head>
 <body>
@@ -13943,6 +13956,21 @@ arsMini=(function(a0){return function(){var h=a0.apply(this,arguments);try{var i
 function frontaoLira(){var f=document.querySelector('#hero-box .neo-frontao');if(!f||f.querySelector('.fr-lira'))return;var i=document.createElement('img');i.className='fr-lira';i.src='img/acampamento/lira.webp';i.alt='Lira de Apolo · chalé 7';f.appendChild(i);f.classList.add('com-lira');}
 (function(){var r0=vxRender;vxRender=function(){var x=r0.apply(this,arguments);try{frontaoLira();}catch(e){}return x;};})();
 setTimeout(function(){try{frontaoLira();var a=document.getElementById('lat-ars-b');if(a)a.innerHTML=arsMini();}catch(e){}},400);
+/* Captura da bandeira volta à vista: cartão próprio na coluna esquerda, com a bandeira do acampamento */
+function bandCard(){var e=document.getElementById('lat-e');if(!e||typeof acBandeiraHTML!=='function')return;var c=document.getElementById('lat-band');
+ if(!c){var t=document.createElement('div');t.innerHTML=latCard('lat-band','alvo','desafio da semana · +20 XP','Captura da bandeira','<div id="lat-band-b"></div>');c=t.firstChild;
+  c.addEventListener('change',function(ev){var x=ev.target;
+   if(x.dataset.acMeta){S.bandeira=S.bandeira||{};var b=S.bandeira[x.dataset.acMeta]=S.bandeira[x.dataset.acMeta]||{};b.meta=x.value.trim().slice(0,90);if(!b.meta)b.ok=false;grava();bandPinta(true);try{vxRender();}catch(z){}return;}
+   if(x.dataset.acOk){var b2=(S.bandeira||{})[x.dataset.acOk];if(!b2)return;b2.ok=x.checked;b2.quando=x.checked?hoje():null;grava();
+    if(x.checked){try{anota('Bandeira da semana capturada: '+esc(b2.meta)+'.',0,false);}catch(z){}try{acLouros('Bandeira capturada','+20 XP');}catch(z){}}bandPinta(true);try{vxRender();}catch(z){}}});
+  c.addEventListener('keydown',function(ev){if(ev.key==='Enter'&&ev.target.dataset.acMeta){ev.preventDefault();ev.target.blur();}});}
+ var ar=document.getElementById('lat-arena'),ref=ar&&ar.parentNode===e?ar:document.getElementById('lat-gm');if(ref&&ref.parentNode===e){if(ref.nextElementSibling!==c)e.insertBefore(c,ref.nextSibling);}else if(c.parentNode!==e)e.appendChild(c);
+ bandPinta(false);}
+function bandPinta(forca){var b=document.getElementById('lat-band-b');if(!b)return;var a=document.activeElement;if(!forca&&a&&b.contains(a))return;
+ var h='<div class="band-g"><div class="band-mastro"><img src="img/acampamento/bandeira.webp" alt="Bandeira do acampamento"></div><div class="band-x">'+acBandeiraHTML()+'</div></div>';
+ if(b.innerHTML!==h)b.innerHTML=h;var card=document.getElementById('lat-band');if(card)card.classList.toggle('band-ok',!!b.querySelector('.ac-band.ok'));}
+(function(){var r0=vxRender;vxRender=function(){var x=r0.apply(this,arguments);try{bandCard();}catch(e){}return x;};})();
+setTimeout(function(){try{bandCard();}catch(e){}},500);
 setInterval(pintaProgresso,60000);
 })();
 </script>
