@@ -4788,6 +4788,136 @@ dialog.ave-dlg::before{content:'';display:block;height:12px;margin:6px 8px 0;bac
 .ave-dlg .ad-corvo footer{}
 .ave-dlg .ad-cass{background:linear-gradient(90deg,rgba(180,70,58,.08),transparent);border-radius:8px;padding-left:6px!important}
 .ave-dlg .ad-cass .ad-k{color:#b4463a}
+
+/* ===== Posto de comando · pacote TDAH ===== */
+#modo-op .op-fazer{gap:8px}
+#modo-op .op-bus,#modo-op .op-fog{display:flex;flex-direction:column;gap:7px;padding:14px 14px 12px;border:1.5px solid #9a6b3a;border-radius:12px;background:#fbf3df;box-shadow:inset 0 0 0 3px #f4ead1,inset 0 0 0 4px #e2c98f;position:relative}
+#modo-op .op-bus::before{content:'';position:absolute;top:-1px;left:16px;right:16px;height:4px;background:repeating-linear-gradient(90deg,#c9a45a 0 8px,transparent 8px 12px);opacity:.8}
+#modo-op .op-bus-em{border-color:#b4463a;box-shadow:inset 0 0 0 3px #f4ead1,inset 0 0 0 4px #e8a08f}
+#modo-op .op-bus-tag{font:700 9.5px var(--mono,monospace);letter-spacing:.14em;text-transform:uppercase;color:#b4521c}
+#modo-op .op-bus-t{font:400 22px/1.2 Georgia,serif;color:#2a2418;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+#modo-op .op-bus-gab .op-bus-t{font:700 19px var(--mono,monospace);letter-spacing:.02em}
+#modo-op .op-bus-sub{font:13px var(--sans);color:#6b5140;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#modo-op .op-passo{display:flex;flex-direction:column;gap:3px}
+#modo-op .op-passo span,#modo-op .op-fog label span,#modo-op .op-est>span,#modo-op .op-rec>span{font:700 8.5px var(--mono,monospace);letter-spacing:.18em;text-transform:uppercase;color:#9a6b3a}
+#modo-op .op-passo input,#modo-op .op-fog input{width:100%;box-sizing:border-box;height:34px;padding:0 10px;border:1px solid #c9b28a;border-radius:8px;background:#fff8e8;font:14px var(--sans);color:#3b2a1d}
+#modo-op .op-passo1{display:flex;align-items:baseline;gap:8px;padding:8px 10px;border-radius:8px;background:#f6e2b8}
+#modo-op .op-passo1 span{flex:none;font:700 9px var(--mono,monospace);letter-spacing:.16em;text-transform:uppercase;color:#b4463a}
+#modo-op .op-passo1 b{font:600 15px var(--sans);color:#2a2418}
+#modo-op .op-bus-bt,#modo-op .op-fog .op-bus-bt{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+#modo-op .op-bus-bt button,#modo-op .op-batq button,#modo-op .op-nectar button,#modo-op .op-est button,#modo-op .op-comp-b{width:auto!important;margin:0!important;padding:8px 12px!important;border:1px solid #c9b28a!important;border-radius:8px!important;background:#fbf3df!important;color:#3b2a1d!important;font:600 13px var(--sans)!important;cursor:pointer}
+#modo-op .op-bus-bt .op-pri,#modo-op .op-nectar .op-pri{background:#e9c87a!important;border-color:#9a6b3a!important;font-weight:700!important;padding:9px 16px!important}
+#modo-op .op-lk{width:auto!important;margin:0!important;padding:2px 4px!important;border:0!important;background:none!important;color:#9a6b3a!important;font:600 12px var(--sans)!important;text-decoration:underline;cursor:pointer}
+#modo-op .op-bus-ft{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;padding-top:6px;border-top:1px dashed #d9c49a}
+#modo-op .op-bus-n{font:italic 12.5px Georgia,serif;color:#8a6f55}
+#modo-op .op-bat{display:inline-flex;gap:4px}
+#modo-op .op-bat button{display:inline-flex!important;align-items:center;gap:2px;width:auto!important;height:22px;margin:0!important;padding:0 6px!important;border:1px solid #c9b28a!important;border-radius:5px!important;background:#fbf3df!important;cursor:pointer}
+#modo-op .op-bat button.on{background:#e9c87a!important;border-color:#9a6b3a!important}
+#modo-op .op-bat i,#modo-op .op-batq i{display:inline-block;width:4px;height:11px;border-radius:1px;background:#9a6b3a}
+#modo-op .op-batq{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+#modo-op .op-batq button{display:flex!important;flex-direction:column;align-items:center;gap:3px;padding:12px 8px!important;text-align:center}
+#modo-op .op-batq button:hover{background:#f3dfae!important}
+#modo-op .op-bi{display:flex;gap:3px;align-items:flex-end;height:20px}#modo-op .op-batq i{width:7px;height:18px}
+#modo-op .op-batq span{font:700 14px Georgia,serif}
+#modo-op .op-batq small{font:12px var(--sans);color:#6b5140}
+#modo-op .op-rec{display:flex;flex-wrap:wrap;gap:4px 6px;align-items:center}
+#modo-op .op-rec em{font:normal 12.5px var(--sans);padding:2px 8px;border-radius:999px;background:#eef3e4;color:#27500a;border:1px solid #c7d8b0}
+#modo-op .op-tudo{min-height:0;display:flex;flex-direction:column}
+#modo-op .op-tudo>summary{list-style:none;cursor:pointer;font:700 9px var(--mono,monospace);letter-spacing:.18em;text-transform:uppercase;color:#9a6b3a;padding:4px 2px}
+#modo-op .op-tudo>summary::-webkit-details-marker{display:none}
+#modo-op .op-tudo>summary::before{content:'▸ '}#modo-op .op-tudo[open]>summary::before{content:'▾ '}
+#modo-op .op-tudo-c{min-height:0;overflow:auto;display:flex;flex-direction:column;gap:8px;padding-right:4px;scrollbar-width:thin}
+/* fogueira */
+#modo-op .op-fog{border-color:#b4521c;background:linear-gradient(180deg,#fdf0dc,#f7dfbf)}
+#modo-op .op-fog label{display:flex;flex-direction:column;gap:3px}
+#modo-op .op-fog .op-fog-f input{border-color:#c9a227;background:#fff6da;font-weight:600}
+#modo-op .op-falta-v{outline:2px solid #b4463a}
+#modo-op .op-est ul{max-height:110px;overflow:auto}
+#modo-op .op-est li{gap:6px;font:13.5px var(--sans)}#modo-op .op-est button{padding:3px 8px!important;font-size:11.5px!important}
+/* foco: virada, companhia, néctar */
+#modo-op .op-vir{display:flex;flex-wrap:wrap;justify-content:center;align-items:baseline;gap:2px 8px;font:13px Georgia,serif;color:#6b5140}
+#modo-op .op-vir span{font:700 8.5px var(--mono,monospace);letter-spacing:.18em;text-transform:uppercase;color:#9a6b3a}
+#modo-op .op-vir b{font:700 17px var(--mono,monospace);color:#2a2418}
+#modo-op .op-vir em{flex-basis:100%;font-style:normal;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#modo-op .op-vir.op-vir-perto b{color:#b4463a}
+#modo-op .op-comp-b{padding:6px 12px!important;font-size:12px!important;background:#f4ead2!important}
+#modo-op .op-nectar-slot:empty{display:none}
+#modo-op .op-nectar-slot{width:100%}
+#modo-op .op-nectar{width:100%;box-sizing:border-box;display:flex;flex-direction:column;gap:6px;padding:10px 12px;border-radius:10px;border:1.5px solid #3f7656;background:#eef3e4;text-align:left}
+#modo-op .op-nectar .op-k{color:#3f7656}
+#modo-op .op-nectar b{font:400 17px Georgia,serif;color:#1f3a28}#modo-op .op-nectar b small{font:13px var(--sans);color:#3f7656}
+#modo-op .op-nectar div{display:flex;flex-wrap:wrap;gap:6px}#modo-op .op-nectar>small{font:12px var(--sans);color:#3f7656}
+#modo-op .op-foco.op-com-nectar .op-esc{width:min(170px,20vh)}
+#modo-op .op-falta{display:block;margin-top:4px;font:700 10px var(--mono,monospace);font-style:normal;letter-spacing:.08em;color:#b4463a}
+/* lado: trajeto e flechas */
+#modo-op .op-traj input{height:32px}
+#modo-op .op-sai b{color:#b4521c!important}
+#modo-op .op-fl .op-fls{display:flex;flex-wrap:wrap;gap:4px}
+#modo-op .op-fl i{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;border:1.5px solid #c9b28a;background:#fbf3df}
+#modo-op .op-fl i svg{width:16px;height:16px;fill:none;stroke:#c9b28a;stroke-width:2;stroke-linecap:round}
+#modo-op .op-fl i.on{border-color:#9a6b3a;background:radial-gradient(circle at 35% 30%,#f4d77a,#c9a227 70%)}
+#modo-op .op-fl i.on svg{stroke:#3b2a06}
+#modo-op .op-fl small{font:700 9px var(--mono,monospace);letter-spacing:.14em;text-transform:uppercase;color:#3f7656}
+/* bateria baixa: menos coisa na tela */
+#modo-op.op-bat1 .op-ch{display:none}
+/* +XP flutuante */
+.op-xp{position:fixed;z-index:400;transform:translate(-50%,-50%);pointer-events:none;padding:4px 10px;border-radius:999px;background:#c9a227;color:#2a1c05;font:700 13px var(--mono,monospace);letter-spacing:.06em;box-shadow:0 6px 16px rgba(60,35,10,.3);opacity:0;transition:transform 1.2s ease-out,opacity .25s}
+.op-xp.on{opacity:1;transform:translate(-50%,-180%)}
+/* caixa de Hermes por tecla */
+#op-hermes{position:fixed;inset:0;z-index:300;display:none;align-items:flex-start;justify-content:center;padding-top:18vh;background:rgba(42,36,24,.35)}
+#op-hermes.on{display:flex}
+#op-hermes .oph-bx{width:min(560px,92vw);display:flex;flex-direction:column;gap:6px;padding:16px;border:1.5px solid #5a3f2c;border-radius:14px;background:#fbf3df;box-shadow:0 20px 50px rgba(30,20,10,.35)}
+#op-hermes .op-k{font:700 9px var(--mono,monospace);letter-spacing:.2em;text-transform:uppercase;color:#9a6b3a}
+#op-hermes input{height:44px;padding:0 12px;border:1px solid #c9b28a;border-radius:10px;background:#fff8e8;font:17px var(--sans);color:#2a2418}
+#op-hermes small{font:12.5px var(--sans);color:#6b5140}
+/* Procusto */
+#op-proc{position:fixed;inset:0;z-index:310;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(42,28,18,.62)}
+#op-proc.on{display:flex}
+#op-proc .opp-bx{width:min(520px,100%);display:flex;flex-direction:column;gap:10px;padding:22px;border:2px solid #5a3f2c;border-radius:16px;background:#f4ead1;box-shadow:0 24px 60px rgba(20,10,0,.45);color:#2a2418;position:relative}
+#op-proc .opp-bx::before{content:'';position:absolute;inset:5px;border:1px dashed #c9a45a;border-radius:12px;pointer-events:none}
+#op-proc .op-k{font:700 9px var(--mono,monospace);letter-spacing:.2em;text-transform:uppercase;color:#b4463a}
+#op-proc h2{margin:0;font:700 28px Georgia,serif;color:#2a2418}
+#op-proc p{margin:0;font:15px Georgia,serif;color:#5a4433}
+#op-proc .opp-ar{display:flex;flex-direction:column;gap:4px}#op-proc .opp-ar span{font:700 9px var(--mono,monospace);letter-spacing:.16em;text-transform:uppercase;color:#9a6b3a}
+#op-proc textarea{padding:8px 10px;border:1px solid #c9b28a;border-radius:8px;background:#fff8e8;font:15px var(--sans);color:#2a2418;resize:none}
+#op-proc .opp-ck{display:flex;align-items:center;gap:10px;font:15px var(--sans)}#op-proc .opp-ck input{width:20px;height:20px;accent-color:#9a6b3a}
+#op-proc .opp-bt{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:4px}
+#op-proc button{width:auto;margin:0;padding:10px 16px;border:1px solid #c9b28a;border-radius:9px;background:#fbf3df;color:#3b2a1d;font:600 14px var(--sans);cursor:pointer}
+#op-proc .op-pri{background:#e9c87a;border-color:#9a6b3a;font-weight:700}
+#op-proc .op-lk{padding:2px 4px;border:0;background:none;color:#9a6b3a;font-size:12.5px;text-decoration:underline}
+#op-proc .opp-falta{animation:oppSac .5s}
+@keyframes oppSac{20%,60%{transform:translateX(-7px)}40%,80%{transform:translateX(7px)}}
+/* modo companhia */
+#op-comp{position:fixed;inset:0;z-index:320;display:none;align-items:center;justify-content:center;padding:16px;background:#2a2418 radial-gradient(circle at 50% 40%,#3d3322,#1c170f);color:#f4ead1}
+#op-comp.on{display:flex}
+#op-comp .opc-bx{display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center;max-width:720px}
+#op-comp .opc-sat{display:flex;align-items:center;gap:12px;padding:8px 16px 8px 8px;border-radius:999px;background:rgba(244,234,209,.08);font:italic 15px Georgia,serif;color:#e8d6a8}
+#op-comp .opc-sat svg{width:56px;height:56px}
+#op-comp .op-k{font:700 10px var(--mono,monospace);letter-spacing:.24em;text-transform:uppercase;color:#e2b85a}
+#op-comp .opc-t{font:400 clamp(20px,3vw,30px) Georgia,serif;color:#f4ead1}
+#op-comp .opc-big{font:700 clamp(72px,16vw,180px)/1 var(--mono,monospace);letter-spacing:.02em;color:#f4d77a;text-shadow:0 8px 40px rgba(226,184,90,.25)}
+#op-comp .opc-ps{margin:0;font:17px var(--sans);color:#e8d6a8}
+#op-comp .opc-bt{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
+#op-comp button{width:auto;margin:0;padding:10px 16px;border:1px solid #7d6a48;border-radius:999px;background:transparent;color:#f4ead1;font:600 14px var(--sans);cursor:pointer}
+#op-comp button.on,#op-comp .op-pri{background:#e2b85a;border-color:#e2b85a;color:#2a1c05}
+#modo-op .op-vseg{position:relative}
+#modo-op .op-vseg .op-falta{position:absolute;right:8px;bottom:5px;margin:0}
+@media(max-width:900px){
+ body.op-on #modo-op{display:block!important;overflow-y:auto!important;overflow-x:hidden!important;padding:12px 12px 104px!important}
+ #modo-op .op-top{flex-wrap:wrap;gap:8px}#modo-op .op-top>div:first-child{flex:1 1 100%}
+ #modo-op .op-sat-slot{flex:1 1 auto;min-width:0}#modo-op .op-sat{max-width:100%}
+ #modo-op .op-g{display:flex!important;flex-direction:column;gap:12px;margin-top:12px}
+ #modo-op .op-c{overflow:visible!important;min-height:auto!important;flex:none}
+ #modo-op .op-esc{width:150px}
+ #modo-op .op-bus-bt button{flex:1 1 auto}
+}
+@media(max-width:900px){#modo-op .op-batq{grid-template-columns:1fr 1fr 1fr}#modo-op .op-bus-t{font-size:19px}#modo-op .op-tudo-c{overflow:visible}}
+#modo-op .op-nectar{padding:7px 10px!important;gap:3px!important;flex:none}
+#modo-op .op-nectar b{font-size:15px!important}
+#modo-op .op-nectar div{flex-wrap:nowrap!important}
+#modo-op .op-nectar button{padding:5px 10px!important;font-size:12px!important}
+#modo-op .op-foco.op-com-nectar .op-esc{width:min(120px,14vh)!important}
+#modo-op .op-foco.op-com-nectar .op-ch{display:none}
 </style>
 <link rel="stylesheet" href="pontes.css">
 <script src="pontes.js" defer></script>
@@ -15362,6 +15492,246 @@ satFicha=(function(f0){return function(){var h=f0.apply(this,arguments);
  return h;};})(satFicha);
 satPainelHTML=(function(f0){return function(){return f0.apply(this,arguments).replace(/(<small class="cv-bio">)/,'$1Netos do Corvus: Apolo mandou o avô buscar água na Cratera, ele parou para esperar os figos amadurecerem, mentiu culpando a Hidra e virou constelação, de penas pretas para sempre. Os gêmeos trabalham para limpar o nome da família: nunca atrasam uma entrega, e o Cass sempre diz a verdade, mesmo quando é ruim. · ');};})(satPainelHTML);
 setInterval(pintaProgresso,60000);
+/* ======================= POSTO DE COMANDO · pacote TDAH =======================
+   1 Bússola de Dédalo (uma coisa só) · 2 primeiro passo físico · 3 bateria do dia
+   4 contagem até a virada · 5 Escapar de Procusto (19h) · 6 hora de sair de casa
+   7 guarda do Hotel Lótus · 8 Hermes por tecla + Estacionamento · 9 processo da vez
+   10 no Posto só se executa · 11 flechas do dia e +XP na hora · 12 Fogueira e flecha de ouro
+   13 Néctar da Enfermaria (remédio) · 14 modo companhia.
+   Guarda tudo em S.opx; lê e grava o mesmo registro do app. */
+(function(){var n0=normaliza;normaliza=function(p){var b=n0(p);b.opx=(p&&p.opx&&typeof p.opx==='object')?p.opx:{};return b;};})();
+function opx(){var o=S.opx;if(!o||typeof o!=='object')o=S.opx={};
+ ['bat','passo','skip','est','fog','proc','procN','adia','arOk'].forEach(function(k){if(!o[k]||typeof o[k]!=='object')o[k]={};});
+ o.cfg=o.cfg||{};if(!o.cfg.saida)o.cfg.saida='19:00';if(!o.cfg.ini)o.cfg.ini='12:00';if(o.cfg.traj==null)o.cfg.traj=0;if(!o.cfg.fl)o.cfg.fl=4;
+ var lim=diaStr(hojeN()-21);['bat','skip','est','fog','proc','procN','arOk'].forEach(function(k){Object.keys(o[k]).forEach(function(d){if(/^\d{4}-/.test(d)&&d<lim)delete o[k][d];});});
+ return o;}
+function op2Salva(){try{grava();}catch(e){}}
+function op2HM(m){m=((m%1440)+1440)%1440;return String(Math.floor(m/60)).padStart(2,'0')+':'+String(m%60).padStart(2,'0');}
+function op2Min(h){var p=String(h||'0:0').split(':');return (+p[0])*60+(+p[1]||0);}
+function op2Util(d){try{return gabUtil(d||hoje());}catch(e){var w=new Date((d||hoje())+'T12:00:00').getDay();return w>0&&w<6;}}
+function op2Faixa(){var a=opMin(),H0=null;TD_H.forEach(function(x){if(a>=+x*60)H0=x;});return H0;}
+function op2Expediente(){var c=opx().cfg,a=opMin();return op2Util()&&a>=op2Min(c.ini)&&a<op2Min(c.saida);}
+function op2Bat(){return opx().bat[hoje()]||0;}
+function op2Dur(){var b=op2Bat();return b===1?5:(b===3?50:25);}
+
+/* ---------- 1 e 9 · Bússola de Dédalo: a fila e a coisa da vez ---------- */
+function op2Fila(){var o=opx(),hj=hoje(),Q=mmD(),fe=Q.feitas[hj]||[],L=[],sk=o.skip[hj]||[],tb=S.tb||{},H0=op2Faixa(),fx=H0?(tb[hj+'|'+H0]||''):'';
+ var add=function(x){if(sk.indexOf(x.k)<0&&!L.some(function(y){return y.k===x.k;}))L.push(x);};
+ var estudo=/estud|trf|esfinge|concurso|revis|quest/i.test(fx),trab=op2Expediente()||/gabinete|arena|labirinto|bloco [123]|b3/i.test(fx);
+ /* fio de Ariadne: onde parei no último expediente */
+ if(trab){var ds=Object.keys(o.proc).filter(function(d){return d<hj&&o.proc[d]&&o.proc[d].ar&&!o.arOk[d];}).sort();
+  if(ds.length){var d0=ds[ds.length-1];add({k:'ar:'+d0,tag:'fio de Ariadne · retomar',t:o.proc[d0].ar,tipo:'ar',d:d0});}}
+ var x=plDia(hj);if(x.top[0]&&(x.top[0].t||'').trim()&&!x.top[0].ok)add({k:'pl:'+hj+':0',tag:'flecha de ouro',t:x.top[0].t,tipo:'pl',i:0});
+ var gab=function(){try{gabResumo().forEach(function(r){if(!r.rest)return;var ab=r.abertos;if(r.p==='corrigir'){var pr=ab.filter(function(i){return i.mi;});if(pr.length)ab=pr;}
+  ab.slice(0,6).forEach(function(i){add({k:'gab:'+i.cnj+':'+r.p,tag:'processo da vez · '+SAT_PAPEL[r.p][1],t:i.cnj,sub:(i.cl||'').replace(/APELAÇÃO CÍVEL/,'ApCiv').replace(/AGRAVO DE INSTRUMENTO/,'AI').replace(/REMESSA NECESSÁRIA CÍVEL/,'RemNec')+(i.as?' · '+i.as:'')+' · sessão '+r.s.nome+(r.venc?' · prazo vencido':' · prazo '+gabDM(r.prazo)),
+   tipo:'gab',cnj:i.cnj,cont:'hoje '+Math.min(r.fh,r.meta||r.fh)+'/'+(r.meta||'—')});});});}catch(e){}};
+ var prof=function(){Q.prof.filter(function(p){return !p.ok;}).forEach(function(p){var i=(p.passos||[]).findIndex(function(s){return !s.ok;});if(i>=0)add({k:'pf:'+p.id+':'+i,tag:'grande profecia · próxima etapa',t:p.passos[i].t,sub:p.t,tipo:'pf',id:p.id,i:i});});};
+ var quests=function(){Q.dia.forEach(function(q){if(fe.indexOf(q.id)<0)add({k:'q:'+q.id,tag:'quest de hoje',t:q.t,tipo:'q',id:q.id});});};
+ if(trab)gab();
+ if(estudo){prof();quests();}
+ [1,2].forEach(function(i){var t=x.top[i];if(t&&(t.t||'').trim()&&!t.ok)add({k:'pl:'+hj+':'+i,tag:'missão do dia',t:t.t,tipo:'pl',i:i});});
+ quests();
+ Q.chale.forEach(function(c){if(!c.ok)add({k:'ch:'+c.id,tag:'tarefa do chalé',t:c.t,tipo:'ch',id:c.id});});
+ prof();
+ if(fx)add({k:'fx:'+hj+':'+H0,tag:'faixa de agora · '+tdFaixaNome(H0),t:fx,tipo:'fx'});
+ return L;}
+function op2Atual(){var o=opx(),f=tdD().foco;if(f&&o.fk){var L=op2Fila(),it=L.filter(function(x){return x.k===o.fk;})[0];if(it)return it;if(o.fkItem&&o.fkItem.k===o.fk)return o.fkItem;}return op2Fila()[0]||null;}
+function op2BatHTML(){var b=op2Bat();return '<span class="op-bat" title="bateria do dia">'+[1,2,3].map(function(n){return '<button type="button" data-opbat="'+n+'" class="'+(b===n?'on':'')+'" aria-label="bateria '+n+'">'+'<i></i>'.repeat(n)+'</button>';}).join('')+'</span>';}
+function op2BusHTML(){var o=opx(),hj=hoje(),f=tdD().foco,b=op2Bat();
+ if(!b)return '<div class="op-bus op-bus-q"><span class="op-k">bússola de dédalo · antes de tudo</span><b class="op-bus-t">Como está a bateria hoje?</b>'+
+  '<div class="op-batq"><button type="button" data-opbat="1"><em class="op-bi"><i></i></em><span>baixa</span><small>só adaga: 5 min por vez</small></button><button type="button" data-opbat="2"><em class="op-bi"><i></i><i></i></em><span>média</span><small>flechas de 25 min</small></button><button type="button" data-opbat="3"><em class="op-bi"><i></i><i></i><i></i></em><span>cheia</span><small>arco de Apolo: 50 min</small></button></div>'+
+  '<small class="op-bus-n">um toque por dia · sem culpa, a bateria só decide o tamanho do bloco</small></div>';
+ var it=op2Atual(),L=op2Fila();
+ if(!it)return '<div class="op-bus op-bus-vz"><span class="op-k">bússola de dédalo · agora</span><b class="op-bus-t">Nada na fila.</b><small>Escolha um descanso do Menu de recarga ou acenda a Fogueira mais cedo.</small><div class="op-bus-ft">'+op2BatHTML()+((o.skip[hj]||[]).length?'<button type="button" class="op-lk" data-opbus="reset">voltar os pulados</button>':'')+'</div></div>';
+ var em=f&&o.fk===it.k,ps=o.passo[it.k]||'',dur=op2Dur(),resto=Math.max(0,L.length-1);
+ var h='<div class="op-bus op-bus-'+it.tipo+(em?' op-bus-em':'')+'"><span class="op-k">bússola de dédalo · '+(em?'em foco':'agora')+'</span><small class="op-bus-tag">'+esc(it.tag)+(it.cont?' · '+esc(it.cont):'')+'</small>'+
+  '<b class="op-bus-t">'+esc(it.t)+'</b>'+(it.sub?'<small class="op-bus-sub">'+esc(it.sub)+'</small>':'');
+ if(em)h+='<div class="op-passo1"><span>passo 1</span><b>'+esc(ps||'o menor movimento: abrir, pegar, escrever uma linha')+'</b></div>';
+ else h+='<label class="op-passo"><span>primeiro passo físico</span><input data-oppasso="'+esc(it.k)+'" value="'+esc(ps)+'" maxlength="80" placeholder="abrir o PJe no processo, pegar o caderno, escrever 1 linha…"></label>';
+ h+='<div class="op-bus-bt">'+(em?'<button type="button" class="op-pri" data-opbus="okfim">feito ✓ e encerrar</button><button type="button" data-opbus="parar">parar o foco</button>':
+  '<button type="button" class="op-pri" data-opbus="go">'+(b===1?'só 5 minutos':'começar · '+dur+' min')+'</button>'+(it.tipo==='gab'||it.tipo==='fx'?'':'<button type="button" data-opbus="ok">feito ✓</button>')+'<button type="button" data-opbus="skip">não agora</button>')+
+  (it.cnj?'<button type="button" class="op-lk" data-opcp="'+esc(it.cnj)+'">copiar nº</button>':'')+'</div>';
+ if(b===1&&!em){var M=(S.menu||[]).slice(0,3);if(M.length)h+='<div class="op-rec"><span>menu de recarga</span>'+M.map(function(m){return '<em>'+esc(m)+'</em>';}).join('')+'</div>';}
+ h+='<div class="op-bus-ft">'+op2BatHTML()+'<small class="op-bus-n">'+(resto?resto+' na fila, escondidos de propósito':'última da fila')+'</small>'+((o.skip[hj]||[]).length?'<button type="button" class="op-lk" data-opbus="reset">voltar os pulados</button>':'')+
+  (opMin()>=18*60&&!o.fog[hj]?'<button type="button" class="op-lk" data-opfog="abre">acender a fogueira</button>':'')+'</div></div>';
+ return h;}
+function op2Feito(it){var Q=mmD(),hj=hoje(),o=opx(),xp=0;if(!it)return 0;
+ if(it.tipo==='pl'){var x=plDia(hj);if(x.top[it.i]){x.top[it.i].ok=true;xp=5;}}
+ else if(it.tipo==='ch'){var c=Q.chale.filter(function(y){return y.id===it.id;})[0];if(c){c.ok=hj;xp=3;}}
+ else if(it.tipo==='q'){var fe=Q.feitas[hj]=Q.feitas[hj]||[];if(fe.indexOf(it.id)<0){fe.push(it.id);xp=5;}}
+ else if(it.tipo==='pf'){var p=Q.prof.filter(function(y){return y.id===it.id;})[0];if(p&&p.passos[it.i]){p.passos[it.i].ok=true;xp=10;}}
+ else if(it.tipo==='ar'){o.arOk[it.d]=1;xp=2;}
+ else if(it.tipo==='gab'){(o.skip[hj]=o.skip[hj]||[]).push(it.k);}
+ try{mmSalva();}catch(e){op2Salva();}return xp;}
+
+/* ---------- 11 · +XP na hora ---------- */
+function op2XP(n,ev,txt){if(!n&&!txt)return;var d=document.createElement('div');d.className='op-xp';d.textContent=txt||('+'+n+' XP');
+ var x=ev&&ev.clientX?ev.clientX:innerWidth/2,y=ev&&ev.clientY?ev.clientY:innerHeight/2;d.style.left=x+'px';d.style.top=y+'px';document.body.appendChild(d);
+ setTimeout(function(){d.classList.add('on');},20);setTimeout(function(){d.remove();},1500);}
+(function(){var x0=gmXP;gmXP=function(){var x=x0(),o=S.opx||{},n=0;Object.keys(o.fog||{}).forEach(function(){n+=10;});Object.keys(o.proc||{}).forEach(function(d){if(o.proc[d]&&o.proc[d].em)n+=10;});x.posto=n;x.total+=n;return x;};})();
+
+/* ---------- 12 · Fogueira e flecha de ouro ---------- */
+function op2FogModo(){var o=opx(),hj=hoje(),a=opMin();if(o.fog[hj])return false;return a>=21*60||o.fogAberta===hj;}
+function op2FogHTML(){var o=opx(),hj=hoje(),E=o.est[hj]||[],am=diaStr(hojeN()+1),pa=plDia(am).top[0]||{},r=o.fogR||{};
+ return '<div class="op-fog"><span class="op-k">fogueira · fechar o dia</span><b class="op-bus-t">Três toques e o dia fecha.</b>'+
+  '<label><span>o que rendeu</span><input data-opfogi="r" maxlength="120" value="'+esc(r.r||'')+'" placeholder="uma coisa que andou"></label>'+
+  '<label><span>o que travou</span><input data-opfogi="t" maxlength="120" value="'+esc(r.t||'')+'" placeholder="sem culpa: só o nome do monstro"></label>'+
+  '<label class="op-fog-f"><span>flecha de ouro de amanhã</span><input data-opfogi="f" maxlength="80" value="'+esc(r.f||pa.t||'')+'" placeholder="a primeira coisa que importa amanhã"></label>'+
+  (E.length?'<div class="op-est"><span>estacionamento · '+E.length+'</span><ul>'+E.map(function(t,i){return '<li><span>'+esc(t)+'</span><button type="button" data-opest="cx:'+i+'">caixa</button><button type="button" data-opest="x:'+i+'" aria-label="descartar">✕</button></li>';}).join('')+'</ul></div>':'')+
+  '<div class="op-bus-bt"><button type="button" class="op-pri" data-opfog="apaga">apagar a fogueira</button>'+(opMin()<21*60?'<button type="button" data-opfog="fecha">ainda não</button>':'')+'</div></div>';}
+function op2FogApaga(ev){var o=opx(),hj=hoje(),n=document.getElementById('modo-op'),v=function(k){var i=n&&n.querySelector('[data-opfogi="'+k+'"]');return i?i.value.trim():((o.fogR||{})[k]||'');};
+ var f=v('f');if(!f){var i=n&&n.querySelector('[data-opfogi="f"]');if(i){i.focus();i.classList.add('op-falta-v');}return;}
+ var am=diaStr(hojeN()+1),x=plDia(am);if(!(x.top[0].t||'').trim())x.top[0]={t:f,ok:false};else if(x.top[0].t!==f){x.top.unshift({t:f,ok:false});x.top=x.top.slice(0,3);}
+ var y=plDia(hj);y.rendeu=v('r');y.travou=v('t');(o.est[hj]||[]).forEach(function(t){op2Caixa(t);});delete o.est[hj];
+ o.fog[hj]={r:v('r'),t:v('t'),f:f,em:Date.now()};o.fogR=null;o.fogAberta=null;op2Salva();op2XP(10,ev,'+10 XP · fogueira apagada');try{vxRender();}catch(e){}}
+
+/* ---------- 8 · Hermes por tecla e Estacionamento ---------- */
+function op2Caixa(t){var r=document.getElementById('r-cap'),b=document.getElementById('b-rcap');if(r&&b){r.value=t;b.click();return true;}S.cap=S.cap||[];S.cap.push({t:t,ts:Date.now()});op2Salva();return true;}
+function op2Captura(t){t=String(t||'').trim();if(!t)return '';if(tdD().foco){var o=opx(),hj=hoje();(o.est[hj]=o.est[hj]||[]).push(t.slice(0,140));op2Salva();return 'estacionado · volta na fogueira';}op2Caixa(t.slice(0,140));return 'guardado na caixa de Hermes';}
+opCaptura=(function(f0){return function(){var o=document.getElementById('modo-op'),i=o&&o.querySelector('[data-opcap]');if(i&&i.value.trim()&&tdD().foco){op2Captura(i.value);i.value='';op2XP(0,null,'estacionado · volta na fogueira');opPinta();return;}return f0.apply(this,arguments);};})(opCaptura);
+function op2Hermes(){var w=document.getElementById('op-hermes');if(!w){w=document.createElement('div');w.id='op-hermes';w.setAttribute('role','dialog');w.setAttribute('aria-label','Caixa de Hermes');
+  w.innerHTML='<div class="oph-bx"><span class="op-k">caixa de Hermes · despeje e volte</span><input maxlength="140" placeholder="o que passou pela cabeça?"><small></small></div>';document.body.appendChild(w);
+  var i=w.querySelector('input');i.addEventListener('keydown',function(e){if(e.key==='Escape'){w.classList.remove('on');return;}if(e.key!=='Enter')return;e.preventDefault();var m=op2Captura(i.value);i.value='';if(m){w.querySelector('small').textContent=m;setTimeout(function(){w.classList.remove('on');},700);}try{opPinta();}catch(z){}});
+  w.addEventListener('click',function(e){if(e.target===w)w.classList.remove('on');});}
+ w.querySelector('small').textContent=tdD().foco?'em foco: vai para o estacionamento e volta na fogueira':'Enter guarda · Esc fecha';w.classList.add('on');w.querySelector('input').focus();}
+document.addEventListener('keydown',function(e){if(e.key!=='/'||e.ctrlKey||e.metaKey||e.altKey)return;var a=document.activeElement;if(a&&(/INPUT|TEXTAREA|SELECT/.test(a.tagName)||a.isContentEditable))return;e.preventDefault();op2Hermes();});
+
+/* ---------- 13 · Néctar da Enfermaria ---------- */
+function op2Doses(){var st=null;try{st=AX.ok&&AX.st&&AX.st();}catch(e){}if(!st||!st.habit)return [];var H=st.habit,d=(typeof nvHoje==='function'?nvHoje():hoje()),L=(H.medsLog&&H.medsLog[d])||[],a=opMin(),o=opx(),R=[];
+ (H.medications||[]).forEach(function(m){(m.times||[]).forEach(function(t){var tk=m.id+'@'+t;if(L.indexOf(tk)>=0)return;if(op2Min(t)>a)return;if((o.adia[tk]||0)>Date.now())return;R.push({tk:tk,n:m.name,dose:m.dose||'',h:t});});});return R;}
+function op2Tomei(tk){try{var st=AX.st(),H=st.habit,d=(typeof nvHoje==='function'?nvHoje():hoje()),L=(H.medsLog=H.medsLog||{})[d]=(H.medsLog[d]||[]);if(L.indexOf(tk)<0)L.push(tk);AX.save();var tot=0,ok=0;(H.medications||[]).forEach(function(m){(m.times||[]).forEach(function(t){tot++;if(L.indexOf(m.id+'@'+t)>=0)ok++;});});
+ if(tot&&ok>=tot){var hb=(S.hab||[]).filter(function(x){return /rem[eé]dio|n[eé]ctar|medica/i.test(x.nome);})[0],hj=hoje();if(hb&&(hb.hist||[]).indexOf(hj)<0){hb.hist=(hb.hist||[]).concat(hj);op2Salva();}}}catch(e){}try{enfPinta(true);}catch(e){}}
+function op2Adia(tk){var o=opx();o.adia[tk]=Date.now()+15*60000;op2Salva();}
+function op2MedHTML(){var D=op2Doses();if(!D.length)return '';var m=D[0];
+ return '<div class="op-nectar"><span class="op-k">néctar da enfermaria · '+esc(m.h)+'</span><b>'+esc(m.n)+(m.dose?' <small>'+esc(m.dose)+'</small>':'')+'</b><div><button type="button" class="op-pri" data-opmed="t:'+esc(m.tk)+'">tomei</button><button type="button" data-opmed="a:'+esc(m.tk)+'">adiar 15 min</button></div>'+(D.length>1?'<small>+'+(D.length-1)+' dose'+(D.length>2?'s':'')+' pendente'+(D.length>2?'s':'')+'</small>':'')+'</div>';}
+function op2MedAlarme(){var o=opx(),N=op2Doses().filter(function(m){return !tdJa('med-'+m.tk+'-'+Math.floor((o.adia[m.tk]||0)/60000));});if(!N.length)return;
+ tdAvisa('Hora do néctar: '+N.map(function(m){return m.n;}).join(' + '),N.map(function(m){return (m.dose?m.dose+' · ':'')+m.h;}).join(' | '),
+  [['tomei',function(){N.forEach(function(m){op2Tomei(m.tk);});try{opPinta();}catch(e){}}],['adiar 15 min',function(){N.forEach(function(m){op2Adia(m.tk);});}]]);}
+/* ---------- 4 · contagem até a virada ---------- */
+function op2Virada(){var a=opMin(),hj=hoje(),tb=S.tb||{},prox=null;TD_H.forEach(function(H){if(prox==null&&+H*60>a)prox=H;});
+ if(prox==null)return {m:1440-a,nome:'meia-noite',txt:''};return {m:+prox*60-a,nome:tdFaixaNome(prox),txt:tb[hj+'|'+prox]||'',H:prox};}
+function op2ViradaHTML(){var v=op2Virada(),m=v.m,cls=m<=10?' op-vir-perto':'';
+ return '<div class="op-vir'+cls+'"><span>virada em</span><b>'+(m>=60?Math.floor(m/60)+'h'+String(m%60).padStart(2,'0'):m+' min')+'</b><em>depois: '+esc(v.nome)+(v.txt?' · '+esc(v.txt):'')+'</em></div>';}
+
+/* ---------- 5 · Escapar de Procusto ---------- */
+function op2ProcAtivo(){var o=opx(),hj=hoje(),a=opMin(),s=op2Min(o.cfg.saida);if(!op2Util())return false;if(o.proc[hj])return false;if(a<s||a>=Math.min(s+120,23*60))return false;if((o.procAte||0)>Date.now())return false;return true;}
+function op2ProcHTML(){var o=opx(),hj=hoje(),n=o.procN[hj]||0,ck=o.procCk||{};
+ return '<div class="opp-bx"><span class="op-k">'+esc(o.cfg.saida)+' · fim do expediente</span><h2>Escapar de Procusto</h2><p>Procusto estica o dia até caber na cama dele. Hoje, não: três passos e você sai.</p>'+
+  '<label class="opp-ar"><span>fio de Ariadne · onde parei?</span><textarea data-opp="ar" rows="2" maxlength="160" placeholder="processo, peça, próximo passo de amanhã">'+esc(o.procAr||'')+'</textarea></label>'+
+  '<label class="opp-ck"><input type="checkbox" data-oppck="salvei"'+(ck.salvei?' checked':'')+'><span>salvei e fechei o PJe e as abas</span></label>'+
+  '<label class="opp-ck"><input type="checkbox" data-oppck="levantei"'+(ck.levantei?' checked':'')+'><span>levantei da cadeira</span></label>'+
+  '<div class="opp-bt"><button type="button" class="op-pri" data-opp="sai">escapei</button>'+(n<2?'<button type="button" data-opp="mais">mais 15 min ('+(2-n)+')</button>':'')+'<button type="button" class="op-lk" data-opp="folga">hoje não estou no gabinete</button></div></div>';}
+function op2Proc(){var w=document.getElementById('op-proc'),on=op2ProcAtivo();
+ if(!on){if(w)w.classList.remove('on');var o=opx(),a=opMin(),s=op2Min(o.cfg.saida);if(op2Util()&&!o.proc[hoje()]&&a>=s-15&&a<s&&!tdJa('proc15'))tdAvisa('Procusto: fecha em 15','às '+o.cfg.saida+' o expediente acaba. Anote onde parou.');return;}
+ if(!w){w=document.createElement('div');w.id='op-proc';w.setAttribute('role','dialog');w.setAttribute('aria-label','Escapar de Procusto');document.body.appendChild(w);
+  w.addEventListener('input',function(e){var t=e.target;if(t.dataset.opp==='ar'){opx().procAr=t.value;op2Salva();}});
+  w.addEventListener('change',function(e){var t=e.target;if(t.dataset.oppck){var o=opx();o.procCk=o.procCk||{};o.procCk[t.dataset.oppck]=t.checked;op2Salva();}});
+  w.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;var o=opx(),hj=hoje(),k=b.dataset.opp;
+   if(k==='mais'){o.procN[hj]=(o.procN[hj]||0)+1;o.procAte=Date.now()+15*60000;op2Salva();w.classList.remove('on');return;}
+   if(k==='folga'){o.proc[hj]={off:1};op2Salva();w.classList.remove('on');return;}
+   if(k==='sai'){var ar=(o.procAr||'').trim(),ck=o.procCk||{};if(!ar||!ck.salvei||!ck.levantei){w.querySelector('.opp-bx').classList.add('opp-falta');setTimeout(function(){w.querySelector('.opp-bx').classList.remove('opp-falta');},600);return;}
+    o.proc[hj]={em:Date.now(),ar:ar};o.procAr='';o.procCk={};if(tdD().foco)tdFocoFim(true);op2Salva();w.classList.remove('on');op2XP(10,e,'+10 XP · escapou de Procusto');try{vxRender();}catch(z){}}});}
+ if(!w.classList.contains('on')){w.innerHTML=op2ProcHTML();w.classList.add('on');tdSom(3);
+  try{if(window.Notification&&Notification.permission==='granted'&&document.hidden)new Notification('Escapar de Procusto',{body:'O expediente acabou. Anote onde parou e saia.'});}catch(e){}}}
+
+/* ---------- 6 · hora de sair de casa ---------- */
+function op2Saidas(){var o=opx(),c=o.cfg,a=opMin(),hj=hoje(),R=[];if(!(c.traj>0))return R;
+ if(op2Util()){var ini=op2Min(c.ini);R.push({sai:ini-c.traj,ev:c.ini,t:'gabinete'});}
+ try{agDoDia(hj).forEach(function(x){if(x.dia||!x.loc)return;var m=x.ini.getHours()*60+x.ini.getMinutes();R.push({sai:m-c.traj,ev:agHora(x),t:x.t});});}catch(e){}
+ return R.filter(function(r){return r.sai>=a-5;}).sort(function(p,q){return p.sai-q.sai;});}
+function op2SaidaHTML(){var o=opx(),c=o.cfg;
+ if(!(c.traj>0))return '<div class="op-grp op-traj"><span class="op-k">tênis alados · trajeto</span><div class="op-cap"><input data-optraj type="number" min="5" max="180" placeholder="min de casa ao gabinete"><button type="button" data-optrajb>ok</button></div></div>';
+ var R=op2Saidas();if(!R.length)return '';
+ return '<div class="op-grp op-traj"><span class="op-k">tênis alados · sair de casa</span><ul class="op-prox">'+R.slice(0,2).map(function(r){return '<li class="op-sai"><b>'+op2HM(r.sai)+'</b><span>sair → '+esc(r.t)+' às '+esc(r.ev)+'</span></li>';}).join('')+'</ul></div>';}
+function op2SaidaAlarme(){var a=opMin();op2Saidas().forEach(function(r){var m=r.sai-a;
+ if(m<=10&&m>9){if(!tdJa('sai10'+r.sai+r.t))tdAvisa('Em 10 min: sair de casa','para '+r.t+' às '+r.ev+' · calce os tênis alados');}
+ else if(m<=0&&m>-1.5){if(!tdJa('sai0'+r.sai+r.t))tdAvisa('Hora de sair','para '+r.t+' às '+r.ev);}});}
+
+/* ---------- 7 · guarda do Hotel Lótus ---------- */
+function op2Corrente(){var ses=[];try{(vxData().sessions||[]).forEach(function(x){if(x.day!==hoje())return;var fim=+String(x.id||'').replace(/^td/,'');if(!fim)return;ses.push({ini:fim-(+x.minutes||0)*60000,fim:fim,m:+x.minutes||0});});}catch(e){}
+ var f=tdD().foco,now=Date.now();if(f&&!f.pausaModo){var gasto=f.pausa!=null?f.dur-f.pausa:Math.min(f.dur,now-f.ini);ses.push({ini:f.ini,fim:f.ini+gasto,m:gasto/60000,viva:1});}
+ ses.sort(function(p,q){return p.fim-q.fim;});if(!ses.length)return null;var i=ses.length-1,tot=ses[i].m,ini=ses[i].ini;
+ if(!ses[i].viva&&now-ses[i].fim>10*60000)return null;
+ while(i>0&&ses[i-1].fim>=ini-10*60000){i--;tot+=ses[i].m;ini=ses[i].ini;}return {m:tot,ini:ini};}
+function op2Lotus(){var c=op2Corrente();if(c&&c.m>=90&&!tdJa('lotus'+Math.floor(c.ini/60000)))
+  tdAvisa('Hotel Lótus: 90 min seguidos','água e levantar 2 minutos. O foco volta melhor.',[['pausa de 2 min',function(){if(tdD().foco)tdFocoFim(true);tdFocoIni(2,'pausa · água e levantar',-1);tdD().foco.pausaModo=true;tdSalva();}],['agora não',null]]);
+ var a=opMin(),hj=hoje(),tb=S.tb||{};TD_H.forEach(function(H,k){if(!k)return;var m0=+H*60;if(a<m0||a>=m0+2)return;var ant=tb[hj+'|'+TD_H[k-1]]||'';
+  if(/livre|games|lazer|s[ée]rie|filme|jogo/i.test(ant)&&!tdJa('lotusfx'+H))tdAvisa('Fechar o Hotel Lótus','o lazer era até as '+H+'h. Agora: '+(tb[hj+'|'+H]||tdFaixaNome(H)));});}
+
+/* ---------- 11 · flechas do dia ---------- */
+function op2FlechasHTML(){var n=tdHojeFoco().n,meta=opx().cfg.fl,tot=Math.max(meta,n),s='';
+ for(var i=0;i<tot;i++)s+='<i class="'+(i<n?'on':'')+'"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21L19 5M19 5h-6M19 5v6M5 15l4 4M3 17l4 4"/></svg></i>';
+ return '<div class="op-grp op-fl"><span class="op-k">flechas de hoje · '+n+'/'+meta+'</span><div class="op-fls">'+s+'</div>'+(n>=meta?'<small>meta do dia cumprida</small>':'')+'</div>';}
+
+/* ---------- 14 · modo companhia ---------- */
+var OP2_FALAS=['Sully está aqui do lado, afiando flechas.','Um bloco de cada vez. Ele também não terminou o dele.','Se a cabeça fugir, aperte / e despeje. Ele guarda.','Respira. Só o passo 1.','Sully lê em silêncio. Você escreve.'];
+function op2Ruido(on){try{var A=window.AudioContext||window.webkitAudioContext;if(!A)return;var c=op2Ruido.c||(op2Ruido.c=new A());if(c.state==='suspended')c.resume();
+ if(!on){if(op2Ruido.g){op2Ruido.g.gain.setTargetAtTime(0,c.currentTime,.3);var s=op2Ruido.s;setTimeout(function(){try{s.stop();}catch(e){}},1200);op2Ruido.s=null;op2Ruido.g=null;}return;}
+ if(op2Ruido.s)return;var n=c.sampleRate*4,b=c.createBuffer(1,n,c.sampleRate),d=b.getChannelData(0),l=0;for(var i=0;i<n;i++){var w=Math.random()*2-1;l=(l+0.02*w)/1.02;d[i]=l*3.2;}
+ var s=c.createBufferSource();s.buffer=b;s.loop=true;var g=c.createGain();g.gain.value=0;s.connect(g);g.connect(c.destination);s.start();g.gain.setTargetAtTime(.22,c.currentTime,.4);op2Ruido.s=s;op2Ruido.g=g;}catch(e){}}
+function op2Comp(on){var w=document.getElementById('op-comp');if(on===false){if(w)w.classList.remove('on');op2Ruido(false);try{if(document.fullscreenElement)document.exitFullscreen();}catch(e){}return;}
+ if(!w){w=document.createElement('div');w.id='op-comp';w.setAttribute('role','dialog');w.setAttribute('aria-label','Modo companhia');document.body.appendChild(w);
+  w.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;var k=b.dataset.opc;
+   if(k==='sair')op2Comp(false);else if(k==='ruido'){var on2=!op2Ruido.s;op2Ruido(on2);b.classList.toggle('on',on2);}
+   else if(k==='go'){tdFocoIni(op2Dur(),(op2Atual()||{}).t||'bloco acompanhado',-1);var f=tdD().foco;if(f){f.acomp=true;tdSalva();}op2CompPinta();}
+   else if(k==='fim'){tdFocoFim(true);op2CompPinta();}});}
+ w.classList.add('on');op2CompPinta();try{if(w.requestFullscreen&&!document.fullscreenElement)w.requestFullscreen().catch(function(){});}catch(e){}}
+function op2CompPinta(){var w=document.getElementById('op-comp');if(!w||!w.classList.contains('on'))return;var f=tdD().foco,d=new Date(),av='';try{av=satAvatar(f?'calmo':'festa');}catch(e){}
+ var big=f?tdMMSS(tdFocoRest()):String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0'),it=op2Atual(),ps=it?(opx().passo[it.k]||''):'';
+ var h='<div class="opc-bx"><div class="opc-sat">'+av+'<span>'+esc(OP2_FALAS[Math.floor(Date.now()/60000)%OP2_FALAS.length])+'</span></div>'+
+  '<span class="op-k">'+(f?(f.pausaModo?'pausa':'em foco · acompanhado'):'modo companhia')+'</span><b class="opc-t">'+esc(f?f.rot:(it?it.t:'escolha o bloco'))+'</b><div class="opc-big">'+big+'</div>'+
+  (ps?'<p class="opc-ps">passo 1: '+esc(ps)+'</p>':'')+
+  '<div class="opc-bt">'+(f?'<button type="button" data-opc="fim">encerrar</button>':'<button type="button" class="op-pri" data-opc="go">começar · '+op2Dur()+' min</button>')+'<button type="button" data-opc="ruido" class="'+(op2Ruido.s?'on':'')+'">ruído marrom</button><button type="button" data-opc="sair">sair</button></div></div>';
+ if(w.innerHTML!==h)w.innerHTML=h;}
+
+/* ---------- pintura: encaixe nas colunas que já existem ---------- */
+opFazerHTML=(function(f0){return function(){var h=f0.apply(this,arguments).replace(/<div class="op-add">[\s\S]*?<\/div>\s*$/,'');var aberto=false;try{aberto=localStorage.getItem('astro_op_tudo')==='1';}catch(e){}
+ var topo=op2FogModo()?op2FogHTML():op2BusHTML(),ig=h.indexOf('<div class="op-grp'),cab='';if(ig>0){cab=h.slice(0,ig);h=h.slice(ig);}
+ return cab+topo+'<details class="op-tudo"'+(aberto?' open':'')+'><summary data-optudo>ver tudo · lista completa</summary><div class="op-tudo-c">'+h+'</div></details>';};})(opFazerHTML);
+opFocoHTML=(function(f0){return function(){var h=f0.apply(this,arguments);
+ h=/<div class="op-fx">[\s\S]*?<\/div>/.test(h)?h.replace(/(<div class="op-fx">[\s\S]*?<\/div>)/,'$1'+op2ViradaHTML()):h+op2ViradaHTML();
+ return op2MedHTML()+h+'<button type="button" class="op-comp-b" data-opcomp>modo companhia</button>';};})(opFocoHTML);
+opLadoHTML=(function(f0){return function(){var h=f0.apply(this,arguments),s=op2SaidaHTML(),i=h.indexOf('<div class="op-grp"><span class="op-k">próximos');
+ if(s)h=i>=0?h.slice(0,i)+s+h.slice(i):h+s;return h+op2FlechasHTML();};})(opLadoHTML);
+opLinhaHTML=(function(f0){return function(){var h=f0.apply(this,arguments),v=op2Virada(),a=opMin(),H0=op2Faixa();if(!H0)return h;var fim=+H0*60+180,m=fim-a;
+ return h.replace(/(class="op-v?seg op-atual"[\s\S]*?)(<\/button>)/,'$1<em class="op-falta">faltam '+(m>=60?Math.floor(m/60)+'h'+String(m%60).padStart(2,'0'):m+' min')+'</em>$2');};})(opLinhaHTML);
+opPinta=(function(f0){return function(){f0.apply(this,arguments);var o=document.getElementById('modo-op');if(!o||!document.body.classList.contains('op-on'))return;
+ var fc=o.querySelector('.op-foco');if(fc)fc.classList.toggle('op-com-nectar',!!o.querySelector('.op-nectar'));
+ o.classList.toggle('op-bat1',op2Bat()===1);};})(opPinta);
+opMonta=(function(f0){return function(){var novo=!document.getElementById('modo-op'),o=f0.apply(this,arguments);if(!novo||o.dataset.op2)return o;o.dataset.op2=1;
+ /* 10 · no Posto só se executa: faixa não leva para a grade */
+ o.addEventListener('click',function(e){var b=e.target.closest('button,summary');if(!b||!o.contains(b))return;var d=b.dataset,ox=opx(),hj=hoje();
+  if(d.opfx){e.preventDefault();e.stopImmediatePropagation();tdAvisa('A grade se edita no templo','no Posto só se executa. Para mudar a faixa, use “templo completo”.');return;}
+  if(d.optudo!=null){e.preventDefault();e.stopImmediatePropagation();var ab=!(b.parentNode&&b.parentNode.open);try{localStorage.setItem('astro_op_tudo',ab?'1':'0');}catch(z){}b.parentNode.open=ab;return;}
+  if(d.opbat){e.stopImmediatePropagation();ox.bat[hj]=+d.opbat;op2Salva();opPinta();return;}
+  if(d.opbus){e.stopImmediatePropagation();var it=op2Atual(),k=d.opbus;
+   if(k==='go'&&it){ox.fk=it.k;ox.fkItem=it;var dur=op2Dur();tdFocoIni(dur,(op2Bat()===1?'5 min · ':'')+it.t,it.tipo==='pl'?it.i:-1);op2Salva();}
+   else if(k==='ok'&&it){op2XP(op2Feito(it),e);}
+   else if(k==='okfim'&&it){if(tdD().foco)tdFocoFim(true);op2XP(op2Feito(it),e,null);ox.fk=null;ox.fkItem=null;op2Salva();}
+   else if(k==='parar'){if(tdD().foco)tdFocoFim(true);ox.fk=null;ox.fkItem=null;op2Salva();}
+   else if(k==='skip'&&it){(ox.skip[hj]=ox.skip[hj]||[]).push(it.k);op2Salva();}
+   else if(k==='reset'){ox.skip[hj]=[];op2Salva();}
+   try{tdDisco(true);}catch(z){}opPinta();return;}
+  if(d.opcp){e.stopImmediatePropagation();try{navigator.clipboard.writeText(d.opcp);}catch(z){}op2XP(0,e,'copiado');return;}
+  if(d.opfog){e.stopImmediatePropagation();if(d.opfog==='abre'){ox.fogAberta=hj;op2Salva();}else if(d.opfog==='fecha'){ox.fogAberta=null;op2Salva();}else if(d.opfog==='apaga')op2FogApaga(e);opPinta();return;}
+  if(d.opest){e.stopImmediatePropagation();var p=d.opest.split(':'),E=ox.est[hj]||[],t=E[+p[1]];if(t!=null){if(p[0]==='cx')op2Caixa(t);E.splice(+p[1],1);op2Salva();}opPinta();return;}
+  if(d.opmed){e.stopImmediatePropagation();var q=d.opmed.split(':'),tk=q.slice(1).join(':');if(q[0]==='t'){op2Tomei(tk);op2XP(0,e,'néctar tomado');}else op2Adia(tk);opPinta();return;}
+  if(d.opcomp!=null){e.stopImmediatePropagation();op2Comp(true);return;}
+  if(d.optrajb!=null){e.stopImmediatePropagation();var ti=o.querySelector('[data-optraj]'),v=ti?+ti.value:0;if(v>0){ox.cfg.traj=Math.round(v);op2Salva();opPinta();}return;}
+  /* 11 · +XP na hora nos marcadores que já existiam */
+  var Q=mmD();if(d.opch){var c=Q.chale.filter(function(x){return x.id===d.opch;})[0];if(c&&!c.ok)op2XP(3,e);}
+  else if(d.opq){if((Q.feitas[hj]||[]).indexOf(d.opq)<0)op2XP(5,e);}
+  else if(d.oppp)op2XP(10,e);},true);
+ o.addEventListener('input',function(e){var t=e.target;if(t.dataset.oppasso){opx().passo[t.dataset.oppasso]=t.value.slice(0,80);clearTimeout(op2Salva.t);op2Salva.t=setTimeout(op2Salva,400);}
+  else if(t.dataset.opfogi){var ox=opx();ox.fogR=ox.fogR||{};ox.fogR[t.dataset.opfogi]=t.value;clearTimeout(op2Salva.t);op2Salva.t=setTimeout(op2Salva,400);}});
+ o.addEventListener('keydown',function(e){if(e.key!=='Enter')return;var t=e.target;if(t.dataset.oppasso!=null){e.preventDefault();t.blur();}else if(t.dataset.optraj!=null){e.preventDefault();var b=o.querySelector('[data-optrajb]');if(b)b.click();}},true);
+ return o;};})(opMonta);
+/* 7 · o fim de um bloco conta como flecha */
+tdFocoFim=(function(f0){return function(reg){var f=tdD().foco,conta=reg&&f&&!f.pausaModo&&((f.pausa!=null?f.dur-f.pausa:Date.now()-f.ini)>=30000);var r=f0.apply(this,arguments);if(conta){try{op2XP(0,null,'+1 flecha');}catch(e){}var o=S.opx;if(o&&o.fk&&!tdD().foco){/* mantém a coisa da vez até marcar feito */}}return r;};})(tdFocoFim);
+setInterval(function(){try{op2Proc();op2MedAlarme();op2SaidaAlarme();op2Lotus();}catch(e){console.error('posto:',e);}},30000);
+setInterval(function(){try{op2CompPinta();}catch(e){}},1000);
+setTimeout(function(){try{opx();op2Proc();op2MedAlarme();}catch(e){}},2500);
+
 })();
 </script>
 </body>
