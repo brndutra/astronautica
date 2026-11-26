@@ -4268,6 +4268,83 @@ h2.sec.neo-tit[data-nivel]>span{color:var(--fase)!important}
 #nav::-webkit-scrollbar-track,#rail::-webkit-scrollbar-track,#painel-dir .pd-corpo::-webkit-scrollbar-track,#cerbox::-webkit-scrollbar-track,.mf-g::-webkit-scrollbar-track,#fer-corpo::-webkit-scrollbar-track,.acg-bx::-webkit-scrollbar-track{background:transparent}
 #nav::-webkit-scrollbar-thumb,#rail::-webkit-scrollbar-thumb,#painel-dir .pd-corpo::-webkit-scrollbar-thumb,#cerbox::-webkit-scrollbar-thumb,.mf-g::-webkit-scrollbar-thumb,#fer-corpo::-webkit-scrollbar-thumb,.acg-bx::-webkit-scrollbar-thumb{background:rgba(90,63,44,.3);border-radius:4px}
 #nav::-webkit-scrollbar-thumb:hover,#rail::-webkit-scrollbar-thumb:hover,#painel-dir .pd-corpo::-webkit-scrollbar-thumb:hover{background:rgba(90,63,44,.55)}
+
+/* Caixa de Hermes no mesmo padrão dos outros cartões do Quadro */
+#cerbox #rail-in{position:relative;padding:12px 14px 16px!important;margin:0 0 12px!important;border:1px solid rgb(185,167,122)!important;border-radius:12px!important;background:rgb(244,234,209)!important;gap:10px!important;box-shadow:none!important}
+#cerbox #rail-in::after{content:'';position:absolute;left:12px;right:12px;bottom:0;height:3px;background:repeating-linear-gradient(90deg,#c9a45a 0 6px,transparent 6px 9px);opacity:.55;pointer-events:none}
+#cerbox #rail-in .rcab.cer{display:grid!important;grid-template-columns:30px 1fr auto;column-gap:8px;align-items:center;padding:0!important;margin:0!important}
+#cerbox #rail-in .rcab.cer .qa-ic{grid-row:1/3}
+#cerbox #rail-in .rcab.cer .qa-nm{grid-column:2;display:flex;flex-direction:column-reverse;gap:1px}
+#cerbox #rail-in .qa-nm small{font:700 8.5px var(--mono,monospace)!important;letter-spacing:.18em;color:#9a6b3a!important}
+#cerbox #rail-in .qa-nm b{font:400 16px Georgia,serif!important;color:#3b2a1d!important}
+#cerbox #rail-in .rcab.cer>i{grid-column:3;grid-row:1/3;align-self:center;padding:2px 8px;border-radius:999px;border:1px solid #c9b28a;background:#fbf3df;font:700 9px var(--mono,monospace);font-style:normal;letter-spacing:.12em;text-transform:uppercase;color:#8a6f55}
+#cerbox #rail-in .rcap{display:flex!important;flex-direction:row!important;align-items:center;gap:6px;margin:0!important;padding:0!important;background:none!important}
+#cerbox #rail-in .rcap input{flex:1;width:auto!important;min-width:0;height:36px!important;min-height:36px!important;padding:0 12px!important;border:1px solid #c9b28a!important;border-radius:8px!important;background:#fbf3df!important;font:14px var(--sans)!important;color:#3b2a1d!important;box-shadow:inset 0 1px 2px rgba(90,63,44,.08)}
+#cerbox #rail-in .rcap input:focus{outline:0;border-color:#9a6b3a!important;box-shadow:0 0 0 3px rgba(201,164,90,.25)}
+#cerbox #rail-in .rcap button{flex:none;width:auto!important;height:36px!important;padding:0 14px!important;border:0!important;border-radius:8px!important;background:#5a3f2c!important;color:#f4ead2!important;font:700 10px var(--mono,monospace)!important;letter-spacing:.16em;text-transform:uppercase;cursor:pointer}
+#cerbox #rail-in .rcap button:hover{background:#3b2a1d!important}
+#cerbox #rail-in .rlist{margin:0!important;padding:0!important;list-style:none;display:flex;flex-direction:column;gap:4px}
+#cerbox #rail-in .rlist li{padding:7px 10px!important;border-radius:8px;background:#fbf3df!important;border:1px solid #e3d3b0!important;font-size:13px;color:#3b2a1d}
+#cerbox #rail-in .rlist li.rvz{border-style:dashed!important;background:transparent!important;text-align:center;font:italic 12.5px Georgia,serif!important;letter-spacing:0!important;text-transform:none!important;color:#8a6f55!important}
+
+/* faixa fixa da coluna esquerda, na mesma altura e no mesmo desenho do índice */
+#lat-topo{position:sticky;top:0;z-index:20;margin:-10px -10px 10px;padding:10px 10px 6px;background:#e8dcb9;border-bottom:3px double #5a3f2c;display:flex;flex-direction:column;gap:6px;height:96px;box-sizing:border-box}
+#lat-topo .lt-r1{display:flex;align-items:center;gap:10px;height:32px;padding:0 6px 0 4px;border:1.5px solid #5a3f2c;border-radius:999px;background:#5a3f2c;color:#f4ead2}
+#lat-topo .lt-logo{flex:none;width:30px!important;height:30px!important;margin:0 0 0 -3px!important;padding:2px!important;border:0!important;border-radius:50%!important;background:#f4ead2!important;cursor:pointer;display:grid;place-items:center}
+#lat-topo .lt-logo img{width:26px;height:26px;object-fit:contain}
+#lat-topo .lt-id{flex:1;min-width:0;display:flex;align-items:baseline;gap:7px;white-space:nowrap;overflow:hidden}
+#lat-topo .lt-id b{font:400 13px Georgia,serif;letter-spacing:.2em;text-transform:uppercase}
+#lat-topo .lt-id small{font:9px var(--mono,monospace);letter-spacing:.12em;text-transform:uppercase;opacity:.75;overflow:hidden;text-overflow:ellipsis}
+#lat-topo .lt-dias{flex:none;display:flex;align-items:baseline;gap:4px;padding:2px 9px;border-radius:999px;background:#f4ead2;color:#3b2a1d}
+#lat-topo .lt-dias b{font:700 13px Georgia,serif}#lat-topo .lt-dias small{font:8.5px var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase;color:#8a6f55}
+#lat-topo .lt-r2{display:flex;align-items:center;gap:8px;height:30px;padding:0 10px;border-top:1px solid #5a3f2c;font-size:12px;color:#3b2a1d}
+#lat-topo .lt-k{flex:none;padding:2px 8px;border-radius:999px;background:#5a3f2c;color:#f4ead2;font:700 9px var(--mono,monospace);letter-spacing:.18em;text-transform:uppercase}
+#lat-topo .lt-bar{flex:1;height:4px;border-radius:2px;background:#e3d3b0;overflow:hidden}#lat-topo .lt-bar i{display:block;height:100%;background:#9a6b3a}
+#lat-topo .lt-n{flex:none;font:700 12px Georgia,serif}#lat-topo .lt-t{flex:none;font:9px var(--mono,monospace);letter-spacing:.08em;color:#8a6f55}
+/* o cartão de nível fica só com a meta do dia e as regras: o topo dele subiu para a faixa */
+#lat-gm .gm-top{display:none!important}
+#lat-gm .gm-bot{padding-top:0!important;border-top:0!important;margin-top:0!important}
+@media(max-width:1379px){#lat-topo{position:static;height:auto}}
+
+/* ===== rodapé no desenho do app: faixa de papel com régua dupla e placas com medalhão ===== */
+#rod-apps.rod{background:#e8dcb9!important;border-top:3px double #5a3f2c!important;box-shadow:0 -6px 16px rgba(60,40,20,.08)!important;backdrop-filter:none!important}
+#rod-apps .rod-top{gap:0!important}
+#rod-apps .rod-top .rod-bar{background:#5a3f2c!important;color:#f4ead2!important;border:0!important}
+#rod-apps .rod-top .rod-bar *{color:#f4ead2!important}
+#rod-apps .cp-reg .cr-bar{gap:6px!important;padding:6px 8px!important}
+#rod-apps .cp-reg .cr-p{position:relative;display:flex!important;align-items:center;gap:8px;min-height:44px!important;padding:5px 10px 5px 6px!important;border:1px solid #c9b28a!important;border-left:1px solid #c9b28a!important;border-radius:8px!important;
+ background:linear-gradient(180deg,#fbf3df,#f1e3c3)!important;box-shadow:0 1px 0 #fff8 inset,0 1px 2px rgba(60,40,20,.12)!important;transition:transform .15s,box-shadow .15s}
+#rod-apps .cp-reg .cr-p::after{content:'';position:absolute;left:8px;right:8px;bottom:0;height:2px;border-radius:2px;background:var(--cr,#9a6b3a)}
+#rod-apps .cp-reg .cr-p:hover,#rod-apps .cp-reg .cr-p.on{transform:translateY(-2px);box-shadow:0 4px 10px rgba(60,40,20,.18)!important;border-color:var(--cr,#9a6b3a)!important}
+#rod-apps .cp-reg .cr-ico{flex:none;width:30px!important;height:30px!important;display:grid;place-items:center;border-radius:50%!important;border:1.5px solid var(--cr,#9a6b3a)!important;background:#f4ead2!important;box-shadow:0 0 0 2px #f4ead2,0 0 0 3px color-mix(in srgb,var(--cr,#9a6b3a) 40%,transparent)}
+#rod-apps .cp-reg .cr-ico svg{width:15px!important;height:15px!important;fill:none;stroke:var(--cr,#9a6b3a)!important;stroke-width:1.7}
+#rod-apps .cp-reg .cr-lb{display:flex!important;flex-direction:column;align-items:flex-start;gap:1px;min-width:0;flex:1}
+#rod-apps .cp-reg .cr-lb small{font:700 8px var(--mono,monospace)!important;letter-spacing:.16em!important;text-transform:uppercase;color:#8a6f55!important}
+#rod-apps .cp-reg .cr-lb b{font:700 15px Georgia,serif!important;color:#3b2a1d!important;line-height:1.1}
+#rod-apps .cr-pop{background:#fbf3df!important;border:1px solid #c9b28a!important;border-radius:10px!important;box-shadow:0 10px 26px rgba(60,40,20,.25)!important}
+
+#rod-apps .cp-reg .cr-lb small{display:block!important}
+/* menos espaço entre os templos */
+h2.sec.neo-tit{margin-top:12px!important}
+h2.sec.neo-tit[data-nivel]{margin-top:12px!important}
+#tm-painel.tm-neo,#recreio.rc-neo,#tesouro.neo-moldura{margin-top:14px!important;margin-bottom:0!important}
+.wrap > div.tb.neo-moldura,.wrap > div.rt.neo-moldura{margin-bottom:0!important}
+#hero-box{margin-bottom:0!important}
+
+/* sem marrom chapado: faixa esquerda e botão apps em papel com tinta */
+#lat-topo .lt-r1{background:#f4ead2!important;color:#3b2a1d!important;border-color:#5a3f2c!important}
+#lat-topo .lt-logo{background:transparent!important}
+#lat-topo .lt-id small{opacity:1;color:#8a6f55}
+#lat-topo .lt-dias{background:#fbf3df;border:1px solid #c9b28a}
+#lat-topo .lt-k{background:transparent!important;color:#5a3f2c!important;border:1px solid #5a3f2c}
+#rod-apps .rod-top .rod-bar{background:#f4ead2!important;border-right:1px solid #c9b28a!important}
+#rod-apps .rod-top .rod-bar *{color:#5a3f2c!important}
+/* folgas escondidas entre o Recreações e o Tesouro */
+.wrap>.area-cab.ts-oculta,.wrap>#area-est,.wrap>#area-dos,.wrap>#area-camp{margin:0!important}
+.wrap>#fin-wrap:empty,.wrap>#fin-wrap:not(:has(*:not([hidden]))){margin:0!important}
+
+.wrap>#lat-faixa:not(:has(*:not(:empty))){margin:0!important}
+@media(min-width:1380px){.wrap>#lat-faixa{margin:0!important}}
 </style>
 </head>
 <body>
@@ -14135,6 +14212,18 @@ function qaDeuses(){var ri=document.getElementById('rail-in');if(ri){var c=ri.qu
  ['qa-d-pc','qa-d-nt','qa-d-dj'].forEach(function(id){var d=document.getElementById(id);if(!d)return;var su=d.querySelector(':scope > summary');if(!su||su.querySelector('.qa-deus'))return;var g=document.createElement('span');g.className='qa-deus';g.textContent=QA_DEUS[id][0]+' · '+QA_DEUS[id][1];su.appendChild(g);});}
 (function(){var r0=vxRender;vxRender=function(){var x=r0.apply(this,arguments);try{qaIcones();qaDeuses();}catch(e){}return x;};})();
 setTimeout(function(){try{qaIcones();qaDeuses();}catch(e){}},1000);
+/* faixa fixa no topo da coluna esquerda, alinhada ao índice e à faixa Agora: identidade e nível */
+function latTopo(){var e=document.getElementById('lat-e');if(!e||typeof gmXP!=='function')return;var t=document.getElementById('lat-topo');
+ if(!t){t=document.createElement('div');t.id='lat-topo';t.addEventListener('click',function(ev){if(ev.target.closest('.lt-logo')){try{acEditaCampista();}catch(z){}}});}
+ if(e.firstElementChild!==t)e.insertBefore(t,e.firstChild);
+ var x=gmXP(),nv=gmNivel(x.total),sq=gmSeq(),tot=0;try{var h=hojeN();for(var i=730;i>=0;i--)if(gmDiaOk(diaStr(h-i)))tot++;}catch(z){}
+ var html='<div class="lt-r1"><button type="button" class="lt-logo" title="Ficha do campista"><img src="img/acampamento/logo-camp.webp" alt=""></button>'+
+  '<div class="lt-id"><b>Nível '+nv.n+'</b><small>'+esc(nv.t)+'</small></div>'+
+  '<div class="lt-dias" title="dias no acampamento · sequência atual"><b>'+tot+'</b><small>'+(sq?'seq. '+sq:'dias')+'</small></div></div>'+
+  '<div class="lt-r2"><span class="lt-k">xp</span><span class="lt-bar"><i style="width:'+nv.no+'%"></i></span><span class="lt-n">'+nv.no+'/100</span><span class="lt-t">'+x.total+' no total</span></div>';
+ if(t.innerHTML!==html)t.innerHTML=html;}
+(function(){var r0=vxRender;vxRender=function(){var x=r0.apply(this,arguments);try{latTopo();}catch(e){}return x;};})();
+setTimeout(function(){try{latTopo();}catch(e){}},300);setInterval(function(){try{latTopo();}catch(e){}},60e3);
 setInterval(pintaProgresso,60000);
 })();
 </script>
