@@ -2323,6 +2323,28 @@ body:not(.claro) .fc{filter:brightness(.92)}
 .hk-corpo{float:right;width:230px;max-width:38%;margin:-6px -8px 8px 16px;border-radius:12px;mix-blend-mode:multiply}
 body:not(.claro) .hk-corpo{mix-blend-mode:normal;background:#fff}
 @media(max-width:700px){.hk-corpo{float:none;display:block;margin:0 auto 10px;max-width:70%}.fc-foto{width:90px}.fc-top .fc-stamp{right:40px;top:76px}}
+
+/* painel único */
+.navl .nva{display:block!important}
+.area-cab{display:flex;align-items:baseline;gap:14px;margin:34px 0 14px;padding:12px 18px;border-radius:14px;background:var(--panel);border:1px solid var(--line);border-left:6px solid var(--red);scroll-margin-top:12px}
+.area-cab b{font:800 22px var(--display,Georgia,serif);letter-spacing:.02em;color:var(--bone)}
+.area-cab span{font:13px var(--sans);color:var(--dim)}
+.area-cab.a-camp{--red:var(--a-camp)} .area-cab.a-est{--red:var(--a-est)} .area-cab.a-dos{--red:var(--a-dos)} .area-cab.a-fin{--red:var(--a-fin)}
+#vx{scroll-margin-top:0} #vx-camp{margin-top:16px}
+body[data-vx-view="op"] #rail{display:block}
+
+/* diálogo da ficha */
+.fc-dlg{width:min(1040px,94vw);max-height:92vh;padding:0;border:0;border-radius:16px;background:var(--bg);box-shadow:0 30px 80px rgba(0,0,0,.45);overflow:auto}
+.fc-dlg::backdrop{background:rgba(20,26,18,.55);backdrop-filter:blur(2px)}
+.fc-dlg-c{padding:22px}
+.fc-dlg .fc,.fc-dlg .cf-dia{margin-bottom:16px}
+.fc-x{position:sticky;top:10px;float:right;margin:10px 10px 0 0;z-index:2;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:var(--panel);color:var(--bone);font:700 16px var(--sans);cursor:pointer}
+.fc-abre{display:flex;align-items:center;gap:16px;width:100%;margin:0 0 16px;padding:14px 18px;border-radius:14px;border:1px dashed #b6a37b;background:linear-gradient(#fbf6e8,#f4ead1);color:#2f261d;text-align:left;cursor:pointer}
+.fc-abre:hover{border-style:solid;border-color:var(--a-op)}
+.fc-abre img{width:56px;height:56px;border-radius:50%;object-fit:cover;border:2px solid #f1d58d}
+.fc-abre span{display:grid;gap:2px;flex:1}.fc-abre b{font:800 18px var(--display,Georgia,serif);letter-spacing:.03em}
+.fc-abre small{font:13px var(--sans);color:#6f6553}.fc-abre i{font:600 13px var(--sans);font-style:normal;color:var(--a-op)}
+#vx .vx-hero .hk-av{cursor:pointer}
 </style>
 </head>
 <body>
@@ -6709,6 +6731,78 @@ function arteAplica(){
 (function(){var pend=0;function vez(){pend=0;try{arteAplica();}catch(e){}}
  if(window.MutationObserver)new MutationObserver(function(){if(!pend)pend=setTimeout(vez,50);}).observe(document.documentElement,{childList:true,subtree:true});
  setTimeout(vez,0);})();
+
+/* ---------- Painel único: tudo na mesma tela, as abas viram atalhos de rolagem ---------- */
+var AREA_CAB={camp:['02','Missões','frentes, hábitos, marcos e profecia'],est:['03','Partenon','concurso, ciclo de estudos, revisão, línguas e runas'],
+ dos:['04','Arsenal','ficha do campista, diário e arquivo antigo'],fin:['05','Loja','finanças e gastos']};
+function areaAncora(a){if(a==='op')return document.getElementById('vx');return document.getElementById('area-'+a);}
+vxShow=function(view){var n=areaAncora(view);if(n)n.scrollIntoView({behavior:'smooth',block:'start'});};
+vxLayout=function(){vxOrganiza();document.body.dataset.vxView='op';
+ var wr=document.querySelector('.wrap');if(!wr)return;
+ /* Loja: o AxisHub vai para o fim da página */
+ var fw=finWrap();if(fw&&wr.lastElementChild!==fw)wr.appendChild(fw);
+ var fr=document.getElementById('fin-frame');if(fr&&!fr.getAttribute('src'))fr.setAttribute('src','financas.html?hub=fin');
+ Array.from(wr.children).forEach(function(n){if(n!==VX)n.dataset.vxHidden='false';});
+ /* um cabeçalho no começo de cada área */
+ Object.keys(AREA_CAB).forEach(function(a){var cab=document.getElementById('area-'+a);
+  var primeiro=Array.from(wr.children).filter(function(n){return n!==cab&&n.dataset.area===a&&!n.classList.contains('area-cab');})[0];
+  if(a==='dos'){var s=document.getElementById('ars-sec');if(s)primeiro=s;}
+  if(a==='fin')primeiro=fw;if(!primeiro)return;
+  if(!cab){cab=document.createElement('div');cab.id='area-'+a;cab.className='area-cab a-'+a;cab.dataset.area=a;
+   cab.innerHTML='<b>'+AREA_CAB[a][0]+' / '+AREA_CAB[a][1]+'</b><span>'+AREA_CAB[a][2]+'</span>';}
+  if(cab.nextElementSibling!==primeiro)wr.insertBefore(cab,primeiro);cab.dataset.vxHidden='false';});};
+/* o painel do topo sempre mostra o dia; as frentes da Campanha entram abaixo dele */
+(function(){var r0=vxRender;vxRender=function(){try{var v=vxData();if(v.view!=='op')v.view='op';}catch(e){}r0();
+ try{var b=document.getElementById('vx-body');if(b&&!document.getElementById('vx-camp')){var d=document.createElement('div');d.id='vx-camp';
+  d.innerHTML='<div class="vx-card"><h3>Campanha / frentes e resultados</h3><p class="vx-muted">Congelar preserva o projeto e libera uma frente.</p>'+vxProjectsHTML()+'</div>';
+  b.appendChild(d);vxBind();}}catch(e){console.error(e);}
+ Array.prototype.forEach.call(VX.querySelectorAll('.vx-tabs [data-view]'),function(t){t.setAttribute('aria-selected','false');});};})();
+/* Arsenal: o cofre, a ficha e o diário ficam no começo da área, fora do painel do topo */
+function arsSec(){var wr=document.querySelector('.wrap');if(!wr)return null;var s=document.getElementById('ars-sec');
+ if(!s){s=document.createElement('section');s.id='ars-sec';s.dataset.area='dos';}
+ var prim=Array.from(wr.children).filter(function(n){return n.dataset.area==='dos'&&n!==s&&!n.classList.contains('area-cab');})[0];
+ if(prim&&s.nextElementSibling!==prim&&s!==prim)wr.insertBefore(s,prim);else if(!s.parentNode)wr.appendChild(s);
+ s.dataset.vxHidden='false';return s;}
+fcFicha=function(){var s=arsSec();if(!s)return;var f=document.getElementById('fc-ficha');
+ if(!f){f=document.createElement('div');f.id='fc-ficha';f.className='fc';f.innerHTML=FC_HTML;f.hidden=!CF.chave;}
+ if(f.parentNode!==s)s.appendChild(f);f.style.display='';};
+cfMonta=function(){var s=arsSec(),f=document.getElementById('fc-ficha');if(!s||!f)return;var c=document.getElementById('cf-cofre');
+ if(!c){c=document.createElement('div');c.id='cf-cofre';c.className='cf';
+  c.addEventListener('click',function(e){if(e.target.hasAttribute('data-cfok'))cfAbre();if(e.target.hasAttribute('data-cftr')){CF.chave=null;cfTela();}});
+  c.addEventListener('keydown',function(e){if(e.key==='Enter'&&e.target.tagName==='INPUT')cfAbre();});
+  document.addEventListener('click',function(e){if(e.target.hasAttribute&&e.target.hasAttribute('data-cfadd'))cfAdd();});
+  s.insertBefore(c,f);cfTela();}
+ if(c.nextElementSibling!==f)s.insertBefore(c,f);c.style.display='';if(!CF.chave&&!f.hidden)f.hidden=true;};
+
+/* ---------- Ficha do Campista em diálogo com senha ---------- */
+function fcDlg(){var d=document.getElementById('fc-dlg');if(d)return d;
+ d=document.createElement('dialog');d.id='fc-dlg';d.className='fc-dlg';d.setAttribute('aria-label','Ficha do Campista');
+ d.innerHTML='<button type="button" class="fc-x" aria-label="Fechar e trancar">✕</button><div class="fc-dlg-c" id="fc-dlg-c"></div>';
+ document.body.appendChild(d);
+ d.querySelector('.fc-x').onclick=function(){d.close();};
+ d.addEventListener('close',function(){CF.chave=null;try{cfTela();}catch(e){}});
+ d.addEventListener('click',function(e){if(e.target===d)d.close();});
+ return d;}
+function fcAbreDlg(){var d=fcDlg();acTudo();if(!d.open){if(d.showModal)d.showModal();else d.setAttribute('open','');}
+ setTimeout(function(){var i=document.getElementById('cf-s1');if(i)i.focus();},50);}
+fcFicha=function(){var d=fcDlg(),c=document.getElementById('fc-dlg-c');var f=document.getElementById('fc-ficha');
+ if(!f){f=document.createElement('div');f.id='fc-ficha';f.className='fc';f.innerHTML=FC_HTML;f.hidden=!CF.chave;}
+ if(f.parentNode!==c)c.appendChild(f);f.style.display='';
+ /* no Arsenal fica só o cartão que abre o diálogo */
+ var s=arsSec();if(s&&!document.getElementById('fc-abre')){s.innerHTML='<button type="button" id="fc-abre" class="fc-abre"><img alt="" src="'+(typeof ARTE_R!=='undefined'?ARTE_R:'')+'">'+
+  '<span><b>Ficha do Campista</b><small>e Diário do Semideus · abre com senha</small></span><i>🔒 abrir</i></button>';
+  document.getElementById('fc-abre').onclick=fcAbreDlg;}};
+cfMonta=function(){var c0=document.getElementById('fc-dlg-c'),f=document.getElementById('fc-ficha');if(!c0||!f)return;var c=document.getElementById('cf-cofre');
+ if(!c){c=document.createElement('div');c.id='cf-cofre';c.className='cf';
+  c.addEventListener('click',function(e){if(e.target.hasAttribute('data-cfok'))cfAbre();if(e.target.hasAttribute('data-cftr')){CF.chave=null;cfTela();}});
+  c.addEventListener('keydown',function(e){if(e.key==='Enter'&&e.target.tagName==='INPUT')cfAbre();});
+  document.addEventListener('click',function(e){if(e.target.hasAttribute&&e.target.hasAttribute('data-cfadd'))cfAdd();});
+  c0.insertBefore(c,f);cfTela();}
+ if(c.nextElementSibling!==f)c0.insertBefore(c,f);if(!CF.chave&&!f.hidden)f.hidden=true;};
+/* atalhos: o retrato do topo e o item do sumário também abrem a ficha */
+document.addEventListener('click',function(e){var t=e.target;
+ if(t.classList&&t.classList.contains('hk-av')){e.preventDefault();fcAbreDlg();return;}
+ var nb=t.closest&&t.closest('#nav-l [data-nv="topo"]');if(nb){e.preventDefault();e.stopImmediatePropagation();fcAbreDlg();}},true);
 
 /* ---------- Planner do dia (tema Astronáutica) ----------
    Relógio, calendário do mês, três prioridades e checklist de fim de dia,
