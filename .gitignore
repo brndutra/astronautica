@@ -1,0 +1,4 @@
+.DS_Store
+*.json.bak
+financas-backup-*.json
+financas-dados-iniciais.json
