@@ -3853,6 +3853,40 @@ body.com-rodape .td-disco{bottom:78px!important}
 .enf-med{margin:0 0 12px;border:1px solid var(--line);border-radius:14px;background:var(--panel);overflow:hidden}.enf-med .lat-medh{border-bottom:0}
 #rt-cor-slot .td-cor{margin:12px 0 6px;padding:10px 0 0;border:0;border-top:1px dashed var(--line);border-radius:0;background:none}
 #rt-cor-slot .td-cor ol{flex-direction:column}
+
+/* Grade semanal: Compromissos no rodapé; o mês e a semana em gavetas laterais */
+.comp-alca,.comp-gaveta{display:none!important}
+.wrap > div.tb > .mf-gav{position:static;display:block!important;margin:0!important;padding:0!important;border:0!important;background:none!important}
+.mf-alca{position:absolute!important;top:50%;z-index:6;transform:translateY(-50%);width:40px!important;height:190px;margin:0!important;padding:0!important;border:1.5px solid #5a3f2c!important;border-radius:20px;
+ background:#f4ead2!important;color:#5a3f2c!important;cursor:pointer;box-shadow:0 4px 12px rgba(60,40,20,.2);top:calc(50% - 40px)}
+.mf-alca-mes{left:2px}.mf-alca-sem{right:2px}
+.mf-alca span{display:block;writing-mode:vertical-rl;transform:rotate(180deg);margin:auto;font-family:Georgia,serif;font-size:11px;letter-spacing:.26em;text-transform:uppercase;white-space:nowrap}
+.mf-alca:hover,.tb.gav-mes .mf-alca-mes,.tb.gav-sem .mf-alca-sem{background:#5a3f2c!important;color:#f4ead2!important}
+.mf-g{position:absolute;top:42px;z-index:5;width:min(360px,52%);max-height:330px;overflow:auto;padding:12px 14px;background:#fbf5e6;border:1.5px solid #5a3f2c;color:#3b2a1d;
+ opacity:0;pointer-events:none;transition:transform .35s cubic-bezier(.2,.8,.2,1),opacity .25s;display:flex;flex-direction:column;gap:8px}
+.mf-g-mes{left:44px;border-radius:0 10px 10px 0;box-shadow:14px 0 30px rgba(60,40,20,.22);transform-origin:left center;transform:translateX(-30px) scaleX(.6)}
+.mf-g-sem{right:44px;border-radius:10px 0 0 10px;box-shadow:-14px 0 30px rgba(60,40,20,.22);transform-origin:right center;transform:translateX(30px) scaleX(.6)}
+.tb.gav-mes .mf-g-mes,.tb.gav-sem .mf-g-sem{transform:none;opacity:1;pointer-events:auto}
+.mf-g header{display:flex;align-items:center;gap:8px}
+.mf-g header .k9{display:block;font-family:var(--mono);font-size:8.5px;letter-spacing:.22em;text-transform:uppercase;color:#9a6b3a}
+.mf-g header b{font-family:Georgia,serif;font-size:16px}
+.mf-g label{display:grid;grid-template-columns:62px 1fr;align-items:center;gap:8px;margin:0}
+.mf-g small{font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:#9a6b3a}
+.mf-g input{width:100%;background:transparent!important;border:0!important;border-bottom:1px dotted #b89c72!important;border-radius:0!important;padding:5px 2px!important;font-size:14px;color:#3b2a1d!important}
+.mf-g input:focus{outline:0;border-bottom-color:#b4463a!important}
+.comp-rod{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:18px;margin:10px 52px 4px;padding:12px 14px;border:1.5px solid #5a3f2c;border-radius:10px;background:#fbf5e6;color:#3b2a1d}
+.comp-rod .k9{display:block;font-family:var(--mono);font-size:8.5px;letter-spacing:.22em;text-transform:uppercase;color:#9a6b3a;margin-bottom:8px}
+.comp-rod .cr2-hoje .comp-dia{flex-direction:row;flex-wrap:wrap;gap:6px 14px;border-left:0;border-top:2px solid #5a3f2c;padding:10px 0 0 0}
+.comp-rod .cr2-hoje .comp-dia li{padding-left:26px}.comp-rod .cr2-hoje .comp-dia li i{left:0}
+.comp-rod .cr2-hoje .comp-dia li b{width:auto}
+.comp-rod .cr2-prox{border-left:1px dashed #b89c72;padding-left:16px;max-height:170px;overflow:auto}
+.comp-rod .ag-dt{color:#9a6b3a}.comp-rod .ag-it{color:#3b2a1d}
+@media(max-width:800px){.comp-rod{grid-template-columns:1fr;margin:10px 0 4px}.comp-rod .cr2-prox{border-left:0;padding-left:0;border-top:1px dashed #b89c72;padding-top:8px}.mf-g{width:calc(100% - 60px)}}
+
+/* concha: compromissos da agenda e da Grade */
+.rt-av{margin:10px 0 4px;padding-top:8px;border-top:1px dashed var(--line2);display:flex;flex-direction:column;gap:5px}
+.rt-av label{display:flex;align-items:center;gap:8px;margin:0;font-size:13.5px}.rt-av label.ok>.mm-ck{background:var(--mc,#9a6b3a)!important;color:#fff!important;border-color:var(--mc,#9a6b3a)!important}.rt-av em{color:var(--dim);font-size:12px}
+.rt-av .rt-ant{font-size:12.5px;color:var(--dim)}.rt-av select{width:auto!important;margin:0 0 0 4px!important;padding:3px 6px!important;font-size:12.5px}
 </style>
 </head>
 <body>
@@ -12746,11 +12780,20 @@ var RT_TOQUES0=[{h:'06:00',n:'Alvorada · início do dia',on:true},{h:'09:00',n:
  {h:'15:00',n:'Atividades do acampamento',on:false},{h:'18:00',n:'Jantar no Pavilhão',on:true},{h:'22:00',n:'Toque de recolher nos chalés',on:true}];
 var RT_MANHA=[['cama','Cama arrumada'],['agua','Um copo de água'],['remedio','Remédio da manhã'],['grade','Olhei a Grade e as três missões'],['mochila','Mochila e roupa prontas']];
 function rtD(){var R=S.rotina;if(!R||typeof R!=='object')R=S.rotina={};if(!Array.isArray(R.toques))R.toques=JSON.parse(JSON.stringify(RT_TOQUES0));
- if(!R.limite)R.limite='22:30';R.flagras=R.flagras||{};R.paz=R.paz||{};return R;}
+ if(!R.limite)R.limite='22:30';R.flagras=R.flagras||{};R.paz=R.paz||{};if(!R.avisa||typeof R.avisa!=='object')R.avisa={ag:true,gr:true,ant:10};return R;}
+/* compromissos que também tocam a concha: Agenda Google (com hora) e horários escritos na Grade de hoje (ex.: 6h30, 17h, 14:00) */
+function rtGradeHoje(){var hj=hoje(),r=[];Array.prototype.forEach.call(document.querySelectorAll('#tb-g [data-tb^="'+hj+'|"]'),function(c){var v=(c.value||c.textContent||'').trim();if(!v)return;
+ var m=v.match(/(?:^|[^\d])(\d{1,2})(?:h(\d{2})?|:(\d{2}))/);if(!m)return;var H=+m[1],M=+(m[2]||m[3]||0);if(H>23||M>59)return;
+ r.push({m:H*60+M,h:String(H).padStart(2,'0')+':'+String(M).padStart(2,'0'),t:v.replace(/\s+/g,' '),k:'grade'});});return r;}
+function rtCompromissos(){var R=rtD(),A=R.avisa,hj=hoje(),r=[];
+ if(A.ag&&typeof AG!=='undefined'&&AG.ev)agDoDia(hj).forEach(function(x){if(x.dia)return;r.push({m:x.ini.getHours()*60+x.ini.getMinutes(),h:agHora(x),t:x.t+(x.loc?' · '+x.loc:''),k:'agenda',id:'ag'+x.ini.getTime()+x.t});});
+ if(A.gr)rtGradeHoje().forEach(function(x){x.id='gr'+x.m+x.t;r.push(x);});return r;}
 function rtMin(h){var p=String(h||'0:0').split(':');return (+p[0])*60+(+p[1]||0);}
 function rtAgora(){var d=new Date();return d.getHours()*60+d.getMinutes();}
 function rtProx(){var R=rtD(),a=rtAgora(),L=R.toques.filter(function(t){return t.on;}).sort(function(x,y){return rtMin(x.h)-rtMin(y.h);});
- for(var i=0;i<L.length;i++)if(rtMin(L[i].h)>a)return L[i];return L[0]||null;}
+ var C=[];try{C=rtCompromissos().map(function(x){return {h:x.h,n:x.t,m:x.m};});}catch(e){}
+ var T=L.map(function(t){return {h:t.h,n:t.n,m:rtMin(t.h)};}).concat(C).sort(function(x,y){return x.m-y.m;});
+ for(var i=0;i<T.length;i++)if(T[i].m>a)return T[i];return T[0]||null;}
 /* som de concha: sopro grave com harmônicos, subida curta e vibrato */
 function rtConcha(){var C=window.AudioContext||window.webkitAudioContext;if(!C)return;var ctx=drSom.ctx||(drSom.ctx=new C());if(ctx.state==='suspended')ctx.resume();
  var t=ctx.currentTime,g=ctx.createGain(),f=ctx.createBiquadFilter();f.type='lowpass';f.frequency.value=900;f.Q.value=4;g.connect(ctx.destination);f.connect(g);
@@ -12765,6 +12808,8 @@ function rtAviso(tit,txt){var w=document.getElementById('rt-aviso');if(w)w.remov
 function rtTick(){var R=rtD(),a=rtAgora(),hj=hoje(),k='astro_concha_'+hj,feitos;try{feitos=JSON.parse(localStorage.getItem(k)||'[]');}catch(e){feitos=[];}
  R.toques.forEach(function(t){if(!t.on)return;var m=rtMin(t.h);if(a>=m&&a<m+3&&feitos.indexOf(t.h)<0){feitos.push(t.h);try{localStorage.setItem(k,JSON.stringify(feitos));}catch(e){}
   try{rtConcha();}catch(e){}rtAviso('Toque da Concha · '+t.h,t.n);}});
+ try{var A=rtD().avisa,ant=A.ant|0;rtCompromissos().forEach(function(x){var m=x.m-ant;if(a>=m&&a<m+3&&feitos.indexOf(x.id)<0){feitos.push(x.id);try{localStorage.setItem(k,JSON.stringify(feitos));}catch(e){}
+  try{rtConcha();}catch(e){}rtAviso((x.k==='agenda'?'Compromisso':'Na Grade')+' · '+x.h,(ant&&a<x.m?'em '+(x.m-a)+' min · ':'')+x.t);}});}catch(e){}
  rtHarpias(false);try{rtPintaStatus();}catch(e){}}
 /* Ronda das Harpias */
 function rtNaRonda(){var R=rtD(),a=rtAgora(),l=rtMin(R.limite);return a>=l||a<5*60;}
@@ -12800,6 +12845,10 @@ function rtHTML(){var R=rtD(),P=rtInsp(),pm=RT_MANHA.filter(function(x){return P
  '<div class="rt-g">'+
  '<section class="mm-col rt-concha"><span class="mm-k">'+RT_IC.concha+' Toque da Concha</span><small id="rt-prox">'+(prox?'próximo: '+esc(prox.h)+' · '+esc(prox.n):'nenhum toque ligado')+'</small>'+
   '<ul class="rt-tq">'+R.toques.map(function(t,i){return '<li class="'+(t.on?'ok':'')+'"><button type="button" class="mm-ck" data-rt-on="'+i+'" aria-label="ligar">'+(t.on?'✓':'')+'</button><input type="time" value="'+esc(t.h)+'" data-rt-h="'+i+'"><span>'+esc(t.n)+'</span></li>';}).join('')+'</ul>'+
+  (function(){var A=R.avisa;return '<div class="rt-av"><b class="rt-st">Também tocar nos compromissos</b>'+
+   '<label class="'+(A.ag?'ok':'')+'"><button type="button" class="mm-ck" data-rt-av="ag">'+(A.ag?'✓':'')+'</button><span>Agenda Google'+(agIcsUrl()?'':' <em>(não ligada)</em>')+'</span></label>'+
+   '<label class="'+(A.gr?'ok':'')+'"><button type="button" class="mm-ck" data-rt-av="gr">'+(A.gr?'✓':'')+'</button><span>horários escritos na Grade de hoje</span></label>'+
+   '<label class="rt-ant">avisar <select data-rt-ant>'+[0,5,10,15,30].map(function(n){return '<option value="'+n+'"'+((A.ant|0)===n?' selected':'')+'>'+(n?n+' min antes':'na hora')+'</option>';}).join('')+'</select></label></div>';})()+
   '<div class="mm-add"><button type="button" data-rt-teste>ouvir a concha</button>'+(window.Notification&&Notification.permission!=='granted'?'<button type="button" data-rt-notif>avisar também fora da aba</button>':'')+'</div><small class="rt-obs">Toca enquanto o app estiver aberto em alguma aba.</small></section>'+
  '<section class="mm-col rt-insp"><span class="mm-k">'+RT_IC.insp+' Inspeção dos Chalés</span><small>conselheiros e harpias conferem o chalé 7</small>'+
   '<b class="rt-st">Manhã · antes das atividades <em>'+pm+'/'+RT_MANHA.length+'</em></b>'+lista(RT_MANHA,P.manha,'m')+
@@ -12818,12 +12867,13 @@ function rtPintaStatus(){var p=document.getElementById('rt-prox'),r=document.get
 function rtLiga(b){
  b.addEventListener('click',function(e){var t=e.target.closest('button');if(!t)return;var R=rtD(),P=rtInsp(),d=t.dataset;
   if(d.rtOn){var q=R.toques[+d.rtOn];q.on=!q.on;}
+  else if(d.rtAv){R.avisa[d.rtAv]=!R.avisa[d.rtAv];}
   else if(d.rtM){P.manha[d.rtM]=!P.manha[d.rtM];if(RT_MANHA.every(function(x){return P.manha[x[0]];}))try{acLouros('Inspeção da manhã','chalé 7 em ordem');}catch(z){}}
   else if(d.rtN){P.fim[d.rtN]=!P.fim[d.rtN];if(PL_FIM.every(function(x){return P.fim[x[0]];}))try{acLouros('Inspeção da noite','pronto para o recolher');}catch(z){}grava();try{vxRender();}catch(z){}}
   else if(d.rtTeste!=null){rtConcha();rtAviso('Toque da Concha','assim ela soa nos horários marcados');return;}
   else if(d.rtNotif!=null){try{Notification.requestPermission().then(function(){b.innerHTML=rtHTML();});}catch(z){}return;}
   grava();b.innerHTML=rtHTML();});
- b.addEventListener('change',function(e){var t=e.target,R=rtD();if(t.dataset.rtH){R.toques[+t.dataset.rtH].h=t.value||R.toques[+t.dataset.rtH].h;}else if(t.dataset.rtLim!=null){R.limite=t.value||'22:30';}else return;grava();b.innerHTML=rtHTML();});}
+ b.addEventListener('change',function(e){var t=e.target,R=rtD();if(t.dataset.rtH){R.toques[+t.dataset.rtH].h=t.value||R.toques[+t.dataset.rtH].h;}else if(t.dataset.rtLim!=null){R.limite=t.value||'22:30';}else if(t.dataset.rtAnt!=null){R.avisa.ant=+t.value||0;}else return;grava();b.innerHTML=rtHTML();});}
 /* inspeção da manhã completa vale +5 XP */
 (function(){var g0=gmXP;gmXP=function(){var x=g0(),q=0,P=S.plan||{};Object.keys(P).forEach(function(d){var m=P[d]&&P[d].manha;if(m&&RT_MANHA.every(function(i){return m[i[0]];}))q+=5;});x.total+=q;x.insp=q;return x;};})();
 try{GM_REGRAS.push(['inspeção da manhã completa','+5']);}catch(e){}
@@ -13101,14 +13151,22 @@ setInterval(function(){try{rodBarra();}catch(e){}},60e3);
 function compHojeHTML(){var hj=hoje(),it=[],R=rtD(),a=rtAgora();
  R.toques.forEach(function(t){if(t.on)it.push({m:rtMin(t.h),h:t.h,t:t.n,k:'concha'});});
  agDoDia(hj).forEach(function(x){if(x.dia)it.unshift({m:-1,h:'dia todo',t:x.t,k:'agenda'});else it.push({m:x.ini.getHours()*60+x.ini.getMinutes(),h:agHora(x),t:x.t+(x.loc?' · '+x.loc:''),k:'agenda'});});
+ try{if(rtD().avisa.gr)rtGradeHoje().forEach(function(x){it.push(x);});}catch(e){}
  it.sort(function(p,q){return p.m-q.m;});var marc=false;
  return '<ol class="comp-dia">'+it.map(function(x){var agora='';if(!marc&&x.m>a){marc=true;agora='<li class="comp-agora"><span>agora · '+String(Math.floor(a/60)).padStart(2,'0')+':'+String(a%60).padStart(2,'0')+'</span></li>';}
-  return agora+'<li class="comp-'+x.k+(x.m>=0&&x.m<a?' passou':'')+'"><i>'+(x.k==='concha'?RT_IC.concha:LAT_IC.agenda)+'</i><b>'+esc(x.h)+'</b><span>'+esc(x.t)+'</span></li>';}).join('')+(marc?'':'<li class="comp-agora"><span>agora</span></li>')+'</ol>';}
+  return agora+'<li class="comp-'+x.k+(x.m>=0&&x.m<a?' passou':'')+'"><i>'+(x.k==='concha'?RT_IC.concha:x.k==='grade'?RT_IC.insp:LAT_IC.agenda)+'</i><b>'+esc(x.h)+'</b><span>'+esc(x.t)+'</span></li>';}).join('')+(marc?'':'<li class="comp-agora"><span>agora</span></li>')+'</ol>';}
 function compHTML(){var lig=!!agIcsUrl();
  return '<header><span class="k9">Compromissos</span><b>Hoje no acampamento</b><button type="button" class="comp-x" data-comp-x aria-label="fechar">×</button></header>'+compHojeHTML()+
   '<h5>Próximos dias</h5>'+(lig?agListaHTML(14):'<p class="comp-n">Ligue a Agenda Google no rodapé (cartão da Agenda, endereço iCal) para os seus compromissos aparecerem aqui e na Grade.</p>')+
   '<p class="comp-n">Os horários da concha se ajustam no cartão Toque da Concha.</p>';}
-function compPinta(){var tb=document.querySelector('.wrap > div.tb');if(!tb)return;var g=tb.querySelector('.comp-gaveta'),al=tb.querySelector('.comp-alca');
+function compRodHTML(){var lig=!!agIcsUrl();
+ return '<div class="cr2-hoje"><span class="k9">hoje · '+new Date().toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'short'})+'</span>'+compHojeHTML()+'</div>'+
+  '<div class="cr2-prox"><span class="k9">compromissos · próximos dias</span>'+(lig?agListaHTML(10):'<p class="comp-n">Ligue a Agenda Google no rodapé (cartão da Agenda, endereço iCal) para os compromissos aparecerem aqui e na Grade.</p>')+'</div>';}
+function compRod(){var tb=document.querySelector('.wrap > div.tb');if(!tb)return;var r=document.getElementById('comp-rod');
+ if(!r){r=document.createElement('footer');r.id='comp-rod';r.className='comp-rod';}
+ var lg=document.getElementById('v4-leg');if(lg&&lg.parentNode===tb){if(lg.nextElementSibling!==r)tb.insertBefore(r,lg.nextSibling);}else if(r.parentNode!==tb)tb.appendChild(r);
+ r.innerHTML=compRodHTML();}
+function compPinta(){try{compRod();}catch(e){}return;var tb=document.querySelector('.wrap > div.tb');if(!tb)return;var g=tb.querySelector('.comp-gaveta'),al=tb.querySelector('.comp-alca');
  if(!al){al=document.createElement('button');al.type='button';al.className='comp-alca';al.setAttribute('aria-expanded','false');al.innerHTML='<span>compromissos</span>';tb.appendChild(al);
   al.onclick=function(){var on=!tb.classList.contains('comp-aberto');tb.classList.toggle('comp-aberto',on);al.setAttribute('aria-expanded',on);if(on)compPinta();};}
  if(!g){g=document.createElement('aside');g.className='comp-gaveta';g.setAttribute('aria-label','Compromissos');tb.appendChild(g);
@@ -13120,17 +13178,25 @@ setInterval(function(){try{compPinta();}catch(e){}},60e3);
 /* ---------- Foco e metas do mês: faixa acima da Grade, editada num diálogo ---------- */
 function mfPinta(){var h=document.getElementById('h-sem'),wr=document.querySelector('.wrap');if(!h||!wr)return;var b=document.getElementById('mf-faixa');
  if(!b){b=document.createElement('div');b.id='mf-faixa';b.className='mf-faixa';b.dataset.area='op';b.addEventListener('click',function(e){if(e.target.closest('[data-mf]'))mfAbre();});}
- b.dataset.vxHidden='false';var tb0=document.querySelector('.wrap > .tb')||h;if(tb0.nextElementSibling!==b)tb0.parentNode.insertBefore(b,tb0.nextSibling);
+ b.dataset.vxHidden='false';var tb0=document.querySelector('.wrap > div.tb');if(!tb0)return;b.className='mf-gav';if(b.parentNode!==tb0)tb0.appendChild(b);
+ if(!b.dataset.gav){b.dataset.gav='1';b.addEventListener('click',function(e){var a=e.target.closest('[data-gav]');if(!a)return;var k=a.getAttribute('data-gav'),on=!tb0.classList.contains('gav-'+k);
+  tb0.classList.remove('gav-mes','gav-sem');if(on){tb0.classList.add('gav-'+k);var i=b.querySelector('.mf-g-'+k+' input');if(i)setTimeout(function(){try{i.focus({preventScroll:true});}catch(z){}},320);}
+  Array.prototype.forEach.call(b.querySelectorAll('.mf-alca'),function(x){x.setAttribute('aria-expanded',String(tb0.classList.contains('gav-'+x.getAttribute('data-gav'))));});});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')tb0.classList.remove('gav-mes','gav-sem');});}
  var foco=document.activeElement;if(foco&&b.contains(foco)&&foco.tagName==='INPUT')return;
  var W=wsD(),m=wsSemanas().mes,v=W.mes[m]||{},MS=['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
  var RS=revSemana(),R=(wsD().rev||{})[RS.k]||{};
  var P=null;try{P=(typeof tbMesPlano==='function'&&window.AX&&AX.ok)?tbMesPlano():null;}catch(e){}
  var vf=(P&&P.m.foco)||(v.foco||'').split('\n')[0],vm=(P&&P.m.metas)||(v.metas||'').split('\n').filter(Boolean).join(' · ');
- b.innerHTML='<div class="mf-mes"><span class="k9">o mês &middot; '+MS[+m.slice(5)-1]+'</span>'+
+ var nm=MS[+m.slice(5)-1],om=tb0.classList.contains('gav-mes'),os=tb0.classList.contains('gav-sem');
+ b.innerHTML='<button type="button" class="mf-alca mf-alca-mes" data-gav="mes" aria-expanded="'+om+'"><span>o mês · '+nm+'</span></button>'+
+  '<aside class="mf-g mf-g-mes" aria-label="O mês"><header><span class="k9">o mês</span><b>'+nm.charAt(0).toUpperCase()+nm.slice(1)+'</b><button type="button" class="comp-x" data-gav="mes" aria-label="fechar">×</button></header>'+
   '<label><small>foco</small><input data-mfm="foco" maxlength="120" placeholder="uma intenção para o mês" value="'+esc(vf)+'"></label>'+
-  '<label><small>metas</small><input data-mfm="metas" maxlength="160" placeholder="o que quero concluir" value="'+esc(vm)+'"></label></div>'+
-  '<div class="mf-rev"><span class="k9">review da semana &middot; '+RS.rot+'</span>'+
-  [['ok','funcionou','o que deu certo'],['trava','travou','o que emperrou'],['ajuste','ajustar','o que muda na próxima']].map(function(x){return '<label><small>'+x[1]+'</small><input data-rev="'+x[0]+'" maxlength="140" placeholder="'+x[2]+'" value="'+esc(R[x[0]]||'')+'"></label>';}).join('')+'</div>';
+  '<label><small>metas</small><input data-mfm="metas" maxlength="160" placeholder="o que quero concluir" value="'+esc(vm)+'"></label>'+
+  '<p class="comp-n">Fica gravado junto com o plano do mês da Bolsa de Dracmas.</p></aside>'+
+  '<button type="button" class="mf-alca mf-alca-sem" data-gav="sem" aria-expanded="'+os+'"><span>a semana · '+RS.rot+'</span></button>'+
+  '<aside class="mf-g mf-g-sem" aria-label="Review da semana"><header><span class="k9">review da semana</span><b>'+RS.rot+'</b><button type="button" class="comp-x" data-gav="sem" aria-label="fechar">×</button></header>'+
+  [['ok','funcionou','o que deu certo'],['trava','travou','o que emperrou'],['ajuste','ajustar','o que muda na próxima']].map(function(x){return '<label><small>'+x[1]+'</small><input data-rev="'+x[0]+'" maxlength="140" placeholder="'+x[2]+'" value="'+esc(R[x[0]]||'')+'"></label>';}).join('')+'</aside>';
  if(!b.dataset.rev){b.dataset.rev='1';var t=0;b.addEventListener('input',function(e){var k=e.target.dataset&&e.target.dataset.rev;if(!k)return;var W=wsD(),key=revSemana().k;W.rev=W.rev||{};W.rev[key]=W.rev[key]||{};W.rev[key][k]=e.target.value;clearTimeout(t);t=setTimeout(grava,500);});
   /* foco e metas: mesmo lugar do AxisHub (plano do mês) e do registro do app */
   b.addEventListener('change',function(e){var k=e.target.dataset&&e.target.dataset.mfm;if(!k)return;var val=e.target.value.trim();
@@ -13291,7 +13357,7 @@ function latGradeTopo(){var wr=document.querySelector('.wrap'),h=document.getEle
  try{arFaixas();}catch(e){console.error('arte:',e);}
  try{neoAplica();}catch(e){console.error('neoclássico:',e);}
  /* rastreador de hábitos (grade mensal) logo abaixo do painel da semana */
- try{var hr=document.getElementById('h-rast'),rt=hr&&hr.nextElementSibling&&hr.nextElementSibling.classList.contains('rt')?hr.nextElementSibling:document.querySelector('.wrap > .rt'),wb=document.getElementById('mf-faixa')||tb;
+ try{var hr=document.getElementById('h-rast'),rt=hr&&hr.nextElementSibling&&hr.nextElementSibling.classList.contains('rt')?hr.nextElementSibling:document.querySelector('.wrap > .rt'),wb=tb;
   if(hr&&wb){[hr,rt].forEach(function(n){if(n){n.dataset.area='op';n.dataset.vxHidden='false';}});if(wb.nextElementSibling!==hr)wr.insertBefore(hr,wb.nextSibling);if(rt&&hr.nextElementSibling!==rt)wr.insertBefore(rt,hr.nextSibling);}}catch(e){console.error('rastreador:',e);}
  try{arsPinta();}catch(e){console.error('arsenal:',e);}
  try{mmPinta();}catch(e){console.error('mural de missões:',e);}}
