@@ -17531,6 +17531,51 @@ setInterval(function(){try{pilulaNoFrontao();}catch(e){}},1200);setTimeout(funct
  '#hero-box .bn-tit,#hero-box .bn-id{max-width:calc(100% - 360px)!important}'
 ].join('\n');document.head.appendChild(st);})();
 
+
+/* ======================= Diálogos do Sully e do corvo mais compactos =======================
+   Sully: cabeçalho menor; "Sully diz" fica à vista; ficha, Tracinhos da Cila, recomendações e gabinete viram seções
+   que abrem e fecham (estado guardado). Corvo/avisos: avatar menor e só o recado mais novo aberto; os anteriores
+   mostram só o título e abrem ao toque. */
+var SAT_DOB=[['dl.sat-tr','Ficha do Sully','céu, idade, origem, dom, juramento, como sobe'],['.ci-mapa','Tracinhos da Cila','onde a atenção escapa'],['.cv-rec',null,''],['.sat-gab',null,'']];
+function satDobEst(){try{return JSON.parse(localStorage.getItem('astro_sat_dob')||'{}')||{};}catch(e){return {};}}
+function satDobra(){var c=document.querySelector('#sat-dlg #sat-painel');if(!c)return;var E=satDobEst();
+ SAT_DOB.forEach(function(q,i){var el=c.querySelector(':scope>'+q[0]);if(!el||el.parentNode.classList.contains('sat-dob'))return;
+  var t=q[1];if(!t){var h=el.querySelector('h3,h4,.k9,b,strong');t=h?h.textContent.trim().slice(0,48):'mais';}
+  var d=document.createElement('details');d.className='sat-dob';d.dataset.k=i;if(E[i])d.open=true;
+  d.innerHTML='<summary><b>'+esc(t)+'</b>'+(q[2]?'<small>'+esc(q[2])+'</small>':'')+'</summary>';el.parentNode.insertBefore(d,el);d.appendChild(el);
+  d.addEventListener('toggle',function(){var E2=satDobEst();if(d.open)E2[i]=1;else delete E2[i];try{localStorage.setItem('astro_sat_dob',JSON.stringify(E2));}catch(z){}});});}
+satPinta=(function(f0){return function(){var r=f0.apply(this,arguments);try{satDobra();}catch(e){}return r;};})(satPinta);
+document.addEventListener('click',function(e){var m=e.target.closest&&e.target.closest('#ave-dlg .ad-msg');if(!m||e.target.closest('button,a'))return;if(m===m.parentNode.lastElementChild)return;m.classList.toggle('ad-aberta');});
+(function(){var st=document.createElement('style');st.id='sat-corvo-compacto-css';st.textContent=[
+ '#sat-dlg{max-width:min(680px,94vw)!important}',
+ '#sat-dlg .sat-ficha{padding:10px 14px!important;gap:12px!important;align-items:center}',
+ '#sat-dlg .sat-ficha img.sat-foto,#sat-dlg .sat-ficha .sat-av{width:64px!important;height:72px!important}',
+ '#sat-dlg .sat-ficha b,#sat-dlg .sat-ficha h2,#sat-dlg .sat-ficha h3{font-size:19px!important}',
+ '#sat-dlg #sat-painel{display:flex;flex-direction:column;gap:8px}',
+ '#sat-dlg #sat-painel>*{margin:0!important}',
+ '#sat-dlg .sat-dob{border:1px solid #d6c69c;border-radius:10px;background:#fbf5e6;overflow:hidden}',
+ '#sat-dlg .sat-dob>summary{display:flex;align-items:baseline;gap:8px;padding:9px 14px;cursor:pointer;list-style:none;position:relative;padding-right:36px}',
+ '#sat-dlg .sat-dob>summary::-webkit-details-marker{display:none}',
+ '#sat-dlg .sat-dob>summary::after{content:"+";position:absolute;right:12px;top:50%;transform:translateY(-50%);font:700 15px var(--sans);color:#5a3f2c}',
+ '#sat-dlg .sat-dob[open]>summary::after{content:"−"}',
+ '#sat-dlg .sat-dob>summary b{font:700 14px Georgia,serif;color:#2a2418}',
+ '#sat-dlg .sat-dob>summary small{font:700 8.5px var(--mono,monospace);letter-spacing:.12em;text-transform:uppercase;color:#9a7b4a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}',
+ '#sat-dlg .sat-dob>:not(summary){margin:0!important;border:0!important;border-top:1px dashed #d6c69c!important;border-radius:0!important;box-shadow:none!important}',
+ '#sat-dlg .sat-dob dl.sat-tr{padding:10px 14px!important;font-size:12.5px}',
+ '#sat-dlg .sat-fala{padding:8px 14px!important}',
+ /* avisos do corvo e do sátiro */
+ '#ave-dlg{max-width:min(460px,94vw)!important}',
+ '#ave-dlg .ad-lista{display:flex;flex-direction:column;gap:6px}',
+ '#ave-dlg .ad-msg{padding:8px 10px!important;gap:10px!important;align-items:flex-start}',
+ '#ave-dlg .ad-msg>img,#ave-dlg .ad-msg>svg,#ave-dlg .ad-msg>.sat-av,#ave-dlg .ad-msg>:first-child:not(div){width:40px!important;height:40px!important;flex:none}',
+ '#ave-dlg .ad-msg ul{margin:4px 0 0 16px!important;font-size:12.5px!important;line-height:1.4}',
+ '#ave-dlg .ad-msg b{font-size:14px!important}',
+ '#ave-dlg .ad-msg:not(:last-child):not(.ad-aberta){cursor:pointer;opacity:.8}',
+ '#ave-dlg .ad-msg:not(:last-child):not(.ad-aberta) ul{display:none!important}',
+ '#ave-dlg .ad-msg:not(:last-child):not(.ad-aberta) b::after{content:" ▸";font-size:11px;color:#9a7b4a}',
+ '#ave-dlg footer{padding-top:8px!important}'
+].join('\n');document.head.appendChild(st);})();
+
 })();
 </script>
 </body>
