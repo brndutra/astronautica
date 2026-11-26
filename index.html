@@ -2539,6 +2539,43 @@ body[data-skin="astro"] .area-cab span{color:rgba(240,230,201,.75)}
 .pd-abas .pd-ic[data-pd="enf"]{border-left:4px solid #2f7a55;color:#2f7a55}.pd-abas .pd-ic[data-pd="lap"]{border-left:4px solid #3a6ea5;color:#3a6ea5}.pd-abas .pd-ic[data-pd="fin"]{border-left:4px solid #8d672b;color:#8d672b}.pd-abas .pd-ic[data-pd="b9"]{border-left:4px solid #2a2f36;color:#2a2f36}
 body:not(.claro) .pd-abas .pd-ic[data-pd="b9"]{color:var(--bone)}
 .pd-abas .pd-ic[aria-selected="true"]{background:var(--bone);color:var(--bg)!important}
+
+/* ===== estética padrão: paleta do acampamento em tudo que é novo ===== */
+body[data-skin="astro"]{--pc:#fbf5ea}
+/* menu do painel no mesmo formato das abas do topo (pílula branca com a cor da área) */
+.pd-nav{gap:8px;padding:0;border:0;background:none}
+.pd-nav .pd-nb{--tab:var(--red);padding:9px 18px;border:1.5px solid var(--tab);border-radius:999px;background:var(--panel);color:var(--bone);font:600 14px var(--sans)}
+.pd-nav .pd-nb[data-pd="enf"],.pd-abas .pd-ic[data-pd="enf"]{--tab:var(--a-camp)}
+.pd-nav .pd-nb[data-pd="lap"],.pd-abas .pd-ic[data-pd="lap"]{--tab:var(--a-est)}
+.pd-nav .pd-nb[data-pd="fin"],.pd-abas .pd-ic[data-pd="fin"]{--tab:var(--a-fin)}
+.pd-nav .pd-nb[data-pd="b9"],.pd-abas .pd-ic[data-pd="b9"]{--tab:var(--a-dos)}
+.pd-nav .pd-nb:hover{background:color-mix(in srgb,var(--tab) 14%,var(--panel))}
+.pd-nav .pd-nb[aria-selected="true"],.pd-nav .pd-nb[data-pd][aria-selected="true"]{background:var(--tab);border-color:var(--tab);color:#fff}
+.pd-abas .pd-ic,.pd-abas .pd-ic[data-pd]{border-left:4px solid var(--tab);color:var(--tab)}
+.pd-abas .pd-ic[aria-selected="true"]{background:var(--tab);color:#fff!important}
+.pd-top{background:var(--bg)}
+/* botões de ação no laranja do app */
+.enf-f button,.b9-ofi .vx-fields>button{background:var(--red);border-color:var(--red);border-radius:10px}
+.enf-link{color:var(--red)}
+.enf-dose.on{border-color:var(--a-camp);background:color-mix(in srgb,var(--a-camp) 10%,var(--panel))}
+.enf-dose input{accent-color:var(--a-camp)}
+/* blocos da Enfermaria como cartões brancos */
+#c-h-ctn .corpo{gap:12px;background:none;border:0;padding:12px 0 0}
+#c-h-ctn .corpo>div{background:var(--panel);border:1px solid var(--line);border-radius:14px}
+/* Bunker 9: corvo no verde do templo, com a grega dourada */
+.b9-corvo{position:relative;padding:26px 18px 16px;color:#f0e6c9;background:linear-gradient(rgba(20,26,18,.2),rgba(20,26,18,.45)),radial-gradient(circle at 85% 15%,rgba(255,255,255,.14),transparent 26%),linear-gradient(135deg,#172719,#536b44 52%,#1d2b1e);box-shadow:inset 0 0 0 2px rgba(234,223,190,.35)}
+.b9-corvo::before{content:"";position:absolute;left:16px;right:16px;top:8px;height:12px;background-color:#f1d58d;opacity:.6;
+ -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='12' viewBox='0 0 24 12'%3E%3Cpath d='M0 11H22V1H6V8H17V5H11' fill='none' stroke='black' stroke-width='2'/%3E%3C/svg%3E") repeat-x left center/24px 12px;
+ mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='12' viewBox='0 0 24 12'%3E%3Cpath d='M0 11H22V1H6V8H17V5H11' fill='none' stroke='black' stroke-width='2'/%3E%3C/svg%3E") repeat-x left center/24px 12px}
+.b9-ico{color:#f1d58d}
+.b9-corvo li button{background:rgba(255,255,255,.06);border-color:rgba(241,213,141,.25)}
+.b9-corvo li.n0 button{border-left-color:#e0532c}.b9-corvo li.n1 button{border-left-color:var(--red)}.b9-corvo li.n2 button,.b9-corvo li.n3 button{border-left-color:#f1d58d}
+.b9-ofi>.vx-item{border-left-color:var(--a-dos)}
+.b9-ofi .vx-tag{color:var(--a-dos)}
+/* finanças: abas internas na cor da bolsa */
+.pd-ft button[aria-selected="true"]{background:var(--a-fin)}
+/* captura: categoria selecionada e filtros no padrão das pílulas */
+.cp-filtro button[aria-pressed="true"]{background:var(--red);border-color:var(--red);color:#fff}
 </style>
 </head>
 <body>
