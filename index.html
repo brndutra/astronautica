@@ -3887,6 +3887,22 @@ body.com-rodape .td-disco{bottom:78px!important}
 .rt-av{margin:10px 0 4px;padding-top:8px;border-top:1px dashed var(--line2);display:flex;flex-direction:column;gap:5px}
 .rt-av label{display:flex;align-items:center;gap:8px;margin:0;font-size:13.5px}.rt-av label.ok>.mm-ck{background:var(--mc,#9a6b3a)!important;color:#fff!important;border-color:var(--mc,#9a6b3a)!important}.rt-av em{color:var(--dim);font-size:12px}
 .rt-av .rt-ant{font-size:12.5px;color:var(--dim)}.rt-av select{width:auto!important;margin:0 0 0 4px!important;padding:3px 6px!important;font-size:12.5px}
+
+/* data e concha na linha do "limpar semana"; somem do rodapé */
+.rod .cp-reg .cr-sep,.rod .cp-reg .cr-dt,.rod .cp-reg .cr-concha{display:none!important}
+.tbcab{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tbcab .tb-dt{margin-left:auto;display:flex;align-items:center;gap:14px;padding:3px 12px;border-left:1px solid #b89c72;border-right:1px solid #b89c72}
+.tbcab .tb-dt .cr-dt b{display:block;font:700 11px/1.2 var(--mono),monospace;letter-spacing:.08em;text-transform:uppercase;color:#5a3f2c}
+.tbcab .tb-dt .cr-dt small{display:block;margin-top:3px;font:8px/1.2 var(--mono),monospace;letter-spacing:.1em;text-transform:uppercase;color:#8a6f55}
+.tbcab .tb-dt .cr-concha{display:flex;align-items:center;gap:6px;width:auto!important;margin:0!important;padding:0!important;border:0!important;background:none!important;cursor:pointer;color:#5a3f2c}
+.tbcab .tb-dt .cr-concha svg{width:20px;height:20px;fill:none;stroke:#9a6b3a;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.tbcab .tb-dt .cr-concha small{display:block;font:8px/1.2 var(--mono),monospace;text-transform:uppercase;letter-spacing:.08em;color:#8a6f55;text-align:left}
+.tbcab .tb-dt .cr-concha b{display:block;font:700 12px var(--sans);color:#5a3f2c;text-align:left}
+.tbcab #b-tb-lp{margin-left:0!important}
+/* título da seção numa placa sobre o entablamento */
+h2.sec.neo-tit{position:relative;z-index:2;width:max-content;max-width:calc(100% - 120px);margin:26px auto -38px!important;padding:7px 26px 6px!important;
+ border:1.5px solid #5a3f2c!important;border-radius:2px;background:var(--neo-papel),#f4ead2!important;box-shadow:0 0 0 4px #f4ead2,0 0 0 5.5px #5a3f2c;line-height:1.2}
+h2.sec.neo-tit+.neo-moldura{margin-top:0!important}
 </style>
 </head>
 <body>
@@ -12015,6 +12031,16 @@ function temaIc(){var bm=document.getElementById('bn-min');if(!bm)return;var row
  var claro=document.body.classList.contains('claro'),h=claro?TEMA_IC.lua:TEMA_IC.sol;if(b.innerHTML!==h)b.innerHTML=h;
  b.title=claro?'Mudar para o modo escuro':'Mudar para o modo claro';b.setAttribute('aria-label',b.title);}
 (function(){var r0=vxRender;vxRender=function(){var x=r0.apply(this,arguments);try{temaIc();}catch(e){}return x;};setTimeout(function(){try{temaIc();}catch(e){}},300);})();
+
+/* data, semana e próximo toque da concha saem do rodapé e vão para a linha do "limpar semana" da Grade */
+function tbData(){var tb=document.querySelector('.wrap > div.tb'),cab=tb&&tb.querySelector('.tbcab');if(!cab)return;var w=cab.querySelector('.tb-dt');
+ if(!w){w=document.createElement('div');w.className='tb-dt';var bt=cab.querySelector('#b-tb-lp');bt?cab.insertBefore(w,bt):cab.appendChild(w);
+  w.addEventListener('click',function(e){if(e.target.closest('.cr-concha')){var r=document.getElementById('rt-box');if(r)r.scrollIntoView({behavior:'smooth',block:'start'});}});}
+ var pt=null;try{pt=rtProx();}catch(e){}
+ var h=crData()+(pt?'<button type="button" class="cr-concha" title="próximo toque: '+esc(pt.h+' · '+pt.n)+'">'+RT_IC.concha+'<span><small>concha</small><b>'+esc(pt.h)+'</b></span></button>':'');
+ if(w.innerHTML!==h)w.innerHTML=h;}
+(function(){var p0=pinta;pinta=function(){p0();try{tbData();}catch(e){}};})();
+setInterval(function(){try{tbData();}catch(e){}},60e3);setTimeout(function(){try{tbData();}catch(e){}},700);
 
 /* Corrente do dia mora dentro da Inspeção dos Chalés. A rotina redesenha o cartão inteiro a cada clique;
    a corrente é guardada e devolvida ao encaixe, e os cliques dela não chegam à rotina. */
