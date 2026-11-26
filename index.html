@@ -2379,6 +2379,88 @@ body.claro[data-skin="astro"] .cp-dracmas i.mosaico::after,.cp-dracmas i::after{
 #lat-ac .ac-row{grid-template-columns:1fr!important;margin:0!important;gap:10px}
 
 #lat-quadro:empty,#lat-vx:empty{display:none}
+/* Laptop de Dédalo: seções */
+.lat-sh{margin:6px 2px 0;font-family:var(--display);font-size:16px;color:var(--bone);display:flex;align-items:baseline;gap:8px;border-top:1px solid var(--line);padding-top:10px}
+.lat-sh small{font-family:var(--mono);font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--red)}
+#lat-lin{container-type:inline-size;display:flex;flex-direction:column;gap:10px}
+#lat-lin>*{margin:0!important}
+#lat-lin .lp{overflow-x:hidden}
+#lat-lin .lpbody,#lat-lin .lpbody *{max-width:100%;box-sizing:border-box;min-width:0}
+#lat-lin .lpbody *{flex-wrap:wrap}
+@container (max-width:640px){#lat-lin .lptabs{display:flex;flex-wrap:wrap;gap:4px}#lat-lin .lptabs button{width:auto!important;margin:0!important;padding:4px 8px!important;font-size:11px}#lat-lin [class*="grid"],#lat-lin .lpbody>div{grid-template-columns:1fr!important}}
+/* Enfermaria do Acampamento: remédios no topo */
+.lat-medh{padding:8px 11px 10px;border-bottom:1px solid var(--line)}
+.lat-medh .k9{display:block;font-family:var(--mono);font-size:8.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--red);margin-bottom:6px}
+.lat-medh .cr-row{display:flex;flex-wrap:wrap;gap:5px}
+.lat-medh button{width:auto!important;margin:0!important;padding:5px 9px!important;border:1px solid var(--line2)!important;border-radius:7px;background:transparent!important;color:var(--bone)!important;font-size:12px;cursor:pointer}
+.lat-medh button.on{background:#3f7656!important;border-color:#3f7656!important;color:#fff!important}
+.lat-medh small{font-size:12px;color:var(--dim)}
+/* Dracmas de Ouro */
+.dr-mini{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.dr-mini b{font-family:var(--display);font-size:30px;color:var(--red);line-height:1}
+.dr-mini span{font-size:12.5px;color:var(--bone);line-height:1.3}
+.dr-mini small{color:var(--dim);font-size:11px}
+.dr-ins{display:inline-grid;vertical-align:-3px;margin-right:5px}
+.dr-ins svg{width:16px;height:16px;fill:none;stroke:var(--red);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.dr-top{display:flex;align-items:center;gap:14px;padding:10px 12px;border:1px dashed var(--red);border-radius:10px;margin-bottom:10px}
+.dr-top .k9{display:block;font-family:var(--mono);font-size:8.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--red)}
+.dr-sd{font-family:var(--display);font-size:30px;color:var(--red)}
+.dr-top small{color:var(--dim)} .dr-top p{margin:0 0 0 auto;font-size:12px;color:var(--dim);max-width:24ch;text-align:right}
+.dr-g{margin:12px 0 6px;font-family:var(--display);font-size:15px;color:var(--bone)} .dr-g small{font-family:var(--sans,inherit);font-size:11.5px;color:var(--dim);font-weight:400}
+.dr-l{display:flex;flex-direction:column;gap:5px}
+.dr-i{display:flex;align-items:center;gap:10px;padding:7px 9px;border:1px solid var(--line);border-radius:9px}
+.dr-i.on{border-color:var(--red)}
+.dr-i>span{flex:1;min-width:0} .dr-i b{display:block;font-size:13px;color:var(--bone)} .dr-i small{display:block;font-size:11.5px;color:var(--dim)}
+.dr-cor{width:24px;height:24px;border-radius:50%;flex:none;box-shadow:inset 0 0 0 2px rgba(255,255,255,.4)}
+.dr-gl{flex:none;width:28px;height:28px;display:grid;place-items:center;border:1px solid var(--line2);border-radius:8px}
+.dr-gl svg{width:16px;height:16px;fill:none;stroke:var(--red);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.dr-i button{width:auto!important;margin:0!important;padding:5px 10px!important;border:1px solid var(--red)!important;background:transparent!important;color:var(--red)!important;border-radius:7px;font-size:12px;cursor:pointer;white-space:nowrap}
+.dr-i button:disabled{opacity:.45;cursor:default}
+/* Copa dos Chalés */
+.cp-svg{width:100%;height:auto;display:block}
+.cp-svg .cp-b{fill:color-mix(in srgb,var(--red) 45%,transparent)} .cp-svg .cp-b.at{fill:var(--red)}
+.cp-svg .cp-atena{stroke:#6f7d8c;stroke-width:1.4;stroke-dasharray:4 3}
+.cp-svg .cp-hermes{fill:none;stroke:#c7783a;stroke-width:1.6}
+.cp-svg text{font-family:var(--mono);font-size:7.5px;fill:var(--dim);text-anchor:middle}
+.cp-leg{margin:6px 0 0;font-size:11.5px;line-height:1.5;color:var(--dim)} .cp-leg b{color:var(--bone)}
+.cp-leg .a{color:var(--red);font-weight:600} .cp-leg .t{color:#6f7d8c} .cp-leg .h{color:#c7783a}
+/* conta de Grande Profecia */
+.ac-conta.ac-prof{display:inline-grid;place-items:center;border-radius:50%;width:26px;height:26px;background:radial-gradient(circle at 35% 30%,#f4d77a,#c9a227 60%,#8a6a12);color:#3b2a06;font-weight:700;font-size:13px;box-shadow:0 2px 4px rgba(0,0,0,.25)}
+/* Mural de Missões */
+.mm{margin:0 0 22px;padding:16px;border:1px solid var(--line2);border-radius:16px;background:var(--panel)}
+.mm-h{display:flex;gap:18px;align-items:flex-end;margin-bottom:12px}
+.mm-h .k9{display:block;font-family:var(--mono);font-size:8.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--red)}
+.mm-h h3{margin:3px 0 0;font-family:var(--display);font-size:24px;color:var(--bone);white-space:nowrap}
+.tt-indice{padding-right:52px!important}
+.mm-h p{margin:0 0 0 auto;max-width:64ch;font-size:12.5px;line-height:1.5;color:var(--dim)} .mm-h p b{color:var(--bone)}
+.mm-g{display:grid;grid-template-columns:1fr 1fr 1.3fr;gap:12px}
+@media(max-width:1000px){.mm-g{grid-template-columns:1fr}.mm-h{flex-direction:column;align-items:flex-start}.mm-h p{margin:0}}
+.mm-col{display:flex;flex-direction:column;gap:6px;padding:11px 12px;border:1px solid var(--line);border-top:3px solid var(--mc);border-radius:12px;min-width:0}
+.mm-chale{--mc:#9a6b3a}.mm-quest{--mc:#427d91}.mm-prof{--mc:var(--red)}
+.mm-k{font-family:var(--display);font-size:16px;color:var(--bone)}
+.mm-col>small{font-family:var(--mono);font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--mc)}
+.mm-col ul{list-style:none;margin:2px 0;padding:0;display:flex;flex-direction:column;gap:4px}
+.mm-col li{display:flex;align-items:flex-start;gap:7px;font-size:13px;line-height:1.35;color:var(--bone)}
+.mm-col li>span{flex:1;min-width:0}
+.mm-col li.ok>span{text-decoration:line-through;opacity:.55}
+.mm-vz{font-size:12px!important;color:var(--dim)!important}
+.mm-ck{flex:none;width:18px!important;height:18px!important;min-height:0!important;margin:0!important;padding:0!important;border:1.5px solid var(--mc)!important;border-radius:5px;background:transparent!important;color:#fff!important;font-size:11px;line-height:1;cursor:pointer}
+li.ok>.mm-ck{background:var(--mc)!important}
+.mm-x{flex:none;width:18px!important;height:18px!important;min-height:0!important;margin:0!important;padding:0!important;border:0!important;background:transparent!important;color:var(--dim)!important;font-size:15px;line-height:1;cursor:pointer;opacity:.5}
+.mm-x:hover{opacity:1}
+.mm-add{display:flex;gap:6px;flex-wrap:wrap}
+.mm-add input{flex:1;min-width:0;font-size:12.5px;padding:5px 8px;border:1px solid var(--line2);border-radius:7px;background:transparent;color:var(--bone);margin:0}
+.mm-add input[type=date]{flex:none;width:136px}
+.mm-add button,.mm-lk{width:auto!important;margin:0!important;padding:5px 10px!important;border:1px solid var(--mc,var(--red))!important;background:transparent!important;color:var(--mc,var(--red))!important;border-radius:7px;font-size:12px;cursor:pointer}
+.mm-lk{align-self:flex-start;border-style:dashed!important}
+.mm-cont{font-size:11.5px;color:var(--dim)}
+.mm-pf{padding:9px 10px;border:1px solid var(--line);border-radius:10px;display:flex;flex-direction:column;gap:5px}
+.mm-pf.ok{border-color:#c9a227;background:color-mix(in srgb,#c9a227 10%,transparent)}
+.mm-pf header{display:flex;align-items:flex-start;gap:6px} .mm-pf header b{flex:1;font-family:var(--display);font-size:15px;color:var(--bone)}
+.mm-pz{font-size:11.5px;color:var(--dim)} .mm-pz b{color:var(--red)}
+.mm-bar{height:5px;border-radius:3px;background:var(--line);overflow:hidden} .mm-bar i{display:block;height:100%;background:var(--red)}
+.mm-cumpre{border-color:#c9a227!important;color:#8a6a12!important;background:color-mix(in srgb,#c9a227 18%,transparent)!important}
+
 /* faixa de apps na página principal (todas as larguras) */
 .lat-faixa{display:grid!important;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;margin:0 0 18px;align-items:start}
 .lat-faixa .lat{display:contents}
@@ -5998,7 +6080,7 @@ body:not(.claro) .fc{filter:brightness(.92)}
   <div class="td-panel">
     <header class="td-phd"><div><div class="td-peb" id="dockEb">leme</div><h2 id="dockTitle">Ponte de Comando</h2></div><button class="td-px" id="dockClose" aria-label="Fechar">×</button></header>
     <div class="td-pbody" id="dockBody" style="position:relative"></div>
-    <button class="projfab" id="projFab" title="Rotas e retomadas" style="position:absolute;left:-99px;top:33px">🗂 <span>Rotas</span></button>
+    <button class="projfab" id="projFab" title="Bunker 9 · projetos e retomadas" style="position:absolute;left:-99px;top:33px">🗂 <span>Bunker 9</span></button>
   </div>
 </div>
 
@@ -7883,7 +7965,7 @@ document.addEventListener('click',e=>{
 function pdStr(d){d=d||new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
 let gtActive=null,gtOpenSec={};
 function gtSection(id,title,icon,body){const open=!!gtOpenSec[id];return `<section class="gtsec${open?' open':''}"><button type="button" class="gtsech" data-gtsec="${id}"><span class="gtseci">${icon}</span><span class="gtsect">${title}</span><span class="gtseca">${open?'⌄':'›'}</span></button><div class="gtsecbody">${body}</div></section>`;}
-const DOCK_META={raven:['o corvo avisa','Notificações',()=>renderRaven()],retomada:['onde você parou','Retomada',()=>renderRetomada()],projetos:['visão geral','Rotas',()=>renderProjetosMain()],captura:['captura rápida','Captura',()=>renderCaptura()],referencias:['referências rápidas','Referências rápidas',()=>renderFerramentas()]};
+const DOCK_META={raven:['o corvo avisa','Notificações',()=>renderRaven()],retomada:['onde você parou','Retomada',()=>renderRetomada()],projetos:['visão geral','Bunker 9',()=>renderProjetosMain()],captura:['captura rápida','Captura',()=>renderCaptura()],referencias:['referências rápidas','Referências rápidas',()=>renderFerramentas()]};
 function renderProjetosRetomadas(){return renderProjetos()+'<div style="height:6px"></div>'+renderRetomada();}
 function ravenItems(){const H=state.habit,now=Date.now();let items=[];
   const rc=(H.retomadas||[]).length;if(rc)items.push({ic:'🧭',t:`${rc} para retomar`,s:'onde você parou',k:'retomada'});
@@ -7955,7 +8037,7 @@ function renderProjetosMain(){
   }else{rinner=`<div class="ccempty">Nenhuma retomada solta — as vinculadas aparecem dentro do próprio projeto.</div>`;}
   rinner+=`<div style="margin-top:10px"><span class="cclink" data-rt-add="1" style="font-size:13px">+ nova retomada solta</span></div>`;
   let h=`<p class="chelp" style="margin-top:0">Cada projeto já traz sua retomada — retome, agende ou edite direto no card, sem precisar procurar em outro lugar.</p>`;
-  h+=gtSection('pj-list','Projetos & retomadas','📊',`<div class="pjgrid">${cards}</div>`);
+  h+=gtSection('pj-list','Bunker 9 · projetos e retomadas','📊',`<div class="pjgrid">${cards}</div>`);
   h+=gtSection('pj-rt-solta','Retomadas soltas','🧭',rinner);
   h+=gtSection('pj-cal','Calendário de dedicação','📅',calBody);
   return h;
@@ -7984,7 +8066,7 @@ function renderProjetos(){
   listInner+=`<div style="margin-top:10px"><span class="cclink" data-pj-add="1" style="font-size:13px">+ projeto</span></div>`;
   let h=`<p class="chelp" style="margin-top:0">Registre os dias dedicados a cada projeto — aparecem no calendário do mês.</p>`;
   h+=gtSection('pj-cal','Calendário de dedicação','📅',calBody);
-  h+=gtSection('pj-list','Rotas','📊',listInner);
+  h+=gtSection('pj-list','Bunker 9','📊',listInner);
   return h;
 }
 function renderComando(){
@@ -11644,7 +11726,7 @@ function axMonta(){var w=finWrap();if(!w||(AX.raiz&&AX.raiz.isConnected))return;
  try{(new Function('document','location','localStorage','setInterval','__axRola',js.textContent.replace(/window\.scrollTo\(/g,'__axRola('))).call(window,doc,loc,ls,si,axRola);}
  catch(e){console.error('AxisHub:',e);}}
 /* sub-abas da Loja: Tesouro, Diário de Bordo, Carga, Enfermaria e Rotas, mais exportar e importar */
-var AX_NAV=[['finance','Tesouro'],['habit','Diário de Bordo'],['mapa','Carga'],['sono','Enfermaria'],['projects','Rotas']];
+var AX_NAV=[['finance','Tesouro'],['habit','Diário de Bordo'],['mapa','Carga'],['sono','Enfermaria'],['projects','Bunker 9']];
 function axBotao(k){return AX.raiz&&AX.raiz.querySelector('.awb-nav [data-awb-tab="'+k+'"],.awb-nav [data-awb-action="'+k+'"]');}
 function axNavPinta(){var n=document.getElementById('loja-nav');if(!n)return;
  var painel=AX.raiz&&AX.raiz.querySelector('.awb-nav .panel-on');
@@ -12024,7 +12106,7 @@ function gmPinta(){
    de nível) e a paleta. Os dados são os mesmos; a escolha fica em S.ap e sincroniza. */
 var TEMAS={
  astro:{nome:'Astron\u00e1utica',app:'Astron\u00e1utica',titulo:'Astron\u00e1utica',
-  abas:['01 / Casa Grande','02 / Miss\u00f5es','03 / Partenon','04 / Arsenal','05 / Loja'],
+  abas:['01 / Casa Grande','02 / Miss\u00f5es','03 / Partenon','04 / Arsenal','05 / Bolsa de Dracmas'],
   grupos:['Casa Grande','Miss\u00f5es','Partenon','Arsenal'],frase:'Uma flecha de cada vez.',sumario:'Astron\u00e1utica',
   niveis:['Indeterminado','Reclamado','Campista','Conselheiro','Her\u00f3i','Constela\u00e7\u00e3o'],seq:'dias no acampamento',estudo:'Partenon',arquivo:'Arsenal',
   /* nomes do acampamento: troca só rótulos fixos da moldura, nunca o que o usuário escreveu */
@@ -12384,8 +12466,8 @@ var AC_GUIA=[
  ['Bem-vindo, meio-sangue','Se você abriu isto, o pior já passou: alguém te reconheceu, você chegou inteiro e ganhou um chalé. Este app é o acampamento inteiro no bolso. Ele não exige que você seja um herói o dia todo. Exige só o próximo passo.'],
  ['As regras da casa','<ol><li><b>Um bloco de cada vez.</b> Quíron nunca cobrou a lista inteira de ninguém.</li><li><b>Três missões por dia, no máximo.</b> Profecias longas demais terminam mal.</li><li><b>Dia ruim também conta.</b> Sobreviver é uma atividade oficial do acampamento.</li><li><b>Anote antes de esquecer.</b> A Névoa apaga tudo o que fica só na cabeça.</li><li><b>Fechou o dia, apaga a fogueira.</b> O checklist de fim de dia existe por um motivo.</li></ol>'],
  ['O dia no acampamento','<ul class="ac-horas"><li><b>06h</b> alvorada e treino leve</li><li><b>09h</b> treino na arena: o bloco mais pesado do dia</li><li><b>12h</b> almoço no pavilhão</li><li><b>15h</b> atividades do acampamento</li><li><b>18h</b> jantar e oferenda à fogueira</li><li><b>21h</b> fogueira e toque de recolher</li></ul>A faixa de agora aparece na Casa Grande e na extensão. O que você escreve na Semana vira a escala de cada faixa.'],
- ['As abas','<ul><li><b>Casa Grande</b>: o seu dia, com nível, missões do dia, colar de contas, bandeira e carta da semana.</li><li><b>Missões</b>: projetos grandes, em etapas, com prazo.</li><li><b>Partenon</b>: estudo, concurso, idiomas e runas.</li><li><b>Arsenal</b>: a ficha do campista e o que você guarda para usar depois.</li><li><b>Loja</b>: dinheiro, Diário de Bordo, Carga, Enfermaria e Rotas.</li></ul>'],
- ['Dracmas, XP e nível','Foco, estudo, hábitos, etapas e prioridades rendem XP. A cada 100 XP você sobe de nível. As dracmas mostram o que você conquistou hoje. Não se compra nada com elas, mas até Hermes respeita quem junta.'],
+ ['As abas e os painéis','<ul><li><b>Casa Grande</b>: o banner com o mural e o registro do dia, a Grade semanal, o spread do mês e o rastreador de hábitos.</li><li><b>Missões</b>: o Mural de Missões (Tarefas do chalé, Quests diárias e Grandes Profecias) e o Bunker 9, com projetos e retomadas.</li><li><b>Partenon</b>: o que sobrou do estudo; o principal está no Laptop de Dédalo, à direita: Táticas de Guerra (concurso) e Grego Antigo e Outras (línguas).</li><li><b>Arsenal</b>: o kit do Hékatos e a forja, mais a ficha do campista.</li><li><b>Bolsa de Dracmas</b>: o seu dinheiro de verdade, com Diário de Bordo, Carga, Enfermaria e Bunker 9.</li><li><b>À esquerda</b>: nível, arsenal, Dracmas de Ouro, Copa dos Chalés, colar, bandeira, vitórias e a Enfermaria do Acampamento.</li></ul>'],
+ ['Dracmas, XP e nível','Foco, estudo, hábitos, missões e etapas rendem XP. A cada 100 XP você sobe de nível. As <b>Dracmas de Ouro</b> são a moeda do acampamento: 10 por hora de foco ou de estudo. Com elas você compra temas de chalé, insígnias do crachá e sons ambientes na Loja do acampamento (ícone de ferramentas, no alto). A <b>Bolsa de Dracmas</b> é outra coisa: é o seu dinheiro de verdade, na aba 05.'],
  ['Colar de contas','No fim de cada verão os campistas ganham uma conta com o símbolo do que viveram. Aqui é uma por mês: toque na conta do mês, escreva o marco e escolha o símbolo. Em dezembro você tem o ano inteiro pendurado no pescoço.'],
  ['Captura da Bandeira','Toda semana tem uma bandeira: a meta que, se cair até sexta, vale a semana. Escreva qual é na segunda, capture até sexta (com tolerância até domingo) e ganhe +20 XP. As bandeiras das últimas semanas ficam marcadas embaixo.'],
  ['A extensão','Pelo atalho Alt+Shift+A você abre o acampamento de qualquer aba do navegador: treino com timer, ciclo de estudos, humor, contadores, captura, hábitos e gastos. Tudo chega aqui na próxima sincronização.']];
@@ -12628,6 +12710,7 @@ document.addEventListener('visibilitychange',function(){if(document.visibilitySt
 (function(){var e0=nvEstado;nvEstado=function(e){e0(e);if(e==='ok')setTimeout(nvCaixa,300);};})();
 
 /* campos novos (apps, spread da semana, mural, arsenal) entram na normalização antes do primeiro carregamento */
+(function(){var n0=normaliza;normaliza=function(p){var b=n0(p);if(p&&p.quests&&typeof p.quests==='object')b.quests=p.quests;if(p&&p.lojaAc&&typeof p.lojaAc==='object')b.lojaAc=p.lojaAc;return b;};})();
 (function(){var n0=normaliza;normaliza=function(p){var b=n0(p);b.arsenal=(p&&p.arsenal&&typeof p.arsenal==='object')?p.arsenal:{};return b;};})();
 (function(){var n0=normaliza;normaliza=function(p){var b=n0(p);var a=(p&&p.apps&&typeof p.apps==='object')?p.apps:{};
  b.apps={spotify:typeof a.spotify==='string'?a.spotify:'',agenda:typeof a.agenda==='string'?a.agenda:'',
@@ -12866,7 +12949,7 @@ function ttCss(){if(ttCss.ok)return;ttCss.ok=true;var novas=[];
  var st=document.createElement('style');st.id='tt-css';st.textContent=novas.join('\n');document.head.appendChild(st);}
 function ttExtras(){ttCss();['tt-camp','tt-dos'].forEach(function(id){var x=document.getElementById(id);if(x)x.remove();});
  var v=vxData(),body=el('vx-body');if(!body||v.edit)return;
- body.insertAdjacentHTML('beforeend','<div id="tt-camp" class="tt-area"><div class="vx-card"><h3>Campanha / frentes e resultados</h3><p class="vx-muted">Congelar preserva o projeto e libera uma frente.</p>'+vxProjectsHTML()+'</div>'+
+ body.insertAdjacentHTML('beforeend','<div id="tt-camp" class="tt-area"><div class="vx-card"><h3>Bunker 9 · projetos e retomadas</h3><p class="vx-muted">A oficina escondida na floresta. Congelar guarda o projeto na bancada e libera uma frente; retomar traz de volta de onde parou.</p>'+vxProjectsHTML()+'</div>'+
   '<div class="vx-card"><h3>Relatórios do dia</h3>'+Object.keys(v.closes).sort().reverse().slice(0,7).map(function(d){var c=v.closes[d];return '<div class="vx-item"><b>'+d+'</b><p>Entrega: '+esc(c.result)+'</p><p>Pendente: '+esc(c.pending)+'</p><p>Próxima: '+esc(c.next)+'</p></div>';}).join('')+
   '<p class="vx-muted">Sessões registradas: '+v.sessions.length+' · Entregas concluídas: '+v.tasks.filter(function(x){return x.status==='done';}).length+'</p></div></div>'+
   '<div id="tt-dos" class="tt-area"><div class="vx-card"><h3>Ajustes e cópia de segurança</h3>'+vxSettingsHTML()+'<div class="vx-row"><button data-vx="export">Exportar registro completo</button><label>Restaurar registro JSON<input id="vx-import" type="file" accept=".json"></label></div></div></div>');
@@ -12960,10 +13043,10 @@ function latRsVai(){var F=[['inspira','in'],['segura','cheio'],['solta','out'],[
  passo();latRs.t=setInterval(passo,1000);}
 
 function latMonta(){var e=document.getElementById('lat-e'),d=document.getElementById('lat-d');
- if(!e){e=document.createElement('div');e.id='lat-e';e.className='lat';e.innerHTML='<div id="lat-quadro"></div><div id="lat-gm"></div>'+latCard('lat-ars','arco','Arsenal do Hékatos','O kit e a forja','<div id="lat-ars-b"></div>')+'<div id="lat-ac"></div><div id="lat-vx" class="tt-area"></div>'+latCard('lat-enf-c','cruz','Sono, água, movimento, comida','Enfermaria do chalé','<div id="lat-enf"></div>');
+ if(!e){e=document.createElement('div');e.id='lat-e';e.className='lat';e.innerHTML='<div id="lat-quadro"></div><div id="lat-gm"></div>'+latCard('lat-ars','arco','Arsenal do Hékatos','O kit e a forja','<div id="lat-ars-b"></div>')+latCard('lat-dr','moeda','Moeda do acampamento','Dracmas de Ouro','<div id="lat-dr-b"></div>')+latCard('lat-cp','copa','Pontos do chalé 7 por semana','Copa dos Chalés','<div id="lat-cp-b"></div>')+'<div id="lat-ac"></div><div id="lat-vx" class="tt-area"></div>'+latCard('lat-enf-c','cruz','Sono, água, movimento, comida, remédios','Enfermaria do Acampamento','<div id="lat-med"></div><div id="lat-enf"></div>');
   var ap=document.createElement('div');ap.id='lat-apps';ap.className='lat';ap.innerHTML=latAgenda()+latClima()+latSpotify()+latAtalhos();latMonta.apps=ap;}
- if(!d){d=document.createElement('div');d.id='lat-d';d.className='lat';d.innerHTML='<div class="lat-esth"><span class="lat-ic">'+LAT_IC.livro+'</span><div><span class="k9">Partenon · ciclo e edital</span><b>Estudo do concurso</b></div>'+
-  '<button type="button" class="lat-ed" id="lat-exp" title="expandir o painel (ou arraste a borda)" aria-label="expandir o painel">'+LAT_IC.expandir+'</button></div><div id="lat-est"></div>';}
+ if(!d){d=document.createElement('div');d.id='lat-d';d.className='lat';d.innerHTML='<div class="lat-esth"><span class="lat-ic">'+LAT_IC.livro+'</span><div><span class="k9">Partenon · painel de estudos</span><b>Laptop de Dédalo</b></div>'+
+  '<button type="button" class="lat-ed" id="lat-exp" title="expandir o painel (ou arraste a borda)" aria-label="expandir o painel">'+LAT_IC.expandir+'</button></div><h4 class="lat-sh">Táticas de Guerra <small>concurso TRF3</small></h4><div id="lat-est"></div><h4 class="lat-sh">Grego Antigo e Outras <small>línguas</small></h4><div id="lat-lin"></div>';}
  [e,d].forEach(function(box){if(box.dataset.lig)return;box.dataset.lig='1';
   box.addEventListener('click',function(ev){var t=ev.target.closest('[data-lat-ed],[data-lat-ok],[data-lat-aba],#lat-rs-b,#lat-exp');if(!t)return;
    if(t.id==='lat-exp'){latExpande();return;}
@@ -13021,10 +13104,12 @@ function latPosiciona(){var m=latMonta(),larga=LAT_LARGA.matches,nav=document.ge
   if(m.e.parentNode!==nav)nav.appendChild(m.e);if(m.d.parentNode!==rail)rail.appendChild(m.d);
   if(ri&&q&&ri.parentNode!==q&&!ri.closest('.cp-mural'))q.appendChild(ri);
   nos.forEach(function(n){n.dataset.vxHidden='false';if(n.parentNode!==est)est.appendChild(n);});
+  var lin=m.d.querySelector('#lat-lin'),lp=document.querySelector('.wrap > .lp'),hlp=document.getElementById('h-lp');if(lp&&lin){if(!document.getElementById('lat-lin-ph')){var lph=document.createElement('i');lph.id='lat-lin-ph';lph.hidden=true;wr.insertBefore(lph,hlp&&hlp.parentNode===wr?hlp:lp);}if(hlp){hlp.classList.add('lat-oculta');}lp.dataset.vxHidden='false';lin.appendChild(lp);}
   enos.forEach(function(n){n.dataset.vxHidden='false';if(n.matches('h2.sec')||n.classList.contains('narr'))n.classList.add('lat-oculta');if(n.parentNode!==enf)enf.appendChild(n);});
   latAlca();}
  else{if(m.e.parentNode!==fx)fx.appendChild(m.e);if(m.d.parentNode!==fx)fx.appendChild(m.d);
   if(ph){var ref=ph.nextSibling;nos.forEach(function(n){if(n.parentNode===est){wr.insertBefore(n,ref);}});}
+  var lph2=document.getElementById('lat-lin-ph'),lp2=document.querySelector('#lat-lin > .lp');if(lph2&&lp2){wr.insertBefore(lp2,lph2.nextSibling);var hl2=document.getElementById('h-lp');if(hl2)hl2.classList.remove('lat-oculta');}
   if(eph){var ref2=eph.nextSibling;enos.forEach(function(n){if(n.parentNode===enf){n.classList.remove('lat-oculta');wr.insertBefore(n,ref2);}});}
   document.body.classList.remove('lat-exp');}
  if(!latPosiciona.clima){latPosiciona.clima=1;latClimaBusca(false);setInterval(function(){latClimaBusca(false);},31*60e3);}}
@@ -13086,9 +13171,10 @@ var FER=[
  {id:'sort',n:'Sorteador de tarefas',d:'puxa uma ficha do baralho do chalé',ic:'sorteio'},
  {id:'runas',n:'Mesa de runas',d:'embaralhar e tirar três runas nórdicas',ic:'runa'},
  {id:'carta',n:'Carta do dia',d:'um arcano maior por dia',ic:'carta'},
- {id:'resp',n:'Respiração quadrada',d:'quatro voltas de quatro tempos',ic:'resp'}];
+ {id:'resp',n:'Respiração quadrada',d:'quatro voltas de quatro tempos',ic:'resp'},
+ {id:'loja',n:'Loja do acampamento',d:'temas, insígnias e sons com dracmas de ouro',ic:'loja'}];
 function ferMonta(){if(document.getElementById('fer-guarda'))return;
- var g=document.createElement('div');g.id='fer-guarda';g.hidden=true;g.innerHTML='<div id="fer-sort"></div><div id="fer-resp">'+latResp()+'</div><div id="fer-carta"></div>';document.body.appendChild(g);
+ var g=document.createElement('div');g.id='fer-guarda';g.hidden=true;g.innerHTML='<div id="fer-sort"></div><div id="fer-resp">'+latResp()+'</div><div id="fer-carta"></div><div id="fer-loja"></div>';document.body.appendChild(g);drLojaLiga(g.querySelector('#fer-loja'));
  g.querySelector('#fer-resp').addEventListener('click',function(ev){if(ev.target.closest('#lat-rs-b')){if(latRs.on)latRsPara();else latRsVai();}});
  var d=document.createElement('div');d.id='fer-dlg';d.className='fer-dlg';d.hidden=true;
  d.innerHTML='<div class="fer-box" role="dialog" aria-modal="true" aria-labelledby="fer-tt"><header><span class="lat-ic" id="fer-ic"></span><div><span class="k9">Ferramentas</span><b id="fer-tt"></b></div><button type="button" class="lat-ed" id="fer-x" aria-label="fechar">×</button></header><div id="fer-corpo"></div></div>';
@@ -13108,10 +13194,11 @@ function ferCarta(){var c=document.getElementById('fer-carta');if(!c)return;c.in
  if(bt)bt.onclick=function(){if((S.tarot||{}).dia===hoje())return;S.tarot={dia:hoje(),i:acCartaIdx(hoje())};grava();try{vxRender();}catch(e){}ferCarta();var k=AC_ARCANOS[S.tarot.i];acLouros(k[0]+' · '+k[1],'a carta de hoje');};}
 function ferAbre(id){var f=FER.filter(function(x){return x.id===id;})[0];if(!f)return;
  if(id==='runas'){var b=document.getElementById('b-mesa');if(b)b.click();return;}
- ferFecha(true);if(id==='carta')ferCarta();
+ ferFecha(true);if(id==='carta')ferCarta();if(id==='loja')drLojaPinta();
  var dlg=document.getElementById('fer-dlg'),corpo=document.getElementById('fer-corpo'),no=document.getElementById('fer-'+id);if(!no)return;
  document.getElementById('fer-tt').textContent=f.n;document.getElementById('fer-ic').innerHTML=LAT_IC[f.ic];
  corpo.appendChild(no);dlg.dataset.fer=id;dlg.hidden=false;}
+window.ferAbre=function(id){ferAbre(id);};
 function ferFecha(quieto){var dlg=document.getElementById('fer-dlg'),g=document.getElementById('fer-guarda'),corpo=document.getElementById('fer-corpo');if(!dlg)return;
  while(corpo&&corpo.firstChild)g.appendChild(corpo.firstChild);dlg.hidden=true;if(!quieto&&latRs.on&&dlg.dataset.fer==='resp')latRsPara();}
 (function(){var i0=ttIndice;ttIndice=function(){i0();try{ferMonta();ferPoe();}catch(e){console.error('ferramentas:',e);}};})();
@@ -13176,6 +13263,9 @@ var ARS_KIT=[
      [1500,'Cítara de concerto','Sete cordas, som de templo. Uma hora de foco soa como uma música só.'],
      [5000,'Lira dourada de Apolo','A mente fica quieta quando ela toca. Atenção como dom, não esforço.']]}];
 LAT_IC.arco=ARS_IC.arco;
+LAT_IC.moeda='<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="5.5"/><path d="M10 9.5h4M12 9.5v5"/></svg>';
+LAT_IC.copa='<svg viewBox="0 0 24 24"><path d="M7 4h10v4a5 5 0 0 1-10 0zM7 6H4.5a2.5 2.5 0 0 0 2.8 3.3M17 6h2.5a2.5 2.5 0 0 1-2.8 3.3M12 13v4M8.5 20h7l-1-3h-5z"/></svg>';
+LAT_IC.loja='<svg viewBox="0 0 24 24"><path d="M4 9l1.5-5h13L20 9M4 9h16v11H4zM4 9c0 2 3.5 2 4 0 .5 2 3.5 2 4 0 .5 2 3.5 2 4 0 .5 2 4 2 4 0"/><path d="M10 20v-5h4v5"/></svg>';
 function arsTier(k){var v=k.m()||0,i=0;k.t.forEach(function(t,j){if(v>=t[0])i=j;});return {v:v,i:i};}
 function arsNum(v){return Math.round(v).toLocaleString('pt-BR');}
 function arsHTML(){var proxima=null;
@@ -13198,7 +13288,141 @@ function arsPinta(){var sep=document.getElementById('area-dos'),wr=document.quer
  if(!b){b=document.createElement('section');b.id='ars-box';b.className='ars';b.dataset.area='dos';}
  b.dataset.vxHidden='false';if(sep.nextElementSibling!==b)wr.insertBefore(b,sep.nextSibling);
  b.innerHTML=arsHTML();try{arsChecaForja();}catch(e){}}
-(function(){var p0=pinta;pinta=function(){p0();try{arsPinta();latNarrativo();}catch(e){console.error('arsenal:',e);}};})();
+(function(){var p0=pinta;pinta=function(){p0();try{arsPinta();mmPinta();latNarrativo();}catch(e){console.error('arsenal:',e);}};})();
+
+/* ---------- Mural de Missões: Tarefa do chalé, Quest e Grande Profecia ----------
+   Tarefa do chalé: casa e vida prática, faz uma vez (+3 XP).
+   Quest: estudo rápido que renova todo dia, como revisão e exercícios (+5 XP por dia feito).
+   Grande Profecia: prova, TCC ou projeto longo, com prazo e etapas (+10 por etapa, +50 ao cumprir e uma conta no colar). */
+function mmD(){var Q=S.quests;if(!Q||typeof Q!=='object'){Q=S.quests={chale:[],dia:[],feitas:{},prof:[{id:'pf1',t:'Prova do TRF3 · Analista Judiciário',prazo:'2027-01-31',passos:[],ok:false}]};}
+ Q.chale=Q.chale||[];Q.dia=Q.dia||[];Q.feitas=Q.feitas||{};Q.prof=Q.prof||[];return Q;}
+function mmId(){return 'q'+Date.now().toString(36)+Math.random().toString(36).slice(2,5);}
+function mmDias(d){var a=new Date(hoje()+'T12:00:00'),b=new Date(d+'T12:00:00');return Math.round((b-a)/864e5);}
+function mmDataBR(d){var p=String(d||'').split('-');return p.length===3?p[2]+'/'+p[1]+'/'+p[0]:'';}
+function mmHTML(){var Q=mmD(),hj=hoje(),fe=Q.feitas[hj]||[];
+ var ch=Q.chale.filter(function(t){return !t.ok||t.ok===hj;}).map(function(t){return '<li class="'+(t.ok?'ok':'')+'"><button type="button" class="mm-ck" data-mm-ch="'+t.id+'" aria-label="feita">'+(t.ok?'✓':'')+'</button><span>'+esc(t.t)+'</span><button type="button" class="mm-x" data-mm-del="chale:'+t.id+'" aria-label="tirar">×</button></li>';}).join('');
+ var qd=Q.dia.map(function(t){var ok=fe.indexOf(t.id)>=0;return '<li class="'+(ok?'ok':'')+'"><button type="button" class="mm-ck" data-mm-dia="'+t.id+'" aria-label="feita hoje">'+(ok?'✓':'')+'</button><span>'+esc(t.t)+'</span><button type="button" class="mm-x" data-mm-del="dia:'+t.id+'" aria-label="tirar">×</button></li>';}).join('');
+ var pf=Q.prof.filter(function(p){return !p.ok||mmDias(p.fim||hj)>-30;}).map(function(p){var n=(p.passos||[]).length,f=(p.passos||[]).filter(function(s){return s.ok;}).length,pct=n?Math.round(f/n*100):0,dd=p.prazo?mmDias(p.prazo):null;
+  var prazo=p.prazo?(dd>0?'faltam <b>'+dd+'</b> dias · '+mmDataBR(p.prazo):dd===0?'<b>é hoje</b>':'prazo passou há '+(-dd)+' dias'):'sem prazo';
+  return '<article class="mm-pf'+(p.ok?' ok':'')+'"><header><b>'+esc(p.t)+'</b><button type="button" class="mm-x" data-mm-del="prof:'+p.id+'" aria-label="tirar">×</button></header>'+
+   '<small class="mm-pz">'+(p.ok?'profecia cumprida · conta no colar':prazo)+'</small><div class="mm-bar"><i style="width:'+(p.ok?100:pct)+'%"></i></div>'+
+   '<ul>'+(p.passos||[]).map(function(s,i){return '<li class="'+(s.ok?'ok':'')+'"><button type="button" class="mm-ck" data-mm-pp="'+p.id+':'+i+'">'+(s.ok?'✓':'')+'</button><span>'+esc(s.t)+'</span></li>';}).join('')+'</ul>'+
+   (p.ok?'':'<div class="mm-add"><input data-mm-in="passo:'+p.id+'" placeholder="+ etapa" maxlength="80">'+(n&&f===n?'<button type="button" class="mm-cumpre" data-mm-cumpre="'+p.id+'">cumprir a profecia</button>':'')+'</div>')+'</article>';}).join('');
+ return '<header class="mm-h"><div><span class="k9">Missões · o que você tem a fazer</span><h3>Mural de Missões</h3></div>'+
+  '<p>Três pesos diferentes. <b>Tarefa do chalé</b> é a vida prática, feita uma vez. <b>Quest</b> é o treino curto de estudo que volta todo dia. <b>Grande Profecia</b> é o alvo longo, com prazo e etapas.</p></header>'+
+  '<div class="mm-g">'+
+  '<section class="mm-col mm-chale"><span class="mm-k">Tarefas do chalé</span><small>casa e vida prática · uma vez · +3 XP</small><ul>'+(ch||'<li class="mm-vz">Nada pendente na casa.</li>')+'</ul>'+
+   '<div class="mm-add"><input data-mm-in="chale" placeholder="+ tarefa da casa" maxlength="80"></div><button type="button" class="mm-lk" data-mm-sort>puxar uma ficha do baralho</button></section>'+
+  '<section class="mm-col mm-quest"><span class="mm-k">Quests diárias</span><small>revisão e exercícios · renovam todo dia · +5 XP</small><ul>'+(qd||'<li class="mm-vz">Ex.: 10 questões Vunesp, revisar o mapa do dia, ler um artigo de lei seca.</li>')+'</ul>'+
+   '<div class="mm-add"><input data-mm-in="dia" placeholder="+ quest diária" maxlength="80"></div><small class="mm-cont">'+fe.length+' de '+Q.dia.length+' feitas hoje</small></section>'+
+  '<section class="mm-col mm-prof"><span class="mm-k">Grandes Profecias</span><small>provas, TCC, projetos longos · +10 por etapa · +50 ao cumprir</small>'+(pf||'<p class="mm-vz">Nenhuma profecia lançada.</p>')+
+   '<div class="mm-add mm-novapf"><input data-mm-pf="t" placeholder="+ nova profecia" maxlength="80"><input type="date" data-mm-pf="d" aria-label="prazo"><button type="button" data-mm-novapf>lançar</button></div></section></div>';}
+function mmPinta(){var sep=document.getElementById('area-camp'),wr=document.querySelector('.wrap');if(!sep||!wr)return;var b=document.getElementById('mm-box');
+ if(!b){b=document.createElement('section');b.id='mm-box';b.className='mm';b.dataset.area='camp';mmLiga(b);}
+ b.dataset.vxHidden='false';if(sep.nextElementSibling!==b)wr.insertBefore(b,sep.nextSibling);
+ var a=document.activeElement;if(a&&b.contains(a)&&a.tagName==='INPUT')return;b.innerHTML=mmHTML();}
+function mmSalva(foco){grava();var b=document.getElementById('mm-box');if(b){b.innerHTML=mmHTML();if(foco){var n=b.querySelector(foco);if(n)n.focus();}}try{latNarrativo();arsPinta();}catch(e){}}
+function mmLiga(b){
+ b.addEventListener('click',function(e){var t=e.target.closest('button');if(!t)return;var Q=mmD(),d=t.dataset,hj=hoje();
+  if(d.mmSort!=null){ferAbre('sort');return;}
+  if(d.mmCh){var c=Q.chale.filter(function(x){return x.id===d.mmCh;})[0];if(c){c.ok=c.ok?false:hj;}mmSalva();return;}
+  if(d.mmDia){var f=Q.feitas[hj]=Q.feitas[hj]||[],i=f.indexOf(d.mmDia);if(i>=0)f.splice(i,1);else f.push(d.mmDia);mmSalva();return;}
+  if(d.mmPp){var pp=d.mmPp.split(':'),p=Q.prof.filter(function(x){return x.id===pp[0];})[0];if(p&&p.passos[+pp[1]]){p.passos[+pp[1]].ok=!p.passos[+pp[1]].ok;}mmSalva();return;}
+  if(d.mmCumpre){var p2=Q.prof.filter(function(x){return x.id===d.mmCumpre;})[0];if(p2){p2.ok=true;p2.fim=hj;try{anota('Grande Profecia cumprida: '+p2.t,0,false);}catch(z){}try{acLouros('Profecia cumprida','uma conta nova no colar');}catch(z){}}mmSalva();try{vxRender();}catch(z){}return;}
+  if(d.mmDel){var k=d.mmDel.split(':');var it=Q[k[0]].filter(function(x){return x.id===k[1];})[0];if(!it)return;if(k[0]==='prof'&&!confirm('Tirar a profecia "'+it.t+'" do mural?'))return;Q[k[0]]=Q[k[0]].filter(function(x){return x!==it;});mmSalva();return;}
+  if(d.mmNovapf!=null){var ti=b.querySelector('[data-mm-pf="t"]'),dt=b.querySelector('[data-mm-pf="d"]');if(!ti.value.trim()){ti.focus();return;}Q.prof.push({id:mmId(),t:ti.value.trim().slice(0,80),prazo:dt.value||'',passos:[],ok:false});mmSalva();return;}});
+ b.addEventListener('keydown',function(e){var t=e.target;if(e.key!=='Enter'||!t.dataset)return;var Q=mmD(),v=(t.value||'').trim();
+  if(t.dataset.mmPf){e.preventDefault();var bt=b.querySelector('[data-mm-novapf]');if(bt)bt.click();return;}
+  var k=t.dataset.mmIn;if(!k||!v)return;e.preventDefault();
+  if(k==='chale'){Q.chale.push({id:mmId(),t:v.slice(0,80),ok:false});mmSalva('[data-mm-in="chale"]');}
+  else if(k==='dia'){Q.dia.push({id:mmId(),t:v.slice(0,80)});mmSalva('[data-mm-in="dia"]');}
+  else if(k.indexOf('passo:')===0){var p=Q.prof.filter(function(x){return x.id===k.slice(6);})[0];if(p){p.passos.push({t:v.slice(0,80),ok:false});mmSalva('[data-mm-in="'+k+'"]');}}});}
+/* XP das missões entra no nível */
+(function(){var g0=gmXP;gmXP=function(){var x=g0(),Q=S.quests||{},q=0;
+ (Q.chale||[]).forEach(function(t){if(t.ok)q+=3;});Object.keys(Q.feitas||{}).forEach(function(d){q+=5*((Q.feitas[d]||[]).length);});
+ (Q.prof||[]).forEach(function(p){(p.passos||[]).forEach(function(s){if(s.ok)q+=10;});if(p.ok)q+=50;});x.quests=q;x.total+=q;return x;};})();
+try{GM_REGRAS.push(['tarefa do chalé feita','+3'],['quest diária feita','+5'],['etapa de Grande Profecia','+10'],['Grande Profecia cumprida','+50']);}catch(e){}
+/* profecias cumpridas penduram uma conta especial no colar */
+(function(){var c0=acColarHTML;acColarHTML=function(){var h=c0(),P=((S.quests&&S.quests.prof)||[]).filter(function(p){return p.ok;});if(!P.length)return h;
+ var ex=P.map(function(p){return '<span class="ac-conta ok ac-prof" style="--cc:#c9a227" title="Grande Profecia: '+esc(p.t)+'">Ω</span>';}).join('');
+ return h.replace('</div><p class="ac-nota">',ex+'</div><p class="ac-nota">');};})();
+
+/* ---------- Dracmas de Ouro: moeda do jogo, ganha com horas de foco e estudo ----------
+   10 dracmas por hora. Compram temas de chalé, insígnias do crachá e sons ambientes. */
+function drMin(){var t=0;try{vxData().sessions.forEach(function(s){t+=s.minutes|0;});}catch(e){}((S.est&&S.est.blocos)||[]).forEach(function(b){t+=b.min|0;});return t;}
+function drD(){var L=S.lojaAc;if(!L||typeof L!=='object')L=S.lojaAc={gasto:0,itens:['tema-apolo','ins-sol'],tema:'tema-apolo',ins:'ins-sol'};L.itens=L.itens||[];return L;}
+function drSaldo(){return Math.floor(drMin()/60)*10-(drD().gasto|0);}
+var DR_LOJA=[
+ {id:'tema-apolo',tipo:'tema',n:'Chalé 7 · Apolo',d:'dourado do sol (o seu)',p:0,cor:''},
+ {id:'tema-hermes',tipo:'tema',n:'Chalé 11 · Hermes',d:'laranja de estrada',p:80,cor:'#c7783a'},
+ {id:'tema-atena',tipo:'tema',n:'Chalé 6 · Atena',d:'cinza de coruja',p:80,cor:'#6f7d8c'},
+ {id:'tema-hefesto',tipo:'tema',n:'Chalé 9 · Hefesto',d:'bronze de forja',p:100,cor:'#a5552e'},
+ {id:'tema-poseidon',tipo:'tema',n:'Chalé 3 · Poseidon',d:'azul do estreito',p:100,cor:'#3f7f8f'},
+ {id:'tema-artemis',tipo:'tema',n:'Chalé 8 · Ártemis',d:'prata da lua',p:120,cor:'#8a8fa8'},
+ {id:'ins-sol',tipo:'ins',n:'Sol',d:'a insígnia de Apolo',p:0,g:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"/></svg>'},
+ {id:'ins-lira',tipo:'ins',n:'Lira',d:'música e cura',p:30,g:'<svg viewBox="0 0 24 24"><path d="M7 4c-1.5 4.5 0 9.5 3 11M17 4c1.5 4.5 0 9.5-3 11M8 7h8M9.5 15h5l-.7 5h-3.6z"/></svg>'},
+ {id:'ins-arco',tipo:'ins',n:'Arco',d:'mira de longe',p:30,g:'<svg viewBox="0 0 24 24"><path d="M7 3c7 4 7 14 0 18M7 3v18M4 12h15M16 9.5l3 2.5-3 2.5"/></svg>'},
+ {id:'ins-coruja',tipo:'ins',n:'Coruja',d:'estratégia de Atena',p:40,g:'<svg viewBox="0 0 24 24"><path d="M6 6l3 2h6l3-2v8a6 6 0 0 1-12 0z"/><circle cx="9.5" cy="11.5" r="1.8"/><circle cx="14.5" cy="11.5" r="1.8"/><path d="M11 15h2l-1 1.5z"/></svg>'},
+ {id:'ins-louro',tipo:'ins',n:'Louros',d:'vitória',p:50,g:'<svg viewBox="0 0 24 24"><path d="M8 20c-4-4-4-11 0-15M16 20c4-4 4-11 0-15M6 9l2 1M5.5 13l2.3.5M6.5 17l2-1M18 9l-2 1M18.5 13l-2.3.5M17.5 17l-2-1"/></svg>'},
+ {id:'som-fogueira',tipo:'som',n:'Fogueira do acampamento',d:'estalos de lenha',p:40},
+ {id:'som-chuva',tipo:'som',n:'Chuva no telhado do chalé',d:'chuva contínua',p:40},
+ {id:'som-mar',tipo:'som',n:'Estreito de Long Island',d:'ondas lentas',p:50},
+ {id:'som-floresta',tipo:'som',n:'Floresta à noite',d:'grilos e vento',p:50}];
+function drItem(id){return DR_LOJA.filter(function(x){return x.id===id;})[0];}
+function drAplica(){var L=drD(),t=drItem(L.tema)||DR_LOJA[0],b=document.body;if(!b)return;
+ if(t.cor){b.style.setProperty('--red',t.cor);}else b.style.removeProperty('--red');
+ var ins=drItem(L.ins)||drItem('ins-sol');Array.prototype.forEach.call(document.querySelectorAll('.vx-hero .ac-cracha b'),function(n){var s=n.querySelector('.dr-ins');if(!s){s=document.createElement('span');s.className='dr-ins';n.insertBefore(s,n.firstChild);}if(s.dataset.i!==ins.id){s.dataset.i=ins.id;s.innerHTML=ins.g;}});}
+/* sons ambientes gerados no navegador, sem arquivo */
+var drSom={ctx:null,no:null,id:''};
+function drRuido(ctx,seg,tipo){var n=ctx.sampleRate*seg,buf=ctx.createBuffer(1,n,ctx.sampleRate),d=buf.getChannelData(0),u=0;
+ for(var i=0;i<n;i++){var w=Math.random()*2-1;if(tipo==='marrom'){u=(u+0.02*w)/1.02;d[i]=u*3.5;}else d[i]=w;}return buf;}
+function drTocar(id){drParar();if(!id)return;var C=window.AudioContext||window.webkitAudioContext;if(!C)return;var ctx=drSom.ctx||(drSom.ctx=new C());if(ctx.state==='suspended')ctx.resume();
+ var g=ctx.createGain();g.gain.value=0.0001;g.connect(ctx.destination);g.gain.linearRampToValueAtTime(0.55,ctx.currentTime+1.5);var nos=[g],tm=[];
+ function fonte(tipo){var s=ctx.createBufferSource();s.buffer=drRuido(ctx,4,tipo);s.loop=true;s.start();nos.push(s);return s;}
+ if(id==='som-chuva'){var s=fonte('branco'),f=ctx.createBiquadFilter();f.type='lowpass';f.frequency.value=2200;s.connect(f);f.connect(g);nos.push(f);}
+ else if(id==='som-mar'){var s2=fonte('marrom'),f2=ctx.createBiquadFilter(),am=ctx.createGain(),lfo=ctx.createOscillator(),lg=ctx.createGain();f2.type='lowpass';f2.frequency.value=700;
+  lfo.frequency.value=0.09;lg.gain.value=0.45;am.gain.value=0.55;lfo.connect(lg);lg.connect(am.gain);lfo.start();s2.connect(f2);f2.connect(am);am.connect(g);nos.push(f2,am,lfo,lg);}
+ else if(id==='som-fogueira'){var s3=fonte('marrom'),f3=ctx.createBiquadFilter();f3.type='lowpass';f3.frequency.value=380;var bg=ctx.createGain();bg.gain.value=0.7;s3.connect(f3);f3.connect(bg);bg.connect(g);nos.push(f3,bg);
+  var cr=drRuido(ctx,0.05,'branco');tm.push(setInterval(function(){if(Math.random()<0.55){var b=ctx.createBufferSource(),eg=ctx.createGain(),hp=ctx.createBiquadFilter();hp.type='highpass';hp.frequency.value=1500+Math.random()*2500;
+   b.buffer=cr;eg.gain.value=0.15+Math.random()*0.5;b.connect(hp);hp.connect(eg);eg.connect(g);b.start();}},120));}
+ else if(id==='som-floresta'){var s4=fonte('marrom'),f4=ctx.createBiquadFilter();f4.type='bandpass';f4.frequency.value=500;var vg=ctx.createGain();vg.gain.value=0.35;s4.connect(f4);f4.connect(vg);vg.connect(g);nos.push(f4,vg);
+  tm.push(setInterval(function(){if(Math.random()<0.6){for(var k=0;k<3;k++){var o=ctx.createOscillator(),eg=ctx.createGain(),t0=ctx.currentTime+k*0.07;o.frequency.value=4200+Math.random()*300;eg.gain.setValueAtTime(0,t0);eg.gain.linearRampToValueAtTime(0.05,t0+0.01);eg.gain.linearRampToValueAtTime(0,t0+0.05);o.connect(eg);eg.connect(g);o.start(t0);o.stop(t0+0.06);}}},400));}
+ drSom.no={nos:nos,tm:tm,g:g};drSom.id=id;}
+function drParar(){var n=drSom.no;if(!n)return;n.tm.forEach(clearInterval);try{n.g.gain.cancelScheduledValues(0);n.g.gain.value=0;}catch(e){}n.nos.forEach(function(x){try{if(x.stop)x.stop();}catch(e){}try{x.disconnect();}catch(e){}});drSom.no=null;drSom.id='';}
+function drLojaHTML(){var L=drD(),sd=drSaldo(),h='<div class="dr-top"><div><span class="k9">saldo</span><b class="dr-sd">'+sd+'</b> <small>dracmas de ouro</small></div><p>10 dracmas por hora de foco ou de estudo · '+arsNum(drMin()/60)+' h no total</p></div>';
+ [['tema','Temas de chalé','muda a cor de destaque do app'],['ins','Insígnias do crachá','aparece ao lado do seu nome no banner'],['som','Sons ambientes','tocam enquanto você estuda; um por vez']].forEach(function(g){
+  h+='<h4 class="dr-g">'+g[1]+' <small>'+g[2]+'</small></h4><div class="dr-l">'+DR_LOJA.filter(function(x){return x.tipo===g[0];}).map(function(x){var tem=L.itens.indexOf(x.id)>=0,
+   ativo=(x.tipo==='tema'&&L.tema===x.id)||(x.tipo==='ins'&&L.ins===x.id)||(x.tipo==='som'&&drSom.id===x.id),
+   vis=x.tipo==='tema'?'<i class="dr-cor" style="background:'+(x.cor||'#b98c47')+'"></i>':x.tipo==='ins'?'<i class="dr-gl">'+x.g+'</i>':'<i class="dr-gl">'+CR_IC.sono+'</i>';
+   var bt=!tem?'<button type="button" data-dr-compra="'+x.id+'"'+(sd<x.p?' disabled':'')+'>'+x.p+' ◈</button>':
+    x.tipo==='som'?'<button type="button" data-dr-som="'+x.id+'">'+(ativo?'parar':'tocar')+'</button>':'<button type="button" data-dr-usa="'+x.id+'"'+(ativo?' disabled':'')+'>'+(ativo?'em uso':'usar')+'</button>';
+   return '<div class="dr-i'+(ativo?' on':'')+'">'+vis+'<span><b>'+esc(x.n)+'</b><small>'+esc(x.d)+'</small></span>'+bt+'</div>';}).join('')+'</div>';});
+ return h;}
+function drLojaPinta(){var c=document.getElementById('fer-loja');if(c)c.innerHTML=drLojaHTML();}
+function drLojaLiga(c){c.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;var L=drD(),d=b.dataset;
+ if(d.drCompra){var x=drItem(d.drCompra);if(!x||drSaldo()<x.p)return;L.gasto=(L.gasto|0)+x.p;L.itens.push(x.id);if(x.tipo==='tema')L.tema=x.id;if(x.tipo==='ins')L.ins=x.id;grava();drAplica();try{acLouros(x.n,'comprado com dracmas de ouro');}catch(z){}}
+ else if(d.drUsa){var y=drItem(d.drUsa);if(y.tipo==='tema')L.tema=y.id;if(y.tipo==='ins')L.ins=y.id;grava();drAplica();}
+ else if(d.drSom){if(drSom.id===d.drSom)drParar();else drTocar(d.drSom);}
+ drLojaPinta();try{latNarrativo();}catch(z){}});}
+
+/* ---------- Copa dos Chalés: horas de estudo por semana viram pontos do chalé 7 ----------
+   Atena marca a meta semanal do Partenon (10,5 h); Hermes, a sua média das quatro semanas anteriores. */
+function cpSemanas(n){var porDia={};try{vxData().sessions.forEach(function(s){if(s.day)porDia[s.day]=(porDia[s.day]||0)+(s.minutes|0);});}catch(e){}
+ ((S.est&&S.est.blocos)||[]).forEach(function(b){if(b.data)porDia[b.data]=(porDia[b.data]||0)+(b.min|0);});
+ var d=new Date(hoje()+'T12:00:00'),seg=new Date(d);seg.setDate(d.getDate()-((d.getDay()+6)%7));var out=[];
+ for(var w=n-1;w>=0;w--){var ini=new Date(seg);ini.setDate(seg.getDate()-7*w);var m=0;for(var k=0;k<7;k++){var x=new Date(ini);x.setDate(ini.getDate()+k);m+=porDia[x.getFullYear()+'-'+String(x.getMonth()+1).padStart(2,'0')+'-'+String(x.getDate()).padStart(2,'0')]||0;}
+  out.push({ini:ini,h:m/60});}return out;}
+function cpHTML(){var W=cpSemanas(8),META=10.5,mx=Math.max(META*1.15,1),i,w=260,h=120,bw=w/8;
+ W.forEach(function(s){if(s.h>mx)mx=s.h*1.1;});
+ var med=W.map(function(s,j){var ant=W.slice(Math.max(0,j-4),j);return ant.length?ant.reduce(function(a,b){return a+b.h;},0)/ant.length:null;});
+ var y=function(v){return h-(v/mx)*(h-14);},bars='',pts=[];
+ for(i=0;i<8;i++){var s=W[i],bh=h-y(s.h);bars+='<rect x="'+(i*bw+5)+'" y="'+y(s.h)+'" width="'+(bw-10)+'" height="'+Math.max(bh,1)+'" rx="3" class="cp-b'+(i===7?' at':'')+'"><title>'+s.ini.getDate()+'/'+(s.ini.getMonth()+1)+': '+s.h.toFixed(1)+' h</title></rect>';
+  if(med[i]!=null)pts.push((i*bw+bw/2)+','+y(med[i]));}
+ var at=W[7].h,pts7=Math.round(at*10);
+ return '<svg viewBox="0 0 '+w+' '+(h+14)+'" class="cp-svg" role="img" aria-label="Horas de estudo nas últimas 8 semanas">'+bars+
+  '<line x1="0" x2="'+w+'" y1="'+y(META)+'" y2="'+y(META)+'" class="cp-atena"/>'+(pts.length>1?'<polyline points="'+pts.join(' ')+'" class="cp-hermes"/>':'')+
+  W.map(function(s,j){return '<text x="'+(j*bw+bw/2)+'" y="'+(h+11)+'">'+s.ini.getDate()+'/'+(s.ini.getMonth()+1)+'</text>';}).join('')+'</svg>'+
+  '<p class="cp-leg"><span class="a">Apolo · você</span> <b>'+at.toFixed(1)+' h</b> nesta semana = <b>'+pts7+'</b> pontos · <span class="t">Atena: meta 10,5 h</span> · <span class="h">Hermes: sua média de 4 semanas</span></p>';}
 /* a Grade semanal é o painel principal: logo abaixo do índice */
 function latGradeTopo(){var wr=document.querySelector('.wrap'),h=document.getElementById('h-sem'),ix=document.getElementById('tt-indice');if(!wr||!h)return;
  var tb=h.nextElementSibling&&h.nextElementSibling.classList.contains('tb')?h.nextElementSibling:document.querySelector('.wrap > .tb');
@@ -13211,7 +13435,8 @@ function latGradeTopo(){var wr=document.querySelector('.wrap'),h=document.getEle
  /* rastreador de hábitos (grade mensal) logo abaixo do painel da semana */
  try{var hr=document.getElementById('h-rast'),rt=hr&&hr.nextElementSibling&&hr.nextElementSibling.classList.contains('rt')?hr.nextElementSibling:document.querySelector('.wrap > .rt'),wb=document.getElementById('ws-box')||tb;
   if(hr&&wb){[hr,rt].forEach(function(n){if(n){n.dataset.area='op';n.dataset.vxHidden='false';}});if(wb.nextElementSibling!==hr)wr.insertBefore(hr,wb.nextSibling);if(rt&&hr.nextElementSibling!==rt)wr.insertBefore(rt,hr.nextSibling);}}catch(e){console.error('rastreador:',e);}
- try{arsPinta();}catch(e){console.error('arsenal:',e);}}
+ try{arsPinta();}catch(e){console.error('arsenal:',e);}
+ try{mmPinta();}catch(e){console.error('mural de missões:',e);}}
 ttAlvo=function(a){return a==='op'?(document.getElementById('hero-box')||document.getElementById('h-sem')||document.getElementById('vx')):document.getElementById('area-'+a);};
 
 /* colar, bandeira e carta na coluna da esquerda: a linha nasce no Casa Grande a cada redesenho e muda de casa */
@@ -13350,8 +13575,13 @@ function latAc(){latMural();try{pinsPinta();}catch(e){console.error('mural:',e);
  var vit=document.querySelector('#vx-body .vx-grid > aside .v4-vit'),lv=document.getElementById('lat-vx');if(vit&&lv&&vit.parentNode!==lv){lv.innerHTML='';lv.appendChild(vit);}
  latNarrativo();}
 /* coluna esquerda narrativa: cartão de nível com o medalhão e o resumo do Arsenal */
+document.addEventListener('click',function(e){var b=e.target.closest('#lat-med [data-cr-med]');if(b){latMedToggle(b.dataset.crMed);latNarrativo();}});
 function latNarrativo(){var g=document.getElementById('lat-gm');if(g){g.innerHTML=gmCard(false);try{acMedalhaPos();}catch(e){}}
- var a=document.getElementById('lat-ars-b');if(a)a.innerHTML=arsMini();}
+ var a=document.getElementById('lat-ars-b');if(a)a.innerHTML=arsMini();
+ var dr=document.getElementById('lat-dr-b');if(dr)dr.innerHTML='<div class="dr-mini"><b>'+drSaldo()+'</b><span>dracmas de ouro<br><small>10 por hora de foco ou estudo</small></span></div><button type="button" class="arsm-v" onclick="ferAbre(\'loja\')">abrir a loja do acampamento</button>';
+ var cp=document.getElementById('lat-cp-b');if(cp)cp.innerHTML=cpHTML();
+ var md=document.getElementById('lat-med');if(md)md.innerHTML='<div class="lat-medh"><span class="k9">remédios de hoje</span><div class="cr-row">'+latMedHTML()+'</div></div>';
+ try{drAplica();}catch(e){}}
 function arsMini(){var prox=null,h='<div class="arsm-g">'+ARS_KIT.map(function(k){var T=arsTier(k),nx=k.t[T.i+1];
   if(nx){var fr=(nx[0]-T.v)/(nx[0]-k.t[T.i][0]);if(!prox||fr<prox.fr)prox={fr:fr,k:k,nx:nx,f:arsNum(nx[0]-T.v)+' '+k.med};}
   return '<div class="arsm t'+T.i+'" title="'+esc(k.slot+': '+k.t[T.i][1])+'"><span>'+ARS_IC[k.id]+'</span><i>'+k.t.map(function(t,j){return '<em class="'+(j<=T.i?'on':'')+'"></em>';}).join('')+'</i></div>';}).join('')+'</div>';
