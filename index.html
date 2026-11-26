@@ -4097,6 +4097,18 @@ nav#tt-indice.tt-indice{flex-wrap:wrap!important;row-gap:0!important}
  font:400 15px Georgia,serif!important;letter-spacing:.02em;color:#8a6f55!important;border-bottom:2px solid transparent!important;cursor:pointer}
 #painel-dir .pd-nav .pd-nb:hover{color:#3b2a1d!important}
 #painel-dir .pd-nav .pd-nb[aria-selected="true"]{color:#3b2a1d!important;font-weight:700!important;border-bottom-color:#5a3f2c!important}
+
+/* Recreações: moldura grega, duas colunas */
+#recreio.rc-neo{position:relative;margin:30px 0 18px!important;border-radius:3px!important;padding-top:62px!important}
+#recreio.rc-neo>.tm-cab{position:absolute;top:2px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:row;align-items:baseline;gap:12px;margin:0;padding:7px 26px 6px;
+ border:1.5px solid #5a3f2c;border-radius:2px;background:var(--neo-papel),#f4ead2;box-shadow:0 0 0 4px #f4ead2,0 0 0 5.5px #5a3f2c;white-space:nowrap;max-width:calc(100% - 120px)}
+#recreio.rc-neo>.tm-cab b{font:700 17px Georgia,serif!important;color:#5a3f2c!important}
+#recreio.rc-neo>.tm-cab .k9{font:9px var(--mono,monospace)!important;letter-spacing:.16em!important;color:#8a6f55!important}
+#recreio.rc-neo>.tm-cab .k9::before{content:'// '}
+#recreio .rc-g{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:16px;align-items:start}
+#recreio .rc-g .lat-c{margin:0!important}
+#recreio .rc-g .lat-c .cg-dobra{display:none!important}
+@media(max-width:800px){#recreio .rc-g{grid-template-columns:1fr}#recreio.rc-neo>.tm-cab .k9{display:none}#recreio.rc-neo{padding-left:18px!important;padding-right:18px!important}}
 </style>
 </head>
 <body>
@@ -12749,7 +12761,6 @@ var FER=[
  {id:'resp',n:'Respiração quadrada',d:'quatro voltas de quatro tempos',ic:'resp'},
  {id:'loja',n:'Loja do acampamento',d:'temas, insígnias e sons com dracmas de ouro',ic:'loja'},
  {id:'arsenal',n:'Arsenal do Hékatos',d:'o kit e a forja, peça por peça',ic:'arco'},
- {id:'recarga',n:'Menu de recarga',d:'montado num dia bom, usado num dia ruim',ic:'fogo'},
  {id:'ajustes',n:'Ajustes e cópia de segurança',d:'exportar, importar e preferências do app',ic:'insp'}];
 function ferMonta(){if(document.getElementById('fer-guarda'))return;
  var g=document.createElement('div');g.id='fer-guarda';g.hidden=true;g.innerHTML='<div id="fer-sort"></div><div id="fer-resp">'+latResp()+'</div><div id="fer-carta"></div><div id="fer-loja"></div><div id="fer-arsenal"></div><div id="fer-recarga"></div><div id="fer-ajustes"></div>';document.body.appendChild(g);drLojaLiga(g.querySelector('#fer-loja'));
@@ -13793,14 +13804,13 @@ function reorgOrb(){var o=document.getElementById('lat-orb'),cb=document.getElem
  var ri=document.getElementById('rail-in');o.classList.add('qa-orb');if(ri&&ri.parentNode===cb){if(ri.nextElementSibling!==o)ri.insertAdjacentElement('afterend',o);}else if(o.parentNode!==cb)cb.appendChild(o);}
 function reorgTesouro(){var wr=document.querySelector('.wrap');if(!wr)return;var t=document.getElementById('tesouro');
  if(!t){t=document.createElement('section');t.id='tesouro';t.className='tesouro';t.dataset.area='op';
-  t.innerHTML='<header class="ts-cab"><span class="ts-k">o tesouro do chalé 7</span><h2>Arsenal, dracmas e prêmios</h2><p>O que o treino rende: a forja do Hékatos, a moeda do acampamento, o que ela compra, e as atividades em treino.</p></header>'+
+  t.innerHTML='<header class="ts-cab"><span class="ts-k">o tesouro do chalé 7</span><h2>Arsenal, dracmas e prêmios</h2><p>O que o treino rende: a forja do Hékatos, a moeda do acampamento, e o que ela compra.</p></header>'+
    '<div class="ts-g"><div class="ts-col" id="ts-a"></div><div class="ts-col" id="ts-b"></div></div>';}
  t.dataset.vxHidden='false';if(wr.lastElementChild!==t)wr.appendChild(t);
  var a=t.querySelector('#ts-a'),b=t.querySelector('#ts-b');
  var poe=function(col,ids){ids.forEach(function(id){var n=document.getElementById(id);if(!n)return;n.hidden=false;n.dataset.vxHidden='false';if(n.parentNode!==col)col.appendChild(n);});
   ids.forEach(function(id,i){var n=document.getElementById(id);if(n&&i&&n.previousElementSibling!==document.getElementById(ids[i-1]))col.appendChild(n);});};
- poe(a,['lat-ars','lat-dr']);poe(b,['c-h-rec','lat-apt']);
- var fr=document.getElementById('fer-recarga'),lr=document.getElementById('lat-rec');if(fr&&lr&&!lr.closest('#fer-recarga,#fer-corpo')){lr.classList.remove('cg-dob');lr.classList.add('fer-rec');fr.appendChild(lr);}
+ poe(a,['lat-ars','lat-dr']);poe(b,['c-h-rec']);
  Array.prototype.forEach.call(wr.querySelectorAll(':scope > .area-cab'),function(ac){var n=ac.nextElementSibling,vis=false;while(n&&!n.classList.contains('area-cab')&&n.id!=='tesouro'){if(n.offsetHeight>2){vis=true;break;}n=n.nextElementSibling;}ac.classList.toggle('ts-oculta',!vis);});}
 /* Treino na Arena vira um cartão na coluna esquerda, logo abaixo do nível */
 function reorgArena(){var vx=document.getElementById('vx'),e=document.getElementById('lat-e');if(!vx||!e)return;var c=document.getElementById('lat-arena');
@@ -13856,7 +13866,14 @@ function qaOrganiza(){var cb=document.getElementById('cerbox');if(!cb)return;
   if(ref&&ref.parentNode===cb){if(ref.nextElementSibling!==d)ref.insertAdjacentElement('afterend',d);}else if(d.parentNode!==cb)cb.appendChild(d);ref=d;});
  if(sb&&!sb.children.length)sb.hidden=true;
  var h=document.getElementById('h-cup'),sp=h&&h.querySelector('span');if(sp&&sp.textContent.indexOf('caixa')<0)sp.textContent='// caixa de entrada, em andamento, retomadas, notas e diário';}
-function reorg(){try{var tp=document.getElementById('tm-painel');if(tp)tp.classList.add('neo-moldura','tm-neo');}catch(e){}try{reorgProf();}catch(e){}try{reorgArena();}catch(e){}try{qaOrganiza();}catch(e){}try{pdPilula();}catch(e){}try{reorgOrb();}catch(e){}try{reorgTesouro();}catch(e){}}
+/* Recreações: painel próprio depois de Missões, com Atividades do acampamento e Menu de recarga */
+function reorgRecreio(){var wr=document.querySelector('.wrap'),tp=document.getElementById('tm-painel');if(!wr||!tp)return;var r=document.getElementById('recreio');
+ if(!r){r=document.createElement('section');r.id='recreio';r.className='neo-moldura rc-neo';r.dataset.area='op';
+  r.innerHTML='<header class="tm-cab"><b>Recreações</b><span class="k9">atividades em treino e menu de recarga</span></header><div class="rc-g"><div class="rc-a"></div><div class="rc-b"></div></div>';}
+ r.dataset.vxHidden='false';if(tp.nextElementSibling!==r)tp.insertAdjacentElement('afterend',r);
+ var a=r.querySelector('.rc-a'),b=r.querySelector('.rc-b');
+ [['lat-apt',a],['lat-rec',b]].forEach(function(x){var n=document.getElementById(x[0]);if(!n)return;n.hidden=false;n.dataset.vxHidden='false';n.classList.remove('cg-dob','fer-rec');if(n.parentNode!==x[1])x[1].appendChild(n);});}
+function reorg(){try{var tp=document.getElementById('tm-painel');if(tp)tp.classList.add('neo-moldura','tm-neo');}catch(e){}try{reorgProf();}catch(e){}try{reorgArena();}catch(e){}try{qaOrganiza();}catch(e){}try{pdPilula();}catch(e){}try{reorgOrb();}catch(e){}try{reorgTesouro();}catch(e){}try{reorgRecreio();}catch(e){}}
 (function(){var r0=vxRender;vxRender=function(){var x=r0.apply(this,arguments);reorg();return x;};var p0=pinta;pinta=function(){var x=p0.apply(this,arguments);reorg();return x;};})();
 setTimeout(reorg,50);setTimeout(reorg,900);
 setInterval(pintaProgresso,60000);
