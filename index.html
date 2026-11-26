@@ -16459,7 +16459,9 @@ var OR_PH=['a primeira · flecha de ouro','a segunda','a terceira'];
 mmHTML=(function(f0){return function(){var h=f0.apply(this,arguments),x=plDia(hoje()),
  li=x.top.slice(0,3).map(function(t,i){var ok=!!t.ok,tx=(t.t||'').trim();return '<li class="'+(ok?'ok':'')+'"><button type="button" class="mm-ck" data-mmor="'+i+'" aria-label="cumprida"'+(tx?'':' disabled')+'>'+(ok?'✓':'')+'</button><input class="mm-or-in" data-mmorx="'+i+'" value="'+esc(tx)+'" placeholder="'+OR_PH[i]+'" maxlength="90" aria-label="missão '+(i+1)+'"></li>';}).join('');
  var sec='<section class="mm-col mm-orac-col"><span class="mm-k">Oráculo</span><small>missões · as três do dia · a primeira é a flecha de ouro · +5 XP</small><ul class="mm-or">'+li+'</ul><small class="mm-cont">'+x.top.slice(0,3).filter(function(t){return t.ok;}).length+' de 3 cumpridas hoje</small></section>';
- var k=h.indexOf('<section class="mm-col mm-prof">');return k>=0?h.slice(0,k)+sec+h.slice(k):h;};})(mmHTML);
+ var k=h.indexOf('<section class="mm-col mm-prof">');h=k>=0?h.slice(0,k)+sec+h.slice(k):h;
+ var fim=h.lastIndexOf('</div>');var grp='<div class="tm-lb mm-grp mm-grp-t">tarefas</div><div class="tm-lb mm-grp mm-grp-m">missões</div><div class="tm-lb mm-grp mm-grp-d">desafio</div>';
+ return fim>=0?h.slice(0,fim)+grp+h.slice(fim):h+grp;};})(mmHTML);
 document.addEventListener('click',function(e){var b=e.target.closest('[data-mmor]');if(!b)return;var x=plDia(hoje()),t=x.top[+b.dataset.mmor];if(!t||!(t.t||'').trim())return;t.ok=!t.ok;try{grava();}catch(z){}try{vxRender();}catch(z){}try{mmPinta();}catch(z){}try{diaPinta();}catch(z){}});
 document.addEventListener('change',function(e){var i=e.target.closest('[data-mmorx]');if(!i)return;var x=plDia(hoje()),t=x.top[+i.dataset.mmorx];if(!t)return;t.t=i.value.trim().slice(0,90);if(!t.t)t.ok=false;try{grava();}catch(z){}try{mmPinta();}catch(z){}});
 
@@ -16490,7 +16492,7 @@ var DIA_ABERTO='';
 function diaPinta(){var f=document.getElementById('dia-faixa'),on=diaAtivo();document.body.classList.toggle('com-dia',on);
  if(!on){if(f)f.hidden=true;diaFecha();return;}
  var r=document.getElementById('rail');document.body.style.setProperty('--dia-r',r.offsetWidth+'px');
- var rod=document.getElementById('rod-apps'),baixo=rod?Math.max(0,innerHeight-rod.getBoundingClientRect().top):0;
+ var baixo=diaBaixo();
  if(!f){f=document.createElement('aside');f.id='dia-faixa';f.setAttribute('aria-label','Linha do dia');document.body.appendChild(f);
   f.addEventListener('click',function(e){var b=e.target.closest('[data-dfcard]');if(b){var k=b.dataset.dfcard;if(DIA_ABERTO===k)diaFecha();else diaAbre(k);}});}
  f.hidden=false;f.style.bottom=baixo+'px';var h=diaHTML();if(f._h!==h){f._h=h;f.innerHTML=h;}
@@ -16673,9 +16675,13 @@ function tpBaseTexto(){var f=p4Face(),hj=hoje();
  return 'chalé '+ch+' · diárias '+fe.length+'/'+Q.dia.length+' · oráculo '+or+'/3'+cons;}
 var TP_BASE=null;
 function tpBase(){var p=document.getElementById('tp-painel');if(!p)return;var fr=p.querySelector('.tp-fr');if(!fr||!document.getElementById('tp-real'))return;
- if(!TP_BASE){TP_BASE=document.createElement('footer');TP_BASE.id='tp-base';TP_BASE.className='tp-base';TP_BASE.innerHTML='<span class="tb-d tb-d1"></span><span class="tb-d tb-d2"><em></em></span><span class="tb-d tb-d3"></span>';}
+ if(!TP_BASE){TP_BASE=document.createElement('footer');TP_BASE.id='tp-base';TP_BASE.className='tp-base';TP_BASE.innerHTML='<span class="tb-d tb-d1"></span><div class="tb-d tb-d2"><div class="tb-ag"></div></div><span class="tb-d tb-d3"></span>';}
  if(TP_BASE.parentNode!==fr||fr.lastElementChild!==TP_BASE)fr.appendChild(TP_BASE);
- var t=tpBaseTexto(),em=TP_BASE.querySelector('em');if(em.textContent!==t)em.textContent=t;}
+ tpAgoraNaBase();}
+/* o cartão Agora sai do pé do painel esquerdo e vira o rodapé do templo, no degrau do meio */
+function tpAgoraNaBase(){var b=document.getElementById('td-agora'),slot=TP_BASE&&TP_BASE.querySelector('.tb-ag');if(!b||!slot||!TP_BASE.isConnected)return;
+ b.classList.remove('td-ag-pe','no-indice');b.classList.add('td-ag-base');if(b.parentNode!==slot)slot.appendChild(b);}
+(function(){var a0=tdAgora;tdAgora=function(){var r=a0.apply(this,arguments);try{tpAgoraNaBase();}catch(e){}return r;};})();
 (function(){var t0=tpReal;tpReal=function(){var r=t0.apply(this,arguments);try{tpBase();}catch(e){}return r;};})();
 setInterval(function(){try{tpBase();}catch(e){}},20000);setTimeout(function(){try{tpBase();}catch(e){}},1700);
 ['click','change'].forEach(function(ev){document.addEventListener(ev,function(e){if(e.target.closest&&e.target.closest('#tp-painel'))setTimeout(function(){try{tpBase();}catch(z){}},120);},true);});
@@ -16688,11 +16694,23 @@ setInterval(function(){try{tpBase();}catch(e){}},20000);setTimeout(function(){tr
  '#tp-painel:has(#tp-real) #tp-friso{position:sticky;top:-22px;z-index:6;margin-top:-22px!important;box-shadow:inset 0 2px 0 #f7eed8,inset 0 -2px 0 #c9a45a,0 2px 0 #b9a77a,0 8px 10px -6px rgba(70,45,15,.35)!important}',
  '#tp-real>:is(#tm-painel,#recreio)>.tm-cab{position:sticky!important;top:58px!important;z-index:5;left:auto!important;right:auto!important;transform:none!important;margin:0 auto 10px!important;width:max-content!important;max-width:calc(100% - 28px)!important}',
  '#mm-box .mm-orac-col{--mm-img:url("img/acampamento/ilustra-oraculo.svg")}',
+ '#tp-real .mm-gab>ul{max-height:248px;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#c9a45a transparent;padding-right:4px;margin-right:-4px;-webkit-mask-image:linear-gradient(180deg,#000 calc(100% - 18px),transparent);mask-image:linear-gradient(180deg,#000 calc(100% - 18px),transparent)}',
+ '#tp-real .mm-gab>ul::-webkit-scrollbar{width:5px}#tp-real .mm-gab>ul::-webkit-scrollbar-thumb{background:#c9a45a;border-radius:3px}',
  /* embasamento: três degraus, o do meio com o resumo */
- '#tp-painel:has(#tp-real) #tp-base{order:9;position:sticky;bottom:0;z-index:6;margin:12px -8px 0;display:flex;flex-direction:column;align-items:stretch;pointer-events:none}',
+ '#tp-painel:has(#tp-real) #tp-base{order:9;position:sticky;bottom:0;z-index:6;margin:12px -8px 0;display:flex;flex-direction:column;align-items:stretch}',
  '#tp-base .tb-d{display:block;border:1px solid #9a7b4a;border-bottom:0;background:linear-gradient(180deg,#efe0bb,#e2cc98)}',
  '#tp-base .tb-d1{height:7px;margin:0 16px}',
- '#tp-base .tb-d2{margin:0 8px;padding:4px 8px;text-align:center}',
+ '#tp-base .tb-d2{margin:0 8px;padding:0}',
+ '#tp-base #td-agora.td-ag-base{position:relative;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:3px 8px;margin:0;padding:7px 10px 8px;background:none;border:0;box-shadow:none;font:12.5px var(--sans);color:#3b2a1d}',
+ '#tp-base #td-agora.td-ag-base::before{display:none}',
+ '#tp-base #td-agora.td-ag-base .td-ag-k{grid-column:1;padding:2px 8px;border-radius:999px;background:#3b2a1d;color:#f4ead1;font:700 9px var(--mono,monospace);letter-spacing:.18em;text-transform:uppercase}',
+ '#tp-base #td-agora.td-ag-base>b{grid-column:2;font:400 15px Georgia,serif;font-variant:small-caps;letter-spacing:.04em;color:#2a2418;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}',
+ '#tp-base #td-agora.td-ag-base .td-ag-av{grid-column:3;grid-row:1;width:auto!important;margin:0!important;padding:2px 8px!important;border:1px solid #b89c72!important;border-radius:999px;background:transparent!important;color:#5a3f2c!important;font-size:10.5px!important;white-space:nowrap}',
+ '#tp-base #td-agora.td-ag-base .td-ag-t{grid-column:1/-1;color:#5a4433;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}',
+ '#tp-base #td-agora.td-ag-base .td-ag-bar{grid-column:1/-1;display:block;height:5px;border-radius:999px;background:#e3d3b0;overflow:hidden}',
+ '#tp-base #td-agora.td-ag-base .td-ag-bar em{display:block;height:100%;background:linear-gradient(90deg,#c9a45a,#e8a33c)}',
+ '#tp-base #td-agora.td-ag-base .td-ag-p{grid-column:1/-1;font-size:11.5px;color:#6b5140;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}',
+ '#nav:has(~#rail #tp-base #td-agora) {padding-bottom:0}',
  '#tp-base .tb-d2 em{display:block;font:700 9px var(--mono,monospace);font-style:normal;letter-spacing:.12em;text-transform:uppercase;color:#5a3f2c;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}',
  '#tp-base .tb-d3{height:9px;margin:0;border-bottom:1px solid #9a7b4a;background:repeating-linear-gradient(90deg,#e6d3a6 0 22px,#d9c08c 22px 23px)}'
 ].join('\n');document.head.appendChild(st);})();
@@ -16818,6 +16836,51 @@ setTimeout(function(){try{fgRod();}catch(e){}},1600);
 /* o Sully lembra a primeira flecha */
 satFala=(function(f0){return function(){var r=f0.apply(this,arguments),f=pfD();if(f&&!f.ok)r.t=r.t.replace(/^([^.]*\.)/,'$1 Primeira flecha: '+f.t+'.');return r;};})(satFala);
 window.KALAMO.fogueira=fgAbre;window.KALAMO.cila=ciMarca;
+
+/* ======================= Tarefas e Missões: cartões organizados, padronizados e espaçados =======================
+   Ordem pelos grupos (Tarefas: Chalé, Diárias, Conselho · Missões: Oráculo · Desafio: Profecia), um rótulo por grupo,
+   o mesmo cartão para todos (fundo, borda, faixa de cor no alto, raio, respiro), títulos e subtítulos iguais. */
+(function(){var st=document.createElement('style');st.id='mm-padrao-css';st.textContent=[
+ '#tp-real .tm-lb:has(+ #tm-r2){display:none!important}',
+ '#tp-real #mm-box{display:flex!important;flex-direction:column;gap:14px;margin:0!important;padding:0!important;border:0!important;background:none!important;box-shadow:none!important}',
+ '#tp-real #mm-box>.mm-g{display:contents!important}',
+ '#tp-real #mm-box .mm-h{order:0;margin:0 0 2px!important}',
+ '#tp-real #mm-box .mm-grp-t{order:1}#tp-real #mm-box .mm-chale{order:2}#tp-real #mm-box .mm-quest{order:3}#tp-real #mm-box .mm-gab{order:4}',
+ '#tp-real #mm-box .mm-grp-m{order:5}#tp-real #mm-box .mm-orac-col{order:6}#tp-real #mm-box .mm-grp-d{order:7}#tp-real #mm-box .mm-prof{order:8}',
+ '#tp-real #mm-box .mm-grp{margin:6px 0 -4px!important}',
+ /* um só cartão */
+ '#tp-real #mm-box :is(.mm-col,.mm-gab){--mc:#9a6b3a;position:relative;display:flex!important;flex-direction:column;gap:0;margin:0!important;padding:12px 14px 14px!important;box-sizing:border-box;',
+ ' background:#fbf5e6!important;border:1px solid #d6c69c!important;border-top:3px solid var(--mc)!important;border-radius:10px!important;box-shadow:0 1px 0 #e9dcbc!important;overflow:hidden}',
+ '#tp-real #mm-box .mm-chale{--mc:#9a6b3a}#tp-real #mm-box .mm-quest{--mc:#427d91}#tp-real #mm-box .mm-gab{--mc:#7a4a58}#tp-real #mm-box .mm-orac-col{--mc:#6b5a9a}#tp-real #mm-box .mm-prof{--mc:#b98c47}',
+ '#tp-real #mm-box .mm-col::before{margin:-12px -14px 12px!important;height:78px!important;border-bottom:2px solid var(--mc)!important}',
+ /* cabeçalho de cada cartão: título e subtítulo iguais */
+ '#tp-real #mm-box :is(.mm-col,.mm-gab) .mm-k{display:block;margin:0!important;font:400 17px/1.25 Georgia,serif!important;font-variant:small-caps;letter-spacing:.03em;color:#2a2418!important}',
+ '#tp-real #mm-box .mm-col>.mm-k+small,#tp-real #mm-box .mm-gab>header small{display:block;margin:3px 0 10px!important;font:700 8.5px/1.5 var(--mono,monospace)!important;letter-spacing:.12em;text-transform:uppercase;color:var(--mc)!important}',
+ '#tp-real #mm-box .mm-gab>header{display:flex!important;flex-wrap:wrap;align-items:center;gap:6px 8px;margin:0 0 8px!important;padding:0!important;border:0!important}',
+ '#tp-real #mm-box .mm-gab>header>div{flex:1 1 100%;min-width:0}',
+ '#tp-real #mm-box .mm-gab>header small{margin-bottom:4px!important}',
+ /* listas, campos e rodapés iguais */
+ '#tp-real #mm-box :is(.mm-col,.mm-gab) ul{display:flex;flex-direction:column;gap:6px;margin:0 0 10px!important;padding:0!important}',
+ '#tp-real #mm-box :is(.mm-col,.mm-gab) ul:last-child{margin-bottom:0!important}',
+ '#tp-real #mm-box .mm-vz{margin:0!important;font:italic 12.5px/1.45 Georgia,serif!important;color:#6b5140!important}',
+ '#tp-real #mm-box :is(.mm-add input,.mm-or-in){height:32px!important;box-sizing:border-box;padding:0 10px!important;border:1px solid #c9b28a!important;border-radius:8px!important;background:#fffaf0!important;font:13px var(--sans)!important;color:#2a2418!important}',
+ '#tp-real #mm-box .mm-add{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 8px!important}',
+ '#tp-real #mm-box .mm-add input{flex:1 1 140px;min-width:0}',
+ '#tp-real #mm-box .mm-cont{display:block;margin:2px 0 0!important;font:700 8.5px var(--mono,monospace)!important;letter-spacing:.12em;text-transform:uppercase;color:#8a6f55!important}',
+ '#tp-real #mm-box .mm-drop{margin:4px 0 0!important}',
+ '#tp-real #mm-box .mm-pf{margin:0 0 10px!important}'
+].join('\n');document.head.appendChild(st);})();
+setTimeout(function(){try{mmPinta();}catch(e){}},1300);
+
+
+/* faixa do dia: o pé dela segue a barra FECHADA do rodapé (barra + faixa de notícias), não o rodapé aberto;
+   abrir e fechar os apps não muda mais a altura da faixa */
+function diaBaixo(){var rod=document.getElementById('rod-apps');if(!rod||getComputedStyle(rod).display==='none')return 0;var h=0;
+ Array.prototype.forEach.call(rod.children,function(c){if(!c.classList.contains('rod-corpo')&&getComputedStyle(c).position!=='absolute')h+=c.offsetHeight;});
+ var cs=getComputedStyle(rod);h+=(parseFloat(cs.borderTopWidth)||0)+(parseFloat(cs.paddingTop)||0)+(parseFloat(cs.paddingBottom)||0);return Math.round(h);}
+document.addEventListener('click',function(e){if(e.target.closest&&e.target.closest('#rod-bar'))setTimeout(function(){try{diaPinta();}catch(z){}},380);});
+window.addEventListener('resize',function(){try{diaPinta();}catch(z){}});
+setTimeout(function(){try{diaPinta();}catch(z){}},2500);
 
 })();
 </script>
