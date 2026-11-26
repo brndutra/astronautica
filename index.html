@@ -6331,9 +6331,23 @@ function gmPinta(){
    de nível) e a paleta. Os dados são os mesmos; a escolha fica em S.ap e sincroniza. */
 var TEMAS={
  astro:{nome:'Astron\u00e1utica',app:'Astron\u00e1utica',titulo:'Astron\u00e1utica',
-  abas:['01 / Conv\u00e9s','02 / Expedi\u00e7\u00e3o','03 / Biblioteca','04 / Por\u00e3o','05 / Tesouro'],
-  grupos:['Conv\u00e9s','Expedi\u00e7\u00e3o','Biblioteca','Por\u00e3o'],frase:'Ice as velas. Um remo de cada vez.',sumario:'Astron\u00e1utica',
-  niveis:['Grumete','Remador','Argonauta','Piloto','Her\u00f3i','Constela\u00e7\u00e3o'],seq:'dias de travessia',estudo:'Biblioteca',arquivo:'Por\u00e3o'}};
+  abas:['01 / Casa Grande','02 / Miss\u00f5es','03 / Chal\u00e9 de Atena','04 / Arsenal','05 / Loja'],
+  grupos:['Casa Grande','Miss\u00f5es','Chal\u00e9 de Atena','Arsenal'],frase:'Uma flecha de cada vez.',sumario:'Astron\u00e1utica',
+  niveis:['Indeterminado','Reclamado','Campista','Conselheiro','Her\u00f3i','Constela\u00e7\u00e3o'],seq:'dias no acampamento',estudo:'Chal\u00e9 de Atena',arquivo:'Arsenal',
+  /* nomes do acampamento: troca só rótulos fixos da moldura, nunca o que o usuário escreveu */
+  rotulos:[
+   ['Rotina','Escala do chal\u00e9'],['h\u00e1bitos e menu de recarga','h\u00e1bitos e o que recarrega'],
+   ['Varredura','Tarefas do chal\u00e9'],['Continente','Enfermaria'],['Semana','Programa\u00e7\u00e3o'],
+   ['Opera\u00e7\u00e3o di\u00e1ria','Casa Grande'],['h\u00e1bitos, projetos e menu de recarga','h\u00e1bitos, projetos e o que recarrega'],
+   ['Baralho de Varredura','Tarefas do chal\u00e9'],['Protocolos de conten\u00e7\u00e3o','Enfermaria'],['refor\u00e7o do portador','cuidados de filho de Apolo'],
+   ['Leitura de abertura','chamada da manh\u00e3'],['Como chega a corrente hoje?','Como voc\u00ea chega \u00e0 fogueira hoje?'],
+   ['tr\u00eas prioridades','tr\u00eas miss\u00f5es do dia'],['fim do dia','toque de recolher'],
+   ['rotas abertas','miss\u00f5es abertas'],['ASTROMANTE','FILHO DE APOLO'],
+   ['C\u00e9rebro','Quadro de avisos'],['\u00d3rbita','Em andamento'],['Em \u00f3rbita','Em andamento'],
+   ['Grade','Treinos do m\u00eas'],['Rastreador de h\u00e1bitos','Treinos do m\u00eas'],
+   ['Provas','Prova\u00e7\u00f5es'],['Pr\u00eamios','Recompensas'],['Rota','Profecia'],['Declara\u00e7\u00e3o de rota','Profecia do ciclo'],
+   ['Of\u00edcios','Atividades'],['Aptid\u00f5es','Atividades do acampamento'],
+   ['abrir c\u00e9rebro','abrir o quadro']]}};
 var AP_ARQ=/^(Arquivo do mutante|Porão)$/;
 function apTema(){return 'astro';}
 (function(){var n0=normaliza;normaliza=function(p){var b=n0(p);b.ap=(p&&p.ap==='astro')?'astro':'astro-novo';return b;};})();
@@ -6343,7 +6357,19 @@ function apDados(){var t=TEMAS[apTema()];
 document.body.dataset.skin=apTema();document.title=t.titulo;
  if(typeof GM_TIT!=='undefined')GM_TIT.splice.apply(GM_TIT,[0,GM_TIT.length].concat(t.niveis));
  if(typeof GM_SEQ!=='undefined')GM_SEQ=t.seq;}
-function apTextos(){var t=TEMAS[apTema()];if(!VX)return;
+var AP_ROT_SEL='#nav-l button b,#nav-l button span,#nav-l button small,#nav-l button i,h2.sec,h2.sec span,.pl-k,#vx .vx-k,#vx .vx-metrics span,#vx .vx-card h2,#vx .vx-card h3,#vx .vx-card .k5,#vx .vx-card span,#vx .vx-card small,#rail .k9,#rail button';
+function apRotulos(){var t=TEMAS[apTema()];if(!t.rotulos)return;
+ var mapa={};t.rotulos.forEach(function(r){mapa[r[0].toLowerCase()]=r[1];});
+ Array.prototype.forEach.call(document.querySelectorAll(AP_ROT_SEL),function(el){
+  Array.prototype.forEach.call(el.childNodes,function(n){if(n.nodeType!==3)return;
+   var v=n.nodeValue,tr=v.trim();if(!tr)return;
+   var novo=mapa[tr.toLowerCase()];
+   if(novo==null){var m=tr.match(/^(.*?)(\s*(?:\u00b7|\/\/).*)$/);if(m&&mapa[m[1].trim().toLowerCase()]!=null)novo=mapa[m[1].trim().toLowerCase()]+m[2];}
+   if(novo==null){var m2=tr.match(/^(\/\/\s*)(.*)$/);if(m2&&mapa[m2[2].trim().toLowerCase()]!=null)novo=m2[1]+mapa[m2[2].trim().toLowerCase()];}
+   if(novo==null&&/^ASTROMANTE/.test(tr))novo=tr.replace('ASTROMANTE','FILHO DE APOLO');
+   if(novo!=null&&tr===tr.toUpperCase()&&tr!==tr.toLowerCase())novo=novo.toUpperCase();
+   if(novo!=null&&novo!==tr)n.nodeValue=v.replace(tr,novo);});});}
+function apTextos(){var t=TEMAS[apTema()];if(!VX)return;try{apRotulos();}catch(e){}
  var ordem=['op','camp','est','dos'];
  ordem.concat(['fin']).forEach(function(v,i){var b=VX.querySelector('.vx-tabs [data-view="'+v+'"]');if(b&&t.abas[i])b.textContent=t.abas[i];});
  var h=VX.querySelector('.vx-top h2');if(h)h.textContent=t.frase;
@@ -6366,6 +6392,12 @@ function apTextos(){var t=TEMAS[apTema()];if(!VX)return;
  var tb=document.getElementById('vx-tema');if(tb&&tb.nextSibling!==s.parentNode)top.insertBefore(s.parentNode,tb.nextSibling);
  s.value=apTema();}
 (function(){var r0=vxRender;vxRender=function(){apDados();r0();try{apTextos();}catch(e){console.error('tema:',e);}};})();
+(function(){if(typeof pinta!=='function')return;var p0=pinta;pinta=function(){var r=p0.apply(this,arguments);try{apRotulos();}catch(e){}return r;};})();
+/* a moldura é redesenhada em vários pontos; um observador reaplica os nomes depois de cada redesenho */
+(function(){var pend=0;function vez(){pend=0;try{apRotulos();}catch(e){}}
+ function agenda(){if(!pend)pend=setTimeout(vez,30);}
+ if(window.MutationObserver)new MutationObserver(agenda).observe(document.documentElement,{childList:true,subtree:true});
+ setTimeout(vez,0);})();
 
 /* ---------- Planner do dia (tema Astronáutica) ----------
    Relógio, calendário do mês, três prioridades e checklist de fim de dia,
