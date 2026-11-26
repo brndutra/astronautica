@@ -3177,6 +3177,32 @@ body:not(.claro) .fc{filter:brightness(.92)}
  #rail .rcab b,#rail .rm b{font-size:18px}
  #rail-in input,#rail-in textarea{font-size:13px}
 }
+
+/* Casa Grande enxuta: repetidos fora, cartões novos no painel esquerdo */
+.cg-fora{display:none!important}
+#vx .pl-row,#vx #v4-chk,#vx .v4-hoje,#vx .vx-card:has(#vx-capture-form),#cerbox .capsolo{display:none!important}
+#vx .tr-teto{font-weight:400;letter-spacing:.12em;opacity:.8}
+.cg-c>header{cursor:pointer}
+.cg-c .cg-dobra svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:transform .2s}
+.cg-c.cg-dob .cg-dobra svg{transform:rotate(-90deg)}
+.cg-c.cg-dob>.lat-b{display:none}
+.cg-c.cg-dob>header{margin-bottom:0}
+.cg-c .cg-b{display:flex;flex-direction:column;gap:10px;min-width:0}
+.cg-c :is(.ign,.apt,.hk-gr){grid-template-columns:1fr!important}
+.cg-c .orb{grid-template-columns:1fr 1fr!important}
+.cg-c .ign .col{padding:10px}
+.cg-c .hk{padding:12px!important;margin:0!important}
+.cg-c .corrente{margin:0}
+.cg-c :is(.aptnovo,.ent) input,.cg-c :is(.aptnovo,.ign) select{min-width:0;flex:1 1 100%}
+.cg-c .mn2{grid-template-columns:1fr!important}
+.cg-c .orb{padding:0}
+.cg-c .apl{display:grid!important;grid-template-columns:36px minmax(0,1fr);gap:7px 10px;padding:9px;align-items:start}
+.cg-c .aph{width:36px;height:36px}
+.cg-c .apc{min-width:0;width:auto;flex:none}
+.cg-c .apt1{flex-wrap:wrap;gap:4px 8px}
+.cg-c .apt1 b{white-space:normal}
+.cg-c .apm{white-space:normal;min-height:0}
+.cg-c .apr{grid-column:1/-1;margin:0!important;justify-content:flex-end;flex-wrap:wrap}
 </style>
 </head>
 <body>
@@ -14102,6 +14128,114 @@ function ttIcones(){var n=document.getElementById('tt-indice');if(!n)return;var 
    else{var c=document.getElementById('lat-enf-c');if(c){c.scrollIntoView({behavior:'smooth',block:'start'});c.classList.add('pisca');setTimeout(function(){c.classList.remove('pisca');},1400);}}});}}
 (function(){var i0=ttIndice;ttIndice=function(){i0();try{ttIcones();}catch(e){}};})();
 setTimeout(function(){try{ttIcones();}catch(e){}},600);
+/* ---------- Casa Grande enxuta ----------
+   Sai o que repetia outro painel (hábitos de 7 dias, toque de recolher, chamada da manhã,
+   faixa de hoje, capturas, projetos). O motor de foco vira o Treino na Arena. Profecia,
+   recarga, Em andamento e Atividades viram cartões do painel esquerdo. O Mapa de campo sai;
+   Provações viram os Trabalhos de Hércules e Recompensas viram Prêmios, ambos em dracmas. */
+LAT_IC.prof='<svg viewBox="0 0 24 24"><path d="M12 3c2 2.3 2 4.4 0 6-2-1.6-2-3.7 0-6z"/><path d="M5.5 10.5h13l-2 3h-9z"/><path d="M9 13.5l-2.6 7M15 13.5l2.6 7M12 13.5v7"/></svg>';
+LAT_IC.fogo='<svg viewBox="0 0 24 24"><path d="M12 3c3 3.4 4.2 5.9 4.2 8.3a4.2 4.2 0 0 1-8.4 0c0-1.9 1.3-3.4 1.9-5.3.8 1.5 1.5 2.2 2.1 2.4.6-1.6.6-3.4.2-5.4z"/><path d="M5 20.5l14-3.2M5 17.3l14 3.2"/></svg>';
+LAT_IC.giro='<svg viewBox="0 0 24 24"><path d="M19.2 8.5A8 8 0 1 0 20 14"/><path d="M19.5 3.8v4.7h-4.7"/><circle cx="12" cy="12" r="2.3"/></svg>';
+LAT_IC.alvo='<svg viewBox="0 0 24 24"><circle cx="11" cy="13" r="8"/><circle cx="11" cy="13" r="4.6"/><circle cx="11" cy="13" r="1.3"/><path d="M12.5 11.5L20 4M16.5 4H20v3.5"/></svg>';
+
+/* rótulos do motor de foco: só textos fixos da tela, nunca o que o usuário escreveu */
+var TR_ROT=[[/^Alvo do ciclo \/ aguardando rota$/,'Treino na Arena · aguardando o alvo'],[/^Alvo do ciclo \/ /,'Treino na Arena · '],
+ [/^\+ Nova rota$/,'+ Novo treino'],[/^Editar rota$/,'Editar treino'],[/^Abrir rota$/,'Abrir treino'],
+ [/^Uma rota antes de qualquer disparo\.$/,'Um alvo antes de cada flecha.'],
+ [/^Escolha uma entrega concreta e seu primeiro movimento\. O ECO preservará o ponto de retorno\.$/,'Escolha uma entrega concreta e o primeiro movimento. O fim do treino guarda o ponto de volta.'],
+ [/^Declarar primeira rota$/,'Declarar o primeiro treino'],[/^Ignição 2 min$/,'Aquecer 2 min'],
+ [/^Radar de campo$/,'Quadro da arena'],[/^Nenhuma rota neste filtro\.$/,'Nenhum treino neste filtro.'],[/^Filtro: Todas as rotas$/,'Filtro: Todos os treinos'],
+ [/^(\S+) · rota independente$/,'$1 · treino avulso'],[/^Fechamento do ciclo · relatório do ECO/,'Fim do treino · relatório do dia'],
+ [/^Calibrar o campo$/,'Ajustar a arena'],[/^Salvar calibração$/,'Salvar ajustes'],
+ [/^Carga e saturação são sinais de planejamento\..*$/,'A capacidade é o teto de minutos de foco do dia. Cada hora de foco rende 10 dracmas de ouro.'],
+ [/^Entrega concluída\. O ramo agora faz parte do seu domínio\.$/,'Entrega concluída. Mais uma flecha no alvo.'],
+ [/^Varredura de futuros · preparar o caminho$/,'Plano de batalha · preparar o caminho'],[/^Varredura de futuros$/,'Plano de batalha'],
+ [/^Entrega \/ alvo do ciclo$/,'Entrega / alvo do treino'],[/^Âncora do último ciclo:$/,'Âncora do último treino:']];
+function trRotulos(){var b=document.getElementById('vx-body');if(!b)return;
+ var w=document.createTreeWalker(b,NodeFilter.SHOW_TEXT,{acceptNode:function(n){var p=n.parentNode;if(!p||!n.nodeValue.trim())return NodeFilter.FILTER_REJECT;
+  /* títulos e textos das rotas são do usuário */
+  if(p.closest('.vx-main > p:not(.vx-muted):not(.vx-notice),.vx-item > p'))return NodeFilter.FILTER_REJECT;
+  if(p.closest('.vx-main > h2')&&n.nodeValue.trim()!=='Uma rota antes de qualquer disparo.')return NodeFilter.FILTER_REJECT;return NodeFilter.FILTER_ACCEPT;}}),n,l=[];
+ while((n=w.nextNode()))l.push(n);
+ l.forEach(function(n){var v=n.nodeValue,t=v.trim(),nv=t;TR_ROT.forEach(function(r){nv=nv.replace(r[0],r[1]);});if(nv!==t)n.nodeValue=v.replace(t,nv);});
+ /* o teto de foco da chamada da manhã aparece no cabeçalho do treino */
+ var k=b.querySelector('.vx-main > .vx-top .vx-k');if(k&&!k.querySelector('.tr-teto')&&typeof v4Leitura==='function'&&v4Leitura()){var s=document.createElement('small');s.className='tr-teto';s.textContent=' · teto hoje '+v4Teto()+' min';k.appendChild(s);}}
+
+/* cartões novos do painel esquerdo; dobrar fica salvo por cartão */
+var CG_CARDS=[
+ {id:'lat-prof',ic:'prof',k:'Hékatos · focos, afirmações e visualizações',t:'Profecia do ciclo',apos:'#lat-gm',dobra:true},
+ {id:'lat-orb',ic:'giro',k:'assistindo, ouvindo, estudando',t:'Em andamento',apos:'#lat-cp'},
+ {id:'lat-apt',ic:'alvo',k:'em treino e pretendidas',t:'Atividades do acampamento',apos:'#lat-orb'},
+ {id:'lat-rec',ic:'fogo',k:'montado num dia bom, usado num dia ruim',t:'Menu de recarga',apos:'#lat-enf-c'}];
+function cgDobras(){try{return JSON.parse(localStorage.getItem('astro_cg_dobra')||'{}')||{};}catch(e){return {};}}
+function cgCard(c){var d=cgDobras(),dob=c.id in d?!!d[c.id]:!!c.dobra;
+ var s=document.createElement('div');s.innerHTML=latCard(c.id,c.ic,c.k,c.t,'<div class="cg-b"></div>');s=s.firstChild;s.classList.add('cg-c');s.classList.toggle('cg-dob',dob);
+ var hd=s.querySelector('header'),bt=document.createElement('button');bt.type='button';bt.className='lat-ed cg-dobra';bt.setAttribute('aria-label','abrir ou fechar');bt.setAttribute('aria-expanded',String(!dob));
+ bt.innerHTML='<svg viewBox="0 0 24 24"><path d="M6 9.5l6 6 6-6"/></svg>';hd.appendChild(bt);
+ hd.addEventListener('click',function(ev){if(ev.target.closest('a,input'))return;var on=!s.classList.contains('cg-dob');s.classList.toggle('cg-dob',on);bt.setAttribute('aria-expanded',String(!on));
+  var x=cgDobras();x[c.id]=on;try{localStorage.setItem('astro_cg_dobra',JSON.stringify(x));}catch(e){}});
+ return s;}
+function cgPoe(box,nos){nos.forEach(function(n){if(!n)return;n.dataset.vxHidden='false';n.style.display='';if(n.parentNode!==box)box.appendChild(n);});}
+function cgFora(n){if(n){n.classList.add('cg-fora');n.dataset.vxHidden='true';}}
+/* um título de seção e os blocos dele logo em seguida (só os do tipo esperado) */
+function cgSecao(id,sel){var h=document.getElementById(id),r=[];if(!h)return r;r.push(h);var n=h.nextElementSibling;
+ while(n&&n.matches(sel)){r.push(n);n=n.nextElementSibling;}return r;}
+function cgCards(){var e=document.getElementById('lat-e');if(!e)return;
+ CG_CARDS.forEach(function(c){if(document.getElementById(c.id))return;var ref=e.querySelector(c.apos),s=cgCard(c);if(ref&&ref.parentNode===e)e.insertBefore(s,ref.nextSibling);else e.appendChild(s);});
+ var B=function(id){return document.querySelector('#'+id+' .cg-b');};
+ /* Profecia: ficha do Hékatos, a declaração do dia e focos/afirmações/visualizações */
+ var rota=cgSecao('h-rota','#hk-ficha,.narr,.ign'),narr=rota.filter(function(n){return n.classList.contains('narr');})[0],cor=narr&&narr.querySelector('.corrente');
+ cgPoe(B('lat-prof'),[document.getElementById('hk-ficha'),cor,document.querySelector('.ign')]);
+ rota.forEach(function(n){if(n.id!=='hk-ficha'&&!n.classList.contains('ign'))cgFora(n);});
+ /* Em andamento */
+ cgSecao('h-orb','#orbp').forEach(function(n){if(n.id==='orbp')cgPoe(B('lat-orb'),[n]);else cgFora(n);});
+ /* Atividades: filtro, lista e formulário */
+ cgSecao('h-apt','.aptcab,.apt,.aptnovo').forEach(function(n){if(n.matches('.aptcab,.apt,.aptnovo'))cgPoe(B('lat-apt'),[n]);else cgFora(n);});
+ /* Menu de recarga sai da antiga Operação diária; os hábitos de 7 dias ficam escondidos (o registro do dia ainda os usa) */
+ cgPoe(B('lat-rec'),[document.getElementById('mn-l'),document.getElementById('mn-add')]);
+ cgSecao('h-dia','.op3').forEach(cgFora);
+ cgSecao('h-proj','.op3').forEach(cgFora);
+ cgSecao('h-mc','.narr,.mc').forEach(cgFora);
+ /* Trabalhos e Prêmios: títulos no tema */
+ var hp=document.getElementById('h-prov');if(hp&&!hp.dataset.cg){hp.dataset.cg=1;hp.innerHTML='Trabalhos de Hércules <span>// metas longas · pagam em dracmas de ouro</span>';}
+ var hr=document.getElementById('h-rec');if(hr&&!hr.dataset.cg){hr.dataset.cg=1;hr.innerHTML='Prêmios da Casa Grande <span>// trocados por dracmas de ouro</span>';}}
+(function(){var h0=hkFicha;hkFicha=function(){h0();var f=document.getElementById('hk-ficha');if(f&&f.closest('#lat-prof'))f.style.display='';};})();
+(function(){var p0=latPosiciona;latPosiciona=function(){p0.apply(this,arguments);try{cgCards();}catch(e){console.error('cg:',e);}};})();
+(function(){var r0=vxRender;vxRender=function(){r0();try{cgCards();trRotulos();}catch(e){console.error('cg:',e);}};})();
+
+/* ---------- Trabalhos de Hércules: as provas antigas, contadas pelo app do acampamento ----------
+   Pagam em dracmas de ouro (metade do antigo valor em lastro, para a loja não inflar). */
+var TRAB={pv1:['Os estábulos de Áugias','Cumprir 20 Tarefas do chalé.'],
+ pv2:['O leão de Nemeia','Sete dias com a Enfermaria em 70 ou mais.'],
+ pv3:['A corça de Cerineia','Declarar a Profecia em 10 ciclos.'],
+ pv4:['As aves do Estínfalo','Levar 30 termos ao estágio dominado em Grego Antigo e Outras.'],
+ pv5:['O javali de Erimanto','Fechar 3 voltas do ciclo de estudo em Táticas de Guerra.'],
+ pv6:['A Hidra de Lerna','Dez ciclos sem estourar o teto de foco.']};
+function trabPaga(P){return Math.round(P.pg/2);}
+(function(){var d0=drSaldo;drSaldo=function(){return d0()+(drD().bonus|0);};})();
+pintaProvas=function(){var h='',i;
+ for(i=0;i<PROVAS.length;i++){var P=PROVAS[i],T=TRAB[P.id]||[P.n,P.d],v=0;try{v=P.f()|0;}catch(e){v=0;}
+  v=Math.max(0,Math.min(P.alvo,v));var pc=Math.round(v/P.alvo*100),paga=!!S.provas[P.id],pronta=v>=P.alvo;
+  h+='<div class="pv'+(paga?' paga':(pronta?' pronta':''))+'"><div class="pvt"><b>'+T[0]+'</b><span class="pvp">'+trabPaga(P)+' <i>dracmas</i></span></div><p>'+T[1]+'</p>'+
+   '<div class="pvb"><i style="width:'+pc+'%"></i></div><div class="pvf"><span>'+v+' / '+P.alvo+'</span>'+
+   (paga?'<span class="pvok">cumprido em '+S.provas[P.id]+'</span>':'<button data-pv="'+P.id+'"'+(pronta?'':' disabled')+'>'+(pronta?'receber':'em curso')+'</button>')+'</div></div>';}
+ var box=el('prov');if(!box)return;box.innerHTML=h;
+ Array.prototype.forEach.call(box.querySelectorAll('[data-pv]'),function(b){b.addEventListener('click',function(){var id=this.getAttribute('data-pv'),P=PROVAS.filter(function(x){return x.id===id;})[0];
+  if(!P||S.provas[id])return;var v2=0;try{v2=P.f()|0;}catch(e){}if(v2<P.alvo)return;
+  var L=drD();S.provas[id]=hoje();L.bonus=(L.bonus|0)+trabPaga(P);
+  move(0,8,'Trabalho cumprido: '+(TRAB[id]||[P.n])[0]+'. '+trabPaga(P)+' dracmas de ouro na bolsa.',false,0,1,0);});});};
+/* ---------- Prêmios da Casa Grande: mesmos prêmios, agora comprados com dracmas ---------- */
+var PREM_NOME={0:'Tarde livre no lago'};
+pintaRw=function(){var h='',sd=drSaldo();
+ for(var i=0;i<RECOMPENSAS.length;i++){var r=RECOMPENSAS[i],got=!!S.premios[i],paga=sd>=r.c;
+  h+='<div class="rwc'+(got?' got':(paga?'':' lock'))+'"><span class="lv">'+(got?'resgatado em '+S.premios[i]:'prêmio da Casa Grande')+'</span><h4>'+(PREM_NOME[i]||r.h)+'</h4><p>'+r.p+'</p>'+
+   '<span class="preco">'+r.c+' <i>dracmas</i></span><button data-r="'+i+'"'+((got||!paga)?' disabled':'')+'><strong>'+(got?'Resgatado':(paga?'Resgatar':'faltam '+(r.c-sd)+' dracmas'))+'</strong></button></div>';}
+ var box=el('rw');if(!box)return;box.innerHTML=h;
+ Array.prototype.forEach.call(box.querySelectorAll('button[data-r]'),function(b){b.addEventListener('click',function(){var k=this.getAttribute('data-r'),rr=RECOMPENSAS[k];
+  if(!rr||S.premios[k]||drSaldo()<rr.c)return;var L=drD();L.gasto=(L.gasto|0)+rr.c;S.premios[k]=hoje();
+  anota('Prêmio resgatado: '+(PREM_NOME[k]||rr.h)+' — '+rr.c+' dracmas de ouro.',0,false);pinta();});});};
+setTimeout(function(){try{cgCards();trRotulos();pintaProvas();pintaRw();}catch(e){console.error('cg:',e);}},0);
+
 /* a Grade semanal é o painel principal: logo abaixo do índice */
 function latGradeTopo(){var wr=document.querySelector('.wrap'),h=document.getElementById('h-sem'),ix=document.getElementById('tt-indice');if(!wr||!h)return;
  var tb=h.nextElementSibling&&h.nextElementSibling.classList.contains('tb')?h.nextElementSibling:document.querySelector('.wrap > .tb');
