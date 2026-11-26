@@ -41,15 +41,15 @@ O projeto na Vercel está ligado a este repositório: cada push na `main` public
 - Sem rede, os eventos ficam guardados e saem sozinhos a cada 5 minutos.
 - Em `extensao/api.js`, `CFG.app` recebe o endereço do site publicado para mostrar o botão "abrir o app".
 
-## Pontes de Hermes (`pontes.js`, `pontes.css`)
+## Caduceu de Hermes (`pontes.js`, `pontes.css`)
 
 Integrações externas, num arquivo à parte. O script principal só expõe `window.ASTRO` e guarda `S.pz`.
 
-- **Boletim de Hermes (RSS):** faixa discreta acima do rodapé, via rss2json, com cache de 30 min, várias fontes e filtro de assuntos. ✕ esconde até o dia seguinte.
-- **Raindrop.io:** fila de leitura no Laptop. "ler 15 min" abre o link e conta o tempo; "lido" vira bloco na Linha de Tiro e põe a etiqueta #lido no Raindrop.
-- **Readwise:** cada livro ou artigo com destaques vira um Pergaminho (nota com a etiqueta `readwise`); cinco destaques por dia formam a quest diária `pz-rw` (revisão espaçada).
-- **Toggl Track:** entradas encerradas viram sessões (`tg<id>`) e contam nas dracmas e na Copa dos Chalés. Opcional: mandar ao Toggl os blocos feitos no app, com a etiqueta `astronautica`, que o app ignora na volta.
-- **Strava:** minutos por dia somam em `S.ativ` (medidor de Movimento); a parte do Strava fica em `S.pz.sv.ativ` para não somar em dobro.
-- **Habitica:** dailies com o mesmo nome dos hábitos se ligam sozinhas; marcou de um lado, marca do outro. Chamadas automáticas com 30 s entre elas e cabeçalho `x-client`.
+- **Hefesto TV (RSS):** faixa discreta acima do rodapé, via rss2json, com cache de 30 min, várias fontes e filtro de assuntos. ✕ esconde até o dia seguinte.
+- **Hermes Express (Raindrop.io):** fila de leitura no Laptop. "ler 15 min" abre o link e conta o tempo; "lido" vira bloco na Linha de Tiro e põe a etiqueta #lido no Raindrop.
+- **Águas do Lete (Readwise):** cada livro ou artigo com destaques vira uma Tabuinha de Cadmo (nota com a etiqueta `readwise`); cinco destaques por dia formam a quest diária `pz-rw`, Fuga do Lete (revisão espaçada).
+- **Relógio-escudo de Tyson (Toggl Track):** entradas encerradas viram sessões (`tg<id>`) e contam nas dracmas e na Copa dos Chalés. Opcional: mandar ao Toggl os blocos feitos no app, com a etiqueta `astronautica`, que o app ignora na volta.
+- **Tênis alados · Maia! (Strava):** minutos por dia somam em `S.ativ` (medidor de Movimento); a parte do Strava fica em `S.pz.sv.ativ` para não somar em dobro.
+- **Acampamento Júpiter (Habitica):** dailies com o mesmo nome dos hábitos se ligam sozinhas; marcou de um lado, marca do outro. Chamadas automáticas com 30 s entre elas e cabeçalho `x-client`.
 - As chaves ficam só no aparelho (`localStorage`, chave `astro-pontes-v1`). Readwise, Raindrop, Toggl e Strava passam pela função `supabase/functions/pontes` (CORS), que só aceita esses destinos e não guarda nada.
 

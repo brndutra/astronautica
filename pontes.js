@@ -1,11 +1,11 @@
 /* ==========================================================================
-   Pontes de Hermes: integrações externas do Astronáutica
-   - Boletim de Hermes (RSS via rss2json): faixa discreta acima do rodapé
-   - Fila de leitura (Raindrop.io): blocos de 15 min no Laptop
-   - Pergaminhos (Readwise): destaques viram notas; revisão espaçada vira quest diária
-   - Linha de Tiro ↔ Toggl Track: entradas do Toggl viram sessões (dracmas e Copa)
-   - Movimento (Strava): minutos de atividade entram no medidor de Movimento
-   - Espelho do Habitica: hábitos do app ↔ dailies do Habitica
+   Caduceu de Hermes: integrações externas do Astronáutica (nomes do universo de Rick Riordan)
+   - Hefesto TV (RSS via rss2json): faixa discreta acima do rodapé
+   - Hermes Express (Raindrop.io): fila de leitura em blocos de 15 min no Laptop
+   - Águas do Lete (Readwise): destaques viram Tabuinhas de Cadmo (notas); revisão espaçada vira quest diária
+   - Relógio-escudo de Tyson (Toggl Track): entradas viram sessões da Linha de Tiro (dracmas e Copa)
+   - Tênis alados · Maia! (Strava): minutos de atividade entram no medidor de Movimento
+   - Acampamento Júpiter (Habitica): hábitos do app ↔ dailies do Habitica
    As chaves ficam só neste aparelho (localStorage). O que é registro (sessões,
    minutos, notas, mapeamentos) vai para S.pz e sincroniza pela nuvem.
    O app expõe window.ASTRO de dentro do script principal.
@@ -45,7 +45,7 @@ function ponte(alvo,metodo,caminho,auth,corpo){
    if(!r.ok){var m=(d&&(d.erro||d.message||d.error||d.detail||d.errorMessage))||('erro '+r.status);if(r.status===401||r.status===403)m='chave recusada ('+r.status+')';throw new Error(String(m).slice(0,120));}
    return d;});});}
 
-/* ======================= Boletim de Hermes (RSS) ======================= */
+/* ======================= Hefesto TV (RSS) ======================= */
 var PADRAO_RSS=['https://www.conjur.com.br/rss.xml','https://www.jota.info/feed','https://res.stj.jus.br/hrestp-c-portalp/RSS.xml'];
 var RSS={itens:[],quando:0};
 function rssBusca(forca){var z=Z().rss;if(!z.on||!z.feeds.length){RSS.itens=[];pintaTicker();return;}
@@ -66,15 +66,15 @@ function rssFiltrados(){var f=(Z().rss.filtro||'').trim(),re=null;if(f){try{re=n
  return RSS.itens.filter(function(i){return !re||re.test(i.t);}).slice(0,12);}
 function pintaTicker(){var z=Z().rss,t=document.getElementById('pz-ticker'),it=rssFiltrados(),oculto=localStorage.getItem('astro-rss-oculto')===hoje();
  if(!z.on||!it.length||oculto){if(t)t.remove();document.body.classList.remove('pz-com-ticker');return;}
- if(!t){t=document.createElement('div');t.id='pz-ticker';t.setAttribute('role','region');t.setAttribute('aria-label','Boletim de Hermes');document.body.appendChild(t);
+ if(!t){t=document.createElement('div');t.id='pz-ticker';t.setAttribute('role','region');t.setAttribute('aria-label','Hefesto TV');document.body.appendChild(t);
   t.addEventListener('click',function(e){if(e.target.closest('.pz-tk-x')){localStorage.setItem('astro-rss-oculto',hoje());pintaTicker();}});}
  var lin=it.map(function(i){return '<a href="'+esc(i.l)+'" target="_blank" rel="noopener noreferrer"><i>'+esc(i.f)+'</i>'+esc(i.t)+'</a>';}).join('<span class="pz-tk-s">·</span>');
- t.innerHTML='<span class="pz-tk-k">Boletim de Hermes</span><div class="pz-tk-v"><div class="pz-tk-trilho" style="--pz-dur:'+Math.max(40,it.length*9)+'s">'+lin+'<span class="pz-tk-s">·</span>'+lin+'</div></div><button type="button" class="pz-tk-x" title="esconder até amanhã" aria-label="esconder o boletim até amanhã">✕</button>';
+ t.innerHTML='<span class="pz-tk-k">Hefesto TV · ao vivo</span><div class="pz-tk-v"><div class="pz-tk-trilho" style="--pz-dur:'+Math.max(40,it.length*9)+'s">'+lin+'<span class="pz-tk-s">·</span>'+lin+'</div></div><button type="button" class="pz-tk-x" title="esconder até amanhã" aria-label="esconder o boletim até amanhã">✕</button>';
  document.body.classList.add('pz-com-ticker');posTicker();}
 function posTicker(){var t=document.getElementById('pz-ticker'),r=document.getElementById('rod-apps');if(!t)return;
  var h=r?Math.max(0,window.innerHeight-r.getBoundingClientRect().top):0;t.style.bottom=h+'px';}
 
-/* ======================= Fila de leitura (Raindrop) ======================= */
+/* ======================= Hermes Express (Raindrop) ======================= */
 var RD={itens:[],ler:null};
 function rdBusca(){var tok=cf().rd;if(!tok){RD.itens=[];return Promise.resolve();}var z=Z().rd;
  var q='raindrops/'+(parseInt(z.col,10)||0)+'?perpage=40&sort=-created'+(z.tag?'&search='+encodeURIComponent('#'+z.tag):'');
@@ -94,7 +94,7 @@ function rdLido(id){var it=RD.itens.filter(function(i){return i.id===id;})[0],z=
  A.vxMsg(min?'Leitura registrada: '+min+' min na Linha de Tiro.':'Marcado como lido.');
  var tok=cf().rd;if(tok)ponte('raindrop','PUT','raindrop/'+id,'Bearer '+tok,{tags:it.tags.concat('lido')}).catch(function(){});}
 
-/* ======================= Pergaminhos (Readwise) ======================= */
+/* ======================= Águas do Lete (Readwise) ======================= */
 function rwSync(){var tok=cf().rw;if(!tok)return Promise.resolve();var z=Z().rw,pag=0,novos=0,livros=0;
  function vai(cursor){var q='export/?'+(z.ult?'updatedAfter='+encodeURIComponent(z.ult):'')+(cursor?'&pageCursor='+encodeURIComponent(cursor):'');
   return ponte('readwise','GET',q,'Token '+tok).then(function(d){pag++;
@@ -104,9 +104,9 @@ function rwSync(){var tok=cf().rw;if(!tok)return Promise.resolve();var z=Z().rw,
    if(d.nextPageCursor&&pag<6)return vai(d.nextPageCursor);});}
  var inicio=new Date().toISOString();
  return vai(null).then(function(){if(z.pool.length>300)z.pool=z.pool.slice(-300);z.ult=inicio;
-  rwQuest();salva();marca('rw',true,novos?novos+' destaques novos em '+livros+' pergaminho'+(livros>1?'s':''):'em dia');repinta();})
+  rwQuest();salva();marca('rw',true,novos?novos+' destaques novos em '+livros+' tabuinha'+(livros>1?'s':''):'em dia');repinta();})
  .catch(function(e){marca('rw',false,e.message);});}
-/* um pergaminho (nota) por livro, etiquetado rw:<id> */
+/* uma tabuinha (nota) por livro, etiquetada rw:<id> */
 function rwNota(b,hs){var S=A.S;S.notas=S.notas||[];var tag='rw:'+b.user_book_id,n=S.notas.filter(function(x){return (x.tags||[]).indexOf(tag)>=0;})[0],c=0;
  var cab=(b.author?b.author+' · ':'')+(b.category||'')+(b.source_url?' · '+b.source_url:'');
  if(!n){n={t:String(b.title||'Destaques').slice(0,60),b:cab+'\n',tags:['readwise',tag],d:hoje()};S.notas.unshift(n);}
@@ -118,9 +118,12 @@ function rwDia(){var z=Z().rw,hj=hoje();if(z.dia&&z.dia.d===hj)return z.dia;if(!
  z.dia={d:hj,ids:ord.slice(0,5).map(function(p){return p.id;}),ok:[]};salva();return z.dia;}
 function rwRevisto(id){var z=Z().rw,d=rwDia();if(!d)return;if(d.ok.indexOf(id)<0)d.ok.push(id);z.visto[id]=hoje();
  var ks=Object.keys(z.visto);if(ks.length>600)ks.sort(function(a,b){return z.visto[a]<z.visto[b]?-1:1;}).slice(0,ks.length-600).forEach(function(k){delete z.visto[k];});
- if(d.ok.length>=d.ids.length){try{var Q=A.mmD(),f=Q.feitas[hoje()]=Q.feitas[hoje()]||[];if(f.indexOf('pz-rw')<0)f.push('pz-rw');A.mmPinta();}catch(e){}A.vxMsg('Revisão dos Pergaminhos feita: quest diária cumprida.');}
+ if(d.ok.length>=d.ids.length){try{var Q=A.mmD(),f=Q.feitas[hoje()]=Q.feitas[hoje()]||[];if(f.indexOf('pz-rw')<0)f.push('pz-rw');A.mmPinta();}catch(e){}A.vxMsg('Você escapou do Lete: revisão das Tabuinhas feita, quest cumprida.');}
  salva();repinta();}
-function rwQuest(){try{var Q=A.mmD();if(cf().rw&&!Q.dia.some(function(q){return q.id==='pz-rw';})){Q.dia.push({id:'pz-rw',t:'Revisão espaçada dos Pergaminhos (Readwise)'});A.mmPinta();}}catch(e){}}
+var RW_QUEST='Fuga do Lete · revisão das Tabuinhas (Readwise)';
+function rwQuest(){try{var Q=A.mmD(),q=Q.dia.filter(function(x){return x.id==='pz-rw';})[0];
+ if(q&&q.t!==RW_QUEST){q.t=RW_QUEST;salva();A.mmPinta();}
+ else if(!q&&cf().rw){Q.dia.push({id:'pz-rw',t:RW_QUEST});A.mmPinta();}}catch(e){}}
 
 /* ======================= Linha de Tiro ↔ Toggl Track ======================= */
 function tgAuth(){return 'Basic '+btoa(cf().tg+':api_token');}
@@ -158,7 +161,7 @@ function svVolta(){var p=new URLSearchParams(location.search);if(p.get('state')!
  var code=p.get('code'),c=cf();history.replaceState(null,'',location.pathname);
  if(!code){marca('sv',false,'autorização negada no Strava');return;}
  ponte('strava-oauth','POST','token?client_id='+encodeURIComponent(c.sv_id)+'&client_secret='+encodeURIComponent(c.sv_sec)+'&code='+encodeURIComponent(code)+'&grant_type=authorization_code')
-  .then(function(t){cfSet('sv_tok',{a:t.access_token,r:t.refresh_token,e:t.expires_at});A.vxMsg('Strava ligado.');svSync();})
+  .then(function(t){cfSet('sv_tok',{a:t.access_token,r:t.refresh_token,e:t.expires_at});A.vxMsg('Maia! Os tênis alados estão ligados ao Strava.');svSync();})
   .catch(function(e){marca('sv',false,e.message);});}
 function svToken(){var c=cf(),t=c.sv_tok;if(!t)return Promise.reject(new Error('Strava não ligado'));
  if(t.e*1000>Date.now()+300e3)return Promise.resolve(t.a);
@@ -207,9 +210,9 @@ function pintaLaptop(){var p=document.querySelector('#painel-dir .pd-pane[data-p
   box.addEventListener('click',function(e){var b=e.target.closest('[data-pz]');if(!b)return;var a=b.dataset.pz,id=b.dataset.id;
    if(a==='rd-ler')rdLer(+id);else if(a==='rd-lido')rdLido(+id);else if(a==='rw-ok')rwRevisto(+id);else if(a==='cfg')pzConfig(b.dataset.k);else if(a==='sync')agora(b.dataset.k);});}
  else if(box.parentNode!==p)p.appendChild(box);
- var c=cf(),h='<div class="pz-lap-h"><span class="pz-k">estante de Hermes</span><b>Leitura e revisão</b><small>fila do Raindrop em blocos de 15 min · destaques do Readwise em revisão espaçada</small></div>';
+ var c=cf(),h='<div class="pz-lap-h"><span class="pz-k">notas de Dédalo</span><b>Entregas e memória</b><small>o que o Hermes Express trouxe para ler · as Tabuinhas que o Lete ainda não apagou</small></div>';
  /* fila de leitura */
- h+='<div class="pz-col"><h5>Fila de leitura <small>Raindrop</small></h5>';
+ h+='<div class="pz-col"><h5>Hermes Express <small>fila de leitura · Raindrop</small></h5>';
  if(!c.rd)h+='<p class="pz-n">Ligue o Raindrop para puxar os artigos e julgados que você salvou. <button type="button" class="pz-lk" data-pz="cfg" data-k="rd">ligar</button></p>';
  else if(!RD.itens.length)h+='<p class="pz-n">'+(ST.rd&&!ST.rd.ok?'Não consegui ler a fila: '+esc(ST.rd.msg)+'.':'Fila vazia. Salve algo no Raindrop'+(Z().rd.tag?' com a etiqueta #'+esc(Z().rd.tag):'')+' e ele aparece aqui.')+' <button type="button" class="pz-lk" data-pz="sync" data-k="rd">atualizar</button></p>';
  else h+='<ol class="pz-fila">'+RD.itens.slice(0,6).map(function(i){var lendo=RD.ler&&RD.ler.id===i.id,min=lendo?Math.floor((Date.now()-RD.ler.ini)/60000):0;
@@ -218,9 +221,9 @@ function pintaLaptop(){var p=document.querySelector('#painel-dir .pd-pane[data-p
   (RD.itens.length>6?'<p class="pz-n">mais '+(RD.itens.length-6)+' na fila</p>':'');
  h+='</div>';
  /* revisão do dia */
- h+='<div class="pz-col"><h5>Revisão do dia <small>Readwise · quest diária</small></h5>';
+ h+='<div class="pz-col"><h5>Águas do Lete <small>revisão do dia · Readwise</small></h5>';
  var d=c.rw?rwDia():null,z=Z().rw;
- if(!c.rw)h+='<p class="pz-n">Ligue o Readwise: seus destaques do Kindle, de PDFs e de artigos viram Pergaminhos e uma revisão de cinco por dia. <button type="button" class="pz-lk" data-pz="cfg" data-k="rw">ligar</button></p>';
+ if(!c.rw)h+='<p class="pz-n">Ligue o Readwise: seus destaques do Kindle, de PDFs e de artigos viram Tabuinhas de Cadmo e uma revisão de cinco por dia. <button type="button" class="pz-lk" data-pz="cfg" data-k="rw">ligar</button></p>';
  else if(!d)h+='<p class="pz-n">'+(ST.rw&&!ST.rw.ok?'Não consegui ler o Readwise: '+esc(ST.rw.msg)+'.':'Buscando os destaques…')+'</p>';
  else{var feitos=d.ok.length;h+='<p class="pz-prog"><b>'+feitos+'/'+d.ids.length+'</b> revistos hoje'+(feitos>=d.ids.length?' · quest cumprida ✓':'')+'</p><ul class="pz-rev">'+
   d.ids.map(function(id){var p=z.pool.filter(function(x){return x.id===id;})[0];if(!p)return '';var ok=d.ok.indexOf(id)>=0;
@@ -236,14 +239,14 @@ var IC={
  tg:'<circle cx="12" cy="13" r="7"/><path d="M12 9.5V13l2.5 1.6M10 3h4"/>',
  sv:'<path d="M4 18l5-10 4 7 2-3 5 6"/>',
  hb:'<path d="M12 3l2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.4 6.8 19.1l1-5.8L3.5 9.2l5.9-.8z"/>'};
-var NOMES={rss:['Boletim de Hermes','RSS jurídico na faixa de baixo'],rd:['Raindrop','fila de leitura no Laptop'],rw:['Readwise','Pergaminhos e revisão espaçada'],
- tg:['Toggl Track','blocos cronometrados viram dracmas'],sv:['Strava','minutos de Movimento'],hb:['Habitica','hábitos espelhados']};
+var NOMES={rss:['Hefesto TV','RSS jurídico na faixa de baixo'],rd:['Hermes Express','Raindrop · fila de leitura no Laptop'],rw:['Águas do Lete','Readwise · Tabuinhas e revisão espaçada'],
+ tg:['Relógio-escudo de Tyson','Toggl Track · blocos viram dracmas'],sv:['Tênis alados · Maia!','Strava · minutos de Movimento'],hb:['Acampamento Júpiter','Habitica · hábitos espelhados']};
 function ligado(k){var c=cf();return k==='rss'?(Z().rss.on&&Z().rss.feeds.length>0):k==='hb'?!!(c.hb_user&&c.hb_key):k==='sv'?!!c.sv_tok:!!c[k];}
 function pintaPontes(){var ap=document.getElementById('lat-apps');if(!ap)return;var box=document.getElementById('pz-pontes');
  if(!box){box=document.createElement('section');box.id='pz-pontes';box.className='lat-c pz-pontes';ap.appendChild(box);
   box.addEventListener('click',function(e){var b=e.target.closest('[data-pz]');if(!b)return;e.stopPropagation();var a=b.dataset.pz,k=b.dataset.k;
    if(a==='cfg')pzConfig(k);else if(a==='sync'){if(k==='todas')ciclo(true);else agora(k);}else if(a==='sv-ligar')svConecta();else if(a==='hb-map')hbMapa();});}
- var h='<header><span class="lat-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17c3-6 15-6 18 0M6 15.2V19M18 15.2V19M12 13v6"/></svg></span><div><span class="k9">integrações</span><b>Pontes de Hermes</b></div>'+
+ var h='<header><span class="lat-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17c3-6 15-6 18 0M6 15.2V19M18 15.2V19M12 13v6"/></svg></span><div><span class="k9">integrações · George e Martha atendem</span><b>Caduceu de Hermes</b></div>'+
   '<button type="button" class="pz-lk" data-pz="sync" data-k="todas" title="sincronizar tudo agora">sincronizar</button></header><div class="lat-b"><ul class="pz-lista">'+
   Object.keys(NOMES).map(function(k){var on=ligado(k),s=ST[k],cls=!on?'off':s?(s.ok?'ok':'erro'):'esp';
    var est=!on?'desligado':s?esc(s.msg)+(s.t?' · '+quando(s.t):''):'aguardando a primeira leitura';
@@ -259,24 +262,24 @@ function pintaPontes(){var ap=document.getElementById('lat-apps');if(!ap)return;
 function pzConfig(k){var c=cf(),z=Z();
  var dlg=function(o){A.vxDlg(o);setTimeout(function(){var w=document.getElementById('vx-dlg');if(!w)return;w.classList.add('pz-dlg');
   Array.prototype.forEach.call(w.querySelectorAll('input'),function(i,n){if(o.campos[n]&&o.campos[n].max)i.maxLength=o.campos[n].max;});},0);};
- if(k==='rss')dlg({titulo:'Boletim de Hermes',texto:'Feeds RSS separados por vírgula (ConJur, JOTA, STJ, CJF, Diário Oficial…). O filtro é opcional: só passam os títulos que batem com ele, por exemplo <b>trf3|previdenci|inss|stj|stf</b>. Deixe os feeds vazios para desligar a faixa.',
+ if(k==='rss')dlg({titulo:'Hefesto TV · boletim jurídico',texto:'Feeds RSS separados por vírgula (ConJur, JOTA, STJ, CJF, Diário Oficial…). O filtro é opcional: só passam os títulos que batem com ele, por exemplo <b>trf3|previdenci|inss|stj|stf</b>. Deixe os feeds vazios para desligar a faixa.',
   campos:[{label:'Feeds',valor:z.rss.feeds.join(', '),max:2000},{label:'Filtro de assuntos (opcional)',valor:z.rss.filtro||'',max:300}],ok:'salvar',
   onOk:function(v){z.rss.feeds=v[0].split(/[\s,]+/).filter(function(u){return /^https:\/\/\S+$/.test(u);}).slice(0,8);z.rss.filtro=v[1];z.rss.on=z.rss.feeds.length>0;
    try{if(v[1])new RegExp(v[1],'i');}catch(e){z.rss.filtro='';A.vxMsg('Filtro inválido; ficou sem filtro.');}
    localStorage.removeItem('astro-rss-oculto');salva();agora('rss');pintaPontes();}});
- else if(k==='rd')dlg({titulo:'Raindrop · fila de leitura',texto:'No Raindrop, abra <b>Configurações › Integrações › For developers › Create new app</b>, entre no app criado e clique em <b>Create test token</b>. Cole o token aqui. Etiqueta e coleção são opcionais: com a etiqueta <b>ler</b>, só entra na fila o que você marcar com #ler. Ao clicar em “lido”, o item ganha a etiqueta #lido e sai da fila.',
+ else if(k==='rd')dlg({titulo:'Hermes Express · Raindrop',texto:'No Raindrop, abra <b>Configurações › Integrações › For developers › Create new app</b>, entre no app criado e clique em <b>Create test token</b>. Cole o token aqui. Etiqueta e coleção são opcionais: com a etiqueta <b>ler</b>, só entra na fila o que você marcar com #ler. Ao clicar em “lido”, o item ganha a etiqueta #lido e sai da fila.',
   campos:[{label:'Test token',valor:c.rd||'',tipo:'password'},{label:'Etiqueta (opcional, sem #)',valor:z.rd.tag||''},{label:'ID da coleção (0 = todas)',valor:String(z.rd.col||0)}],ok:'salvar',
   onOk:function(v){cfSet('rd',v[0]);z.rd.tag=v[1].replace(/^#/,'');z.rd.col=parseInt(v[2],10)||0;salva();agora('rd');pintaPontes();pintaLaptop();}});
- else if(k==='rw')dlg({titulo:'Readwise · Pergaminhos',texto:'Pegue o token em <b>readwise.io/access_token</b> e cole aqui. Cada livro ou artigo com destaques vira um Pergaminho (nota com a etiqueta readwise), e cinco destaques por dia viram a quest <b>Revisão espaçada dos Pergaminhos</b> (+5 XP).',
+ else if(k==='rw')dlg({titulo:'Águas do Lete · Readwise',texto:'Pegue o token em <b>readwise.io/access_token</b> e cole aqui. Cada livro ou artigo com destaques vira uma Tabuinha de Cadmo (nota com a etiqueta readwise), e cinco destaques por dia viram a quest <b>Fuga do Lete</b> (+5 XP).',
   campos:[{label:'Access token',valor:c.rw||'',tipo:'password'}],ok:'salvar',
   onOk:function(v){cfSet('rw',v[0]);if(v[0]){rwQuest();agora('rw');}salva();pintaPontes();pintaLaptop();}});
- else if(k==='tg')dlg({titulo:'Toggl Track · Linha de Tiro',texto:'O token fica em <b>track.toggl.com › Profile settings › API Token</b>. Cada entrada encerrada no Toggl vira um bloco na Linha de Tiro (10 dracmas por hora e pontos da Copa dos Chalés). Com a etiqueta, só contam as entradas marcadas com ela. Se ligar o envio, os blocos feitos no app também vão para o Toggl, com a etiqueta astronautica, sem contar em dobro.',
+ else if(k==='tg')dlg({titulo:'Relógio-escudo de Tyson · Toggl Track',texto:'O token fica em <b>track.toggl.com › Profile settings › API Token</b>. Cada entrada encerrada no Toggl vira um bloco na Linha de Tiro (10 dracmas por hora e pontos da Copa dos Chalés). Com a etiqueta, só contam as entradas marcadas com ela. Se ligar o envio, os blocos feitos no app também vão para o Toggl, com a etiqueta astronautica, sem contar em dobro.',
   campos:[{label:'API token',valor:c.tg||'',tipo:'password'},{label:'Só a etiqueta (opcional)',valor:z.tg.tag||''},{label:'Mandar os blocos do app ao Toggl? (sim/não)',valor:z.tg.env?'sim':'não'}],ok:'salvar',
   onOk:function(v){if(v[0]!==c.tg)cfSet('tgw',null);cfSet('tg',v[0]);z.tg.tag=v[1];z.tg.env=/^s/i.test(v[2]);salva();agora('tg');pintaPontes();}});
- else if(k==='sv')dlg({titulo:'Strava · Movimento',texto:'1. Em <b>strava.com/settings/api</b>, crie um app; em <b>Authorization Callback Domain</b>, ponha <b>'+esc(location.hostname)+'</b>.<br>2. Cole aqui o Client ID e o Client Secret e salve.<br>3. Clique em <b>autorizar no Strava</b>.<br>Natação, academia, corrida e caminhada somam no medidor de Movimento. O Strava exige assinatura ativa de quem cria o app.',
+ else if(k==='sv')dlg({titulo:'Tênis alados · Strava',texto:'1. Em <b>strava.com/settings/api</b>, crie um app; em <b>Authorization Callback Domain</b>, ponha <b>'+esc(location.hostname)+'</b>.<br>2. Cole aqui o Client ID e o Client Secret e salve.<br>3. Clique em <b>autorizar no Strava</b>.<br>Natação, academia, corrida e caminhada somam no medidor de Movimento. O Strava exige assinatura ativa de quem cria o app.',
   campos:[{label:'Client ID',valor:c.sv_id||''},{label:'Client Secret',valor:c.sv_sec||'',tipo:'password'}],ok:'salvar',
   onOk:function(v){if(v[0]!==c.sv_id||v[1]!==c.sv_sec)cfSet('sv_tok',null);cfSet('sv_id',v[0]);cfSet('sv_sec',v[1]);pintaPontes();if(v[0]&&v[1]&&!cf().sv_tok)svConecta();}});
- else if(k==='hb')dlg({titulo:'Habitica · espelho dos hábitos',texto:'Em <b>habitica.com › Configurações › Site Data (API)</b>, copie o <b>User ID</b> e o <b>API Token</b>. Dailies do Habitica com o mesmo nome de um hábito do app se ligam sozinhas; as outras você liga em “ligar hábitos”. Marcou de um lado, marca do outro.',
+ else if(k==='hb')dlg({titulo:'Acampamento Júpiter · Habitica',texto:'Em <b>habitica.com › Configurações › Site Data (API)</b>, copie o <b>User ID</b> e o <b>API Token</b>. Dailies do Habitica com o mesmo nome de um hábito do app se ligam sozinhas; as outras você liga em “ligar hábitos”. Marcou de um lado, marca do outro.',
   campos:[{label:'User ID',valor:c.hb_user||''},{label:'API Token',valor:c.hb_key||'',tipo:'password'}],ok:'salvar',
   onOk:function(v){cfSet('hb_user',v[0]);cfSet('hb_key',v[1]);agora('hb');pintaPontes();}});}
 /* mapa hábito do app → daily do Habitica */
@@ -284,7 +287,7 @@ function hbMapa(){var S=A.S,z=Z().hb,w=document.getElementById('pz-hbmapa');if(w
  if(!HB.tarefas.length){A.vxMsg('Ainda não li as dailies do Habitica. Tente “sincronizar”.');return;}
  w=document.createElement('div');w.id='pz-hbmapa';w.className='pz-modal';w.setAttribute('role','dialog');w.setAttribute('aria-label','Ligar hábitos ao Habitica');
  var op=function(sel){return '<option value="">não ligar</option>'+HB.tarefas.map(function(t){return '<option value="'+esc(t.id)+'"'+(t.id===sel?' selected':'')+'>'+esc(t.n)+'</option>';}).join('');};
- w.innerHTML='<div class="pz-mbk"></div><div class="pz-mbx"><p class="vxd-t">Hábitos ↔ Habitica</p><p class="vxd-d">Escolha a daily do Habitica que espelha cada hábito do app.</p>'+
+ w.innerHTML='<div class="pz-mbk"></div><div class="pz-mbx"><p class="vxd-t">Meio-Sangue ↔ Acampamento Júpiter</p><p class="vxd-d">Escolha a daily do Habitica que espelha cada hábito do app.</p>'+
   ((S.hab||[]).map(function(h){return '<label class="pz-hbl"><span>'+esc(h.nome)+'</span><select data-h="'+esc(h.id)+'">'+op(z.map[h.id]||'')+'</select></label>';}).join('')||'<p class="vxd-d">Você ainda não tem hábitos no app.</p>')+
   '<div class="vxd-bt"><button type="button" data-x>cancelar</button><button type="button" data-ok>salvar</button></div></div>';
  document.body.appendChild(w);
