@@ -3914,6 +3914,26 @@ h2.sec.neo-tit+.neo-moldura{margin-top:0!important}
 #cerbox #rail-in .rcap button{width:auto!important}
 .cp-mural.cp-vazio{display:none!important}
 @media(min-width:901px){body.claro[data-skin="astro"] #vx .vx-hero>.cp-dracmas,#vx .vx-hero>.cp-dracmas{left:266px!important}}
+
+/* coluna esquerda reorganizada */
+#lat-postal,#lat-e > #lat-prof{display:none!important}
+.area-cab.ts-oculta{display:none!important}
+.lv-prof{border:0!important;background:none!important;box-shadow:none!important}
+.lv-prof>header{display:none!important}.lv-prof .lat-b,.lv-prof .cg-b{display:block!important;padding:0!important}
+#cerbox .qa-orb{margin:0 0 14px}
+/* Tesouro do chalé: seção final em couro escuro */
+.tesouro{margin:34px -6px 10px;padding:26px 24px 28px;border-radius:16px;color:#f4ead2;
+ background:radial-gradient(120% 90% at 20% 0%,#5a3f2c 0%,#3b2a1d 55%,#2a1d14 100%);border:1.5px solid #2a1d14;box-shadow:inset 0 0 0 4px #3b2a1d,inset 0 0 0 5.5px #b48a4a,0 10px 28px rgba(40,25,10,.25)}
+.ts-cab{text-align:center;margin:0 0 20px}
+.ts-cab .ts-k{display:block;font:700 10px var(--mono,monospace);letter-spacing:.3em;text-transform:uppercase;color:#d8b46a}
+.ts-cab h2{margin:6px 0 4px;font:400 28px Georgia,serif;letter-spacing:.04em;color:#f4ead2;border:0!important;padding:0!important}
+.ts-cab h2::before{display:none!important}
+.ts-cab p{margin:0;font-size:13.5px;color:#d9c7a3}
+.ts-g{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);gap:16px;align-items:start}
+.ts-col{display:flex;flex-direction:column;gap:16px;min-width:0}
+.tesouro .lat-c,.tesouro .sec-card{margin:0!important;background:#f4ead2!important;color:#3b2a1d;border:1.5px solid #b48a4a!important;border-radius:12px!important;box-shadow:0 6px 18px rgba(0,0,0,.25)}
+.tesouro .sec-card{padding:14px 16px!important;width:auto!important;max-width:none!important}
+@media(max-width:800px){.ts-g{grid-template-columns:1fr}.tesouro{margin:28px 0 10px;padding:20px 14px}}
 </style>
 </head>
 <body>
@@ -11858,6 +11878,7 @@ var LV_FOLHAS=[
  {id:'dos-painel',sec:'Dossiê',cap:'Apêndice',t:'Dossiê · fogo interno',dupla:true},
  {id:'dos-lim',sec:'Dossiê',cap:'Apêndice',t:'Dossiê · ponto fraco',dupla:true},
  {id:'dos-diag',sec:'Dossiê',cap:'Apêndice',t:'Dossiê · oráculo',dupla:true}];
+LV_FOLHAS.splice(7,0,{id:'profecia',sec:'Profecia',cap:'Capítulo VII',t:'Profecia do ciclo'});
 var LV_DOS_CORTE={'h-sec':'dos-ficha','h-painel':'dos-painel','h-lim':'dos-lim','h-diag':'dos-diag'};
 var LV_ESTREITO=window.matchMedia?window.matchMedia('(max-width: 880px)'):{matches:false};
 var LV_SOL='<svg viewBox="0 0 100 100" aria-hidden="true"><defs><radialGradient id="lvWax" cx="38%" cy="32%" r="75%"><stop offset="0%" stop-color="#d8a94a"/><stop offset="45%" stop-color="#a87a2a"/><stop offset="100%" stop-color="#6b4a16"/></radialGradient></defs>'+
@@ -13590,6 +13611,26 @@ function bnMove(){var hero=document.querySelector('#vx .vx-hero'),b=bnBox(),slot
 setTimeout(function(){try{latGradeTopo();latPosiciona();latAc();latMural();bnMove();latGradeTopo();}catch(e){console.error('laterais:',e);}},0);
 (function(){try{var r=JSON.parse(localStorage.getItem(KEY)||'null');if(!r)return;var b=normaliza(r);['pins','apps','ws'].forEach(function(k){if(S[k]===undefined||(k==='pins'&&!S.pins.length))S[k]=b[k];});}catch(e){}})();
 (LAT_LARGA.addEventListener?LAT_LARGA.addEventListener('change',function(){latPosiciona();try{vxRender();}catch(e){}}):0);
+/* ---------- reorganização da coluna esquerda ----------
+   Profecia do ciclo vira página da Ficha; Postal do dia sai; Em andamento entra no Quadro de avisos;
+   Arsenal, Dracmas e Prêmios formam o Tesouro do chalé, a seção final da página. */
+function reorgProf(){var p=document.getElementById('lat-prof'),c=document.querySelector('#lv [data-folha="profecia"] .lv-corpo');if(!p||!c)return;
+ p.classList.remove('cg-dob');p.classList.add('lv-prof');if(p.parentNode!==c)c.appendChild(p);}
+lvMonta=(function(m0){return function(){var x=m0.apply(this,arguments);try{reorgProf();}catch(e){}return x;};})(lvMonta);
+function reorgOrb(){var o=document.getElementById('lat-orb'),cb=document.getElementById('cerbox');if(!o||!cb)return;
+ var sb=cb.querySelector(':scope > .sb');o.classList.add('qa-orb');if(sb){if(sb.previousElementSibling!==o)cb.insertBefore(o,sb);}else if(o.parentNode!==cb)cb.appendChild(o);}
+function reorgTesouro(){var wr=document.querySelector('.wrap');if(!wr)return;var t=document.getElementById('tesouro');
+ if(!t){t=document.createElement('section');t.id='tesouro';t.className='tesouro';t.dataset.area='op';
+  t.innerHTML='<header class="ts-cab"><span class="ts-k">o tesouro do chalé 7</span><h2>Arsenal, dracmas e prêmios</h2><p>O que o treino rende: a forja do Hékatos, a moeda do acampamento e o que ela compra.</p></header>'+
+   '<div class="ts-g"><div class="ts-col" id="ts-a"></div><div class="ts-col" id="ts-b"></div></div>';}
+ t.dataset.vxHidden='false';if(wr.lastElementChild!==t)wr.appendChild(t);
+ var a=t.querySelector('#ts-a'),b=t.querySelector('#ts-b');
+ ['lat-ars','lat-dr'].forEach(function(id){var n=document.getElementById(id);if(n&&n.parentNode!==a){n.dataset.vxHidden='false';a.appendChild(n);}});
+ var r=document.getElementById('c-h-rec');if(r&&r.parentNode!==b){r.hidden=false;r.dataset.vxHidden='false';b.appendChild(r);}
+ Array.prototype.forEach.call(wr.querySelectorAll(':scope > .area-cab'),function(ac){var n=ac.nextElementSibling,vis=false;while(n&&!n.classList.contains('area-cab')&&n.id!=='tesouro'){if(n.offsetHeight>2){vis=true;break;}n=n.nextElementSibling;}ac.classList.toggle('ts-oculta',!vis);});}
+function reorg(){try{reorgProf();}catch(e){}try{reorgOrb();}catch(e){}try{reorgTesouro();}catch(e){}}
+(function(){var r0=vxRender;vxRender=function(){var x=r0.apply(this,arguments);reorg();return x;};var p0=pinta;pinta=function(){var x=p0.apply(this,arguments);reorg();return x;};})();
+setTimeout(reorg,50);setTimeout(reorg,900);
 setInterval(pintaProgresso,60000);
 })();
 </script>
