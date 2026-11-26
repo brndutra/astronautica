@@ -46,7 +46,7 @@ function ponte(alvo,metodo,caminho,auth,corpo){
    return d;});});}
 
 /* ======================= Boletim de Hermes (RSS) ======================= */
-var PADRAO_RSS=['https://www.conjur.com.br/rss.xml','https://www.migalhas.com.br/rss/quentes.xml','https://res.stj.jus.br/hrestp-c-portalp/RSS.xml'];
+var PADRAO_RSS=['https://www.conjur.com.br/rss.xml','https://www.jota.info/feed','https://res.stj.jus.br/hrestp-c-portalp/RSS.xml'];
 var RSS={itens:[],quando:0};
 function rssBusca(forca){var z=Z().rss;if(!z.on||!z.feeds.length){RSS.itens=[];pintaTicker();return;}
  var cache=null;try{cache=JSON.parse(localStorage.getItem(RSS_CACHE)||'null');}catch(e){}
@@ -259,7 +259,7 @@ function pintaPontes(){var ap=document.getElementById('lat-apps');if(!ap)return;
 function pzConfig(k){var c=cf(),z=Z();
  var dlg=function(o){A.vxDlg(o);setTimeout(function(){var w=document.getElementById('vx-dlg');if(!w)return;w.classList.add('pz-dlg');
   Array.prototype.forEach.call(w.querySelectorAll('input'),function(i,n){if(o.campos[n]&&o.campos[n].max)i.maxLength=o.campos[n].max;});},0);};
- if(k==='rss')dlg({titulo:'Boletim de Hermes',texto:'Feeds RSS separados por vírgula (ConJur, Migalhas, STJ, TRF3, Diário Oficial…). O filtro é opcional: só passam os títulos que batem com ele, por exemplo <b>trf3|previdenci|inss|stj|stf</b>. Deixe os feeds vazios para desligar a faixa.',
+ if(k==='rss')dlg({titulo:'Boletim de Hermes',texto:'Feeds RSS separados por vírgula (ConJur, JOTA, STJ, CJF, Diário Oficial…). O filtro é opcional: só passam os títulos que batem com ele, por exemplo <b>trf3|previdenci|inss|stj|stf</b>. Deixe os feeds vazios para desligar a faixa.',
   campos:[{label:'Feeds',valor:z.rss.feeds.join(', '),max:2000},{label:'Filtro de assuntos (opcional)',valor:z.rss.filtro||'',max:300}],ok:'salvar',
   onOk:function(v){z.rss.feeds=v[0].split(/[\s,]+/).filter(function(u){return /^https:\/\/\S+$/.test(u);}).slice(0,8);z.rss.filtro=v[1];z.rss.on=z.rss.feeds.length>0;
    try{if(v[1])new RegExp(v[1],'i');}catch(e){z.rss.filtro='';A.vxMsg('Filtro inválido; ficou sem filtro.');}
