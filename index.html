@@ -17623,6 +17623,83 @@ document.addEventListener('click',function(e){var b=e.target.closest&&e.target.c
 ].join('\n').split('__GK__').join('url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2214%22%20height%3D%2214%22%20viewBox%3D%220%200%2014%2014%22%3E%3Crect%20width%3D%2214%22%20height%3D%2214%22%20fill%3D%22%23f1e4c6%22/%3E%3Cpath%20d%3D%22M3%200V11H11V4H6V8H8%22%20fill%3D%22none%22%20stroke%3D%22%23c99a3d%22%20stroke-width%3D%221.5%22/%3E%3Cpath%20d%3D%22M0.75%200V14M13.25%200V14%22%20stroke%3D%22%238a6420%22%20stroke-width%3D%221%22/%3E%3C/svg%3E")');document.head.appendChild(st);})();
 fioFixo=(function(f0){return function(){f0.apply(this,arguments);try{var nav=document.getElementById('nav');if(nav&&matchMedia('(min-width:1380px)').matches){var r=nav.getBoundingClientRect(),sb=nav.offsetWidth-nav.clientWidth,de=document.documentElement.style;de.setProperty('--fio-l',(Math.max(0,r.left)+14)+'px');de.setProperty('--fio-w',Math.max(160,r.width-sb-28)+'px');}}catch(e){}};})(fioFixo);
 
+
+/* ======================= Tema alternativo HOTEL VALHALA =======================
+   Botão ᛟ ao lado do OP alterna entre Acampamento e Valhala (fica guardado; a troca recarrega a página).
+   No Valhala: vocabulário nórdico em toda a interface (Andar 19, Nornas, Saga, Thing, Gjallarhorn, Banquete, Poço de Mímir...),
+   paleta azul-noite, madeira e ouro, frisos de escudos no lugar dos dentículos, postes de madeira entalhada no lugar das
+   pilastras, entrelaçado no lugar da grega, medalhão do valknut no frontão e vetores nórdicos no lugar das fotos. */
+var TV_ON=(function(){try{return localStorage.getItem('astro_tema')==='valhala';}catch(e){return false;}})();
+var TV_TERMOS=[["Acampamento Meio-Sangue", "Hotel Valhala"], ["Uma flecha de cada vez.", "Uma batalha de cada vez."], ["acampamento Meio-Sangue", "hotel Valhala"], ["uma flecha de cada vez.", "uma batalha de cada vez."], ["Folheto do acampamento", "Folheto do hotel"], ["corvos gêmeos de Apolo", "corvos gêmeos de Odin"], ["folheto do acampamento", "folheto do hotel"], ["Inspeção dos chalés", "Inspeção dos quartos"], ["o jarro guarda tudo", "o poço guarda tudo"], ["Captura da bandeira", "Combate do dia"], ["Captura da Bandeira", "Combate do Dia"], ["inspeção dos chalés", "inspeção dos quartos"], ["captura da bandeira", "combate do dia"], ["captura da Bandeira", "combate do Dia"], ["bandeira capturada", "combate vencido"], ["Campo de arquearia", "Campo de tiro de Ullr"], ["Missões do Oráculo", "Missões das Nornas"], ["acender a fogueira", "servir o banquete"], ["Acender a fogueira", "Servir o banquete"], ["campo de arquearia", "campo de tiro de Ullr"], ["missões do Oráculo", "missões das Nornas"], ["Long Island, N.Y.", "Boston, Mass."], ["Ficha do campista", "Ficha do einherji"], ["Ronda das Harpias", "Ronda das Valquírias"], ["Conselheiro-Chefe", "Thane-Chefe"], ["conselheiro-chefe", "thane-chefe"], ["Píthos de Pandora", "Poço de Mímir"], ["Ariadne · retomar", "Heimdall · retomar"], ["Escudo de Aquiles", "Escudo de Odin"], ["Bússola de Dédalo", "Bússola de Heimdall"], ["long Island, N.Y.", "boston, Mass."], ["ficha do campista", "ficha do einherji"], ["ronda das Harpias", "ronda das Valquírias"], ["conselheiro-Chefe", "thane-Chefe"], ["píthos de Pandora", "poço de Mímir"], ["ariadne · retomar", "heimdall · retomar"], ["escudo de Aquiles", "escudo de Odin"], ["bússola de Dédalo", "bússola de Heimdall"], ["Bússola de Dédalo", "Bússola de Heimdall"], ["BÚSSOLA DE DÉDALO", "BÚSSOLA DE HEIMDALL"], ["Guia do Campista", "Manual do Einherji"], ["Tarefas do Chalé", "Tarefas do Quarto"], ["Bolsa de Dracmas", "Tesouro de Andvari"], ["Tear de Penélope", "Tear de Frigg"], ["Posto de comando", "Mesa do Thane"], ["Mural de Missões", "Mural das Sagas"], ["guia do Campista", "manual do Einherji"], ["tarefas do Chalé", "tarefas do Quarto"], ["bolsa de Dracmas", "tesouro de Andvari"], ["tear de Penélope", "tear de Frigg"], ["posto de comando", "mesa do Thane"], ["mural de Missões", "mural das Sagas"], ["Camp Half-Blood", "Hotel Valhalla"], ["Toque da Concha", "Toque do Gjallarhorn"], ["Diário de bordo", "Saga do dia"], ["Copa dos Chalés", "Placar dos Andares"], ["dracmas de ouro", "marcos de ouro"], ["Sátiro Protetor", "Einherji Guardião"], ["camp Half-Blood", "hotel Valhalla"], ["toque da Concha", "toque do Gjallarhorn"], ["diário de bordo", "saga do dia"], ["copa dos Chalés", "placar dos Andares"], ["sátiro Protetor", "einherji Guardião"], ["Fio de Ariadne", "Ponte Bifröst"], ["corvo de Apolo", "corvo de Odin"], ["fio de Ariadne", "ponte Bifröst"], ["na Casa Grande", "no Saguão"], ["da Casa Grande", "do Saguão"], ["Linha de tiro", "Campo de tiro"], ["arco de Apolo", "arco de Ullr"], ["abrir cérebro", "abrir o poço"], ["linha de tiro", "campo de tiro"], ["a Casa Grande", "o Saguão"], ["Astronáutica", "Hotel Valhala"], ["ASTRONÁUTICA", "HOTEL VALHALA"], ["Tênis alados", "Botas de Víðarr"], ["astronáutica", "hotel Valhala"], ["tênis alados", "botas de Víðarr"], ["Long Island", "Boston"], ["acampamento", "hotel"], ["Acampamento", "Hotel"], ["da Fogueira", "do Banquete"], ["da fogueira", "do banquete"], ["na Fogueira", "no Banquete"], ["na fogueira", "no banquete"], ["Casa Grande", "Saguão"], ["long Island", "boston"], ["casa Grande", "saguão"], ["HALF-BLOOD", "VALHALLA"], ["Half-Blood", "Valhalla"], ["Hefesto TV", "Rádio Bifröst"], ["Refeitório", "Salão do Banquete"], ["a Fogueira", "o Banquete"], ["a fogueira", "o banquete"], ["half-Blood", "valhalla"], ["hefesto TV", "rádio Bifröst"], ["refeitório", "salão do Banquete"], ["Chalé VII", "Andar XIX"], ["CHALÉ VII", "ANDAR XIX"], ["campistas", "einherjar"], ["Recreação", "Lazer do Salão"], ["Clepsidra", "Ampulheta de Sól"], ["chalé VII", "andar XIX"], ["recreação", "lazer do Salão"], ["clepsidra", "ampulheta de Sól"], ["campista", "einherji"], ["Campista", "Einherji"], ["Fogueira", "Banquete"], ["fogueira", "banquete"], ["Profecia", "Saga"], ["profecia", "saga"], ["Conselho", "Thing"], ["conselho", "thing"], ["Bunker 9", "Forja de Nidavellir"], ["Alvorada", "Despertar"], ["Pavilhão", "Salão"], ["bunker 9", "forja de Nidavellir"], ["alvorada", "despertar"], ["pavilhão", "salão"], ["Chalé 7", "Andar 19"], ["chalé 7", "andar 19"], ["Harpias", "Valquírias"], ["harpias", "valquírias"], ["Oráculo", "Nornas"], ["oráculo", "nornas"], ["dracmas", "marcos"], ["Dracmas", "Marcos"], ["Esfinge", "Fenrir"], ["Cérebro", "Poço"], ["esfinge", "fenrir"], ["cérebro", "poço"], ["Concha", "Gjallarhorn"], ["concha", "gjallarhorn"], ["Chalés", "Andares"], ["chalés", "andares"], ["sátiro", "einherji"], ["Sátiro", "Einherji"], ["Quíron", "Helgi"], ["Píthos", "Mímir"], ["quíron", "helgi"], ["píthos", "mímir"], ["Chalé", "Quarto"], ["chalé", "quarto"], ["Apolo", "Odin"], ["apolo", "odin"], ["Camp", "Hotel"], ["CAMP", "HOTEL"], ["camp", "hotel"]];
+var TV_RX=TV_TERMOS.map(function(t){var e=t[0].replace(/[.*+?^${}()|[\]\\]/g,'\\$&');return [new RegExp('(^|[^0-9A-Za-zÀ-ÿ])'+e+'(?![0-9A-Za-zÀ-ÿ])','g'),t[1]];});
+function tvTxt(t){if(!t||t.length<3)return t;var o=t;for(var i=0;i<TV_RX.length;i++){if(o.indexOf(TV_TERMOS[i][0])<0)continue;o=o.replace(TV_RX[i][0],function(m,p){return p+TV_RX[i][1];});}return o;}
+function tvNo(root){if(!root)return;if(root.nodeType===3){var p=root.parentNode;if(p&&/^(SCRIPT|STYLE|TEXTAREA)$/.test(p.nodeName))return;var n=tvTxt(root.nodeValue);if(n!==root.nodeValue)root.nodeValue=n;return;}
+ if(root.nodeType!==1||/^(SCRIPT|STYLE|TEXTAREA|INPUT)$/.test(root.nodeName))return;
+ var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT),x;while(x=w.nextNode()){var pp=x.parentNode;if(pp&&/^(SCRIPT|STYLE|TEXTAREA)$/.test(pp.nodeName))continue;var v=tvTxt(x.nodeValue);if(v!==x.nodeValue)x.nodeValue=v;}
+ var at=root.querySelectorAll?[root].concat([].slice.call(root.querySelectorAll('[title],[placeholder],[aria-label]'))):[];
+ at.forEach(function(e){['title','placeholder','aria-label'].forEach(function(a){var v=e.getAttribute&&e.getAttribute(a);if(v){var n2=tvTxt(v);if(n2!==v)e.setAttribute(a,n2);}});});}
+function tvBotao(){var r=document.querySelector('#lat-topo>.lt-r2');if(!r)return;var b=document.getElementById('tv-tg');
+ if(!b){b=document.createElement('button');b.type='button';b.id='tv-tg';b.className='tv-tg';b.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M12 3v18M4 10h16"/></svg>';
+  b.addEventListener('click',function(){try{localStorage.setItem('astro_tema',TV_ON?'acampamento':'valhala');}catch(e){}location.reload();});}
+ b.title=TV_ON?'Voltar ao Acampamento Meio-Sangue':'Tema Hotel Valhala';b.setAttribute('aria-label',b.title);if(b.parentNode!==r)r.appendChild(b);}
+setInterval(function(){try{tvBotao();}catch(e){}},1500);setTimeout(function(){try{tvBotao();}catch(e){}},800);
+(function(){var st=document.createElement('style');st.id='tv-botao-css';st.textContent=[
+ '#lat-topo>.lt-r2>#tv-tg{order:100;flex:none;display:grid!important;place-items:center;width:26px!important;height:24px;margin:0!important;padding:0!important;border:1px solid #1f2c45!important;border-radius:999px!important;background:#f4ead2!important;color:#1f2c45!important;cursor:pointer}',
+ '#lat-topo>.lt-r2>#tv-tg svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linejoin:round}',
+ 'body.tv #lat-topo>.lt-r2>#tv-tg{background:#1f2c45!important;color:#e9c87a!important;border-color:#c9a245!important}'
+].join('\n');document.head.appendChild(st);})();
+if(TV_ON){document.body.classList.add('tv');
+ (function(){var fila=[],t=null;var mo=new MutationObserver(function(rs){rs.forEach(function(r){if(r.type==='characterData')fila.push(r.target);else r.addedNodes.forEach(function(n){fila.push(n);});});
+  if(t)return;t=setTimeout(function(){t=null;var f=fila;fila=[];mo.disconnect();try{f.forEach(tvNo);}catch(e){}mo.observe(document.body,{childList:true,subtree:true,characterData:true});},120);});
+  tvNo(document.body);mo.observe(document.body,{childList:true,subtree:true,characterData:true});
+  setTimeout(function(){mo.disconnect();tvNo(document.body);mo.observe(document.body,{childList:true,subtree:true,characterData:true});},3000);})();
+ try{document.title=tvTxt(document.title);}catch(e){}
+ var I=function(n){return 'url("img/acampamento/'+n+'")';};
+ try{['.op-l','.op-col1','.op-fazer','.op-estudo','.op-lado'].forEach(function(k,i){if(OP_TEMPLO[k]){OP_TEMPLO[k].img=['vh-sol.svg','vh-martelo.svg','vh-fuso.svg','vh-olho.svg','vh-valknut.svg'][i];OP_TEMPLO[k].c='#d9c58a';OP_TEMPLO[k].k='#1f2c45';}});}catch(e){}
+ (function(){var st=document.createElement('style');st.id='tv-css';st.textContent=[
+  /* paleta */
+  'body.tv{--n-frontao:#b08a2e;--n-entab:#1f2c45;--n-colun:#8e2a2a;--n-atrio:#3f5a3a;--n-tesouro:#b08a2e;background-color:#e7e4da!important}',
+  'body.tv .neo-moldura{--col-k:#1f2c45!important;--col-c:#d9c58a!important;--neo-ent:'+I('vh-escudos.svg')+'!important;--neo-cap:'+I('vh-capitel.svg')+'!important;--neo-fuste:'+I('vh-fuste.svg')+'!important;--neo-base:'+I('vh-base.svg')+'!important}',
+  'body.tv .wrap>.tb.neo-moldura{--col-k:#1f2c45!important}body.tv .wrap>.rt.neo-moldura{--col-k:#8e2a2a!important}',
+  'body.tv #tp-real>:is(#tm-painel,#recreio){--col-k:#3f5a3a!important;--col-c:#cfd8bd!important}',
+  /* frontão: telhado de escudos dourados, tímpano azul-noite, valknut */
+  'body.tv #hero-box .nf2 .nf-tri path.t3{fill:#1f2c45!important}body.tv #hero-box .nf2 .nf-tri path.t2{fill:#c9a245!important}',
+  'body.tv #hero-box .nf2 .nf-txt{color:#e9c87a!important;text-shadow:0 1px 0 rgba(0,0,0,.5)!important}',
+  'body.tv #hero-box .nf2 .nf-louro,body.tv #hero-box .nf2 .nf-acro{display:none!important}',
+  'body.tv #hero-box .nf2 .fr-lira{content:'+I('vh-medalhao.svg')+';box-shadow:0 0 0 3px #1f2c45,0 0 0 4.5px #c9a245!important}',
+  'body.tv #hero-box .nf2 .nf-c2{background:radial-gradient(circle at 50% 50%,#c9a245 0 3px,#8a6a1e 3px 4px,transparent 4.5px) 0 0/12px 8px,#1f2c45!important}',
+  'body.tv #hero-box .nf2>.pd-pilula{border-color:#c9a245!important;background:linear-gradient(180deg,#26365a,#1a253b)!important;box-shadow:0 0 0 3px #1f2c45,0 0 0 4.5px #c9a245,0 6px 12px -6px rgba(0,0,0,.6)!important}',
+  'body.tv #hero-box .nf2>.pd-pilula button{color:#e9c87a!important;border-left-color:#3a4a6a!important}',
+  /* banner: entrelaçado no lugar da grega */
+  'body.tv #hero-box .vx-hero::after{-webkit-mask-image:'+I('vh-no.svg')+'!important;mask-image:'+I('vh-no.svg')+'!important;-webkit-mask-size:24px 24px!important;mask-size:24px 24px!important;background:#1f2c45!important}',
+  'body.tv #hero-box .vx-hero h2{color:#1a253b!important}',
+  /* painel esquerdo: faixas de entrelaçado */
+  '@media(min-width:1380px){body.tv #nav.navdr{background-image:'+I('vh-no-v.svg')+','+I('vh-no-v.svg')+'!important;background-size:14px 24px!important}}',
+  /* placas e cartões: ouro sobre azul */
+  'body.tv h2.sec.neo-tit.placa-tom,body.tv #tp-real>:is(#tm-painel,#recreio)>.tm-cab{--pk:#1f2c45}',
+  'body.tv #lat-e>:is(#lat-arena,#lat-band,#lat-cp,#lat-db),body.tv #lat-e>#lat-gm>.gm{--lc:#1f2c45}',
+  'body.tv #lat-e>#lat-db{--lc:#8e2a2a}body.tv #lat-e>#lat-arena{--lc:#b08a2e}',
+  /* vetores nórdicos no lugar das fotos (um por lugar) */
+  'body.tv #mm-box .mm-chale{--mm-img:'+I('vh-salao.svg')+'!important;--mm-pos:center}body.tv #mm-box .mm-quest{--mm-img:'+I('vh-machado.svg')+'!important;--mm-pos:center}',
+  'body.tv #mm-box .mm-gab{--mm-img:'+I('vh-corvo.svg')+'!important;--mm-pos:center}body.tv #mm-box .mm-orac-col{--mm-img:'+I('vh-yggdrasil.svg')+'!important;--mm-pos:center}',
+  'body.tv #mm-box .mm-prof{--mm-img:'+I('vh-drakkar.svg')+'!important;--mm-pos:center}',
+  'body.tv #mm-box :is(.mm-col,.mm-gab)::before{filter:none!important}',
+  'body.tv #rt-box .rt-concha{--rt-img:'+I('vh-chifre.svg')+'!important}body.tv #rt-box .rt-insp{--rt-img:'+I('vh-tocha.svg')+'!important}body.tv #rt-box .rt-harp{--rt-img:'+I('vh-asa.svg')+'!important}',
+  'body.tv #rt-box :is(.rt-concha,.rt-insp,.rt-harp)::before{background-position:center!important;filter:none!important}',
+  'body.tv #lat-apt{--c-img:'+I('vh-lancas.svg')+'!important}body.tv #lat-rec{--c-img:'+I('vh-caneca.svg')+'!important}body.tv #lat-cv{--c-img:'+I('vh-harpa.svg')+'!important}',
+  'body.tv #lat-ars{--c-img:'+I('vh-escudo.svg')+'!important}body.tv #lat-arena{--c-img:'+I('vh-runas.svg')+'!important}',
+  'body.tv :is(#lat-apt,#lat-rec,#lat-cv,#lat-ars,#lat-arena)::before{background-position:center!important;filter:none!important}',
+  'body.tv #lat-e>#lat-gm>.gm{--lf:'+I('vh-elmo.svg')+';--lfp:center}body.tv #lat-e>#lat-db{--lf:'+I('vh-livro.svg')+';--lfp:center}',
+  'body.tv #lat-e>#lat-gm>.gm::before,body.tv #lat-e>#lat-db::before{filter:none!important}',
+  /* fogueira do rodapé vira o salão do banquete; Concha do friso */
+  'body.tv #rod-apps .rod-fogo .fg-ic{background-image:'+I('vh-valknut.svg')+'!important;background-size:cover!important;border-radius:6px!important}',
+  'body.tv #hero-box#hero-box .vx-hero.bn2 .bn-id .cp-guia::before{content:"folheto do hotel · andar 19"!important}',
+  'body.tv #modo-op .op-templo{--t-cap:'+I('vh-capitel.svg')+'!important;--t-fuste:'+I('vh-fuste.svg')+'!important;--t-base:'+I('vh-base.svg')+'!important;--t-ent:'+I('vh-escudos.svg')+'!important;--t-k:#1f2c45!important}',
+  /* postal */
+  'body.tv #hero-box .cp-postal .fr{background:linear-gradient(rgba(10,15,30,.35),rgba(10,15,30,.55)),'+I('vh-salao.svg')+' center/cover!important}'
+ ].join('\n');document.head.appendChild(st);})();
+}
+
 })();
 </script>
 </body>
