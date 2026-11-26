@@ -2358,6 +2358,8 @@ body[data-skin="astro"] .narr{display:none!important}
 .arq-antigo > summary small{margin-left:10px;font:13px var(--sans);color:var(--dim)}
 .arq-antigo[open] > summary{border-bottom:1px dashed var(--line2);margin-bottom:12px}
 @media(max-width:1000px){.wrap{grid-template-columns:1fr}.wrap > .sec-card.meia{grid-column:1/-1}}
+.fc-dlg .arq-antigo{margin-top:8px;background:var(--panel)}
+.fc-dlg .arq-antigo[hidden]{display:none}
 </style>
 </head>
 <body>
@@ -6487,7 +6489,7 @@ var TEMAS={
    ['Grade','Treinos do m\u00eas'],['Rastreador de h\u00e1bitos','Treinos do m\u00eas'],
    ['Provas','Prova\u00e7\u00f5es'],['Pr\u00eamios','Recompensas'],['Rota','Profecia'],['Declara\u00e7\u00e3o de rota','Profecia do ciclo'],
    ['Of\u00edcios','Atividades'],['Aptid\u00f5es','Atividades do acampamento'],
-   ['abrir c\u00e9rebro','abrir o quadro'],['Sujeito','Ficha do campista'],['designa\u00e7\u00e3o, origem e kit','registro, chal\u00e9 e atributos']]}};
+   ['abrir c\u00e9rebro','abrir o quadro'],['Sujeito','Ficha do campista'],['Linhas ativas','Dons'],['os tr\u00eas poderes secund\u00e1rios','os dons secund\u00e1rios de Apolo'],['N\u00facleo','Fogo interno'],['carga, dom\u00ednio e as a\u00e7\u00f5es do ciclo','energia, dom\u00ednio e a\u00e7\u00f5es do ciclo'],['Limitador','Ponto fraco'],['o hardware e os drenos','o que trava e o que drena'],['Diagn\u00f3stico','Or\u00e1culo'],['vetores, arquivo, parecer e vulnerabilidade','leituras, hist\u00f3rico e parecer'],['designa\u00e7\u00e3o, origem e kit','registro, chal\u00e9 e atributos']]}};
 var AP_ARQ=/^(Arquivo do mutante|Porão)$/;
 function apTema(){return 'astro';}
 (function(){var n0=normaliza;normaliza=function(p){var b=n0(p);b.ap=(p&&p.ap==='astro')?'astro':'astro-novo';return b;};})();
@@ -6833,8 +6835,20 @@ function secCartoes(){var w=document.querySelector('.wrap');if(!w||w.dataset.car
   if(corte){card=null;return;}
   if(card)card.appendChild(n);});}
 (function(){var l0=vxLayout;vxLayout=function(){vxOrganiza();secCartoes();l0();
- var arq=document.getElementById('arq-antigo'),s=document.getElementById('ars-sec');if(arq&&s&&s.nextElementSibling!==arq)s.parentNode.insertBefore(arq,s.nextSibling);
+ try{arqNoDialogo();}catch(e){}
  var fc=document.getElementById('area-fin'),fw=document.getElementById('fin-wrap');if(fc&&fw&&fc.nextElementSibling!==fw)fc.parentNode.insertBefore(fw,fc.nextSibling);};})();
+
+/* ---------- Dossiê antigo dentro da Ficha do Campista (só com a senha) ---------- */
+function arqNoDialogo(){var arq=document.getElementById('arq-antigo');if(!arq)return;fcDlg();var c=document.getElementById('fc-dlg-c');
+ if(arq.parentNode!==c){c.appendChild(arq);var sm=arq.querySelector('summary');
+  if(sm)sm.innerHTML='Dossiê do semideus <small>dons, fogo interno, ponto fraco e oráculo</small>';}
+ else if(c.lastElementChild!==arq)c.appendChild(arq);
+ arq.hidden=!CF.chave;}
+(function(){var t0=cfTela;cfTela=function(){t0();try{arqNoDialogo();}catch(e){}};})();
+var ARQ_NV={'h-sec':1,'h-painel':1,'h-lim':1,'h-diag':1};
+document.addEventListener('click',function(e){var nb=e.target.closest&&e.target.closest('#nav-l [data-nv]');if(!nb)return;var k=nb.getAttribute('data-nv');
+ if(!ARQ_NV[k])return;e.preventDefault();e.stopImmediatePropagation();fcAbreDlg();
+ if(CF.chave){var arq=document.getElementById('arq-antigo');if(arq){arq.open=true;var alvo=document.getElementById(k);if(alvo)setTimeout(function(){alvo.scrollIntoView({block:'start'});},60);}}},true);
 
 /* ---------- Planner do dia (tema Astronáutica) ----------
    Relógio, calendário do mês, três prioridades e checklist de fim de dia,
