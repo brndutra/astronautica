@@ -2379,6 +2379,35 @@ body.claro[data-skin="astro"] .cp-dracmas i.mosaico::after,.cp-dracmas i::after{
 #lat-ac .ac-row{grid-template-columns:1fr!important;margin:0!important;gap:10px}
 
 #lat-quadro:empty,#lat-vx:empty{display:none}
+/* ===== neoclássico: colunas gravadas, papel creme, tinta preta ===== */
+.neo-moldura{position:relative;padding:52px 50px 30px!important;border:1.5px solid #1d1a16!important;border-radius:3px!important;color:#1d1a16;
+ background:var(--neo-ent) left top/240px 40px repeat-x,
+  var(--neo-cap) left 4px top 42px/42px 29px no-repeat,var(--neo-cap) right 4px top 42px/42px 29px no-repeat,
+  var(--neo-fuste) left 4px top 70px/42px calc(100% - 70px - 20px) no-repeat,var(--neo-fuste) right 4px top 70px/42px calc(100% - 70px - 20px) no-repeat,
+  var(--neo-base) left 4px bottom 4px/42px 15px no-repeat,var(--neo-base) right 4px bottom 4px/42px 15px no-repeat,
+  var(--neo-papel),#f3ecdc!important}
+.neo-moldura .tbgrid{filter:saturate(.55) sepia(.12)}
+.neo-moldura .tbcab .k9,.neo-moldura .k9{color:#1d1a16!important;font-family:Georgia,serif!important;letter-spacing:.3em!important}
+.neo-moldura .tbcab button,.neo-moldura .cab button{border-color:#1d1a16!important;color:#1d1a16!important;background:#f3ecdc!important}
+h2.sec.neo-tit{justify-content:center;text-align:center;gap:14px;margin:26px 0 0!important;padding:10px 0 8px!important;border-top:3px double #1d1a16!important;border-bottom:0!important;
+ font-family:Georgia,serif!important;letter-spacing:.32em;text-transform:uppercase;color:#1d1a16!important}
+h2.sec.neo-tit>span{letter-spacing:.14em;color:#6b6356!important;margin-left:0!important}
+h2.sec.neo-tit::before{display:none!important}
+h2.sec.neo-tit+.neo-moldura{margin-top:6px}
+.neo-frontao{height:88px;margin:0 14px -12px;position:relative;z-index:1}
+.neo-frontao svg{display:block;width:100%;height:78px}
+.neo-arquitrave{height:10px;margin:0 -12px;border:1.5px solid #1d1a16;border-bottom:0;background:#f3ecdc}
+body.bn-mini .neo-frontao{display:none}
+.pt{margin:0!important;border:1.5px solid #1d1a16;border-radius:3px;overflow:hidden;background:#f3ecdc}
+.pt-svg{display:block;width:100%;height:auto}
+.pt-tit{font-family:Georgia,serif;font-size:15px;letter-spacing:6px;fill:#1d1a16}
+.pt-fase{font-family:Georgia,serif;font-size:10px;letter-spacing:2.5px;fill:#1d1a16}
+.pt-m{font-family:Georgia,serif;font-style:italic;font-size:11px;fill:#3b342a}
+.pt-ck{font-family:Georgia,serif;font-size:8.5px;letter-spacing:1.6px;fill:#f3ecdc}
+.pt-cn{font-family:Georgia,serif;font-size:36px;font-weight:700;fill:#f3ecdc}
+.pt-cn2{font-family:Georgia,serif;font-size:22px;font-weight:700;fill:#f3ecdc}
+.pt-leg{margin:0;padding:7px 12px 9px;border-top:1px solid #1d1a16;font-size:11.5px;line-height:1.4;color:#3b342a;font-style:italic;font-family:Georgia,serif}
+
 .ar-postal img.ar-svg{object-fit:cover}
 #rt-box.com-foto{background:linear-gradient(180deg,rgba(251,247,236,.25),var(--panel) 190px),var(--foto) top center/100% auto no-repeat,var(--panel)}
 #rt-box.com-foto .mm-h{min-height:150px;align-items:flex-end;padding:10px 12px;margin:-16px -16px 12px;border-radius:16px 16px 0 0;background:linear-gradient(transparent,rgba(30,22,12,.62))}
@@ -13348,7 +13377,7 @@ function arsPinta(){var sep=document.getElementById('area-dos'),wr=document.quer
  if(!b){b=document.createElement('section');b.id='ars-box';b.className='ars';b.dataset.area='dos';}
  b.dataset.vxHidden='false';if(sep.nextElementSibling!==b)wr.insertBefore(b,sep.nextSibling);
  b.innerHTML=arsHTML();try{arsChecaForja();}catch(e){}}
-(function(){var p0=pinta;pinta=function(){p0();try{arsPinta();mmPinta();latNarrativo();}catch(e){console.error('arsenal:',e);}};})();
+(function(){var p0=pinta;pinta=function(){p0();try{arsPinta();mmPinta();latNarrativo();ptPinta();}catch(e){console.error('arsenal:',e);}};})();
 
 /* ---------- Mural de Missões: Tarefa do chalé, Quest e Grande Profecia ----------
    Tarefa do chalé: casa e vida prática, faz uma vez (+3 XP).
@@ -13642,6 +13671,77 @@ function arPostais(){return Object.keys(AR_FOTO).map(function(k){return 'f:'+k;}
 function arPostalHTML(){var ks=arPostais(),i=(S.postalI==null?Math.floor(Date.now()/864e5):S.postalI)%ks.length,k=ks[i],foto=k.indexOf('f:')===0,kk=foto?k.slice(2):k,L=foto?AR_FOTO[kk]:ARTE_LEG[kk];
  return '<div class="ar-postal">'+(foto?'<img class="ar-svg" src="img/acampamento/'+kk+'.jpg" alt="'+esc(L[0])+'" loading="lazy">':arSvg(kk))+'<div class="ar-leg"><b>'+esc(L[0])+'</b><small>'+esc(L[1])+'</small></div></div><button type="button" class="arsm-v" data-ar-prox>próximo postal</button>';}
 document.addEventListener('click',function(e){if(!e.target.closest('[data-ar-prox]'))return;var ks=arPostais();S.postalI=((S.postalI==null?Math.floor(Date.now()/864e5):S.postalI)+1)%ks.length;var c=document.getElementById('lat-postal-b');if(c)c.innerHTML=arPostalHTML();});
+
+/* ---------- Estilo neoclássico: colunas jônicas gravadas, papel creme e tinta preta ----------
+   Usado no Pórtico da Profecia (linha do tempo da prova), na Grade semanal, no rastreador de hábitos e no frontão do banner. */
+var NEO_TINTA='#1d1a16',NEO_PAPEL='#f3ecdc';
+function neoCapitel(x,y,w){var r=w*.17,s='<g fill="none" stroke="'+NEO_TINTA+'" stroke-width="1.3">';
+ s+='<rect x="'+(x-w*.62)+'" y="'+y+'" width="'+(w*1.24)+'" height="'+(w*.1)+'" fill="'+NEO_PAPEL+'"/>';
+ s+='<path d="M'+(x-w*.5)+' '+(y+w*.1)+' H'+(x+w*.5)+'"/><path d="M'+(x-w*.46)+' '+(y+w*.1)+' q'+(w*.46)+' '+(w*.16)+' '+(w*.92)+' 0" />';
+ [-1,1].forEach(function(d){var cx=x+d*w*.48,cy=y+w*.3;s+='<circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" fill="'+NEO_PAPEL+'"/><circle cx="'+cx+'" cy="'+cy+'" r="'+(r*.62)+'"/><circle cx="'+cx+'" cy="'+cy+'" r="'+(r*.28)+'" fill="'+NEO_TINTA+'"/>';});
+ s+='<path d="M'+(x-w*.42)+' '+(y+w*.46)+' H'+(x+w*.42)+'"/><path d="M'+(x-w*.38)+' '+(y+w*.52)+' H'+(x+w*.38)+'" stroke-width="2"/></g>';return s;}
+function neoColuna(x,y0,y1,w){var s='',sh0=y0+w*.56,sh1=y1-w*.22;
+ s+='<rect x="'+(x-w*.38)+'" y="'+sh0+'" width="'+(w*.76)+'" height="'+(sh1-sh0)+'" fill="'+NEO_PAPEL+'" stroke="'+NEO_TINTA+'" stroke-width="1.3"/>';
+ for(var i=1;i<8;i++){var xx=x-w*.38+i*w*.76/8;s+='<path d="M'+xx+' '+(sh0+3)+' V'+(sh1-3)+'" stroke="'+NEO_TINTA+'" stroke-width="'+(i%2?.9:.5)+'" opacity=".75"/>';}
+ s+='<path d="M'+(x-w*.38+2)+' '+(sh0+2)+' V'+(sh1-2)+'" stroke="'+NEO_TINTA+'" stroke-width="3" opacity=".25"/>';
+ s+='<g fill="'+NEO_PAPEL+'" stroke="'+NEO_TINTA+'" stroke-width="1.3"><rect x="'+(x-w*.46)+'" y="'+sh1+'" width="'+(w*.92)+'" height="'+(w*.09)+'" rx="'+(w*.045)+'"/><rect x="'+(x-w*.52)+'" y="'+(sh1+w*.09)+'" width="'+(w*1.04)+'" height="'+(w*.13)+'"/></g>';
+ return s+neoCapitel(x,y0,w);}
+function neoEntab(w,y,h){var s='<g stroke="'+NEO_TINTA+'" fill="'+NEO_PAPEL+'" stroke-width="1.2"><rect x="0" y="'+y+'" width="'+w+'" height="'+(h*.28)+'"/><rect x="0" y="'+(y+h*.28)+'" width="'+w+'" height="'+(h*.18)+'"/></g><g fill="'+NEO_TINTA+'">';
+ for(var x=4;x<w;x+=12)s+='<rect x="'+x+'" y="'+(y+h*.46)+'" width="6" height="'+(h*.2)+'"/>';
+ return s+'</g><path d="M0 '+(y+h*.72)+' H'+w+' M0 '+(y+h*.82)+' H'+w+' M0 '+(y+h)+' H'+w+'" stroke="'+NEO_TINTA+'" stroke-width="1.1"/>';}
+function neoUrl(svg,vb){return 'url("data:image/svg+xml,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="'+vb+'" preserveAspectRatio="none">'+svg+'</svg>')+'")';}
+/* peças em imagem para as molduras (CSS) */
+var NEO_IMG={};
+function neoImgs(){if(NEO_IMG.ok)return;NEO_IMG.ok=1;
+ NEO_IMG.ent=neoUrl(neoEntab(240,1,38),'0 0 240 40');
+ NEO_IMG.cap='url("data:image/svg+xml,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40">'+neoCapitel(30,2,46)+'</svg>')+'")';
+ var fus='<rect x="12.5" y="0" width="35" height="40" fill="'+NEO_PAPEL+'" stroke="'+NEO_TINTA+'" stroke-width="1.3"/>';for(var i=1;i<8;i++)fus+='<path d="M'+(12.5+i*35/8)+' 0 V40" stroke="'+NEO_TINTA+'" stroke-width="'+(i%2?.9:.5)+'" opacity=".75"/>';
+ NEO_IMG.fuste=neoUrl(fus,'0 0 60 40');
+ NEO_IMG.base='url("data:image/svg+xml,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 18"><g fill="'+NEO_PAPEL+'" stroke="'+NEO_TINTA+'" stroke-width="1.3"><rect x="9" y="1" width="42" height="5" rx="2.5"/><rect x="6" y="6" width="48" height="10"/></g></svg>')+'")';
+ var r=document.documentElement.style;r.setProperty('--neo-ent',NEO_IMG.ent);r.setProperty('--neo-cap',NEO_IMG.cap);r.setProperty('--neo-fuste',NEO_IMG.fuste);r.setProperty('--neo-base',NEO_IMG.base);
+ var pap='<filter id="n"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="3" seed="7"/><feColorMatrix values="0 0 0 0 .3 0 0 0 0 .24 0 0 0 0 .15 0 0 0 .12 0"/></filter><rect width="300" height="300" filter="url(#n)"/>';
+ r.setProperty('--neo-papel','url("data:image/svg+xml,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">'+pap+'</svg>')+'")');}
+/* Pórtico da Profecia: linha do tempo da prova do TRF3 entre colunas */
+function ptData(s){return new Date(s+'T12:00:00');}
+function ptHTML(){var ini=ptData('2026-11-01'),fim=ptData('2027-02-03'),hj=ptData(hoje()),Wd=800,H=380,x0=40,x1=760;
+ var X=function(d){return x0+(x1-x0)*Math.max(0,Math.min(1,(d-ini)/(fim-ini)));};
+ var prova=null;try{var pf=(S.quests&&S.quests.prof||[]).filter(function(p){return p.prazo&&/TRF3/.test(p.t);})[0];if(pf)prova=pf.prazo;}catch(e){}prova=prova||'2027-01-31';
+ var dias=Math.max(0,Math.round((ptData(prova)-hj)/864e5));
+ var topN=0,ok=(S.cc&&S.cc.ok)||{};Object.keys(ok).forEach(function(k){topN+=(ok[k]||[]).length;});var ed=Math.round(topN/288*100);
+ var sem=cpSemanas(14),pts=[],META=10.5,Y=function(h){return 300-Math.min(1,h/META)*170;};
+ sem.forEach(function(w){var meio=new Date(w.ini);meio.setDate(meio.getDate()+3);if(meio>=ini&&meio<=hj)pts.push([X(meio),Y(w.h)]);});
+ var xh=X(hj);if(!pts.length||pts[pts.length-1][0]<xh-2)pts.push([xh,pts.length?pts[pts.length-1][1]:Y(0)]);pts.unshift([x0,pts[0][1]]);
+ var curva=function(P){var d='M'+P[0][0]+' '+P[0][1];for(var i=1;i<P.length;i++){var a=P[i-1],b=P[i],mx=(a[0]+b[0])/2;d+=' C'+mx+' '+a[1]+' '+mx+' '+b[1]+' '+b[0]+' '+b[1];}return d;};
+ var fut=[[xh,pts[pts.length-1][1]],[X(ptData('2026-12-20')),Y(9)],[X(ptData('2027-01-29')),Y(10.5)],[X(ptData(prova)),Y(10.5)]].filter(function(p){return p[0]>=xh;});
+ var s='<rect width="'+Wd+'" height="'+H+'" fill="'+NEO_PAPEL+'"/>'+neoEntab(Wd,0,40);
+ s+='<rect x="250" y="8" width="300" height="24" fill="'+NEO_PAPEL+'" stroke="'+NEO_TINTA+'" stroke-width="1.2"/><text x="400" y="25" text-anchor="middle" class="pt-tit">PÓRTICO DA PROFECIA</text>';
+ [130,330,530,730].forEach(function(cx){s+=neoColuna(cx-60,62,352,44);});
+ var fases=[['INSCRIÇÃO','2026-11-01','2026-11-23'],['BASE','2026-11-24','2027-01-15'],['REVISÃO','2027-01-16','2027-01-30'],['PROVA','2027-01-31','2027-02-03']];
+ fases.forEach(function(f,i){var a=X(ptData(f[1])),b=X(ptData(f[2]));s+='<path d="M'+a+' 366 H'+b+'" stroke="'+NEO_TINTA+'" stroke-width="'+(i%2?1:2.2)+'"/><text x="'+((a+b)/2)+'" y="378" text-anchor="middle" class="pt-fase">'+f[0]+'</text>';});
+ s+='<path d="'+curva(pts)+'" fill="none" stroke="'+NEO_TINTA+'" stroke-width="2.4"/>';
+ if(fut.length>1)s+='<path d="'+curva(fut)+'" fill="none" stroke="'+NEO_TINTA+'" stroke-width="1.6" stroke-dasharray="5 5" opacity=".7"/>';
+ pts.slice(1,-1).forEach(function(p){s+='<circle cx="'+p[0]+'" cy="'+p[1]+'" r="4.5" fill="'+NEO_PAPEL+'" stroke="'+NEO_TINTA+'" stroke-width="1.4"/>';});
+ [['2026-11-23','inscrição'],['2027-01-29','revisão final'],[prova,'prova']].forEach(function(m){var mx=X(ptData(m[0])),passou=ptData(m[0])<hj,my=mx<=xh?null:null;
+  var ty=m[1]==='prova'?338:m[1]==='revisão final'?318:336,ta=m[1]==='inscrição'?'start':'end',dx=m[1]==='inscrição'?10:-10;
+  s+='<path d="M'+mx+' 44 V350" stroke="'+NEO_TINTA+'" stroke-width=".8" stroke-dasharray="2 4" opacity=".55"/><circle cx="'+mx+'" cy="350" r="6" fill="'+(passou?NEO_TINTA:NEO_PAPEL)+'" stroke="'+NEO_TINTA+'" stroke-width="1.4"/><rect x="'+(ta==='end'?mx+dx-112:mx+dx-3)+'" y="'+(ty-12)+'" width="115" height="16" fill="'+NEO_PAPEL+'" opacity=".92"/><text x="'+(mx+dx)+'" y="'+ty+'" text-anchor="'+ta+'" class="pt-m">'+m[1]+' · '+m[0].slice(8,10)+'/'+m[0].slice(5,7)+'</text>';});
+ var yh=pts[pts.length-1][1],cy=Math.max(130,Math.min(250,yh-80)),cx=Math.max(110,Math.min(690,xh));
+ s+='<path d="M'+xh+' '+yh+' L'+cx+' '+(cy+50)+'" stroke="'+NEO_TINTA+'" stroke-width="1.3"/><circle cx="'+xh+'" cy="'+yh+'" r="7" fill="'+NEO_TINTA+'"/>';
+ s+='<circle cx="'+cx+'" cy="'+cy+'" r="52" fill="'+NEO_TINTA+'"/><text x="'+cx+'" y="'+(cy-14)+'" text-anchor="middle" class="pt-ck">HOJE</text><text x="'+cx+'" y="'+(cy+14)+'" text-anchor="middle" class="pt-cn">'+dias+'</text><text x="'+cx+'" y="'+(cy+32)+'" text-anchor="middle" class="pt-ck">dias até a prova</text>';
+ var c2=cx>400?cx-150:cx+150,ultima=sem[sem.length-1].h;
+ s+='<circle cx="'+c2+'" cy="'+(cy+40)+'" r="40" fill="'+NEO_TINTA+'"/><text x="'+c2+'" y="'+(cy+30)+'" text-anchor="middle" class="pt-ck">EDITAL</text><text x="'+c2+'" y="'+(cy+52)+'" text-anchor="middle" class="pt-cn2">'+ed+'%</text><text x="'+c2+'" y="'+(cy+66)+'" text-anchor="middle" class="pt-ck">'+ultima.toFixed(1)+' h na semana</text>';
+ return '<svg viewBox="0 0 '+Wd+' '+(H+6)+'" class="pt-svg" role="img" aria-label="Linha do tempo da prova: faltam '+dias+' dias">'+s+'</svg>'+
+  '<p class="pt-leg">A linha sobe com as horas de estudo de cada semana (topo = meta de 10,5 h). O traço pontilhado é o ritmo planejado até a prova.</p>';}
+function ptPinta(){var est=document.querySelector('#lat-est');if(!est)return;var b=document.getElementById('pt-box');
+ if(!b){b=document.createElement('section');b.id='pt-box';b.className='pt';}if(est.firstChild!==b)est.insertBefore(b,est.firstChild);b.innerHTML=ptHTML();}
+/* frontão sobre o banner */
+function neoFrontao(){var hb=document.getElementById('hero-box');if(!hb||hb.querySelector('.neo-frontao'))return;var d=document.createElement('div');d.className='neo-frontao';d.setAttribute('aria-hidden','true');
+ d.innerHTML='<svg viewBox="0 0 1000 120" preserveAspectRatio="none"><path d="M10 112 L500 10 L990 112Z" fill="'+NEO_PAPEL+'" stroke="'+NEO_TINTA+'" stroke-width="2"/><path d="M60 104 L500 22 L940 104Z" fill="none" stroke="'+NEO_TINTA+'" stroke-width="1"/>'+
+  '<circle cx="500" cy="72" r="20" fill="none" stroke="'+NEO_TINTA+'" stroke-width="1.4"/><circle cx="500" cy="72" r="7" fill="'+NEO_TINTA+'"/>'+[0,1,2,3,4,5,6,7,8,9,10,11].map(function(i){var a=i*Math.PI/6;return '<path d="M'+(500+Math.cos(a)*24)+' '+(72+Math.sin(a)*24)+' L'+(500+Math.cos(a)*31)+' '+(72+Math.sin(a)*31)+'" stroke="'+NEO_TINTA+'" stroke-width="1.4"/>';}).join('')+
+  '<text x="330" y="96" text-anchor="middle" font-family="Georgia,serif" font-size="17" letter-spacing="6" fill="'+NEO_TINTA+'">ASTRONÁUTICA</text><text x="670" y="96" text-anchor="middle" font-family="Georgia,serif" font-size="17" letter-spacing="6" fill="'+NEO_TINTA+'">CHALÉ VII</text></svg>'+
+  '<div class="neo-arquitrave"></div>';
+ var sl=hb.querySelector('.bn-slot');hb.insertBefore(d,sl||hb.firstChild);}
+function neoAplica(){neoImgs();['.wrap > div.tb','.wrap > div.rt'].forEach(function(q){var n=document.querySelector(q);if(n)n.classList.add('neo-moldura');});
+ ['h-sem','h-rast'].forEach(function(id){var h=document.getElementById(id);if(h)h.classList.add('neo-tit');});try{neoFrontao();}catch(e){}try{ptPinta();}catch(e){}}
 /* a Grade semanal é o painel principal: logo abaixo do índice */
 function latGradeTopo(){var wr=document.querySelector('.wrap'),h=document.getElementById('h-sem'),ix=document.getElementById('tt-indice');if(!wr||!h)return;
  var tb=h.nextElementSibling&&h.nextElementSibling.classList.contains('tb')?h.nextElementSibling:document.querySelector('.wrap > .tb');
@@ -13653,6 +13753,7 @@ function latGradeTopo(){var wr=document.querySelector('.wrap'),h=document.getEle
  try{wsPinta();}catch(e){console.error('spread:',e);}
  try{rtPinta();}catch(e){console.error('rotina:',e);}
  try{arFaixas();}catch(e){console.error('arte:',e);}
+ try{neoAplica();}catch(e){console.error('neoclássico:',e);}
  /* rastreador de hábitos (grade mensal) logo abaixo do painel da semana */
  try{var hr=document.getElementById('h-rast'),rt=hr&&hr.nextElementSibling&&hr.nextElementSibling.classList.contains('rt')?hr.nextElementSibling:document.querySelector('.wrap > .rt'),wb=document.getElementById('rt-box')||document.getElementById('ws-box')||tb;
   if(hr&&wb){[hr,rt].forEach(function(n){if(n){n.dataset.area='op';n.dataset.vxHidden='false';}});if(wb.nextElementSibling!==hr)wr.insertBefore(hr,wb.nextSibling);if(rt&&hr.nextElementSibling!==rt)wr.insertBefore(rt,hr.nextSibling);}}catch(e){console.error('rastreador:',e);}
