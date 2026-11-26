@@ -27,13 +27,9 @@
 <main id="painel" hidden>
   <div class="colar"><span class="k">contas do dia</span><div class="fio" id="fio"></div></div>
 
-  <nav class="abas" role="tablist">
-    <button role="tab" aria-selected="true" data-aba="arena">Arena</button>
-    <button role="tab" aria-selected="false" data-aba="chale">Chalé</button>
-    <button role="tab" aria-selected="false" data-aba="reg">Registro</button>
-  </nav>
 
   <section class="aba on" id="arena">
+    <h3 class="sep">Arena</h3>
     <div class="card agora" id="agora"></div>
 
     <div class="card">
@@ -68,7 +64,8 @@
     </div>
   </section>
 
-  <section class="aba" id="chale">
+  <section class="aba on" id="chale">
+    <h3 class="sep">Chalé</h3>
     <div class="card">
       <h2>Como você chega à fogueira? <i>humor</i></h2>
       <p class="lead">Um toque já registra. Vale mudar ao longo do dia.</p>
@@ -85,7 +82,8 @@
     </div>
   </section>
 
-  <section class="aba" id="reg">
+  <section class="aba on" id="reg">
+    <h3 class="sep">Registro</h3>
     <div class="card">
       <h2>Captura <i>Quadro de Avisos</i></h2>
       <div class="linha mt"><input id="cap" placeholder="despeje antes de perder" maxlength="300"><button class="pri" id="cap-ok">guardar</button></div>

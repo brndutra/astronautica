@@ -2329,6 +2329,19 @@ body.claro[data-skin="astro"] .cp-dracmas i.mosaico::after,.cp-dracmas i::after{
  .navh{padding:20px 20px 16px!important}
  .navh b{font-size:23px!important}
 }
+
+/* tudo em tela: índice fixo e separadores das partes */
+#vx .vx-tabs{display:none!important}
+.tt-indice{position:sticky;top:0;z-index:55;display:flex;flex-wrap:wrap;gap:6px;padding:8px 0 10px;margin:0 0 8px;
+ background:linear-gradient(var(--bg) 82%,transparent);backdrop-filter:blur(2px)}
+.tt-indice button{width:auto!important;margin:0!important;padding:8px 14px!important;border-radius:10px;border:1px solid var(--line)!important;background:var(--panel)!important;color:var(--dim)!important;cursor:pointer;
+ font:700 11px/1 system-ui,-apple-system,"Segoe UI",sans-serif!important;letter-spacing:.14em;text-transform:uppercase;display:inline-flex!important;align-items:baseline;gap:6px}
+.tt-indice button i{font-style:normal;opacity:.6;letter-spacing:.06em}
+.tt-indice button.at{background:var(--red)!important;border-color:var(--red)!important;color:var(--onred,#fff)!important}
+.area-sep{display:flex;align-items:baseline;gap:12px;margin:46px 0 14px;padding:0 0 10px;border-bottom:2px solid var(--line2);scroll-margin-top:64px}
+.area-sep span{font:700 12px/1 var(--mono,monospace);letter-spacing:.2em;color:var(--red)}
+.area-sep b{font:900 clamp(24px,2.6vw,34px)/1 var(--display);color:var(--bone);text-transform:uppercase;letter-spacing:.03em}
+.tt-area{margin:0 0 16px}
 /* ícones que substituem os emojis */
 .ico{display:inline-block;width:1.1em;height:1.1em;vertical-align:-.18em;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
 /* =====================================================================
@@ -11270,7 +11283,10 @@ function axMonta(){var w=finWrap();if(!w||(AX.raiz&&AX.raiz.isConnected))return;
   removeItem:function(k){localStorage.removeItem(k);if(k===FIN_KEY)axMudou();}};
  Object.defineProperty(ls,'length',{get:function(){return localStorage.length;}});
  function si(){var id=setInterval.apply(window,arguments);AX.timers.push(id);return id;}
- try{(new Function('document','location','localStorage','setInterval',js.textContent)).call(window,doc,loc,ls,si);}
+ function axRola(){var fw=document.getElementById('fin-wrap');if(!fw||!AX.pronto)return;var y=fw.getBoundingClientRect().top+window.scrollY-60;
+  if(Math.abs(window.scrollY-y)>40)window.scrollTo({top:y,behavior:'smooth'});}
+ AX.pronto=false;setTimeout(function(){AX.pronto=true;},1500);
+ try{(new Function('document','location','localStorage','setInterval','__axRola',js.textContent.replace(/window\.scrollTo\(/g,'__axRola('))).call(window,doc,loc,ls,si,axRola);}
  catch(e){console.error('AxisHub:',e);}}
 /* sub-abas da Loja: Tesouro, Diário de Bordo, Carga, Enfermaria e Rotas, mais exportar e importar */
 var AX_NAV=[['finance','Tesouro'],['habit','Diário de Bordo'],['mapa','Carga'],['sono','Enfermaria'],['projects','Rotas']];
@@ -12448,6 +12464,57 @@ try{ pinta(); }catch(e){ console.error("pintura:",e);
 try{ montaPomo(); fxLiga(); }catch(e){ console.error("extras:",e); }
 setTimeout(function(){ var b=el("boot"); if(b&&b.parentNode) b.parentNode.removeChild(b); },1750);
 window.addEventListener("resize",spark);
+/* ---------- Tudo em tela ----------
+   Nada de trocar de página: todas as partes ficam empilhadas numa rolagem só, cada uma com um
+   separador. As abas viram um índice fixo no topo que só rola até a parte escolhida. */
+var TT_AREAS=['op','camp','est','dos','fin'];
+function ttNome(i){var t=TEMAS[apTema()]||{},a=(t.abas||[])[i]||'';var p=a.split(' / ');return {n:p[0]||'',t:p[1]||p[0]||''};}
+function ttAlvo(a){return a==='op'?document.getElementById('vx'):document.getElementById('area-'+a);}
+function ttSeparadores(){var wr=document.querySelector('.wrap');if(!wr)return;
+ TT_AREAS.forEach(function(a,i){if(a==='op')return;var id='area-'+a,sep=document.getElementById(id);
+  var prim=Array.prototype.find.call(wr.children,function(n){return n.dataset&&n.dataset.area===a&&n.id!==id&&!n.classList.contains('tt-area');});
+  if(!prim)return;
+  if(!sep){sep=document.createElement('div');sep.id=id;sep.className='area-sep';}
+  var nm=ttNome(i);sep.innerHTML='<span>'+esc(nm.n)+'</span><b>'+esc(nm.t)+'</b>';
+  if(sep.nextSibling!==prim)wr.insertBefore(sep,prim);});
+ /* a Loja fica por último, depois de todas as outras partes */
+ var fs=document.getElementById('area-fin'),fw=document.getElementById('fin-wrap');
+ if(fs&&fw&&wr.lastElementChild!==fw){wr.appendChild(fs);wr.appendChild(fw);}}
+function ttIndice(){var wr=document.querySelector('.wrap');if(!wr)return;var n=document.getElementById('tt-indice');
+ if(!n){n=document.createElement('nav');n.id='tt-indice';n.className='tt-indice';n.setAttribute('aria-label','Índice das partes');
+  n.addEventListener('click',function(e){var b=e.target.closest('[data-tt]');if(!b)return;var t=ttAlvo(b.dataset.tt);
+   if(t)window.scrollTo({top:t.getBoundingClientRect().top+window.scrollY-(b.dataset.tt==='op'?8:64),behavior:'smooth'});});
+  wr.insertBefore(n,wr.firstChild);}
+ n.innerHTML=TT_AREAS.map(function(a,i){var nm=ttNome(i);return '<button type="button" data-tt="'+a+'"><i>'+esc(nm.n)+'</i>'+esc(nm.t)+'</button>';}).join('');
+ ttMarca();}
+function ttMarca(){var n=document.getElementById('tt-indice');if(!n)return;var at='op',lim=150,melhor=-1e9;
+ TT_AREAS.forEach(function(a){var t=ttAlvo(a);if(!t)return;var y=t.getBoundingClientRect().top;if(y<lim&&y>melhor){melhor=y;at=a;}});
+ Array.prototype.forEach.call(n.querySelectorAll('[data-tt]'),function(b){b.classList.toggle('at',b.dataset.tt===at);});}
+window.addEventListener('scroll',function(){clearTimeout(ttMarca.t);ttMarca.t=setTimeout(ttMarca,60);},{passive:true});
+/* a Loja só monta quando chega perto da tela (é pesada) */
+function ttLoja(){var fw=finWrap();if(!fw||ttLoja.ok)return;ttLoja.ok=true;
+ try{new IntersectionObserver(function(es,ob){if(es.some(function(e){return e.isIntersecting;})){axMonta();ob.disconnect();}},{rootMargin:'900px 0px'}).observe(fw);}catch(e){axMonta();}}
+/* partes do painel principal que só existiam nas outras abas: campanha e ajustes */
+function ttCss(){if(ttCss.ok)return;ttCss.ok=true;var novas=[];
+ Array.prototype.forEach.call(document.styleSheets,function(sh){var rs;try{rs=sh.cssRules;}catch(e){return;}
+  Array.prototype.forEach.call(rs||[],function(r){if(r.selectorText&&r.selectorText.indexOf('#vx ')>=0&&r.selectorText.indexOf('vx-tabs')<0)
+   novas.push(r.selectorText.split(',').filter(function(x){return x.indexOf('#vx ')>=0;}).map(function(x){return x.replace(/#vx /g,'.tt-area ');}).join(',')+'{'+r.style.cssText+'}');});});
+ var st=document.createElement('style');st.id='tt-css';st.textContent=novas.join('\n');document.head.appendChild(st);}
+function ttExtras(){ttCss();['tt-camp','tt-dos'].forEach(function(id){var x=document.getElementById(id);if(x)x.remove();});
+ var v=vxData(),body=el('vx-body');if(!body||v.edit)return;
+ body.insertAdjacentHTML('beforeend','<div id="tt-camp" class="tt-area"><div class="vx-card"><h3>Campanha / frentes e resultados</h3><p class="vx-muted">Congelar preserva o projeto e libera uma frente.</p>'+vxProjectsHTML()+'</div>'+
+  '<div class="vx-card"><h3>Relatórios do dia</h3>'+Object.keys(v.closes).sort().reverse().slice(0,7).map(function(d){var c=v.closes[d];return '<div class="vx-item"><b>'+d+'</b><p>Entrega: '+esc(c.result)+'</p><p>Pendente: '+esc(c.pending)+'</p><p>Próxima: '+esc(c.next)+'</p></div>';}).join('')+
+  '<p class="vx-muted">Sessões registradas: '+v.sessions.length+' · Entregas concluídas: '+v.tasks.filter(function(x){return x.status==='done';}).length+'</p></div></div>'+
+  '<div id="tt-dos" class="tt-area"><div class="vx-card"><h3>Ajustes e cópia de segurança</h3>'+vxSettingsHTML()+'<div class="vx-row"><button data-vx="export">Exportar registro completo</button><label>Restaurar registro JSON<input id="vx-import" type="file" accept=".json"></label></div></div></div>');
+ vxBind();
+ /* depois de ligados os botões, cada bloco vai para a sua parte da página */
+ var wr=document.querySelector('.wrap');[['tt-camp','camp'],['tt-dos','dos']].forEach(function(p){var x=document.getElementById(p[0]),sep=document.getElementById('area-'+p[1]);
+  if(x&&sep&&wr)wr.insertBefore(x,sep.nextSibling);});}
+(function(){var l0=vxLayout;vxLayout=function(){var v=vxData();v.view='op';l0();var wr=document.querySelector('.wrap');if(!wr)return;
+ Array.prototype.forEach.call(wr.children,function(n){if(n.dataset&&n.dataset.vxHidden==='true')n.dataset.vxHidden='false';});
+ try{ttSeparadores();ttIndice();ttLoja();}catch(e){console.error('tudo em tela:',e);}};})();
+(function(){var r0=vxRender;vxRender=function(){var v=vxData();v.view='op';r0();try{ttExtras();ttMarca();}catch(e){console.error('tudo em tela:',e);}};})();
+vxShow=function(view){var t=ttAlvo(view);if(t)window.scrollTo({top:t.getBoundingClientRect().top+window.scrollY-64,behavior:'smooth'});};
 setInterval(pintaProgresso,60000);
 })();
 </script>

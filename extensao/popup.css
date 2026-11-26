@@ -135,3 +135,7 @@ ol,ul{list-style:none;margin:0;padding:0;display:grid;gap:5px}
 #msg.erro{color:var(--terra)}
 button[disabled]{opacity:.55;cursor:default}
 
+
+/* tudo numa rolagem só: sem abas, cada parte com um separador */
+.sep{margin:16px 14px 8px;padding-bottom:5px;border-bottom:1px solid var(--linha);font:700 10px/1 system-ui,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--ouro)}
+#arena .sep{margin-top:4px}

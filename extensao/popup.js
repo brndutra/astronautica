@@ -237,7 +237,6 @@ document.addEventListener('DOMContentLoaded', function () {
       chrome.storage.local.set({ aba: b.dataset.aba });
     };
   });
-  chrome.storage.local.get('aba').then(function (g) { var b = g.aba && document.querySelector('[data-aba="' + g.aba + '"]'); if (b) b.click(); });
 
   $('entrar').onclick = async function () {
     var em = $('email').value.trim(), se = $('senha').value;
@@ -277,7 +276,7 @@ document.addEventListener('DOMContentLoaded', function () {
   $('treinar').onclick = function () {
     var b = $('treinar'); if (!b.dataset.disc) return;
     $('tarefa').value = b.dataset.nome;
-    document.querySelector('[data-aba="arena"]').click();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     inicia(50, { disc: b.dataset.disc, tarefa: b.dataset.nome });
   };
   $('pular').onclick = function () {
