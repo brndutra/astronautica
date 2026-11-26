@@ -17388,14 +17388,21 @@ setInterval(function(){try{fioFixo();}catch(e){}},1500);setTimeout(function(){tr
 ].join('\n');document.head.appendChild(st);})();
 
 
-/* ======================= Faixa do dia do outro lado: na borda direita da tela, à direita do templo ======================= */
+/* ======================= Faixa do dia na margem direita do painel esquerdo =======================
+   A faixa encosta no painel esquerdo (entre ele e a coluna do meio), na altura toda; o templo da direita volta à borda da tela.
+   Os cartões de Inspeção e Ronda abrem para a direita, por cima da coluna do meio. */
+function diaLado(){var n=document.getElementById('nav');var l=n&&getComputedStyle(n).position==='fixed'?Math.round(n.getBoundingClientRect().right):0;document.body.style.setProperty('--dia-l',l+'px');}
 (function(){var st=document.createElement('style');st.id='dia-lado-css';st.textContent=[
- 'body.com-dia #dia-faixa{right:0!important;bottom:0!important;border-right:0!important}',
- 'body.com-dia #rail{right:62px!important}',
- 'body.com-dia #rod-apps{right:calc(var(--dia-r,460px) + 62px)!important}'
+ 'body.com-dia #dia-faixa{left:var(--dia-l,300px)!important;right:auto!important;top:0!important;bottom:0!important}',
+ 'body.com-dia .wrap{margin-left:calc(var(--dia-l,300px) + 62px)!important;margin-right:var(--dia-r,460px)!important}',
+ 'body.com-dia #rod-apps{left:calc(var(--dia-l,300px) + 62px)!important}',
+ 'body.com-dia #fer-w{right:calc(var(--dia-r,460px) + 14px)!important}',
+ '@media(min-width:1380px){body.com-dia .td-disco:not(.td-solto){left:calc(var(--dia-l,300px) + 74px)!important}}'
 ].join('\n');document.head.appendChild(st);})();
 diaBaixo=function(){return 0;};
-setTimeout(function(){try{diaPinta();}catch(e){}},1200);
+diaAbre=(function(f0){return function(k){var r=f0.apply(this,arguments);try{var p=document.getElementById('df-pop'),f=document.getElementById('dia-faixa');if(p&&f&&document.body.classList.contains('com-dia')){var fr=f.getBoundingClientRect();p.style.right='auto';p.style.left=(fr.right+8)+'px';}}catch(e){}return r;};})(diaAbre);
+window.addEventListener('resize',function(){try{diaLado();}catch(e){}});
+setTimeout(function(){try{diaLado();diaPinta();}catch(e){}},600);setTimeout(function(){try{diaLado();}catch(e){}},2500);
 
 
 /* Operacional cabe na linha do XP: vira um botão redondo no fim dela */
