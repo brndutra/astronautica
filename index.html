@@ -2272,6 +2272,45 @@ body[data-skin="astro"] .hk{border-top:4px solid var(--a-op)}
 .fc-obs span{font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#2f261d}
 body:not(.claro) .fc{filter:brightness(.92)}
 @media(max-width:900px){.fc-grid,.fc-two{grid-template-columns:1fr}.fc-at{grid-template-columns:96px auto 22px}.fc-at small{grid-column:1/-1}}
+
+/* rotina do acampamento */
+.fx-n{margin-left:8px;font:600 10px var(--sans);letter-spacing:.04em;text-transform:none;opacity:.85}
+#tb-g .tbf .fx-n{display:block;margin:2px 0 0}
+.ar-t{display:inline-block;margin-left:6px;padding:1px 6px;border-radius:999px;background:color-mix(in srgb,var(--a-camp) 14%,transparent);color:var(--a-camp);font:600 10px var(--sans);vertical-align:middle}
+.ac-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:0 0 16px}
+.ac-w{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px 18px;display:grid;gap:10px;align-content:start;box-shadow:0 1px 2px rgba(31,36,48,.05),0 10px 24px -14px rgba(31,36,48,.25)}
+#ac-cap{border-top:4px solid #c0392b} #ac-reg{border-top:4px solid var(--a-camp)}
+.ac-k{display:flex;justify-content:space-between;align-items:center;font:600 11px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+.ac-cb{display:flex;gap:10px;align-items:center;padding:8px 10px;border-radius:10px;background:var(--panel2)}
+#vx .ac-cb input[type=checkbox]{width:18px!important;height:18px!important;min-width:0!important;min-height:0!important;padding:0!important;margin:0!important;flex:none;appearance:auto;-webkit-appearance:checkbox;accent-color:#c0392b}
+#vx .ac-cb input[type=text]{flex:1;min-width:0;width:auto!important;border:0!important;background:transparent!important;font:14px var(--sans);color:var(--bone);padding:4px 2px}
+.ac-n{margin:0;font:12.5px var(--sans);color:var(--dim)} .ac-n b{color:#c0392b}
+.ac-rl{margin:0;padding-left:20px;display:grid;gap:5px;font:13.5px/1.4 var(--sans);color:var(--ink)}
+#vx .ac-ed{min-height:0;padding:2px 10px;font:600 11px var(--sans);letter-spacing:0;text-transform:none}
+#vx .ac-ta{width:100%;font:13.5px/1.5 var(--sans)}
+@media(max-width:800px){.ac-row{grid-template-columns:1fr}}
+
+/* cofre: ficha e diário com senha */
+.cf{margin:0 0 14px}
+.cf-lock{display:flex;gap:16px;align-items:flex-start;padding:20px 22px;border-radius:12px;border:1px dashed #b6a37b;background:linear-gradient(#fbf6e8,#f4ead1);color:#2f261d}
+.cf-ico{font-size:30px;line-height:1}
+.cf-lock b{font:800 18px var(--display,Georgia,serif);letter-spacing:.03em}
+.cf-lock p{margin:6px 0 12px;font:13.5px/1.5 var(--sans);color:#6f6553}
+.cf-f{display:flex;gap:8px;flex-wrap:wrap}
+#vx .cf-f input{width:200px!important;max-width:100%}
+.cf-msg{display:block;margin-top:8px;font:12.5px var(--sans);color:#3d6b35} .cf-msg.erro{color:#c0392b}
+.cf-bar{display:flex;justify-content:space-between;align-items:center;padding:8px 14px;border-radius:10px;background:var(--panel2);font:600 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
+#vx .cf-bar button{min-height:0;padding:4px 12px;font:600 12px var(--sans);letter-spacing:0;text-transform:none}
+.cf-dia{margin:0 0 18px;padding:20px 22px;border-radius:12px;border:1px solid #d9ccb2;background:linear-gradient(#fbf6e8,#f4ead1);color:#2f261d;display:grid;gap:12px}
+.cf-dh h3{margin:4px 0 0;font:800 24px var(--display,Georgia,serif);letter-spacing:.03em;text-transform:uppercase}
+#vx .cf-dia textarea{width:100%;font:14px/1.55 Georgia,serif;background:#fffdf6!important}
+.cf-acoes{display:flex;gap:12px;align-items:center}
+.cf-lista{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.cf-lista li{padding:10px 14px;border-left:3px solid #b98c47;background:rgba(255,255,255,.5);border-radius:0 8px 8px 0}
+.cf-lista time{display:block;font:700 11px "Courier New",monospace;letter-spacing:.08em;color:#8e3b2a}
+.cf-lista p{margin:4px 0 0;font:14px/1.6 Georgia,serif;color:#2f261d}
+.cf-lista .vz{border:0;background:none;color:#6f6553;font:13px var(--sans)}
+#vx .ac-cb{display:flex!important;flex-direction:row;align-items:center;gap:10px;grid-template-columns:none}
 </style>
 </head>
 <body>
@@ -6498,22 +6537,23 @@ var FC_HTML='<div class="fc-top"><div><span class="fc-k">Acampamento Meio-Sangue
  '<div class="fc-f"><span>Chegada</span><b>aos 13 anos, escoltado por um s&aacute;tiro</b></div>'+
  '<div class="fc-f"><span>Reclama&ccedil;&atilde;o</span><b>na primeira fogueira, um sol dourado sobre a cabe&ccedil;a</b></div>'+
  '<div class="fc-f"><span>Situa&ccedil;&atilde;o</span><b>campista de ver&atilde;o &middot; instrutor de arquearia</b></div>'+
- '<div class="fc-f"><span>Arma</span><b>arco curto de teixo &middot; secund&aacute;ria: lira</b></div>'+
- '<div class="fc-f"><span>Colar</span><b>uma conta por ver&atilde;o &middot; a deste ano: o sol no grau 29</b></div>'+
+ '<div class="fc-f"><span>Arma</span><b>arco curto de teixo &middot; bolsa de cura da enfermaria</b></div>'+
+ '<div class="fc-f"><span>Colar</span><b id="fc-colar">uma conta por Captura da bandeira vencida</b></div>'+
  '</div>'+
  '<div class="fc-sec"><b>Atributos</b>'+
  fcAttr('Mira',9,'Sol e Merc&uacute;rio em Sagit&aacute;rio')+fcAttr('Percep&ccedil;&atilde;o',9,'Lua em Escorpi&atilde;o, Casa 7')+
  fcAttr('Saber',8,'Casa 9 &middot; caminho de vida 7')+fcAttr('Iniciativa',8,'Ascendente em &Aacute;ries')+
- fcAttr('Carisma',7,'V&ecirc;nus e Urano em Aqu&aacute;rio, Casa 11')+fcAttr('Autoridade',7,'Meio do C&eacute;u em Capric&oacute;rnio')+
+ fcAttr('Inova&ccedil;&atilde;o',9,'Urano junto de V&ecirc;nus em Aqu&aacute;rio, Casa 11')+fcAttr('Carisma',7,'V&ecirc;nus em Aqu&aacute;rio, Casa 11')+fcAttr('Autoridade',7,'Meio do C&eacute;u em Capric&oacute;rnio')+
  fcAttr('Resist&ecirc;ncia',4,'nenhum planeta pessoal em terra')+'</div>'+
  '<div class="fc-two"><div class="fc-sec"><b>Dons</b><ul>'+
  '<li><em>A flecha que sabe o alvo</em> &middot; escolhe o que importa na pilha</li>'+
  '<li><em>A escuta do or&aacute;culo</em> &middot; l&ecirc; a sala antes de algu&eacute;m falar</li>'+
- '<li><em>O canto que re&uacute;ne</em> &middot; agrega gente pelo humor</li>'+
- '<li><em>O mestre do templo</em> &middot; ensina e guarda a regra</li></ul></div>'+
+ '<li><em>A palavra que re&uacute;ne</em> &middot; agrega gente pelo humor e pela conversa</li>'+
+ '<li><em>O mestre do templo</em> &middot; ensina e guarda a regra</li>'+
+ '<li><em>A centelha de Urano</em> &middot; inventa o atalho que ningu&eacute;m viu e constr&oacute;i as pr&oacute;prias ferramentas</li></ul></div>'+
  '<div class="fc-sec"><b>Atividades</b><ul>'+
  '<li>Arquearia &middot; <em>mestre</em></li><li>Captura da bandeira &middot; <em>olheiro</em></li>'+
- '<li>Cantoria da fogueira &middot; <em>puxa o coro</em></li><li>Enfermaria &middot; <em>cura os outros, esquece de si</em></li></ul></div></div>'+
+ '<li>Fogueira &middot; <em>puxa a conversa e as hist&oacute;rias</em></li><li>Enfermaria &middot; <em>cura os outros, esquece de si</em></li></ul></div></div>'+
  '<div class="fc-two"><div class="fc-sec fc-falha"><b>Falha fatal</b><p>A queima: corre no sol at&eacute; se consumir. Agrava com o impulso de &Aacute;ries e a vontade de aplauso. Corre&ccedil;&atilde;o: firmar os p&eacute;s antes de soltar a flecha.</p></div>'+
  '<div class="fc-sec"><b>Matriz do destino</b><p>20 Julgamento &middot; 12 Enforcado &middot; 2 Sacerdotisa &middot; 7 Carro &middot; <em>centro 5, Hierofante</em></p></div></div>'+
  '<div class="fc-sec fc-prof"><b>Miss&atilde;o atual &middot; a prova do tribunal</b><p>Do Texas ao estreito, o arqueiro do &uacute;ltimo grau<br>atravessa o inverno com a lei debaixo do bra&ccedil;o.<br>Fala de vi&eacute;s e acerta de frente;<br>queima se corre, vence se rege.</p></div>'+
@@ -6524,6 +6564,121 @@ function fcFicha(){var vb=document.getElementById('vx-body');if(!vb)return;
  f.style.display=document.body.getAttribute('data-vx-view')==='dos'?'':'none';}
 (function(){var r0=vxRender;vxRender=function(){r0();try{fcFicha();}catch(e){}};})();
 setTimeout(function(){try{fcFicha();}catch(e){}},0);
+
+/* ---------- Rotina do acampamento: faixas, áreas de treino, captura da bandeira, regras, oferenda ---------- */
+var FX_NOMES={'06':'Alvorada','09':'Treinos','12':'Refeitório','15':'Arena','18':'Jantar','21':'Fogueira'};
+var AREAS=[[/nata|piscin/i,'Lago das canoas'],[/academ|muscul|malha|treino/i,'Muro de escalada'],[/quest/i,'Arena'],
+ [/estud|trf|concurso|revis/i,'Campo de arquearia'],[/ler|leitura|livro/i,'Biblioteca'],[/água|agua/i,'Fonte'],
+ [/sono|dormir|cama/i,'Chalé'],[/medit|respir/i,'Bosque'],[/corr|caminh|passo/i,'Trilha']];
+function acSemana(d){d=d||new Date();var x=new Date(d.getFullYear(),d.getMonth(),d.getDate());var w=(x.getDay()+6)%7;x.setDate(x.getDate()-w);
+ return x.getFullYear()+'-'+String(x.getMonth()+1).padStart(2,'0')+'-'+String(x.getDate()).padStart(2,'0');}
+(function(){var n0=normaliza;normaliza=function(p){var b=n0(p);
+ b.cb=(p&&p.cb&&typeof p.cb==='object')?p.cb:{};
+ b.regras=(p&&Array.isArray(p.regras))?p.regras:null;
+ b.cofre=(p&&p.cofre&&typeof p.cofre==='object')?p.cofre:null;
+ b.dsd=(p&&Array.isArray(p.dsd))?p.dsd:[];
+ return b;};})();
+var AC_REGRAS=['O expediente termina no horário marcado.','Um bloco de foco antes de abrir o celular.','Estudo no horário fixo, sem esperar vontade.',
+ 'Água em toda refeição.','Toque de recolher às 22h: telas desligadas.','Decisão pequena se toma sozinho.'];
+function acVitorias(){var n=0;Object.keys(S.cb||{}).forEach(function(k){if(S.cb[k]&&S.cb[k].ok)n++;});return n;}
+(function(){var x0=gmXP;gmXP=function(){var x=x0(),c=20*acVitorias();x.captura=c;x.total+=c;return x;};})();
+function acListas(){if(typeof GM_REGRAS!=='undefined'&&!GM_REGRAS.some(function(r){return /captura/.test(r[0]);}))GM_REGRAS.push(['três missões do dia','+5 cada'],['toque de recolher completo','+10'],['captura da bandeira (semana)','+20']);
+ if(typeof PL_FIM!=='undefined'&&!PL_FIM.some(function(f){return f[0]==='oferenda';})){PL_FIM.push(['oferenda','Oferenda: anotei uma gratidão do dia']);try{vxRender();}catch(e){}}}
+function acCaptura(){var k=acSemana(),c=(S.cb&&S.cb[k])||{d:'Simulado de sexta: uma prova completa',ok:false},v=acVitorias();
+ return '<div class="ac-k">captura da bandeira &middot; desafio da semana</div>'+
+  '<label class="ac-cb"><input type="checkbox" data-accb'+(c.ok?' checked':'')+'><input type="text" data-acd maxlength="80" value="'+esc(c.d||'')+'" aria-label="Desafio da semana"></label>'+
+  '<p class="ac-n">Vale +20 XP e uma conta no colar. Bandeiras capturadas: <b>'+v+'</b></p>';}
+function acRegras(){var r=S.regras||AC_REGRAS;
+ return '<div class="ac-k">regras do chalé <button type="button" class="ac-ed" data-acre>editar</button></div>'+
+  '<ol class="ac-rl">'+r.map(function(t){return '<li>'+esc(t)+'</li>';}).join('')+'</ol>'+
+  '<textarea class="ac-ta" data-acta rows="6" hidden>'+esc(r.join('\n'))+'</textarea>';}
+function acCards(){var pl=document.getElementById('pl-row');if(!pl)return;
+ var w=document.getElementById('ac-row');
+ if(!w){w=document.createElement('div');w.id='ac-row';w.className='ac-row';
+  w.innerHTML='<div class="ac-w" id="ac-cap"></div><div class="ac-w" id="ac-reg"></div>';
+  w.addEventListener('change',function(e){var t=e.target,k=acSemana();S.cb=S.cb||{};
+   if(t.hasAttribute('data-accb')){var c=S.cb[k]||{};c.ok=t.checked;c.d=w.querySelector('[data-acd]').value;S.cb[k]=c;
+    if(t.checked)try{anota('Captura da bandeira vencida: '+c.d,0,false);}catch(z){}grava();acPintaCards(true);try{vxRender();}catch(z){}}
+   if(t.hasAttribute('data-acd')){var c2=S.cb[k]||{ok:false};c2.d=t.value;S.cb[k]=c2;grava();}
+   if(t.hasAttribute('data-acta')){S.regras=t.value.split('\n').map(function(x){return x.trim();}).filter(Boolean);grava();acPintaCards(true);}});
+  w.addEventListener('click',function(e){if(!e.target.hasAttribute('data-acre'))return;var ta=w.querySelector('[data-acta]'),ol=w.querySelector('.ac-rl');
+   ta.hidden=!ta.hidden;ol.hidden=!ta.hidden;e.target.textContent=ta.hidden?'editar':'pronto';if(!ta.hidden)ta.focus();});}
+ if(w.previousElementSibling!==pl)pl.parentNode.insertBefore(w,pl.nextSibling);
+ var ver=pl.offsetParent!==null;if(w.style.display!==(ver?'':'none'))w.style.display=ver?'':'none';acPintaCards(false);}
+function acPintaCards(forca){var a=document.getElementById('ac-cap'),b=document.getElementById('ac-reg');if(!a||!b)return;
+ if(forca||!a.firstChild)a.innerHTML=acCaptura();if(forca||!b.firstChild)b.innerHTML=acRegras();}
+function acFaixas(){Array.prototype.forEach.call(document.querySelectorAll('.v4-h,#tb-g .tbf'),function(el){
+  if(el.querySelector('.fx-n'))return;var m=el.textContent.match(/^(\d\d)/);if(!m||!FX_NOMES[m[1]])return;
+  var sp=document.createElement('span');sp.className='fx-n';sp.textContent=FX_NOMES[m[1]];el.appendChild(sp);});}
+function acAreas(){var w=document.getElementById('rt-w');if(!w||!S.hab)return;
+ var nomes={};S.hab.forEach(function(h){var a=null;AREAS.forEach(function(r){if(!a&&r[0].test(h.nome||''))a=r[1];});if(a)nomes[(h.nome||'').trim()]=a;});
+ Array.prototype.forEach.call(w.querySelectorAll('*'),function(el){if(el.children.length||el.classList.contains('ar-t'))return;
+  var t=(el.textContent||'').trim();if(nomes[t]&&!(el.nextElementSibling&&el.nextElementSibling.classList.contains('ar-t'))){
+   var sp=document.createElement('span');sp.className='ar-t';sp.textContent=nomes[t];el.parentNode.insertBefore(sp,el.nextSibling);}});}
+function acColar(){var c=document.getElementById('fc-colar');if(!c)return;var v=acVitorias(),txt=v+(v===1?' conta':' contas')+' · uma por Captura da bandeira vencida';
+ if(c.textContent!==txt)c.textContent=txt;}
+
+/* ---------- Cofre: a Ficha do Campista e o Diário do Semideus abrem com senha ----------
+   A senha nunca é guardada. Dela sai uma chave (PBKDF2, 250 mil voltas) que cifra cada
+   entrada do diário com AES-GCM; no navegador e no Supabase só ficam textos cifrados.
+   Sem a senha, as entradas não podem ser recuperadas. */
+var CF={chave:null};
+function cfB64(u){var s='';u=new Uint8Array(u);for(var i=0;i<u.length;i++)s+=String.fromCharCode(u[i]);return btoa(s);}
+function cfU8(b){var s=atob(b),u=new Uint8Array(s.length);for(var i=0;i<s.length;i++)u[i]=s.charCodeAt(i);return u;}
+async function cfDeriva(senha,sal){var base=await crypto.subtle.importKey('raw',new TextEncoder().encode(senha),'PBKDF2',false,['deriveKey']);
+ return crypto.subtle.deriveKey({name:'PBKDF2',salt:sal,iterations:250000,hash:'SHA-256'},base,{name:'AES-GCM',length:256},false,['encrypt','decrypt']);}
+async function cfCifra(txt){var iv=crypto.getRandomValues(new Uint8Array(12));
+ var ct=await crypto.subtle.encrypt({name:'AES-GCM',iv:iv},CF.chave,new TextEncoder().encode(txt));return {iv:cfB64(iv),ct:cfB64(ct)};}
+async function cfDecifra(o,k){var pt=await crypto.subtle.decrypt({name:'AES-GCM',iv:cfU8(o.iv)},k||CF.chave,cfU8(o.ct));return new TextDecoder().decode(pt);}
+function cfMsg(t,erro){var m=document.getElementById('cf-msg');if(m){m.textContent=t;m.className='cf-msg'+(erro?' erro':'');}}
+function cfTela(){var c=document.getElementById('cf-cofre');if(!c)return;var f=document.getElementById('fc-ficha');
+ if(CF.chave){c.innerHTML='<div class="cf-bar"><span>🔓 cofre aberto</span><button type="button" data-cftr>trancar</button></div>';
+  if(f)f.hidden=false;cfDiario();return;}
+ if(f)f.hidden=true;var d=document.getElementById('cf-diario');if(d)d.remove();
+ var nova=!S.cofre;
+ c.innerHTML='<div class="cf-lock"><div class="cf-ico">🔒</div><div><b>Ficha do Campista &middot; Diário do Semideus</b>'+
+  '<p>'+(nova?'Crie uma senha para trancar a ficha e o diário. Guarde bem: sem ela, as entradas do diário não podem ser recuperadas.':'Trancado. Digite a senha para abrir.')+'</p>'+
+  '<div class="cf-f"><input type="password" id="cf-s1" placeholder="senha" autocomplete="'+(nova?'new-password':'current-password')+'">'+
+  (nova?'<input type="password" id="cf-s2" placeholder="repita a senha" autocomplete="new-password">':'')+
+  '<button type="button" data-cfok>'+(nova?'criar e abrir':'abrir')+'</button></div><span id="cf-msg" class="cf-msg"></span></div></div>';}
+async function cfAbre(){var s1=document.getElementById('cf-s1'),s2=document.getElementById('cf-s2');var senha=s1?s1.value:'';
+ if(!window.crypto||!crypto.subtle){cfMsg('Este navegador não permite cifrar. Abra pelo endereço https.',true);return;}
+ if(senha.length<4){cfMsg('Use ao menos 4 caracteres.',true);return;}
+ try{if(!S.cofre){if(!s2||s2.value!==senha){cfMsg('As senhas não conferem.',true);return;}
+   var sal=crypto.getRandomValues(new Uint8Array(16));CF.chave=await cfDeriva(senha,sal);
+   var chk=await cfCifra('hekatos');S.cofre={sal:cfB64(sal),chk:chk};grava();}
+  else{var k=await cfDeriva(senha,cfU8(S.cofre.sal));
+   try{if(await cfDecifra(S.cofre.chk,k)!=='hekatos')throw 0;}catch(e){cfMsg('Senha incorreta.',true);return;}CF.chave=k;}
+  cfTela();}catch(e){cfMsg('Não consegui abrir o cofre.',true);}}
+async function cfDiario(){var c=document.getElementById('cf-cofre');if(!c||!CF.chave)return;
+ var d=document.getElementById('cf-diario');
+ if(!d){d=document.createElement('div');d.id='cf-diario';d.className='cf-dia';
+  var f=document.getElementById('fc-ficha');(f||c).parentNode.insertBefore(d,(f||c).nextSibling);}
+ var itens=[];for(var i=(S.dsd||[]).length-1;i>=0;i--){var e=S.dsd[i];var t='';try{t=await cfDecifra(e);}catch(z){t='(entrada cifrada com outra senha)';}
+  itens.push('<li><time>'+esc(e.em||'')+'</time><p>'+esc(t).replace(/\n/g,'<br>')+'</p></li>');}
+ d.innerHTML='<div class="cf-dh"><span class="fc-k">diário do semideus &middot; só você lê</span><h3>Diário do Semideus</h3></div>'+
+  '<textarea id="cf-nova" rows="4" placeholder="O que aconteceu hoje no acampamento?"></textarea>'+
+  '<div class="cf-acoes"><button type="button" data-cfadd>guardar entrada</button><span id="cf-msg2" class="cf-msg"></span></div>'+
+  '<ol class="cf-lista">'+(itens.join('')||'<li class="vz">Nenhuma entrada ainda.</li>')+'</ol>';}
+async function cfAdd(){var ta=document.getElementById('cf-nova');var t=(ta&&ta.value||'').trim();if(!t||!CF.chave)return;
+ var o=await cfCifra(t),n=new Date();o.em=n.toLocaleDateString('pt-BR')+' · '+String(n.getHours()).padStart(2,'0')+'h'+String(n.getMinutes()).padStart(2,'0');
+ S.dsd=S.dsd||[];S.dsd.push(o);grava();try{anota('Entrada no Diário do Semideus',0,false);}catch(z){}cfDiario();}
+function cfMonta(){var vb=document.getElementById('vx-body'),f=document.getElementById('fc-ficha');if(!vb||!f)return;
+ var c=document.getElementById('cf-cofre');
+ if(!c){c=document.createElement('div');c.id='cf-cofre';c.className='cf';vb.insertBefore(c,f);
+  c.addEventListener('click',function(e){if(e.target.hasAttribute('data-cfok'))cfAbre();if(e.target.hasAttribute('data-cftr')){CF.chave=null;cfTela();}});
+  c.addEventListener('keydown',function(e){if(e.key==='Enter'&&e.target.tagName==='INPUT')cfAbre();});
+  document.addEventListener('click',function(e){if(e.target.hasAttribute&&e.target.hasAttribute('data-cfadd'))cfAdd();});
+  cfTela();}
+ if(c.nextElementSibling!==f)vb.insertBefore(c,f);
+ var dos=document.body.getAttribute('data-vx-view')==='dos';c.style.display=dos?'':'none';
+ if(!CF.chave&&!f.hidden)f.hidden=true;
+ var d=document.getElementById('cf-diario');if(d)d.style.display=dos?'':'none';}
+
+function acTudo(){try{acListas();}catch(e){}try{acCards();}catch(e){}try{acFaixas();}catch(e){}try{acAreas();}catch(e){}try{acColar();}catch(e){}try{cfMonta();}catch(e){}}
+(function(){var pend=0;function vez(){pend=0;acTudo();}
+ if(window.MutationObserver)new MutationObserver(function(){if(!pend)pend=setTimeout(vez,40);}).observe(document.documentElement,{childList:true,subtree:true});
+ setTimeout(vez,0);})();
 
 /* ---------- Planner do dia (tema Astronáutica) ----------
    Relógio, calendário do mês, três prioridades e checklist de fim de dia,
