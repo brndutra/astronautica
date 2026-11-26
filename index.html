@@ -3903,6 +3903,17 @@ body.com-rodape .td-disco{bottom:78px!important}
 h2.sec.neo-tit{position:relative;z-index:2;width:max-content;max-width:calc(100% - 120px);margin:26px auto -38px!important;padding:7px 26px 6px!important;
  border:1.5px solid #5a3f2c!important;border-radius:2px;background:var(--neo-papel),#f4ead2!important;box-shadow:0 0 0 4px #f4ead2,0 0 0 5.5px #5a3f2c;line-height:1.2}
 h2.sec.neo-tit+.neo-moldura{margin-top:0!important}
+
+/* caixa única dentro do Quadro de avisos */
+#cerbox #rail-in{display:flex;flex-direction:column;gap:7px;margin:0 0 14px;padding:12px;border:1px dashed #b89c72;border-radius:12px;background:none}
+#cerbox #rail-in>.rgrid,#cerbox #rail-in>.rbl,#cerbox #rail-in>.rmis,#cerbox #rail-in>.rcab:first-child,#cerbox #rail-in .rbt{display:none!important}
+#cerbox #rail-in>*{background:none!important;margin:0!important}
+#cerbox #rail-in .rcab.cer{display:flex;align-items:baseline;justify-content:space-between;padding:0!important;border:0!important}
+#cerbox #rail-in .rcab.cer .k9{font-size:0!important}#cerbox #rail-in .rcab.cer .k9::before{content:'Caixa de entrada';font:700 9.5px var(--mono,monospace);letter-spacing:.18em;text-transform:uppercase;color:#9a6b3a}
+#cerbox #rail-in .rcap{display:flex;gap:6px}#cerbox #rail-in .rcap input{flex:1;min-width:0}
+#cerbox #rail-in .rcap button{width:auto!important}
+.cp-mural.cp-vazio{display:none!important}
+@media(min-width:901px){body.claro[data-skin="astro"] #vx .vx-hero>.cp-dracmas,#vx .vx-hero>.cp-dracmas{left:266px!important}}
 </style>
 </head>
 <body>
@@ -12032,6 +12043,12 @@ function temaIc(){var bm=document.getElementById('bn-min');if(!bm)return;var row
  b.title=claro?'Mudar para o modo escuro':'Mudar para o modo claro';b.setAttribute('aria-label',b.title);}
 (function(){var r0=vxRender;vxRender=function(){var x=r0.apply(this,arguments);try{temaIc();}catch(e){}return x;};setTimeout(function(){try{temaIc();}catch(e){}},300);})();
 
+/* a caixa única de captura sai do banner e entra no topo do Quadro de avisos (coluna direita): um quadro só */
+latMural=function(){var ri=document.getElementById('rail-in'),cb=document.getElementById('cerbox');if(!ri||!cb)return;try{latRailCss();}catch(e){}
+ var bt=cb.querySelector('.cerbt');if(bt){if(bt.nextElementSibling!==ri)bt.insertAdjacentElement('afterend',ri);}else if(ri.parentNode!==cb)cb.insertBefore(ri,cb.firstChild);
+ var m=document.querySelector('.vx-hero .cp-mural');if(m&&!m.querySelector(':scope > :not(#rail-in)'))m.classList.add('cp-vazio');};
+(function(){var r0=vxRender;vxRender=function(){var x=r0.apply(this,arguments);try{latMural();}catch(e){}return x;};})();
+
 /* data, semana e próximo toque da concha saem do rodapé e vão para a linha do "limpar semana" da Grade */
 function tbData(){var tb=document.querySelector('.wrap > div.tb'),cab=tb&&tb.querySelector('.tbcab');if(!cab)return;var w=cab.querySelector('.tb-dt');
  if(!w){w=document.createElement('div');w.className='tb-dt';var bt=cab.querySelector('#b-tb-lp');bt?cab.insertBefore(w,bt):cab.appendChild(w);
@@ -12472,7 +12489,7 @@ function latPosiciona(){var m=latMonta(),larga=LAT_LARGA.matches,nav=document.ge
  var rc=rodMonta().querySelector('#rod-corpo');if(m.ap&&m.ap.parentNode!==rc)rc.appendChild(m.ap);try{rodBarra();}catch(e){}
  if(larga&&nav&&rail){latRailCss();
   if(m.e.parentNode!==nav)nav.appendChild(m.e);if(m.d.parentNode!==rail)rail.appendChild(m.d);
-  if(ri&&q&&ri.parentNode!==q&&!ri.closest('.cp-mural'))q.appendChild(ri);
+  if(ri&&q&&ri.parentNode!==q&&!ri.closest('.cp-mural,#cerbox'))q.appendChild(ri);
   nos.forEach(function(n){n.dataset.vxHidden='false';if(n.parentNode!==est)est.appendChild(n);});
   var lin=m.d.querySelector('#lat-lin'),lp=document.querySelector('.wrap > .lp'),hlp=document.getElementById('h-lp');if(lp&&lin){if(!document.getElementById('lat-lin-ph')){var lph=document.createElement('i');lph.id='lat-lin-ph';lph.hidden=true;wr.insertBefore(lph,hlp&&hlp.parentNode===wr?hlp:lp);}if(hlp){hlp.classList.add('lat-oculta');}lp.dataset.vxHidden='false';lin.appendChild(lp);}
   enos.forEach(function(n){n.dataset.vxHidden='false';if(n.matches('h2.sec')||n.classList.contains('narr'))n.classList.add('lat-oculta');if(n.parentNode!==enf)enf.appendChild(n);});
