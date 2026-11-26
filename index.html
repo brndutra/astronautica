@@ -2226,6 +2226,23 @@ body.claro[data-skin="astro"] #nav button:hover{background:#f4eddd}
 body.claro[data-skin="astro"] #rail .rcap,body.claro[data-skin="astro"] #rail .rvz,body.claro[data-skin="astro"] #rail .rm,
 body.claro[data-skin="astro"] #rail .rbl,body.claro[data-skin="astro"] #rail .rmis{background:#f1e9d8}
 body.claro[data-skin="astro"] #rail input,body.claro[data-skin="astro"] #rail button{background:#f7f1e3}
+
+/* ficha do alter ego (Profecia) */
+.hk{margin:0 0 18px;padding:18px 20px;border-radius:16px;border:1px solid var(--line);background:var(--panel);box-shadow:0 10px 24px -16px rgba(31,36,48,.3)}
+body[data-skin="astro"] .hk{border-top:4px solid var(--a-op)}
+.hk-k{font:600 11px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--a-op)}
+.hk h3{margin:6px 0 2px;font:800 26px/1.1 var(--display,Georgia,serif);color:var(--bone)}
+.hk h3 i{font-style:italic;font-weight:600;font-size:.7em;color:var(--dim)}
+.hk-sub{margin:0;color:var(--dim);font:13px var(--sans)}
+.hk-af{margin:14px 0;padding:12px 16px;border-left:4px solid var(--a-op);border-radius:10px;background:var(--panel2);font:600 15px/1.5 Georgia,serif;color:var(--bone)}
+.hk-gr{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:12px}
+.hk-gr b{display:block;margin-bottom:6px;font:600 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+.hk ul{margin:0;padding-left:18px;display:grid;gap:4px;font:13.5px/1.45 var(--sans);color:var(--ink)}
+.hk p{margin:0;font:13.5px/1.5 var(--sans);color:var(--ink)}
+.hk table{width:100%;border-collapse:collapse;font:13px/1.35 var(--sans)}
+.hk td{padding:6px 8px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink)}
+.hk td:first-child{color:var(--a-camp)} .hk td:last-child{color:var(--dim);text-decoration:line-through;text-decoration-color:color-mix(in srgb,var(--dim) 50%,transparent)}
+@media(max-width:800px){.hk-gr{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -6350,7 +6367,7 @@ var TEMAS={
    ['Baralho de Varredura','Tarefas do chal\u00e9'],['Protocolos de conten\u00e7\u00e3o','Enfermaria'],['refor\u00e7o do portador','cuidados de filho de Apolo'],
    ['Leitura de abertura','chamada da manh\u00e3'],['Como chega a corrente hoje?','Como voc\u00ea chega \u00e0 fogueira hoje?'],
    ['tr\u00eas prioridades','tr\u00eas miss\u00f5es do dia'],['fim do dia','toque de recolher'],
-   ['rotas abertas','miss\u00f5es abertas'],['ASTROMANTE','FILHO DE APOLO'],
+   ['rotas abertas','miss\u00f5es abertas'],['ASTROMANTE','CHASE MAVERICK DUKE \u00b7 H\u00c9KATOS'],
    ['C\u00e9rebro','Quadro de avisos'],['\u00d3rbita','Em andamento'],['Em \u00f3rbita','Em andamento'],
    ['Grade','Treinos do m\u00eas'],['Rastreador de h\u00e1bitos','Treinos do m\u00eas'],
    ['Provas','Prova\u00e7\u00f5es'],['Pr\u00eamios','Recompensas'],['Rota','Profecia'],['Declara\u00e7\u00e3o de rota','Profecia do ciclo'],
@@ -6374,7 +6391,7 @@ function apRotulos(){var t=TEMAS[apTema()];if(!t.rotulos)return;
    var novo=mapa[tr.toLowerCase()];
    if(novo==null){var m=tr.match(/^(.*?)(\s*(?:\u00b7|\/\/).*)$/);if(m&&mapa[m[1].trim().toLowerCase()]!=null)novo=mapa[m[1].trim().toLowerCase()]+m[2];}
    if(novo==null){var m2=tr.match(/^(\/\/\s*)(.*)$/);if(m2&&mapa[m2[2].trim().toLowerCase()]!=null)novo=m2[1]+mapa[m2[2].trim().toLowerCase()];}
-   if(novo==null&&/^ASTROMANTE/.test(tr))novo=tr.replace('ASTROMANTE','FILHO DE APOLO');
+   if(novo==null&&/^ASTROMANTE/.test(tr))novo=tr.replace('ASTROMANTE','CHASE MAVERICK DUKE \u00b7 H\u00c9KATOS');
    if(novo!=null&&tr===tr.toUpperCase()&&tr!==tr.toLowerCase())novo=novo.toUpperCase();
    if(novo!=null&&novo!==tr)n.nodeValue=v.replace(tr,novo);});});}
 function apTextos(){var t=TEMAS[apTema()];if(!VX)return;try{apRotulos();}catch(e){}
@@ -6406,6 +6423,35 @@ function apTextos(){var t=TEMAS[apTema()];if(!VX)return;try{apRotulos();}catch(e
  function agenda(){if(!pend)pend=setTimeout(vez,30);}
  if(window.MutationObserver)new MutationObserver(agenda).observe(document.documentElement,{childList:true,subtree:true});
  setTimeout(vez,0);})();
+
+/* ---------- Alter ego: Chase Maverick Duke, o Hékatos (ficha na Profecia) ---------- */
+var HK_FICHA='<div class="hk-cab"><span class="hk-k">alter ego &middot; filho de Apolo</span>'+
+ '<h3>Chase Maverick Duke <i>o H&eacute;katos</i></h3>'+
+ '<p class="hk-sub">&ldquo;O que acerta de longe.&rdquo; Nascido em Austin, Texas, no &uacute;ltimo grau do fogo.</p></div>'+
+ '<blockquote class="hk-af">Eu sou H&eacute;katos. Eu escolho o alvo, firmo os p&eacute;s e acerto de longe. O que &eacute; meu j&aacute; est&aacute; a caminho, e eu caminho at&eacute; ele todos os dias.</blockquote>'+
+ '<div class="hk-gr"><div><b>Quem eu sou</b><ul>'+
+ '<li>Miro antes de soltar: escolho o alvo do dia e ignoro o resto da pilha.</li>'+
+ '<li>Estudo como quem treina arco: todo dia, no mesmo hor&aacute;rio, sem esperar vontade.</li>'+
+ '<li>Leio as pessoas e uso isso a meu favor, sem me perder nelas.</li>'+
+ '<li>Sou o guardi&atilde;o da lei: o meu lugar no tribunal j&aacute; &eacute; meu.</li>'+
+ '<li>Firmo os p&eacute;s antes de correr: durmo, bebo &aacute;gua, como e treino o corpo.</li>'+
+ '<li>N&atilde;o preciso de aplauso para saber que acertei.</li>'+
+ '<li>Re&uacute;no gente com leveza: o meu humor &eacute; for&ccedil;a.</li></ul></div>'+
+ '<div><b>Faz &middot; n&atilde;o faz</b><table>'+
+ '<tr><td>fecha um bloco de foco antes de abrir o celular</td><td>come&ccedil;a o dia respondendo aos outros</td></tr>'+
+ '<tr><td>termina o expediente no hor&aacute;rio</td><td>leva trabalho para a noite</td></tr>'+
+ '<tr><td>decide sozinho as pequenas coisas</td><td>pede opini&atilde;o para validar o &oacute;bvio</td></tr>'+
+ '<tr><td>para quando o corpo pede</td><td>queima at&eacute; apagar</td></tr>'+
+ '<tr><td>revisa a mat&eacute;ria no dia certo</td><td>acumula para a v&eacute;spera</td></tr></table></div></div>'+
+ '<div class="hk-gr"><div><b>Gatilho</b><p>Antes de cada bloco, toque no colar ou na dracma e diga: <em>&ldquo;H&eacute;katos mira.&rdquo;</em></p></div>'+
+ '<div><b>Visualiza&ccedil;&atilde;o &middot; 2 min de manh&atilde;</b><p>Campo de arquearia ao amanhecer, n&eacute;voa baixa. P&eacute;s firmes, corda puxada, respira&ccedil;&atilde;o. A flecha crava no centro dourado, e o som do impacto vira uma porta se abrindo: o seu nome na lista de aprovados do TRF3.</p></div></div>';
+function hkFicha(){var h=document.getElementById('h-rota');if(!h)return;
+ var f=document.getElementById('hk-ficha');
+ if(!f){f=document.createElement('div');f.id='hk-ficha';f.className='hk';f.innerHTML=HK_FICHA;h.parentNode.insertBefore(f,h.nextSibling);}
+ f.setAttribute('data-area',h.getAttribute('data-area')||'camp');
+ f.style.display=(h.offsetParent===null&&getComputedStyle(h).display==='none')?'none':'';}
+(function(){var r0=vxRender;vxRender=function(){r0();try{hkFicha();}catch(e){}};})();
+setTimeout(function(){try{hkFicha();}catch(e){}},0);
 
 /* ---------- Planner do dia (tema Astronáutica) ----------
    Relógio, calendário do mês, três prioridades e checklist de fim de dia,
