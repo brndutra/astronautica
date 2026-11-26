@@ -2379,6 +2379,10 @@ body.claro[data-skin="astro"] .cp-dracmas i.mosaico::after,.cp-dracmas i::after{
 #lat-ac .ac-row{grid-template-columns:1fr!important;margin:0!important;gap:10px}
 
 #lat-quadro:empty,#lat-vx:empty{display:none}
+/* Partenon fora da página (o estudo está no Laptop de Dédalo); a mesa de runas continua abrindo pelo menu */
+#area-est{display:none!important}
+.wrap > [data-area="est"]:not(.tirbox):not(#tirbox):not(#cerbk){display:none!important}
+
 /* índice do topo: uma linha, no padrão marrom e creme */
 nav#tt-indice{flex-wrap:nowrap!important;gap:0!important;padding:8px 52px 8px 0!important;margin:0 0 10px!important;background:linear-gradient(var(--bg,#efe6d2) 70%,transparent)!important;
  border-bottom:3px double #5a3f2c!important;overflow-x:auto;scrollbar-width:none}
@@ -12695,7 +12699,7 @@ var AC_GUIA=[
  ['Bem-vindo, meio-sangue','Se você abriu isto, o pior já passou: alguém te reconheceu, você chegou inteiro e ganhou um chalé. Este app é o acampamento inteiro no bolso. Ele não exige que você seja um herói o dia todo. Exige só o próximo passo.'],
  ['As regras da casa','<ol><li><b>Um bloco de cada vez.</b> Quíron nunca cobrou a lista inteira de ninguém.</li><li><b>Três missões por dia, no máximo.</b> Profecias longas demais terminam mal.</li><li><b>Dia ruim também conta.</b> Sobreviver é uma atividade oficial do acampamento.</li><li><b>Anote antes de esquecer.</b> A Névoa apaga tudo o que fica só na cabeça.</li><li><b>Fechou o dia, apaga a fogueira.</b> O checklist de fim de dia existe por um motivo.</li></ol>'],
  ['O dia no acampamento','<ul class="ac-horas"><li><b>06h</b> alvorada e treino leve</li><li><b>09h</b> treino na arena: o bloco mais pesado do dia</li><li><b>12h</b> almoço no pavilhão</li><li><b>15h</b> atividades do acampamento</li><li><b>18h</b> jantar e oferenda à fogueira</li><li><b>21h</b> fogueira e toque de recolher</li></ul>A faixa de agora aparece na Casa Grande e na extensão. O que você escreve na Semana vira a escala de cada faixa.'],
- ['As abas e os painéis','<ul><li><b>Casa Grande</b>: o banner com o mural e o registro do dia, a Grade semanal, o spread do mês e o rastreador de hábitos.</li><li><b>Missões</b>: o Mural de Missões (Tarefas do chalé, Quests diárias e Grandes Profecias) e o Bunker 9, com projetos e retomadas.</li><li><b>Partenon</b>: o que sobrou do estudo; o principal está no Laptop de Dédalo, à direita: Táticas de Guerra (concurso) e Grego Antigo e Outras (línguas).</li><li><b>Arsenal</b>: o kit do Hékatos e a forja, mais a ficha do campista.</li><li><b>Bolsa de Dracmas</b>: o seu dinheiro de verdade, com Diário de Bordo, Carga, Enfermaria e Bunker 9.</li><li><b>À esquerda</b>: nível, arsenal, Dracmas de Ouro, Copa dos Chalés, colar, bandeira, vitórias e a Enfermaria do Acampamento.</li></ul>'],
+ ['As abas e os painéis','<ul><li><b>Casa Grande</b>: o banner com o mural e o registro do dia, a Grade semanal, o spread do mês e o rastreador de hábitos.</li><li><b>Missões</b>: o Mural de Missões (Tarefas do chalé, Quests diárias e Grandes Profecias) e o Bunker 9, com projetos e retomadas.</li><li><b>Laptop de Dédalo</b>, à direita: Táticas de Guerra (concurso e roda do ciclo) e Grego Antigo e Outras (línguas).</li><li><b>Arsenal</b>: o kit do Hékatos e a forja, mais a ficha do campista.</li><li><b>Bolsa de Dracmas</b>: o seu dinheiro de verdade, com Diário de Bordo, Carga, Enfermaria e Bunker 9.</li><li><b>À esquerda</b>: nível, arsenal, Dracmas de Ouro, Copa dos Chalés, colar, bandeira, vitórias e a Enfermaria do Acampamento.</li></ul>'],
  ['Dracmas, XP e nível','Foco, estudo, hábitos, missões e etapas rendem XP. A cada 100 XP você sobe de nível. As <b>Dracmas de Ouro</b> são a moeda do acampamento: 10 por hora de foco ou de estudo. Com elas você compra temas de chalé, insígnias do crachá e sons ambientes na Loja do acampamento (ícone de ferramentas, no alto). A <b>Bolsa de Dracmas</b> é outra coisa: é o seu dinheiro de verdade, na aba 05.'],
  ['Colar de contas','No fim de cada verão os campistas ganham uma conta com o símbolo do que viveram. Aqui é uma por mês: toque na conta do mês, escreva o marco e escolha o símbolo. Em dezembro você tem o ano inteiro pendurado no pescoço.'],
  ['Captura da Bandeira','Toda semana tem uma bandeira: a meta que, se cair até sexta, vale a semana. Escreva qual é na segunda, capture até sexta (com tolerância até domingo) e ganhe +20 XP. As bandeiras das últimas semanas ficam marcadas embaixo.'],
@@ -13280,7 +13284,7 @@ function latRsVai(){var F=[['inspira','in'],['segura','cheio'],['solta','out'],[
 function latMonta(){var e=document.getElementById('lat-e'),d=document.getElementById('lat-d');
  if(!e){e=document.createElement('div');e.id='lat-e';e.className='lat';e.innerHTML='<div id="lat-quadro"></div><div id="lat-gm"></div>'+latCard('lat-postal','carta','Cartão-postal do acampamento','Postal do dia','<div id="lat-postal-b"></div>')+latCard('lat-ars','arco','Arsenal do Hékatos','O kit e a forja','<div id="lat-ars-b"></div>')+latCard('lat-dr','moeda','Moeda do acampamento','Dracmas de Ouro','<div id="lat-dr-b"></div>')+latCard('lat-cp','copa','Pontos do chalé 7 por semana','Copa dos Chalés','<div id="lat-cp-b"></div>')+'<div id="lat-ac"></div><div id="lat-vx" class="tt-area"></div>'+latCard('lat-enf-c','cruz','Sono, água, movimento, comida, remédios','Enfermaria do Acampamento','<div id="lat-med"></div><div id="lat-enf"></div>');
   var ap=document.createElement('div');ap.id='lat-apps';ap.className='lat';ap.innerHTML=latAgenda()+latClima()+latSpotify()+latAtalhos();latMonta.apps=ap;}
- if(!d){d=document.createElement('div');d.id='lat-d';d.className='lat';d.innerHTML='<div class="lat-esth"><span class="lat-ic">'+LAT_IC.livro+'</span><div><span class="k9">Partenon · painel de estudos</span><b>Laptop de Dédalo</b></div>'+
+ if(!d){d=document.createElement('div');d.id='lat-d';d.className='lat';d.innerHTML='<div class="lat-esth"><span class="lat-ic">'+LAT_IC.livro+'</span><div><span class="k9">painel de estudos</span><b>Laptop de Dédalo</b></div>'+
   '<button type="button" class="lat-ed" id="lat-exp" title="expandir o painel (ou arraste a borda)" aria-label="expandir o painel">'+LAT_IC.expandir+'</button></div><h4 class="lat-sh">Táticas de Guerra <small>concurso TRF3</small></h4><div id="lat-est"></div><h4 class="lat-sh">Grego Antigo e Outras <small>línguas</small></h4><div id="lat-lin"></div>';}
  [e,d].forEach(function(box){if(box.dataset.lig)return;box.dataset.lig='1';
   box.addEventListener('click',function(ev){var t=ev.target.closest('[data-lat-ed],[data-lat-ok],[data-lat-aba],#lat-rs-b,#lat-exp');if(!t)return;
@@ -14054,6 +14058,10 @@ function mfAbre(){var W=wsD(),m=wsSemanas().mes,v=W.mes[m]||{},d=document.getEle
   '<label>Foco do mês<textarea data-mf-f rows="3" placeholder="Uma intenção para o mês">'+esc(v.foco||'')+'</textarea></label><label>Metas do mês<textarea data-mf-m rows="5" placeholder="O que quero concluir, uma por linha">'+esc(v.metas||'')+'</textarea></label>'+
   '<div class="mf-bt"><button type="button" data-mf-x>cancelar</button><button type="button" data-mf-ok>salvar</button></div></div>';
  d.hidden=false;var t=d.querySelector('textarea');if(t)t.focus();}
+/* o Partenon deixou de existir como parte: o estudo mora no Laptop de Dédalo, à direita */
+var TT_ORIG=['op','camp','est','dos','fin'];
+TT_AREAS=['op','camp','dos','fin'];
+ttNome=function(i){var a=TT_AREAS[i],j=TT_ORIG.indexOf(a),t=TEMAS[apTema()]||{},x=(t.abas||[])[j]||'',p=x.split(' / ');return {n:String(i+1).padStart(2,'0'),t:p[1]||p[0]||''};};
 /* a Grade semanal é o painel principal: logo abaixo do índice */
 function latGradeTopo(){var wr=document.querySelector('.wrap'),h=document.getElementById('h-sem'),ix=document.getElementById('tt-indice');if(!wr||!h)return;
  var tb=h.nextElementSibling&&h.nextElementSibling.classList.contains('tb')?h.nextElementSibling:document.querySelector('.wrap > .tb');
