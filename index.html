@@ -17373,6 +17373,20 @@ function frontaoMoldura(){var h=document.getElementById('hero-box');if(!h||h.dat
  '#lat-e>#qa-d-pc[open]>.qa-sb{max-height:min(58vh,520px);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin}'
 ].join('\n');document.head.appendChild(st);})();
 
+
+/* ======================= Fio de Ariadne fixo na tela (pé do painel esquerdo), aberto ou fechado ======================= */
+function fioFixo(){var pc=document.getElementById('qa-d-pc'),nav=document.getElementById('nav'),e=document.getElementById('lat-e');if(!pc||!nav||!e||pc.parentNode!==e)return;
+ var r=nav.getBoundingClientRect(),sb=nav.offsetWidth-nav.clientWidth;var de=document.documentElement.style;
+ de.setProperty('--fio-l',Math.max(0,r.left)+'px');de.setProperty('--fio-w',Math.max(160,r.width-sb)+'px');de.setProperty('--fio-h',pc.offsetHeight+'px');}
+window.addEventListener('resize',function(){try{fioFixo();}catch(e){}});
+document.addEventListener('toggle',function(e){if(e.target&&e.target.id==='qa-d-pc')setTimeout(function(){try{fioFixo();}catch(z){}},30);},true);
+setInterval(function(){try{fioFixo();}catch(e){}},1500);setTimeout(function(){try{fioFixo();}catch(e){}},800);
+(function(){var st=document.createElement('style');st.id='fio-fixo-css';st.textContent=[
+ '@media(min-width:1380px){#lat-e>#qa-d-pc{position:fixed!important;bottom:0!important;left:var(--fio-l,0px)!important;width:var(--fio-w,290px)!important;z-index:60!important;margin:0!important;box-sizing:border-box}',
+ '#lat-e{padding-bottom:calc(var(--fio-h,48px) + 10px)!important}}',
+ '@media(max-width:1379px){#lat-e>#qa-d-pc{position:relative!important;bottom:auto!important;border-radius:10px!important;border-bottom:1px solid #d6c69c!important;margin:0 6px!important}}'
+].join('\n');document.head.appendChild(st);})();
+
 })();
 </script>
 </body>
