@@ -1,4 +1,4 @@
-/* Astronáutica · acesso ao Supabase sem bibliotecas externas.
+/* Acampamento Meio-Sangue · acesso ao Supabase sem bibliotecas externas.
    A extensão só lê o estado e deposita eventos na fila vertice_inbox;
    quem aplica os eventos no registro é o app. */
 var CFG = {
@@ -54,11 +54,20 @@ var API = {
   /* lê só o que a extensão mostra, sem trazer o registro inteiro */
   async estado() {
     var s = await API.sessao(); if (!s) return null;
-    var sel = 'tb:dados->tb,hab:dados->hab,plan:dados->plan,agua:dados->agua,ap:dados->ap';
+    var sel = 'tb:dados->tb,hab:dados->hab,plan:dados->plan,agua:dados->agua,est:dados->est,' +
+      'estado:dados->estado,cont:dados->cont,ses:dados->vx->sessions';
     var rows = await API._rest('vertice_estado?select=' + encodeURIComponent(sel) + '&user_id=eq.' + s.user.id);
     var e = rows && rows[0] ? rows[0] : {};
     await chrome.storage.local.set({ estado: { em: Date.now(), dados: e } });
     return e;
+  },
+  /* eventos que ainda não foram aplicados pelo app (na fila da nuvem ou guardados sem rede):
+     servem para a extensão mostrar a conta certa antes do app sincronizar */
+  async fila() {
+    var off = (await chrome.storage.local.get('pendentes')).pendentes || [];
+    var rows = [];
+    try { rows = (await API._rest('vertice_inbox?select=tipo,dados&order=id.asc&limit=300')) || []; } catch (e) { }
+    return rows.concat(off);
   },
   evento: function (tipo, dados) {
     dados = Object.assign({ dia: hojeStr() }, dados || {});
