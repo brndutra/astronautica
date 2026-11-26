@@ -4109,6 +4109,34 @@ nav#tt-indice.tt-indice{flex-wrap:wrap!important;row-gap:0!important}
 #recreio .rc-g .lat-c{margin:0!important}
 #recreio .rc-g .lat-c .cg-dobra{display:none!important}
 @media(max-width:800px){#recreio .rc-g{grid-template-columns:1fr}#recreio.rc-neo>.tm-cab .k9{display:none}#recreio.rc-neo{padding-left:18px!important;padding-right:18px!important}}
+
+/* ===== o templo em níveis: mesmo padrão, destaque descendo do ouro claro ao bronze ===== */
+:root{--n-frontao:#c99a3d;--n-entab:#a8762e;--n-colun:#a4532f;--n-atrio:#6b7a3a;--n-tesouro:#b48a4a}
+[data-nivel="frontao"]{--fase:var(--n-frontao)}[data-nivel="entab"]{--fase:var(--n-entab)}[data-nivel="colun"]{--fase:var(--n-colun)}[data-nivel="atrio"]{--fase:var(--n-atrio)}[data-nivel="tesouro"]{--fase:var(--n-tesouro)}
+/* placas de título */
+h2.sec.neo-tit[data-nivel]{border-color:var(--fase)!important;box-shadow:0 0 0 4px #f4ead2,0 0 0 5.5px var(--fase)!important}
+h2.sec.neo-tit[data-nivel]>span{color:var(--fase)!important}
+#tm-painel[data-nivel]>.tm-cab,#recreio[data-nivel]>.tm-cab{border-color:var(--fase)!important;box-shadow:0 0 0 4px #f4ead2,0 0 0 5.5px var(--fase)!important}
+#tm-painel[data-nivel]>.tm-cab .k9,#recreio[data-nivel]>.tm-cab .k9{color:var(--fase)!important}
+/* moldura: borda e uma linha de cor sob o entablamento */
+.neo-moldura[data-nivel]{border-color:color-mix(in srgb,var(--fase) 55%,#5a3f2c)!important}
+.neo-moldura[data-nivel]::after{content:'';position:absolute;left:0;right:0;top:40px;height:2px;background:var(--fase);opacity:.85;pointer-events:none}
+/* réguas duplas e etiquetas */
+#tm-painel[data-nivel]>.tm-lb{color:var(--fase)!important}
+#tm-painel[data-nivel]>.tm-lb::before,#tm-painel[data-nivel]>.tm-lb::after{border-top-color:var(--fase)!important}
+.neo-moldura[data-nivel] .tbcab .k9{color:var(--fase)!important}
+/* frontão do banner e o tesouro */
+#hero-box[data-nivel] .neo-frontao svg path:first-child{stroke:var(--fase)}
+#hero-box[data-nivel] .vx-hero.bn2 .bn-tit .vx-k{color:var(--fase)!important}
+#tesouro[data-nivel]{box-shadow:inset 0 0 0 4px #3b2a1d,inset 0 0 0 5.5px var(--fase),0 10px 28px rgba(40,25,10,.25)!important}
+#tesouro[data-nivel] .ts-k{color:var(--fase)!important}
+#lat-arena[data-nivel]{border-top:3px solid var(--fase)!important}
+/* o fio de ouro na margem da coluna central */
+#templo-fio{position:fixed;top:0;bottom:0;width:3px;z-index:58;pointer-events:none;--fase:var(--n-frontao)}
+#templo-fio i{position:absolute;inset:0;border-radius:2px;background:linear-gradient(180deg,transparent,var(--fase) 12%,var(--fase) 88%,transparent);transition:background .5s}
+#templo-fio b{position:absolute;top:50%;left:4px;font-size:7.5px!important;transform:translateY(-50%) rotate(180deg);writing-mode:vertical-rl;font:700 8.5px var(--mono,monospace);letter-spacing:.3em;text-transform:uppercase;color:var(--fase);opacity:.85;white-space:nowrap;transition:color .5s}
+#templo-fio[data-nivel="frontao"]{--fase:var(--n-frontao)}#templo-fio[data-nivel="entab"]{--fase:var(--n-entab)}#templo-fio[data-nivel="colun"]{--fase:var(--n-colun)}#templo-fio[data-nivel="atrio"]{--fase:var(--n-atrio)}#templo-fio[data-nivel="tesouro"]{--fase:var(--n-tesouro)}
+@media(max-width:900px){#templo-fio{display:none}}
 </style>
 </head>
 <body>
@@ -13876,6 +13904,18 @@ function reorgRecreio(){var wr=document.querySelector('.wrap'),tp=document.getEl
 function reorg(){try{var tp=document.getElementById('tm-painel');if(tp)tp.classList.add('neo-moldura','tm-neo');}catch(e){}try{reorgProf();}catch(e){}try{reorgArena();}catch(e){}try{qaOrganiza();}catch(e){}try{pdPilula();}catch(e){}try{reorgOrb();}catch(e){}try{reorgTesouro();}catch(e){}try{reorgRecreio();}catch(e){}}
 (function(){var r0=vxRender;vxRender=function(){var x=r0.apply(this,arguments);reorg();return x;};var p0=pinta;pinta=function(){var x=p0.apply(this,arguments);reorg();return x;};})();
 setTimeout(reorg,50);setTimeout(reorg,900);
+/* ---------- o templo em níveis: um destaque por andar e o fio de ouro que desce com a rolagem ---------- */
+var TEMPLO=[['frontao','Frontão','#hero-box'],['entab','Entablamento','#h-sem'],['colun','Colunata','#tm-painel'],['atrio','Átrio','#recreio'],['tesouro','Tesouro','#tesouro']];
+function temploMarca(){var map={'#hero-box':'frontao','#h-sem':'entab','.wrap > div.tb':'entab','#h-rast':'entab','.wrap > div.rt':'entab','#tm-painel':'colun','#recreio':'atrio','#tesouro':'tesouro','#lat-arena':'colun'};
+ Object.keys(map).forEach(function(q){var n=document.querySelector(q);if(n&&n.dataset.nivel!==map[q])n.dataset.nivel=map[q];});
+ var f=document.getElementById('templo-fio');if(!f){f=document.createElement('div');f.id='templo-fio';f.setAttribute('aria-hidden','true');f.innerHTML='<i></i><b></b>';document.body.appendChild(f);}
+ temploFio();}
+function temploFio(){var f=document.getElementById('templo-fio'),wr=document.querySelector('.wrap');if(!f||!wr)return;var r=wr.getBoundingClientRect();var c0=wr.firstElementChild,cl=r.left;Array.prototype.some.call(wr.children,function(n){var b=n.getBoundingClientRect();if(b.width>200){cl=b.left;return true;}return false;});f.style.left=Math.max(0,Math.round((r.left+cl)/2)-6)+'px';
+ var meio=window.innerHeight*0.45,atual=TEMPLO[0];TEMPLO.forEach(function(t){var n=document.querySelector(t[2]);if(n&&n.offsetParent!==null&&n.getBoundingClientRect().top<meio)atual=t;});
+ if(f.dataset.nivel!==atual[0]){f.dataset.nivel=atual[0];f.querySelector('b').textContent=atual[1];}}
+window.addEventListener('scroll',function(){temploFio();},{passive:true,capture:true});window.addEventListener('resize',temploFio);
+(function(){var r0=vxRender;vxRender=function(){var x=r0.apply(this,arguments);try{temploMarca();}catch(e){}return x;};})();
+setTimeout(function(){try{temploMarca();}catch(e){}},300);setTimeout(function(){try{temploMarca();}catch(e){}},1500);
 setInterval(pintaProgresso,60000);
 })();
 </script>
