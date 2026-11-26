@@ -2576,6 +2576,31 @@ body[data-skin="astro"]{--pc:#fbf5ea}
 .pd-ft button[aria-selected="true"]{background:var(--a-fin)}
 /* captura: categoria selecionada e filtros no padrão das pílulas */
 .cp-filtro button[aria-pressed="true"]{background:var(--red);border-color:var(--red);color:#fff}
+
+/* sem Partenon: a área de estudo vive no Laptop do painel direito */
+#area-est,.vx-tabs [data-view="est"]{display:none!important}
+/* banners de área sem verde: papel do app, grega na cor da área */
+body[data-skin="astro"] .area-cab{color:var(--bone);background:var(--panel);border:1px solid var(--line);box-shadow:0 1px 2px rgba(31,36,48,.05),0 10px 24px -16px rgba(31,36,48,.25)}
+body[data-skin="astro"] .area-cab::before,body[data-skin="astro"] .area-cab::after{background-color:var(--red);opacity:.55}
+body[data-skin="astro"] .area-cab b{color:var(--bone);text-shadow:none}
+body[data-skin="astro"] .area-cab span{color:var(--dim)}
+/* o corvo do Bunker 9 também sem verde */
+.b9-corvo{color:var(--bone);background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.b9-corvo::before{background-color:var(--a-dos);opacity:.5}
+.b9-ico{color:var(--a-dos)}
+.b9-corvo li button{background:var(--bg);border-color:var(--line)}
+.b9-corvo li small{opacity:.7}
+
+/* ===== padrão único dos cartões: cabeçalho, botões e campos ===== */
+.sec-card{--sec:var(--red)}
+.sec-card[data-area="op"]{--sec:var(--a-op,var(--red))}.sec-card[data-area="camp"]{--sec:var(--a-camp)}.sec-card[data-area="est"]{--sec:var(--a-est)}.sec-card[data-area="dos"]{--sec:var(--a-dos)}
+#c-h-ctn{--sec:var(--a-camp)}#c-h-conc,#c-h-ciclo,#c-h-mapas,#c-h-lp{--sec:var(--a-est)}#c-h-proj{--sec:var(--a-dos)}
+.sec-card h2.sec{border-bottom:1.5px solid color-mix(in srgb,var(--sec) 35%,var(--line))!important;padding-bottom:10px}
+.sec-card h2.sec::before{background:var(--sec)!important;color:#fff!important}
+.sec-card h2.sec span{color:color-mix(in srgb,var(--sec) 55%,var(--dim))!important}
+.sec-card{border-radius:18px}
+.sec-card button:not(.pd-ic):not(.cp-tag){border-radius:10px}
+.sec-card input:not([type=checkbox]):not([type=radio]):not([type=range]),.sec-card select,.sec-card textarea{border-radius:10px}
 </style>
 </head>
 <body>
@@ -6689,9 +6714,9 @@ function gmPinta(){
    de nível) e a paleta. Os dados são os mesmos; a escolha fica em S.ap e sincroniza. */
 var TEMAS={
  astro:{nome:'Astron\u00e1utica',app:'Astron\u00e1utica',titulo:'Astron\u00e1utica',
-  abas:['01 / Casa Grande','02 / Miss\u00f5es','03 / Partenon','04 / Arsenal','05 / Finan\u00e7as'],
-  grupos:['Casa Grande','Miss\u00f5es','Partenon','Arsenal'],frase:'Uma flecha de cada vez.',sumario:'Astron\u00e1utica',
-  niveis:['Indeterminado','Reclamado','Campista','Conselheiro','Her\u00f3i','Constela\u00e7\u00e3o'],seq:'dias no acampamento',estudo:'Partenon',arquivo:'Arsenal',
+  abas:['01 / Casa Grande','02 / Miss\u00f5es','Laptop','03 / Arsenal','04 / Bolsa de Dracmas'],
+  grupos:['Casa Grande','Miss\u00f5es','Laptop','Arsenal'],frase:'Uma flecha de cada vez.',sumario:'Astron\u00e1utica',
+  niveis:['Indeterminado','Reclamado','Campista','Conselheiro','Her\u00f3i','Constela\u00e7\u00e3o'],seq:'dias no acampamento',estudo:'Laptop',arquivo:'Arsenal',
   /* nomes do acampamento: troca só rótulos fixos da moldura, nunca o que o usuário escreveu */
   rotulos:[
    ['Rotina','Escala do chal\u00e9'],['h\u00e1bitos e menu de recarga','h\u00e1bitos e o que recarrega'],
@@ -6965,7 +6990,7 @@ function arteAplica(){
 
 /* ---------- Painel único: tudo na mesma tela, as abas viram atalhos de rolagem ---------- */
 var AREA_CAB={camp:['02','Missões','frentes, hábitos, marcos e profecia'],est:['03','Partenon','concurso, ciclo de estudos, revisão, línguas e runas'],
- dos:['04','Arsenal','ficha do campista, diário e arquivo antigo']};
+ dos:['03','Arsenal','ficha do campista, diário e arquivo antigo']};
 function areaAncora(a){if(a==='op')return document.getElementById('vx');return document.getElementById('area-'+a);}
 vxShow=function(view){var n=areaAncora(view);if(n)n.scrollIntoView({behavior:'smooth',block:'start'});};
 vxLayout=function(){vxOrganiza();document.body.dataset.vxView='op';
@@ -7155,8 +7180,8 @@ function dossieCamp(){var arq=document.getElementById('arq-antigo');if(!arq)retu
 
 /* ---------- Painel direito: Enfermaria · Laptop · Bolsa de Dracmas · Bunker 9 (menu no topo do painel) ---------- */
 var PD_ABAS=[['enf','Enfermaria'],['lap','Laptop'],['fin','Bolsa de Dracmas'],['b9','Bunker 9']];
-var PD_CONT={enf:['c-h-ctn'],lap:['c-h-conc','c-h-lp'],b9:['c-h-proj']};
-var PD_NV={'h-ctn':'enf','h-conc':'lap','h-lp':'lap','h-proj':'b9'};
+var PD_CONT={enf:['c-h-ctn'],lap:['c-h-conc','c-h-ciclo','c-h-mapas','c-h-lp'],b9:['c-h-proj']};
+var PD_NV={'h-ctn':'enf','h-conc':'lap','h-ciclo':'lap','h-mapas':'lap','h-lp':'lap','h-proj':'b9'};
 var PD_ICON={enf:'<rect x="4" y="4" width="16" height="16" rx="4"/><path d="M12 8v8M8 12h8"/>',
  lap:'<rect x="5" y="5" width="14" height="10" rx="1.5"/><path d="M3 19h18M10 9l-1.5 1.5L10 12M14 9l1.5 1.5L14 12"/>',
  fin:'<path d="M9 4h6l-1.5 3h-3z"/><path d="M10.5 7C6 9 5 13 5 15.5 5 18.5 8 20 12 20s7-1.5 7-4.5C19 13 18 9 13.5 7"/><path d="M12 11v6M10.3 12.6c0-.9.8-1.4 1.7-1.4s1.7.5 1.7 1.3c0 1.8-3.4 1-3.4 2.8 0 .8.8 1.3 1.7 1.3s1.7-.5 1.7-1.4"/>',
@@ -7184,7 +7209,7 @@ function pdAbre(k){var pd=pdMonta();pd.classList.add('on');
 function pdFecha(){var pd=document.getElementById('painel-dir');if(!pd)return;pd.classList.remove('on');try{axEncaixa(false);}catch(e){}
  Array.prototype.forEach.call(pd.querySelectorAll('[data-pd]'),function(b){b.setAttribute('aria-selected','false');});}
 (function(){var l0=vxLayout;vxLayout=function(){l0.apply(this,arguments);try{pdMonta();}catch(e){console.error(e);}};})();
-vxShow=(function(v0){return function(view){if(view==='fin'){pdAbre('fin');return;}return v0.apply(this,arguments);};})(vxShow);
+vxShow=(function(v0){return function(view){if(view==='fin'){pdAbre('fin');return;}if(view==='est'){pdAbre('lap');return;}return v0.apply(this,arguments);};})(vxShow);
 document.addEventListener('click',function(e){var nb=e.target.closest&&e.target.closest('[data-nv]');if(!nb||nb.closest('#painel-dir'))return;var k=PD_NV[nb.getAttribute('data-nv')];if(k){e.preventDefault();e.stopImmediatePropagation();pdAbre(k);}},true);
 
 /* ---------- cenas: captura da bandeira e fogueira ---------- */
