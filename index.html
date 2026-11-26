@@ -5093,6 +5093,78 @@ dialog.ave-dlg::before{content:'';display:block;height:12px;margin:6px 8px 0;bac
 .rtg td.c{height:18px!important}
 .rtg th.d{height:20px!important}
 .rt .ws-box{margin-top:8px!important;padding-top:8px!important}
+
+/* ===== Agora no pé do painel esquerdo ===== */
+#nav>#td-agora.td-ag-pe{position:sticky;bottom:0;z-index:6;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:4px 8px;margin:10px 0 0;padding:10px 14px 12px;
+ background:linear-gradient(180deg,#f4ead2,#efe3c4);border-top:1px solid #c9b28a;box-shadow:0 -8px 18px rgba(70,45,15,.08);font:13px var(--sans);color:#3b2a1d}
+#nav>#td-agora.td-ag-pe::before{content:'';position:absolute;left:10px;right:10px;top:-7px;height:12px;background:#9a6b3a;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='12'%3E%3Cpath d='M0 11H22M3 11V2H15V8H8V5H11' fill='none' stroke='black' stroke-width='1.4'/%3E%3C/svg%3E") repeat-x left center;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='12'%3E%3Cpath d='M0 11H22M3 11V2H15V8H8V5H11' fill='none' stroke='black' stroke-width='1.4'/%3E%3C/svg%3E") repeat-x left center;opacity:.45}
+#nav>#td-agora.td-ag-pe .td-ag-k{grid-column:1;padding:2px 8px;border-radius:999px;background:#3b2a1d;color:#f4ead1;font:700 9px var(--mono,monospace);letter-spacing:.18em;text-transform:uppercase}
+#nav>#td-agora.td-ag-pe>b{grid-column:2;font:400 15px Georgia,serif;font-variant:small-caps;letter-spacing:.04em;color:#2a2418;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#nav>#td-agora.td-ag-pe .td-ag-av{grid-column:3;grid-row:1;width:auto!important;margin:0!important;padding:2px 8px!important;border:1px solid #b89c72!important;border-radius:999px;background:transparent!important;color:#5a3f2c!important;font-size:10.5px!important;white-space:nowrap}
+#nav>#td-agora.td-ag-pe .td-ag-t{grid-column:1/-1;color:#5a4433;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#nav>#td-agora.td-ag-pe .td-ag-bar{grid-column:1/-1;display:block;height:5px;border-radius:999px;background:#e3d3b0;overflow:hidden}
+#nav>#td-agora.td-ag-pe .td-ag-bar em{display:block;height:100%;background:linear-gradient(90deg,#c9a45a,#e8a33c)}
+#nav>#td-agora.td-ag-pe .td-ag-p{grid-column:1/-1;font-size:12px;color:#6b5140;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+#tt-indice>.td-agora:not(.no-indice){display:none}
+/* ===== Quadro de avisos no rodapé expandido ===== */
+#rod-quadro{grid-column:1/-1;margin:0 0 12px}
+#rod-quadro #c-h-cup{margin:0!important;padding:10px 0 4px!important;border:0!important;background:none!important;box-shadow:none!important}
+#rod-quadro #cerbox{display:grid!important;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px;align-items:start;position:static!important;transform:none!important;max-height:none!important;width:auto!important;opacity:1!important;visibility:visible!important;background:none!important;box-shadow:none!important;padding:0!important}
+#rod-quadro #cerbox>.cerhd,#rod-quadro #cerbox>.cerbt{grid-column:1/-1}
+#rod-quadro #cerbox>.cerbt{display:none}
+#rod-quadro #anais,#rod-quadro #lat-d{margin-top:12px}
+/* ===== coluna direita: Templo das Tarefas ===== */
+#rail>*:not(#tp-painel){display:none!important}
+#tp-painel{--tp-ac:#9a6b3a;padding:14px 12px 90px}
+#tp-painel .tp-fr{position:relative;padding:30px 24px 22px;border:1px solid #b9a77a;border-radius:6px 6px 14px 14px;
+ background:repeating-linear-gradient(90deg,rgba(154,107,58,.32) 0 1.2px,transparent 1.2px 4.4px) 7px 24px/13px calc(100% - 40px) no-repeat,
+  repeating-linear-gradient(90deg,rgba(154,107,58,.32) 0 1.2px,transparent 1.2px 4.4px) calc(100% - 7px) 24px/13px calc(100% - 40px) no-repeat,
+  linear-gradient(180deg,#f7eed8,#f1e4c6);box-shadow:inset 0 0 0 4px #f7eed8,inset 0 0 0 5px #d8c39a,0 6px 14px rgba(70,45,15,.1)}
+#tp-painel .tp-fr::before{content:'';position:absolute;left:10px;right:10px;top:8px;height:12px;background:var(--tp-ac);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='12'%3E%3Cpath d='M0 11H22M3 11V2H15V8H8V5H11' fill='none' stroke='black' stroke-width='1.4'/%3E%3C/svg%3E") repeat-x left center;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='12'%3E%3Cpath d='M0 11H22M3 11V2H15V8H8V5H11' fill='none' stroke='black' stroke-width='1.4'/%3E%3C/svg%3E") repeat-x left center;opacity:.6}
+#tp-painel .tp-fr::after{content:'';position:absolute;left:10px;right:10px;bottom:6px;height:5px;background:repeating-linear-gradient(90deg,#c9a45a 0 5px,transparent 5px 9px);opacity:.7}
+#tp-painel .tp-cab{display:flex;align-items:center;gap:10px;padding-bottom:10px;border-bottom:1px solid #d8c39a}
+#tp-painel .tp-med{flex:none;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;color:#7a5532;border:1.5px solid #9a6b3a;background:radial-gradient(circle at 35% 30%,#fbf3dc,#ecd9a8);box-shadow:0 0 0 3px #f4ead1,0 0 0 4px #d8c39a}
+#tp-painel .tp-med svg{width:21px;height:21px}
+#tp-painel .tp-cab b{display:block;font:400 20px Georgia,serif;font-variant:small-caps;letter-spacing:.06em;color:#2a2418}
+#tp-painel .tp-k{display:block;font:700 8.5px var(--mono,monospace);letter-spacing:.2em;text-transform:uppercase;color:#9a6b3a}
+#tp-painel .tp-faces{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin:10px 0 4px;padding:3px;border:1px solid #d8c39a;border-radius:999px;background:#fbf5e6}
+#tp-painel .tp-faces button{width:auto;margin:0;padding:6px 8px;border:0;border-radius:999px;background:transparent;color:#5a3f2c;font:400 13px Georgia,serif;font-variant:small-caps;letter-spacing:.04em;cursor:pointer}
+#tp-painel .tp-faces button[aria-selected="true"]{background:#5a3f2c;color:#f4ead1}
+#tp-painel .tp-corpo{display:flex;flex-direction:column;gap:12px;margin-top:10px}
+#tp-painel .tp-sec{display:flex;flex-direction:column;gap:6px;padding-top:8px;border-top:1px dashed #c9a45a}
+#tp-painel .tp-sec:first-child{border-top:0;padding-top:0}
+#tp-painel .tp-sec>header{display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+#tp-painel .tp-sec>header em{font:700 11px var(--mono,monospace);font-style:normal;color:#5a3f2c;border:1px solid #c9a45a;border-radius:999px;padding:0 7px;background:#fbf5e6}
+#tp-painel .tp-l{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px}
+#tp-painel .tp-l li{display:grid;grid-template-columns:20px 1fr auto auto;align-items:center;gap:7px;padding:5px 8px;border:1px solid #d8c39a;border-radius:7px;background:#fbf5e6;font:13.5px Georgia,serif;color:#2a2418}
+#tp-painel .tp-l li>span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#tp-painel .tp-l li small{font:9.5px var(--mono,monospace);color:#8a6f55}
+#tp-painel .tp-l li.ok{background:#eef3e2;border-color:#b8cc94}#tp-painel .tp-l li.ok>span{color:#5f6e48;text-decoration:line-through;text-decoration-color:rgba(95,110,72,.5)}
+#tp-painel .tp-l li.tp-vz{display:block;border-style:dashed;background:none;color:#8a6f55;font-style:italic;font-size:12.5px}
+#tp-painel .tp-ck{width:20px!important;height:20px!important;margin:0!important;padding:0!important;border:1.5px solid #9a6b3a!important;border-radius:50%!important;background:#fffaf0!important;color:#fff!important;font:700 11px/1 sans-serif!important;cursor:pointer;display:grid;place-items:center}
+#tp-painel .tp-ck[aria-pressed="true"]{background:#5f8a3f!important;border-color:#5f8a3f!important}
+#tp-painel .tp-x{width:auto!important;margin:0!important;padding:0 4px!important;border:0!important;background:none!important;color:#a8432f!important;font-size:11px!important;cursor:pointer}
+#tp-painel .tp-cat{font:700 8.5px var(--mono,monospace);font-style:normal;letter-spacing:.08em;text-transform:uppercase;color:#3a6ea5;border:1px solid #a9c1db;border-radius:999px;padding:1px 6px;background:#eef3f8}
+#tp-painel .tp-add{display:flex;gap:5px}
+#tp-painel .tp-add input,#tp-painel .tp-add select{min-width:0;height:32px;padding:0 9px;border:1px solid #c9b28a;border-radius:7px;background:#fffaf0;font:13px var(--sans);color:#2a2418}
+#tp-painel .tp-add input{flex:1}
+#tp-painel .tp-add button,#tp-painel .tp-tempos button,#tp-painel .tp-menu button,#tp-painel .tp-rel button{width:auto!important;margin:0!important;height:32px;padding:0 11px!important;border:1px solid #9a6b3a!important;border-radius:7px!important;background:#e9c87a!important;color:#2a1c05!important;font:700 12px var(--sans)!important;cursor:pointer;white-space:nowrap}
+#tp-painel .tp-menu li{grid-template-columns:1fr auto}
+#tp-painel .tp-menu button{height:26px;padding:0 8px!important;font-size:11px!important;background:#fbf5e6!important}
+#tp-painel .tp-pf{display:flex;flex-direction:column;gap:5px;padding:8px 10px;border:1px solid #d8c39a;border-radius:8px;background:#fbf5e6}
+#tp-painel .tp-pf-h{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+#tp-painel .tp-pf-h>b{font:400 15px Georgia,serif;color:#2a2418}
+#tp-painel .tp-cd{flex:none;display:flex;flex-direction:column;align-items:center;line-height:1;padding:3px 8px;border:1px solid #c9a45a;border-radius:6px;background:#fffaf0}
+#tp-painel .tp-cd b{font:400 18px Georgia,serif;color:#b4463a}#tp-painel .tp-cd small{font:700 7px var(--mono,monospace);letter-spacing:.14em;text-transform:uppercase;color:#8a6f55}
+#tp-painel .tp-bar{display:block;height:5px;border-radius:999px;background:#e6d8b6;overflow:hidden}#tp-painel .tp-bar em{display:block;height:100%;background:linear-gradient(90deg,#c9a45a,#e8a33c)}
+#tp-painel .tp-pf-n{font:9.5px var(--mono,monospace);color:#8a6f55}
+#tp-painel .tp-pf .tp-l li{background:#fffaf0;font-size:12.5px}
+#tp-painel .tp-pf .tp-l li>span{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+#tp-painel .tp-n{margin:0;font:italic 12.5px Georgia,serif;color:#6b5140}
+#tp-painel .tp-tempos{display:flex;flex-wrap:wrap;gap:5px}#tp-painel .tp-tempos button{background:#fbf5e6!important}
+#tp-painel .tp-rel{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:8px;padding:8px 10px;border:1px solid #3a6ea5;border-radius:8px;background:#eef3f8}
+#tp-painel .tp-rel>b{font:400 22px Georgia,serif;color:#23407a}#tp-painel .tp-rel span{font:12.5px var(--sans);color:#3b4a66}
+#tp-painel .tp-vz{margin:0;color:#8a6f55;font:italic 12.5px Georgia,serif}
 </style>
 <link rel="stylesheet" href="pontes.css">
 <script src="pontes.js" defer></script>
@@ -16121,6 +16193,82 @@ function pd3Orna(){var pd=document.getElementById('painel-dir');if(!pd)return;
   var w=document.createElement('span');w.className='pd-marca';w.innerHTML=pd3Svg(k,'')+'<i class="pd-louro"></i>';c.appendChild(w);});}
 (function(){var c0=pd2Cab;pd2Cab=function(){c0.apply(this,arguments);try{pd3Orna();}catch(e){}};})();
 setTimeout(function(){try{pd3Orna();acAreas();}catch(e){}},1500);
+
+/* ======================= COLUNA DIREITA NOVA · rodapé com o quadro · Agora no pé do índice =======================
+   1. A faixa "Agora" vira o rodapé do painel esquerdo.
+   2. O Quadro de avisos inteiro (Píthos, Fio de Ariadne, Rumo da Argo, Tabuinhas, Crônicas, Anais) desce para o rodapé expandido.
+   3. A coluna direita vira o Templo das Tarefas: moldura grega com duas faces, Tarefas e Missões, ou Recreação. */
+/* ---------- 1 · Agora no pé do painel esquerdo ---------- */
+tdAgora=(function(f0){return function(){var r=f0.apply(this,arguments),b=document.getElementById('td-agora'),nav=document.getElementById('nav');
+ var larga=true;try{larga=(typeof LAT_LARGA!=='undefined'&&LAT_LARGA.matches!=null)?LAT_LARGA.matches:innerWidth>900;}catch(e){}
+ if(b&&nav&&larga&&nav.offsetWidth>0&&getComputedStyle(nav).display!=='none'){b.classList.remove('no-indice');b.classList.add('td-ag-pe');if(b.parentNode!==nav||nav.lastElementChild!==b)nav.appendChild(b);}
+ else if(b&&b.classList.contains('td-ag-pe')){b.classList.remove('td-ag-pe');var ti=document.getElementById('tt-indice');if(ti){b.classList.add('no-indice');ti.appendChild(b);}}return r;};})(tdAgora);
+window.addEventListener('resize',function(){try{tdAgora();}catch(e){}});
+/* ---------- 2 · o Quadro de avisos no rodapé expandido ---------- */
+function p4Rodape(){var cup=document.getElementById('c-h-cup'),ld=document.getElementById('lat-d'),corpo=document.getElementById('rod-corpo');if(!corpo)return;
+ var box=document.getElementById('rod-quadro');if(!box){box=document.createElement('section');box.id='rod-quadro';box.className='rod-quadro';corpo.insertBefore(box,corpo.firstChild);}
+ if(cup&&cup.parentNode!==box){box.appendChild(cup);cup.dataset.vxHidden='false';cup.classList.remove('meia');}
+ if(ld&&ld.parentNode!==box)box.appendChild(ld);}
+qaRail=function(){try{p4Rodape();p4Painel();}catch(e){console.error('rodapé:',e);}};
+/* ---------- 3 · o Templo das Tarefas na coluna direita ---------- */
+var P4_REC_CAT=[['games','games'],['rpg','RPG'],['serie','série'],['filme','filme'],['leitura','leitura'],['passeio','passeio']];
+function p4Rec(){var o=opx();if(!Array.isArray(o.rec))o.rec=[];return o.rec;}
+function p4Face(){try{return localStorage.getItem('astro_tm_face')==='rec'?'rec':'tm';}catch(e){return 'tm';}}
+function p4Dias(d){var a=new Date(hoje()+'T12:00:00'),b=new Date(d+'T12:00:00');return Math.round((b-a)/864e5);}
+function p4TmHTML(){var Q=mmD(),hj=hoje(),fe=Q.feitas[hj]||[],h='';
+ var ch=Q.chale.filter(function(c){return !c.ok||c.ok===hj;});
+ h+='<section class="tp-sec"><header><span class="tp-k">tarefas do chalé</span><em>'+Q.chale.filter(function(c){return !c.ok;}).length+' abertas</em></header><ul class="tp-l">'+
+  (ch.length?ch.map(function(c){var ok=!!c.ok;return '<li class="'+(ok?'ok':'')+'"><button type="button" class="tp-ck" data-tpch="'+esc(c.id)+'" aria-pressed="'+ok+'" aria-label="concluir">'+(ok?'✓':'')+'</button><span>'+esc(c.t)+'</span><small>+3</small></li>';}).join(''):'<li class="tp-vz">nenhuma tarefa aberta</li>')+'</ul>'+
+  '<div class="tp-add"><input data-tpnova maxlength="90" placeholder="nova tarefa do chalé"><button type="button" data-tpadd>incluir</button></div></section>';
+ h+='<section class="tp-sec"><header><span class="tp-k">quests de hoje</span><em>'+fe.length+'/'+Q.dia.length+'</em></header><ul class="tp-l">'+
+  (Q.dia.length?Q.dia.map(function(q){var ok=fe.indexOf(q.id)>=0;return '<li class="'+(ok?'ok':'')+'"><button type="button" class="tp-ck" data-tpq="'+esc(q.id)+'" aria-pressed="'+ok+'" aria-label="cumprir"'+(ok?' disabled':'')+'>'+(ok?'✓':'')+'</button><span>'+esc(q.t)+'</span><small>+5</small></li>';}).join(''):'<li class="tp-vz">nenhuma quest diária</li>')+'</ul></section>';
+ var P=Q.prof.filter(function(p){return !p.ok;});
+ h+='<section class="tp-sec"><header><span class="tp-k">grandes profecias</span><em>'+P.length+'</em></header>'+(P.length?P.map(function(p){var ps=p.passos||[],ok=ps.filter(function(x){return x.ok;}).length,d=p.prazo?p4Dias(p.prazo):null,pct=ps.length?Math.round(ok/ps.length*100):0,
+   prox=ps.map(function(x,i){return {x:x,i:i};}).filter(function(o){return !o.x.ok;}).slice(0,3);
+   return '<div class="tp-pf"><div class="tp-pf-h"><b>'+esc(p.t)+'</b>'+(d!=null?'<span class="tp-cd"><b>'+Math.max(0,d)+'</b><small>dias</small></span>':'')+'</div><i class="tp-bar"><em style="width:'+pct+'%"></em></i><small class="tp-pf-n">'+ok+' de '+ps.length+' etapas</small>'+
+    (prox.length?'<ul class="tp-l">'+prox.map(function(o){return '<li><button type="button" class="tp-ck" data-tppf="'+esc(p.id)+':'+o.i+'" aria-label="etapa feita"></button><span>'+esc(o.x.t)+'</span><small>+10</small></li>';}).join('')+'</ul>':'')+'</div>';}).join(''):'<p class="tp-vz">nenhuma profecia aberta</p>')+'</section>';
+ return h;}
+function p4RecHTML(){var o=opx(),R=p4Rec(),M=(S.menu||[]),ate=o.lazerAte||0,agora=Date.now(),h='';
+ h+='<section class="tp-sec tp-recreio"><header><span class="tp-k">recreio com hora para acabar</span></header>';
+ if(ate>agora){var m=Math.ceil((ate-agora)/60000);h+='<div class="tp-rel"><b>'+m+' min</b><span>'+esc(o.lazerQue||'recreio')+' · acaba às '+new Date(ate).toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})+'</span><button type="button" data-tpfim>encerrar</button></div>';}
+ else h+='<p class="tp-n">Escolha quanto tempo de lazer. No fim, o Hotel Lótus avisa e o recreio fecha.</p><div class="tp-tempos">'+[20,30,45,60,90].map(function(n){return '<button type="button" data-tprec="'+n+'">'+n+' min</button>';}).join('')+'</div>';
+ h+='</section>';
+ h+='<section class="tp-sec"><header><span class="tp-k">fila do lazer</span><em>'+R.filter(function(x){return !x.ok;}).length+'</em></header><ul class="tp-l">'+
+  (R.length?R.map(function(x){var c=P4_REC_CAT.filter(function(k){return k[0]===x.cat;})[0];return '<li class="'+(x.ok?'ok':'')+'"><button type="button" class="tp-ck" data-tprecok="'+esc(x.id)+'" aria-pressed="'+!!x.ok+'" aria-label="feito">'+(x.ok?'✓':'')+'</button><span>'+esc(x.t)+'</span>'+(c?'<em class="tp-cat">'+c[1]+'</em>':'')+'<button type="button" class="tp-x" data-tprecx="'+esc(x.id)+'" aria-label="tirar">✕</button></li>';}).join(''):'<li class="tp-vz">games, séries, RPG, passeios: o que você quer curtir</li>')+'</ul>'+
+  '<div class="tp-add"><input data-tprecnova maxlength="80" placeholder="o que entra na fila?"><select data-tpreccat aria-label="tipo">'+P4_REC_CAT.map(function(k){return '<option value="'+k[0]+'">'+k[1]+'</option>';}).join('')+'</select><button type="button" data-tprecadd>incluir</button></div></section>';
+ h+='<section class="tp-sec"><header><span class="tp-k">menu de recarga</span><em>'+M.length+'</em></header><ul class="tp-l tp-menu">'+(M.length?M.map(function(m){return '<li><span>'+esc(m)+'</span><button type="button" data-tpmenu="'+esc(m)+'">recarregar 15 min</button></li>';}).join(''):'<li class="tp-vz">monte o menu de recarga na Casa Grande</li>')+'</ul></section>';
+ return h;}
+function p4PainelHTML(){var f=p4Face();
+ return '<div class="tp-fr"><header class="tp-cab"><span class="tp-med">'+(f==='tm'?'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19L19 5M15 5h4v4M5 15l4 4M3 17l4 4"/></svg>':'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 21V4M6 4h11l-2.5 4L17 12H6"/></svg>')+'</span>'+
+  '<div><span class="tp-k">'+(f==='tm'?'mural do chalé 7':'hora livre do campista')+'</span><b>'+(f==='tm'?'Tarefas e Missões':'Recreação')+'</b></div></header>'+
+  '<div class="tp-faces" role="tablist"><button type="button" role="tab" data-tpface="tm" aria-selected="'+(f==='tm')+'">Tarefas e Missões</button><button type="button" role="tab" data-tpface="rec" aria-selected="'+(f==='rec')+'">Recreação</button></div>'+
+  '<div class="tp-corpo">'+(f==='tm'?p4TmHTML():p4RecHTML())+'</div></div>';}
+function p4Painel(){var rail=document.getElementById('rail');if(!rail)return;var p=document.getElementById('tp-painel');
+ if(!p){p=document.createElement('section');p.id='tp-painel';p.className='tp-painel';p4Liga(p);}
+ if(p.parentNode!==rail||rail.firstElementChild!==p)rail.insertBefore(p,rail.firstChild);
+ var a=document.activeElement;if(a&&p.contains(a)&&/INPUT|SELECT/.test(a.tagName))return;var h=p4PainelHTML();if(p._h!==h){p._h=h;p.innerHTML=h;}}
+function p4Repinta(){p4Painel();try{mmSalva();}catch(e){grava();}try{opPinta();}catch(e){}}
+function p4Liga(p){
+ p.addEventListener('click',function(e){var b=e.target.closest('button');if(!b||!p.contains(b))return;var d=b.dataset,Q=mmD(),hj=hoje(),o=opx();
+  if(d.tpface){try{localStorage.setItem('astro_tm_face',d.tpface);}catch(z){}p._h='';p4Painel();return;}
+  if(d.tpch){var c=Q.chale.filter(function(x){return x.id===d.tpch;})[0];if(c){if(c.ok)c.ok=false;else{c.ok=hj;try{op2XP(3,e);}catch(z){}}}p4Repinta();return;}
+  if(d.tpq){var fe=Q.feitas[hj]=Q.feitas[hj]||[];if(fe.indexOf(d.tpq)<0){fe.push(d.tpq);try{op2XP(5,e);}catch(z){}}p4Repinta();return;}
+  if(d.tppf){var pp=d.tppf.split(':'),pf=Q.prof.filter(function(x){return x.id===pp[0];})[0];if(pf&&pf.passos[+pp[1]]){pf.passos[+pp[1]].ok=true;try{op2XP(10,e);}catch(z){}}p4Repinta();return;}
+  if(d.tpadd!=null){var i=p.querySelector('[data-tpnova]'),t=i&&i.value.trim();if(t){Q.chale.push({id:'c'+Date.now().toString(36),t:t.slice(0,90),ok:false});i.value='';p4Repinta();}return;}
+  if(d.tprec){var n=+d.tprec,R=p4Rec(),pend=R.filter(function(x){return !x.ok;})[0];o.lazerAte=Date.now()+n*60000;o.lazerQue=pend?pend.t:'recreio';grava();p._h='';p4Painel();return;}
+  if(d.tpfim!=null){o.lazerAte=0;grava();p._h='';p4Painel();return;}
+  if(d.tprecok){var x=p4Rec().filter(function(y){return y.id===d.tprecok;})[0];if(x)x.ok=!x.ok;grava();p._h='';p4Painel();return;}
+  if(d.tprecx){o.rec=p4Rec().filter(function(y){return y.id!==d.tprecx;});grava();p._h='';p4Painel();return;}
+  if(d.tprecadd!=null){var ri=p.querySelector('[data-tprecnova]'),cs=p.querySelector('[data-tpreccat]'),rt=ri&&ri.value.trim();if(rt){p4Rec().push({id:'r'+Date.now().toString(36),t:rt.slice(0,80),cat:cs?cs.value:'games',ok:false});ri.value='';grava();p._h='';p4Painel();}return;}
+  if(d.tpmenu){try{if(tdD().foco)tdFocoFim(true);tdFocoIni(15,'recarga · '+d.tpmenu,-1);tdD().foco.pausaModo=true;tdSalva();tdDisco(true);}catch(z){}return;}});
+ p.addEventListener('keydown',function(e){if(e.key!=='Enter')return;var t=e.target;if(t.dataset.tpnova!=null){e.preventDefault();var b=p.querySelector('[data-tpadd]');if(b)b.click();}else if(t.dataset.tprecnova!=null){e.preventDefault();var c=p.querySelector('[data-tprecadd]');if(c)c.click();}});}
+/* o recreio acaba: aviso do Hotel Lótus */
+setInterval(function(){try{var o=opx();if(o.lazerAte&&Date.now()>=o.lazerAte){o.lazerAte=0;grava();tdAvisa('Fechar o Hotel Lótus','o recreio acabou'+(o.lazerQue?' ('+o.lazerQue+')':'')+'. Água, levantar e voltar para a Bússola.');var p=document.getElementById('tp-painel');if(p){p._h='';}}p4Painel();}catch(e){}},20000);
+setTimeout(function(){try{qaRail();tdAgora();}catch(e){}},900);
+setTimeout(function(){try{qaRail();tdAgora();}catch(e){}},3000);
+cerAbre=(function(c0){return function(x){var r=document.getElementById('rod-apps'),q=document.getElementById('rod-quadro');
+ if(r&&q){if(x){r.classList.add('aberto');setTimeout(function(){try{q.scrollIntoView({block:'start',behavior:'smooth'});}catch(e){}},320);var i=document.getElementById('r-cap');if(i)try{i.focus({preventScroll:true});}catch(e){}}return;}
+ return c0.apply(this,arguments);};})(cerAbre);
 
 })();
 </script>

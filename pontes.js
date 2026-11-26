@@ -197,7 +197,7 @@ function hbFila(){if(HB.rodando||!HB.fila.length)return;HB.rodando=true;var tid=
   .then(function(){setTimeout(function(){HB.rodando=false;hbFila();},30000);pintaPontes();});}
 
 /* ======================= agenda das sincronizações ======================= */
-var SYNC={rss:rssBusca,rd:rdBusca,rw:rwSync,tg:tgSync,sv:svSync,hb:hbSync};
+var SYNC={rss:rssBusca,rd:rdBusca,tg:tgSync,hb:hbSync};/* Readwise e Strava saíram: exigem assinatura paga */
 var ULT={};
 function ciclo(forca){if(document.visibilityState!=='visible'&&!forca)return;var agora=Date.now(),
  int={rss:30*60e3,rd:20*60e3,rw:60*60e3,tg:15*60e3,sv:60*60e3,hb:10*60e3},atraso=0;
@@ -210,7 +210,7 @@ function pintaLaptop(){var p=document.querySelector('#painel-dir .pd-pane[data-p
   box.addEventListener('click',function(e){var b=e.target.closest('[data-pz]');if(!b)return;var a=b.dataset.pz,id=b.dataset.id;
    if(a==='rd-ler')rdLer(+id);else if(a==='rd-lido')rdLido(+id);else if(a==='rw-ok')rwRevisto(+id);else if(a==='cfg')pzConfig(b.dataset.k);else if(a==='sync')agora(b.dataset.k);});}
  else if(box.parentNode!==p)p.appendChild(box);
- var c=cf(),h='<div class="pz-lap-h"><span class="pz-k">notas de Dédalo</span><b>Entregas e memória</b><small>o que o Hermes Express trouxe para ler · as Tabuinhas que o Lete ainda não apagou</small></div>';
+ var c=cf(),h='<div class="pz-lap-h"><span class="pz-k">notas de Dédalo</span><b>Entregas para ler</b><small>o que o Hermes Express trouxe para ler</small></div>';
  /* fila de leitura */
  h+='<div class="pz-col"><h5>Hermes Express <small>fila de leitura · Raindrop</small></h5>';
  if(!c.rd)h+='<p class="pz-n">Ligue o Raindrop para puxar os artigos e julgados que você salvou. <button type="button" class="pz-lk" data-pz="cfg" data-k="rd">ligar</button></p>';
@@ -220,15 +220,7 @@ function pintaLaptop(){var p=document.querySelector('#painel-dir .pd-pane[data-p
    (lendo?'':'<button type="button" data-pz="rd-ler" data-id="'+i.id+'">ler 15 min</button>')+'<button type="button" class="pz-sec" data-pz="rd-lido" data-id="'+i.id+'">lido</button></li>';}).join('')+'</ol>'+
   (RD.itens.length>6?'<p class="pz-n">mais '+(RD.itens.length-6)+' na fila</p>':'');
  h+='</div>';
- /* revisão do dia */
- h+='<div class="pz-col"><h5>Águas do Lete <small>revisão do dia · Readwise</small></h5>';
- var d=c.rw?rwDia():null,z=Z().rw;
- if(!c.rw)h+='<p class="pz-n">Ligue o Readwise: seus destaques do Kindle, de PDFs e de artigos viram Tabuinhas de Cadmo e uma revisão de cinco por dia. <button type="button" class="pz-lk" data-pz="cfg" data-k="rw">ligar</button></p>';
- else if(!d)h+='<p class="pz-n">'+(ST.rw&&!ST.rw.ok?'Não consegui ler o Readwise: '+esc(ST.rw.msg)+'.':'Buscando os destaques…')+'</p>';
- else{var feitos=d.ok.length;h+='<p class="pz-prog"><b>'+feitos+'/'+d.ids.length+'</b> revistos hoje'+(feitos>=d.ids.length?' · quest cumprida ✓':'')+'</p><ul class="pz-rev">'+
-  d.ids.map(function(id){var p=z.pool.filter(function(x){return x.id===id;})[0];if(!p)return '';var ok=d.ok.indexOf(id)>=0;
-   return '<li class="'+(ok?'ok':'')+'"><blockquote>'+esc(p.t)+'</blockquote><div><small>'+esc(p.l)+(p.a?' · '+esc(p.a):'')+'</small>'+(ok?'<span class="pz-ok">✓ revisto</span>':'<button type="button" data-pz="rw-ok" data-id="'+id+'">revisto</button>')+'</div></li>';}).join('')+'</ul>';}
- h+='</div>';
+ /* Readwise saiu: só funciona com assinatura paga */
  if(box._h!==h){box._h=h;box.innerHTML=h;}}
 
 /* ======================= Pontes no painel de apps (rodapé) ======================= */
@@ -239,8 +231,8 @@ var IC={
  tg:'<circle cx="12" cy="13" r="7"/><path d="M12 9.5V13l2.5 1.6M10 3h4"/>',
  sv:'<path d="M4 18l5-10 4 7 2-3 5 6"/>',
  hb:'<path d="M12 3l2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.4 6.8 19.1l1-5.8L3.5 9.2l5.9-.8z"/>'};
-var NOMES={rss:['Hefesto TV','RSS jurídico na faixa de baixo'],rd:['Hermes Express','Raindrop · fila de leitura no Laptop'],rw:['Águas do Lete','Readwise · Tabuinhas e revisão espaçada'],
- tg:['Relógio-escudo de Tyson','Toggl Track · blocos viram dracmas'],sv:['Tênis alados · Maia!','Strava · minutos de Movimento'],hb:['Acampamento Júpiter','Habitica · hábitos espelhados']};
+var NOMES={rss:['Hefesto TV','RSS jurídico na faixa de baixo'],rd:['Hermes Express','Raindrop · fila de leitura no Laptop'],
+ tg:['Relógio-escudo de Tyson','Toggl Track · blocos viram dracmas'],hb:['Acampamento Júpiter','Habitica · hábitos espelhados']};
 function ligado(k){var c=cf();return k==='rss'?(Z().rss.on&&Z().rss.feeds.length>0):k==='hb'?!!(c.hb_user&&c.hb_key):k==='sv'?!!c.sv_tok:!!c[k];}
 function pintaPontes(){var ap=document.getElementById('lat-apps');if(!ap)return;var box=document.getElementById('pz-pontes');
  if(!box){box=document.createElement('section');box.id='pz-pontes';box.className='lat-c pz-pontes';ap.appendChild(box);
