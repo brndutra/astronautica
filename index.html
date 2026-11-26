@@ -2379,6 +2379,19 @@ body.claro[data-skin="astro"] .cp-dracmas i.mosaico::after,.cp-dracmas i::after{
 #lat-ac .ac-row{grid-template-columns:1fr!important;margin:0!important;gap:10px}
 
 #lat-quadro:empty,#lat-vx:empty{display:none}
+nav#tt-indice button.tt-ic{flex:0 0 46px!important;padding:6px 0!important;justify-content:center;align-items:center}
+nav#tt-indice button.tt-ic svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+nav#tt-indice button[data-ic="laptop"]{border-left-width:1.5px!important;border-radius:8px 0 0 8px!important;margin-left:8px!important}
+nav#tt-indice button[data-ic="enf"]{border-right-width:1.5px!important;border-radius:0 8px 8px 0!important}
+nav#tt-indice button[data-tt="fin"]{border-right-width:1.5px!important;border-radius:0 8px 8px 0!important}
+.lat-c.pisca{box-shadow:0 0 0 3px #b98c47;transition:box-shadow .3s}
+
+/* Arsenal fora do índice e da página: abre em diálogo */
+#area-dos,#tt-dos:not(#fer-ajustes #tt-dos),.wrap > [data-area="dos"]{display:none!important}
+#fer-corpo .ars{margin:0;padding:0;border:0;background:none}
+#fer-corpo .ars-g{grid-template-columns:1fr}
+#fer-corpo #tt-dos{display:block!important}
+
 /* Partenon fora da página (o estudo está no Laptop de Dédalo); a mesa de runas continua abrindo pelo menu */
 #area-est{display:none!important}
 .wrap > [data-area="est"]:not(.tirbox):not(#tirbox):not(#cerbk){display:none!important}
@@ -2858,7 +2871,11 @@ body.bn-mini #hero-box>.cp-reg{border-top:1px solid var(--line2)!important;borde
 #fer-corpo .lat-c>header{display:none}
 #fer-corpo .ac-tarot{display:block!important}
 #fer-corpo .deckbar{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px}
-#fer-corpo .deckbar .free,#fer-corpo #b-ver{display:none!important}
+#fer-corpo .deckbar .free{display:none!important}
+#fer-corpo #grade.aberta{display:grid;grid-template-columns:1fr;max-height:44vh;overflow:auto;margin-top:10px}
+#fer-corpo .novo{margin-top:10px!important;display:flex;flex-wrap:wrap;gap:6px}
+#fer-corpo .novo input,#fer-corpo .novo select{flex:1 1 140px;min-width:0}
+.fer-box{width:min(560px,100%)!important}
 #fer-corpo .deckbar .sp{display:flex;gap:6px;margin-left:auto}
 #fer-corpo .deckbar button,#fer-corpo .chips button{width:auto!important;margin:0!important}
 #fer-corpo .chips{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
@@ -12699,7 +12716,7 @@ var AC_GUIA=[
  ['Bem-vindo, meio-sangue','Se você abriu isto, o pior já passou: alguém te reconheceu, você chegou inteiro e ganhou um chalé. Este app é o acampamento inteiro no bolso. Ele não exige que você seja um herói o dia todo. Exige só o próximo passo.'],
  ['As regras da casa','<ol><li><b>Um bloco de cada vez.</b> Quíron nunca cobrou a lista inteira de ninguém.</li><li><b>Três missões por dia, no máximo.</b> Profecias longas demais terminam mal.</li><li><b>Dia ruim também conta.</b> Sobreviver é uma atividade oficial do acampamento.</li><li><b>Anote antes de esquecer.</b> A Névoa apaga tudo o que fica só na cabeça.</li><li><b>Fechou o dia, apaga a fogueira.</b> O checklist de fim de dia existe por um motivo.</li></ol>'],
  ['O dia no acampamento','<ul class="ac-horas"><li><b>06h</b> alvorada e treino leve</li><li><b>09h</b> treino na arena: o bloco mais pesado do dia</li><li><b>12h</b> almoço no pavilhão</li><li><b>15h</b> atividades do acampamento</li><li><b>18h</b> jantar e oferenda à fogueira</li><li><b>21h</b> fogueira e toque de recolher</li></ul>A faixa de agora aparece na Casa Grande e na extensão. O que você escreve na Semana vira a escala de cada faixa.'],
- ['As abas e os painéis','<ul><li><b>Casa Grande</b>: o banner com o mural e o registro do dia, a Grade semanal, o spread do mês e o rastreador de hábitos.</li><li><b>Missões</b>: o Mural de Missões (Tarefas do chalé, Quests diárias e Grandes Profecias) e o Bunker 9, com projetos e retomadas.</li><li><b>Laptop de Dédalo</b>, à direita: Táticas de Guerra (concurso e roda do ciclo) e Grego Antigo e Outras (línguas).</li><li><b>Arsenal</b>: o kit do Hékatos e a forja, mais a ficha do campista.</li><li><b>Bolsa de Dracmas</b>: o seu dinheiro de verdade, com Diário de Bordo, Carga, Enfermaria e Bunker 9.</li><li><b>À esquerda</b>: nível, arsenal, Dracmas de Ouro, Copa dos Chalés, colar, bandeira, vitórias e a Enfermaria do Acampamento.</li></ul>'],
+ ['As abas e os painéis','<ul><li><b>Casa Grande</b>: o banner com o mural e o registro do dia, a Grade semanal, o spread do mês e o rastreador de hábitos.</li><li><b>Missões</b>: o Mural de Missões (Tarefas do chalé, Quests diárias e Grandes Profecias) e o Bunker 9, com projetos e retomadas.</li><li><b>Laptop de Dédalo</b>, à direita: Táticas de Guerra (concurso e roda do ciclo) e Grego Antigo e Outras (línguas).</li><li><b>Arsenal</b>: o kit do Hékatos e a forja abrem pelo menu de ferramentas ou pelo cartão do Arsenal, à esquerda.</li><li><b>Bolsa de Dracmas</b>: o seu dinheiro de verdade, com Diário de Bordo, Carga, Enfermaria e Bunker 9.</li><li><b>À esquerda</b>: nível, arsenal, Dracmas de Ouro, Copa dos Chalés, colar, bandeira, vitórias e a Enfermaria do Acampamento.</li></ul>'],
  ['Dracmas, XP e nível','Foco, estudo, hábitos, missões e etapas rendem XP. A cada 100 XP você sobe de nível. As <b>Dracmas de Ouro</b> são a moeda do acampamento: 10 por hora de foco ou de estudo. Com elas você compra temas de chalé, insígnias do crachá e sons ambientes na Loja do acampamento (ícone de ferramentas, no alto). A <b>Bolsa de Dracmas</b> é outra coisa: é o seu dinheiro de verdade, na aba 05.'],
  ['Colar de contas','No fim de cada verão os campistas ganham uma conta com o símbolo do que viveram. Aqui é uma por mês: toque na conta do mês, escreva o marco e escolha o símbolo. Em dezembro você tem o ano inteiro pendurado no pescoço.'],
  ['Captura da Bandeira','Toda semana tem uma bandeira: a meta que, se cair até sexta, vale a semana. Escreva qual é na segunda, capture até sexta (com tolerância até domingo) e ganhe +20 XP. As bandeiras das últimas semanas ficam marcadas embaixo.'],
@@ -13284,7 +13301,7 @@ function latRsVai(){var F=[['inspira','in'],['segura','cheio'],['solta','out'],[
 function latMonta(){var e=document.getElementById('lat-e'),d=document.getElementById('lat-d');
  if(!e){e=document.createElement('div');e.id='lat-e';e.className='lat';e.innerHTML='<div id="lat-quadro"></div><div id="lat-gm"></div>'+latCard('lat-postal','carta','Cartão-postal do acampamento','Postal do dia','<div id="lat-postal-b"></div>')+latCard('lat-ars','arco','Arsenal do Hékatos','O kit e a forja','<div id="lat-ars-b"></div>')+latCard('lat-dr','moeda','Moeda do acampamento','Dracmas de Ouro','<div id="lat-dr-b"></div>')+latCard('lat-cp','copa','Pontos do chalé 7 por semana','Copa dos Chalés','<div id="lat-cp-b"></div>')+'<div id="lat-ac"></div><div id="lat-vx" class="tt-area"></div>'+latCard('lat-enf-c','cruz','Sono, água, movimento, comida, remédios','Enfermaria do Acampamento','<div id="lat-med"></div><div id="lat-enf"></div>');
   var ap=document.createElement('div');ap.id='lat-apps';ap.className='lat';ap.innerHTML=latAgenda()+latClima()+latSpotify()+latAtalhos();latMonta.apps=ap;}
- if(!d){d=document.createElement('div');d.id='lat-d';d.className='lat';d.innerHTML='<div class="lat-esth"><span class="lat-ic">'+LAT_IC.livro+'</span><div><span class="k9">painel de estudos</span><b>Laptop de Dédalo</b></div>'+
+ if(!d){d=document.createElement('div');d.id='lat-d';d.className='lat';d.innerHTML='<div class="lat-esth"><span class="lat-ic">'+(LAT_IC.laptop||LAT_IC.livro)+'</span><div><span class="k9">painel de estudos</span><b>Laptop de Dédalo</b></div>'+
   '<button type="button" class="lat-ed" id="lat-exp" title="expandir o painel (ou arraste a borda)" aria-label="expandir o painel">'+LAT_IC.expandir+'</button></div><h4 class="lat-sh">Táticas de Guerra <small>concurso TRF3</small></h4><div id="lat-est"></div><h4 class="lat-sh">Grego Antigo e Outras <small>línguas</small></h4><div id="lat-lin"></div>';}
  [e,d].forEach(function(box){if(box.dataset.lig)return;box.dataset.lig='1';
   box.addEventListener('click',function(ev){var t=ev.target.closest('[data-lat-ed],[data-lat-ok],[data-lat-aba],#lat-rs-b,#lat-exp');if(!t)return;
@@ -13322,8 +13339,12 @@ function latEdita(k,box){var A=latApps();
 function latEstNos(){var r=[];['div.cic','#conc','div.cblocos','div.mapas'].forEach(function(q){Array.prototype.forEach.call(document.querySelectorAll(q),function(n){if(!n.closest('.ax-html')&&r.indexOf(n)<0)r.push(n);});});return r;}
 /* o sorteador do baralho vai para a coluna esquerda; a seção Tarefas do chalé fica com a lista das fichas aberta */
 function latSorteio(){ferMonta();var me=document.querySelector('.mesa'),c=document.getElementById('fer-sort');if(!me||!c)return;
- if(me.parentNode!==c){me.dataset.vxHidden='false';c.appendChild(me);var g=document.getElementById('grade');if(g)g.classList.add('aberta');
-  var h=document.getElementById('h-deck'),n=h&&h.nextElementSibling;if(n&&n.classList.contains('narr'))n.classList.add('lat-oculta');}}
+ if(me.parentNode!==c){me.dataset.vxHidden='false';c.appendChild(me);
+  var h=document.getElementById('h-deck'),n=h&&h.nextElementSibling;if(n&&n.classList.contains('narr'))n.classList.add('lat-oculta');}
+ /* a lista das fichas e o formulário de nova ficha também saem do corpo: ficam no diálogo, a lista fechada até pedir */
+ var g=document.getElementById('grade');if(g&&g.parentNode!==c){g.classList.remove('aberta');c.appendChild(g);}
+ var nv=g&&g.nextElementSibling;var novo=document.querySelector('.wrap > .novo #n-tit');novo=novo&&novo.closest('.novo');if(novo&&novo.parentNode!==c)c.appendChild(novo);
+ var hd=document.getElementById('h-deck');if(hd)hd.classList.add('lat-oculta');}
 function latRailCss(){if(latRailCss.ok)return;latRailCss.ok=1;var n=[];
  Array.prototype.forEach.call(document.styleSheets,function(sh){var rs;try{rs=sh.cssRules;}catch(e){return;}
   Array.prototype.forEach.call(rs||[],function(r){var st=r.selectorText;if(!st||!/(\.rail|#rail) /.test(st))return;
@@ -13412,9 +13433,11 @@ var FER=[
  {id:'runas',n:'Mesa de runas',d:'embaralhar e tirar três runas nórdicas',ic:'runa'},
  {id:'carta',n:'Carta do dia',d:'um arcano maior por dia',ic:'carta'},
  {id:'resp',n:'Respiração quadrada',d:'quatro voltas de quatro tempos',ic:'resp'},
- {id:'loja',n:'Loja do acampamento',d:'temas, insígnias e sons com dracmas de ouro',ic:'loja'}];
+ {id:'loja',n:'Loja do acampamento',d:'temas, insígnias e sons com dracmas de ouro',ic:'loja'},
+ {id:'arsenal',n:'Arsenal do Hékatos',d:'o kit e a forja, peça por peça',ic:'arco'},
+ {id:'ajustes',n:'Ajustes e cópia de segurança',d:'exportar, importar e preferências do app',ic:'insp'}];
 function ferMonta(){if(document.getElementById('fer-guarda'))return;
- var g=document.createElement('div');g.id='fer-guarda';g.hidden=true;g.innerHTML='<div id="fer-sort"></div><div id="fer-resp">'+latResp()+'</div><div id="fer-carta"></div><div id="fer-loja"></div>';document.body.appendChild(g);drLojaLiga(g.querySelector('#fer-loja'));
+ var g=document.createElement('div');g.id='fer-guarda';g.hidden=true;g.innerHTML='<div id="fer-sort"></div><div id="fer-resp">'+latResp()+'</div><div id="fer-carta"></div><div id="fer-loja"></div><div id="fer-arsenal"></div><div id="fer-ajustes"></div>';document.body.appendChild(g);drLojaLiga(g.querySelector('#fer-loja'));
  g.querySelector('#fer-resp').addEventListener('click',function(ev){if(ev.target.closest('#lat-rs-b')){if(latRs.on)latRsPara();else latRsVai();}});
  var d=document.createElement('div');d.id='fer-dlg';d.className='fer-dlg';d.hidden=true;
  d.innerHTML='<div class="fer-box" role="dialog" aria-modal="true" aria-labelledby="fer-tt"><header><span class="lat-ic" id="fer-ic"></span><div><span class="k9">Ferramentas</span><b id="fer-tt"></b></div><button type="button" class="lat-ed" id="fer-x" aria-label="fechar">×</button></header><div id="fer-corpo"></div></div>';
@@ -13435,6 +13458,8 @@ function ferCarta(){var c=document.getElementById('fer-carta');if(!c)return;c.in
 function ferAbre(id){var f=FER.filter(function(x){return x.id===id;})[0];if(!f)return;
  if(id==='runas'){var b=document.getElementById('b-mesa');if(b)b.click();return;}
  ferFecha(true);if(id==='carta')ferCarta();if(id==='loja')drLojaPinta();
+ if(id==='arsenal'){var fa=document.getElementById('fer-arsenal');if(fa)fa.innerHTML='<div class="ars">'+arsHTML()+'</div>';}
+ if(id==='ajustes'){var fj=document.getElementById('fer-ajustes'),td=document.getElementById('tt-dos');if(fj){fj.innerHTML='';if(td){td.style.display='';fj.appendChild(td);}else fj.innerHTML='<p class="lat-n">Os ajustes aparecem depois do primeiro desenho da página. Feche e abra de novo.</p>';}}
  var dlg=document.getElementById('fer-dlg'),corpo=document.getElementById('fer-corpo'),no=document.getElementById('fer-'+id);if(!no)return;
  document.getElementById('fer-tt').textContent=f.n;document.getElementById('fer-ic').innerHTML=LAT_IC[f.ic];
  corpo.appendChild(no);dlg.dataset.fer=id;dlg.hidden=false;}
@@ -13524,7 +13549,7 @@ function arsChecaForja(){var A=S.arsenal=(S.arsenal&&typeof S.arsenal==='object'
  ARS_KIT.forEach(function(k){var i=arsTier(k).i;if(A[k.id]==null||i>A[k.id]){if(A[k.id]!=null&&i>A[k.id])novas.push(k.t[i][1]);A[k.id]=i;}});
  if(novas.length&&!primeira){grava();try{anota('Forja: '+novas.join(', '),0,false);}catch(e){}try{acLouros('Forjado: '+novas[0],'o progresso virou metal');}catch(e){}}
  else if(primeira)grava();}
-function arsPinta(){var sep=document.getElementById('area-dos'),wr=document.querySelector('.wrap');if(!sep||!wr)return;var b=document.getElementById('ars-box');
+function arsPinta(){var sep=document.getElementById('area-dos'),wr=document.querySelector('.wrap');if(!sep||!wr){try{arsChecaForja();}catch(e){}return;}var b=document.getElementById('ars-box');
  if(!b){b=document.createElement('section');b.id='ars-box';b.className='ars';b.dataset.area='dos';}
  b.dataset.vxHidden='false';if(sep.nextElementSibling!==b)wr.insertBefore(b,sep.nextSibling);
  b.innerHTML=arsHTML();try{arsChecaForja();}catch(e){}}
@@ -14060,8 +14085,23 @@ function mfAbre(){var W=wsD(),m=wsSemanas().mes,v=W.mes[m]||{},d=document.getEle
  d.hidden=false;var t=d.querySelector('textarea');if(t)t.focus();}
 /* o Partenon deixou de existir como parte: o estudo mora no Laptop de Dédalo, à direita */
 var TT_ORIG=['op','camp','est','dos','fin'];
-TT_AREAS=['op','camp','dos','fin'];
+TT_AREAS=['op','camp','fin'];
 ttNome=function(i){var a=TT_AREAS[i],j=TT_ORIG.indexOf(a),t=TEMAS[apTema()]||{},x=(t.abas||[])[j]||'',p=x.split(' / ');return {n:String(i+1).padStart(2,'0'),t:p[1]||p[0]||''};};
+
+/* índice: Bolsa de Dracmas vira ícone; atalhos em ícone para o Laptop de Dédalo e a Enfermaria (bastão de Asclépio) */
+LAT_IC.bolsa='<svg viewBox="0 0 24 24"><path d="M9 3.5h6l-1.4 3h-3.2z"/><path d="M10.4 6.5C6.5 8.2 4.5 11.5 4.5 14.8c0 3.4 3 5.2 7.5 5.2s7.5-1.8 7.5-5.2c0-3.3-2-6.6-5.9-8.3"/><path d="M8.5 6.5h7"/><circle cx="12" cy="14.2" r="2.6"/><path d="M12 12.8v2.8"/></svg>';
+LAT_IC.laptop='<svg viewBox="0 0 24 24"><rect x="5" y="4.5" width="14" height="10" rx="1.2"/><path d="M2.8 18.5h18.4l-1.6-3.5H4.4z"/><path d="M10 16.8h4"/></svg>';
+LAT_IC.asclepio='<svg viewBox="0 0 24 24"><path d="M12 4.5v17" stroke-width="2.2"/><circle cx="12" cy="3.6" r="1.3"/><path d="M12.6 19.5c-3.2-.3-4.6-1.3-4.6-2.4 0-1.6 7.8-1.4 7.8-3.6 0-1.9-7.6-1.5-7.6-3.6 0-1.8 6.6-1.7 6.6-3.5"/><path d="M14.2 6.4c.9 0 1.9-.5 2.2-1.3l-1.6-.6c-.6-.1-1 .4-.6 1.9z" fill="currentColor"/></svg>';
+LAT_IC.cruz=LAT_IC.asclepio;
+function ttIcones(){var n=document.getElementById('tt-indice');if(!n)return;var f=n.querySelector('[data-tt="fin"]');
+ if(f&&!f.classList.contains('tt-ic')){f.classList.add('tt-ic');f.title='Bolsa de Dracmas';f.setAttribute('aria-label','Bolsa de Dracmas');f.innerHTML=LAT_IC.bolsa;}
+ if(!n.querySelector('[data-ic="laptop"]')){[['laptop','Laptop de Dédalo · painel de estudos',LAT_IC.laptop],['enf','Enfermaria do Acampamento',LAT_IC.asclepio]].forEach(function(x){
+  var b=document.createElement('button');b.type='button';b.className='tt-ic';b.dataset.ic=x[0];b.title=x[1];b.setAttribute('aria-label',x[1]);b.innerHTML=x[2];n.appendChild(b);});
+  n.addEventListener('click',function(e){var b=e.target.closest('[data-ic]');if(!b)return;
+   if(b.dataset.ic==='laptop'){if(LAT_LARGA.matches){latExpande();var r=document.getElementById('rail');if(r)r.scrollTop=0;}else{var le=document.getElementById('lat-est');if(le)le.scrollIntoView({behavior:'smooth'});}}
+   else{var c=document.getElementById('lat-enf-c');if(c){c.scrollIntoView({behavior:'smooth',block:'start'});c.classList.add('pisca');setTimeout(function(){c.classList.remove('pisca');},1400);}}});}}
+(function(){var i0=ttIndice;ttIndice=function(){i0();try{ttIcones();}catch(e){}};})();
+setTimeout(function(){try{ttIcones();}catch(e){}},600);
 /* a Grade semanal é o painel principal: logo abaixo do índice */
 function latGradeTopo(){var wr=document.querySelector('.wrap'),h=document.getElementById('h-sem'),ix=document.getElementById('tt-indice');if(!wr||!h)return;
  var tb=h.nextElementSibling&&h.nextElementSibling.classList.contains('tb')?h.nextElementSibling:document.querySelector('.wrap > .tb');
@@ -14231,7 +14271,7 @@ function arsMini(){var prox=null,h='<div class="arsm-g">'+ARS_KIT.map(function(k
   if(nx){var fr=(nx[0]-T.v)/(nx[0]-k.t[T.i][0]);if(!prox||fr<prox.fr)prox={fr:fr,k:k,nx:nx,f:arsNum(nx[0]-T.v)+' '+k.med};}
   return '<div class="arsm t'+T.i+'" title="'+esc(k.slot+': '+k.t[T.i][1])+'"><span>'+ARS_IC[k.id]+'</span><i>'+k.t.map(function(t,j){return '<em class="'+(j<=T.i?'on':'')+'"></em>';}).join('')+'</i></div>';}).join('')+'</div>';
  if(prox)h+='<p class="arsm-p">Mais perto da forja: <b>'+esc(prox.nx[1])+'</b>. Faltam '+esc(prox.f)+'.</p>';
- return h+'<button type="button" class="arsm-v" onclick="var b=document.getElementById(\'ars-box\');if(b)window.scrollTo({top:b.getBoundingClientRect().top+scrollY-70,behavior:\'smooth\'})">ver o Arsenal</button>';}
+ return h+'<button type="button" class="arsm-v" onclick="window.ferAbre&&ferAbre(\'arsenal\')">abrir o Arsenal</button>';}
 
 /* ---------- Banner acima da Grade, minimizável ----------
    O cabeçalho da Casa Grande nasce dentro do #vx a cada redesenho; aqui ele muda para #hero-box, acima da Grade semanal.
