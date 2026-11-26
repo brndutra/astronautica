@@ -17707,9 +17707,9 @@ if(TV_ON){document.body.classList.add('tv');
 /* ======================= Valhala: frontão em arquitetura nórdica (empena de stavkirke) e adornos =======================
    Empena íngreme de telhas em escama, beiral dourado, tábuas cruzadas com cabeças de dragão no alto, viga de entrelaçado,
    medalhão com runa-amarração (desenho próprio) e entrelaçado no lugar da grega também nas placas e no Posto. */
-function tvFrontao(){if(!TV_ON)return;var f=document.querySelector('#hero-box .neo-frontao.nf2');if(!f)return;var l0=f.querySelector('.fr-lira');if(l0&&l0.tagName==='IMG'&&l0.getAttribute('src')!=='img/acampamento/vh-bindrune.svg')l0.src='img/acampamento/vh-bindrune.svg';if(f.querySelector('.vh-front'))return;
+function tvFrontao(){if(!TV_ON)return;var f=document.querySelector('#hero-box .neo-frontao.nf2');if(!f)return;var l0=f.querySelector('.fr-lira');if(l0&&l0.tagName==='IMG'&&l0.getAttribute('src')!=='img/acampamento/vh-bindrune-tinta.svg')l0.src='img/acampamento/vh-bindrune-tinta.svg';if(f.querySelector('.vh-front'))return;
  var d=document.createElement('div');d.className='vh-front';d.setAttribute('aria-hidden','true');d.innerHTML='<i class="vh-beiral"></i><i class="vh-telhado"></i><i class="vh-chifres"></i><i class="vh-viga"></i>';f.insertBefore(d,f.firstChild);
- var l=f.querySelector('.fr-lira');if(l&&l.tagName==='IMG')l.src='img/acampamento/vh-bindrune.svg';}
+ var l=f.querySelector('.fr-lira');}
 if(TV_ON){setInterval(function(){try{tvFrontao();}catch(e){}},1200);setTimeout(function(){try{tvFrontao();}catch(e){}},700);
  (function(){var I=function(n){return 'url("img/acampamento/'+n+'")';};var st=document.createElement('style');st.id='tv-nordico-css';st.textContent=[
   'body.tv #hero-box .nf2 .nf-tri,body.tv #hero-box .nf2 .nf-cornija,body.tv #hero-box .nf2 .nf-acro,body.tv #hero-box .nf2 .nf-louro{display:none!important}',
@@ -17775,6 +17775,38 @@ if(TV_ON){(function(){var I=function(n){return 'url("img/acampamento/'+n+'.svg?v
   'body.tv #lat-arena{--c-img:'+I('vh-runas-madeira')+'!important}body.tv #lat-e>#lat-arena{--lc:#5b3b22}',
   'body.tv #lat-ars{--c-img:'+I('vh-escudo-ferro')+'!important}',
   'body.tv #rod-apps .rod-fogo .fg-ic{background-image:'+I('vh-valknut-sangue')+'!important}'
+ ].join('\n');document.head.appendChild(st);})();}
+
+
+/* ======================= Valhala "pedra e tinta" =======================
+   Um tom só, como o portão da referência: fundo cinza-pedra, entrelaçado e figuras em grafite, ouro só em detalhes
+   (beiral, chifres, anel do medalhão). Reescreve as folhas do tema para as versões -tinta dos desenhos e para a paleta pedra. */
+if(TV_ON){(function(){var MAP=[[/#(1d4a2c|2d3a4a|6a1e1e|5b3b22|1f2c45)/gi,'#2b2a27'],[/#(123321|3a2414|1b2430|3f1010|143a22|4a2f1a)/gi,'#1f1e1b'],[/#(256139|6e4a2c|26365a)/gi,'#4a4843'],[/#(3f6f4a|7a5636|3a4a6a)/gi,'#6a675f'],[/#cfd8bd/gi,'#d6d3cb'],[/#e9e6d6/gi,'#e2dfd7']];
+ var conv=function(t){t=t.replace(/vh-([a-z0-9-]+?)(-ferro|-sangue|-madeira)?\.svg/g,function(m,n){return 'vh-'+n+'-tinta.svg';});MAP.forEach(function(p){t=t.replace(p[0],p[1]);});return t;};
+ var faz=function(){Array.prototype.forEach.call(document.querySelectorAll('style[id^="tv-"]'),function(st){if(st.id==='tv-pedra-css'||st.dataset.tinta)return;st.textContent=conv(st.textContent);st.dataset.tinta='1';});
+  try{Object.keys(OP_TEMPLO).forEach(function(k){var i=OP_TEMPLO[k];if(i.img&&/^vh-/.test(i.img)&&!/-tinta/.test(i.img))i.img=i.img.replace(/(-ferro|-sangue|-madeira)?\.svg$/,'-tinta.svg');});}catch(e){}};
+ faz();setTimeout(faz,50);
+ var st=document.createElement('style');st.id='tv-pedra-css';st.textContent=[
+  'body.tv{background-color:#dddad2!important}',
+  'body.tv .wrap,body.tv #nav.navdr,body.tv #rail{background-color:#dddad2!important}',
+  'body.tv #hero-box .vx-hero{background:linear-gradient(135deg,#ebe9e3,#dcd9d0)!important}',
+  'body.tv :is(.lat-c,#lat-gm>.gm,#lat-db,#mm-box .mm-col,#mm-box .mm-gab,.neo-moldura){background-color:#f1efe9!important}',
+  'body.tv .vh-beiral{background:linear-gradient(180deg,#d8b866,#a8832e)!important}',
+  'body.tv #hero-box .nf2 .nf-txt{background:#2b2a27!important;color:#e6c773!important;border-color:#b8933a!important;box-shadow:0 0 0 2px #2b2a27!important}',
+  'body.tv #hero-box .nf2>.pd-pilula{background:linear-gradient(180deg,#3a3936,#2b2a27)!important;border-color:#b8933a!important;box-shadow:0 0 0 3px #1f1e1b,0 0 0 4.5px #b8933a,0 6px 12px -6px rgba(0,0,0,.5)!important}',
+  'body.tv #hero-box .nf2>.pd-pilula button{color:#e6c773!important;border-left-color:#4a4843!important}',
+  'body.tv h2.sec.neo-tit.placa-tom,body.tv #tp-real>:is(#tm-painel,#recreio)>.tm-cab{background:linear-gradient(180deg,#3a3936,#2b2a27)!important;border-color:#b8933a!important;color:#f1efe9!important;box-shadow:0 0 0 3px #dddad2,0 0 0 4.5px #2b2a27!important}',
+  'body.tv h2.sec.neo-tit.placa-tom>span,body.tv #tp-real .tm-cab .tp-placa button{color:#e6c773!important}',
+  'body.tv #lat-e>:is(#lat-arena,#lat-band,#lat-cp,#lat-db),body.tv #lat-e>#lat-gm>.gm,body.tv #mm-box :is(.mm-col,.mm-gab){--lc:#2b2a27!important;--mc:#2b2a27!important}',
+  'body.tv #hero-box .cp-postal .fr{background:linear-gradient(rgba(20,20,18,.35),rgba(20,20,18,.6)),url("img/acampamento/vh-salao-tinta.svg") center/cover!important}',
+  'body.tv #lat-topo>.lt-r2>#tv-tg{background:#2b2a27!important;color:#e6c773!important;border-color:#b8933a!important}',
+  'body.tv #nav.navdr,body.tv #lat-e,body.tv #lat-topo,body.tv .lat,body.tv #rail #tp-painel{background-color:#dddad2!important}',
+  'body.tv #lat-e>:is(#lat-arena,#lat-band,#lat-cp,#lat-db,#qa-d-pc),body.tv #lat-e>#lat-gm>.gm,body.tv #tp-real #mm-box :is(.mm-col,.mm-gab),body.tv #tp-real .lat-c{background:#f2f0eb!important;border-color:#c9c5bb!important;border-top-color:#2b2a27!important}',
+  'body.tv #lat-e>:is(#lat-gm>.gm,#lat-db)::before,body.tv #tp-real #mm-box :is(.mm-col,.mm-gab)::before{border-bottom-color:#2b2a27!important}',
+  'body.tv #hero-box .vx-hero,body.tv #hero-box .bn-slot{background-color:#e7e5df!important}',
+  'body.tv #hero-box .vx-hero{background:linear-gradient(135deg,#efede8,#dfdcd4)!important}',
+  'body.tv #tp-real>:is(#tm-painel,#recreio){background-color:#e7e5df!important}',
+  'body.tv #rod-apps,body.tv #rod-apps .rod-top{background:#e4e1da!important}'
  ].join('\n');document.head.appendChild(st);})();}
 
 })();
