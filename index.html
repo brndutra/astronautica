@@ -4387,6 +4387,11 @@ h2.sec.neo-tit[data-nivel]{margin-top:12px!important}
 #td-disco.td-solto.td-cima{flex-direction:column!important}
 #td-disco.td-solto.td-dir{align-items:flex-end!important}
 #td-disco .td-ring{title:''}
+
+#dj-h>div{position:relative;padding-right:30px!important}
+#dj-h .dj-x{position:absolute;top:6px;right:4px;width:auto!important;min-width:22px;height:22px;margin:0!important;padding:0 6px!important;border:1px solid #c9b28a!important;border-radius:999px!important;background:#fbf3df!important;color:#8a6f55!important;font:11px var(--sans)!important;cursor:pointer;line-height:1}
+#dj-h .dj-x:hover{color:#b4463a!important;border-color:#b4463a!important}
+#dj-h .dj-x.conf{background:#b4463a!important;border-color:#b4463a!important;color:#fff!important;font:700 9px var(--mono,monospace)!important;letter-spacing:.1em;text-transform:uppercase}
 </style>
 </head>
 <body>
@@ -14357,6 +14362,15 @@ function tdPosAplica(){var d=document.getElementById('td-disco');if(!d)return;va
  window.addEventListener('resize',tdPosAplica);})();
 tdDisco=(function(t0){return function(){var x=t0.apply(this,arguments);try{var d=document.getElementById('td-disco');if(d&&!d.dataset.pos){d.dataset.pos=1;tdPosAplica();}}catch(e){}return x;};})(tdDisco);
 setTimeout(tdPosAplica,400);
+/* Crônicas do chalé: apagar uma entrada (dois toques: ✕ e depois "apagar?") */
+function djApagaBotoes(){var h=document.getElementById('dj-h');if(!h)return;Array.prototype.forEach.call(h.children,function(r){var b=r.querySelector('b');if(!b||r.querySelector('[data-djx]'))return;
+ var x=document.createElement('button');x.type='button';x.className='dj-x';x.dataset.djx=b.textContent.trim();x.title='apagar esta entrada';x.setAttribute('aria-label','Apagar a entrada de '+x.dataset.djx);x.textContent='✕';r.appendChild(x);});}
+document.addEventListener('click',function(e){var x=e.target.closest&&e.target.closest('[data-djx]');if(!x)return;e.preventDefault();e.stopPropagation();
+ if(!x.classList.contains('conf')){x.classList.add('conf');x.textContent='apagar?';setTimeout(function(){if(x.isConnected){x.classList.remove('conf');x.textContent='✕';}},4000);return;}
+ var d=x.dataset.djx;if(S.diario&&S.diario[d]!=null){delete S.diario[d];grava();try{anota('Crônica de '+d+' apagada.',0,false);}catch(z){}}
+ if(d===hoje()){var t=document.getElementById('dj-t');if(t)t.value='';}try{pinta();}catch(z){}djApagaBotoes();},true);
+(function(){var p0=pinta;pinta=function(){var r=p0.apply(this,arguments);try{djApagaBotoes();}catch(e){}return r;};})();
+setTimeout(djApagaBotoes,800);
 setInterval(pintaProgresso,60000);
 })();
 </script>
