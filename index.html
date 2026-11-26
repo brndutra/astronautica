@@ -3967,6 +3967,26 @@ h2.sec.neo-tit+.neo-moldura{margin-top:0!important}
 /* Menu de recarga como ferramenta */
 .fer-rec{border:0!important;background:none!important;box-shadow:none!important;margin:0!important}
 .fer-rec>header{display:none!important}.fer-rec .lat-b,.fer-rec .cg-b{display:block!important;padding:0!important}
+
+/* Treino na Arena como cartão da coluna esquerda */
+#lat-arena #vx{margin:0!important;padding:0!important;border:0!important;background:none!important}
+#lat-arena .vx-metrics{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px!important;margin:0 0 10px!important}
+#lat-arena .vx-metrics>span{padding:0 0 0 7px!important;min-width:0;font-size:10.5px!important;line-height:1.25}
+#lat-arena .vx-metrics b{font-size:17px!important;line-height:1.1!important}
+#lat-arena .vx-grid{display:flex!important;flex-direction:column;gap:10px}
+#lat-arena .vx-grid>*{display:flex;flex-direction:column;gap:10px;min-width:0}
+#lat-arena .vx-card{margin:0!important;padding:12px!important;border-radius:12px!important}
+#lat-arena .vx-main h2,#lat-arena .vx-main h3{font-size:19px!important;line-height:1.2!important;margin:8px 0 6px!important}
+#lat-arena .vx-main p{font-size:12.5px!important}
+#lat-arena .vx-card h3{font-size:15px!important}
+#lat-arena .vx-card button{font-size:12px!important;padding:6px 10px!important;min-height:0!important}
+#lat-arena details.vx-card>summary{font-size:12.5px}
+/* pílula única dos painéis laterais */
+#tt-indice .pd-pilula{display:inline-flex;align-items:stretch;border:1.5px solid #5a3f2c;border-radius:999px;overflow:hidden;background:#f4ead2;flex:none}
+#tt-indice .pd-pilula>button{border:0!important;border-radius:0!important;margin:0!important;border-left:1px solid #c9b28a!important;background:transparent!important}
+#tt-indice .pd-pilula>button:first-child{border-left:0!important;padding-left:14px!important}
+#tt-indice .pd-pilula>button:last-child{padding-right:14px!important}
+#tt-indice .pd-pilula>button:hover{background:#eadbb8!important}
 </style>
 </head>
 <body>
@@ -13670,12 +13690,20 @@ function reorgTesouro(){var wr=document.querySelector('.wrap');if(!wr)return;var
   ids.forEach(function(id,i){var n=document.getElementById(id);if(n&&i&&n.previousElementSibling!==document.getElementById(ids[i-1]))col.appendChild(n);});};
  poe(a,['lat-ars','lat-dr']);poe(b,['c-h-rec','lat-apt']);
  var fr=document.getElementById('fer-recarga'),lr=document.getElementById('lat-rec');if(fr&&lr&&!lr.closest('#fer-recarga,#fer-corpo')){lr.classList.remove('cg-dob');lr.classList.add('fer-rec');fr.appendChild(lr);}
- Array.prototype.forEach.call(wr.querySelectorAll(':scope > .area-cab'),function(ac){var n=ac.nextElementSibling,vis=false;while(n&&!n.classList.contains('area-cab')&&n.id!=='tesouro'){if(n.offsetHeight>2){vis=true;break;}n=n.nextElementSibling;}if(ac.id==='area-camp')vis=true;ac.classList.toggle('ts-oculta',!vis);});}
-/* o cabeçalho "02 Missões" (que ficou vazio) vira o do Treino na Arena, logo acima dela */
-function reorgArena(){var ac=document.getElementById('area-camp'),vx=document.getElementById('vx');if(!ac||!vx||!vx.parentNode)return;
- if(vx.previousElementSibling!==ac)vx.parentNode.insertBefore(ac,vx);
- var bb=ac.querySelector('b');if(bb&&bb.textContent!=='Treino na Arena')bb.textContent='Treino na Arena';ac.title='Treino na Arena';ac.classList.remove('ts-oculta');ac.classList.add('ar-cab');}
-function reorg(){try{reorgProf();}catch(e){}try{reorgArena();}catch(e){}try{reorgOrb();}catch(e){}try{reorgTesouro();}catch(e){}}
+ Array.prototype.forEach.call(wr.querySelectorAll(':scope > .area-cab'),function(ac){var n=ac.nextElementSibling,vis=false;while(n&&!n.classList.contains('area-cab')&&n.id!=='tesouro'){if(n.offsetHeight>2){vis=true;break;}n=n.nextElementSibling;}ac.classList.toggle('ts-oculta',!vis);});}
+/* Treino na Arena vira um cartão na coluna esquerda, logo abaixo do nível */
+function reorgArena(){var vx=document.getElementById('vx'),e=document.getElementById('lat-e');if(!vx||!e)return;var c=document.getElementById('lat-arena');
+ if(!c){var t=document.createElement('div');t.innerHTML=latCard('lat-arena','arco','o alvo de agora','Treino na Arena','<div id="lat-arena-b"></div>');c=t.firstChild;}
+ var gm=document.getElementById('lat-gm');if(gm&&gm.parentNode===e){if(gm.nextElementSibling!==c)e.insertBefore(c,gm.nextSibling);}else if(c.parentNode!==e)e.insertBefore(c,e.firstChild);
+ var bx=c.querySelector('#lat-arena-b');if(vx.parentNode!==bx){vx.dataset.vxHidden='false';bx.appendChild(vx);}}
+/* os ícones do painel direito numa pílula só: Bolsa, Bunker 9, Laptop e Enfermaria */
+function pdPilula(){var n=document.getElementById('tt-indice');if(!n)return;var p=n.querySelector('.pd-pilula');
+ var bs=[n.querySelector('[data-tt="fin"]'),n.querySelector('[data-ic="b9"]'),n.querySelector('[data-ic="laptop"]'),n.querySelector('[data-ic="enf"]')].filter(Boolean);if(!bs.length)return;
+ if(!p){p=document.createElement('div');p.className='pd-pilula';p.setAttribute('role','group');p.setAttribute('aria-label','Painéis laterais');n.insertBefore(p,bs[0]);}
+ bs.forEach(function(b,i){if(p.children[i]!==b)p.insertBefore(b,p.children[i]||null);});
+ var tt={fin:'Bolsa de Dracmas',b9:'Bunker 9',laptop:'Laptop · Eumátheia',enf:'Enfermaria'};bs.forEach(function(b){var k=b.dataset.ic||b.dataset.tt;if(tt[k]){b.title=tt[k];b.setAttribute('aria-label',tt[k]);}});}
+(function(){var i0=ttIcones;ttIcones=function(){i0();try{pdPilula();}catch(e){}};})();
+function reorg(){try{reorgProf();}catch(e){}try{reorgArena();}catch(e){}try{pdPilula();}catch(e){}try{reorgOrb();}catch(e){}try{reorgTesouro();}catch(e){}}
 (function(){var r0=vxRender;vxRender=function(){var x=r0.apply(this,arguments);reorg();return x;};var p0=pinta;pinta=function(){var x=p0.apply(this,arguments);reorg();return x;};})();
 setTimeout(reorg,50);setTimeout(reorg,900);
 setInterval(pintaProgresso,60000);
