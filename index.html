@@ -17707,7 +17707,7 @@ if(TV_ON){document.body.classList.add('tv');
 /* ======================= Valhala: frontão em arquitetura nórdica (empena de stavkirke) e adornos =======================
    Empena íngreme de telhas em escama, beiral dourado, tábuas cruzadas com cabeças de dragão no alto, viga de entrelaçado,
    medalhão com runa-amarração (desenho próprio) e entrelaçado no lugar da grega também nas placas e no Posto. */
-function tvFrontao(){if(!TV_ON)return;var f=document.querySelector('#hero-box .neo-frontao.nf2');if(!f)return;var l0=f.querySelector('.fr-lira');if(l0&&l0.tagName==='IMG'&&l0.getAttribute('src')!=='img/acampamento/vh-bindrune-carvalho.svg')l0.src='img/acampamento/vh-bindrune-carvalho.svg';if(f.querySelector('.vh-front'))return;
+function tvFrontao(){if(!TV_ON)return;var f=document.querySelector('#hero-box .neo-frontao.nf2');if(!f)return;var l0=f.querySelector('.fr-lira');if(l0&&l0.tagName==='IMG'&&l0.getAttribute('src')!=='img/acampamento/vh-bindrune-entalhe.svg')l0.src='img/acampamento/vh-bindrune-entalhe.svg';if(f.querySelector('.vh-front'))return;
  var d=document.createElement('div');d.className='vh-front';d.setAttribute('aria-hidden','true');d.innerHTML='<i class="vh-beiral"></i><i class="vh-telhado"></i><i class="vh-chifres"></i><i class="vh-viga"></i>';f.insertBefore(d,f.firstChild);
  var l=f.querySelector('.fr-lira');}
 if(TV_ON){setInterval(function(){try{tvFrontao();}catch(e){}},1200);setTimeout(function(){try{tvFrontao();}catch(e){}},700);
@@ -17833,6 +17833,31 @@ if(TV_ON){(function(){var st=document.createElement('style');st.id='tv-sem-verde
  'body.tv .vx-hero .vx-k,body.tv #hero-box span.vx-k{color:#7a5230!important}',
  'body.tv #lat-e>#lat-arena::before,body.tv #lat-e>:is(#lat-gm>.gm,#lat-db)::before{border-bottom-color:#5a3c22!important}',
  'body.tv #td-agora .td-ag-bar i,body.tv #tp-base .td-ag-bar i{background:#7a5230!important}'
+].join('\n');document.head.appendChild(st);})();}
+
+
+/* ======================= Valhala: entalhe em relevo (referências do calendário e dos ornamentos) =======================
+   Entrelaçado de verdade, com cordões que passam por cima e por baixo, contorno escuro e luz no relevo;
+   pedra-ardósia nas colunas, frisos e faixas; osso nos cordões; um acento vermelho (runa do medalhão, olho do capitel).
+   O carvalho fica no telhado e nos cartões. */
+if(TV_ON){(function(){var I=function(n){return 'url("img/acampamento/'+n+'.svg?v=6")';};var st=document.createElement('style');st.id='vale-entalhe-css';st.textContent=[
+ 'body.tv .neo-moldura{--neo-fuste:'+I('vh-fuste-entalhe')+'!important;--neo-cap:'+I('vh-capitel-entalhe')+'!important;--neo-base:'+I('vh-base-entalhe')+'!important;--neo-ent:'+I('vh-ent-entalhe')+'!important;--col-k:#34424d!important;border-color:#34424d!important}',
+ 'body.tv .wrap>.tb.neo-moldura,body.tv .wrap>.rt.neo-moldura,body.tv .wrap>#rt-box .rt.neo-moldura{--neo-fuste:'+I('vh-fuste-entalhe')+'!important;--neo-cap:'+I('vh-capitel-entalhe')+'!important;--neo-base:'+I('vh-base-entalhe')+'!important;--neo-ent:'+I('vh-ent-entalhe')+'!important;--col-k:#34424d!important}',
+ 'body.tv #modo-op .op-templo{--t-fuste:'+I('vh-fuste-entalhe')+'!important;--t-cap:'+I('vh-capitel-entalhe')+'!important;--t-base:'+I('vh-base-entalhe')+'!important;--t-ent:'+I('vh-ent-entalhe')+'!important;--t-k:#34424d!important}',
+ 'body.tv #hero-box .bn-slot{background:'+I('vh-capitel-entalhe')+' 2px 0/46px 31px no-repeat,'+I('vh-capitel-entalhe')+' calc(100% - 2px) 0/46px 31px no-repeat,'+I('vh-fuste-entalhe')+' 2px 31px/46px 40px repeat-y,'+I('vh-fuste-entalhe')+' calc(100% - 2px) 31px/46px 40px repeat-y,#efe9df!important}',
+ 'body.tv #hero-box .bn-slot::after{background:'+I('vh-base-entalhe')+' 0 0/46px 14px no-repeat,'+I('vh-base-entalhe')+' 100% 0/46px 14px no-repeat!important}',
+ 'body.tv .vh-viga{background:'+I('vh-no-h-entalhe')+' 0 0/40px 20px repeat-x,#34424d!important;height:20px!important;border-color:#151b20!important;box-shadow:0 2px 0 #151b20!important}',
+ '@media(min-width:1380px){body.tv #nav.navdr{background-image:'+I('vh-no-v-entalhe')+','+I('vh-no-v-entalhe')+'!important;background-size:20px 40px!important;padding-left:20px!important;padding-right:20px!important}}',
+ 'body.tv #tp-friso{background:'+I('vh-no-h-entalhe')+' 0 100%/40px 20px repeat-x,#efe9df!important;padding-bottom:20px!important}',
+ 'body.tv #hero-box .vx-hero::after{background:#34424d!important}body.tv #hero-box .vx-hero{border-color:#34424d!important}',
+ 'body.tv #hero-box .nf2 .fr-lira{box-shadow:0 0 0 3px #efe9df,0 0 0 5px #34424d!important}',
+ 'body.tv h2.sec.neo-tit.placa-tom,body.tv #tp-real>:is(#tm-painel,#recreio)>.tm-cab{background:linear-gradient(180deg,#46576443,#34424d),#34424d!important;border-color:#151b20!important;color:#f3ece0!important;box-shadow:inset 0 0 0 2px #34424d,inset 0 0 0 3px #e4d9c6,0 0 0 2px #151b20!important}',
+ 'body.tv h2.sec.neo-tit.placa-tom>span,body.tv #tp-real .tm-cab .tp-placa button{color:#e4d9c6!important}',
+ 'body.tv #hero-box .nf2 .nf-txt{background:#34424d!important;border-color:#e4d9c6!important;color:#f3ece0!important;box-shadow:0 0 0 2px #151b20!important}',
+ 'body.tv #hero-box .nf2>.pd-pilula{background:linear-gradient(180deg,#46576a,#2a353e)!important;border-color:#e4d9c6!important;box-shadow:0 0 0 3px #151b20,0 6px 12px -6px rgba(0,0,0,.5)!important}',
+ 'body.tv #hero-box .nf2>.pd-pilula button{color:#f3ece0!important;border-left-color:#566672!important}',
+ 'body.tv #lat-topo>.lt-r2>#tv-tg{background:#34424d!important;color:#e4d9c6!important;border-color:#151b20!important}',
+ 'body.tv #rod-apps .rod-fogo .fg-ic{background-image:'+I('vh-bindrune-entalhe')+'!important;background-size:contain!important;background-repeat:no-repeat!important;background-position:center!important}'
 ].join('\n');document.head.appendChild(st);})();}
 
 })();
