@@ -4632,6 +4632,158 @@ body.op-on #modo-op{grid-template-rows:auto minmax(0,1fr)!important;grid-templat
 .cv-rec li:first-child{border-top:0;padding-top:0}
 .cv-rec li>span{font:10px var(--mono,monospace);color:#8a6f55;padding-top:2px}
 .cv-rec .cv-vz{display:block;font-style:italic;color:#8a6f55}
+
+/* ===== Posto de comando · templo helênico ===== */
+#modo-op.op-grego{--meandro:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='12'%3E%3Cpath d='M0 11H22M3 11V2H15V8H8V5H11' fill='none' stroke='%239a6b3a' stroke-width='1.3'/%3E%3C/svg%3E")}
+#modo-op.op-grego .op-top{border-bottom:0!important;padding-bottom:14px!important;position:relative}
+#modo-op.op-grego .op-top::after{content:'';position:absolute;left:0;right:0;bottom:0;height:12px;background:var(--meandro) repeat-x left center;opacity:.8}
+#modo-op.op-grego .op-louro{color:#c9a45a;letter-spacing:0}
+#modo-op.op-grego .op-g{grid-template-columns:minmax(230px,.95fr) minmax(0,1.15fr) minmax(0,1.15fr) minmax(0,.95fr)!important;gap:12px!important}
+#modo-op.op-grego .op-c,#modo-op.op-grego .op-l{position:relative;padding:22px 13px 16px!important;border:1px solid #b9a77a!important;border-radius:4px 4px 10px 10px!important;
+ background:linear-gradient(180deg,#f7eed8,#f1e4c6)!important;box-shadow:inset 3px 0 0 #f7eed8,inset 4px 0 0 #d8c39a,inset -3px 0 0 #f7eed8,inset -4px 0 0 #d8c39a,0 6px 14px rgba(70,45,15,.1)!important;gap:8px!important}
+#modo-op.op-grego .op-c::before,#modo-op.op-grego .op-l::before{content:''!important;position:absolute;left:6px;right:6px;top:4px;height:12px;background:var(--meandro) repeat-x left center;opacity:.75;display:block!important;padding:0!important}
+#modo-op.op-grego .op-c::after,#modo-op.op-grego .op-l::after{content:'';position:absolute;left:8px;right:8px;bottom:3px;height:5px;background:repeating-linear-gradient(90deg,#c9a45a 0 5px,transparent 5px 9px);opacity:.6}
+#modo-op.op-grego .op-cab{display:flex;align-items:center;gap:8px;margin:0 0 2px;padding-bottom:6px;border-bottom:1px solid #d8c39a}
+#modo-op.op-grego .op-med{flex:none;width:30px;height:30px;border-radius:50%;border:1.5px solid #9a6b3a;background:radial-gradient(circle at 35% 30%,#fbf3dc,#ecd9a8);color:#7a5532;display:grid;place-items:center;box-shadow:0 0 0 3px #f4ead1,0 0 0 4px #d8c39a}
+#modo-op.op-grego .op-med svg{width:17px;height:17px}
+#modo-op.op-grego .op-cabt{min-width:0;flex:1}
+#modo-op.op-grego .op-cabt b{display:block;font:400 15px Georgia,serif;font-variant:small-caps;letter-spacing:.08em;color:#2a2418;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#modo-op.op-grego .op-cabt small{display:block;font:700 8px var(--mono,monospace);letter-spacing:.2em;text-transform:uppercase;color:#9a6b3a}
+#modo-op.op-grego .op-cont{flex:none;font:700 12px var(--mono,monospace);color:#5a3f2c;border:1px solid #c9a45a;border-radius:999px;padding:2px 8px;background:#fbf5e6}
+#modo-op.op-grego .op-cd{flex:none;display:flex;flex-direction:column;align-items:center;line-height:1;padding:3px 8px;border:1px solid #c9a45a;border-radius:6px;background:#fbf5e6}
+#modo-op.op-grego .op-cd b{font:400 18px Georgia,serif;color:#b4463a}
+#modo-op.op-grego .op-cd small{font:700 7px var(--mono,monospace);letter-spacing:.14em;text-transform:uppercase;color:#8a6f55}
+#modo-op.op-grego .op-bar{display:block;height:5px;border-radius:999px;background:#e6d8b6;overflow:hidden}
+#modo-op.op-grego .op-bar i{display:block;height:100%;background:linear-gradient(90deg,#c9a45a,#e8a33c)}
+#modo-op.op-grego .op-bar-g{margin:-2px 0 2px}
+#modo-op.op-grego .op-bar-g i{background:linear-gradient(90deg,#5f8a3f,#8fb45a)}
+/* coluna 1: escudo e ritos */
+#modo-op.op-grego .op-col1{justify-content:flex-start}
+#modo-op.op-grego .op-foco{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;min-height:0}
+#modo-op.op-grego .op-foco>.op-cab{align-self:stretch;text-align:left}
+#modo-op.op-grego .op-esc{width:min(170px,21vh)}
+#modo-op.op-grego .op-foco-c .op-fx b{font-size:15px}
+#modo-op.op-grego .op-ch button{width:34px!important;height:34px!important;font-size:12px!important}
+#modo-op.op-grego .op-ritos{flex:1;min-height:0;display:flex;flex-direction:column;gap:6px;overflow:hidden;border-top:1px dashed #c9a45a;padding-top:8px}
+#modo-op.op-grego .op-ritos-g{display:grid;grid-template-columns:1fr 1fr;gap:5px;overflow:auto;scrollbar-width:thin;min-height:0}
+#modo-op.op-grego .op-rito{display:grid!important;grid-template-columns:16px 1fr auto;align-items:center;gap:6px;width:auto!important;margin:0!important;padding:5px 7px!important;border:1px solid #c9b28a!important;border-radius:6px!important;background:#fbf5e6!important;color:#2a2418!important;text-align:left;cursor:pointer;font:12.5px Georgia,serif!important}
+#modo-op.op-grego .op-rito i{width:16px;height:16px;border:1.5px solid #9a6b3a;border-radius:50%;font:700 10px/13px sans-serif;font-style:normal;text-align:center;color:#fff}
+#modo-op.op-grego .op-rito span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#modo-op.op-grego .op-rito em{font:9px var(--mono,monospace);font-style:normal;color:#8a6f55}
+#modo-op.op-grego .op-rito.on{background:#eef3e2!important;border-color:#8fb45a!important;cursor:default}
+#modo-op.op-grego .op-rito.on i{background:#5f8a3f;border-color:#5f8a3f}
+#modo-op.op-grego .op-rito.on span{color:#4a5e35}
+/* estudos */
+#modo-op.op-grego .op-kp{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+#modo-op.op-grego .op-kp>div{padding:5px 7px;border:1px solid #d8c39a;border-radius:6px;background:#fbf5e6;display:flex;flex-direction:column;gap:2px;min-width:0}
+#modo-op.op-grego .op-kp small{font:700 8px var(--mono,monospace);letter-spacing:.16em;text-transform:uppercase;color:#9a6b3a}
+#modo-op.op-grego .op-kp b{font:400 17px Georgia,serif;color:#2a2418;line-height:1.1}
+#modo-op.op-grego .op-kp b i{font:11px Georgia,serif;font-style:normal;color:#8a6f55}
+#modo-op.op-grego .op-qb{display:flex;gap:4px}
+#modo-op.op-grego .op-qb button,#modo-op.op-grego .op-bt2 button,#modo-op.op-grego .op-rv button{width:auto!important;margin:0!important;padding:2px 8px!important;border:1px solid #9a6b3a!important;border-radius:999px!important;background:transparent!important;color:#5a3f2c!important;font:700 10px var(--mono,monospace)!important;cursor:pointer}
+#modo-op.op-grego .op-disc{display:block;font:400 15px Georgia,serif;color:#2a2418;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#modo-op.op-grego .op-ret{margin:1px 0 4px;font:italic 12.5px/1.3 Georgia,serif;color:#5a3f2c;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+#modo-op.op-grego .op-bt2{display:flex;gap:5px;flex-wrap:wrap}
+#modo-op.op-grego .op-rv,#modo-op.op-grego .op-rg{list-style:none;margin:3px 0 0;padding:0;display:flex;flex-direction:column;gap:3px}
+#modo-op.op-grego .op-rv li{display:flex;align-items:center;gap:5px;font:13px Georgia,serif}
+#modo-op.op-grego .op-rv li span{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#modo-op.op-grego .op-rv li button{padding:1px 7px!important}
+#modo-op.op-grego .op-rg li{display:flex;gap:6px;font:12.5px Georgia,serif;color:#3b2a1d;min-width:0}
+#modo-op.op-grego .op-rg li b{font:700 10px var(--mono,monospace);color:#9a6b3a;flex:none;padding-top:2px}
+#modo-op.op-grego .op-rg li span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#modo-op.op-grego .op-livro b{display:block;font:italic 13px Georgia,serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#modo-op.op-grego .op-livro small{font:10px var(--mono,monospace);color:#8a6f55}
+#modo-op.op-grego .op-estudo{overflow:hidden}
+#modo-op.op-grego .op-grp{min-height:0}
+#modo-op.op-grego .op-l .op-cab-l{margin-bottom:4px}
+#modo-op.op-grego .op-l::before{content:''!important}
+#modo-op.op-grego .op-vlinha{margin-top:4px}
+@media(max-height:820px){#modo-op.op-grego .op-esc{width:min(140px,19vh)}#modo-op.op-grego .op-foco-c .op-hj{display:none}#modo-op.op-grego .op-rg li:nth-child(2){display:none}}
+/* Anais do dia no rodapé */
+#rod-apps .rod-log{flex:none;display:flex!important;align-items:center;gap:8px;width:auto!important;margin:6px 8px 6px 0!important;padding:5px 12px 5px 6px!important;border:1px solid #c9b28a!important;border-radius:10px!important;background:#f4ead2!important;color:#3b2a1d!important;cursor:pointer;position:relative;--cr:#7a5532}
+#rod-apps .rod-log::after{content:'';position:absolute;left:8px;right:8px;bottom:0;height:2px;border-radius:2px;background:#7a5532}
+#rod-apps .rod-log:hover,#rod-apps .rod-log[aria-expanded="true"]{transform:translateY(-2px);box-shadow:0 4px 10px rgba(60,40,20,.18);border-color:#7a5532!important}
+#rod-apps .rod-log .cr-ico{width:30px;height:30px;display:grid;place-items:center;border-radius:50%;border:1.5px solid #7a5532;background:#f4ead2}
+#rod-apps .rod-log .cr-ico svg{width:15px;height:15px;fill:none;stroke:#7a5532;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+#rod-apps .rod-log .cr-lb{display:flex;flex-direction:column;align-items:flex-start;gap:1px}
+#rod-apps .rod-log .cr-lb small{font:700 8px var(--mono,monospace);letter-spacing:.16em;text-transform:uppercase;color:#8a6f55}
+#rod-apps .rod-log .cr-lb b{font:700 15px Georgia,serif;color:#3b2a1d;line-height:1.1;white-space:nowrap}
+#rod-apps .rod-log .cr-lb b i{font:italic 400 11px Georgia,serif;color:#8a6f55}
+.rod-log-pop{position:fixed;right:16px;bottom:84px;z-index:97;width:min(460px,calc(100vw - 32px));max-height:min(62vh,560px);display:flex;flex-direction:column;border:1px solid #b9a77a;border-radius:6px 6px 12px 12px;background:linear-gradient(180deg,#f7eed8,#f1e4c6);box-shadow:0 16px 40px rgba(60,40,20,.3);overflow:hidden}
+.rod-log-pop[hidden]{display:none}
+.rod-log-pop::before{content:'';display:block;height:12px;margin:5px 8px 0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='12'%3E%3Cpath d='M0 11H22M3 11V2H15V8H8V5H11' fill='none' stroke='%239a6b3a' stroke-width='1.3'/%3E%3C/svg%3E") repeat-x left center;opacity:.75}
+.rod-log-pop>header{display:flex;align-items:center;gap:10px;padding:8px 14px;border-bottom:1px solid #d8c39a}
+.rod-log-pop .rl-med{width:30px;height:30px;flex:none;border-radius:50%;border:1.5px solid #9a6b3a;display:grid;place-items:center;background:radial-gradient(circle at 35% 30%,#fbf3dc,#ecd9a8)}
+.rod-log-pop .rl-med svg{width:16px;height:16px;fill:none;stroke:#7a5532;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.rod-log-pop header>div{flex:1;min-width:0}
+.rod-log-pop .rl-k{display:block;font:700 8px var(--mono,monospace);letter-spacing:.2em;text-transform:uppercase;color:#9a6b3a}
+.rod-log-pop .rl-d{display:block;font:400 16px Georgia,serif;font-variant:small-caps;letter-spacing:.06em;color:#2a2418}
+.rod-log-pop .rl-x{width:30px!important;height:30px!important;margin:0!important;padding:0!important;border:1px solid #b9a77a!important;border-radius:50%!important;background:#fbf5e6!important;color:#5a3f2c!important;font-size:16px!important;cursor:pointer}
+.rod-log-pop .rl-slot{flex:1;min-height:0;overflow:auto;padding:10px 14px 14px;scrollbar-width:thin}
+.rod-log-pop .regdia .mcab2 .k9{display:none}
+/* diálogo dos avisos (sátiro e corvo) */
+dialog.ave-dlg{width:min(460px,calc(100vw - 32px));max-height:80vh;padding:0;border:1px solid #b9a77a;border-radius:6px 6px 14px 14px;background:linear-gradient(180deg,#f7eed8,#f1e4c6);color:#2a2418;box-shadow:0 24px 60px rgba(30,20,8,.45);overflow:hidden}
+dialog.ave-dlg[open]{display:flex;flex-direction:column;animation:adEntra .4s cubic-bezier(.2,.9,.3,1.2)}
+@keyframes adEntra{from{opacity:0;transform:translateY(-16px) scale(.97)}to{opacity:1;transform:none}}
+dialog.ave-dlg::backdrop{background:rgba(42,36,24,.38);backdrop-filter:blur(1.5px)}
+dialog.ave-dlg::before{content:'';display:block;height:12px;margin:6px 8px 0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='12'%3E%3Cpath d='M0 11H22M3 11V2H15V8H8V5H11' fill='none' stroke='%239a6b3a' stroke-width='1.3'/%3E%3C/svg%3E") repeat-x left center;opacity:.8}
+.ave-dlg .ad-lista{overflow:auto;padding:6px 16px;display:flex;flex-direction:column;gap:10px;scrollbar-width:thin}
+.ave-dlg .ad-msg{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px dashed #c9a45a}
+.ave-dlg .ad-msg:last-child{border-bottom:0}
+.ave-dlg .ad-msg>svg{width:58px;height:58px;flex:none}
+.ave-dlg .ad-corvo>svg{animation:cvBico 1.6s ease-in-out 2}
+.ave-dlg .ad-msg>div{min-width:0;flex:1}
+.ave-dlg .ad-k{display:block;font:700 8px var(--mono,monospace);letter-spacing:.18em;text-transform:uppercase;color:#9a6b3a}
+.ave-dlg .ad-msg b{display:block;font:italic 700 17px Georgia,serif;margin:1px 0 2px}
+.ave-dlg .ad-msg ul{margin:0;padding-left:17px;font:14px/1.45 Georgia,serif;color:#3b2a1d}
+.ave-dlg footer{display:flex;justify-content:flex-end;gap:8px;padding:10px 16px 14px;border-top:1px solid #d8c39a}
+.ave-dlg footer button{width:auto!important;margin:0!important;padding:7px 14px!important;border:1.5px solid #5a3f2c!important;border-radius:999px!important;background:#fbf5e6!important;color:#5a3f2c!important;font:700 10px var(--mono,monospace)!important;letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
+.ave-dlg footer .ad-ok{border-color:#2a2418!important;color:#2a2418!important;box-shadow:inset 0 0 0 1px #c9a45a}
+.ave-dlg footer [hidden]{display:none!important}
+#modo-op.op-grego .op-ritos-g{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+/* ===== Posto de comando: cartões-templo ===== */
+#modo-op.op-grego .op-templo{padding:40px 30px 18px!important;border:1.5px solid var(--t-k)!important;border-radius:3px!important;box-shadow:0 8px 18px rgba(60,40,15,.14)!important;
+ background:var(--t-ent) left top/200px 33px repeat-x,
+  var(--t-cap) left 1px top 33px/28px 19px no-repeat,var(--t-cap) right 1px top 33px/28px 19px no-repeat,
+  var(--t-fuste) left 1px top 51px/28px calc(100% - 51px - 11px) no-repeat,var(--t-fuste) right 1px top 51px/28px calc(100% - 51px - 11px) no-repeat,
+  var(--t-base) left 1px bottom 1px/28px 10px no-repeat,var(--t-base) right 1px bottom 1px/28px 10px no-repeat,
+  var(--neo-papel),#f6ecd4!important}
+#modo-op.op-grego .op-templo::after{display:none!important;content:none!important}
+#modo-op.op-grego .op-templo::before{content:attr(data-num)!important;display:grid!important;place-items:center;position:absolute;left:50%;right:auto!important;top:5px!important;transform:translateX(-50%);z-index:2;min-width:24px;height:24px!important;padding:0 5px!important;border-radius:999px;background:var(--t-c)!important;border:1.5px solid var(--t-k);box-shadow:0 0 0 3px #f6ecd4;font:700 13px/1 Georgia,serif;color:var(--t-k);opacity:1!important}
+#modo-op.op-grego .op-templo>.op-num{position:absolute;left:50%;top:5px;transform:translateX(-50%);z-index:2;min-width:24px;height:24px;padding:0 5px;border-radius:999px;
+ display:grid;place-items:center;font:700 13px Georgia,serif;color:var(--t-k);background:var(--t-c);border:1.5px solid var(--t-k);box-shadow:0 0 0 3px #f6ecd4}
+/* placa com a foto do lugar */
+#modo-op.op-grego .op-templo .op-cab{position:relative;min-height:46px;margin:0 0 4px;padding:6px 8px!important;border:1.5px solid var(--t-k)!important;border-radius:3px;overflow:hidden;
+ background:linear-gradient(90deg,rgba(246,236,212,.97) 0,rgba(246,236,212,.92) 48%,rgba(246,236,212,.2) 100%),var(--t-foto) center/cover no-repeat;box-shadow:inset 0 0 0 3px #f6ecd4,inset 0 0 0 4px var(--t-c)}
+#modo-op.op-grego .op-templo .op-cab::after{content:'';position:absolute;inset:0;background:var(--t-foto) right center/48% auto no-repeat;filter:sepia(.55) saturate(.8);opacity:0;pointer-events:none}
+#modo-op.op-grego .op-templo .op-med{border-color:var(--t-k);color:var(--t-k);background:radial-gradient(circle at 35% 30%,#fffaf0,var(--t-c));box-shadow:0 0 0 2px #f6ecd4,0 0 0 3px var(--t-k)}
+#modo-op.op-grego .op-templo .op-cabt small{color:var(--t-k)}
+#modo-op.op-grego .op-templo .op-k{color:var(--t-k)!important}
+#modo-op.op-grego .op-templo .op-grp+.op-grp,#modo-op.op-grego .op-templo .op-ritos{border-top-color:color-mix(in srgb,var(--t-k) 45%,transparent)!important}
+#modo-op.op-grego .op-templo .op-cont,#modo-op.op-grego .op-templo .op-cd{border-color:var(--t-k)}
+#modo-op.op-grego .op-templo .op-bar i{background:linear-gradient(90deg,var(--t-k),color-mix(in srgb,var(--t-k) 55%,#e8a33c))}
+#modo-op.op-grego .op-fazer.op-templo .op-bar-g i{background:linear-gradient(90deg,#5f8a3f,#8fb45a)}
+#modo-op.op-grego .op-l.op-templo{padding-left:26px!important;padding-right:24px!important}
+#modo-op.op-grego .op-l.op-templo .op-vhs{left:-2px}
+#modo-op.op-grego .op-col1 .op-ritos>.op-cab{min-height:40px}
+@media(max-height:820px){#modo-op.op-grego .op-templo .op-cab{min-height:38px}#modo-op.op-grego .op-templo{padding-top:36px!important}}
+/* quests do gabinete no Mural de Missões */
+.mm .mm-gab{margin:0 0 14px;padding:12px 14px;border:1px solid #c9b28a;border-left:4px solid #7a4a58;border-radius:8px;background:#fbf5e6}
+.mm .mm-gab>header{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.mm .mm-gab>header>div{flex:1;min-width:220px}
+.mm .mm-gab>header small{display:block;font:11px Georgia,serif;color:#8a6f55}
+.mm .mm-gcont{font:700 12px var(--mono,monospace);color:#7a4a58;border:1px solid #7a4a58;border-radius:999px;padding:3px 10px}
+.mm .mm-gab>header button{width:auto!important;margin:0!important;padding:5px 12px!important;border:1.5px solid #5a3f2c!important;border-radius:999px!important;background:#f4ead2!important;color:#5a3f2c!important;font:700 10px var(--mono,monospace)!important;letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
+.mm .mm-gab ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:8px}
+.mm .mm-gq{display:flex;gap:9px;align-items:flex-start;padding:8px 10px;border:1px solid #d8c8a2;border-left:3px solid #c9a45a;border-radius:6px;background:#f7eed8}
+.mm .mm-gq.venc{border-left-color:#b4463a}.mm .mm-gq.perto{border-left-color:#e8a33c}.mm .mm-gq.ok{opacity:.65}
+.mm .mm-gq>div{min-width:0;flex:1}
+.mm .mm-gq b{display:block;font:14px Georgia,serif;color:#2a2418}
+.mm .mm-gq small{display:block;font:11.5px Georgia,serif;color:#6f5a44;margin:1px 0 4px}
+.mm .mm-auto{flex:none;width:18px;height:18px;border:1.5px solid #9a6b3a;border-radius:4px;display:grid;place-items:center;font:700 11px sans-serif;color:#4f7a35;margin-top:2px}
+.mm .mm-gbar{display:block;height:4px;border-radius:999px;background:#e6d8b6;overflow:hidden}
+.mm .mm-gbar i{display:block;height:100%;background:#5f8a3f}
+.mm .mm-gq.venc .mm-gbar i{background:#b4463a}
 </style>
 </head>
 <body>
@@ -14934,6 +15086,142 @@ satPainelHTML=(function(f0){return function(){var h=f0.apply(this,arguments),c=c
  return h.replace('<div class="sat-gab">',rc+'<div class="sat-gab">');};})(satPainelHTML);
 document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-cvperm]');if(!b)return;try{Notification.requestPermission().then(function(){satPinta();});}catch(z){}});
 window.KALAMO.corvo=corvoChecar;window.KALAMO.corvoCfg=corvoCfg;
+/* ======================= POSTO DE COMANDO · templo helênico =======================
+   Quatro cartões emoldurados à grega: Aspís de Apolo (foco) com os Ritos de Héstia (hábitos do dia),
+   Arena sob Têmis (gabinete e tarefas), Campo de arquearia sob Atena (estudos do Laptop) e Hermes (captura e agenda). */
+var OP_IC={
+ sol:'<circle cx="12" cy="12" r="4"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"/>',
+ chama:'<path d="M12 21c-4 0-6.5-2.6-6.5-6 0-4 3.5-5.5 3.5-9.5 2.5 1.5 4 3.5 4 6 1-1 1.5-2.2 1.5-3.5 2.3 2 4 4.6 4 7 0 3.4-2.5 6-6.5 6z"/><path d="M12 21c-1.6 0-2.8-1.2-2.8-2.8 0-1.8 1.6-2.6 2.8-4.2 1.2 1.6 2.8 2.4 2.8 4.2 0 1.6-1.2 2.8-2.8 2.8z"/>',
+ balanca:'<path d="M12 4v16M8 20h8M5 7h14"/><path d="M5 7l-3 6c0 1.7 1.3 3 3 3s3-1.3 3-3zM19 7l-3 6c0 1.7 1.3 3 3 3s3-1.3 3-3z"/>',
+ arco:'<path d="M6 3c7 2 11 6 13 13"/><path d="M6 3l13 13"/><path d="M3 21l10-10M3 21v-4M3 21h4"/>',
+ asas:'<path d="M12 6v15M9 9c0-1.7 1.3-3 3-3s3 1.3 3 3-6 2-6 4 6 2 6 4-1.3 3-3 3"/><path d="M12 6c-2-3-6-3.5-9-2 2 .5 3.5 1.8 4 3.5M12 6c2-3 6-3.5 9-2-2 .5-3.5 1.8-4 3.5"/>',
+ carro:'<circle cx="7" cy="17" r="3.5"/><path d="M7 13.5v7M3.5 17h7"/><path d="M10 15h7l3-6h-5"/><circle cx="19" cy="5" r="2"/>'};
+function opIcone(k){return '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">'+(OP_IC[k]||'')+'</svg>';}
+function opCab(ic,t,p,extra){return '<header class="op-cab"><span class="op-med">'+opIcone(ic)+'</span><div class="op-cabt"><b>'+t+'</b><small>'+p+'</small></div>'+(extra||'')+'</header>';}
+/* Ritos de Héstia: os hábitos de hoje, para preencher com um toque */
+function opRitosHTML(){var H=S.hab||[],hj=hoje(),feitos=H.filter(function(x){return (x.hist||[]).indexOf(hj)>=0;}).length;
+ var cab=opCab('chama','Ritos de Héstia','hábitos de hoje','<span class="op-cont">'+feitos+'/'+H.length+'</span>');
+ if(!H.length)return cab+'<p class="op-vz">nenhum rito ainda · crie os hábitos na Casa Grande</p>';
+ return cab+'<div class="op-ritos-g">'+H.map(function(x,j){var f=(x.hist||[]).indexOf(hj)>=0,w=0;try{w=jan7(x.hist);}catch(e){}
+  return '<button type="button" class="op-rito'+(f?' on':'')+'" data-ophb="'+j+'"'+(f?' disabled':'')+' title="'+esc(x.nome)+' · '+w+' de 7 dias"><i>'+(f?'✓':'')+'</i><span>'+esc(x.nome)+'</span><em>'+w+'/7</em></button>';}).join('')+'</div>';}
+/* Campo de arquearia: concurso, ciclo, revisões, registros e leitura */
+function opEstudoHTML(){var h=hoje(),dias=0,g={pct:0},sem=0,hj=0,q=0,c={};
+ try{c=ccBase();dias=Math.max(0,Math.round((ccDia(CONC.prova)-ccDia(h))/864e5));g=ccGeral();sem=ccSemanaMin();hj=ccHojeMin();q=c.q[ccSemKey()]|0;}catch(e){}
+ var C=typeof CONC!=='undefined'?CONC:{minDia:60,metaHoras:10,metaQuest:100};
+ var bar=function(f){return '<span class="op-bar"><i style="width:'+Math.round(Math.min(1,f)*100)+'%"></i></span>';};
+ var hd=opCab('arco','Campo de arquearia','estudos sob Atena','<span class="op-cd"><b>'+dias+'</b><small>dias · prova</small></span>');
+ var k='<div class="op-kp"><div><small>hoje</small><b>'+hj+'<i>/'+C.minDia+' min</i></b>'+bar(hj/(C.minDia||1))+'</div>'+
+  '<div><small>semana</small><b>'+String(Math.round(sem/6)/10).replace('.',',')+'<i>/'+String(C.metaHoras).replace('.',',')+' h</i></b>'+bar(sem/60/(C.metaHoras||1))+'</div>'+
+  '<div><small>edital</small><b>'+g.pct+'<i>%</i></b>'+bar(g.pct/100)+'</div>'+
+  '<div><small>questões</small><b>'+q+'<i>/'+C.metaQuest+'</i></b><span class="op-qb"><button type="button" data-opccq="1">+1</button><button type="button" data-opccq="10">+10</button></span></div></div>';
+ var E=S.est||{},at=null,nm='',ret='';try{at=blocoAtual();nm=at?discNome(at):'';}catch(e){}
+ if(at)(E.blocos||[]).some(function(b){if(b.disc===at&&b.prox){ret=b.prox;return true;}return false;});
+ var ci='<div class="op-grp"><span class="op-k">flecha da vez · volta '+(E.volta||1)+'</span>'+(at?'<b class="op-disc">'+esc(nm)+'</b>'+(ret?'<p class="op-ret">retomar: '+esc(ret)+'</p>':'<p class="op-ret op-vz">sem retomada escrita</p>'):'<p class="op-vz">roda vazia · inclua disciplinas no Laptop</p>')+
+  '<div class="op-bt2"><button type="button" data-opf="ciclo">foco no ciclo</button><button type="button" data-opreg>registrar bloco</button></div></div>';
+ var M=(E.mapas||[]).filter(function(m){try{return !m.next||diaN(m.next)<=hojeN();}catch(e){return false;}});
+ var rv='<div class="op-grp"><span class="op-k">revisões de hoje · '+M.length+'</span><ul class="op-rv">'+(M.slice(0,3).map(function(m){
+   return '<li><span>'+esc(m.nome)+'</span><button type="button" data-opmo="'+esc(m.id)+'" title="revisado">✓</button><button type="button" data-opmf="'+esc(m.id)+'" title="falhou">✗</button></li>';}).join('')||'<li class="op-vz">nada para revisar hoje</li>')+(M.length>3?'<li class="op-mais">+'+(M.length-3)+' no Laptop</li>':'')+'</ul></div>';
+ var B=(E.blocos||[]).slice(0,2),rg='<div class="op-grp"><span class="op-k">últimos registros</span><ul class="op-rg">'+(B.map(function(b){var dn='';try{dn=discNome(b.disc);}catch(e){}
+   return '<li><b>'+esc((b.data||'').slice(8)+'/'+(b.data||'').slice(5,7))+'</b><span>'+esc(dn)+' · '+(b.min|0)+' min'+(b.top?' · '+esc(b.top):'')+'</span></li>';}).join('')||'<li class="op-vz">nenhum bloco registrado</li>')+'</ul></div>';
+ var L=(S.ler||[]).filter(function(x){return x.st==='lendo';})[0],lv='';
+ if(L){var pct=L.pag?Math.min(100,Math.round((L.at|0)/L.pag*100)):0;lv='<div class="op-grp op-livro"><span class="op-k">biblioteca · lendo</span><b>'+esc(L.tit||'')+'</b>'+(L.pag?'<span class="op-bar"><i style="width:'+pct+'%"></i></span><small>pág. '+(L.at|0)+' de '+L.pag+'</small>':'')+'</div>';}
+ return hd+k+ci+rv+rg+lv;}
+/* Arena sob Têmis: o gabinete primeiro, depois as tarefas do chalé */
+opFazerHTML=(function(f0){return function(){var R=[],meta=0,fh=0;try{R=gabResumo();R.forEach(function(r){meta+=r.meta;fh+=Math.min(r.fh,r.meta);});}catch(e){}
+ var extra='<span class="op-cont" title="meta do gabinete hoje">'+(meta?fh+'/'+meta:'—')+'</span>';
+ return opCab('balanca','Arena · ofício','gabinete sob Têmis',extra)+(meta?'<span class="op-bar op-bar-g"><i style="width:'+Math.round(fh/meta*100)+'%"></i></span>':'')+f0.apply(this,arguments);};})(opFazerHTML);
+opLadoHTML=(function(f0){return function(){return opCab('asas','Mensagens de Hermes','captura e agenda')+f0.apply(this,arguments);};})(opLadoHTML);
+opLinhaHTML=(function(f0){return function(){return '<header class="op-cab op-cab-l"><span class="op-med">'+opIcone('carro')+'</span><div class="op-cabt"><b>Carro de Hélio</b><small>linha do dia</small></div></header>'+f0.apply(this,arguments);};})(opLinhaHTML);
+/* reorganiza o Posto em quatro colunas e liga os botões novos */
+function opReforma(){var o=document.getElementById('modo-op');if(!o||o.dataset.grego)return;o.dataset.grego='1';o.classList.add('op-grego');
+ var g=o.querySelector('.op-g');if(!g)return;
+ g.innerHTML='<section class="op-c op-col1"><div class="op-foco">'+opCab('sol','Aspís de Apolo','foco')+'<div class="op-esc"></div><div class="op-foco-c"></div></div><div class="op-ritos"></div></section>'+
+  '<section class="op-c op-fazer"></section><section class="op-c op-estudo"></section><section class="op-c op-lado"></section>';
+ var t=o.querySelector('.op-top>div:first-child .op-k');if(t)t.innerHTML='posto de comando · chalé 7 · <span class="op-louro">❦</span>';
+ o.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;var d=b.dataset;
+  if(d.ophb!=null){try{latRegClica('#hb-l [data-hb="'+d.ophb+'"]');}catch(z){var x=document.querySelector('#hb-l [data-hb="'+d.ophb+'"]');if(x)x.click();}setTimeout(opPinta,120);return;}
+  if(d.opccq){var q=document.querySelector('#conc [data-ccq="'+d.opccq+'"]');if(q)q.click();setTimeout(opPinta,120);return;}
+  if(d.opmo||d.opmf){var a=document.querySelector(d.opmo?'[data-mo="'+d.opmo+'"]':'[data-mf="'+d.opmf+'"]');if(a)a.click();setTimeout(opPinta,120);return;}
+  if(d.opreg!=null){opModo(false);try{pdAbre('lap');}catch(z){}setTimeout(function(){var f=document.getElementById('b-ci-and');if(f){if(!document.getElementById('b-cf-ok'))f.click();setTimeout(function(){var k=document.getElementById('b-cf-ok')||f;k.scrollIntoView({block:'center',behavior:'smooth'});var m=document.getElementById('cf-m');if(m)try{m.focus({preventScroll:true});}catch(z){}},120);}},250);return;}});}
+(function(){var m0=opMonta;opMonta=function(){var o=m0.apply(this,arguments);try{opReforma();}catch(e){console.error(e);}return o;};
+ var p0=opPinta;opPinta=function(){p0.apply(this,arguments);var o=document.getElementById('modo-op');if(!o||!document.body.classList.contains('op-on'))return;
+  var a=document.activeElement,foco=a&&o.contains(a)&&/INPUT|TEXTAREA/.test(a.tagName);
+  var set=function(sel,h){var n=o.querySelector(sel);if(n&&n.innerHTML!==h&&!(foco&&n.contains(a)))n.innerHTML=h;};
+  try{set('.op-ritos',opRitosHTML());}catch(e){}try{set('.op-estudo',opEstudoHTML());}catch(e){console.error(e);}};})();
+/* ---------- Anais do dia (registro diário de ações e notas) no rodapé, ao lado do registro ---------- */
+function rodLog(){var top=document.querySelector('#rod-apps .rod-top'),rd=document.querySelector('.regdia');if(!top||!rd)return;
+ var b=document.getElementById('rod-log'),p=document.getElementById('rod-log-pop');
+ if(!b){b=document.createElement('button');b.type='button';b.id='rod-log';b.className='rod-log';b.setAttribute('aria-expanded','false');b.title='Anais do dia · o que aconteceu hoje e notas à mão';
+  var rr=document.getElementById('rod-reg');top.insertBefore(b,rr?rr.nextSibling:null);
+  p=document.createElement('div');p.id='rod-log-pop';p.className='rod-log-pop';p.hidden=true;p.setAttribute('role','dialog');p.setAttribute('aria-label','Anais do dia');
+  p.innerHTML='<header><span class="rl-med"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h11v13a3 3 0 0 1-3 3H6a2 2 0 0 1-2-2v-1h10v1a2 2 0 0 0 2 2"/><path d="M7 4a2 2 0 0 0-2 2v11M10 8h5M10 11h5M10 14h3"/></svg></span><div><span class="rl-k">anais do dia</span><b class="rl-d"></b></div><button type="button" class="rl-x" aria-label="fechar">×</button></header><div class="rl-slot"></div>';
+  document.body.appendChild(p);
+  var fecha=function(){p.hidden=true;b.setAttribute('aria-expanded','false');};
+  b.addEventListener('click',function(){var on=p.hidden;p.hidden=!on;b.setAttribute('aria-expanded',String(on));if(on){var i=p.querySelector('#rd-in');if(i)setTimeout(function(){try{i.focus({preventScroll:true});}catch(z){}},60);}});
+  p.querySelector('.rl-x').addEventListener('click',fecha);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!p.hidden)fecha();});
+  document.addEventListener('click',function(e){if(!p.hidden&&!p.contains(e.target)&&!b.contains(e.target))fecha();});}
+ else if(b.parentNode!==top)top.insertBefore(b,(document.getElementById('rod-reg')||{}).nextSibling||null);
+ var sl=p.querySelector('.rl-slot');if(rd.parentNode!==sl)sl.appendChild(rd);
+ var hj=hoje(),n=(S.log||[]).filter(function(x){return x.dia===hj;}).length,man=(S.log||[]).filter(function(x){return x.dia===hj&&x.man;}).length;
+ var h='<span class="cr-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h11v13a3 3 0 0 1-3 3H6a2 2 0 0 1-2-2v-1h10v1a2 2 0 0 0 2 2"/><path d="M7 4a2 2 0 0 0-2 2v11M10 8h5M10 11h5"/></svg></span><span class="cr-lb"><small>anais do dia</small><b>'+n+(man?' <i>· '+man+' à mão</i>':'')+'</b></span>';
+ if(b.innerHTML!==h)b.innerHTML=h;var d=p.querySelector('.rl-d'),t=new Date().toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'long'});if(d.textContent!==t)d.textContent=t;}
+/* a gaveta "o dia · registro" da Grade sai: o registro mora no rodapé */
+diaGaveta=function(){var g=document.getElementById('dia-gav');if(g)g.remove();var tb=document.querySelector('.wrap > div.tb');if(tb)tb.classList.remove('gav-dia');try{rodLog();}catch(e){}};
+(function(){var p0=pinta;pinta=function(){var x=p0.apply(this,arguments);try{rodLog();}catch(e){}return x;};})();
+setTimeout(function(){try{diaGaveta();}catch(e){}},1300);
+/* ---------- avisos do sátiro e do corvo num diálogo próprio, por cima de qualquer tela (templo, Posto, painéis) ---------- */
+function aveDlg(){var d=document.getElementById('ave-dlg');if(d)return d;d=document.createElement('dialog');d.id='ave-dlg';d.className='ave-dlg';d.setAttribute('aria-label','Avisos do acampamento');
+ d.innerHTML='<div class="ad-lista"></div><footer><button type="button" class="ad-q" data-adq>ver quests do gabinete</button><button type="button" class="ad-ok" data-adok>ok, ouvi</button></footer>';
+ document.body.appendChild(d);var limpa=function(){d.querySelector('.ad-lista').innerHTML='';};
+ d.addEventListener('click',function(e){var b=e.target.closest('button');if(!b){if(e.target===d){d.close();}return;}
+  if(b.dataset.adok!=null)d.close();else if(b.dataset.adq!=null){d.close();try{if(document.body.classList.contains('op-on'))opModo(false);pdAbre('sat');}catch(z){}}});
+ d.addEventListener('close',limpa);return d;}
+function aveAvisa(quem,tit,linhas,gab){if(!linhas||!linhas.length)return;var d=aveDlg(),L=d.querySelector('.ad-lista'),s=document.createElement('section');
+ s.className='ad-msg ad-'+quem;if(gab)s.dataset.gab='1';
+ s.innerHTML=(quem==='corvo'?corvoAve():satAvatar('festa'))+'<div><span class="ad-k">'+esc(tit)+'</span><b>'+(quem==='corvo'?'Crá!':'Kálamo diz')+'</b><ul>'+linhas.map(function(l){return '<li>'+esc(l)+'</li>';}).join('')+'</ul></div>';
+ L.appendChild(s);while(L.children.length>4)L.firstChild.remove();
+ d.querySelector('.ad-q').hidden=!L.querySelector('[data-gab]');
+ if(!d.open){try{d.showModal();}catch(e){d.setAttribute('open','');}}
+ try{if(window.Notification&&Notification.permission==='granted'&&document.hidden)new Notification(tit,{body:linhas.join('\n'),tag:'astro-'+quem+'-'+Date.now()});}catch(e){}}
+corvoDiz=function(linhas,gab){if(!linhas.length)return;var c=corvoCfg(),hm=new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+ c.log.unshift({d:hoje(),h:hm,t:linhas});if(c.log.length>25)c.log.length=25;try{grava();}catch(e){}
+ aveAvisa('corvo','Kórax · corvo de Apolo · '+hm,linhas,gab);try{satPinta();}catch(e){}};
+satToast=function(t){aveAvisa('satiro','Kálamo · sátiro do Hékatos',[t],true);};
+/* cada cartão do Posto vira um pequeno templo: frontão gravado, colunas com capitel e base na cor do seu deus,
+   numeral grego de sorte no topo e uma placa com a foto do lugar do acampamento */
+var OP_TEMPLO={
+ '.op-l':{st:'ionica',c:'#f6d99a',k:'#8a5a14',num:'Α',img:'templos.jpg',numT:'1 · o primeiro raio de Hélio'},
+ '.op-col1':{st:'dorica',c:'#f2c3ab',k:'#9a4a30',num:'Ζ',img:'louros.jpg',numT:'7 · o número de Apolo e do chalé 7'},
+ '.op-fazer':{st:'dorica',c:'#d8c0c6',k:'#7a4a58',num:'Γ',img:'anfiteatro.jpg',numT:'3 · as três Moiras do prazo'},
+ '.op-estudo':{st:'ionica',c:'#b9c2e8',k:'#4a5590',num:'Θ',img:'arquearia.jpg',numT:'9 · as nove Musas'},
+ '.op-lado':{st:'corintia',c:'#efe3b4',k:'#7a6a2a',num:'Η',img:'colina.jpg',numT:'8 · os caminhos de Hermes'}};
+var OP_TEMPLO_IM={};
+function opTemplo(){var o=document.getElementById('modo-op');if(!o)return;try{neoImgs();}catch(e){}
+ Object.keys(OP_TEMPLO).forEach(function(sel){var n=o.querySelector(sel);if(!n||n.dataset.templo)return;var cf=OP_TEMPLO[sel],im;
+  try{im=OP_TEMPLO_IM[sel]||(OP_TEMPLO_IM[sel]=colSvgs(cf));}catch(e){return;}
+  n.dataset.templo='1';n.classList.add('op-templo');n.dataset.num=cf.num;n.title='';
+  n.style.setProperty('--t-cap',im.cap);n.style.setProperty('--t-fuste',im.fuste);n.style.setProperty('--t-base',im.base);n.style.setProperty('--t-ent',im.ent);
+  n.style.setProperty('--t-c',cf.c);n.style.setProperty('--t-k',cf.k);n.style.setProperty('--t-foto','url("img/acampamento/'+cf.img+'")');
+  });}
+(function(){var m0=opMonta;opMonta=function(){var o=m0.apply(this,arguments);try{opTemplo();}catch(e){console.error(e);}return o;};})();
+/* fuste próprio para os cartões do Posto: só as linhas verticais (sem traço em cima e embaixo, que esticava e virava bloco escuro) */
+function opFuste(P,K){var f='<rect x="12.5" y="0" width="35" height="40" fill="'+P+'"/><path d="M12.5 0V40M47.5 0V40" stroke="'+K+'" stroke-width="1.6"/>';
+ for(var i=1;i<6;i++)f+='<rect x="'+(12.5+i*35/6-2)+'" y="0" width="4" height="40" fill="'+K+'" opacity=".22"/>';return neoUrl(f,'0 0 60 40');}
+opTemplo=(function(f0){return function(){f0.apply(this,arguments);var o=document.getElementById('modo-op');if(!o)return;
+ Object.keys(OP_TEMPLO).forEach(function(sel){var n=o.querySelector(sel),cf=OP_TEMPLO[sel];if(!n||n.dataset.fuste)return;n.dataset.fuste='1';n.style.setProperty('--t-fuste',opFuste(cf.c,cf.k));});};})(opTemplo);
+/* quests do gabinete também no Mural de Missões */
+function mmGabHTML(){var R=[];try{R=gabResumo().filter(function(r){return r.rest||r.fh;});}catch(e){}
+ var meta=0,fh=0;R.forEach(function(r){meta+=r.meta;fh+=Math.min(r.fh,r.meta);});
+ var li=R.map(function(r){var ok=r.meta&&r.fh>=r.meta,cls=r.venc&&r.rest?'venc':(r.rest&&r.dias<=2?'perto':'');
+  return '<li class="mm-gq '+cls+(ok?' ok':'')+'"><span class="mm-ck mm-auto" aria-hidden="true">'+(ok?'✓':'')+'</span><div><b>'+(r.p==='minutar'?'Minutar':'Corrigir')+(r.meta?' '+r.meta+' hoje':'')+' · pauta de '+gabDM(r.s.date)+'</b>'+
+   '<small>'+(r.meta?Math.min(r.fh,r.meta)+'/'+r.meta+' hoje · ':'')+r.ok+'/'+r.tot+' feitas · '+(r.rest?r.rest+' restam · '+(r.venc?'prazo venceu em '+gabDM(r.prazo):'prazo '+gabDM(r.prazo)+' ('+r.dias+' dia'+(r.dias===1?'':'s')+' út'+(r.dias===1?'il':'eis')+')'):'tudo entregue')+'</small>'+
+   '<span class="mm-gbar"><i style="width:'+(r.tot?Math.round(r.ok/r.tot*100):0)+'%"></i></span></div></li>';}).join('');
+ return '<section class="mm-gab"><header><div><span class="mm-k">Quests do gabinete</span><small>Arena sob Têmis · designações nas pautas do Ex Officio · fecham sozinhas ao bater a meta · +10 XP por entrega</small></div>'+
+  '<span class="mm-gcont">'+(meta?fh+'/'+meta+' hoje':'—')+'</span><button type="button" data-satir="1">ver processos</button></header>'+
+  '<ul>'+(li||'<li class="mm-vz">'+(GAB.em?'Nada com o seu nome em aberto nas pautas publicadas.':'Kálamo ainda está farejando as pautas…')+'</li>')+'</ul></section>';}
+mmHTML=(function(f0){return function(){var h=f0.apply(this,arguments),g='';try{g=mmGabHTML();}catch(e){}return h.replace('<div class="mm-g">',g+'<div class="mm-g">');};})(mmHTML);
+satRepinta=(function(f0){return function(){f0.apply(this,arguments);try{var b=document.getElementById('mm-box'),a=document.activeElement;if(b&&!(a&&b.contains(a)&&a.tagName==='INPUT')){var s=b.querySelector('.mm-gab'),h=mmGabHTML();if(s){var t=document.createElement('div');t.innerHTML=h;if(s.outerHTML!==t.firstChild.outerHTML)s.replaceWith(t.firstChild);}else mmPinta();}}catch(e){}};})(satRepinta);
 setInterval(pintaProgresso,60000);
 })();
 </script>
