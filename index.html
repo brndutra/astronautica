@@ -16514,6 +16514,33 @@ setTimeout(function(){try{diaPinta();}catch(e){}},1500);setTimeout(function(){tr
  try{var t0=opTemplo;opTemplo=function(){var r=t0.apply(this,arguments);try{opUmaFoto();}catch(e){}return r;};}catch(e){}
  setTimeout(function(){try{if(typeof opTemplo==='function')opTemplo();}catch(e){}},1200);})();
 
+
+/* ======================= placa da moldura = título e seletor do templo =======================
+   O cabeçalho e o seletor de faces do Templo das Tarefas saem; a placa no entablamento da seção mostra as duas faces,
+   com a atual em destaque, e a troca acontece ali. O recreio com hora e a fila do lazer ficam depois da seção. */
+var TP_FACES=[['tm','Tarefas e Missões'],['rec','Recreação']];
+function tpPlaca(){var box=document.getElementById('tp-real');if(!box)return;var f=p4Face();
+ Array.prototype.forEach.call(box.querySelectorAll(':scope>:is(#tm-painel,#recreio)>.tm-cab'),function(cab){var n=cab.querySelector(':scope>.tp-placa');
+  if(!n){n=document.createElement('nav');n.className='tp-placa';n.setAttribute('role','tablist');n.setAttribute('aria-label','faces do templo');cab.appendChild(n);}
+  var h=TP_FACES.map(function(x){return '<button type="button" role="tab" data-tpface="'+x[0]+'" aria-selected="'+(x[0]===f)+'">'+x[1]+'</button>';}).join('<i aria-hidden="true">·</i>');
+  if(n._h!==h){n._h=h;n.innerHTML=h;}});}
+(function(){var t0=tpReal;tpReal=function(){var r=t0.apply(this,arguments);try{tpPlaca();}catch(e){}return r;};})();
+setTimeout(function(){try{tpPlaca();}catch(e){}},1500);
+(function(){var st=document.createElement('style');st.id='tp-placa-css';st.textContent=[
+ '#tp-painel:has(#tp-real) .tp-cab,#tp-painel:has(#tp-real) .tp-faces{display:none!important}',
+ '#tp-painel:has(#tp-real) .tp-fr{display:flex;flex-direction:column;padding-top:22px!important}',
+ '#tp-painel:has(#tp-real) #tp-real{order:1;margin-top:0}',
+ '#tp-painel:has(#tp-real) .tp-corpo{order:2;margin:14px 12px 0}',
+ '#tp-real>:is(#tm-painel,#recreio)>.tm-cab>:not(.tp-placa){display:none!important}',
+ '#tp-real>:is(#tm-painel,#recreio)>.tm-cab{max-width:calc(100% - 28px)!important;width:max-content!important;justify-content:center;padding:6px 12px!important}',
+ '#tp-real .tp-placa{display:flex;align-items:baseline;justify-content:center;gap:6px;flex-wrap:nowrap;min-width:0}',
+ '#tp-real .tp-placa i{font-style:normal;color:#9a6b3a}',
+ '#tp-real .tp-placa button{width:auto!important;margin:0!important;padding:0 2px!important;border:0!important;background:none!important;cursor:pointer;white-space:nowrap;',
+ ' font:400 13px Georgia,serif!important;font-variant:small-caps;letter-spacing:.04em;color:#8a6f55!important}',
+ '#tp-real .tp-placa button[aria-selected="true"]{font-size:17px!important;color:#2a2418!important;font-weight:400}',
+ '#tp-real .tp-placa button:not([aria-selected="true"]):hover{color:#5a3f2c!important;text-decoration:underline;text-underline-offset:3px}'
+].join('\n');document.head.appendChild(st);})();
+
 })();
 </script>
 </body>
