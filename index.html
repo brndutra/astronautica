@@ -6513,7 +6513,7 @@ function gmPinta(){
    de nível) e a paleta. Os dados são os mesmos; a escolha fica em S.ap e sincroniza. */
 var TEMAS={
  astro:{nome:'Astron\u00e1utica',app:'Astron\u00e1utica',titulo:'Astron\u00e1utica',
-  abas:['01 / Casa Grande','02 / Miss\u00f5es','03 / Partenon','04 / Arsenal','05 / AxisHub'],
+  abas:['01 / Casa Grande','02 / Miss\u00f5es','03 / Partenon','04 / Arsenal','05 / Finan\u00e7as'],
   grupos:['Casa Grande','Miss\u00f5es','Partenon','Arsenal'],frase:'Uma flecha de cada vez.',sumario:'Astron\u00e1utica',
   niveis:['Indeterminado','Reclamado','Campista','Conselheiro','Her\u00f3i','Constela\u00e7\u00e3o'],seq:'dias no acampamento',estudo:'Partenon',arquivo:'Arsenal',
   /* nomes do acampamento: troca só rótulos fixos da moldura, nunca o que o usuário escreveu */
@@ -6981,7 +6981,7 @@ function dossieCamp(){var arq=document.getElementById('arq-antigo');if(!arq)retu
  setTimeout(vez,0);})();
 
 /* ---------- Painel direito com abas: Línguas e runas · Loja ---------- */
-var PD_ABAS=[['lp','Línguas e runas'],['fin','AxisHub']];
+var PD_ABAS=[['lp','Línguas e runas'],['fin','Finanças']];
 function pdMonta(){var pd=document.getElementById('painel-dir');
  if(!pd){pd=document.createElement('aside');pd.id='painel-dir';pd.className='pd';pd.setAttribute('aria-label','Painel lateral');
   pd.innerHTML='<div class="pd-abas" role="tablist">'+PD_ABAS.map(function(a){return '<button type="button" role="tab" data-pd="'+a[0]+'">'+a[1]+'</button>';}).join('')+'</div>'+
@@ -7099,6 +7099,7 @@ function axInit(){
  var hB=document.createElement('div');hB.id='ax-hub';pane.appendChild(hB);
  var A=raiz(hA,AX_TOPO,'\n.axhtml,.axbody{background:transparent!important;min-height:0!important;height:auto!important;width:auto!important;padding:0!important;margin:0!important;overflow:visible!important}'+
   '\n.axis-weekbar{position:relative!important;inset:auto!important;width:auto!important;height:auto!important;min-height:62px;flex-wrap:wrap!important;row-gap:10px!important;margin:0 0 14px!important;border-radius:18px!important;border:1px solid var(--line,#d8d0bf)!important;z-index:5!important}'+
+  '\n.awb-nav [data-awb-tab="habit"],.awb-nav [data-awb-tab="mapa"]{display:none!important}'+
   '\n.awb-nav{flex:1 1 auto!important;overflow:visible!important;flex-wrap:wrap}.awb-trackers{margin-left:0!important;flex-wrap:wrap}.awb-status{margin-left:auto!important}');
  var B=raiz(hB,AX_HUB,'\n.axhtml,.axbody{min-height:0!important;height:auto!important;padding-top:0!important;padding-left:0!important}\n.axhtml:not(.habit) .planner-edge-tabs{display:none!important}');
  AX.A=A;AX.B=B;
@@ -7127,11 +7128,13 @@ function axInit(){
  var AXD={scrollTo:function(x,y){var c=document.querySelector('#painel-dir .pd-corpo');var top=(typeof x==='object'&&x)?x.top:y;if(c&&document.getElementById('painel-dir').classList.contains('on'))c.scrollTo({top:top||0});}};
  var MO=function(fn){var mo=new window.MutationObserver(fn);var o0=mo.observe.bind(mo);mo.observe=function(t,op){if(t&&t.__axMirror)t.__axMirror.forEach(function(n){o0(n,op);});else o0(t,op);};return mo;};
  try{AXRUN(D,AXD,MO);}catch(e){console.error('AxisHub:',e);}
+ AX.financas=function(){try{if(!DE.classList.contains('financehub-page')||DE.classList.contains('habit'))window.openFinanceHub();}catch(e){}};
+ AX.financas();
  /* barra do topo: abas e ações do AxisHub abrem o painel direito */
- window.addEventListener('click',function(e){var p=e.composedPath&&e.composedPath();var t=p&&p[0];if(!t||!t.closest||t.getRootNode()!==A)return;var b=t.closest('[data-awb-tab],[data-awb-action="finance"]');if(b&&typeof pdAbre==='function')setTimeout(function(){pdAbre('fin');},0);},true);
+ window.addEventListener('click',function(e){var p=e.composedPath&&e.composedPath();var t=p&&p[0];if(!t||!t.closest||t.getRootNode()!==A)return;var b=t.closest('[data-awb-action="finance"]');if(b&&typeof pdAbre==='function')setTimeout(function(){pdAbre('fin');},0);},true);
 }
 /* com o painel do AxisHub aberto, a barra sobe para dentro dele; fechado, volta ao topo da página */
-function axEncaixa(dentro){var h=document.getElementById('ax-topo');if(!h)return;
+function axEncaixa(dentro){var h=document.getElementById('ax-topo');if(!h)return;dentro=false;if(dentro===false&&AX.financas&&document.getElementById('painel-dir')&&document.getElementById('painel-dir').classList.contains('largo'))AX.financas();
  if(dentro){var c=document.querySelector('#painel-dir .pd-corpo'),hub=document.getElementById('ax-hub');var pane=hub&&hub.parentNode;if(pane&&h.parentNode!==pane)pane.insertBefore(h,hub);}
  else{var wr=document.querySelector('.wrap');if(wr&&h.parentNode!==wr)wr.insertBefore(h,wr.firstChild);}}
 
