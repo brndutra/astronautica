@@ -17926,6 +17926,18 @@ if(TV_ON){(function(){var K=function(n){return 'url("img/acampamento/kit/'+n+'.s
   'body.tv #rod-apps .cr-p:nth-child(even) .cr-ico{border-color:'+F+'!important}'
  ].join('\n');document.head.appendChild(st);})();}
 
+
+/* ======================= Hotel Valhala · fotos estéticas nos cartões (uma por lugar) =======================
+   Diárias = espada rúnica · Nornas = runas no musgo · Saga = proas de drakkar · Meta do dia = mão com o martelo
+   Foco do dia = o combate com a espada · Atividades = dragão na árvore. Os demais cartões seguem com os ícones do kit. */
+if(TV_ON){(function(){var F=function(n){return 'url("img/acampamento/vh-fotos/'+n+'.webp")';};var st=document.createElement('style');st.id='vh-fotos-css';st.textContent=[
+ 'body.tv #mm-box .mm-quest{--mm-img:'+F('espada')+'!important}body.tv #mm-box .mm-orac-col{--mm-img:'+F('runas')+'!important}body.tv #mm-box .mm-prof{--mm-img:'+F('drakkar')+'!important}',
+ 'body.tv #lat-e>#lat-gm>.gm{--lf:'+F('mjolnir')+'!important}body.tv #lat-arena{--c-img:'+F('combate')+'!important}body.tv #lat-apt{--c-img:'+F('dragao')+'!important}',
+ 'body.tv :is(#mm-box .mm-quest,#mm-box .mm-orac-col,#mm-box .mm-prof,#lat-e>#lat-gm>.gm,#lat-arena,#lat-apt)::before{background-size:cover!important;filter:saturate(.85)!important}',
+ 'body.tv #mm-box .mm-quest::before{background-position:center 42%!important}body.tv #mm-box .mm-orac-col::before{background-position:center 55%!important}body.tv #mm-box .mm-prof::before{background-position:center 32%!important}',
+ 'body.tv #lat-e>#lat-gm>.gm::before{background-position:center 45%!important}body.tv #lat-arena::before{background-position:58% 40%!important}body.tv #lat-apt::before{background-position:center 30%!important}'
+].join('\n');document.head.appendChild(st);})();}
+
 })();
 </script>
 </body>
