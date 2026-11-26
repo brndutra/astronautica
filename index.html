@@ -2235,6 +2235,56 @@ body[data-skin="astro"] .v4-leg .fx-06{background:var(--p-06)} body[data-skin="a
 #vx .pl-fim label{display:flex!important;flex-direction:row;align-items:center;gap:10px;grid-template-columns:none}
 #vx .pl-cal span{display:block;height:26px;line-height:26px;padding:0}
 
+
+/* acampamento: colar de contas, Captura da Bandeira e Guia do Campista */
+.ac-row{display:grid;grid-template-columns:1.25fr 1fr;gap:12px;margin:0 0 14px}
+@media(max-width:820px){.ac-row{grid-template-columns:1fr}}
+.ac-card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;box-shadow:0 1px 0 rgba(255,255,255,.5) inset}
+.ac-cab{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:12px}
+.ac-k{font:700 10px/1 system-ui,-apple-system,"Segoe UI",sans-serif;letter-spacing:.16em;text-transform:uppercase;color:var(--a-op,var(--red))}
+.ac-n{font:700 16px/1 var(--display);color:var(--bone)}
+.ac-fio{position:relative;display:flex;justify-content:space-between;align-items:center;gap:4px;padding:8px 2px}
+.ac-fio::before{content:"";position:absolute;left:0;right:0;top:50%;border-top:2px solid rgba(110,77,47,.45)}
+.ac-conta{position:relative;width:30px;height:24px;margin:0;padding:0;border-radius:999px;border:1px solid rgba(95,57,25,.45);cursor:pointer;display:grid;place-items:center;
+ font:700 12px/1 Georgia,serif;color:#5b3814;background:var(--panel2);box-shadow:inset 0 2px 0 rgba(255,255,255,.35),0 2px 5px rgba(0,0,0,.15);transition:transform .2s}
+.ac-conta:hover:not([disabled]){transform:translateY(-3px)}
+.ac-conta.ok{background:var(--cc);color:#3b2410}
+.ac-conta.sem{border-style:dashed;opacity:.7}
+.ac-conta.fut{border-style:dashed;opacity:.35;cursor:default}
+.ac-conta.atual{outline:2px solid var(--a-op,var(--red));outline-offset:2px}
+.ac-fio .ac-conta{width:30px!important;height:24px!important;min-height:0!important;padding:0!important;margin:0!important;flex:none}
+.ac-fio .ac-conta.ok{background:var(--cc)!important;border-color:rgba(95,57,25,.55)!important}
+.ac-chk input{width:18px!important;height:18px!important;min-height:0!important;margin:0!important;accent-color:#b98c47;flex:none}
+
+.ac-nota{margin:10px 0 0;font:italic 13px/1.45 Georgia,serif;color:var(--dim)}
+.ac-meta{width:100%;box-sizing:border-box;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--panel2);color:var(--ink);font:14px/1.3 var(--sans)}
+.ac-linha{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:10px;flex-wrap:wrap}
+.ac-chk{display:flex;align-items:center;gap:8px;font:600 13px/1 var(--sans);color:var(--ink);cursor:pointer}
+.ac-prazo{font:12px/1.2 var(--sans);color:var(--dim)}
+.ac-band.ok .ac-prazo{color:var(--verde,#4f6b44);font-weight:700}
+.ac-hist{display:flex;align-items:center;gap:7px;margin-top:12px;font:10px/1 system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+.ac-hist span{margin-right:auto}
+.ac-flag{width:14px;height:16px;display:inline-block;clip-path:polygon(0 0,100% 0,72% 45%,100% 90%,12% 90%,12% 100%,0 100%);background:var(--line2)}
+.ac-flag.ok{background:var(--a-op,var(--red))}.ac-flag.perdida{background:#b2472f;opacity:.55}
+.cp-guia{position:absolute;left:38px;bottom:-1px;transform:translateY(50%);z-index:3;width:auto!important;margin:0;padding:6px 12px;border-radius:999px;cursor:pointer;
+ font:700 10px/1 system-ui,sans-serif;letter-spacing:.16em;text-transform:uppercase;background:var(--panel)!important;color:var(--ink)!important;border:1px solid var(--line2)!important}
+body:not(.claro) .cp-guia{position:static;transform:none;margin-left:8px}
+body.claro[data-skin="astro"] #vx .vx-hero>.cp-guia{position:absolute;left:auto;right:56px;bottom:auto;top:12px;transform:none}
+#ac-guia{position:fixed;inset:0;z-index:400;display:grid;place-items:center}
+#ac-guia .acg-bk{position:absolute;inset:0;background:rgba(20,26,18,.55);backdrop-filter:blur(4px)}
+#ac-guia .acg-bx{position:relative;width:min(760px,94vw);max-height:86vh;overflow:auto;background:#f4ead1;color:#2f261d;border-radius:18px;padding:26px 30px 30px;
+ box-shadow:0 30px 80px rgba(0,0,0,.4),inset 0 0 0 1px rgba(255,255,255,.6);border-top:6px solid #b98c47}
+#ac-guia .acg-x{position:absolute;right:14px;top:12px;width:34px;height:34px;margin:0;padding:0;border-radius:50%;border:1px solid #b9a77a;background:transparent;color:#2f261d;cursor:pointer}
+#ac-guia .acg-k{font:700 10px/1 system-ui,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#a3743a}
+#ac-guia h2{margin:6px 0 14px;font:900 30px/1 Georgia,serif;text-transform:uppercase;letter-spacing:.03em;color:#2f261d}
+#ac-guia .acg-ix{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 18px;padding-bottom:14px;border-bottom:1px dashed #b9a77a}
+#ac-guia .acg-ix button{width:auto;margin:0;padding:6px 10px;border:1px solid #d6c69c;border-radius:999px;background:#efe4c8;color:#3a3024;cursor:pointer;font:600 12px/1 system-ui,sans-serif}
+#ac-guia .acg-ix button:hover{border-color:#b98c47}
+#ac-guia section{margin:0 0 18px}
+#ac-guia h3{margin:0 0 6px;font:700 19px/1.2 Georgia,serif;color:#2f261d}
+#ac-guia section>div{font:15px/1.6 Georgia,serif;color:#3a3024}
+#ac-guia ol,#ac-guia ul{margin:6px 0 0;padding-left:20px}#ac-guia li{margin:3px 0}
+#ac-guia .ac-horas{list-style:none;padding:0}#ac-guia .ac-horas b{display:inline-block;width:42px;color:#a3743a;font-family:system-ui,sans-serif}
 /* ícones que substituem os emojis */
 .ico{display:inline-block;width:1.1em;height:1.1em;vertical-align:-.18em;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
 /* =====================================================================
@@ -11542,6 +11592,82 @@ function cpEnfeita(){var h=document.querySelector('#vx .vx-hero');if(!h||h.query
  h.insertAdjacentHTML('beforeend','<div class="cp-postal" aria-hidden="true"><div class="fr"><div><small>Greetings from</small><b>Camp<br>Half-Blood</b><span>Long Island, N.Y.</span></div></div></div>'+
   '<div class="cp-dracmas" title="dracmas"><i>Δ</i><i>Ω</i><i>Ψ</i><i>Δ</i></div>');}
 (function(){var r0=vxRender;vxRender=function(){r0();try{cpEnfeita();}catch(e){console.error('cabeçalho:',e);}};})();
+/* ---------- Acampamento: horário do dia, colar de contas, Captura da Bandeira e Guia do Campista ---------- */
+var AC_MES=['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
+var AC_GLIFOS=['Α','Β','Γ','Δ','Ε','Ζ','Η','Θ','Ι','Κ','Λ','Μ','Ω','Ψ','Φ','Σ','☉','☾','✦'];
+var AC_CORES=['#d99b52','#c9a227','#7f9a68','#6b8fb3','#b86b5a','#9a7bb0'];
+(function(){var n0=normaliza;normaliza=function(p){var b=n0(p);
+ b.colar=(p&&p.colar&&typeof p.colar==='object')?p.colar:{};b.bandeira=(p&&p.bandeira&&typeof p.bandeira==='object')?p.bandeira:{};
+ b.guiaVisto=!!(p&&p.guiaVisto);return b;};})();
+(function(){var x0=gmXP;gmXP=function(){var x=x0(),f=0;Object.keys(S.bandeira||{}).forEach(function(k){if(S.bandeira[k]&&S.bandeira[k].ok)f+=20;});
+ x.bandeira=f;x.total+=f;return x;};})();
+GM_REGRAS.push(['bandeira da semana capturada','+20']);
+function acDois(n){return String(n).padStart(2,'0');}
+function acMesK(d){return d.getFullYear()+'-'+acDois(d.getMonth()+1);}
+function acSeg(d){d=new Date(d);var w=(d.getDay()+6)%7;d.setDate(d.getDate()-w);d.setHours(0,0,0,0);return d;}
+function acIso(d){return d.getFullYear()+'-'+acDois(d.getMonth()+1)+'-'+acDois(d.getDate());}
+function acColarHTML(){var hoje0=new Date(),ano=hoje0.getFullYear(),atual=hoje0.getMonth(),C=S.colar||{},h='',n=0;
+ for(var m=0;m<12;m++){var k=ano+'-'+acDois(m+1),c=C[k],fut=m>atual;if(c&&c.t)n++;
+  var est=fut?'fut':(c&&c.t?'ok':'sem'),cor=c&&c.c?c.c:AC_CORES[m%AC_CORES.length];
+  h+='<button type="button" class="ac-conta '+est+(m===atual?' atual':'')+'" data-ac-mes="'+k+'"'+(fut?' disabled':'')+
+   ' title="'+AC_MES[m]+(c&&c.t?': '+esc(c.t):fut?' (ainda não chegou)':' (sem conta)')+'"'+(est==='ok'?' style="--cc:'+cor+'"':'')+'>'+
+   (est==='ok'?esc(c.g||'Δ'):'')+'</button>';}
+ var at=C[ano+'-'+acDois(atual+1)];
+ return '<div class="ac-card ac-colar"><div class="ac-cab"><span class="ac-k">colar de contas · '+ano+'</span><b class="ac-n">'+n+'/12</b></div>'+
+  '<div class="ac-fio">'+h+'</div>'+
+  '<p class="ac-nota">'+(at&&at.t?'Conta de '+AC_MES[atual]+': <b>'+esc(at.t)+'</b>.':'A conta de <b>'+AC_MES[atual]+'</b> ainda está em branco. Toque nela e escreva o marco do mês.')+'</p></div>';}
+function acBandeiraHTML(){var seg=acSeg(new Date()),k=acIso(seg),B=S.bandeira||{},b=B[k]||{},sex=new Date(seg);sex.setDate(sex.getDate()+4);
+ var hj=new Date();hj.setHours(0,0,0,0);var faltam=Math.round((sex-hj)/864e5);
+ var prazo=b.ok?'capturada':(faltam>0?'faltam '+faltam+(faltam===1?' dia':' dias')+' para sexta':faltam===0?'é hoje, sexta':'passou de sexta: ainda dá até domingo');
+ var hist='';for(var i=4;i>=1;i--){var d=new Date(seg);d.setDate(d.getDate()-7*i);var x=B[acIso(d)];
+  hist+='<i class="ac-flag '+(x&&x.ok?'ok':x&&x.meta?'perdida':'vazia')+'" title="semana de '+acDois(d.getDate())+'/'+acDois(d.getMonth()+1)+(x&&x.meta?': '+esc(x.meta):'')+'"></i>';}
+ return '<div class="ac-card ac-band'+(b.ok?' ok':'')+'"><div class="ac-cab"><span class="ac-k">captura da bandeira · semana de '+acDois(seg.getDate())+'/'+acDois(seg.getMonth()+1)+'</span><b class="ac-n">+20 XP</b></div>'+
+  '<input class="ac-meta" data-ac-meta="'+k+'" maxlength="90" placeholder="qual é a bandeira desta semana?" value="'+esc(b.meta||'').replace(/"/g,'&quot;')+'">'+
+  '<div class="ac-linha"><label class="ac-chk"><input type="checkbox" data-ac-ok="'+k+'"'+(b.ok?' checked':'')+(b.meta?'':' disabled')+'><span>bandeira capturada</span></label>'+
+  '<span class="ac-prazo">'+prazo+'</span></div><div class="ac-hist"><span>últimas semanas</span>'+hist+'</div></div>';}
+function acPos(){var v=vxData();if(v.view!=='op'||v.edit)return;var body=document.getElementById('vx-body');if(!body||document.getElementById('ac-row'))return;
+ var html='<div class="ac-row" id="ac-row">'+acColarHTML()+acBandeiraHTML()+'</div>',pl=document.getElementById('pl-row');
+ if(pl)pl.insertAdjacentHTML('afterend',html);else body.insertAdjacentHTML('afterbegin',html);
+ var row=document.getElementById('ac-row');
+ row.addEventListener('click',function(e){var c=e.target.closest('[data-ac-mes]');if(!c||c.disabled)return;var k=c.dataset.acMes,at=(S.colar||{})[k]||{},m=+k.slice(5)-1;
+  vxDlg({titulo:'Conta de '+AC_MES[m],texto:'Toda conta guarda o marco do mês: a vitória, a virada ou o que você sobreviveu. Símbolos: '+AC_GLIFOS.join(' '),
+   campos:[{label:'Marco do mês',valor:at.t||''},{label:'Símbolo da conta',valor:at.g||AC_GLIFOS[m%AC_GLIFOS.length]}],ok:'pendurar no colar',
+   onOk:function(vals){S.colar=S.colar||{};if(!vals[0]){delete S.colar[k];}else S.colar[k]={t:vals[0].slice(0,90),g:(Array.from(vals[1]||'Δ')[0]||'Δ'),c:at.c||AC_CORES[m%AC_CORES.length]};
+    grava();vxRender();if(vals[0])vxMsg('Conta de '+AC_MES[m]+' pendurada no colar.');}});});
+ row.addEventListener('change',function(e){var t=e.target;
+  if(t.dataset.acMeta){S.bandeira=S.bandeira||{};var b=S.bandeira[t.dataset.acMeta]=S.bandeira[t.dataset.acMeta]||{};b.meta=t.value.trim().slice(0,90);if(!b.meta)b.ok=false;grava();vxRender();return;}
+  if(t.dataset.acOk){var b2=(S.bandeira||{})[t.dataset.acOk];if(!b2)return;b2.ok=t.checked;b2.quando=t.checked?hoje():null;grava();
+   if(t.checked){try{anota('Bandeira da semana capturada: '+esc(b2.meta)+'.',0,false);}catch(z){}vxMsg('Bandeira capturada! +20 XP.');}vxRender();}});
+ row.addEventListener('keydown',function(e){if(e.key==='Enter'&&e.target.dataset.acMeta){e.preventDefault();e.target.blur();}});}
+(function(){var r0=vxRender;vxRender=function(){r0();try{acPos();}catch(e){console.error('acampamento:',e);}};})();
+
+
+/* Guia do Campista */
+var AC_GUIA=[
+ ['Bem-vindo, meio-sangue','Se você abriu isto, o pior já passou: alguém te reconheceu, você chegou inteiro e ganhou um chalé. Este app é o acampamento inteiro no bolso. Ele não exige que você seja um herói o dia todo. Exige só o próximo passo.'],
+ ['As regras da casa','<ol><li><b>Um bloco de cada vez.</b> Quíron nunca cobrou a lista inteira de ninguém.</li><li><b>Três missões por dia, no máximo.</b> Profecias longas demais terminam mal.</li><li><b>Dia ruim também conta.</b> Sobreviver é uma atividade oficial do acampamento.</li><li><b>Anote antes de esquecer.</b> A Névoa apaga tudo o que fica só na cabeça.</li><li><b>Fechou o dia, apaga a fogueira.</b> O checklist de fim de dia existe por um motivo.</li></ol>'],
+ ['O dia no acampamento','<ul class="ac-horas"><li><b>06h</b> alvorada e treino leve</li><li><b>09h</b> treino na arena: o bloco mais pesado do dia</li><li><b>12h</b> almoço no pavilhão</li><li><b>15h</b> atividades do acampamento</li><li><b>18h</b> jantar e oferenda à fogueira</li><li><b>21h</b> fogueira e toque de recolher</li></ul>A faixa de agora aparece no Chalé e na extensão. O que você escreve na Semana vira a escala de cada faixa.'],
+ ['As abas','<ul><li><b>Chalé</b>: o seu dia, com nível, missões, colar de contas e bandeira da semana.</li><li><b>Missões</b>: projetos grandes, em etapas, com prazo.</li><li><b>Casa Grande</b>: estudo, concurso, idiomas e runas.</li><li><b>Arsenal</b>: o que você guarda para usar depois.</li><li><b>Loja do Acampamento</b>: dinheiro, Diário de Bordo, Carga, Enfermaria e Rotas.</li></ul>'],
+ ['Dracmas, XP e nível','Foco, estudo, hábitos, etapas e prioridades rendem XP. A cada 100 XP você sobe de nível. As dracmas mostram o que você conquistou hoje. Não se compra nada com elas, mas até Hermes respeita quem junta.'],
+ ['Colar de contas','No fim de cada verão os campistas ganham uma conta com o símbolo do que viveram. Aqui é uma por mês: toque na conta do mês, escreva o marco e escolha o símbolo. Em dezembro você tem o ano inteiro pendurado no pescoço.'],
+ ['Captura da Bandeira','Toda semana tem uma bandeira: a meta que, se cair até sexta, vale a semana. Escreva qual é na segunda, capture até sexta (com tolerância até domingo) e ganhe +20 XP. As bandeiras das últimas semanas ficam marcadas embaixo.'],
+ ['A extensão','Pelo atalho Alt+Shift+A você abre o acampamento de qualquer aba do navegador: treino com timer, ciclo de estudos, humor, contadores, captura, hábitos e gastos. Tudo chega aqui na próxima sincronização.']];
+function acGuia(){var w=document.getElementById('ac-guia');if(w)w.remove();w=document.createElement('div');w.id='ac-guia';w.setAttribute('role','dialog');w.setAttribute('aria-label','Guia do Campista');
+ w.innerHTML='<div class="acg-bk"></div><div class="acg-bx"><button type="button" class="acg-x" aria-label="Fechar">✕</button>'+
+  '<span class="acg-k">guia de sobrevivência</span><h2>Guia do Campista</h2>'+
+  '<nav class="acg-ix">'+AC_GUIA.map(function(g,i){return '<button type="button" data-acg="'+i+'">'+g[0]+'</button>';}).join('')+'</nav>'+
+  '<div class="acg-corpo">'+AC_GUIA.map(function(g,i){return '<section id="acg-'+i+'"><h3>'+g[0]+'</h3><div>'+g[1]+'</div></section>';}).join('')+'</div></div>';
+ document.body.appendChild(w);
+ function fecha(){w.remove();if(!S.guiaVisto){S.guiaVisto=true;grava();}}
+ w.querySelector('.acg-x').onclick=fecha;w.querySelector('.acg-bk').onclick=fecha;
+ w.addEventListener('keydown',function(e){if(e.key==='Escape')fecha();});
+ w.querySelector('.acg-ix').onclick=function(e){var b=e.target.closest('[data-acg]');if(!b)return;var t=w.querySelector('#acg-'+b.dataset.acg);if(t)t.scrollIntoView({behavior:'smooth',block:'start'});};
+ try{w.querySelector('.acg-x').focus();}catch(e){}}
+function acGuiaBotao(){var h=document.querySelector('#vx .vx-hero');if(!h||h.querySelector('.cp-guia'))return;
+ h.insertAdjacentHTML('beforeend','<button type="button" class="cp-guia">Guia do Campista</button>');h.querySelector('.cp-guia').onclick=acGuia;}
+(function(){var r0=vxRender;vxRender=function(){r0();try{acGuiaBotao();}catch(e){console.error('guia:',e);}};})();
+setTimeout(function(){try{if(!S.guiaVisto)acGuia();}catch(e){}},1200);
+
 /* ---------- Ícones no lugar de emoji ----------
    Todo emoji que aparece na tela (app, Cofre, dados salvos) vira um ícone em SVG de traço fino,
    na cor do texto. Em títulos, dicas, campos e opções, onde não cabe SVG, o emoji só sai. */
@@ -11730,6 +11856,8 @@ ler(); cicloNovo();
 var V4_ROT=["","colapso","baixo","neutro","bom","pico"];
 var V4_TETO=[0,0.25,0.5,0.75,1,1];
 var V4_FAIXA={"06":["fundo","rota"],"09":["fundo","rota"],"12":["varredura","lâminas"],"15":["varredura","lâminas"],"18":["reentrada","aterrar e fechar"],"21":["reentrada","aterrar e fechar"]};
+/* horário do acampamento nas faixas do dia */
+V4_FAIXA={"06":["alvorada","alvorada e treino leve"],"09":["treino na arena","treino na arena"],"12":["almoço no pavilhão","almoço no pavilhão"],"15":["atividades","atividades do acampamento"],"18":["jantar","jantar e oferenda à fogueira"],"21":["fogueira","fogueira e toque de recolher"]};
 var v4Lam=0;
 function v4Leitura(){ return (S.estado&&S.estado[hoje()])|0; }
 function v4Teto(){ var k=v4Leitura(); return k?Math.round(vxData().capacity*V4_TETO[k]):vxData().capacity; }

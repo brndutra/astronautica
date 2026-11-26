@@ -9,6 +9,8 @@ var HUM = [[5, 'Radiante', '#d8b44a'], [4, 'Firme', '#6f8a57'], [3, 'Morno', '#c
 var CORES = ['#d99b52', '#d8c16e', '#7f9a68', '#6b8fb3', '#b86b5a', '#9a7bb0'];
 var CONT_PADRAO = [{ id: 'c-flexoes', n: 'Flexões', u: 'repetições', meta: 30 }, { id: 'c-leitura', n: 'Leitura', u: 'páginas', meta: 20 }];
 var AGUA_META = 8, CIRC = 2 * Math.PI * 47;
+/* horário do acampamento: o mesmo nome das faixas no app */
+var FX_NOME = { '06': 'alvorada', '09': 'treino na arena', '12': 'almoço no pavilhão', '15': 'atividades', '18': 'jantar', '21': 'fogueira' };
 var estado = null, fila = [], contDefs = [], relogio = null;
 
 function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
@@ -95,7 +97,7 @@ function pintaAgora() {
   var f = faixaDe(), tb = (estado && estado.tb) || {}, d = hojeStr(), el = $('agora');
   if (!f) { el.innerHTML = '<small>fora das faixas</small><b>O acampamento dorme</b><span>A próxima faixa começa às 06h.</span>'; return; }
   var i = FAIXAS.indexOf(f), prox = FAIXAS[i + 1], txt = tb[d + '|' + f], txp = prox ? tb[d + '|' + prox] : '';
-  el.innerHTML = '<small>agora na escala · ' + f + 'h às ' + String((+f + 3) % 24).padStart(2, '0') + 'h</small><b>' + (txt ? esc(txt) : 'Nada marcado na escala') + '</b>' +
+  el.innerHTML = '<small>agora · ' + FX_NOME[f] + ' · ' + f + 'h às ' + String((+f + 3) % 24).padStart(2, '0') + 'h</small><b>' + (txt ? esc(txt) : 'Nada marcado na escala') + '</b>' +
     (prox ? '<span>depois, às ' + prox + 'h: ' + (txp ? esc(txp) : 'livre') + '</span>' : '');
 }
 
