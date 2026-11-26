@@ -4168,6 +4168,50 @@ h2.sec.neo-tit[data-nivel]>span{color:var(--fase)!important}
 
 #lat-gm .ac-medalha-bt,#lat-gm .ac-medalha-bt.mosaico{box-shadow:none!important;border:0!important;outline:0!important;background-color:transparent!important}
 #lat-gm .ac-medalha-bt::before,#lat-gm .ac-medalha-bt::after{display:none!important}
+
+/* botão da ficha no canto inferior esquerdo do banner */
+#hero-box#hero-box .vx-hero.bn2 .bn-base #vx-diario{position:static!important;margin:0!important;transform:none!important;flex:none;order:-1}
+/* faixas de foto no topo dos cartões: Mural de Missões, Recreações, Tesouro e Ação do dia */
+#mm-box .mm-col{overflow:hidden}
+#mm-box .mm-col::before{content:"";display:block;height:84px;margin:-14px -14px 12px;background:var(--mm-img) center/cover no-repeat;border-bottom:3px solid var(--mc,#9a6b3a);filter:sepia(.15)}
+#mm-box .mm-chale{--mm-img:url("img/acampamento/templos.jpg")}
+#mm-box .mm-quest{--mm-img:url("img/acampamento/arquearia.jpg")}
+#mm-box .mm-prof{--mm-img:url("img/acampamento/louros.jpg")}
+#recreio .lat-c,#tesouro #lat-ars,#lat-arena{overflow:hidden}
+#recreio .lat-c::before,#tesouro #lat-ars::before,#lat-e #lat-arena::before{content:"";display:block;height:78px;margin:-10px -11px 10px;background:var(--c-img) center/cover no-repeat;border-bottom:3px solid var(--fase,#9a6b3a);filter:sepia(.15)}
+#recreio #lat-apt{--c-img:url("img/acampamento/colina.jpg")}
+#recreio #lat-rec{--c-img:url("img/acampamento/pinheiro.jpg")}
+#tesouro #lat-ars{--c-img:url("img/acampamento/armas.jpg")}
+#lat-e #lat-arena{--c-img:url("img/acampamento/arquearia.jpg")}
+/* ícones nas seções do Quadro de avisos */
+#cerbox .qa-ic{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;border:1px solid #c9b28a;background:#f4ead2;margin-right:2px;flex:none}
+#cerbox .qa-ic svg{width:15px;height:15px;fill:none;stroke:#5a3f2c;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+#cerbox .qa-sec>summary{display:grid!important;grid-template-columns:30px 1fr;column-gap:8px;align-items:center}
+#cerbox .qa-sec>summary .qa-ic{grid-row:1/3}
+#cerbox .qa-sec>summary .qa-sk{order:0}
+#cerbox #rail-in .rcab.cer{display:flex;align-items:center;gap:8px}
+/* ===== Guia do Campista como folheto dobrado em três ===== */
+#ac-guia.folheto .acg-bx{width:min(1120px,94vw)!important;max-width:none!important;border-radius:3px!important;border:1px solid #b89c72!important;padding:26px 34px 30px!important;color:#3b2a1d;
+ background:linear-gradient(90deg,rgba(90,63,44,0) 32.6%,rgba(90,63,44,.12) 33.3%,rgba(255,255,255,.35) 33.6%,rgba(90,63,44,0) 35%,rgba(90,63,44,0) 65.6%,rgba(90,63,44,.12) 66.6%,rgba(255,255,255,.35) 66.9%,rgba(90,63,44,0) 68.3%),
+  linear-gradient(180deg,#fbf3df,#f1e3c3)!important;box-shadow:0 2px 0 #d9c7a3,0 20px 50px rgba(30,20,10,.45)!important}
+#ac-guia.folheto .acg-bx::before{display:none!important}
+#ac-guia.folheto .acg-cab{display:grid;grid-template-columns:86px 1fr 70px;align-items:center;gap:18px;padding-bottom:14px;margin-bottom:14px;border-bottom:3px double #5a3f2c}
+#ac-guia.folheto .acg-cab>img:first-child{width:86px;height:auto}
+#ac-guia.folheto .acg-cab .acg-lira{width:64px;height:64px;justify-self:end}
+#ac-guia.folheto .acg-cab h2{margin:2px 0!important;font:400 34px Georgia,serif!important;letter-spacing:.06em;color:#3b2a1d!important}
+#ac-guia.folheto .acg-cab .acg-k{font:700 10px var(--mono,monospace);letter-spacing:.28em;text-transform:uppercase;color:#9a6b3a}
+#ac-guia.folheto .acg-sub{margin:0;font:italic 13px Georgia,serif;color:#6b5140}
+#ac-guia.folheto .acg-ix{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 16px;padding:0 0 14px;border-bottom:1px dashed #b89c72}
+#ac-guia.folheto .acg-ix button{border-radius:2px!important;border:1px solid #b89c72!important;background:#fbf3df!important;font:700 10px var(--mono,monospace)!important;letter-spacing:.12em;text-transform:uppercase;color:#5a3f2c!important;padding:5px 9px!important}
+#ac-guia.folheto .acg-corpo{columns:3;column-gap:56px;column-fill:balance;font:14.5px/1.6 Georgia,'EB Garamond',serif}
+#ac-guia.folheto .acg-corpo section{break-inside:avoid-column;margin:0 0 18px}
+#ac-guia.folheto .acg-corpo h3{font:700 17px Georgia,serif!important;color:#5a3f2c!important;margin:0 0 6px!important;padding-bottom:4px;border-bottom:1px solid #c9b28a}
+#ac-guia.folheto .acg-foto{margin:6px 0 10px;padding:5px 5px 4px;background:#fff8ea;border:1px solid #d9c7a3;box-shadow:1px 2px 4px rgba(60,40,20,.18);transform:rotate(-1deg)}
+#ac-guia.folheto .acg-foto img{display:block;width:100%;height:96px;object-fit:cover;filter:sepia(.2)}
+#ac-guia.folheto .acg-foto figcaption{font:italic 11.5px Georgia,serif;color:#6b5140;text-align:center;margin-top:3px}
+#ac-guia.folheto .acg-foto.acg-band{float:right;width:70px;margin:2px 0 6px 10px;transform:rotate(2deg)}
+#ac-guia.folheto .acg-foto.acg-band img{height:auto;object-fit:contain}
+@media(max-width:900px){#ac-guia.folheto .acg-corpo{columns:1}#ac-guia.folheto .acg-bx{background:linear-gradient(180deg,#fbf3df,#f1e3c3)!important;padding:18px!important}#ac-guia.folheto .acg-cab{grid-template-columns:60px 1fr}#ac-guia.folheto .acg-cab .acg-lira{display:none}}
 </style>
 </head>
 <body>
@@ -13893,10 +13937,11 @@ function bnArruma(){var h=document.querySelector('#hero-box .vx-hero');if(!h)ret
  var nv=h.querySelector('#nv-chip');if(nv&&k&&nv.previousElementSibling!==k)k.insertAdjacentElement('afterend',nv);
  var id=h.querySelector(':scope > .bn-id');if(!id){id=document.createElement('div');id.className='bn-id';}
  if(tit.nextElementSibling!==id)tit.insertAdjacentElement('afterend',id);
- ['.cp-guia','#vx-diario','.cp-pinbar'].forEach(function(q){var n=h.querySelector(':scope > '+q)||id.querySelector(':scope > '+q);if(n&&n.parentNode!==id)id.appendChild(n);});
+ ['.cp-guia','.cp-pinbar'].forEach(function(q){var n=h.querySelector(':scope > '+q)||id.querySelector(':scope > '+q);if(n&&n.parentNode!==id)id.appendChild(n);});
  var base=h.querySelector(':scope > .bn-base');if(!base){base=document.createElement('div');base.className='bn-base';h.appendChild(base);}
  ['.ac-cracha','.cp-dracmas'].forEach(function(q){var n=h.querySelector(':scope > '+q)||id.querySelector(':scope > '+q);if(n&&n.parentNode!==base)base.appendChild(n);});
- var cr=base.querySelector('.ac-cracha'),dr=base.querySelector('.cp-dracmas');if(cr&&base.firstElementChild!==cr)base.insertBefore(cr,base.firstChild);}
+ var cr=base.querySelector('.ac-cracha');if(cr&&base.firstElementChild!==cr)base.insertBefore(cr,base.firstChild);
+ var fi=h.querySelector('#vx-diario');if(fi&&base.firstElementChild!==fi){fi.classList.add('bn-ficha');base.insertBefore(fi,base.firstChild);}}
 (function(){var r0=vxRender;vxRender=function(){var x=r0.apply(this,arguments);try{bnArruma();}catch(e){}return x;};})();
 setTimeout(function(){try{bnArruma();}catch(e){}},80);setTimeout(function(){try{bnArruma();}catch(e){}},1000);
 /* Registro do dia vira a terceira gaveta da Grade semanal (o dia, a semana, o mês) */
@@ -13971,6 +14016,20 @@ function bandPinta(forca){var b=document.getElementById('lat-band-b');if(!b)retu
  if(b.innerHTML!==h)b.innerHTML=h;var card=document.getElementById('lat-band');if(card)card.classList.toggle('band-ok',!!b.querySelector('.ac-band.ok'));}
 (function(){var r0=vxRender;vxRender=function(){var x=r0.apply(this,arguments);try{bandCard();}catch(e){}return x;};})();
 setTimeout(function(){try{bandCard();}catch(e){}},500);
+/* ---------- mais imagens e ícones nos painéis; Guia do Campista como folheto ---------- */
+var QA_IC={'rail-in':'<path d="M4 13h4l2 3h4l2-3h4"/><path d="M5 13l2-7h10l2 7v6H5z"/>','qa-d-pc':'<rect x="4" y="4" width="16" height="5" rx="1"/><rect x="4" y="10" width="16" height="5" rx="1"/><rect x="4" y="16" width="16" height="4" rx="1"/><path d="M10 6.5h4M10 12.5h4"/>',
+ 'qa-d-nt':'<path d="M18 3l3 3-11 11-4 1 1-4z"/><path d="M4 21h16"/>','qa-d-dj':'<path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path d="M5 17a3 3 0 0 1 3-3h11M9 8h6"/>'};
+function qaIcones(){Object.keys(QA_IC).forEach(function(id){var n=document.getElementById(id);if(!n)return;var alvo=id==='rail-in'?n.querySelector('.rcab.cer'):n.querySelector(':scope > summary');if(!alvo||alvo.querySelector('.qa-ic'))return;
+ var s=document.createElement('span');s.className='qa-ic';s.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true">'+QA_IC[id]+'</svg>';alvo.insertBefore(s,alvo.firstChild);});}
+var GUIA_FOTO={0:['colina','A colina do pinheiro'],2:['pavilhao','O pavilhão do refeitório'],3:['templos','Os chalés'],4:['louros','Louros'],6:['bandeira','A bandeira do acampamento']};
+function guiaFolheto(){var g=document.getElementById('ac-guia');if(!g||g.dataset.folheto)return;var bx=g.querySelector('.acg-bx');if(!bx)return;g.dataset.folheto='1';g.classList.add('folheto');
+ var k=bx.querySelector('.acg-k'),h2=bx.querySelector('h2');if(k&&h2){var cab=document.createElement('header');cab.className='acg-cab';cab.innerHTML='<img src="img/acampamento/logo-camp.webp" alt="">';var tx=document.createElement('div');tx.appendChild(k);tx.appendChild(h2);
+  var sub=document.createElement('p');sub.className='acg-sub';sub.textContent='folheto oficial · leia, dobre e guarde no bolso da mochila';tx.appendChild(sub);cab.appendChild(tx);var lira=document.createElement('img');lira.src='img/acampamento/lira.webp';lira.className='acg-lira';lira.alt='';cab.appendChild(lira);bx.insertBefore(cab,bx.querySelector('.acg-ix'));}
+ Object.keys(GUIA_FOTO).forEach(function(i){var sec=bx.querySelector('#acg-'+i);if(!sec||sec.querySelector('.acg-foto'))return;var f=GUIA_FOTO[i],ext=f[0]==='bandeira'?'webp':'jpg';
+  var fig=document.createElement('figure');fig.className='acg-foto'+(f[0]==='bandeira'?' acg-band':'');fig.innerHTML='<img src="img/acampamento/'+f[0]+'.'+ext+'" alt="" loading="lazy"><figcaption>'+f[1]+'</figcaption>';var h3=sec.querySelector('h3');if(h3)h3.insertAdjacentElement('afterend',fig);else sec.insertBefore(fig,sec.firstChild);});}
+document.addEventListener('click',function(e){if(e.target.closest&&e.target.closest('.cp-guia,[data-guia]'))setTimeout(guiaFolheto,30);});
+(function(){var r0=vxRender;vxRender=function(){var x=r0.apply(this,arguments);try{qaIcones();guiaFolheto();}catch(e){}return x;};})();
+setTimeout(function(){try{qaIcones();}catch(e){}},900);
 setInterval(pintaProgresso,60000);
 })();
 </script>
