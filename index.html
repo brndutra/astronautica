@@ -18010,6 +18010,62 @@ document.addEventListener('click',function(e){var b=e.target.closest&&e.target.c
 /* às 21h a fogueira se oferece sozinha, uma vez */
 function fgConvida(){var hj=dHoje();if(fgFeita()||opMin()<21*60)return;S.fogConv=S.fogConv||'';if(S.fogConv===hj)return;S.fogConv=hj;try{grava();}catch(e){}fgAbre();}
 setInterval(function(){try{fgConvida();}catch(e){}try{pfTemplo();}catch(e){}},60000);setTimeout(function(){try{fgConvida();pfTemplo();}catch(e){}},4500);
+/* ======================= Antagonista integrado à Fogueira =======================
+   Durante o dia, a carta só mostra o desafio e o "venci" (recompensa na hora). O veredito do dia (venci ou escapou),
+   a carta de amanhã (virar, escolher o bloco, trocar 1×) e o registro no Bestiário moram na Fogueira. */
+function antRegistra(x,d){x=x||antHoje();if(x.st!=='vencido'||x.best)return;var A=antD();A.best=A.best||{};var b=A.best[x.m]=A.best[x.m]||{n:0,dias:[]};
+ b.n++;b.dias.push(d||hoje());if(b.dias.length>20)b.dias=b.dias.slice(-20);x.best=1;try{grava();}catch(e){}}
+function antVence(){var x=antHoje();if(x.st!=='aberto')return;x.st='vencido';var m=antMonstro(x.m);
+ try{var sc=satCfg(),antes=satNivel(sc.xp).n;sc.xp+=20;var nv=satNivel(sc.xp);anota('Antagonista vencido: '+m.n+' no bloco das '+x.fx+'h. +20 XP para o Sully.',0,false,true);
+  if(nv.n>antes)setTimeout(function(){try{satToast('Subi para o nível '+nv.n+' · '+nv.nome+'. Você derrubou '+m.n+', cara!');}catch(z){}},400);}catch(e){}
+ antRegistra(x);try{grava();}catch(e){}try{antPinta();opPinta();pinta();}catch(e){}}
+function antFoge(){var x=antHoje();if(x.st!=='aberto')return;x.st='fugiu';try{anota('O '+antMonstro(x.m).n+' escapou hoje. Sem castigo: amanhã tem outro.',0,false,true);grava();}catch(e){}try{antPinta();opPinta();}catch(e){}}
+function antSorteia(d){var A=antD(),x=A.dia[d];
+ if(!x){var n=0;for(var i=0;i<d.length;i++)n=(n*31+d.charCodeAt(i))%9973;var m=ANTAG[n%ANTAG.length];if(m.k===(A.ult||''))m=ANTAG[(n+5)%ANTAG.length];
+  x=A.dia[d]={fx:A.faixa,m:m.k,st:'aberto',rer:0,anun:0,fog:1};A.ult=m.k;try{grava();}catch(e){}}
+ return x;}
+function fgAntHTML(){var x=antHoje(),m=antMonstro(x.m),am=antSorteia(dAmanha()),ma=antMonstro(am.m),h1='',h2;
+ if(x.st==='aberto')h1='<div class="fg-ant" id="fg-ant-hj"><p>O antagonista de hoje, <b>'+esc(m.n)+'</b> ('+esc(m.o)+', bloco das '+x.fx+'h), caiu?</p><div class="fg-sug"><button type="button" data-fgantv>venci · +20 XP</button><button type="button" data-fgantf>escapou</button></div></div>';
+ else if(x.st==='fugiu')h1='<div class="fg-ant" id="fg-ant-hj"><p class="fg-nota">'+esc(m.n)+' escapou hoje. Sem castigo: amanhã tem outro.</p></div>';
+ else h1='<div class="fg-ant" id="fg-ant-hj"></div>';
+ var fx=(typeof TD_H!=='undefined'?TD_H:['06','09','12','15','18','21']).map(function(H){return '<button type="button" class="'+(am.fx===H?'on':'')+'" data-fgantfx="'+H+'">'+H+'h</button>';}).join('');
+ h2='<div class="fg-bloco fg-ant" id="fg-ant-am"><span class="ad-k">4 · carta de amanhã</span>'+
+  (am.vista?'<p><b>'+esc(ma.n)+'</b> · '+esc(ma.o)+'</p><p class="fg-nota"><em>desafio</em> '+esc(ma.d)+'</p><span class="ad-k">vai guardar o bloco</span><div class="fg-sug fg-antfx">'+fx+'</div>'+(am.rer<1?'<div class="fg-sug"><button type="button" data-fgantrer>sortear outra (1×)</button></div>':'')
+   :'<button type="button" class="fg-verso" data-fgantvira><span>virar a carta</span></button>')+'</div>';
+ return [h1,h2];}
+function fgAntPinta(d){if(!d)return;var L=d.querySelector('.ad-lista');if(!L||L.querySelector('.fg-bau'))return;var h=fgAntHTML(),bl=L.querySelectorAll('.fg-bloco');
+ var a=d.querySelector('#fg-ant-hj'),b=d.querySelector('#fg-ant-am'),t=document.createElement('div');
+ t.innerHTML=h[0];var n1=t.firstChild;if(a)a.replaceWith(n1);else if(bl[0]){var mais=bl[0].querySelector('#fg-mais');bl[0].insertBefore(n1,mais||null);}
+ t.innerHTML=h[1];var n2=t.firstChild;if(b)b.replaceWith(n2);else L.appendChild(n2);}
+fgAbre=(function(f0){return function(){var r=f0.apply(this,arguments);var d=document.getElementById('fg-dlg');if(!d)return r;
+ if(!d._ant){d._ant=1;d.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;var c=b.dataset,am;
+  if(c.fgantv!=null){antVence();}
+  else if(c.fgantf!=null){antFoge();}
+  else if(c.fgantvira!=null){am=antSorteia(dAmanha());am.vista=1;try{grava();}catch(z){}}
+  else if(c.fgantfx){am=antSorteia(dAmanha());am.fx=c.fgantfx;antD().faixa=c.fgantfx;try{grava();}catch(z){}}
+  else if(c.fgantrer!=null){am=antSorteia(dAmanha());if(am.rer<1){var i=ANTAG.findIndex(function(m){return m.k===am.m;}),j=(i+1+Math.floor(Math.random()*(ANTAG.length-1)))%ANTAG.length;am.m=ANTAG[j].k;am.rer=1;antD().ult=am.m;try{grava();}catch(z){}}}
+  else return;
+  /* o passo 1 lista as vitórias: refaz só ele quando o veredito muda */
+  if(c.fgantv!=null){var bl=d.querySelector('.fg-bloco'),ul=bl&&bl.querySelector('ul.fg-v,.fg-vz'),V=fgVenci();if(ul){var n=document.createElement('ul');n.className='fg-v';n.innerHTML=V.map(function(v){return '<li>'+esc(v)+'</li>';}).join('');ul.replaceWith(n);}}
+  fgAntPinta(d);});}
+ try{fgAntPinta(d);}catch(e){}return r;};})(fgAbre);
+fgFecha=(function(f0){return function(d){var x=antHoje();if(x.st==='aberto')antFoge();var am=antSorteia(dAmanha());var r=f0.apply(this,arguments);
+ try{antRegistra(x);grava();var bau=d.querySelector('.fg-bau');if(bau){var p=document.createElement('p');p.className='fg-ant-bau';
+  p.innerHTML=(x.st==='vencido'?'A carta de <b>'+esc(antMonstro(x.m).n)+'</b> foi guardada no Bestiário. ':'')+'Amanhã, <b>'+esc(antMonstro(am.m).n)+'</b> guarda o bloco das '+am.fx+'h.';
+  bau.insertBefore(p,bau.querySelector('.fg-boa'));}}catch(e){}return r;};})(fgFecha);
+/* no meio do dia: sem "escapou" (o veredito é na Fogueira); o venci fica, para a recompensa vir na hora */
+antPinta=(function(f0){return function(){var r=f0.apply(this,arguments);try{antRegistra();var d=document.getElementById('ant-dlg');if(d){var f=d.querySelector('[data-antfuga]');if(f)f.remove();
+ var ft=d.querySelector('footer');if(ft&&!ft.querySelector('.ant-fog')){var s=document.createElement('small');s.className='ant-fog';s.textContent='o veredito do dia e a carta de amanhã ficam na Fogueira';ft.insertBefore(s,ft.firstChild);}}}catch(e){}return r;};})(antPinta);
+(function(){var st=document.createElement('style');st.id='fg-ant-css';st.textContent=[
+ '.fg-dlg .fg-ant p{margin:4px 0;font:14px/1.45 Georgia,serif;color:#2a2418}',
+ '.fg-dlg .fg-ant .fg-sug button.on{background:#2a2418!important;color:#f4ead2!important;border-color:#2a2418!important}',
+ '.fg-dlg .fg-ant em{font:700 9px var(--mono,monospace);font-style:normal;letter-spacing:.14em;text-transform:uppercase;color:#9a6b3a}',
+ '.fg-dlg .fg-verso{width:120px!important;height:160px;margin:4px 0!important;padding:0!important;border:0!important;border-radius:10px!important;cursor:pointer;display:grid;place-items:end center;',
+ ' background:repeating-linear-gradient(45deg,rgba(212,173,79,.25) 0 6px,transparent 6px 12px),linear-gradient(160deg,#2b6b43,#123321)!important;box-shadow:0 0 0 2px #d4ad4f,0 0 0 4px #123321,0 6px 14px -6px rgba(0,0,0,.5)!important}',
+ '.fg-dlg .fg-verso span{margin-bottom:12px;padding:4px 10px;border-radius:999px;background:#d4ad4f;font:700 9px var(--mono,monospace);letter-spacing:.12em;text-transform:uppercase;color:#1d2a10}',
+ '.fg-dlg .fg-ant-bau{font:14px/1.45 Georgia,serif;color:#2a2418}',
+ '.ant-dlg footer .ant-fog{flex:1;align-self:center;font:italic 12px Georgia,serif;color:#8a6f55}'
+].join('\n');document.head.appendChild(st);})();
 /* no rodapé, ao lado dos Anais */
 function fgRod(){var top=document.querySelector('#rod-apps .rod-top'),lg=document.getElementById('rod-log');if(!top||!lg)return;var b=document.getElementById('rod-fogo');
  if(!b){b=document.createElement('button');b.type='button';b.id='rod-fogo';b.className='rod-log rod-fogo';b.dataset.fogo='1';b.title='Fogueira: fechar o dia';}
