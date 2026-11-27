@@ -150,7 +150,7 @@ function pintaCiclo() {
 function pintaHumor() {
   var v = humorDe(hojeStr());
   $('humor').innerHTML = HUM.map(function (x) {
-    return '<button data-h="' + x[0] + '" aria-pressed="' + (v === x[0]) + '"><i style="background:' + x[2] + '"></i>' + x[1] + '</button>';
+    return '<button data-h="' + x[0] + '" title="' + x[1] + '" aria-pressed="' + (v === x[0]) + '"><i style="background:' + x[2] + '"></i>' + x[1] + '</button>';
   }).join('');
   var h = '';
   for (var i = 6; i >= 0; i--) {
@@ -267,6 +267,7 @@ function pintaGuardiao() {
 function aplicaTema(k) {
   TEMA = TEMAS[k] ? k : 'greek'; T = temaDe(TEMA);
   document.body.dataset.tema = TEMA;
+  try { pintaFrontao(TEMA, T.guardiao); } catch (e) { }
   document.title = 'Astronáutica · ' + T.rotulo;
   document.querySelectorAll('[data-tx]').forEach(function (el) { var v = T[el.dataset.tx]; if (v != null) el.textContent = v; });
   document.querySelectorAll('[data-tx-html]').forEach(function (el) { var v = T[el.dataset.txHtml]; if (v != null) el.innerHTML = v; });
@@ -307,12 +308,24 @@ async function carrega() {
 /* ---------- ações ---------- */
 document.addEventListener('DOMContentLoaded', async function () {
   document.body.classList.add('modo-' + MODO);
-  var pref = await chrome.storage.local.get(['tema', 'zoom', 'clique']);
+  try { $('bm-v').textContent = 'v' + chrome.runtime.getManifest().version; } catch (e) { }
+  var pref = await chrome.storage.local.get(['tema', 'zoom', 'clique', 'layout']);
+  function aplicaLayout(v) {
+    v = v === 'templo' ? 'templo' : 'compacto';
+    document.body.classList.toggle('lay-compacto', v === 'compacto');
+    document.body.classList.toggle('lay-templo', v === 'templo');
+    $('layout').value = v; $('lay-t').textContent = v === 'compacto' ? 'templo' : 'painel';
+    $('lay').title = v === 'compacto' ? 'Abrir o templo completo (com rolagem)' : 'Ver tudo numa tela só, sem rolagem';
+  }
+  aplicaLayout(pref.layout);
+  $('cap').placeholder = 'captura · despeje antes de perder'; $('g-desc').placeholder = 'gasto · almoço, uber…';
+  $('lay').onclick = function () { var v = document.body.classList.contains('lay-compacto') ? 'templo' : 'compacto'; aplicaLayout(v); chrome.storage.local.set({ layout: v }); };
+  $('layout').onchange = function () { aplicaLayout(this.value); chrome.storage.local.set({ layout: this.value }); };
   aplicaTema(pref.tema || 'greek');
   aplicaZoom(+pref.zoom || 1);
   $('clique').value = pref.clique || 'popup';
-  $('m-lateral').hidden = MODO === 'lateral';
-  $('m-janela').hidden = MODO === 'janela';
+  if (MODO === 'lateral') { $('m-lateral').classList.add('atual'); $('m-lateral').title = 'Você está no painel lateral'; }
+  if (MODO === 'janela') { $('m-janela').classList.add('atual'); $('m-janela').title = 'Você está na janela solta'; }
 
   /* tamanho */
   function passo(dir) {
@@ -324,6 +337,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   $('z-mais').onclick = function () { passo(1); };
   /* painel lateral: precisa do gesto do clique, por isso abre daqui mesmo */
   $('m-lateral').onclick = async function () {
+    if (MODO === 'lateral') return;
     try {
       var w = await chrome.windows.getCurrent();
       await chrome.sidePanel.open({ windowId: w.id });
@@ -332,6 +346,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     } catch (e) { aviso('O painel lateral pede o Chrome 116 ou mais novo.', true); }
   };
   $('m-janela').onclick = function () {
+    if (MODO === 'janela') return;
     chrome.runtime.sendMessage({ t: 'janela' }, function () { if (MODO === 'popup') window.close(); });
   };
   $('m-ajustes').onclick = function () {

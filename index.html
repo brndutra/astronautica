@@ -20358,7 +20358,7 @@ function npcCanto(){var tp=document.getElementById('tp-painel'),b=document.getEl
 setInterval(function(){try{npcCanto();}catch(e){}},1500);window.addEventListener('resize',function(){try{npcCanto();}catch(e){}});
 
 /* verso do cartão-postal: ícone para baixar a extensão do Chrome */
-(function(){var c0=cpVerso;cpVerso=function(){var r=c0.apply(this,arguments);try{var v=document.querySelector('#hero-box .cp-postal>.cp-verso');if(v&&!v.querySelector('.cpv-ext')){var a=document.createElement('a');a.className='cpv-ext';a.href='downloads/astronautica-extensao.zip';a.setAttribute('download','astronautica-extensao.zip');a.title='Baixar a extensão do Chrome (Alt+Shift+A)';a.setAttribute('aria-label','Baixar a extensão do Chrome');
+(function(){var c0=cpVerso;cpVerso=function(){var r=c0.apply(this,arguments);try{var v=document.querySelector('#hero-box .cp-postal>.cp-verso');if(v&&!v.querySelector('.cpv-ext')){var a=document.createElement('a');a.className='cpv-ext';a.href='downloads/astronautica-extensao-0.6.0.zip';a.setAttribute('download','astronautica-extensao-0.6.0.zip');a.title='Baixar a extensão do Chrome (Alt+Shift+A)';a.setAttribute('aria-label','Baixar a extensão do Chrome');
  a.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4h3a2 2 0 1 1 4 0h2v4a2 2 0 1 1 0 4v4h-4a2 2 0 1 0-4 0H6v-4a2 2 0 1 0 0-4V4z"/><path d="M12 9v6m-2.5-2.5L12 15l2.5-2.5"/></svg>';v.appendChild(a);}}catch(e){}return r;};})();
 window.addEventListener('click',function(e){if(e.target.closest&&e.target.closest('.cpv-ext'))e.stopPropagation();},true);
 (function(){var st=document.createElement('style');st.id='cpv-ext-css';var k=TV_ON?'#203936':EG_ON?'#1e3a6e':'#8a5a14';st.textContent=[
@@ -20461,7 +20461,7 @@ window.addEventListener('click',function(e){var x=e.target.closest&&e.target.clo
  /* sem o seletor Templo I · Templo II */
  'html body .tpl-nav{display:none!important}',
  /* ordem na faixa do topo: modo escuro, clima | ... | Sully + mensagens */
- R+'>#tema-ic{order:1}'+R+'>#cl-topo{order:2}'+R+'>.sk-topo{order:10;margin-left:auto!important}'+R+'>#npc-ic{order:11}'+R+'>#bn-min{order:20}',
+ R+'{column-gap:0!important;gap:0!important}'+R+'>#tema-ic{order:1}'+R+'>#cl-topo{order:2}'+R+'>.sk-topo{order:10;margin-left:auto!important}'+R+'>#npc-ic{order:11}'+R+'>#bn-min{order:20;margin-left:6px!important}',
  'body.cl-topo-aberto #hero-box#hero-box .bn-row{z-index:60!important}',
  /* cartão único Sully + mensagens */
  R+'>.sk-topo.sk-topo,'+R+'>#npc-ic#npc-ic{height:34px!important;min-height:34px!important;background:var(--sn-bg)!important;border:1px solid var(--sn-bd)!important;box-shadow:none!important}',
@@ -20578,6 +20578,7 @@ setTimeout(function(){try{rodRearruma();}catch(e){}},1700);
  /* o painel que abre acima da base */
  RP+'{position:absolute;left:0;right:0;bottom:calc(100% + 10px);z-index:60;box-sizing:border-box;max-height:400px;overflow:auto;padding:10px 14px 12px;background:'+P.bg+';border:1.5px solid '+P.k+';box-shadow:0 0 0 2px '+P.bg+',0 0 0 3px '+P.k+'66,0 -10px 26px -10px rgba(40,25,10,.5);color:'+P.tx+';scrollbar-width:thin;text-align:left}',
  RP+'[hidden]{display:none!important}',
+ R+'>.bn-rod.bn-rod:has(>#rod-pan:not([hidden])){z-index:90!important}',
  RP+'>header{display:flex;align-items:baseline;gap:10px;margin:0 0 8px;padding-bottom:6px;border-bottom:1px solid '+P.k+'55}',
  RP+'>header .rp-k{font:700 8.5px var(--mono,monospace);letter-spacing:.22em;text-transform:uppercase;opacity:.8}',
  RP+'>header .rp-t{flex:1;font:700 15px Georgia,serif}',
@@ -20599,14 +20600,6 @@ setTimeout(function(){try{rodRearruma();}catch(e){}},1700);
  RP+' .rp-cron #qa-d-dj>.qa-sb::before{display:none!important}',
  RP+' .rp-cron #dj-t{width:100%!important;box-sizing:border-box;min-height:54px}'
  ].join('\n');document.head.appendChild(st);})();
-/* Guia do Campista dentro da Ficha do Campista, pequenininho, fora do cadeado */
-function fcGuia(){var d=document.getElementById('fc-dlg');if(!d||d.querySelector(':scope > .fc-guia'))return;
- var g=document.createElement('details');g.className='fc-guia';g.setAttribute('data-notr','');
- g.innerHTML='<summary>guia do campista</summary><div class="fcg-c">'+AC_GUIA.map(function(x){return '<section><h4>'+x[0]+'</h4><div>'+x[1]+'</div></section>';}).join('')+'</div>';d.appendChild(g);}
-setTimeout(function(){try{fcGuia();}catch(e){}},1800);setInterval(function(){try{fcGuia();}catch(e){}},2000);
-(function(){var f0=fcAbreDlg;fcAbreDlg=function(){var r=f0.apply(this,arguments);try{fcGuia();}catch(e){}return r;};})();
-try{var _fa=document.getElementById('fc-abre');if(_fa)_fa.onclick=fcAbreDlg;}catch(e){}
-
 /* elementos encostados viram uma pílula só, em todos os temas */
 function pilulasJuntas(){var cab=document.querySelector('.wrap > div.rt > .cab'),h=document.getElementById('h-rast');
  if(cab&&h){var c=getComputedStyle(h),v=c.backgroundColor+'|'+c.borderTopColor+'|'+c.color;if(cab._pv!==v){cab._pv=v;cab.style.setProperty('--pj-bg',c.backgroundColor);cab.style.setProperty('--pj-bd',c.borderTopColor);cab.style.setProperty('--pj-tx',c.color);}}
@@ -20622,6 +20615,10 @@ setTimeout(function(){try{pilulasJuntas();}catch(e){}},1500);setInterval(functio
  C+'>.nav{display:flex!important;gap:0!important;margin:0!important;align-self:center}',
  C+'>.nav>button{margin:0!important;height:32px!important;box-sizing:border-box!important;border-radius:0!important;border:1px solid var(--pj-bd)!important;border-right:0!important;background:var(--pj-bg)!important;color:var(--pj-tx)!important;box-shadow:none!important}',
  C+'>#rt-mes{display:flex!important;align-items:center;height:32px;box-sizing:border-box;margin:0!important;padding:0 16px 0 12px!important;border:1px solid var(--pj-bd)!important;border-radius:0 999px 999px 0!important;background:var(--pj-bg)!important;align-self:center;white-space:nowrap}',
+ /* Templo II: novo hábito · incluir hábito */
+ C.replace('>.cab','>.rt-novo')+'{gap:0!important;column-gap:0!important}',
+ C.replace('>.cab','>.rt-novo')+'>input{margin:0!important;border-radius:999px 0 0 999px!important;border-right:0!important;box-shadow:none!important}',
+ C.replace('>.cab','>.rt-novo')+'>button{margin:0!important;border-radius:0 999px 999px 0!important;box-shadow:none!important}',
  /* base: Semana · Mês */
  B+' .br-gav{gap:0!important}',
  B+' .br-gav>button{margin:0!important;border-radius:0!important;box-shadow:none!important}',
@@ -20633,15 +20630,7 @@ setTimeout(function(){try{pilulasJuntas();}catch(e){}},1500);setInterval(functio
  B+' .br-db .regdia .rdent{gap:0!important}',
  B+' .br-db .regdia .rdent>input{border-radius:999px 0 0 999px!important;border-right:0!important;margin:0!important;box-shadow:none!important;border-color:var(--pj-bd)!important}',
  B+' .br-db .regdia .rdent>button{border-radius:0!important;margin:0!important;height:30px!important;box-shadow:none!important;border:1px solid var(--pj-bd)!important}',
- B+' .br-db>.br-ver{margin-left:-6px!important;border-radius:0 999px 999px 0!important;border-left:0!important;box-shadow:none!important;border-color:var(--pj-bd)!important}',
- /* guia na ficha */
- '#fc-dlg>.fc-guia{margin:10px 14px 12px;font-size:12px}',
- '#fc-dlg>.fc-guia>summary{display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border:1px solid #b89c72;border-radius:999px;background:#fbf3df;color:#5a3a10;font:700 8.5px var(--mono,monospace);letter-spacing:.2em;text-transform:uppercase;cursor:pointer;list-style:none}',
- '#fc-dlg>.fc-guia>summary::-webkit-details-marker{display:none}',
- '#fc-dlg>.fc-guia>summary::before{content:"📜"}',
- '#fc-dlg>.fc-guia .fcg-c{margin-top:8px;max-height:260px;overflow:auto;padding:8px 10px;border:1px solid #d9c7a3;background:#fbf5e6;color:#3b2a1d;font:12px/1.45 Georgia,serif;scrollbar-width:thin}',
- '#fc-dlg>.fc-guia h4{margin:8px 0 2px;font:700 12.5px Georgia,serif}',
- '#fc-dlg>.fc-guia ol,#fc-dlg>.fc-guia ul{margin:2px 0;padding-left:18px}'
+ B+' .br-db>.br-ver{margin-left:-6px!important;border-radius:0 999px 999px 0!important;border-left:0!important;box-shadow:none!important;border-color:var(--pj-bd)!important}'
  ].join('\n');document.head.appendChild(st);})();
 /* um painel só para o Toque: sai a gaveta lateral (toques · hoje · compromissos); o cartão Agora abre o Hoje que expande dentro do templo */
 cgAbre=function(on){var g=document.getElementById('cg-gav');if(g)g.classList.remove('on');document.body.classList.remove('cg-on');if(on===false)return;
@@ -20713,6 +20702,28 @@ document.addEventListener('click',function(e){if(e.target.closest&&e.target.clos
  if(lvE0)lvEstado=function(){var r=lvE0.apply(this,arguments);try{tenta();}catch(z){}return r;};
  setTimeout(tenta,1500);})();
 
+/* a fichinha do campista (nome e chalé) sai: o botão dela abre o Guia do Campista */
+acEditaCampista=function(){try{acGuia();}catch(e){}};
+window.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('.ac-medalha-bt,.ac-cracha-bt,#lat-topo .lt-logo');if(!b)return;e.preventDefault();e.stopPropagation();try{acGuia();}catch(z){}},true);
+setInterval(function(){Array.prototype.forEach.call(document.querySelectorAll('.ac-medalha-bt,.ac-cracha-bt'),function(b){if(b.title!=='Guia do Campista')b.title='Guia do Campista';});},2000);
+/* Em andamento não some quando o Mural se redesenha; nota, lista e foto na linha do Sincronizado */
+var ORB_GUARDA=null;
+(function(){var r0=vxRender;vxRender=function(){var w=document.getElementById('orb-mural');if(w){if(!ORB_GUARDA){ORB_GUARDA=document.createElement('div');ORB_GUARDA.hidden=true;document.body.appendChild(ORB_GUARDA);}ORB_GUARDA.appendChild(w);}
+ var x=r0.apply(this,arguments);try{rodRearruma();}catch(e){}try{pinbarSobe();}catch(e){}return x;};})();
+(function(){var q0=rodRearruma;rodRearruma=function(){if(!document.getElementById('orbp')){var o=document.createElement('div');o.className='orb';o.id='orbp';var w=document.getElementById('orb-mural');(w||document.body).appendChild(o);try{pintaOrb();}catch(e){}}
+ return q0.apply(this,arguments);};})();
+function pinbarSobe(){var nv=document.querySelector('#hero-box .vx-hero.bn2 .bn-tit #nv-chip'),bar=document.querySelector('#hero-box .vx-hero.bn2 .cp-pinbar');if(!nv||!bar)return;if(nv.nextElementSibling!==bar)nv.insertAdjacentElement('afterend',bar);}
+setTimeout(function(){try{pinbarSobe();}catch(e){}},1200);setInterval(function(){try{pinbarSobe();}catch(e){}},1300);
+(function(){var st=document.createElement('style');st.id='mural-linha-css';var R='html body:not(.zz9):not(.zz8) #hero-box#hero-box .vx-hero.bn2';st.textContent=[
+ R+' #orb-mural{width:372px!important;max-width:calc(100% - 8px)}',
+ R+' .bn-tit>.cp-pinbar{display:inline-flex!important;flex-wrap:nowrap!important;align-items:center;gap:4px!important;margin:0 0 0 8px!important;padding:0!important;border:0!important;vertical-align:middle;position:static!important;transform:none!important}',
+ R+' .bn-tit>.cp-pinbar>span{display:none!important}',
+ R+' .bn-tit>.cp-pinbar>button{height:20px!important;min-height:0!important;padding:0 8px!important;font-size:11px!important;line-height:1!important}',
+ R+' .bn-tit>.cp-pinbar::before,'+R+' .bn-tit>.cp-pinbar::after{display:none!important}',
+ /* registros do diário: o × de apagar sempre à vista */
+ 'html body #rod-pan #rd-l .rd-x{opacity:.55!important;visibility:visible!important}',
+ 'html body #rod-pan #rd-l .rdi:hover .rd-x,html body #rod-pan #rd-l .rd-x:focus{opacity:1!important}'
+ ].join('\n');document.head.appendChild(st);})();
 })();
 </script>
 </body>
