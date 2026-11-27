@@ -19322,6 +19322,69 @@ document.addEventListener('input',function(e){var t=e.target;if(!t.dataset||t.da
  '@media(max-width:800px){#panteao .pt-det-g{grid-template-columns:1fr}}'
 ].join('\n');document.head.appendChild(st);})();
 
+/* Painel direito: um só par de pilares para Missões, Hora livre e Arsenal, do friso superior (fixo) até o rodapé do painel; as seções não rolam os pilares junto */
+function tpPilares(){var fr=document.querySelector('#tp-painel .tp-fr'),tm=document.getElementById('tm-painel'),fz=document.getElementById('tp-friso');if(!fr||!tm)return;
+ var cs=getComputedStyle(tm);['--neo-cap','--neo-fuste','--neo-base'].forEach(function(v){var x=cs.getPropertyValue(v).trim();if(x&&fr.style.getPropertyValue(v)!==x)fr.style.setProperty(v,x);});
+ var t=(fz?fz.offsetHeight:0)+'px';if(fr.style.getPropertyValue('--pil-top')!==t)fr.style.setProperty('--pil-top',t);}
+setTimeout(function(){try{tpPilares();}catch(e){}},1600);setInterval(function(){try{tpPilares();}catch(e){}},2000);
+(function(){var st=document.createElement('style');st.id='tp-pilares-css';var S2='html body #tp-painel #tp-real>:is(#tm-painel,#recreio,#tesouro)';st.textContent=[
+ '#tp-painel:has(#tp-real) .tp-fr{background:var(--neo-cap) left 6px top var(--pil-top,70px)/36px 25px no-repeat,var(--neo-cap) right 6px top var(--pil-top,70px)/36px 25px no-repeat,',
+ ' var(--neo-fuste) left 6px top calc(var(--pil-top,70px) + 25px)/36px calc(100% - var(--pil-top,70px) - 38px) no-repeat,var(--neo-fuste) right 6px top calc(var(--pil-top,70px) + 25px)/36px calc(100% - var(--pil-top,70px) - 38px) no-repeat,',
+ ' var(--neo-base) left 6px bottom 0/36px 13px no-repeat,var(--neo-base) right 6px bottom 0/36px 13px no-repeat,linear-gradient(180deg,#f7eed8,#f1e4c6)!important;background-attachment:scroll!important}',
+ '#tp-painel #tp-friso{position:sticky!important;top:0!important;z-index:30}',
+ /* as seções perdem os próprios pilares e ficam transparentes nas laterais */
+ S2+'{background:var(--neo-ent) left top/240px 40px repeat-x,linear-gradient(90deg,transparent 0 40px,#f4ead2 40px calc(100% - 40px),transparent calc(100% - 40px))!important;border-left:0!important;border-right:0!important;box-shadow:none!important}',
+ S2+'>.col-orn{display:none!important}',
+ S2+'::before,'+S2+'::after{background-image:none!important}',
+ '#tp-painel:has(#tp-real) .tp-fr{padding-left:0!important;padding-right:0!important}',
+ S2+'{margin:0 6px!important}'
+].join('\n');document.head.appendChild(st);})();
+
+/* Placa das telas e degraus do templo estilizados por tema (sobrepõe a cópia genérica) */
+(function(){var st=document.createElement('style');st.id='bn-tema-placa-css';var P='html body:not(.zz9):not(.zz8) #hero-box#hero-box .bn-telas.bn-placa',R='html body:not(.zz9):not(.zz8) #hero-box#hero-box>.bn-rod';
+ var placa=TV_ON?[P+'{background:linear-gradient(180deg,#256139,#1d4a2c)!important;border:1.5px solid #d4ad4f!important;box-shadow:0 0 0 3px #123321,0 0 0 4.5px #d4ad4f,0 6px 12px -6px rgba(0,0,0,.5)!important}',P+' button{color:#e9c870!important}',P+' button[aria-selected=true]{color:#f3e6c4!important}',P+' i{color:#d4ad4f!important}',
+   P+'::before,'+P+'::after{content:"ᛟ";font:400 12px Georgia,serif;color:#d4ad4f;margin:0 2px}']
+  :EG_ON?[P+'{background:#f7ecd2!important;border:2px solid #1e3a6e!important;border-radius:999px!important;padding:4px 26px 3px!important;box-shadow:0 0 0 3px #f7ecd2,0 0 0 4.5px #c9a23a,0 6px 12px -6px rgba(20,20,40,.45)!important}',P+' button{color:#2a4c86!important}',P+' button[aria-selected=true]{color:#1e3a6e!important}',P+' i{color:#c9a23a!important}',
+   P+'::after{content:"";position:absolute;right:-9px;top:50%;width:6px;height:70%;transform:translateY(-50%);border-radius:2px;background:#1e3a6e}']
+  :[P+'{background:var(--neo-papel,none),#f4ead2!important;border:1.5px solid #8a5a14!important;box-shadow:0 0 0 3px #f4ead2,0 0 0 4.5px #8a5a14,0 6px 12px -6px rgba(40,30,20,.45)!important}',P+' button{color:#9a6b3a!important}',P+' button[aria-selected=true]{color:#2a2418!important}',P+' i{color:#8a5a14!important}'];
+ var base=TV_ON?[R+'{border-top:2px solid #3a2414!important;border-bottom:1px solid #3a2414!important;background:repeating-linear-gradient(90deg,rgba(0,0,0,0) 0 22px,rgba(46,28,16,.25) 22px 23px),linear-gradient(180deg,#b07a4a 0 3px,#8a5a34 3px,#6e4426)!important}',
+   R+'::after{background:linear-gradient(180deg,#7a4e2c,#5a3a20)!important;border-top-color:#3a2414!important}',R+'::before{background:linear-gradient(180deg,#5f6366,#4a4e52)!important;border-top-color:#2e3134!important}',
+   R+' .br-k{color:#f1e6cf!important}',R+' .br-db{border-left-color:#e2c69c!important}']
+  :EG_ON?[R+'{border-top:3px solid #c9a23a!important;border-bottom:1px solid #c9a23a!important;background:linear-gradient(180deg,#3a5f9e,#2a4c86)!important}',
+   R+'::after{background:linear-gradient(180deg,#ecd7a8,#dcc086)!important;border-top-color:#c9a23a!important}',R+'::before{background:linear-gradient(180deg,#d9c08c,#c9a86a)!important;border-top-color:#a87b1d!important}',
+   R+' .br-k{color:#f3e2b0!important}',R+' .br-db{border-left-color:#c9a23a!important}']
+  :[R+'{border-top:2px solid #8a5a14!important;border-bottom:1px solid #8a5a14!important;background:linear-gradient(180deg,#fff1c8 0 3px,#f6dfa6 3px,#e9c97c)!important}',
+   R+'::after{background:linear-gradient(180deg,#f2d690,#e3c06f)!important;border-top-color:#8a5a14!important}',R+'::before{background:linear-gradient(180deg,#e3c06f,#d4ad58)!important;border-top-color:#8a5a14!important}',
+   R+' .br-k{color:#8a5a14!important}',R+' .br-db{border-left-color:#8a5a14!important}'];
+ st.textContent=placa.concat(base).join('\n');document.head.appendChild(st);})();
+/* Mostrador do foco no Egito: colar usekh de lápis, turquesa e cornalina, sol alado com uraei e FOCO num cartucho */
+if(EG_ON){(function(){var t0=tdEscudo;tdEscudo=function(fr,modo,txt,sub){var P=function(r,a){return [60+r*Math.cos(a),60+r*Math.sin(a)];},f=function(n){return n.toFixed(2);};
+ var cor=modo==='pausado'?'#b8ad98':modo==='fim'?'#c0392b':modo==='pausa'?'#6f9a5b':'#2f9c95';
+ var s='<defs><linearGradient id="egq1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fdeeb5"/><stop offset=".5" stop-color="#e4b84c"/><stop offset="1" stop-color="#9a6e16"/></linearGradient>'+
+  '<radialGradient id="egq2" cx="45%" cy="38%" r="72%"><stop offset="0" stop-color="#fffaea"/><stop offset="1" stop-color="#ecd8a6"/></radialGradient></defs>';
+ s+='<circle cx="60" cy="60" r="59" fill="url(#egq1)"/><circle cx="60" cy="60" r="58" fill="none" stroke="#fff3c9" stroke-opacity=".7" stroke-width=".8"/>';
+ var C=['#2a4c86','#e4b84c','#2f9c95','#e4b84c','#b5462c','#e4b84c'],n=48;
+ for(var i=0;i<n;i++){var a0=-Math.PI/2+i*2*Math.PI/n,a1=a0+2*Math.PI/n,o0=P(56,a0),o1=P(56,a1),i1=P(47.5,a1),i0=P(47.5,a0);
+  s+='<path d="M'+f(o0[0])+' '+f(o0[1])+'A56 56 0 0 1 '+f(o1[0])+' '+f(o1[1])+'L'+f(i1[0])+' '+f(i1[1])+'A47.5 47.5 0 0 0 '+f(i0[0])+' '+f(i0[1])+'Z" fill="'+C[i%6]+'"/>';}
+ for(var j=0;j<n;j++){var d=P(56.8,-Math.PI/2+(j+.5)*2*Math.PI/n);s+='<circle cx="'+f(d[0])+'" cy="'+f(d[1])+'" r="1.05" fill="#fff3c9" stroke="#9a6e16" stroke-width=".35"/>';}
+ s+='<circle cx="60" cy="60" r="47.5" fill="none" stroke="#9a6e16" stroke-width="1"/><circle cx="60" cy="60" r="56" fill="none" stroke="#9a6e16" stroke-width=".8"/>';
+ var R=46;s+='<circle cx="60" cy="60" r="'+R+'" fill="url(#egq2)"/>';
+ for(var t=0;t<12;t++){var a=-Math.PI/2+t*Math.PI/6,p1=P(40,a),p2=P(44.5,a),on=modo!=='parado'&&t/12<fr;s+='<path d="M'+f(p1[0])+' '+f(p1[1])+'L'+f(p2[0])+' '+f(p2[1])+'" stroke="'+(on?cor:'#1e3a6e')+'" stroke-width="'+(t%3===0?2.2:1.2)+'" stroke-linecap="round" stroke-opacity="'+(on?1:.7)+'"/>';}
+ if(modo!=='parado'){var CC=2*Math.PI*R;s+='<circle class="td-fg2" cx="60" cy="60" r="'+R+'" fill="none" stroke="'+cor+'" stroke-width="3.2" stroke-linecap="round" stroke-dasharray="'+f(CC)+'" stroke-dashoffset="'+f(CC*(1-fr))+'" transform="rotate(-90 60 60)"/>';}
+ var sol='<g><path d="M60 46.5c-4 0-6.5-2.6-6.5-5.8M60 46.5c4 0 6.5-2.6 6.5-5.8" fill="none" stroke="#1e3a6e" stroke-width="0"/>'+
+  '<path d="M54 44c-7-.5-14-3.4-20-8.4 3 .2 6 .9 9 2.2-2-.2-4 .1-5.6.7 4 .8 8 2.2 11.4 4.3-2.4.1-4.4.6-6 1.4 3.8.2 7.4.9 11.2 2.3z" fill="#2a4c86"/>'+
+  '<path d="M66 44c7-.5 14-3.4 20-8.4-3 .2-6 .9-9 2.2 2-.2 4 .1 5.6.7-4 .8-8 2.2-11.4 4.3 2.4.1 4.4.6 6 1.4-3.8.2-7.4.9-11.2 2.3z" fill="#2a4c86"/>'+
+  '<path d="M40 38.4c4 1.2 8 3 11.4 5M80 38.4c-4 1.2-8 3-11.4 5" stroke="#e4b84c" stroke-width=".7" fill="none"/>'+
+  '<circle cx="60" cy="43.5" r="5.6" fill="#c0392b" stroke="#9a6e16" stroke-width=".9"/>'+
+  '<path d="M54.6 46.5c.2 2.4 1.2 3.4 1.2 5M65.4 46.5c-.2 2.4-1.2 3.4-1.2 5" stroke="#2f9c95" stroke-width="1.3" fill="none" stroke-linecap="round"/></g>';
+ if(modo==='parado'){s+=sol+'<rect x="39" y="64" width="42" height="15" rx="7.5" fill="#fffaea" stroke="#1e3a6e" stroke-width="1.4"/><path d="M83.5 65.5v12" stroke="#1e3a6e" stroke-width="1.8" stroke-linecap="round"/>'+
+   '<text x="60" y="75" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="8.6" letter-spacing="2.6" fill="#1e3a6e">FOCO</text>';}
+ else{var rot=modo==='pausado'?'PAUSADO':modo==='fim'?'ACABANDO':modo==='pausa'?'RESPIRO':'EM FOCO';
+  s+='<text x="60" y="'+(sub?46:48)+'" text-anchor="middle" font-family="ui-monospace,monospace" font-weight="700" font-size="5.2" letter-spacing="1.6" fill="'+cor+'">'+rot+'</text>'+
+   '<text x="60" y="'+(sub?65:68)+'" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="19" fill="#1e2a44">'+txt+'</text>'+
+   (sub?'<text x="60" y="76" text-anchor="middle" font-family="ui-monospace,monospace" font-size="5.5" letter-spacing="1" fill="#1e2a44" fill-opacity=".65">'+sub+'</text>':'');}
+ return '<svg viewBox="0 0 120 120" aria-hidden="true">'+s+'</svg>';};})();}
+
 })();
 </script>
 </body>
