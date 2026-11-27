@@ -6113,6 +6113,43 @@ body.eg #lat-topo .lt-r1 .lt-bts>#mf-tg{border-color:#c9a23a!important;color:#2a
 #cx .mf-pr i{min-width:18px}
 #cx .mf-pg .mf-hr input{padding:5px 10px;border-radius:6px;border-color:transparent;border-bottom-color:var(--cx-ln);background:transparent}
 @media(max-width:760px){#cx .mf-plan{grid-template-columns:1fr}}
+/* espaço digital */
+#cx .dg-fil{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+#cx .dg-fil>span{display:flex;flex-wrap:wrap;gap:4px}
+#cx .dg-fil>span button{padding:4px 10px!important;font-size:12px!important}
+#cx .dg-fil button.on,#cx .dg-cores button.on{background:var(--cx-ac);border-color:var(--cx-ac);color:#2a1c05}
+#cx .dg-lst{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+#cx .dg-it{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border:1px solid var(--cx-ln);border-radius:12px;background:rgba(255,255,255,.04)}
+#cx .dg-it.st-visto{opacity:.6}
+#cx .dg-tp{flex:none;min-width:64px;padding:3px 8px;border-radius:999px;background:rgba(255,255,255,.1);font:700 10px var(--mono,monospace);letter-spacing:.12em;text-transform:uppercase;text-align:center;color:var(--cx-ac)}
+#cx .dg-c{flex:1;min-width:0;display:grid;gap:3px}
+#cx .dg-c a{font:17px Georgia,serif;color:var(--cx-tx);text-decoration:none;overflow-wrap:anywhere}
+#cx .dg-c a:hover{text-decoration:underline;color:var(--cx-ac)}
+#cx .dg-c small{font:12px var(--sans);color:var(--cx-sv)}
+#cx .mf-pg .dg-c input{padding:4px 8px;font-size:13px;border-color:transparent;background:transparent;border-bottom:1px dashed var(--cx-ln);border-radius:0}
+#cx .dg-st{flex:none;padding:4px 10px!important;font-size:12px!important}
+#cx .dg-it.st-quero .dg-st{border-color:var(--cx-ac);color:var(--cx-ac)}
+#cx .dg-it.st-vendo .dg-st{background:var(--cx-ac);color:#2a1c05;border-color:var(--cx-ac)}
+#cx .dg-it .mf-del{position:static}
+#cx .dg-cores{display:flex;flex-wrap:wrap;gap:6px}
+#cx .dg-cores button{display:inline-flex;align-items:center;gap:6px}
+#cx .dg-cores i,#cx .dg-p i{width:12px;height:12px;border-radius:3px}
+#cx .dg-ps{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px}
+#cx .dg-p{position:relative;border:1px solid var(--cx-ln);border-left:5px solid var(--c);border-radius:12px;background:rgba(255,255,255,.04)}
+#cx .dg-p a{display:grid;gap:2px;padding:12px 60px 12px 14px;color:var(--cx-tx);text-decoration:none}
+#cx .dg-p a:hover{background:rgba(255,255,255,.06)}
+#cx .dg-p svg{width:22px;height:22px;fill:var(--c);opacity:.9}
+#cx .dg-p b{font:400 16px Georgia,serif}
+#cx .dg-p small{font:11px var(--sans);color:var(--cx-sv)}
+#cx .dg-p .mf-del{position:absolute;top:8px;right:8px;width:26px!important;height:26px!important;border-color:transparent;opacity:.6}
+#cx .dg-fav{position:absolute;top:6px;right:34px;width:26px;height:26px;padding:0!important;border:0!important;font-size:15px!important;opacity:.35}
+#cx .dg-fav.on{opacity:1;color:var(--cx-ac);background:transparent!important}
+#cx .dg-fav{top:8px!important;right:36px!important;background:transparent!important}
+#cx .dg-nm{display:grid;grid-template-columns:2fr 2fr 1fr 1fr;gap:8px;max-width:760px}
+#cx .dg-out{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+#cx .dg-out code{padding:10px 14px;border-radius:10px;background:rgba(0,0,0,.25);font:15px var(--mono,monospace);color:var(--cx-ac);overflow-wrap:anywhere}
+@media(max-width:760px){#cx .dg-nm{grid-template-columns:1fr 1fr}}
+
 /* ===== Barras de rolagem: finas, discretas e na cor do tema ===== */
 html{--sb:rgba(201,150,60,.55);--sb-h:#e0782a}
 html:has(body.tv),body.tv{--sb:rgba(96,114,128,.55);--sb-h:#b3262d}
@@ -21471,7 +21508,7 @@ document.addEventListener('keydown',function(e){if(e.key!=='Enter')return;var t=
 /* se-então (usa o data-cx do cxClick) */
 (function(c0){cxClick=function(e){var b=e.target.closest('button');if(b&&b.getAttribute('data-cx')==='ifadd'){var s=(CX.st.ifs||'').trim(),en=(CX.st.ife||'').trim();if(s&&en){mfD().ifs.push({id:mfId(),s:s,e:en});CX.st.ifs=CX.st.ife='';mfSalva();cxPinta();}return;}return c0.apply(this,arguments);};})(cxClick);
 /* o manual desenha dentro da mesma moldura da companhia */
-(function(p0){cxPinta=function(){if(CX.m==='mf'){var w=cxEl(),h=mfHTML(),pg=w.querySelector('.mf-pg'),st=pg?pg.scrollTop:0;if(w._h!==h){var foco=document.activeElement&&w.contains(document.activeElement)?document.activeElement.getAttribute('data-mfin')||document.activeElement.name:null;w.innerHTML=h;w._h=h;var pg2=w.querySelector('.mf-pg');if(pg2)pg2.scrollTop=st;if(foco){var f=w.querySelector('[data-mfin="'+foco+'"],[name="'+foco+'"]');if(f)f.focus();}}w.classList.add('mf');return;}cxEl().classList.remove('mf');return p0.apply(this,arguments);};})(cxPinta);
+(function(p0){cxPinta=function(){if(CX.m==='mf'){var w=cxEl(),h=mfHTML(),pg=w.querySelector('.mf-pg'),st=pg?pg.scrollTop:0;if(w._h!==h){var foco=document.activeElement&&w.contains(document.activeElement)?document.activeElement.getAttribute('data-mfin')||document.activeElement.name:null;w.innerHTML=h;w._h=h;var pg2=w.querySelector('.mf-pg');if(pg2)pg2.scrollTop=st;if(foco){var f=w.querySelector('[data-mfin="'+foco+'"],[name="'+foco+'"]');if(f){f.focus();try{var L=f.value.length;f.setSelectionRange(L,L);}catch(z){}}}}w.classList.add('mf');return;}cxEl().classList.remove('mf');return p0.apply(this,arguments);};})(cxPinta);
 
 /* ---------- travei com as sete causas e a ponte em seis passos ---------- */
 (function(p0){cxPinta=function(){var w=cxEl();
@@ -21503,6 +21540,92 @@ function mfTg(){var fc=document.getElementById('fc-tg')||document.getElementById
  if(b.previousElementSibling!==fc)fc.parentNode.insertBefore(b,fc.nextSibling);}
 setTimeout(mfTg,900);setInterval(mfTg,2500);
 satOpTop=(function(f0){return function(){return f0.apply(this,arguments).replace('<span class="cx-skbt" data-notr>','<span class="cx-skbt" data-notr><button type="button" class="cx-mfb" data-cxa="mf">manual</button>');};})(satOpTop);
+
+/* ===== Espaço digital: acervo de vídeos, artigos e sites; pastas do Drive; faxina; nome de arquivo ===== */
+var DG_TP={video:'vídeo',artigo:'artigo',site:'site',curso:'curso',podcast:'podcast',doc:'documento'};
+var DG_ST={quero:'quero ver',vendo:'em andamento',visto:'visto'};
+var DG_COR={azul:['#6f9fd8','estudo'],menta:['#7cc7a8','projetos'],lavanda:['#b39ddb','pessoal'],amarelo:['#e6c56e','importante'],cinza:['#9a9a9a','arquivo']};
+var DG_FX_S=['abrir a pasta Downloads','separar o que fica','mover o importante para a pasta certa','apagar o resto'];
+var DG_FX_K=['ter uma pasta principal','seguir a estrutura de pastas numeradas','usar nomes padronizados','salvar cada arquivo na pasta certa','tirar as duplicatas','fazer backup do que importa','revisar e limpar sempre','manter simples e constante'];
+var DG_FX_M=['apagar arquivos inúteis','organizar o que chegou','renomear o que está fora do padrão','conferir o backup na nuvem','esvaziar a lixeira','ver o espaço usado'];
+function dgD(){var m=mfD();m.dg=m.dg||{};var g=m.dg;g.links=g.links||[];g.pastas=g.pastas||[];g.fx=g.fx||{ck:{}};g.fx.ck=g.fx.ck||{};return g;}
+function dgTipo(u){u=String(u||'').toLowerCase();if(/youtu\.?be|vimeo|tiktok|instagram\.com\/reel/.test(u))return 'video';if(/spotify|podcast|anchor\.fm/.test(u))return 'podcast';if(/docs\.google|drive\.google\.com\/file/.test(u))return 'doc';if(/\.pdf($|\?)|scielo|jusbrasil|conjur|migalhas|medium\.com|substack/.test(u))return 'artigo';if(/udemy|coursera|alura|hotmart|estrategia|gran/.test(u))return 'curso';return 'site';}
+function dgHost(u){try{return new URL(u).hostname.replace(/^www\./,'');}catch(e){return u;}}
+function dgDias(d){if(!d)return null;return Math.round((new Date(hoje()+'T12:00:00')-new Date(d+'T12:00:00'))/864e5);}
+function dgNorm(u){u=String(u||'').trim();if(u&&!/^https?:\/\//i.test(u))u='https://'+u;return u;}
+function dgPagina(){var g=dgD(),ab=CX.st.dg||'acervo',h='<h3>Espaço digital</h3><p class="mf-d">Um lugar só para o que você quer ver, ler e guardar, e para as pastas que você usa. Organizar hoje é achar fácil amanhã.</p>'+
+ '<div class="mf-vis">'+[['acervo','acervo · vídeos, artigos, sites'],['pastas','pastas do Drive'],['faxina','faxina'],['nome','nome de arquivo']].map(function(x){return '<button type="button" data-dgab="'+x[0]+'"'+(ab===x[0]?' class="on"':'')+'>'+x[1]+'</button>';}).join('')+'</div>';
+ if(ab==='acervo'){var f=CX.st.dgf||'',fs=CX.st.dgs||'',q=(CX.st.dgq||'').toLowerCase(),L=g.links.filter(function(x){return (!f||x.tp===f)&&(!fs||x.st===fs)&&(!q||(x.t+' '+(x.as||'')+' '+(x.n||'')+' '+x.u).toLowerCase().indexOf(q)>=0);});
+  h+='<div class="mf-add"><input data-dgin="url" maxlength="400" placeholder="cole o link (vídeo, artigo, site) · Enter"><input data-dgin="as" maxlength="40" placeholder="assunto (opcional)" style="flex:0 1 200px"><button type="button" class="cx-pri" data-dg="add">guardar</button></div>'+
+   '<div class="dg-fil"><input name="dgq" maxlength="60" placeholder="buscar" value="'+esc(CX.st.dgq||'')+'" style="flex:1 1 180px">'+
+   '<span>'+['', 'video','artigo','site','curso','podcast','doc'].map(function(k){return '<button type="button" data-dgf="'+k+'"'+(f===k?' class="on"':'')+'>'+(k?DG_TP[k]:'todos')+'</button>';}).join('')+'</span>'+
+   '<span>'+['','quero','vendo','visto'].map(function(k){return '<button type="button" data-dgs="'+k+'"'+(fs===k?' class="on"':'')+'>'+(k?DG_ST[k]:'qualquer')+'</button>';}).join('')+'</span></div>'+
+   '<ul class="dg-lst">'+(L.length?L.map(function(x){return '<li class="dg-it st-'+x.st+'"><span class="dg-tp">'+DG_TP[x.tp]+'</span><div class="dg-c"><a href="'+esc(x.u)+'" target="_blank" rel="noopener">'+esc(x.t)+'</a><small>'+esc(dgHost(x.u))+(x.as?' · '+esc(x.as):'')+' · '+esc(x.d.split('-').reverse().join('/'))+'</small>'+
+     '<input data-dgnota="'+x.id+'" maxlength="200" placeholder="nota (opcional)" value="'+esc(x.n||'')+'"></div>'+
+     '<button type="button" class="dg-st" data-dgst="'+x.id+'" title="mudar o andamento">'+DG_ST[x.st]+'</button><button type="button" class="mf-del" data-dgdel="'+x.id+'" aria-label="apagar">×</button></li>';}).join(''):'<li class="mf-vz">'+(g.links.length?'Nada com esse filtro.':'Cole o primeiro link. Vídeos do YouTube ganham o título sozinhos.')+'</li>')+'</ul>'+
+   '<p class="mf-d mf-s">'+g.links.filter(function(x){return x.st==='quero';}).length+' na fila para ver · '+g.links.filter(function(x){return x.st==='visto';}).length+' vistos.</p>';}
+ else if(ab==='pastas'){var P=g.pastas.slice().sort(function(a,b){return (b.fav|0)-(a.fav|0);});
+  h+='<p class="mf-d mf-s">Abra a pasta no Drive, copie o endereço e cole aqui. Poucas pastas grandes e numeradas, cada categoria com a mesma cor em todo lugar.</p>'+
+   '<div class="mf-add"><input data-dgin="pn" maxlength="40" placeholder="nome (ex.: 01_Estudo)" style="flex:0 1 220px"><input data-dgin="pu" maxlength="400" placeholder="link da pasta no Drive"><button type="button" class="cx-pri" data-dg="padd">guardar</button></div>'+
+   '<div class="dg-cores">'+Object.keys(DG_COR).map(function(k){return '<button type="button" data-dgcor="'+k+'"'+((CX.st.dgcor||'azul')===k?' class="on"':'')+'><i style="background:'+DG_COR[k][0]+'"></i>'+DG_COR[k][1]+'</button>';}).join('')+'</div>'+
+   '<div class="dg-ps">'+(P.length?P.map(function(x){return '<div class="dg-p" style="--c:'+(DG_COR[x.cor]||DG_COR.azul)[0]+'"><a href="'+esc(x.u)+'" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M3 6a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg><b>'+esc(x.n)+'</b><small>'+(DG_COR[x.cor]||DG_COR.azul)[1]+'</small></a>'+
+     '<button type="button" class="dg-fav'+(x.fav?' on':'')+'" data-dgfav="'+x.id+'" title="fixar">★</button><button type="button" class="mf-del" data-dgpdel="'+x.id+'" aria-label="apagar">×</button></div>';}).join(''):'<p class="mf-vz">Nenhuma pasta ainda. Sugestão: 01_Estudo, 02_Projetos, 03_Pessoal, 04_Recursos e 05_Arquivo.</p>')+'</div>';}
+ else if(ab==='faxina'){var F=g.fx,ds=dgDias(F.sem),dm=dgDias(F.mes);
+  h+='<div class="mf-gr mf-gr2"><div class="mf-cd"><b>Downloads · toda semana</b><small>'+(ds==null?'nunca feita':ds===0?'feita hoje':'última há '+ds+' dia'+(ds>1?'s':''))+(ds!=null&&ds>7?' · está na hora':'')+'</small>'+
+   DG_FX_S.map(function(t,i){return mfChk('dgs|'+i,F.ck['s'+i],t);}).join('')+'<small>10 minutos por semana.</small></div>'+
+   '<div class="mf-cd"><b>Montar o sistema · uma vez</b>'+DG_FX_K.map(function(t,i){return mfChk('dgk|'+i,F.ck['k'+i],t);}).join('')+'</div>'+
+   '<div class="mf-cd"><b>Revisão do mês</b><small>'+(dm==null?'nunca feita':dm===0?'feita hoje':'última há '+dm+' dias')+(dm!=null&&dm>30?' · está na hora':'')+'</small>'+
+   DG_FX_M.map(function(t,i){return mfChk('dgm|'+i,F.ck['m'+i],t);}).join('')+'</div></div>';}
+ else{var dt=hoje(),pj=(CX.st.dgp||'Projeto').trim().replace(/\s+/g,'-'),as=(CX.st.dga||'Assunto').trim().replace(/\s+/g,'-'),v=(CX.st.dgv||'1').trim(),ext=(CX.st.dge||'pdf').replace(/^\./,''),nm=dt+'_'+pj+'_'+as+'_V'+v+'.'+ext;
+  h+='<p class="mf-d mf-s">Data invertida primeiro: os arquivos se ordenam sozinhos. A versão no fim acaba com o "final_final".</p>'+
+   '<div class="dg-nm"><input name="dgp" maxlength="40" placeholder="projeto" value="'+esc(CX.st.dgp||'')+'"><input name="dga" maxlength="40" placeholder="assunto" value="'+esc(CX.st.dga||'')+'"><input name="dgv" maxlength="4" placeholder="versão" value="'+esc(CX.st.dgv||'')+'"><input name="dge" maxlength="6" placeholder="extensão" value="'+esc(CX.st.dge||'')+'"></div>'+
+   '<div class="dg-out"><code>'+esc(nm)+'</code><button type="button" class="cx-pri" data-dgcp="'+esc(nm)+'">copiar</button></div>';}
+ return h;}
+/* entra na coleção do manual */
+MF_T.splice(MF_T.findIndex(function(t){return t[0]==='semana';})+1,0,['digital','Espaço digital','vídeos, artigos, sites, pastas do Drive']);
+MF_T.splice(MF_T.findIndex(function(t){return t[0]==='c-auto';}),0,['c-digital','Organização digital','pastas, nomes, nuvem, cores, faxina']);
+MF_C['c-digital']=['Organização digital','Sistemas simples para uma vida digital limpa. Organizar hoje é achar fácil amanhã.',[
+ ['Pastas',['Uma pasta principal e poucas categorias grandes, numeradas: 01_Estudo, 02_Projetos, 03_Pessoal, 04_Recursos, 05_Arquivo.','Dentro de cada uma, só o necessário: matérias, anotações, provas, livros; ou finanças, metas, diário, saúde.']],
+ ['Nome de arquivo',['Fórmula: AAAA-MM-DD_Projeto_Assunto_Versão.','Exemplo: 2026-11-27_Concurso_Processo-Civil_V1.pdf.','Data, assunto e versão deixam tudo fácil de buscar.']],
+ ['Nuvem',['Tudo o que importa tem cópia fora do computador.','Para o que é vital, dois serviços.','Backup automático sempre que der.']],
+ ['Cores',['Azul: estudo. Menta: projetos. Lavanda: pessoal. Amarelo: importante. Cinza: arquivo.','A mesma cor em todos os aparelhos.']],
+ ['Favoritos',['Fixe só o que você usa todo dia. Favorito demais é bagunça com estrela.']],
+ ['Faxina',['Downloads toda semana, 10 minutos: abrir, guardar o que presta, apagar o resto.','Uma vez por mês: apagar, organizar, renomear, conferir backup, esvaziar a lixeira, ver o espaço.']],
+ ['Dicas',['Um lugar só para cada coisa, sem duplicatas.','Busca e etiquetas no lugar de cavar pastas.','Área de trabalho quase vazia.','Um pouco todo dia rende mais que uma arrumação gigante.']],
+ ['Por que organizar',['Menos tempo procurando, menos estresse.','Mais foco: nada de arquivo solto chamando atenção.','Sem duplicatas.','Tudo acha-se rápido.']],
+ ['Por tipo, dentro das pastas',['PDF: livros, artigos, guias.','Texto: anotações, trabalhos, documentos.','Planilha: dados, orçamentos.','Apresentação: slides, relatórios.','Imagem: capturas de tela, diagramas.','Subpasta por matéria ou projeto, cada tipo no seu lugar.']],
+ ['Sistema constante',['Nuvem com backup automático.','Sincronizar computador, tablet e celular.','Atalhos e estrela nas pastas de uso diário.','Cor ou etiqueta nas pastas (opcional).','Uma pasta de backup ou um disco externo.']],
+ ['Arquivo morto',['Revise toda semana ou ao menos uma vez por mês.','Apague o que não serve mais.','Mova o que é velho para o Arquivo, por ano.','Regra de ouro: se não precisa agora, provavelmente não vai precisar depois.']],
+ ['Ferramentas',['Google Drive ou OneDrive para guardar e sincronizar.','Notion para notas, arquivos e tarefas.','Raindrop.io para links da web: aqui o Espaço digital faz esse papel.']]],
+ [['digital','espaço digital']]];
+(function(p0){mfPagina=function(p){if(p==='digital')return dgPagina();return p0.apply(this,arguments);};})(mfPagina);
+async function dgAdd(){var w=cxEl(),i=w.querySelector('[data-dgin="url"]'),a=w.querySelector('[data-dgin="as"]'),u=dgNorm(i&&i.value);if(!u)return;var g=dgD();
+ if(g.links.some(function(x){return x.u===u;})){i.value='';return;}
+ var it={id:mfId(),u:u,t:dgHost(u),tp:dgTipo(u),as:(a&&a.value||'').trim(),st:'quero',d:hoje()};g.links.unshift(it);mfSalva();cxPinta();
+ var j=cxEl().querySelector('[data-dgin="url"]');if(j)j.focus();
+ if(it.tp==='video'||/youtube|youtu\.be|vimeo/.test(u)){try{var r=await fetch('https://noembed.com/embed?url='+encodeURIComponent(u));var o=await r.json();if(o&&o.title){it.t=o.title+(o.author_name?' · '+o.author_name:'');mfSalva();cxPinta();}}catch(e){}}}
+document.addEventListener('click',function(e){var w=document.getElementById('cx');if(!w||!w.classList.contains('on')||CX.m!=='mf'||CX.p!=='digital'||!w.contains(e.target))return;var b=e.target.closest('button');if(!b)return;var g=dgD(),a;
+ if((a=b.getAttribute('data-dgab'))){CX.st.dg=a;cxPinta();return;}
+ var k=b.getAttribute('data-dg');if(k==='add'){dgAdd();return;}
+ if(k==='padd'){var n=w.querySelector('[data-dgin="pn"]'),u=w.querySelector('[data-dgin="pu"]'),nv=(n.value||'').trim(),uv=dgNorm(u.value);if(!nv||!uv)return;g.pastas.push({id:mfId(),n:nv,u:uv,cor:CX.st.dgcor||'azul',fav:0});mfSalva();cxPinta();return;}
+ if((a=b.getAttribute('data-dgf'))!=null){CX.st.dgf=a;cxPinta();return;}
+ if((a=b.getAttribute('data-dgs'))!=null){CX.st.dgs=a;cxPinta();return;}
+ if((a=b.getAttribute('data-dgst'))){var x=g.links.filter(function(y){return y.id===a;})[0];if(x){x.st=x.st==='quero'?'vendo':x.st==='vendo'?'visto':'quero';if(x.st==='visto'){try{anota('Visto: '+esc(x.t),0,false,true);}catch(z){}cxXP();}mfSalva();cxPinta();}return;}
+ if((a=b.getAttribute('data-dgdel'))){g.links=g.links.filter(function(y){return y.id!==a;});mfSalva();cxPinta();return;}
+ if((a=b.getAttribute('data-dgcor'))){CX.st.dgcor=a;cxPinta();return;}
+ if((a=b.getAttribute('data-dgfav'))){var p=g.pastas.filter(function(y){return y.id===a;})[0];if(p){p.fav=p.fav?0:1;mfSalva();cxPinta();}return;}
+ if((a=b.getAttribute('data-dgpdel'))){g.pastas=g.pastas.filter(function(y){return y.id!==a;});mfSalva();cxPinta();return;}
+ if((a=b.getAttribute('data-dgcp'))){try{navigator.clipboard.writeText(a);b.textContent='copiado';}catch(z){}return;}},true);
+document.addEventListener('change',function(e){var t=e.target;if(!t.closest||!t.closest('#cx')||CX.m!=='mf'||CX.p!=='digital')return;var g=dgD(),a;
+ if((a=t.getAttribute('data-dgnota'))){var x=g.links.filter(function(y){return y.id===a;})[0];if(x){x.n=t.value;mfSalva();}return;}
+ if((a=t.getAttribute('data-mfck'))&&/^dgk\|/.test(a)){g.fx.ck['k'+a.split('|')[1]]=t.checked?1:0;mfSalva();cxPinta();return;}
+ if((a=t.getAttribute('data-mfck'))&&/^dg[sm]\|/.test(a)){var P=a.split('|'),s=P[0]==='dgs'?'s':'m',N=s==='s'?DG_FX_S.length:DG_FX_M.length;g.fx.ck[s+P[1]]=t.checked?1:0;
+  var ok=0;for(var i=0;i<N;i++)if(g.fx.ck[s+i])ok++;if(ok===N){g.fx[s==='s'?'sem':'mes']=hoje();for(var j=0;j<N;j++)delete g.fx.ck[s+j];cxDiario(s==='s'?'Faxina dos Downloads feita.':'Revisão digital do mês feita.');cxXP();}
+  mfSalva();cxPinta();e.stopImmediatePropagation();}},true);
+document.addEventListener('keydown',function(e){if(e.key!=='Enter')return;var t=e.target;if(!t.closest||!t.closest('#cx')||CX.p!=='digital')return;var a=t.getAttribute('data-dgin');
+ if(a==='url'||a==='as'){e.preventDefault();dgAdd();}else if(a==='pn'||a==='pu'){e.preventDefault();var b=document.querySelector('#cx [data-dg="padd"]');if(b)b.click();}},true);
+/* busca e gerador de nome redesenham ao digitar */
+document.addEventListener('input',function(e){var t=e.target;if(!t.closest||!t.closest('#cx')||CX.m!=='mf'||CX.p!=='digital')return;if(/^dg[qpave]$/.test(t.name||'')){CX.st[t.name]=t.value;clearTimeout(dgAdd._t);dgAdd._t=setTimeout(cxPinta,180);}});
 
 })();
 </script>
