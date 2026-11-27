@@ -19385,6 +19385,27 @@ if(EG_ON){(function(){var t0=tdEscudo;tdEscudo=function(fr,modo,txt,sub){var P=f
    (sub?'<text x="60" y="76" text-anchor="middle" font-family="ui-monospace,monospace" font-size="5.5" letter-spacing="1" fill="#1e2a44" fill-opacity=".65">'+sub+'</text>':'');}
  return '<svg viewBox="0 0 120 120" aria-hidden="true">'+s+'</svg>';};})();}
 
+/* cartões do painel esquerdo quase encostando nas bordas */
+(function(){var st=document.createElement('style');st.id='lat-largo-css';st.textContent=[
+ 'html body #lat-e>:is(section,div,.lat-c,#lat-trio,#lat-gm,#lat-arena,#lat-db,.lat-grp-s){margin-left:4px!important;margin-right:4px!important;width:auto!important;max-width:none!important;box-sizing:border-box!important}',
+ 'html body #lat-e{padding-left:0!important;padding-right:0!important}','html body #lat-e>#lat-gm{padding-left:0!important;padding-right:0!important}','html body #lat-e>#lat-gm>*{margin-left:0!important;margin-right:0!important;width:auto!important;max-width:none!important}'
+].join('\n');document.head.appendChild(st);})();
+
+/* embasamento do templo: mesma largura da colunata, degraus visíveis com respiro antes do próximo templo, controles gravados na pedra */
+(function(){var st=document.createElement('style');st.id='bn-embasamento-css';var R='html body:not(.zz9):not(.zz8):not(.zz7) #hero-box#hero-box>.bn-rod';
+ var k=TV_ON?'#3a2414':EG_ON?'#c9a23a':'#8a5a14',tx=TV_ON?'#f1e6cf':EG_ON?'#f3e2b0':'#5a3a10',fd=TV_ON?'rgba(255,240,215,.12)':EG_ON?'rgba(255,240,200,.12)':'rgba(255,248,225,.45)';
+ st.textContent=[
+ R+'{margin:0 0 40px!important;padding:9px 56px 10px!important}',
+ R+'::after{left:-12px!important;right:-12px!important;bottom:-13px!important;height:12px!important;box-shadow:0 1px 0 '+k+'!important}',
+ R+'::before{left:-24px!important;right:-24px!important;bottom:-26px!important;height:12px!important;box-shadow:0 1px 0 '+k+',0 6px 10px -6px rgba(40,25,10,.45)!important}',
+ R+' .br-gav button{background:'+fd+'!important;border:1px solid '+k+'!important;border-radius:3px!important;box-shadow:inset 0 1px 2px rgba(0,0,0,.18)!important;color:'+tx+'!important}',
+ R+' .br-gav button i{color:'+tx+'!important;opacity:.75}',
+ R+' .br-gav button b{color:'+tx+'!important}',
+ R+' .br-gav button.on{background:'+k+'!important}'+R+' .br-gav button.on i,'+R+' .br-gav button.on b{color:#fbf5e6!important}',
+ R+' .regdia .rdent input{border:1px solid '+k+'!important;border-radius:3px!important;box-shadow:inset 0 1px 3px rgba(0,0,0,.2)!important}',
+ R+' .regdia .rdent button,'+R+' .br-ver{border:1px solid '+k+'!important;border-radius:3px!important;background:'+fd+'!important;color:'+tx+'!important;box-shadow:inset 0 1px 2px rgba(0,0,0,.18)!important}'
+].join('\n');document.head.appendChild(st);})();
+
 })();
 </script>
 </body>
