@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 360"><rect width="560" height="360" fill="#ebe2cf"/>
+<g fill="none" stroke="#6e5a3c" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M280 330V110M280 300c-30-10-60-4-90 14M280 300c30-10 60-4 90 14M280 270c-40-4-80 6-110 30M280 270c40-4 80 6 110 30"/>
+<path d="M280 120c-30-36-80-50-130-40M280 120c30-36 80-50 130-40M280 150c-50-20-110-14-150 10M280 150c50-20 110-14 150 10M280 110c-10-30-34-50-60-60M280 110c10-30 34-50 60-60"/>
+</g>
+<g fill="#f4ecd9" stroke="#6e5a3c" stroke-width="1.4"><circle cx="280" cy="60" r="16"/><circle cx="150" cy="80" r="14"/><circle cx="410" cy="80" r="14"/><circle cx="130" cy="165" r="13"/><circle cx="430" cy="165" r="13"/><circle cx="280" cy="190" r="15"/><circle cx="170" cy="310" r="13"/><circle cx="390" cy="310" r="13"/><circle cx="280" cy="340" r="12"/></g>
+<g font-family="Georgia,serif" font-size="11" fill="#5a3c22" text-anchor="middle"><text x="280" y="64">ᚨ</text><text x="150" y="84">ᚹ</text><text x="410" y="84">ᛚ</text><text x="130" y="169">ᛃ</text><text x="430" y="169">ᛗ</text><text x="280" y="194">ᛞ</text><text x="170" y="314">ᚾ</text><text x="390" y="314">ᛁ</text><text x="280" y="344">ᚺ</text></g>
+<path d="M40 250c20-6 40 6 60 0s40-6 60 0" stroke="#7a8a96" stroke-width="1.6" fill="none"/><path d="M58 236l14 0 6-8 6 8h14l-6 8h-28z" fill="#6e5a3c" opacity=".7"/>
+<g font-family="Georgia,serif" font-size="13" fill="#8a6a40" opacity=".7"><text x="16" y="24">ᚠᚢᚦᚨᚱᚲᚷᚹ</text><text x="440" y="350">ᚺᚾᛁᛃᛇᛈᛉᛊ</text></g></svg>

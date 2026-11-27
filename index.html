@@ -19001,7 +19001,7 @@ setTimeout(function(){try{bnPilares();}catch(e){}},900);setInterval(function(){t
 var BN_ROD_H=58;
 function bnRod(){var h=document.querySelector('#hero-box .vx-hero.bn2');if(!h)return;var rs=document.querySelectorAll('#hero-box .bn-rod'),r=rs[0]||null;for(var ri=1;ri<rs.length;ri++){var rd0=rs[ri].querySelector('.regdia');if(rd0&&r)r.querySelector('.br-slot').appendChild(rd0);rs[ri].remove();}
  if(!r){r=document.createElement('div');r.className='bn-rod';r.innerHTML='<div class="br-gav"><button type="button" data-brg="sem"><i>semana</i><b>—</b></button><button type="button" data-brg="mes"><i>mês</i><b>—</b></button></div><div class="br-db"><span class="br-k">diário de bordo · hoje</span><div class="br-slot"></div><button type="button" class="br-ver" data-brver aria-expanded="false" title="ver o que já foi registrado hoje">ver</button></div>';}
- var bsl=document.querySelector('#hero-box .bn-slot');if(bsl){if(bsl.nextElementSibling!==r)bsl.insertAdjacentElement('afterend',r);}else if(r.parentNode!==h)h.appendChild(r);
+ var bsl=document.querySelector('#hero-box .bn-slot');if(bsl){var anc=(bsl.nextElementSibling&&bsl.nextElementSibling.id==='tp-friso')?bsl.nextElementSibling:bsl;if(anc.nextElementSibling!==r)anc.insertAdjacentElement('afterend',r);}else if(r.parentNode!==h)h.appendChild(r);
  var a=function(q){var e=document.querySelector(q+' span');return e?e.textContent.trim():'';};
  var ts=(a('.mf-alca-sem').replace(/^a semana\s*·?\s*/i,'')||'esta semana'),tm=(a('.mf-alca-mes').replace(/^o m[eê]s\s*·?\s*/i,'')||'este mês');
  var bs=r.querySelector('[data-brg=sem] b'),bm=r.querySelector('[data-brg=mes] b');if(bs.textContent!==ts)bs.textContent=ts;if(bm.textContent!==tm)bm.textContent=tm;
@@ -19422,7 +19422,7 @@ var FACE_COR=TV_ON?{tm:{c:'#d9b48c',k:'#5a3c22'},rec:{c:'#b9cbbd',k:'#1d4a2c'},a
  :EG_ON?{tm:{c:'#b9c9e8',k:'#1e3a6e'},rec:{c:'#b6e0da',k:'#1f625c'},ars:{c:'#f0d58a',k:'#8a6a14'}}
  :{tm:{c:'#f2c3ab',k:'#9a4a30'},rec:{c:'#efe3b4',k:'#7a6a2a'},ars:{c:'#e6c47e',k:'#7a5418'}};
 var FACE_SVG={};
-function tpBanda(){var p=document.getElementById('tp-painel'),fr=p&&p.querySelector('.tp-fr');if(!fr)return;var fz=document.getElementById('tp-friso');
+function tpBanda(){var p=document.getElementById('tp-painel'),fr=p&&p.querySelector('.tp-fr');if(!fr)return;var fz=document.getElementById('tp-friso');if(fz&&fz.parentNode!==fr)fz=null;
  var b=fr.querySelector(':scope>.tp-banda');if(!b){b=document.createElement('div');b.className='tp-banda';b.setAttribute('data-notr','');}
  if(fz&&fz.parentNode===fr){if(fz.nextElementSibling!==b)fz.insertAdjacentElement('afterend',b);}else if(fr.firstElementChild!==b)fr.insertBefore(b,fr.firstChild);
  var f=p4Face(),h='<nav class="tp-placa" role="tablist">'+TP_FACES.map(function(x){return '<button type="button" role="tab" data-tpface="'+x[0]+'" aria-selected="'+(x[0]===f)+'">'+x[1]+'</button>';}).join('<i aria-hidden="true">·</i>')+'</nav>';
@@ -19430,7 +19430,7 @@ function tpBanda(){var p=document.getElementById('tp-painel'),fr=p&&p.querySelec
  var cf=FACE_COR[f]||FACE_COR.tm,im=FACE_SVG[f];if(!im){try{im=FACE_SVG[f]=colSvgs({st:'dorica',c:cf.c,k:cf.k});}catch(e){return;}}
  if(fr.dataset.face!==f){fr.dataset.face=f;fr.style.setProperty('--neo-cap',im.cap);fr.style.setProperty('--neo-fuste',im.fuste);fr.style.setProperty('--neo-base',im.base);fr.style.setProperty('--neo-ent',im.ent);fr.style.setProperty('--fc-k',cf.k);fr.style.setProperty('--fc-c',cf.c);}
  var t=((fz?fz.offsetHeight:0)+b.offsetHeight)+'px';if(fr.style.getPropertyValue('--pil-top')!==t)fr.style.setProperty('--pil-top',t);
- if(fz)fr.style.setProperty('--fz-h',fz.offsetHeight+'px');}
+ fr.style.setProperty('--fz-h',(fz?fz.offsetHeight:0)+'px');}
 tpPilares=function(){try{tpBanda();}catch(e){}};
 (function(){var t0=tpReal;tpReal=function(){var r=t0.apply(this,arguments);try{tpBanda();}catch(e){}return r;};})();
 setTimeout(function(){try{tpBanda();}catch(e){}},1300);setInterval(function(){try{tpBanda();}catch(e){}},900);
@@ -19501,6 +19501,69 @@ bnTelaPos=function(){var tb=document.querySelector('.wrap > div.tb'),h=document.
  ' #hero-box .bv-fotos .bv-foto{width:clamp(92px,8.6vw,210px)!important}',
  ' #hero-box .bn-visao{grid-template-columns:auto minmax(190px,1fr)!important}',
  '}'
+].join('\n');document.head.appendChild(st);})();
+
+/* fundo do banner por tema: mapa das Nove Moradas na Yggdrasil (Valhala) e mapa do Nilo em papiro (Casa do Brooklyn) */
+(function(){if(!TV_ON&&!EG_ON)return;var st=document.createElement('style');st.id='bn-fundo-tema-css';
+ st.textContent=TV_ON?[
+  'html body.tv #vx .vx-hero.bn2::before{background:url("img/acampamento/vh-mapa-yggdrasil.svg?v=1") center/cover no-repeat!important;border-color:#cdbf9f!important;filter:none!important;opacity:.42!important}',
+  'html body.tv #hero-box#hero-box .vx-hero.bn2{background-color:#f1e8d6!important}'
+ ].join('\n'):[
+  'html body.eg #vx .vx-hero.bn2::before{background:url("img/egito/mapa-nilo.svg?v=1") center/cover no-repeat!important;border-color:#d9c48e!important;filter:none!important;opacity:.45!important}',
+  'html body.eg #hero-box#hero-box .vx-hero.bn2{background-image:repeating-linear-gradient(0deg,rgba(150,120,60,.07) 0 1px,transparent 1px 7px),repeating-linear-gradient(90deg,rgba(150,120,60,.05) 0 1px,transparent 1px 11px)!important;background-color:#f6ead0!important}'
+ ].join('\n');document.head.appendChild(st);})();
+
+/* Fogueira vira a peça final da faixa do dia, logo abaixo da Ronda */
+(function(){var d0=diaHTML;diaHTML=function(){var h=d0.apply(this,arguments),f=false;try{f=fgFeita();}catch(e){}
+ return h+'<button type="button" class="df-fogo'+(f?' ok':'')+'" data-dffogo title="fechar o dia"><span class="dff-ic" aria-hidden="true"></span><b>Fogueira</b><i>'+(f?'acesa ✓':'fechar o dia')+'</i></button>';};})();
+document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-dffogo]');if(!b)return;e.preventDefault();e.stopPropagation();var r=document.getElementById('rod-fogo');if(r)r.click();},true);
+(function(){var st=document.createElement('style');st.id='df-fogo-css';st.textContent=[
+ 'body:not(.op-on) #rod-apps #rod-fogo{display:none!important}',
+ '#dia-faixa .df-fogo{flex:none;position:relative;z-index:2;display:flex!important;flex-direction:column;align-items:center;gap:1px;width:100%!important;margin:4px 0 0!important;padding:5px 2px 4px!important;border:1px solid #9a4a30!important;border-radius:8px!important;background:linear-gradient(180deg,#fbe7c8,#f3caa0)!important;color:#5c2412!important;cursor:pointer;box-shadow:0 0 0 2px #fbf3df,0 0 0 3px #9a4a30!important}',
+ '#dia-faixa .df-fogo .dff-ic{width:22px;height:18px;background:radial-gradient(ellipse at 50% 85%,#ffd768 0 18%,#f08a24 36%,transparent 62%),linear-gradient(transparent 70%,#6e4426 70% 82%,transparent 82%);border-radius:40% 40% 10% 10%}',
+ '#dia-faixa .df-fogo b{font:700 7px var(--mono,monospace);letter-spacing:.06em;text-transform:uppercase}',
+ '#dia-faixa .df-fogo i{font:700 7px var(--mono,monospace);font-style:normal;opacity:.85}',
+ '#dia-faixa .df-fogo.ok{background:linear-gradient(180deg,#e9f3dc,#cfe5b7)!important;border-color:#4f7a3a!important;color:#2e4a20!important}',
+ 'body.tv #dia-faixa .df-fogo{border-color:#6e4426!important;background:linear-gradient(180deg,#f3e2c4,#e2c49a)!important;color:#3a2414!important;box-shadow:0 0 0 2px #f4ead2,0 0 0 3px #6e4426!important}',
+ 'body.eg #dia-faixa .df-fogo{border-color:#1e3a6e!important;background:linear-gradient(180deg,#f7ecd2,#ecd7a8)!important;color:#1e3a6e!important;box-shadow:0 0 0 2px #f7ecd2,0 0 0 3px #c9a23a!important}'
+].join('\n');document.head.appendChild(st);})();
+
+/* Toque da Concha (toques do dia) sai do painel direito e vira o friso logo acima da base do templo principal */
+tpFriso=function(){var sl=document.querySelector('#hero-box .bn-slot'),rod=document.querySelector('#hero-box > .bn-rod');if(!sl)return;
+ if(!TP_FRISO){TP_FRISO=document.createElement('button');TP_FRISO.type='button';TP_FRISO.id='tp-friso';TP_FRISO.className='tp-friso';TP_FRISO.setAttribute('aria-expanded','false');TP_FRISO.setAttribute('aria-label','Toque da Concha · ajustar os toques');
+  TP_FRISO.addEventListener('click',function(e){e.stopPropagation();concha(!document.body.classList.contains('concha-aberta'));});}
+ if(sl.nextElementSibling!==TP_FRISO)sl.insertAdjacentElement('afterend',TP_FRISO);if(rod&&TP_FRISO.nextElementSibling!==rod)TP_FRISO.insertAdjacentElement('afterend',rod);
+ var h=frisoHTML();if(TP_FRISO._h!==h||(h&&!TP_FRISO.firstChild)){TP_FRISO._h=h;TP_FRISO.innerHTML=h;}};
+setTimeout(function(){try{tpFriso();}catch(e){}},1500);setInterval(function(){try{tpFriso();}catch(e){}},1500);
+(function(){var st=document.createElement('style');st.id='friso-base-css';st.textContent=[
+ '#hero-box>#tp-friso{position:relative!important;top:auto!important;display:block;width:100%;box-sizing:border-box;margin:0!important;padding:0!important;z-index:6}',
+ '@media(min-width:1380px){#hero-box>#tp-friso{margin:0 -10px!important}}',
+ '#hero-box>#tp-friso+.bn-rod{border-top-width:1px!important}'
+].join('\n');document.head.appendChild(st);})();
+
+/* base do templo inicial com a mesma largura do friso do templo seguinte; segundo templo ganha base própria com o incluidor de hábito semanal */
+function baseAlinha(){var rod=document.querySelector('#hero-box > .bn-rod'),hb=document.getElementById('hero-box'),rt=document.querySelector('.wrap > div.rt');if(!rod||!hb||!rt||innerWidth<1380)return;
+ var a=hb.getBoundingClientRect(),b=rt.getBoundingClientRect();var l=Math.round(b.left-a.left),r=Math.round(a.right-b.right),v=l+'|'+r;if(rod._al===v)return;rod._al=v;
+ rod.style.setProperty('margin-left',l+'px','important');rod.style.setProperty('margin-right',r+'px','important');var fz=document.querySelector('#hero-box > #tp-friso');if(fz){fz.style.setProperty('margin-left',l+'px','important');fz.style.setProperty('margin-right','0px','important');fz.style.setProperty('width','calc(100% - '+(l+r)+'px)','important');}}
+function rtBase(){var rt=document.querySelector('.wrap > div.rt');if(!rt)return;var b=document.getElementById('rt-base');
+ if(!b){b=document.createElement('div');b.id='rt-base';b.className='rt-base';b.innerHTML='<span class="rb-k">hábito semanal</span><input data-rbin maxlength="40" placeholder="novo hábito semanal (ex.: faxina do quarto, ligar para a família)"><button type="button" data-rbadd>incluir</button>';}
+ if(rt.nextElementSibling!==b)rt.insertAdjacentElement('afterend',b);}
+document.addEventListener('click',function(e){var t=e.target.closest&&e.target.closest('[data-rbadd]');if(!t)return;e.preventDefault();var i=document.querySelector('#rt-base [data-rbin]'),v=i&&i.value.trim();if(!v)return;
+ var wi=document.querySelector('#ws-box [data-ws-in]'),wa=document.querySelector('#ws-box [data-ws-add]');if(!wi||!wa)return;wi.value=v;wa.click();i.value='';},true);
+document.addEventListener('keydown',function(e){if(e.key==='Enter'&&e.target.hasAttribute&&e.target.hasAttribute('data-rbin')){e.preventDefault();var a=document.querySelector('#rt-base [data-rbadd]');if(a)a.click();}});
+setTimeout(function(){try{baseAlinha();rtBase();}catch(e){}},1600);setInterval(function(){try{baseAlinha();rtBase();}catch(e){}},1200);window.addEventListener('resize',function(){try{baseAlinha();}catch(e){}});
+(function(){var st=document.createElement('style');st.id='rt-base-css';var k=TV_ON?'#3a2414':EG_ON?'#c9a23a':'#b0561e',bg=TV_ON?'linear-gradient(180deg,#b07a4a 0 3px,#8a5a34 3px,#6e4426)':EG_ON?'linear-gradient(180deg,#3a5f9e,#2a4c86)':'linear-gradient(180deg,#fbe0c4 0 3px,#f6c08e 3px,#e9a66a)',tx=TV_ON||EG_ON?'#f3e2b0':'#6e2e0e',st1=TV_ON?'#7a4e2c':EG_ON?'#ecd7a8':'#efb47e',st2=TV_ON?'#5f6366':EG_ON?'#d9c08c':'#e29a5c';
+ st.textContent=[
+ '#ws-box .ws-add{display:none!important}',
+ '.wrap>#rt-base{position:relative;display:flex;align-items:center;gap:10px;margin:0 0 40px!important;padding:11px 56px 12px;border-top:2px solid '+k+';border-bottom:1px solid '+k+';background:'+bg+';box-sizing:border-box}',
+ '.wrap>#rt-base::after,.wrap>#rt-base::before{content:"";position:absolute;pointer-events:none;border-top:1px solid '+k+'}',
+ '.wrap>#rt-base::after{left:-12px;right:-12px;bottom:-13px;height:12px;background:'+st1+'}',
+ '.wrap>#rt-base::before{left:-24px;right:-24px;bottom:-26px;height:12px;background:'+st2+';box-shadow:0 6px 10px -6px rgba(40,25,10,.45)}',
+ '#rt-base .rb-k{flex:none;font:700 8.5px var(--mono,monospace);letter-spacing:.14em;text-transform:uppercase;color:'+tx+'}',
+ '#rt-base input{flex:1;min-width:0;height:32px;box-sizing:border-box;padding:0 10px;border:1px solid '+k+';border-radius:3px;background:#fffaf0;font:13px var(--sans,system-ui);box-shadow:inset 0 1px 3px rgba(0,0,0,.2)}',
+ '#rt-base button{flex:none;width:auto!important;height:32px;margin:0!important;padding:0 14px!important;border:1px solid '+k+'!important;border-radius:3px!important;background:rgba(255,248,225,.5)!important;color:'+tx+'!important;font:700 10px var(--mono,monospace)!important;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;box-shadow:inset 0 1px 2px rgba(0,0,0,.18)!important}',
+ '.wrap>div.rt{margin-bottom:0!important}',
+ '@media(max-width:1379px){.wrap>#rt-base{padding:10px 14px}}'
 ].join('\n');document.head.appendChild(st);})();
 
 })();
