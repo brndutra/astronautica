@@ -15208,4 +15208,11 @@ document.addEventListener('click',function(e){var b=e.target.closest&&e.target.c
    window.ASTRO_MF[id]() devolve o HTML da página; S.drive guarda o mapa do Drive */
 (function(p0){mfPagina=function(p){var x=window.ASTRO_MF&&window.ASTRO_MF[p];if(typeof x==='function'){try{return x();}catch(e){console.error('mf '+p,e);return '';}}return p0.apply(this,arguments);};})(mfPagina);
 (function(){var n0=normaliza;normaliza=function(p){var b=n0(p);if(p&&p.drive&&typeof p.drive==='object')b.drive=p.drive;return b;};})();
+/* ======================= Posto de comando como página inicial =======================
+   O app sempre abre no Posto (modo operacional). O templo continua a um clique:
+   "templo completo" no Posto, o botão OP no painel ou Alt+O.
+   O 22-modo-operacional abre o Posto quando astro_modo === 'op'; aqui esse valor é
+   gravado antes daquela checagem (que roda 900 ms depois do carregamento).
+   Para voltar a abrir no templo, apague este arquivo e rode build.py. */
+try{localStorage.setItem('astro_modo','op');}catch(e){}
 })();
