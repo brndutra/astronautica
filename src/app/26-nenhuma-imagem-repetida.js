@@ -196,13 +196,12 @@ satPainelHTML=(function(f0){return function(){var h=f0.apply(this,arguments);ret
 document.addEventListener('keydown',function(e){if(e.altKey&&(e.key==='d'||e.key==='D')){e.preventDefault();ciMarca(document.querySelector('#modo-op [data-cila]'));}});
 document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-cila]');if(!b)return;e.preventDefault();ciMarca(b);},true);
 
-/* ---------- Posto de comando: flecha no Escudo, botões no topo ---------- */
+/* ---------- Posto de comando: flecha no Escudo ---------- */
 (function(){var p0=opPinta;opPinta=function(){p0.apply(this,arguments);var o=document.getElementById('modo-op');if(!o||!document.body.classList.contains('op-on'))return;
  var fc=o.querySelector('.op-foco'),hd=fc&&fc.querySelector(':scope > .op-cab');
  if(hd){var pf=fc.querySelector(':scope > .op-pflecha');if(!pf){pf=document.createElement('div');pf.className='op-pflecha';hd.insertAdjacentElement('afterend',pf);}var h=pfHTML();if(pf._h!==h||(h&&!pf.firstChild)){pf.innerHTML=h;pf._h=h;}}
- var tr=o.querySelector('.op-topr');if(tr){var bt=tr.querySelector('[data-cila]');if(!bt){bt=document.createElement('button');bt.type='button';bt.className='op-cila';bt.dataset.cila='1';bt.title='Desviei do alvo (Alt+D)';tr.insertBefore(bt,tr.firstChild);}
-  var hh='desviei <em>'+ciHoje()+'</em>';if(bt._h!==hh||(hh&&!bt.firstChild)){bt.innerHTML=hh;bt._h=hh;}
-  var fg=tr.querySelector('[data-fogo]'),mostra=opMin()>=18*60&&!fgFeita();if(mostra&&!fg){fg=document.createElement('button');fg.type='button';fg.className='op-fogo';fg.dataset.fogo='1';fg.textContent='acender a fogueira';tr.insertBefore(fg,bt.nextSibling);}else if(!mostra&&fg)fg.remove();}};})();
+ /* desviei e fogueira do topo: agora em opTopR (22) */
+};})();
 
 /* ---------- Sono: hora de deitar e de acordar no cartão do rodapé, com cálculo automático ---------- */
 function snUlt(){var H=S.sonoHM||{},k=Object.keys(H).sort().pop();return k?H[k]:null;}

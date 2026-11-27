@@ -9468,7 +9468,7 @@ function opLadoHTML(){var it=[];Array.prototype.forEach.call(document.querySelec
  h+='<div class="op-grp op-band"><span class="op-k">bandeira da semana</span><b>'+esc(B.meta||'— sem bandeira —')+'</b>'+(B.ok?'<small>capturada</small>':'')+'</div>';
  return h;}
 function opMonta(){var o=document.getElementById('modo-op');if(o)return o;o=document.createElement('section');o.id='modo-op';o.setAttribute('aria-label','Modo operacional');
- o.innerHTML='<header class="op-top"><div><span class="op-k">posto de comando · chalé 7</span><b class="op-dt"></b></div><div class="op-topr"><button type="button" class="op-sair" data-opsair>templo completo</button></div></header>'+
+ o.innerHTML='<header class="op-top"><div><span class="op-k">posto de comando · chalé 7</span><b class="op-dt"></b></div><div class="op-topr" data-notr></div></header>'+
   '<div class="op-l"></div><div class="op-g"><section class="op-c op-foco"><div class="op-esc"></div><div class="op-foco-c"></div></section><section class="op-c op-fazer"></section><section class="op-c op-lado"></section></div>';
  document.body.appendChild(o);
  o.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;var d=b.dataset,td=tdD(),f=td.foco,P=tdPref(),Q=mmD(),hj=hoje();
@@ -9491,10 +9491,23 @@ function opMonta(){var o=document.getElementById('modo-op');if(o)return o;o=docu
  return o;}
 function opCaptura(){var o=document.getElementById('modo-op'),i=o&&o.querySelector('[data-opcap]');if(!i||!i.value.trim())return;var r=document.getElementById('r-cap'),b=document.getElementById('b-rcap');
  if(r&&b){r.value=i.value.trim();b.click();}i.value='';setTimeout(function(){opPinta();var n=document.querySelector('#modo-op [data-opcap]');if(n)n.focus();},120);}
-function opPinta(){var o=document.getElementById('modo-op');if(!o||!document.body.classList.contains('op-on'))return;var a=document.activeElement,foco=a&&o.contains(a)&&/INPUT|TEXTAREA/.test(a.tagName);
+function opPinta(){var o=document.getElementById('modo-op');if(!o||!document.body.classList.contains('op-on'))return;try{opTopR();}catch(e){}var a=document.activeElement,foco=a&&o.contains(a)&&/INPUT|TEXTAREA/.test(a.tagName);
  o.querySelector('.op-dt').textContent=new Date().toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'long'})+' · '+new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
  var set=function(sel,h){var n=o.querySelector(sel);if(n&&(n._h!==h||!n.firstChild)&&!(foco&&n.contains(a))){n.innerHTML=h;n._h=h;}};
  set('.op-l',opLinhaHTML());set('.op-esc',opEscudo());var fc=opFocoHTML().replace(/<b>\d+:\d+<\/b>/,'');set('.op-foco-c',opFocoHTML());set('.op-fazer',opFazerHTML());set('.op-lado',opLadoHTML());}
+/* cabeçalho, lado direito, montado só aqui: duas pílulas.
+   alvo: desviei (com − quando há tracinho), travei, tarefa chata, ronda · caminho: manual, templo completo.
+   No Valhala, depois das 18h e com a fogueira apagada, entra "acender a fogueira" entre as duas. */
+function opTopR(){var tr=document.querySelector('#modo-op .op-topr');if(!tr)return;var n=0,R={on:false,h:[]},fogo=false;
+ try{n=ciHoje();}catch(e){}try{R=cxD().ronda||R;}catch(e){}try{fogo=TV_ON&&opMin()>=18*60&&!fgFeita();}catch(e){}
+ var h='<span class="op-pill op-pill-alvo" role="group" aria-label="desvios e travas">'+
+  '<button type="button" class="op-cila" data-cila title="Desviei do alvo (Alt+D)">desviei <em>'+n+'</em></button>'+
+  (n?'<button type="button" class="op-cila-menos" data-cilamenos title="tirar o último tracinho de hoje" aria-label="tirar o último tracinho de hoje">−</button>':'')+
+  '<button type="button" class="cx-trv" data-cxa="trav">travei</button><button type="button" data-cxa="esc">tarefa chata</button>'+
+  '<button type="button" class="cx-rdb" data-cxa="rd" title="horários da ronda">ronda <small>'+(R.on&&R.h.length?esc(R.h.join(' · ')):'desligada')+'</small></button></span>'+
+  (fogo?'<button type="button" class="op-fogo" data-fogo>acender a fogueira</button>':'')+
+  '<span class="op-pill op-pill-nav" role="group" aria-label="consulta e templo"><button type="button" class="cx-mfb" data-cxa="mf">manual</button><button type="button" class="op-sair" data-opsair>templo completo</button></span>';
+ if(tr._h!==h){tr.innerHTML=h;tr._h=h;}}
 function opModo(on){if(typeof on!=='boolean')on=!document.body.classList.contains('op-on');opMonta();document.body.classList.toggle('op-on',on);try{localStorage.setItem('astro_modo',on?'op':'templo');}catch(e){}
  var b=document.getElementById('op-tg');if(b){b.setAttribute('aria-pressed',String(on));}if(on){opPinta();window.scrollTo(0,0);}}
 function opBotao(){var n=document.getElementById('tt-indice');if(!n||document.getElementById('op-tg'))return;var b=document.createElement('button');b.type='button';b.id='op-tg';b.className='op-tg';b.title='Modo operacional · tudo numa tela';
@@ -10963,13 +10976,12 @@ satPainelHTML=(function(f0){return function(){var h=f0.apply(this,arguments);ret
 document.addEventListener('keydown',function(e){if(e.altKey&&(e.key==='d'||e.key==='D')){e.preventDefault();ciMarca(document.querySelector('#modo-op [data-cila]'));}});
 document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-cila]');if(!b)return;e.preventDefault();ciMarca(b);},true);
 
-/* ---------- Posto de comando: flecha no Escudo, botões no topo ---------- */
+/* ---------- Posto de comando: flecha no Escudo ---------- */
 (function(){var p0=opPinta;opPinta=function(){p0.apply(this,arguments);var o=document.getElementById('modo-op');if(!o||!document.body.classList.contains('op-on'))return;
  var fc=o.querySelector('.op-foco'),hd=fc&&fc.querySelector(':scope > .op-cab');
  if(hd){var pf=fc.querySelector(':scope > .op-pflecha');if(!pf){pf=document.createElement('div');pf.className='op-pflecha';hd.insertAdjacentElement('afterend',pf);}var h=pfHTML();if(pf._h!==h||(h&&!pf.firstChild)){pf.innerHTML=h;pf._h=h;}}
- var tr=o.querySelector('.op-topr');if(tr){var bt=tr.querySelector('[data-cila]');if(!bt){bt=document.createElement('button');bt.type='button';bt.className='op-cila';bt.dataset.cila='1';bt.title='Desviei do alvo (Alt+D)';tr.insertBefore(bt,tr.firstChild);}
-  var hh='desviei <em>'+ciHoje()+'</em>';if(bt._h!==hh||(hh&&!bt.firstChild)){bt.innerHTML=hh;bt._h=hh;}
-  var fg=tr.querySelector('[data-fogo]'),mostra=opMin()>=18*60&&!fgFeita();if(mostra&&!fg){fg=document.createElement('button');fg.type='button';fg.className='op-fogo';fg.dataset.fogo='1';fg.textContent='acender a fogueira';tr.insertBefore(fg,bt.nextSibling);}else if(!mostra&&fg)fg.remove();}};})();
+ /* desviei e fogueira do topo: agora em opTopR (22) */
+};})();
 
 /* ---------- Sono: hora de deitar e de acordar no cartão do rodapé, com cálculo automático ---------- */
 function snUlt(){var H=S.sonoHM||{},k=Object.keys(H).sort().pop();return k?H[k]:null;}
@@ -11296,11 +11308,7 @@ document.addEventListener('click',function(e){var b=e.target.closest&&e.target.c
 /* ======================= Tirar tracinho e excluir hábito =======================
    "desviei" ganha um − ao lado (retira o último tracinho de hoje). Na grade mensal dos Rastreados, cada hábito ganha um ×:
    o primeiro toque pergunta "excluir?", o segundo exclui (e ainda dá para desfazer). */
-function ciMenos(){var c=ciD(),hj=dHoje(),L=c.dia[hj]||[];if(!L.length)return;L.pop();if(!L.length)delete c.dia[hj];try{grava();}catch(e){}try{opPinta();}catch(e){}try{ciMenosBt();}catch(e){}}
-function ciMenosBt(){var bt=document.querySelector('#modo-op [data-cila]');if(!bt)return;var m=bt.parentNode.querySelector('[data-cilamenos]');
- if(!m){m=document.createElement('button');m.type='button';m.className='op-cila-menos';m.dataset.cilamenos='1';m.title='tirar o último tracinho de hoje';m.setAttribute('aria-label','tirar o último tracinho de hoje');m.textContent='−';}
- if(bt.nextSibling!==m)bt.insertAdjacentElement('afterend',m);m.hidden=!ciHoje();}
-(function(){var p0=opPinta;opPinta=function(){var r=p0.apply(this,arguments);try{ciMenosBt();}catch(e){}return r;};})();
+function ciMenos(){var c=ciD(),hj=dHoje(),L=c.dia[hj]||[];if(!L.length)return;L.pop();if(!L.length)delete c.dia[hj];try{grava();}catch(e){}try{opPinta();}catch(e){}}
 document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-cilamenos]');if(!b)return;e.preventDefault();e.stopPropagation();ciMenos();},false);
 pintaRastro=(function(f0){return function(){var r=f0.apply(this,arguments);try{var w=document.getElementById('rt-w');if(w){var tds=w.querySelectorAll('tbody tr:not(.tot)>td.h');
   Array.prototype.forEach.call(tds,function(td,i){if(td.querySelector('[data-rthx]'))return;var x=document.createElement('button');x.type='button';x.className='rt-hx';x.dataset.rthx=i;x.title='excluir hábito';x.setAttribute('aria-label','excluir hábito');x.textContent='×';td.appendChild(x);});}}catch(e){}return r;};})(pintaRastro);
@@ -11308,8 +11316,6 @@ document.addEventListener('click',function(e){var b=e.target.closest&&e.target.c
  if(!b.classList.contains('conf')){b.classList.add('conf');b.textContent='excluir?';clearTimeout(b._t);b._t=setTimeout(function(){b.classList.remove('conf');b.textContent='×';},3500);return;}
  var i=+b.dataset.rthx;if(S.hab&&S.hab[i]){var nm=S.hab[i].nome;S.hab.splice(i,1);try{grava();}catch(z){}try{pinta();}catch(z){}}},false);
 (function(){var st=document.createElement('style');st.id='ci-hab-css';st.textContent=[
- '#modo-op .op-cila-menos{margin:0 0 0 -4px;padding:0;width:26px!important;min-width:0;height:26px;border:1px solid #7a4a58;border-radius:50%;background:#f4ead2;color:#7a4a58;font:700 15px/1 var(--sans);cursor:pointer;align-self:center}',
- '#modo-op .op-cila-menos:hover{background:#7a4a58;color:#fff}#modo-op .op-cila-menos[hidden]{display:none}',
  '.rtg td.h{position:relative;padding-right:22px!important}',
  '.rtg td.h .rt-hx{position:absolute;right:2px;top:50%;transform:translateY(-50%);margin:0;padding:0 5px;width:auto!important;min-width:0;height:18px;border:0;border-radius:4px;background:transparent;color:#a08b6c;font:14px/1 Georgia,serif;cursor:pointer;opacity:0;transition:opacity .15s}',
  '.rtg tr:hover td.h .rt-hx,.rtg td.h .rt-hx:focus,.rtg td.h .rt-hx.conf{opacity:1}',
@@ -12178,17 +12184,10 @@ function argoMede(){var o=document.getElementById('modo-op');if(!o||!window.Resi
 function argoRod(){var r=document.getElementById('rod-apps');if(!r||!window.ResizeObserver||r._argoRO)return;r._argoRO=new ResizeObserver(function(){var h=Math.round(r.getBoundingClientRect().height);if(h)document.body.style.setProperty('--a-rodh',h+'px');});r._argoRO.observe(r);}
 (function(){var m0=opMonta;opMonta=function(){var x=m0.apply(this,arguments);try{argoRod();}catch(e){}return x;};try{argoRod();}catch(e){}setTimeout(argoRod,1500);})();
 
-/* Argo · nível do mar = Clepsidra; Fogueira não toma mais o cartão da Arena; desviei vai para o Escudo de Aquiles */
+/* Argo · nível do mar = Clepsidra; Fogueira não toma mais o cartão da Arena (desviei fica no topo, em opTopR) */
 function argoMar(){var a=opMin(),r=Math.max(0,Math.min(1,1-(a-360)/1080));document.body.style.setProperty('--a-mar',r.toFixed(3));var rd=document.getElementById('rod-apps');if(rd){var hm=String(Math.floor(a/60)%24).padStart(2,'0')+':'+String(a%60).padStart(2,'0'),t=a<360?'clepsidra · '+hm+' · o dia ainda não começou':(r>0?'clepsidra · '+hm+' · resta '+Math.round(r*100)+'% do dia':'clepsidra · '+hm+' · o dia escoou');if(rd.dataset.mar!==t)rd.dataset.mar=t;}}
-function argoCila(){if(document.body.classList.contains('tv'))return;var o=document.getElementById('modo-op');if(!o)return;var c=o.querySelector('.op-col1');if(!c)return;
- var f=c.querySelector(':scope > .op-foco')||c,sl=f.querySelector(':scope > .op-cila-slot');if(!sl){sl=document.createElement('div');sl.className='op-cila-slot';}var ref=f.querySelector(':scope > .op-pflecha')||f.querySelector(':scope > .op-cab');if(ref){if(ref.nextElementSibling!==sl)ref.insertAdjacentElement('afterend',sl);}else if(sl.parentNode!==f)f.insertBefore(sl,f.firstChild);
- var b=sl.querySelector('[data-cila]');if(!b){b=document.createElement('button');b.type='button';b.className='op-cila';b.dataset.cila='1';b.title='Desviei do alvo (Alt+D)';sl.appendChild(b);}
- var hh='desviei <em>'+ciHoje()+'</em>';if(b._h!==hh||!b.firstChild){b.innerHTML=hh;b._h=hh;}
- var m=sl.querySelector('[data-cilamenos]');if(!m){m=document.createElement('button');m.type='button';m.className='op-cila-menos';m.dataset.cilamenos='1';m.title='tirar o último tracinho de hoje';m.setAttribute('aria-label','tirar o último tracinho de hoje');m.textContent='−';sl.appendChild(m);}
- m.hidden=!ciHoje();}
 (function(){var f0=op2FogModo;op2FogModo=function(){if(!document.body.classList.contains('tv'))return false;return f0.apply(this,arguments);};
- var p0=opPinta;opPinta=function(){var r=p0.apply(this,arguments);try{argoMar();argoCila();}catch(e){}return r;};try{argoMar();}catch(e){}})();
-document.addEventListener('keydown',function(e){if(e.altKey&&(e.key==='d'||e.key==='D')&&!document.body.classList.contains('tv')){var b=document.querySelector('#modo-op .op-cila-slot [data-cila]');if(b){e.stopImmediatePropagation();e.preventDefault();ciMarca(b);}}},true);
+ var p0=opPinta;opPinta=function(){var r=p0.apply(this,arguments);try{argoMar();}catch(e){}return r;};try{argoMar();}catch(e){}})();
 
 /* Clepsidra em ondas no pé do casco: uma onda por fase do dia */
 var AM_COR={'06':['#cfe8f3','#183a52'],'09':['#a9d4ea','#183a52'],'12':['#7fbcde','#123047'],'15':['#5d9fcb','#fbf5e6'],'18':['#4680b2','#fbf5e6'],'21':['#2f5f8f','#fbf5e6']};
@@ -14482,8 +14481,6 @@ function cxRondaPinta(){var r=cxRondaVence(),t=document.getElementById('cx-ronda
 setInterval(function(){try{cxRondaPinta();}catch(e){}},20000);setTimeout(function(){try{cxRondaPinta();}catch(e){}},4000);
 
 /* ---------- onde ficam os botões ---------- */
-satOpTop=(function(f0){return function(){var h=f0.apply(this,arguments),R=cxD().ronda;
- return h+'<span class="cx-skbt" data-notr><button type="button" class="cx-trv" data-cxa="trav">travei</button><button type="button" data-cxa="esc">tarefa chata</button><button type="button" class="cx-rdb" data-cxa="rd" title="horários da ronda">ronda '+(R.on&&R.h.length?esc(R.h.join(' · ')):'desligada')+'</button></span>';};})(satOpTop);
 satPainelHTML=(function(f0){return function(){var h=f0.apply(this,arguments),R=cxD().ronda;
  return h+'<div class="cx-sat"><span>ronda d'+CX_SK.o+' '+esc(CX_SK.nm)+': <b>'+(R.on&&R.h.length?esc(R.h.join(' · ')):'desligada')+'</b></span><button type="button" data-cxa="rd">horários</button><button type="button" data-cxa="esc">tarefa chata</button><button type="button" data-cxa="trav">travei</button></div>';};})(satPainelHTML);
 document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-cxa]');if(b){e.preventDefault();e.stopPropagation();var a=b.getAttribute('data-cxa');cxAbre(a,a==='rd'?null:'ini',{});return;}
@@ -14724,7 +14721,6 @@ function mfTg(){var fc=document.getElementById('fc-tg')||document.getElementById
   b.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();mfAbre();});}
  if(b.previousElementSibling!==fc)fc.parentNode.insertBefore(b,fc.nextSibling);}
 setTimeout(mfTg,900);setInterval(mfTg,2500);
-satOpTop=(function(f0){return function(){return f0.apply(this,arguments).replace('<span class="cx-skbt" data-notr>','<span class="cx-skbt" data-notr><button type="button" class="cx-mfb" data-cxa="mf">manual</button>');};})(satOpTop);
 
 /* ======================= NPCs por gatilho no cabeçalho do Posto =======================
    Cabeçalho limpo: só o retrato. O guardião e o antagonista do dia falam quando algo acontece

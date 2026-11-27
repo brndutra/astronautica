@@ -137,17 +137,10 @@ function argoMede(){var o=document.getElementById('modo-op');if(!o||!window.Resi
 function argoRod(){var r=document.getElementById('rod-apps');if(!r||!window.ResizeObserver||r._argoRO)return;r._argoRO=new ResizeObserver(function(){var h=Math.round(r.getBoundingClientRect().height);if(h)document.body.style.setProperty('--a-rodh',h+'px');});r._argoRO.observe(r);}
 (function(){var m0=opMonta;opMonta=function(){var x=m0.apply(this,arguments);try{argoRod();}catch(e){}return x;};try{argoRod();}catch(e){}setTimeout(argoRod,1500);})();
 
-/* Argo · nível do mar = Clepsidra; Fogueira não toma mais o cartão da Arena; desviei vai para o Escudo de Aquiles */
+/* Argo · nível do mar = Clepsidra; Fogueira não toma mais o cartão da Arena (desviei fica no topo, em opTopR) */
 function argoMar(){var a=opMin(),r=Math.max(0,Math.min(1,1-(a-360)/1080));document.body.style.setProperty('--a-mar',r.toFixed(3));var rd=document.getElementById('rod-apps');if(rd){var hm=String(Math.floor(a/60)%24).padStart(2,'0')+':'+String(a%60).padStart(2,'0'),t=a<360?'clepsidra · '+hm+' · o dia ainda não começou':(r>0?'clepsidra · '+hm+' · resta '+Math.round(r*100)+'% do dia':'clepsidra · '+hm+' · o dia escoou');if(rd.dataset.mar!==t)rd.dataset.mar=t;}}
-function argoCila(){if(document.body.classList.contains('tv'))return;var o=document.getElementById('modo-op');if(!o)return;var c=o.querySelector('.op-col1');if(!c)return;
- var f=c.querySelector(':scope > .op-foco')||c,sl=f.querySelector(':scope > .op-cila-slot');if(!sl){sl=document.createElement('div');sl.className='op-cila-slot';}var ref=f.querySelector(':scope > .op-pflecha')||f.querySelector(':scope > .op-cab');if(ref){if(ref.nextElementSibling!==sl)ref.insertAdjacentElement('afterend',sl);}else if(sl.parentNode!==f)f.insertBefore(sl,f.firstChild);
- var b=sl.querySelector('[data-cila]');if(!b){b=document.createElement('button');b.type='button';b.className='op-cila';b.dataset.cila='1';b.title='Desviei do alvo (Alt+D)';sl.appendChild(b);}
- var hh='desviei <em>'+ciHoje()+'</em>';if(b._h!==hh||!b.firstChild){b.innerHTML=hh;b._h=hh;}
- var m=sl.querySelector('[data-cilamenos]');if(!m){m=document.createElement('button');m.type='button';m.className='op-cila-menos';m.dataset.cilamenos='1';m.title='tirar o último tracinho de hoje';m.setAttribute('aria-label','tirar o último tracinho de hoje');m.textContent='−';sl.appendChild(m);}
- m.hidden=!ciHoje();}
 (function(){var f0=op2FogModo;op2FogModo=function(){if(!document.body.classList.contains('tv'))return false;return f0.apply(this,arguments);};
- var p0=opPinta;opPinta=function(){var r=p0.apply(this,arguments);try{argoMar();argoCila();}catch(e){}return r;};try{argoMar();}catch(e){}})();
-document.addEventListener('keydown',function(e){if(e.altKey&&(e.key==='d'||e.key==='D')&&!document.body.classList.contains('tv')){var b=document.querySelector('#modo-op .op-cila-slot [data-cila]');if(b){e.stopImmediatePropagation();e.preventDefault();ciMarca(b);}}},true);
+ var p0=opPinta;opPinta=function(){var r=p0.apply(this,arguments);try{argoMar();}catch(e){}return r;};try{argoMar();}catch(e){}})();
 
 /* Clepsidra em ondas no pé do casco: uma onda por fase do dia */
 var AM_COR={'06':['#cfe8f3','#183a52'],'09':['#a9d4ea','#183a52'],'12':['#7fbcde','#123047'],'15':['#5d9fcb','#fbf5e6'],'18':['#4680b2','#fbf5e6'],'21':['#2f5f8f','#fbf5e6']};

@@ -1,7 +1,7 @@
 /* ===== Drakkar dos Einherjar (tema Valhala): o Posto vira o convés do drakkar — quatro velas com mastro, casco de madeira com escudos (os registros do dia) e a Vigília em ondas no mar ===== */
 html body.tv.op-on{--v-b:clamp(78px,6.4vw,104px);--v-aft:calc(var(--v-b)*1.125);--v-prow:calc(var(--v-b)*2.0667)}
 html body.tv.op-on #modo-op{grid-template-columns:minmax(0,1fr)!important;padding-left:calc(var(--v-aft) + 4px)!important;padding-right:calc(var(--v-prow) + 2px)!important;padding-bottom:calc(var(--a-rodh,190px) + 12px)!important}
-html body.tv.op-on #modo-op>.op-top{margin-left:calc(18px - var(--v-aft) - 4px);margin-right:calc(18px - var(--v-prow) - 2px)}
+@media(min-width:601px){html body.tv.op-on #modo-op>.op-top{margin-left:calc(18px - var(--v-aft) - 4px);margin-right:calc(18px - var(--v-prow) - 2px)}}
 html body.tv.op-on #modo-op>.op-l{display:none!important}
 html body.tv.op-on #modo-op>:is(.op-top,.op-g){grid-column:1 / -1!important}
 html body.tv.op-on #modo-op .op-l::after,html body.tv.op-on #modo-op .op-g::after{content:none!important;display:none!important}

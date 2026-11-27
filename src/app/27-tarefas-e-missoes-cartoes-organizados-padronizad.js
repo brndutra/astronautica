@@ -170,11 +170,7 @@ document.addEventListener('click',function(e){var b=e.target.closest&&e.target.c
 /* ======================= Tirar tracinho e excluir hábito =======================
    "desviei" ganha um − ao lado (retira o último tracinho de hoje). Na grade mensal dos Rastreados, cada hábito ganha um ×:
    o primeiro toque pergunta "excluir?", o segundo exclui (e ainda dá para desfazer). */
-function ciMenos(){var c=ciD(),hj=dHoje(),L=c.dia[hj]||[];if(!L.length)return;L.pop();if(!L.length)delete c.dia[hj];try{grava();}catch(e){}try{opPinta();}catch(e){}try{ciMenosBt();}catch(e){}}
-function ciMenosBt(){var bt=document.querySelector('#modo-op [data-cila]');if(!bt)return;var m=bt.parentNode.querySelector('[data-cilamenos]');
- if(!m){m=document.createElement('button');m.type='button';m.className='op-cila-menos';m.dataset.cilamenos='1';m.title='tirar o último tracinho de hoje';m.setAttribute('aria-label','tirar o último tracinho de hoje');m.textContent='−';}
- if(bt.nextSibling!==m)bt.insertAdjacentElement('afterend',m);m.hidden=!ciHoje();}
-(function(){var p0=opPinta;opPinta=function(){var r=p0.apply(this,arguments);try{ciMenosBt();}catch(e){}return r;};})();
+function ciMenos(){var c=ciD(),hj=dHoje(),L=c.dia[hj]||[];if(!L.length)return;L.pop();if(!L.length)delete c.dia[hj];try{grava();}catch(e){}try{opPinta();}catch(e){}}
 document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-cilamenos]');if(!b)return;e.preventDefault();e.stopPropagation();ciMenos();},false);
 pintaRastro=(function(f0){return function(){var r=f0.apply(this,arguments);try{var w=document.getElementById('rt-w');if(w){var tds=w.querySelectorAll('tbody tr:not(.tot)>td.h');
   Array.prototype.forEach.call(tds,function(td,i){if(td.querySelector('[data-rthx]'))return;var x=document.createElement('button');x.type='button';x.className='rt-hx';x.dataset.rthx=i;x.title='excluir hábito';x.setAttribute('aria-label','excluir hábito');x.textContent='×';td.appendChild(x);});}}catch(e){}return r;};})(pintaRastro);
@@ -182,8 +178,6 @@ document.addEventListener('click',function(e){var b=e.target.closest&&e.target.c
  if(!b.classList.contains('conf')){b.classList.add('conf');b.textContent='excluir?';clearTimeout(b._t);b._t=setTimeout(function(){b.classList.remove('conf');b.textContent='×';},3500);return;}
  var i=+b.dataset.rthx;if(S.hab&&S.hab[i]){var nm=S.hab[i].nome;S.hab.splice(i,1);try{grava();}catch(z){}try{pinta();}catch(z){}}},false);
 (function(){var st=document.createElement('style');st.id='ci-hab-css';st.textContent=[
- '#modo-op .op-cila-menos{margin:0 0 0 -4px;padding:0;width:26px!important;min-width:0;height:26px;border:1px solid #7a4a58;border-radius:50%;background:#f4ead2;color:#7a4a58;font:700 15px/1 var(--sans);cursor:pointer;align-self:center}',
- '#modo-op .op-cila-menos:hover{background:#7a4a58;color:#fff}#modo-op .op-cila-menos[hidden]{display:none}',
  '.rtg td.h{position:relative;padding-right:22px!important}',
  '.rtg td.h .rt-hx{position:absolute;right:2px;top:50%;transform:translateY(-50%);margin:0;padding:0 5px;width:auto!important;min-width:0;height:18px;border:0;border-radius:4px;background:transparent;color:#a08b6c;font:14px/1 Georgia,serif;cursor:pointer;opacity:0;transition:opacity .15s}',
  '.rtg tr:hover td.h .rt-hx,.rtg td.h .rt-hx:focus,.rtg td.h .rt-hx.conf{opacity:1}',

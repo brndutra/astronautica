@@ -11,7 +11,25 @@ body.op-on #rod-apps{z-index:75!important}
 #modo-op .op-k{display:block;font:700 9px var(--mono,monospace);letter-spacing:.2em;text-transform:uppercase;color:#9a6b3a}
 #modo-op .op-top{display:flex;align-items:center;justify-content:space-between;padding-bottom:8px;border-bottom:3px double #5a3f2c}
 #modo-op .op-dt{font:400 22px Georgia,serif;color:#2a2418;text-transform:none}
-#modo-op .op-sair{width:auto!important;margin:0!important;padding:7px 14px!important;border:1.5px solid #5a3f2c!important;border-radius:999px!important;background:#f4ead2!important;color:#5a3f2c!important;font:700 10px var(--mono,monospace)!important;letter-spacing:.14em;text-transform:uppercase;cursor:pointer}
+/* cabeçalho: os botões fixos em duas pílulas segmentadas (alvo · caminho), montadas por opTopR */
+#modo-op .op-topr{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:8px}
+#modo-op .op-pill{display:inline-flex;align-items:stretch;height:30px;border:1.5px solid #2e2620;border-radius:999px;background:#fffdf6;overflow:hidden;box-shadow:0 1px 0 rgba(46,38,32,.18)}
+#modo-op .op-pill>button,#modo-op .op-fogo{all:unset;box-sizing:border-box;display:inline-flex;align-items:center;gap:6px;padding:0 12px;font:600 12px/1 var(--sans,system-ui,sans-serif);color:#2e2620;white-space:nowrap;cursor:pointer;transition:background .15s,color .15s}
+#modo-op .op-pill>button+button{border-left:1px solid rgba(46,38,32,.25)}
+#modo-op .op-pill>button:hover,#modo-op .op-pill>button:focus-visible{background:#2e2620;color:#fffdf6}
+#modo-op .op-pill .op-cila,#modo-op .op-pill .op-sair{font:700 10px/1 var(--mono,monospace);letter-spacing:.14em;text-transform:uppercase}
+#modo-op .op-pill .op-cila{color:#7a4a58}
+#modo-op .op-pill .op-cila em{font-style:normal;padding:3px 7px;border-radius:999px;background:#7a4a58;color:#fff;letter-spacing:0}
+#modo-op .op-pill .op-cila-menos{padding:0 10px;color:#7a4a58;font:700 15px/1 var(--sans,system-ui,sans-serif)}
+#modo-op .op-pill .op-cila:hover,#modo-op .op-pill .op-cila-menos:hover{background:#7a4a58;color:#fff}
+#modo-op .op-pill .cx-trv{background:#2e2620;color:#fffdf6}
+#modo-op .op-pill .cx-trv:hover{background:#7a4a58}
+#modo-op .op-pill .cx-rdb small{font:500 10.5px var(--mono,monospace);opacity:.7}
+#modo-op .op-fogo{height:30px;border:1.5px solid #a5552e;border-radius:999px;background:#a5552e;color:#fff8ec}
+@media(max-width:600px){#modo-op>.op-top{min-width:0!important;max-width:100%!important;box-sizing:border-box}#modo-op>.op-top>*{min-width:0;max-width:100%}
+ #modo-op .op-top .op-dt{white-space:normal}#modo-op .op-topr{width:100%;justify-content:flex-start}
+ #modo-op .op-pill{max-width:100%;overflow-x:auto;scrollbar-width:none}#modo-op .op-pill::-webkit-scrollbar{display:none}#modo-op .op-pill>button{flex:none}
+ #modo-op .op-pill .cx-rdb small{display:none}}
 /* linha do dia */
 #modo-op .op-linha{position:relative;height:74px;padding:0 2px}
 #modo-op .op-segs{position:absolute;left:0;right:0;top:10px;height:40px;display:grid;grid-template-columns:repeat(6,1fr);gap:3px}

@@ -43,7 +43,7 @@ function opLadoHTML(){var it=[];Array.prototype.forEach.call(document.querySelec
  h+='<div class="op-grp op-band"><span class="op-k">bandeira da semana</span><b>'+esc(B.meta||'— sem bandeira —')+'</b>'+(B.ok?'<small>capturada</small>':'')+'</div>';
  return h;}
 function opMonta(){var o=document.getElementById('modo-op');if(o)return o;o=document.createElement('section');o.id='modo-op';o.setAttribute('aria-label','Modo operacional');
- o.innerHTML='<header class="op-top"><div><span class="op-k">posto de comando · chalé 7</span><b class="op-dt"></b></div><div class="op-topr"><button type="button" class="op-sair" data-opsair>templo completo</button></div></header>'+
+ o.innerHTML='<header class="op-top"><div><span class="op-k">posto de comando · chalé 7</span><b class="op-dt"></b></div><div class="op-topr" data-notr></div></header>'+
   '<div class="op-l"></div><div class="op-g"><section class="op-c op-foco"><div class="op-esc"></div><div class="op-foco-c"></div></section><section class="op-c op-fazer"></section><section class="op-c op-lado"></section></div>';
  document.body.appendChild(o);
  o.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;var d=b.dataset,td=tdD(),f=td.foco,P=tdPref(),Q=mmD(),hj=hoje();
@@ -66,10 +66,23 @@ function opMonta(){var o=document.getElementById('modo-op');if(o)return o;o=docu
  return o;}
 function opCaptura(){var o=document.getElementById('modo-op'),i=o&&o.querySelector('[data-opcap]');if(!i||!i.value.trim())return;var r=document.getElementById('r-cap'),b=document.getElementById('b-rcap');
  if(r&&b){r.value=i.value.trim();b.click();}i.value='';setTimeout(function(){opPinta();var n=document.querySelector('#modo-op [data-opcap]');if(n)n.focus();},120);}
-function opPinta(){var o=document.getElementById('modo-op');if(!o||!document.body.classList.contains('op-on'))return;var a=document.activeElement,foco=a&&o.contains(a)&&/INPUT|TEXTAREA/.test(a.tagName);
+function opPinta(){var o=document.getElementById('modo-op');if(!o||!document.body.classList.contains('op-on'))return;try{opTopR();}catch(e){}var a=document.activeElement,foco=a&&o.contains(a)&&/INPUT|TEXTAREA/.test(a.tagName);
  o.querySelector('.op-dt').textContent=new Date().toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'long'})+' · '+new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
  var set=function(sel,h){var n=o.querySelector(sel);if(n&&(n._h!==h||!n.firstChild)&&!(foco&&n.contains(a))){n.innerHTML=h;n._h=h;}};
  set('.op-l',opLinhaHTML());set('.op-esc',opEscudo());var fc=opFocoHTML().replace(/<b>\d+:\d+<\/b>/,'');set('.op-foco-c',opFocoHTML());set('.op-fazer',opFazerHTML());set('.op-lado',opLadoHTML());}
+/* cabeçalho, lado direito, montado só aqui: duas pílulas.
+   alvo: desviei (com − quando há tracinho), travei, tarefa chata, ronda · caminho: manual, templo completo.
+   No Valhala, depois das 18h e com a fogueira apagada, entra "acender a fogueira" entre as duas. */
+function opTopR(){var tr=document.querySelector('#modo-op .op-topr');if(!tr)return;var n=0,R={on:false,h:[]},fogo=false;
+ try{n=ciHoje();}catch(e){}try{R=cxD().ronda||R;}catch(e){}try{fogo=TV_ON&&opMin()>=18*60&&!fgFeita();}catch(e){}
+ var h='<span class="op-pill op-pill-alvo" role="group" aria-label="desvios e travas">'+
+  '<button type="button" class="op-cila" data-cila title="Desviei do alvo (Alt+D)">desviei <em>'+n+'</em></button>'+
+  (n?'<button type="button" class="op-cila-menos" data-cilamenos title="tirar o último tracinho de hoje" aria-label="tirar o último tracinho de hoje">−</button>':'')+
+  '<button type="button" class="cx-trv" data-cxa="trav">travei</button><button type="button" data-cxa="esc">tarefa chata</button>'+
+  '<button type="button" class="cx-rdb" data-cxa="rd" title="horários da ronda">ronda <small>'+(R.on&&R.h.length?esc(R.h.join(' · ')):'desligada')+'</small></button></span>'+
+  (fogo?'<button type="button" class="op-fogo" data-fogo>acender a fogueira</button>':'')+
+  '<span class="op-pill op-pill-nav" role="group" aria-label="consulta e templo"><button type="button" class="cx-mfb" data-cxa="mf">manual</button><button type="button" class="op-sair" data-opsair>templo completo</button></span>';
+ if(tr._h!==h){tr.innerHTML=h;tr._h=h;}}
 function opModo(on){if(typeof on!=='boolean')on=!document.body.classList.contains('op-on');opMonta();document.body.classList.toggle('op-on',on);try{localStorage.setItem('astro_modo',on?'op':'templo');}catch(e){}
  var b=document.getElementById('op-tg');if(b){b.setAttribute('aria-pressed',String(on));}if(on){opPinta();window.scrollTo(0,0);}}
 function opBotao(){var n=document.getElementById('tt-indice');if(!n||document.getElementById('op-tg'))return;var b=document.createElement('button');b.type='button';b.id='op-tg';b.className='op-tg';b.title='Modo operacional · tudo numa tela';

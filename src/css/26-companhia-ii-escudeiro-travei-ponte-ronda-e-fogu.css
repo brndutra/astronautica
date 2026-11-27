@@ -50,11 +50,6 @@ body.eg #cx{--cx-bg1:#1f3a63;--cx-bg2:#0a1222;--cx-ac:#e6c56e;--cx-ac2:#4f86c9;-
 #cx .cx-lk{border:0;padding:2px;font:italic 14px Georgia,serif;color:var(--cx-ac);text-decoration:underline}
 @media(max-width:560px){#cx .cx-op{grid-template-columns:1fr}#cx .cx-av{width:54px;height:54px}#cx .cx-bl{font-size:14.5px}}
 /* atalhos ao lado do sidekick, no topo do Posto */
-#modo-op .cx-skbt{display:inline-flex;flex-wrap:wrap;align-items:center;gap:6px;margin-left:10px;vertical-align:middle}
-#modo-op .cx-skbt button{width:auto!important;margin:0!important;padding:6px 12px!important;border:1.5px solid #2e2620!important;border-radius:999px!important;background:#fffdf6!important;color:#2a2418!important;font:600 12px var(--sans)!important;cursor:pointer;white-space:nowrap}
-#modo-op .cx-skbt button:hover{background:#2e2620!important;color:#fffdf6!important}
-#modo-op .cx-skbt .cx-trv{background:#2e2620!important;color:#fffdf6!important}
-#modo-op .cx-skbt .cx-rdb{font-weight:500!important;border-style:dashed!important}
 /* no painel do sidekick */
 .cx-sat{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:10px;padding-top:10px;border-top:1px dashed rgba(120,90,50,.4);font:13px Georgia,serif}
 .cx-sat span{flex:1 1 100%}
@@ -183,7 +178,6 @@ body.eg #cx-ronda .rd-av .cx-av{background:conic-gradient(from 210deg,#e6c56e,#4
 #cx .mf-rv textarea{width:100%}
 #cx .cx-op7{grid-template-columns:repeat(2,minmax(0,1fr))}
 #cx .cx-op7 button{padding:11px 14px}
-#modo-op .cx-skbt .cx-mfb{border-style:double!important;border-width:3px!important}
 #lat-topo .lt-r1 .lt-bts>#mf-tg{flex:none;display:grid!important;place-items:center;width:26px!important;height:26px!important;margin:0!important;padding:0!important;border:1px solid #c9a45a!important;border-radius:50%!important;background:#fffaf0!important;color:#9a4a30!important;cursor:pointer}
 #lat-topo .lt-r1 .lt-bts>#mf-tg:hover{background:#9a4a30!important;color:#fffaf0!important}
 body.tv #lat-topo .lt-r1 .lt-bts>#mf-tg{border-color:#8a9aa6!important;color:#b3262d!important;background:#f3efe6!important}

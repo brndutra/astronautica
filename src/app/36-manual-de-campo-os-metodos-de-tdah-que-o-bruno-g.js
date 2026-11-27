@@ -230,7 +230,6 @@ function mfTg(){var fc=document.getElementById('fc-tg')||document.getElementById
   b.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();mfAbre();});}
  if(b.previousElementSibling!==fc)fc.parentNode.insertBefore(b,fc.nextSibling);}
 setTimeout(mfTg,900);setInterval(mfTg,2500);
-satOpTop=(function(f0){return function(){return f0.apply(this,arguments).replace('<span class="cx-skbt" data-notr>','<span class="cx-skbt" data-notr><button type="button" class="cx-mfb" data-cxa="mf">manual</button>');};})(satOpTop);
 
 /* ======================= NPCs por gatilho no cabeçalho do Posto =======================
    Cabeçalho limpo: só o retrato. O guardião e o antagonista do dia falam quando algo acontece

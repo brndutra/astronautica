@@ -389,8 +389,6 @@ function cxRondaPinta(){var r=cxRondaVence(),t=document.getElementById('cx-ronda
 setInterval(function(){try{cxRondaPinta();}catch(e){}},20000);setTimeout(function(){try{cxRondaPinta();}catch(e){}},4000);
 
 /* ---------- onde ficam os botões ---------- */
-satOpTop=(function(f0){return function(){var h=f0.apply(this,arguments),R=cxD().ronda;
- return h+'<span class="cx-skbt" data-notr><button type="button" class="cx-trv" data-cxa="trav">travei</button><button type="button" data-cxa="esc">tarefa chata</button><button type="button" class="cx-rdb" data-cxa="rd" title="horários da ronda">ronda '+(R.on&&R.h.length?esc(R.h.join(' · ')):'desligada')+'</button></span>';};})(satOpTop);
 satPainelHTML=(function(f0){return function(){var h=f0.apply(this,arguments),R=cxD().ronda;
  return h+'<div class="cx-sat"><span>ronda d'+CX_SK.o+' '+esc(CX_SK.nm)+': <b>'+(R.on&&R.h.length?esc(R.h.join(' · ')):'desligada')+'</b></span><button type="button" data-cxa="rd">horários</button><button type="button" data-cxa="esc">tarefa chata</button><button type="button" data-cxa="trav">travei</button></div>';};})(satPainelHTML);
 document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-cxa]');if(b){e.preventDefault();e.stopPropagation();var a=b.getAttribute('data-cxa');cxAbre(a,a==='rd'?null:'ini',{});return;}
