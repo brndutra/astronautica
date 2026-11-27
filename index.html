@@ -20550,11 +20550,12 @@ setTimeout(function(){try{pilulasJuntas();}catch(e){}},1500);setInterval(functio
  B+' .br-db .regdia .rdent>button{border-radius:0!important;margin:0!important;height:30px!important;box-shadow:none!important;border:1px solid var(--pj-bd)!important}',
  B+' .br-db>.br-ver{margin-left:-6px!important;border-radius:0 999px 999px 0!important;border-left:0!important;box-shadow:none!important;border-color:var(--pj-bd)!important}',
  /* guia na ficha */
- '#fc-dlg>.fc-guia{margin:10px 14px 12px;font-size:12px}',
+ '#fc-dlg>.fc-guia{position:absolute;left:50%;bottom:30px;transform:translateX(-50%);z-index:5;width:min(640px,80%);margin:0;font-size:12px;text-align:center}',
+ '#fc-dlg>.fc-guia[open]>summary{background:#5a3a10;color:#fbf3df}',
  '#fc-dlg>.fc-guia>summary{display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border:1px solid #b89c72;border-radius:999px;background:#fbf3df;color:#5a3a10;font:700 8.5px var(--mono,monospace);letter-spacing:.2em;text-transform:uppercase;cursor:pointer;list-style:none}',
  '#fc-dlg>.fc-guia>summary::-webkit-details-marker{display:none}',
  '#fc-dlg>.fc-guia>summary::before{content:"📜"}',
- '#fc-dlg>.fc-guia .fcg-c{margin-top:8px;max-height:260px;overflow:auto;padding:8px 10px;border:1px solid #d9c7a3;background:#fbf5e6;color:#3b2a1d;font:12px/1.45 Georgia,serif;scrollbar-width:thin}',
+ '#fc-dlg>.fc-guia .fcg-c{position:absolute;left:0;right:0;bottom:calc(100% + 8px);text-align:left;border-radius:4px;box-shadow:0 14px 34px -10px rgba(0,0,0,.55);max-height:min(430px,62vh);overflow:auto;padding:8px 10px;border:1px solid #d9c7a3;background:#fbf5e6;color:#3b2a1d;font:12px/1.45 Georgia,serif;scrollbar-width:thin}',
  '#fc-dlg>.fc-guia h4{margin:8px 0 2px;font:700 12.5px Georgia,serif}',
  '#fc-dlg>.fc-guia ol,#fc-dlg>.fc-guia ul{margin:2px 0;padding-left:18px}'
  ].join('\n');document.head.appendChild(st);})();
