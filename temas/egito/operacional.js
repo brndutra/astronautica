@@ -1,4 +1,4 @@
-/* Casa do Brooklyn · modo operacional: a Barca de Rá — proa e popa em umbela de papiro nas colunas das pontas, casco dourado com amuletos sobre as águas do Nilo no rodapé.
+/* Nomo do Brooklyn · modo operacional: a Barca de Rá — proa e popa em umbela de papiro nas colunas das pontas, casco dourado com amuletos sobre as águas do Nilo no rodapé.
    Carregado só quando o tema egípcio está ligado. */
 (function(){
 var U=function(n){return 'url("img/egito/'+n+'.svg?v=1")';};var O='body.eg.op-on #modo-op';
