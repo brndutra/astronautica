@@ -47,6 +47,13 @@ O projeto na Vercel está ligado a este repositório: cada push na `main` public
 - Sem rede, os eventos ficam guardados e saem sozinhos a cada 5 minutos.
 - Em `extensao/api.js`, `CFG.app` recebe o endereço do site publicado para mostrar o botão "abrir o app".
 
+## Caderno de papel (`planner/`)
+
+- `planner/imprimir.html`: as folhas do caderno de discos G (200 × 275 mm, 11 furos), sem datas, sem horários e sem bolinhas. Manual e despejo, mês com hábitos e finanças no verso, e semanas (segunda a quarta na frente; quinta a domingo, hábitos e revisão no verso). Imprime em A4 com marcas de corte ou direto no tamanho G. A frente tem os furos à esquerda e o verso, à direita. Os parâmetros `?fmt=a4|g&man=1&mes=1&sem=5` montam a impressão.
+- `planner/papel.js`: a consulta **Caderno de papel** no Manual de campo, com a rotina e o botão que abre as folhas para imprimir.
+- `planner/caneta.js`: modo caneta na **Folha livre** do Diário. Traço com pressão, quatro tintas (uma é marca-texto), borracha (também a ponta-borracha da caneta), desfazer (Ctrl+Z) e apagar tudo. Com caneta de tablet, só a ponta escreve e o dedo rola a folha. A tinta fica em `S.cofre.tinta`, cifrada com a senha do diário, e some da tela quando o livro tranca.
+- Os dois scripts usam `window.ASTRO.MF_T`, `MF_C`, `cxPinta` e `cofre` (`aberto`, `cifra`, `decifra`), expostos no `index.html`.
+
 ## Caduceu de Hermes (`pontes.js`, `pontes.css`)
 
 Integrações externas, num arquivo à parte. O script principal só expõe `window.ASTRO` e guarda `S.pz`.

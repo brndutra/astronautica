@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Páginas do caderno G · Astronáutica</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   Páginas do caderno de discos G (folha 200 × 275 mm, 11 furos)
+   Cada folha tem frente e verso. Frente: furos à esquerda.
+   Verso: furos à direita. Sem datas impressas, sem horários,
+   sem bolinhas de checklist, com espaço largo para escrever.
+   ============================================================ */
+:root{
+ --tinta:#2b2622;--suave:#6f665c;--linha:#c9c0b2;--fio:#ddd5c8;--ponto:#b7ad9e;--cera:#8c2f2a;
+ --furo:16mm;--fora:8mm;--topo:9mm;--pe:8mm;
+ --pontos:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 50 50'%3E%3Ccircle cx='25' cy='25' r='3.2' fill='%23b7ad9e'/%3E%3C/svg%3E");
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{font-family:"EB Garamond",Georgia,"Times New Roman",serif;color:var(--tinta);background:#e9e4dc}
+
+/* ---------- painel de controle (só na tela) ---------- */
+.ctl{position:sticky;top:0;z-index:5;background:#2b2622;color:#f4efe6;padding:14px 18px;display:flex;flex-wrap:wrap;gap:12px 22px;align-items:center;box-shadow:0 2px 14px rgba(0,0,0,.25)}
+.ctl h1{font-family:"IM Fell English SC",Georgia,serif;font-weight:400;font-size:21px;letter-spacing:.06em;margin-right:auto}
+.ctl h1 small{display:block;font-family:"EB Garamond",Georgia,serif;font-size:13px;letter-spacing:0;opacity:.7}
+.ctl label{display:flex;align-items:center;gap:8px;font-size:15px}
+.ctl input[type=number]{width:58px;padding:5px 6px;border-radius:6px;border:1px solid #6f665c;background:#3a332d;color:#f4efe6;font:inherit}
+.ctl select{padding:5px 8px;border-radius:6px;border:1px solid #6f665c;background:#3a332d;color:#f4efe6;font:inherit}
+.ctl button{padding:8px 16px;border-radius:999px;border:0;background:#c9a15a;color:#2b2622;font:600 15px "EB Garamond",Georgia,serif;cursor:pointer}
+.ctl button:hover{background:#ddb873}
+.dica{max-width:980px;margin:14px auto 0;padding:0 18px;font-size:15px;line-height:1.45;color:#4e463e}
+.dica b{color:var(--cera);font-weight:600}
+.mesa{display:flex;flex-direction:column;align-items:center;gap:22px;padding:22px 12px 60px}
+.par{display:flex;flex-wrap:wrap;justify-content:center;gap:18px}
+.rot{font-family:"IM Fell English SC",Georgia,serif;font-size:13px;letter-spacing:.1em;color:#6f665c;text-align:center;margin-bottom:6px}
+.chapa{background:#fff;box-shadow:0 6px 22px rgba(43,38,34,.18)}
+@media (max-width:860px){.chapa{zoom:.62}}
+@media (max-width:520px){.chapa{zoom:.42}.ctl h1{font-size:18px}}
+
+/* ---------- a folha ---------- */
+.folha{width:200mm;height:275mm;position:relative;overflow:hidden;background:#fff;
+ padding:var(--topo) var(--fora) var(--pe) var(--furo);display:flex;flex-direction:column}
+.folha.verso{padding:var(--topo) var(--furo) var(--pe) var(--fora)}
+/* faixa dos furos: guia discreta para o furador */
+.folha::before{content:"";position:absolute;top:0;bottom:0;left:0;width:12mm;border-right:.2mm dashed var(--fio)}
+.folha.verso::before{left:auto;right:0;border-right:0;border-left:.2mm dashed var(--fio)}
+
+/* chapa A4 com marcas de corte */
+.a4 .chapa{width:210mm;height:297mm;position:relative;padding:11mm 5mm}
+.a4 .chapa .folha{outline:.15mm solid #eee}
+.marca{position:absolute;background:#555}
+.a4 .chapa .marca.h{height:.2mm;width:4mm}
+.a4 .chapa .marca.v{width:.2mm;height:4mm}
+.g .marca{display:none}
+.g .chapa{width:200mm;height:275mm}
+
+/* ---------- peças comuns ---------- */
+.k{font-family:"IM Fell English SC",Georgia,serif;letter-spacing:.14em;font-size:10.5pt;color:var(--cera)}
+.kk{font-family:"IM Fell English SC",Georgia,serif;letter-spacing:.12em;font-size:9pt;color:var(--suave)}
+.cab{display:flex;align-items:flex-end;gap:5mm;padding-bottom:2.5mm;border-bottom:.35mm solid var(--tinta);margin-bottom:4mm}
+.cab .tit{font-family:"IM Fell English SC",Georgia,serif;font-size:19pt;letter-spacing:.08em;line-height:1}
+.cab .lin{flex:1;border-bottom:.25mm solid var(--linha);height:6mm}
+.cab .curta{width:34mm;flex:0 0 auto}
+.cab .de{font-style:italic;font-size:11pt;color:var(--suave);line-height:1}
+.pontos{background-image:var(--pontos);background-size:5mm 5mm;background-position:0 0}
+.lin1{border-bottom:.25mm solid var(--linha);height:7.5mm}
+.campo{display:flex;align-items:flex-end;gap:3mm}
+.campo .kk{white-space:nowrap;padding-bottom:1mm}
+.campo .lin1{flex:1}
+.num{font-family:"IM Fell English SC",Georgia,serif;color:var(--cera);font-size:11pt;width:5mm;padding-bottom:1mm}
+.caixa{border:.25mm solid var(--linha);border-radius:1.5mm;padding:2.5mm 3mm}
+.rodape{margin-top:auto;padding-top:2mm;display:flex;justify-content:space-between;font-style:italic;font-size:8.5pt;color:#a39a8d}
+
+/* ---------- semana ---------- */
+.topo-sem{display:grid;grid-template-columns:1fr 1fr;gap:3mm 6mm;margin-bottom:4mm}
+.topo-sem .prio{grid-column:1/-1}
+.dias{flex:1;display:flex;flex-direction:column;border-top:.25mm solid var(--linha)}
+.dia{flex:1;display:flex;border-bottom:.25mm solid var(--linha);min-height:0}
+.dia .rot-d{width:15mm;flex:0 0 auto;border-right:.25mm solid var(--linha);padding:2.5mm 0 0 0;display:flex;flex-direction:column;align-items:center;gap:1.5mm}
+.dia .rot-d b{font-family:"IM Fell English SC",Georgia,serif;font-weight:400;font-size:13pt;letter-spacing:.08em}
+.dia .rot-d i{font-style:normal;font-size:8pt;color:var(--suave);letter-spacing:.05em}
+.dia .rot-d .dd{width:10mm;border-bottom:.25mm solid var(--linha);height:4.5mm}
+.dia .area{flex:1;min-width:0}
+.dupla-d{display:flex;flex:1;border-bottom:.25mm solid var(--linha)}
+.dupla-d .dia{border-bottom:0}
+.dupla-d .dia+.dia{border-left:.25mm solid var(--linha)}
+.base-sem{display:grid;grid-template-columns:1.12fr 1fr;gap:5mm;margin-top:4mm;height:47mm}
+.trk{width:100%;border-collapse:collapse;table-layout:fixed}
+.trk th{font-family:"IM Fell English SC",Georgia,serif;font-weight:400;font-size:8.5pt;color:var(--suave);padding:0 0 1.2mm;letter-spacing:.06em}
+.trk td{border:.25mm solid var(--linha);height:7.2mm}
+.trk td.nm{border:0;border-bottom:.25mm solid var(--linha)}
+.trk col.c-nm{width:32mm}
+
+/* ---------- mês ---------- */
+.cal{width:100%;border-collapse:collapse;table-layout:fixed}
+.cal th{font-family:"IM Fell English SC",Georgia,serif;font-weight:400;font-size:9.5pt;letter-spacing:.1em;color:var(--suave);padding:0 0 1.5mm}
+.cal td{border:.25mm solid var(--linha);height:25.5mm;vertical-align:top;padding:1.2mm 1.4mm}
+.cal td span{display:block;width:6.5mm;height:5mm;border-bottom:.25mm solid var(--fio)}
+.cal td.fds{background:#faf8f4}
+.tres{display:grid;grid-template-columns:repeat(3,1fr);gap:5mm;margin-top:5mm;flex:1}
+.tres>div{display:flex;flex-direction:column}
+.tres .lin1{height:7mm}
+
+/* ---------- hábitos e finanças ---------- */
+.hm{width:100%;border-collapse:collapse;table-layout:fixed;margin-bottom:6mm}
+.hm th{font-size:7pt;font-weight:500;color:var(--suave);padding:0 0 1mm;text-align:center}
+.hm td{border:.2mm solid var(--linha);height:8.5mm}
+.hm td.nm{border:0;border-bottom:.25mm solid var(--linha)}
+.hm col.c-nm{width:33mm}
+.fin{display:grid;grid-template-columns:1.25fr 1fr;gap:6mm;flex:1}
+.fin>div{display:flex;flex-direction:column}
+.tb{width:100%;border-collapse:collapse;table-layout:fixed}
+.tb th{font-family:"IM Fell English SC",Georgia,serif;font-weight:400;font-size:8.5pt;color:var(--suave);text-align:left;padding:0 1mm 1mm;letter-spacing:.06em;border-bottom:.3mm solid var(--tinta)}
+.tb td{border-bottom:.25mm solid var(--linha);height:7.6mm}
+.tb td+td{border-left:.2mm solid var(--fio)}
+.fecha{display:grid;grid-template-columns:auto 1fr;gap:1mm 3mm;align-items:end;margin-top:auto}
+.fecha .kk{padding-bottom:1mm}
+.sec-t{margin:0 0 2mm}
+
+/* ---------- manual ---------- */
+.man{column-count:2;column-gap:8mm;font-size:12.2pt;line-height:1.42;flex:1}
+.man h3{font-family:"IM Fell English SC",Georgia,serif;font-weight:400;font-size:12.6pt;letter-spacing:.1em;color:var(--cera);margin:0 0 1.2mm;break-after:avoid}
+.man section{break-inside:avoid;margin-bottom:5.5mm}
+.man ol,.man ul{padding-left:5mm}
+.man li{margin-bottom:.6mm}
+.man p{margin-bottom:1mm}
+.man .ouro{border:.3mm solid var(--cera);border-radius:1.5mm;padding:2.5mm 3mm;font-style:italic}
+
+/* ---------- despejo ---------- */
+.desp{flex:1;border:.25mm solid var(--linha);border-radius:1.5mm}
+.um{margin-top:4mm;display:grid;grid-template-columns:1fr 1fr;gap:5mm}
+
+/* ---------- impressão ---------- */
+@media print{
+ body{background:#fff}
+ .ctl,.dica,.rot{display:none!important}
+ .mesa{display:block;padding:0}
+ .par{display:block}
+ .chapa{box-shadow:none;zoom:1!important;break-after:page;page-break-after:always}
+ .chapa:last-child{break-after:auto}
+ .a4 .chapa .folha{outline:0}
+}
+</style>
+<style id="pagina"></style>
+</head>
+<body class="a4">
+<div class="ctl">
+ <h1>Páginas do caderno G<small>caderno de discos 200 × 275 mm · sem datas, sem horários</small></h1>
+ <label>Formato
+  <select id="fmt">
+   <option value="a4">A4 com marcas de corte</option>
+   <option value="g">Folha no tamanho G</option>
+  </select></label>
+ <label>Manual e despejo <input type="number" id="q-man" min="0" max="4" value="1"></label>
+ <label>Meses <input type="number" id="q-mes" min="0" max="12" value="1"></label>
+ <label>Semanas <input type="number" id="q-sem" min="0" max="53" value="5"></label>
+ <button type="button" id="imp">Imprimir</button>
+</div>
+<p class="dica">Imprima <b>frente e verso, virando pela borda longa</b>, em papel de 90 a 120 g. No formato A4, corte nas marcas dos cantos. Depois passe no furador de caderno de discos: a faixa tracejada mostra o lado dos furos. A frente tem os furos à esquerda e o verso, à direita, então cada folha abre certinho no caderno.</p>
+<main class="mesa" id="mesa"></main>
+
+<script>
+(function(){
+"use strict";
+var DIAS=['SEG','TER','QUA','QUI','SEX','SÁB','DOM'];
+var DIAS_L=['segunda','terça','quarta','quinta','sexta','sábado','domingo'];
+function lin(n){var s='';for(var i=0;i<n;i++)s+='<div class="lin1"></div>';return s;}
+function rodape(t){return '<div class="rodape"><span>'+t+'</span><span>Astronáutica</span></div>';}
+
+/* ---- semana, frente: meta, foco, prioridades e segunda a quarta ---- */
+function semFrente(){
+ return '<div class="folha frente">'+
+  '<div class="cab"><span class="tit">Semana</span><span class="de">de</span><span class="lin curta"></span><span class="de">a</span><span class="lin curta"></span><span class="lin"></span></div>'+
+  '<div class="topo-sem">'+
+   '<div class="campo"><span class="kk">meta da semana</span><div class="lin1"></div></div>'+
+   '<div class="campo"><span class="kk">foco</span><div class="lin1"></div></div>'+
+   '<div class="prio"><div class="kk" style="margin-bottom:.5mm">três prioridades da semana</div>'+
+    [1,2,3].map(function(n){return '<div class="campo"><span class="num">'+n+'</span><div class="lin1"></div></div>';}).join('')+'</div>'+
+  '</div>'+
+  '<div class="dias">'+[0,1,2].map(dia).join('')+'</div>'+
+  rodape('hoje: até três prioridades e o primeiro passo de cada uma')+'</div>';}
+
+/* ---- semana, verso: quinta a domingo, hábitos e revisão ---- */
+function semVerso(){
+ return '<div class="folha verso">'+
+  '<div class="dias">'+dia(3)+dia(4)+'<div class="dupla-d">'+dia(5)+dia(6)+'</div></div>'+
+  '<div class="base-sem">'+
+   '<div class="caixa"><div class="k sec-t">hábitos da semana</div>'+
+    '<table class="trk"><colgroup><col class="c-nm">'+DIAS.map(function(){return '<col>';}).join('')+'</colgroup>'+
+    '<tr><th></th>'+DIAS.map(function(d){return '<th>'+d.charAt(0)+'</th>';}).join('')+'</tr>'+
+    [0,1,2].map(function(){return '<tr><td class="nm"></td>'+DIAS.map(function(){return '<td></td>';}).join('')+'</tr>';}).join('')+
+    '</table></div>'+
+   '<div class="caixa"><div class="k sec-t">domingo · revisão</div>'+
+    '<div class="campo"><span class="kk">funcionou</span><div class="lin1"></div></div>'+
+    '<div class="campo"><span class="kk">travou</span><div class="lin1"></div></div>'+
+    '<div class="campo"><span class="kk">próxima semana</span><div class="lin1"></div></div>'+
+    '<div class="campo"><span class="kk">gastos ok?</span><div class="lin1"></div></div></div>'+
+  '</div>'+
+  rodape('fim do dia: onde parei e o próximo passo')+'</div>';}
+
+function dia(i){
+ return '<div class="dia"><div class="rot-d"><b>'+DIAS[i]+'</b><span class="dd"></span><i>'+DIAS_L[i]+'</i></div><div class="area pontos"></div></div>';}
+
+/* ---- mês: calendário sem números + sessões, datas e metas ---- */
+function mesFrente(){
+ var rows='';for(var r=0;r<6;r++){rows+='<tr>';for(var c=0;c<7;c++)rows+='<td'+(c>4?' class="fds"':'')+'><span></span></td>';rows+='</tr>';}
+ return '<div class="folha frente">'+
+  '<div class="cab"><span class="tit">Mês</span><span class="lin"></span><span class="de">foco do mês</span><span class="lin"></span></div>'+
+  '<table class="cal"><tr>'+DIAS.map(function(d){return '<th>'+d+'</th>';}).join('')+'</tr>'+rows+'</table>'+
+  '<div class="tres">'+
+   '<div><div class="k sec-t">sessões e prazos</div>'+lin(7)+'</div>'+
+   '<div><div class="k sec-t">aniversários e datas</div>'+lin(7)+'</div>'+
+   '<div><div class="k sec-t">metas do mês</div>'+lin(7)+'</div>'+
+  '</div>'+rodape('peço dia, sessão e a minha entrega: tudo aqui')+'</div>';}
+
+/* ---- verso do mês: hábitos do mês e finanças ---- */
+function mesVerso(){
+ var cols='<col class="c-nm">',hd='<th></th>';for(var d=1;d<=31;d++){cols+='<col>';hd+='<th>'+d+'</th>';}
+ var hb='';for(var h=0;h<3;h++){hb+='<tr><td class="nm"></td>';for(var d2=1;d2<=31;d2++)hb+='<td></td>';hb+='</tr>';}
+ var contas='';for(var c=0;c<17;c++)contas+='<tr><td></td><td></td><td></td><td></td></tr>';
+ var gastos='';for(var g=0;g<9;g++)gastos+='<tr><td></td><td></td></tr>';
+ var entra='';for(var e=0;e<4;e++)entra+='<tr><td></td><td></td></tr>';
+ return '<div class="folha verso">'+
+  '<div class="cab"><span class="tit">Hábitos e finanças</span><span class="lin"></span></div>'+
+  '<div class="k sec-t">hábitos do mês</div>'+
+  '<table class="hm"><colgroup>'+cols+'</colgroup><tr>'+hd+'</tr>'+hb+'</table>'+
+  '<div class="fin">'+
+   '<div><div class="k sec-t">contas fixas</div>'+
+    '<table class="tb"><colgroup><col style="width:42%"><col style="width:22%"><col style="width:16%"><col style="width:20%"></colgroup>'+
+    '<tr><th>conta</th><th>valor</th><th>vence</th><th>pago em</th></tr>'+contas+'</table></div>'+
+   '<div><div class="k sec-t">entradas</div>'+
+    '<table class="tb"><colgroup><col style="width:62%"><col></colgroup><tr><th>de onde</th><th>valor</th></tr>'+entra+'</table>'+
+    '<div class="k sec-t" style="margin-top:4mm">gastos fora do plano</div>'+
+    '<table class="tb"><colgroup><col style="width:62%"><col></colgroup><tr><th>o quê</th><th>valor</th></tr>'+gastos+'</table>'+
+    '<div class="fecha" style="margin-top:5mm"><span class="kk">entrou</span><div class="lin1"></div><span class="kk">saiu</span><div class="lin1"></div><span class="kk">sobrou</span><div class="lin1"></div></div>'+
+   '</div>'+
+  '</div>'+rodape('olhe os gastos no domingo, junto com a revisão')+'</div>';}
+
+/* ---- manual, na frente da primeira folha ---- */
+function manual(){
+ return '<div class="folha frente">'+
+  '<div class="cab"><span class="tit">Manual do caderno</span><span class="lin"></span></div>'+
+  '<div class="man">'+
+  '<section><p class="ouro">Menos é mais. Três prioridades por dia, três hábitos. Dia ruim não estraga o caderno: pule e recomece na página de hoje, sem compensar nada.</p></section>'+
+  '<section><h3>A ordem do caderno</h3><ol><li>Este manual e, no verso, o despejo.</li><li>O mês atual, com hábitos e finanças no verso.</li><li>As semanas.</li><li>Folhas pontilhadas e quadriculadas para notas.</li></ol><p>Divisórias entre o mês, as semanas e as notas. Comece só com o mês atual: não monte o ano inteiro.</p></section>'+
+  '<section><h3>Os três hábitos</h3><ol><li>Dormir na hora (meta realista; adiantar 15 a 30 minutos por semana).</li><li>Encerrar o trabalho no horário marcado.</li><li>Natação ou estudo para o TRF3 (escolha um).</li></ol><p>Marque o dia em que cumprir. Não precisa cumprir todos.</p></section>'+
+  '<section><h3>De manhã · 5 minutos</h3><ol><li>Abra na semana, na faixa de hoje.</li><li>Escreva até três prioridades.</li><li>Para cada uma, o primeiro passo de 2 minutos.</li><li>Anote a hora de encerrar.</li></ol></section>'+
+  '<section><h3>Durante o dia</h3><ul><li>Blocos de 25 a 45 minutos, com pausa curta.</li><li>Travou? Qual é o menor passo agora?</li><li>Lembrou de algo no meio da tarefa? Anote no despejo e volte.</li><li>Faltou espaço? Enfie uma folha pontilhada no meio da semana.</li></ul></section>'+
+  '<section><h3>No fim do dia · 2 minutos</h3><ol><li>Marque o que fez.</li><li>Uma linha: onde parou e o próximo passo.</li><li>Passe o que sobrou para amanhã, sem culpa.</li><li>Marque os hábitos.</li></ol></section>'+
+  '<section><h3>Domingo · 10 minutos</h3><ol><li>Revisão: o que funcionou, o que travou.</li><li>Meta, foco e três prioridades da próxima semana.</li><li>Olhe os gastos.</li><li>Ajuste a hora de dormir, se for o caso.</li></ol></section>'+
+  '<section><h3>No começo do mês</h3><ul><li>Marcos das sessões: peço dia, sessão e a sua entrega.</li><li>Prazos e aniversários.</li><li>Contas fixas com valor e vencimento.</li></ul></section>'+
+  '<section><h3>Quando tudo parecer bagunçado</h3><p>Despeje tudo no verso desta folha, sem ordem. Depois escolha uma coisa e escreva só o primeiro passo dela.</p></section>'+
+  '</div>'+rodape('volte aqui sempre que esquecer como usar')+'</div>';}
+
+/* ---- despejo, no verso do manual ---- */
+function despejo(){
+ return '<div class="folha verso">'+
+  '<div class="cab"><span class="tit">Despejo</span><span class="de">tudo o que está na cabeça, sem ordem</span><span class="lin"></span></div>'+
+  '<div class="desp pontos"></div>'+
+  '<div class="um"><div class="campo"><span class="kk">uma coisa só</span><div class="lin1"></div></div><div class="campo"><span class="kk">primeiro passo</span><div class="lin1"></div></div></div>'+
+  rodape('esvaziar a cabeça também é trabalho')+'</div>';}
+
+function marcas(){
+ /* folha G centrada no A4: x de 5 a 205 mm, y de 11 a 286 mm */
+ var m='',X=[5,205],Y=[11,286];
+ X.forEach(function(x){Y.forEach(function(y){
+  m+='<i class="marca h" style="top:'+(y-.1)+'mm;left:'+(x<100?x-5:x+1)+'mm"></i>';
+  m+='<i class="marca v" style="left:'+(x-.1)+'mm;top:'+(y<100?y-5:y+1)+'mm"></i>';});});
+ return m;}
+function chapa(html){return '<div class="chapa">'+marcas()+html+'</div>';}
+function par(t1,a,t2,b){
+ return '<div><div class="par"><div><div class="rot">'+t1+'</div>'+chapa(a)+'</div><div><div class="rot">'+t2+'</div>'+chapa(b)+'</div></div></div>';}
+
+function q(id){var v=parseInt(document.getElementById(id).value,10);return isNaN(v)||v<0?0:v;}
+function monta(){
+ var f=document.getElementById('fmt').value;document.body.className=f;
+ document.getElementById('pagina').textContent='@page{size:'+(f==='a4'?'210mm 297mm':'200mm 275mm')+';margin:0}';
+ var h='',i;
+ for(i=0;i<q('q-man');i++)h+=par('manual · frente',manual(),'despejo · verso',despejo());
+ for(i=0;i<q('q-mes');i++)h+=par('mês · frente',mesFrente(),'hábitos e finanças · verso',mesVerso());
+ for(i=0;i<q('q-sem');i++)h+=par('semana '+(i+1)+' · frente',semFrente(),'semana '+(i+1)+' · verso',semVerso());
+ document.getElementById('mesa').innerHTML=h||'<p class="dica">Escolha ao menos uma folha.</p>';
+ try{localStorage.setItem('astro-papel-g',JSON.stringify({f:f,m:q('q-man'),mes:q('q-mes'),s:q('q-sem')}));}catch(e){}}
+try{var o=JSON.parse(localStorage.getItem('astro-papel-g')||'null');if(o){document.getElementById('fmt').value=o.f||'a4';document.getElementById('q-man').value=o.m;document.getElementById('q-mes').value=o.mes;document.getElementById('q-sem').value=o.s;}}catch(e){}
+var p=new URLSearchParams(location.search);
+['fmt','q-man','q-mes','q-sem'].forEach(function(id){var k=id.replace('q-','');if(p.has(k))document.getElementById(id).value=p.get(k);});
+['fmt','q-man','q-mes','q-sem'].forEach(function(id){document.getElementById(id).addEventListener('input',monta);});
+document.getElementById('imp').addEventListener('click',function(){window.print();});
+monta();
+})();
+</script>
+</body>
+</html>

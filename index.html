@@ -6206,6 +6206,8 @@ html body.claro[data-skin="astro"]:not(.tv):not(.eg) #hero-box .cp-postal .cp-ca
 </style>
 <link rel="stylesheet" href="pontes.css?v=2">
 <script src="pontes.js" defer></script>
+<script src="planner/papel.js?v=1" defer></script>
+<script src="planner/caneta.js?v=1" defer></script>
 </head>
 <body>
 <div class="boot" id="boot" aria-hidden="true">
@@ -14237,7 +14239,10 @@ document.addEventListener('visibilitychange',function(){if(document.visibilitySt
 /* Pontes de Hermes (pontes.js): S.pz guarda o que as integrações trazem; window.ASTRO dá ao módulo acesso ao registro */
 (function(){var n0=normaliza;normaliza=function(p){var b=n0(p);if(p&&p.pz&&typeof p.pz==='object')b.pz=p.pz;return b;};})();
 window.ASTRO={get S(){return S;},grava:function(){grava();},pinta:function(){pinta();},vxData:function(){return vxData();},vxMsg:function(m){vxMsg(m);},vxDlg:function(o){vxDlg(o);},
- mmD:function(){return mmD();},mmPinta:function(){try{mmPinta();}catch(e){}},hoje:function(){return hoje();},esc:function(t){return esc(t);}};
+ mmD:function(){return mmD();},mmPinta:function(){try{mmPinta();}catch(e){}},hoje:function(){return hoje();},esc:function(t){return esc(t);},
+ /* manual de campo e cofre, para os arquivos à parte (planner/papel.js e planner/caneta.js) */
+ get MF_T(){return MF_T;},get MF_C(){return MF_C;},cxPinta:function(){try{cxPinta();}catch(e){}},
+ cofre:{aberto:function(){return !!CF.chave;},cifra:function(t){return cfCifra(t);},decifra:function(o){return cfDecifra(o);}}};
 /* ---------- Ficha do Campista como livro: cada seção é uma página, duas por vez ----------
    Capa de couro trancada (a senha do cofre abre). Aberto, mostra as páginas lado a lado,
    com fitas marcadoras por seção e setas para virar. As páginas largas (Reinos e Dossiê)
