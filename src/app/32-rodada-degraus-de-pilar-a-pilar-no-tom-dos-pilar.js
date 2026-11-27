@@ -359,8 +359,10 @@ setTimeout(function(){try{tpFriso();}catch(e){}},1500);setInterval(function(){tr
 
 /* base do templo inicial com a mesma largura do friso do templo seguinte; segundo templo ganha base própria com o incluidor de hábito semanal */
 function baseAlinha(){var rod=document.querySelector('#hero-box > .bn-rod'),hb=document.getElementById('hero-box'),rt=document.querySelector('.wrap > div.rt');if(!rod||!hb||!rt||innerWidth<1380)return;
- /* o segundo templo escondido (Manual ou painel na central) não tem medida; com zoom na .wrap, as medidas da tela vão divididas por ele */
- var a=hb.getBoundingClientRect(),b=rt.getBoundingClientRect();if(!b.width)return;var z=hb.currentCSSZoom||1,l=Math.round((b.left-a.left)/z),r=Math.round((a.right-b.right)/z),v=l+'|'+r;if(rod._al===v)return;rod._al=v;
+ /* com zoom na .wrap, as medidas da tela vão divididas por ele */
+ var a=hb.getBoundingClientRect(),b=rt.getBoundingClientRect();var z=hb.currentCSSZoom||1,ct=document.body.classList.contains('ct-on');if(!b.width&&!ct)return;
+ /* na central a base vai de pilar a pilar (o Rastreio sai de baixo e entra no miolo) */
+ var l=ct?0:Math.round((b.left-a.left)/z),r=ct?0:Math.round((a.right-b.right)/z),v=l+'|'+r;if(rod._al===v)return;rod._al=v;
  rod.style.setProperty('margin-left',l+'px','important');rod.style.setProperty('margin-right',r+'px','important');var fz=document.querySelector('#hero-box > #tp-friso-bloco')||document.querySelector('#hero-box > #tp-friso');if(fz){fz.style.setProperty('margin-left',l+'px','important');fz.style.setProperty('margin-right','0px','important');fz.style.setProperty('width','calc(100% - '+(l+r)+'px)','important');}}
 function rtBase(){var rt=document.querySelector('.wrap > div.rt');if(!rt)return;var b=document.getElementById('rt-base');
  if(!b){b=document.createElement('div');b.id='rt-base';b.className='rt-base';b.innerHTML='<span class="rb-k">hábito semanal</span><input data-rbin maxlength="40" placeholder="novo hábito semanal (ex.: faxina do quarto, ligar para a família)"><button type="button" data-rbadd>incluir</button>';}

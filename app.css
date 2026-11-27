@@ -6358,17 +6358,28 @@ html body #painel-dir.pd.on.central .pd-corpo{position:fixed!important;max-width
 #cx.mf .cx-x{color:#f4ead2}
 /* ======================= Moldura da central (43-moldura-da-central): o próprio templo do tema ======================= */
 #ct-fundo[hidden],#ct-barra[hidden]{display:none!important}
-#ct-fundo{position:fixed;inset:0;z-index:328;background:rgba(18,14,9,.66)}
+/* fundo da central: escuro e liso, igual em todas as abas (o operacional não aparece por trás) */
+#ct-fundo{position:fixed;inset:0;z-index:328;background:radial-gradient(ellipse at 50% 40%,#2a2117,#120e09 75%)}
 /* o templo vira a folha: fixo, sem a moldura de cartão; posição, tamanho e zoom vêm do 43 */
 html body.ct-on .wrap{position:fixed!important;z-index:329;right:auto!important;bottom:auto!important;max-width:none!important;margin:0!important;padding:0!important;
- overflow-x:hidden!important;overflow-y:auto!important;border:0!important;border-radius:0!important;box-shadow:none!important;scrollbar-width:thin;
+ overflow:hidden!important;border:0!important;border-radius:0!important;box-shadow:none!important;scrollbar-width:thin;
  background:linear-gradient(to bottom,transparent var(--ct-ft,0px),var(--ct-papel,#f4ead2) var(--ct-ft,0px),var(--ct-papel,#f4ead2) var(--ct-fb,100000px),transparent var(--ct-fb,100000px))!important;background-attachment:local!important}
 html body.ct-on .wrap::before,html body.ct-on .wrap::after{display:none!important}
 html body.ct-on .wrap>#tt-indice{display:none!important}
 html body.ct-on #hero-box .nf2>.pd-pilula{visibility:hidden!important;pointer-events:none!important}
+/* da página do templo fica só o #hero-box; a grade entra só na Programação e o Rastreio só na aba dele */
+html body.ct-on .wrap>:not(#hero-box):not(.tb):not(.rt):not(#rt-base){display:none!important}
+/* (seletor reforçado: a regra da grade na Programação, no 32, é html body.tela-prog div.wrap>div.tb.tb:not(#x1):not(#x2):not(#x3)) */
+html body.ct-on:not(.tela-prog) div.wrap>div.tb.tb,html body.ct-painel div.wrap>div.tb.tb:not(#x1):not(#x2):not(#x3):not(#x4){display:none!important}
+html body.ct-on:not(.ct-rast) .wrap>:is(.rt,#rt-base){display:none!important}
+html body.ct-rast #hero-box .bn-slot>*{visibility:hidden!important}
+html body.ct-rast .wrap>div.rt.rt{position:absolute!important;left:var(--ct-rx)!important;top:var(--ct-ry)!important;width:var(--ct-rw)!important;height:var(--ct-rh)!important;
+ max-width:none!important;margin:0!important;box-sizing:border-box!important;overflow-y:auto!important;overflow-x:hidden!important}
+/* o Rastreio entra sem a moldura própria (a moldura é a do templo) */
+html body.ct-rast .wrap>div.rt.rt{background:transparent!important;border:0!important;box-shadow:none!important;padding:4px 6px!important}
+html body.ct-rast .wrap>div.rt::before,html body.ct-rast .wrap>div.rt::after,html body.ct-rast .wrap>div.rt>.col-orn{display:none!important}
+html body.ct-rast .wrap>#rt-base{position:absolute!important;left:var(--ct-rx)!important;top:var(--ct-rb)!important;width:var(--ct-rw)!important;margin:0!important;box-sizing:border-box!important}
 /* Manual e painéis: do templo fica só a moldura; o miolo some por baixo da folha */
-html body.ct-painel .wrap{overflow:hidden!important}
-html body.ct-painel .wrap>:not(#hero-box){display:none!important}
 html body.ct-painel #hero-box .bn-slot>*{visibility:hidden!important}
 /* a folha da aba entre os pilares */
 html body.ct-painel #painel-dir.pd.on.central{z-index:331;pointer-events:none;background:transparent!important}
@@ -6383,23 +6394,20 @@ html body.ct-painel #cx.mf .cx-x{display:none!important}
 html body.ct-painel:has(#hero-box .bn-rod.ver, #rod-pan:not([hidden])) :is(#painel-dir.central .pd-corpo,#cx.mf .mf-bx){visibility:hidden!important}
 /* barra de abas na cornija do frontão, com a cara da placa do tema */
 #ct-barra{position:fixed;inset:0;z-index:333;pointer-events:none}
-#ct-barra>.ct-abas{position:absolute;left:var(--ct-bx);top:var(--ct-by);transform:translate(-50%,-50%);pointer-events:auto;flex-wrap:nowrap;align-items:center;gap:0;
- max-width:calc(100vw - 2 * var(--ct-L) - 120px);padding:3px 8px;background:var(--placa-bg,#f4ead2);border:1.5px solid var(--placa-k,#8a5a14);border-radius:var(--placa-raio,2px);
+/* centrada entre as bordas da moldura (left/right + margin auto: com left:50% a largura disponível seria só a metade da tela) */
+#ct-barra>.ct-abas{position:absolute;left:var(--ct-L);right:var(--ct-L);width:fit-content;margin:0 auto;top:var(--ct-by);transform:translateY(-50%);pointer-events:auto;flex-wrap:wrap;justify-content:center;align-items:center;gap:0;
+ max-width:calc(100% - 2 * var(--ct-L) - 16px);padding:3px 8px;background:var(--placa-bg,#f4ead2);border:1.5px solid var(--placa-k,#8a5a14);border-radius:var(--placa-raio,2px);
  box-shadow:0 0 0 3px var(--placa-ring,#f4ead2),0 0 0 4.5px var(--placa-aro,#8a5a14),0 6px 12px -6px rgba(40,30,20,.45)}
 #ct-barra .ct-abas>button{padding:5px 10px 5px 8px!important;gap:7px;border-radius:0!important;color:var(--placa-sub,#9a6b3a)!important;background:transparent!important}
-#ct-barra .ct-abas>button+button,#ct-barra .ct-telas+button{border-left:1px solid color-mix(in srgb,var(--placa-k,#8a5a14) 45%,transparent)!important}
+#ct-barra .ct-abas>button+button{border-left:1px solid color-mix(in srgb,var(--placa-k,#8a5a14) 45%,transparent)!important}
 #ct-barra .ct-abas>button:hover{background:color-mix(in srgb,var(--placa-k,#8a5a14) 12%,transparent)!important}
 #ct-barra .ct-abas>button[aria-selected="true"]{color:var(--placa-tx,#2a2418)!important;background:color-mix(in srgb,var(--placa-k,#8a5a14) 16%,transparent)!important}
 #ct-barra .ct-abas svg{width:17px;height:17px;color:var(--placa-ic,#5a3f2c)}
 #ct-barra .ct-abas b{font:400 13.5px Georgia,serif;font-variant:small-caps;letter-spacing:.03em;white-space:nowrap}
 #ct-barra .ct-abas button[aria-selected="true"] b{font-weight:700}
 #ct-barra .ct-abas small{font:600 8px var(--mono,monospace);letter-spacing:.1em;white-space:nowrap}
-/* Mural · Programação ao lado da aba Templo */
-#ct-barra .ct-telas{display:flex;flex-direction:row;align-items:baseline;gap:5px;padding:0 10px 0 2px}
-#ct-barra .ct-telas button{all:unset;cursor:pointer;font:400 12px Georgia,serif;font-variant:small-caps;color:var(--placa-sub,#9a6b3a);white-space:nowrap}
-#ct-barra .ct-telas button[aria-selected="true"]{font-weight:700;color:var(--placa-tx,#2a2418);text-decoration:underline;text-underline-offset:3px}
-#ct-barra .ct-telas i{font-style:normal;color:var(--placa-k,#8a5a14)}
 #ct-barra>.ct-tx{position:absolute;top:14px;right:var(--ct-L);width:36px;height:36px;border-radius:50%;pointer-events:auto;cursor:pointer;
  border:1.5px solid var(--placa-k,#8a5a14);background:var(--placa-bg,#f4ead2);color:var(--placa-tx,#2a2418);font:600 15px var(--sans,system-ui)}
-@media(max-width:1100px){#ct-barra .ct-abas small{display:none}#ct-barra .ct-abas>button{padding:5px 7px!important}}
-@media(max-width:860px){#ct-barra .ct-abas b{display:none}#ct-barra>.ct-abas{max-width:calc(100vw - 60px)}}
+@media(max-width:1380px){#ct-barra .ct-abas small{display:none}#ct-barra .ct-abas>button{padding:5px 8px!important}}
+@media(max-width:1120px){#ct-barra .ct-abas svg{display:none}#ct-barra .ct-abas b{font-size:12px;letter-spacing:0}#ct-barra .ct-abas>button{padding:5px 6px!important}}
+@media(max-width:860px){#ct-barra .ct-abas b{display:none}#ct-barra .ct-abas svg{display:block}#ct-barra>.ct-abas{max-width:calc(100vw - 60px)}}

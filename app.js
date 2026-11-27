@@ -13334,8 +13334,10 @@ setTimeout(function(){try{tpFriso();}catch(e){}},1500);setInterval(function(){tr
 
 /* base do templo inicial com a mesma largura do friso do templo seguinte; segundo templo ganha base própria com o incluidor de hábito semanal */
 function baseAlinha(){var rod=document.querySelector('#hero-box > .bn-rod'),hb=document.getElementById('hero-box'),rt=document.querySelector('.wrap > div.rt');if(!rod||!hb||!rt||innerWidth<1380)return;
- /* o segundo templo escondido (Manual ou painel na central) não tem medida; com zoom na .wrap, as medidas da tela vão divididas por ele */
- var a=hb.getBoundingClientRect(),b=rt.getBoundingClientRect();if(!b.width)return;var z=hb.currentCSSZoom||1,l=Math.round((b.left-a.left)/z),r=Math.round((a.right-b.right)/z),v=l+'|'+r;if(rod._al===v)return;rod._al=v;
+ /* com zoom na .wrap, as medidas da tela vão divididas por ele */
+ var a=hb.getBoundingClientRect(),b=rt.getBoundingClientRect();var z=hb.currentCSSZoom||1,ct=document.body.classList.contains('ct-on');if(!b.width&&!ct)return;
+ /* na central a base vai de pilar a pilar (o Rastreio sai de baixo e entra no miolo) */
+ var l=ct?0:Math.round((b.left-a.left)/z),r=ct?0:Math.round((a.right-b.right)/z),v=l+'|'+r;if(rod._al===v)return;rod._al=v;
  rod.style.setProperty('margin-left',l+'px','important');rod.style.setProperty('margin-right',r+'px','important');var fz=document.querySelector('#hero-box > #tp-friso-bloco')||document.querySelector('#hero-box > #tp-friso');if(fz){fz.style.setProperty('margin-left',l+'px','important');fz.style.setProperty('margin-right','0px','important');fz.style.setProperty('width','calc(100% - '+(l+r)+'px)','important');}}
 function rtBase(){var rt=document.querySelector('.wrap > div.rt');if(!rt)return;var b=document.getElementById('rt-base');
  if(!b){b=document.createElement('div');b.id='rt-base';b.className='rt-base';b.innerHTML='<span class="rb-k">hábito semanal</span><input data-rbin maxlength="40" placeholder="novo hábito semanal (ex.: faxina do quarto, ligar para a família)"><button type="button" data-rbadd>incluir</button>';}
@@ -15383,24 +15385,22 @@ function postoClique(d){var s=String(d.sel||''),m=s.match(/^\[(data-[a-z0-9-]+)/
  var b=document.querySelector('#modo-op '+s)||document.querySelector('#rod-reg '+s);if(!b)return false;
  if(d.inp){if(!POSTO_SEL.test(String(d.inp)))return false;var i=document.querySelector('#modo-op '+d.inp);if(!i)return false;i.value=String(d.val||'').slice(0,300);i.dispatchEvent(new Event('input',{bubbles:true}));}
  b.click();setTimeout(function(){try{postoGrava(true);}catch(e){}},900);return true;}
-/* ======================= Central: Templo, Manual e os seis painéis como abas =======================
-   Templo · Manual · Concurso · Instruções · Leitura · Enfermaria · Finanças · Projetos.
+/* ======================= Central: as três telas do templo, o Manual e os seis painéis como abas =======================
+   Mural · Programação · Rastreio · Manual · Concurso · Instruções · Leitura · Enfermaria · Finanças · Projetos.
    Cada aba tem nome base (igual em todos os temas) e, embaixo, o nome do tema quando houver.
    Os painéis continuam sendo os mesmos (mesmo código e mesmos campos). A moldura de todas as abas é o próprio
    templo do tema, e a barra fica na cornija do frontão: os dois são do 43 (ctMoldura). pdAbre/pdFecha (09) e
    euSoloAbre (33) chamam ctPinta, que marca o painel lateral como folha da central. */
-var CT_ABAS=[['templo','Templo',''],['manual','Manual',''],['conc','Concurso',''],['inst','Instruções',''],['ler','Leitura','Eumátheia'],['enf','Enfermaria',''],
+var CT_ABAS=[['mural','Mural',''],['prog','Programação',''],['rast','Rastreio',''],['manual','Manual',''],['conc','Concurso',''],['inst','Instruções',''],['ler','Leitura','Eumátheia'],['enf','Enfermaria',''],
  ['fin','Finanças',TV_ON?'Tesouro de Andvari':EG_ON?'Tesouro do Faraó':'Bolsa de Dracmas'],['b9','Projetos',TV_ON?'Forja de Nidavellir':EG_ON?'Oficina de Ptah':'Bunker 9']];
-var CT_PD=['conc','inst','ler','enf','fin','b9'];
+var CT_PD=['conc','inst','ler','enf','fin','b9'],CT_TP=['mural','prog','rast'];
 function ctIcone(k){var eu=(typeof EU_BTS!=='undefined')?EU_BTS.filter(function(x){return x[0]===k;})[0]:null;if(eu)return eu[2];
- var p=k==='templo'?'<path d="M3 9l9-5 9 5M5 9v9M9.5 9v9M14.5 9v9M19 9v9M3 20h18"/>':k==='manual'?'<path d="M5 4h10l4 4v12H5z"/><path d="M15 4v4h4M8 12h8M8 15h8M8 18h5"/>':(typeof PD_ICON!=='undefined'&&PD_ICON[k])||'';
+ var p=k==='mural'?'<path d="M3 9l9-5 9 5M5 9v9M9.5 9v9M14.5 9v9M19 9v9M3 20h18"/>':k==='prog'?'<rect x="3.5" y="5" width="17" height="15" rx="1.5"/><path d="M3.5 10h17M8 3v4M16 3v4M9 10v10M15 10v10"/>':k==='rast'?'<path d="M4 19V5M4 19h16"/><path d="M7 15l4-4 3 3 5-6"/>':k==='manual'?'<path d="M5 4h10l4 4v12H5z"/><path d="M15 4v4h4M8 12h8M8 15h8M8 18h5"/>':(typeof PD_ICON!=='undefined'&&PD_ICON[k])||'';
  return '<svg viewBox="0 0 24 24" aria-hidden="true">'+p+'</svg>';}
-function ctAbasHTML(at){return CT_ABAS.map(function(a){var x='<button type="button" role="tab" data-ct="'+a[0]+'" aria-selected="'+(a[0]===at)+'">'+ctIcone(a[0])+
- '<span><b>'+esc(a[1])+'</b>'+(a[2]?'<small>'+esc(a[2])+'</small>':'')+'</span></button>';
- /* na aba Templo, as duas telas do templo (Mural e Programação) ficam logo ao lado, no lugar da placa do frontão */
- if(a[0]==='templo'&&at==='templo'&&typeof ABAS_NOMES!=='undefined')x+='<span class="ct-telas">'+[['visao',ABAS_NOMES.vis],['prog',ABAS_NOMES.prog]].map(function(t){
-  return '<button type="button" data-bntela="'+t[0]+'" aria-selected="'+((BN_TELA==='prog')===(t[0]==='prog'))+'">'+esc(t[1])+'</button>';}).join('<i>·</i>')+'</span>';
- return x;}).join('');}
+/* nome do tema embaixo (Mural e Programação pegam o nome das telas do templo, quando o tema troca) */
+function ctSub(a){var n=typeof ABAS_NOMES!=='undefined'?ABAS_NOMES:{};var t=a[0]==='mural'?n.vis:a[0]==='prog'?n.prog:a[2];return t&&t!==a[1]?t:'';}
+function ctAbasHTML(at){return CT_ABAS.map(function(a){var sb=ctSub(a);return '<button type="button" role="tab" data-ct="'+a[0]+'" aria-selected="'+(a[0]===at)+'">'+ctIcone(a[0])+
+ '<span><b>'+esc(a[1])+'</b>'+(sb?'<small>'+esc(sb)+'</small>':'')+'</span></button>';}).join('');}
 /* aba ativa do painel lateral: os três de estudo moram no Laptop */
 function ctAtiva(){var pd=document.getElementById('painel-dir');if(!pd||!pd.classList.contains('on'))return null;
  var b=pd.querySelector('.pd-nb[aria-selected="true"]')||pd.querySelector('[data-pd][aria-selected="true"]'),k=b&&b.getAttribute('data-pd');
@@ -15408,15 +15408,18 @@ function ctAtiva(){var pd=document.getElementById('painel-dir');if(!pd||!pd.clas
 function ctPinta(){var pd=document.getElementById('painel-dir');if(!pd)return;var k=ctAtiva();pd.classList.toggle('central',!!k&&CT_PD.indexOf(k)>=0);try{ctMoldura();}catch(e){}}
 document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-ct]');if(!b)return;e.preventDefault();e.stopPropagation();
  if(b.getAttribute('aria-selected')==='true')return;var k=b.getAttribute('data-ct'),pd=document.getElementById('painel-dir');
- if(k==='templo'){try{pdFecha();}catch(z){}try{cxFecha();}catch(z){}ctTemploAbre();return;}
+ if(CT_TP.indexOf(k)>=0){try{pdFecha();}catch(z){}try{var cx0=document.getElementById('cx');if(cx0&&cx0.classList.contains('on'))cxFecha();}catch(z){}ctTemploAbre(k);return;}
  ctTemploFecha();
  if(k==='manual'){try{pdFecha();}catch(z){}mfAbre();try{ctMoldura();}catch(z){}return;}
  try{var cx=document.getElementById('cx');if(cx&&cx.classList.contains('on'))cxFecha();}catch(z){}
  if(pd){pd.classList.remove('eu-um');delete pd.dataset.euk;}
  if(k==='conc'||k==='inst'||k==='ler')euSoloAbre(k);else pdAbre(k);try{ctMoldura();}catch(z){}},true);
-/* Templo: a página do templo abre como aba da central, por cima do operacional (body.ct-templo). Fechar volta ao operacional. */
-function ctTemploAbre(){document.body.classList.add('ct-templo');try{ctMoldura();}catch(e){}var w=document.querySelector('.wrap');if(w)w.scrollTop=0;}
-function ctTemploFecha(){document.body.classList.remove('ct-templo');try{ctMoldura();}catch(e){}}
+/* Templo: Mural, Programação e Rastreio abrem por cima do operacional (body.ct-templo; no Rastreio, também body.ct-rast).
+   Mural e Programação são as duas telas do templo (bnTelaSet, no 31); o Rastreio sai de baixo do templo e entra no miolo. */
+function ctTemploAbre(k){k=k||(BN_TELA==='prog'?'prog':'mural');var B=document.body;B.classList.toggle('ct-rast',k==='rast');
+ if((BN_TELA==='prog')!==(k==='prog'))bnTelaSet(k==='prog'?'prog':'visao');
+ B.classList.add('ct-templo');try{ctMoldura();}catch(e){}}
+function ctTemploFecha(){document.body.classList.remove('ct-templo','ct-rast');try{ctMoldura();}catch(e){}}
 /* fechar a central inteira (fundo escuro, ✕ e Esc): Templo, Manual e painel */
 function ctFecha(){ctTemploFecha();try{var cx=document.getElementById('cx');if(cx&&cx.classList.contains('on')&&cx.classList.contains('mf'))cxFecha();}catch(e){}
  try{var pd=document.getElementById('painel-dir');if(pd&&pd.classList.contains('central'))pdFecha();}catch(e){}try{ctMoldura();}catch(e){}}
@@ -15428,19 +15431,21 @@ document.addEventListener('click',function(e){var b=e.target.closest&&e.target.c
    com semana, mês e diário de bordo, todos funcionando. Nada é copiado.
    body.ct-on     central aberta: fundo escuro (#ct-fundo) e a .wrap vira folha fixa e centralizada, com zoom
                   para o templo caber inteiro na altura da tela.
-   body.ct-templo aba Templo: a página do templo inteira, rolando dentro da folha.
+   body.ct-templo Mural, Programação ou Rastreio (o 42 marca qual). Só o #hero-box fica na .wrap; a grade da
+                  Programação (.wrap>.tb) entra no miolo pelo 31/32, e o Rastreio (.wrap>.rt com a base #rt-base) é
+                  posto no miolo daqui (--ct-rx/ry/rw/rh/rb, em medidas da .wrap).
    body.ct-painel Manual ou um dos seis painéis: da .wrap fica só o #hero-box, e a folha da aba cobre o miolo
                   entre os pilares, do frontão até a faixa da base (--ct-x/y/w/h, medidos aqui).
    A barra de abas (#ct-barra) fica no lugar da placa de navegação do frontão (que some na central),
    com as cores da placa do tema (--placa-*, no 32). Camadas: fundo 328 · templo 329 · folha 331 · barra 333. */
-function ctAba(){var B=document.body;if(B.classList.contains('ct-templo'))return 'templo';
+function ctAba(){var B=document.body;if(B.classList.contains('ct-templo'))return B.classList.contains('ct-rast')?'rast':BN_TELA==='prog'?'prog':'mural';
  var cx=document.getElementById('cx');if(cx&&cx.classList.contains('on')&&cx.classList.contains('mf'))return 'manual';
  try{var k=ctAtiva();return k&&CT_PD.indexOf(k)>=0?k:'';}catch(e){return '';}}
 var CT_PLACA=30;
 function ctPx(el,p,v){var t=Math.round(v*100)/100+'px';if(el.style.getPropertyValue(p)!==t)el.style.setProperty(p,t,'important');}
 function ctMoldura(){var at=ctAba(),B=document.body,on=!!at,w=document.querySelector('.wrap'),hb=document.getElementById('hero-box');
  if(!w||!hb)on=false;
- B.classList.toggle('ct-on',on);B.classList.toggle('ct-painel',on&&at!=='templo');
+ B.classList.toggle('ct-on',on);B.classList.toggle('ct-painel',on&&CT_TP.indexOf(at)<0);
  var fd=document.getElementById('ct-fundo'),br=document.getElementById('ct-barra');
  if(!on){if(fd)fd.hidden=true;if(br)br.hidden=true;if(w&&w._ctz){w._ctz=0;['zoom','left','top','width','height'].forEach(function(p){w.style.removeProperty(p);});}return;}
  if(!fd){fd=document.createElement('div');fd.id='ct-fundo';document.body.appendChild(fd);fd.addEventListener('click',ctFecha);}
@@ -15454,23 +15459,24 @@ function ctMoldura(){var at=ctAba(),B=document.body,on=!!at,w=document.querySele
  if(Math.abs(k-(w._ctz||0))>.004){w._ctz=k;w.style.setProperty('zoom',String(k),'important');}
  /* papel do templo só do frontão para baixo: em volta do telhado aparece o fundo escuro */
  var fr=(hb.querySelector('.neo-frontao')||hb).getBoundingClientRect(),wr=w.getBoundingClientRect(),ft=Math.round((fr.bottom-wr.top)/k+w.scrollTop-4)+'px';
- /* no Manual e nos painéis o papel termina no pé da faixa da base; no Templo segue com a página */
- var rdb=hb.querySelector('.bn-rod'),fb=at!=='templo'&&rdb&&rdb.offsetParent?Math.round((rdb.getBoundingClientRect().bottom-wr.top)/k+w.scrollTop+30)+'px':'100000px';
+ /* o papel termina no pé da faixa da base */
+ var rdb=hb.querySelector('.bn-rod'),fb=rdb&&rdb.offsetParent?Math.round((rdb.getBoundingClientRect().bottom-wr.top)/k+w.scrollTop)+'px':'100000px';
  if(w.style.getPropertyValue('--ct-fb')!==fb)w.style.setProperty('--ct-fb',fb);
  if(w.style.getPropertyValue('--ct-ft')!==ft)w.style.setProperty('--ct-ft',ft);
  if(!w._ctp){var bg=getComputedStyle(document.body).backgroundColor;w._ctp=(!bg||/rgba\(0, 0, 0, 0\)/.test(bg))?'#f4ead2':bg;w.style.setProperty('--ct-papel',w._ctp);}
  ctPx(w,'left',L/k);ctPx(w,'top',(innerWidth<=760?0:14)/k);ctPx(w,'width',W/k);ctPx(w,'height',H/k);
- /* barra no lugar da placa do frontão (acompanha a placa quando o Templo rola, sem sair da tela) */
  /* a distância da placa ao pé do frontão fica guardada: com um painel aberto, a placa sai do frontão (vai para o topo do painel, no 30) */
  var pl=hb.querySelector('.nf2>.pd-pilula'),nr=nav.getBoundingClientRect(),zz=hb.currentCSSZoom||1;
  if(pl){var pr=pl.getBoundingClientRect();if(pr.height)CT_PLACA=(pr.top+pr.height/2-fr.bottom)/zz;}
  var cy=Math.max(fr.bottom+CT_PLACA*zz,(innerWidth<=760?6:14)+nr.height/2);
- br.style.setProperty('--ct-bx',(innerWidth/2)+'px');br.style.setProperty('--ct-by',Math.round(cy)+'px');br.style.setProperty('--ct-L',L+'px');
- if(at==='templo')return;
+ br.style.setProperty('--ct-by',Math.round(cy)+'px');br.style.setProperty('--ct-L',L+'px');
  /* miolo entre os pilares: do pé da barra até o topo da faixa da base */
  var vx=hb.querySelector('.vx-hero')||hb,vr=vx.getBoundingClientRect(),rd=hb.querySelector('.bn-rod'),rr=rd&&rd.offsetParent?rd.getBoundingClientRect():null;
  var y=Math.max(vr.top,cy+nr.height/2+8),y2=rr?rr.top-8:vr.bottom,R=document.documentElement.style;
- R.setProperty('--ct-x',Math.round(vr.left)+'px');R.setProperty('--ct-w',Math.round(vr.width)+'px');R.setProperty('--ct-y',Math.round(y)+'px');R.setProperty('--ct-h',Math.max(120,Math.round(y2-y))+'px');}
+ R.setProperty('--ct-x',Math.round(vr.left)+'px');R.setProperty('--ct-w',Math.round(vr.width)+'px');R.setProperty('--ct-y',Math.round(y)+'px');R.setProperty('--ct-h',Math.max(120,Math.round(y2-y))+'px');
+ /* Rastreio no miolo, com a base de hábito semanal (#rt-base) no pé; medidas na escala da .wrap */
+ if(at==='rast'){var rb=document.getElementById('rt-base'),rbh=rb?rb.offsetHeight+10:0;
+  [['--ct-rx',(vr.left-wr.left)/k],['--ct-ry',(y-wr.top)/k],['--ct-rw',vr.width/k],['--ct-rh',(y2-y)/k-rbh],['--ct-rb',(y2-wr.top)/k-rbh+10]].forEach(function(v){var t=Math.round(v[1])+'px';if(w.style.getPropertyValue(v[0])!==t)w.style.setProperty(v[0],t);});}}
 setInterval(function(){try{ctMoldura();}catch(e){}},250);
 window.addEventListener('resize',function(){try{ctMoldura();}catch(e){}});
 })();
