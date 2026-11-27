@@ -1,0 +1,83 @@
+/* ===== Argo · revisão visual: quatro velas no convés (a Clepsidra desce para o mar como Rota da travessia) ===== */
+body:not(.tv).op-on #modo-op>.op-l{display:none!important}
+body:not(.tv).op-on #modo-op>:is(.op-top,.op-g){grid-column:1 / -1!important}
+body:not(.tv).op-on #modo-op .op-g{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:17px!important}
+body:not(.tv).op-on #modo-op.op-grego .op-g>.op-templo{border:1px solid #b9975c!important;border-top:6px solid #825532!important;border-bottom:5px solid #825532!important;border-radius:16px 16px 24px 24px!important;box-shadow:0 6px 12px rgba(109,72,37,.17),inset 0 0 0 3px #f9edcf!important;padding:calc(var(--ah) + 2px) 15px calc(var(--af) + 6px)!important;background:var(--a-cab) 0 0/100% var(--ah) no-repeat,var(--a-rod) 0 100%/100% var(--af) no-repeat,repeating-linear-gradient(90deg,rgba(255,255,255,0) 0 8px,rgba(176,138,69,.06) 9px 10px),linear-gradient(90deg,#e7d2a7 0%,#faf2dc 9%,#fff8e8 50%,#faf2dc 91%,#e7d2a7 100%)!important}
+body:not(.tv).op-on #modo-op.op-grego .op-g>.op-templo::before,body:not(.tv).op-on #modo-op.op-grego .op-g>.op-templo::after{content:""!important;display:block!important;position:absolute!important;top:calc(var(--ah) - 6px)!important;bottom:calc(var(--af) + 2px)!important;width:4px!important;height:auto!important;min-width:0!important;padding:0!important;border:0!important;box-shadow:none!important;border-radius:3px!important;background:repeating-linear-gradient(150deg,#8e602d 0 2px,#d7b777 2px 4px)!important;opacity:.75!important;transform:none!important;z-index:1;pointer-events:none}
+body:not(.tv).op-on #modo-op.op-grego .op-g>.op-templo::before{left:3px!important;right:auto!important}
+body:not(.tv).op-on #modo-op.op-grego .op-g>.op-templo::after{right:3px!important;left:auto!important}
+body:not(.tv).op-on #modo-op.op-grego .op-g>.op-templo .op-cab{background-color:#fff8e6!important}
+body:not(.tv).op-on #modo-op.op-grego .op-g>.op-templo{overflow-y:auto!important;overflow-x:hidden!important;scrollbar-width:thin;scrollbar-color:#c9a45a transparent}
+body:not(.tv).op-on #modo-op.op-grego .op-g>.op-templo>*{flex-shrink:0!important}
+body:not(.tv).op-on #modo-op.op-grego .op-g>.op-col1.op-templo{--a-cab:url("img/acampamento/argo-vela-leme-orn.svg?v=1");--a-rod:url("img/acampamento/argo-vela-leme-rod.svg?v=1");--t-k:#a65a43!important}
+body:not(.tv).op-on #modo-op.op-grego .op-g>.op-fazer.op-templo{--a-cab:url("img/acampamento/argo-vela-porao-orn.svg?v=1");--a-rod:url("img/acampamento/argo-vela-porao-rod.svg?v=1");--t-k:#806d91!important}
+body:not(.tv).op-on #modo-op.op-grego .op-g>.op-estudo.op-templo{--a-cab:url("img/acampamento/argo-vela-carta-orn.svg?v=1");--a-rod:url("img/acampamento/argo-vela-carta-rod.svg?v=1");--t-k:#426b94!important}
+body:not(.tv).op-on #modo-op.op-grego .op-g>.op-lado.op-templo{--a-cab:url("img/acampamento/argo-vela-anfora-orn.svg?v=1");--a-rod:url("img/acampamento/argo-vela-anfora-rod.svg?v=1");--t-k:#818350!important}
+body:not(.tv).op-on #rod-apps{padding-bottom:var(--a-mar-h,118px)!important}
+body:not(.tv).op-on{--a-mar-h:clamp(96px,13vh,122px)}
+body:not(.tv).op-on #argo-mar{display:grid!important;position:absolute;left:0;right:0;bottom:0;height:var(--a-mar-h);box-sizing:border-box;padding:12px 4.5% 16px;grid-template-columns:minmax(135px,.9fr) minmax(0,5fr) minmax(135px,.9fr);align-items:center;gap:13px;color:#f8f1de;background:linear-gradient(180deg,#347788,#205a71 55%,#17475f);border-top:2px solid #8fc1c4;isolation:isolate;overflow:hidden;z-index:4}
+body:not(.tv).op-on #argo-mar::before,body:not(.tv).op-on #argo-mar::after{content:"";position:absolute;left:0;right:-240px;bottom:0;height:48px;background:url("img/acampamento/argo-mar-ondas.svg?v=1") 0 100%/240px 54px repeat-x;z-index:-1;opacity:.68;animation:argoCor 18s linear infinite;pointer-events:none}
+body:not(.tv).op-on #argo-mar::after{bottom:13px;opacity:.24;animation-duration:28s;animation-direction:reverse}
+@keyframes argoCor{to{transform:translateX(-240px)}}
+@media (prefers-reduced-motion:reduce){body:not(.tv).op-on #argo-mar::before,body:not(.tv).op-on #argo-mar::after{animation:none}}
+body:not(.tv).op-on #argo-mar .rg-box{display:flex;align-items:center;gap:9px;min-width:0;padding:8px 10px;border:1px solid #a4c3b6;border-radius:4px;background:#174d62;color:#fff3d4}
+body:not(.tv).op-on #argo-mar .rg-med{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:#f3e1b4;color:#255c70;border:1.5px solid #c69c51}
+body:not(.tv).op-on #argo-mar .rg-med svg{width:16px;height:16px}
+body:not(.tv).op-on #argo-mar .rg-box b{display:block;font:400 15px/1.1 Georgia,serif;font-variant:small-caps;letter-spacing:.05em;color:#fff3d4}
+body:not(.tv).op-on #argo-mar .rg-box small{display:block;margin-top:2px;font:600 8.5px/1.3 var(--mono,monospace);letter-spacing:.14em;text-transform:uppercase;color:#fff3d4;opacity:.9}
+body:not(.tv).op-on #argo-mar .rg-box em{font-style:italic;color:#ffe0a1}
+body:not(.tv).op-on #argo-mar .rg-box .rg-hora{font:700 13px var(--mono,monospace);color:#ffe0a1;margin-right:5px}
+body:not(.tv).op-on #argo-mar .rg-ol{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px;align-items:stretch;height:100%;min-height:0}
+body:not(.tv).op-on #argo-mar .rg-li{position:relative;display:flex;flex-direction:column;justify-content:center;gap:3px;min-width:0;padding:8px 8px 7px;border:1px solid #91b4b4;border-radius:30% 14% 12px 12px / 18% 15% 12px 12px;background:linear-gradient(165deg,#e9f3e8,#b8d8d2);color:#193f50;font:13px/1.2 Georgia,serif;overflow:hidden}
+body:not(.tv).op-on #argo-mar .rg-li small{font:600 8.5px/1.25 var(--mono,monospace);letter-spacing:.07em;text-transform:uppercase;color:#315f6a}
+body:not(.tv).op-on #argo-mar .rg-li span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+body:not(.tv).op-on #argo-mar .rg-li.passou{opacity:.62}
+body:not(.tv).op-on #argo-mar .rg-li.agora{outline:2px solid #e8bd70;outline-offset:1px;background:linear-gradient(165deg,#fff2cd,#e1c88e)}
+body:not(.tv).op-on #argo-mar .rg-li.agora i{font:700 8.5px var(--mono,monospace);font-style:normal;letter-spacing:.1em;text-transform:uppercase;color:#b4463a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media (max-width:1000px){body:not(.tv).op-on #argo-mar{grid-template-columns:1fr}body:not(.tv).op-on #argo-mar .rg-box{display:none}}
+/* ===== Barca solar de Rá (tema Casa do Brooklyn): mesma estrutura da Argo — quatro velas de papiro, casco com popa e proa em umbela, selos no lugar dos escudos e o Nilo com a Rota ===== */
+html body.eg.op-on{--a-pw:var(--a-rw)}
+html body.eg.op-on #modo-op .op-l::after,html body.eg.op-on #modo-op .op-g::after{content:none!important;display:none!important}
+html body.eg.op-on #modo-op.op-grego .op-g>.op-templo{border:1px solid #bd9858!important;border-radius:7px 7px 16px 16px!important;box-shadow:0 6px 12px rgba(109,72,37,.11),inset 0 0 0 2px #e8c98c!important;background:var(--a-cab) 0 0/100% var(--ah) no-repeat,var(--a-rod) 0 100%/100% var(--af) no-repeat,repeating-linear-gradient(90deg,rgba(255,255,255,0) 0 7px,rgba(184,140,66,.06) 8px 9px),linear-gradient(90deg,#ecd7ae,#fff9e9 10%,#fbf2d9 50%,#fff9e9 90%,#ecd7ae)!important}
+html body.eg.op-on #modo-op.op-grego .op-g>.op-templo::before,html body.eg.op-on #modo-op.op-grego .op-g>.op-templo::after{width:5px!important;background:var(--ra-lat) center 0/5px 36px repeat-y!important;opacity:.9!important;border-radius:0!important}
+html body.eg.op-on #modo-op.op-grego .op-g>.op-templo .op-cab{background-color:#fcf4de!important}
+html body.eg.op-on #modo-op.op-grego .op-g>.op-col1.op-templo{--a-cab:url("img/acampamento/ra-vela-leme-topo.svg?v=1")!important;--a-rod:url("img/acampamento/ra-vela-leme-base.svg?v=1")!important;--ra-lat:url("img/acampamento/ra-vela-leme-lateral.svg?v=1");--t-k:#a64f3c!important}
+html body.eg.op-on #modo-op.op-grego .op-g>.op-fazer.op-templo{--a-cab:url("img/acampamento/ra-vela-porao-topo.svg?v=1")!important;--a-rod:url("img/acampamento/ra-vela-porao-base.svg?v=1")!important;--ra-lat:url("img/acampamento/ra-vela-porao-lateral.svg?v=1");--t-k:#244c70!important}
+html body.eg.op-on #modo-op.op-grego .op-g>.op-estudo.op-templo{--a-cab:url("img/acampamento/ra-vela-carta-topo.svg?v=1")!important;--a-rod:url("img/acampamento/ra-vela-carta-base.svg?v=1")!important;--ra-lat:url("img/acampamento/ra-vela-carta-lateral.svg?v=1");--t-k:#247f83!important}
+html body.eg.op-on #modo-op.op-grego .op-g>.op-lado.op-templo{--a-cab:url("img/acampamento/ra-vela-anfora-topo.svg?v=1")!important;--a-rod:url("img/acampamento/ra-vela-anfora-base.svg?v=1")!important;--ra-lat:url("img/acampamento/ra-vela-anfora-lateral.svg?v=1");--t-k:#667955!important}
+html body.eg.op-on #rod-apps.rod{background:#c89551!important;border-top:0!important;box-shadow:0 -4px 12px -6px rgba(80,59,43,.5)!important}
+html body.eg.op-on #rod-apps .rod-top{background:url("img/acampamento/ra-casco-repetivel.svg?v=1") 0 0/auto 100px repeat-x,#c89551!important;padding-top:0!important}
+html body.eg.op-on #rod-apps .rod-top::before{width:var(--a-rw)!important;top:calc(var(--a-rw)*-1.056)!important;height:calc(var(--a-rw)*1.6145)!important;background-image:url("img/acampamento/ra-popa-papiro.svg?v=1")!important}
+html body.eg.op-on #rod-apps .rod-top::after{background-image:url("img/acampamento/ra-proa-papiro.svg?v=1")!important}
+html body.eg.op-on #rod-apps :is(#rod-reg .cr-p,#rod-reg .cr-p:hover,#rod-reg .cr-p.on){background:none!important;border:0!important;box-shadow:none!important;border-radius:0!important}
+html body.eg.op-on #rod-apps #rod-reg .cr-p .cr-lb b{background:var(--selo) center/contain no-repeat!important;box-shadow:none!important;border-radius:0!important;width:58px!important;height:48px!important;font:700 11px/1 Georgia,serif!important;color:#503b2b!important;filter:drop-shadow(0 3px 3px rgba(40,20,0,.4))}
+html body.eg.op-on #rod-apps #rod-reg .cr-p:is(:hover,.on) .cr-lb b{box-shadow:none!important;filter:brightness(1.08) drop-shadow(0 0 4px #f4d486) drop-shadow(0 3px 3px rgba(40,20,0,.4))}
+html body.eg.op-on #rod-apps #rod-reg .cr-p .cr-lb small{background:#f7edce!important;color:#503b2b!important;border:1px solid #c99a4c!important;border-radius:3px!important}
+html body.eg.op-on #rod-apps #rod-reg .cr-p:nth-of-type(1){--selo:url("img/acampamento/ra-selo-01.svg?v=1")}
+html body.eg.op-on #rod-apps #rod-reg .cr-p:nth-of-type(2){--selo:url("img/acampamento/ra-selo-02.svg?v=1")}
+html body.eg.op-on #rod-apps #rod-reg .cr-p:nth-of-type(3){--selo:url("img/acampamento/ra-selo-03.svg?v=1")}
+html body.eg.op-on #rod-apps #rod-reg .cr-p:nth-of-type(4){--selo:url("img/acampamento/ra-selo-04.svg?v=1")}
+html body.eg.op-on #rod-apps #rod-reg .cr-p:nth-of-type(5){--selo:url("img/acampamento/ra-selo-05.svg?v=1")}
+html body.eg.op-on #rod-apps #rod-reg .cr-p:nth-of-type(6){--selo:url("img/acampamento/ra-selo-06.svg?v=1")}
+html body.eg.op-on #rod-apps #rod-reg .cr-p:nth-of-type(7){--selo:url("img/acampamento/ra-selo-07.svg?v=1")}
+html body.eg.op-on #rod-apps #rod-reg .cr-p:nth-of-type(8){--selo:url("img/acampamento/ra-selo-08.svg?v=1")}
+html body.eg.op-on #rod-apps #rod-fogo{background:#f7edce!important;border:1.5px solid #c99a4c!important;border-radius:5px!important;box-shadow:0 0 0 2px #f7edce,0 0 0 3px #503b2b!important}
+html body.eg.op-on #rod-apps #rod-bar{background:#f7edce!important;border:1.5px solid #c99a4c!important;border-radius:5px!important;box-shadow:0 0 0 2px #f7edce,0 0 0 3px #503b2b!important}
+html body.eg.op-on{--a-mar-h:clamp(112px,15vh,150px)}
+html body.eg.op-on #argo-mar{background:linear-gradient(180deg,#337f91 0%,#215f79 60%,#153c5d 100%)!important;border-top:3px double #a6d6cf!important;box-shadow:inset 0 6px 18px rgba(21,62,91,.4)!important;padding:12px 2.2% 14px!important;gap:10px!important;grid-template-columns:minmax(124px,.82fr) minmax(0,6fr) minmax(124px,.82fr)!important}
+html body.eg.op-on #argo-mar::before{right:-360px!important;height:80%!important;bottom:6px!important;background:url("img/acampamento/ra-nilo-corrente-distante.svg?v=1") 0 100%/360px 100% repeat-x!important;animation:raNilo 32s linear infinite reverse!important;opacity:.72!important}
+html body.eg.op-on #argo-mar::after{right:-360px!important;height:44%!important;bottom:0!important;background:url("img/acampamento/ra-nilo-ondas.svg?v=1") 0 100%/360px 100% repeat-x!important;animation:raNilo 22s linear infinite!important;opacity:1!important}
+@keyframes raNilo{from{transform:translateX(0)}to{transform:translateX(-360px)}}
+@media (prefers-reduced-motion:reduce){html body.eg.op-on #argo-mar::before,html body.eg.op-on #argo-mar::after{animation:none!important}}
+html body.eg.op-on #argo-mar .rg-ol{gap:2px!important}
+html body.eg.op-on #argo-mar .rg-li{border:0!important;outline:0!important;border-radius:0!important;background:url("img/acampamento/ra-onda-turno-futura.svg?v=1") center/100% 100% no-repeat!important;color:#fff9e8!important;padding:26px 10px 10px!important;justify-content:center!important;filter:drop-shadow(0 3px 2px rgba(12,59,83,.4))}
+html body.eg.op-on #argo-mar .rg-li small{color:#cde6d9!important}
+html body.eg.op-on #argo-mar .rg-li.passou{background-image:url("img/acampamento/ra-onda-turno-passada.svg?v=1")!important;opacity:.8!important}
+html body.eg.op-on #argo-mar .rg-li.agora{background-image:url("img/acampamento/ra-onda-turno-atual.svg?v=1")!important;outline:0!important}
+html body.eg.op-on #argo-mar .rg-li.agora small{color:#f4d486!important}
+html body.eg.op-on #argo-mar .rg-li.agora i{color:#f4d486!important}
+html body.eg.op-on #argo-mar .rg-box{background:#174d62!important;border:1px solid #a4c3b6!important;border-radius:10px!important}
+html body.eg.op-on #argo-mar .rg-med{background:url("img/acampamento/ra-selo-nilo.svg?v=1") center/contain no-repeat!important;border:0!important;color:transparent!important;width:34px!important;height:34px!important}
+html body.eg.op-on #argo-mar .rg-med svg{display:none}
+
+

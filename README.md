@@ -70,3 +70,6 @@ Integrações externas, num arquivo à parte. O script principal só expõe `win
 - **Acampamento Júpiter (Habitica):** dailies com o mesmo nome dos hábitos se ligam sozinhas; marcou de um lado, marca do outro. Chamadas automáticas com 30 s entre elas e cabeçalho `x-client`.
 - As chaves ficam só no aparelho (`localStorage`, chave `astro-pontes-v1`). Readwise, Raindrop, Toggl e Strava passam pela função `supabase/functions/pontes` (CORS), que só aceita esses destinos e não guarda nada.
 
+## Código separado
+
+O `index.html` guarda só a marcação. Os estilos ficam em `src/css/` e o código em `src/app/`, em partes numeradas; `python3 build.py` junta tudo em `app.css` e `app.js`. Detalhes em `CLAUDE.md`.

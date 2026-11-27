@@ -1,0 +1,133 @@
+/* ===== rodapé no desenho do app: faixa de papel com régua dupla e placas com medalhão ===== */
+#rod-apps.rod{background:#e8dcb9!important;border-top:3px double #5a3f2c!important;box-shadow:0 -6px 16px rgba(60,40,20,.08)!important;backdrop-filter:none!important}
+#rod-apps .rod-top{gap:0!important}
+#rod-apps .rod-top .rod-bar{background:#5a3f2c!important;color:#f4ead2!important;border:0!important}
+#rod-apps .rod-top .rod-bar *{color:#f4ead2!important}
+#rod-apps .cp-reg .cr-bar{gap:6px!important;padding:6px 8px!important}
+#rod-apps .cp-reg .cr-p{position:relative;display:flex!important;align-items:center;gap:8px;min-height:44px!important;padding:5px 10px 5px 6px!important;border:1px solid #c9b28a!important;border-left:1px solid #c9b28a!important;border-radius:8px!important;
+ background:linear-gradient(180deg,#fbf3df,#f1e3c3)!important;box-shadow:0 1px 0 #fff8 inset,0 1px 2px rgba(60,40,20,.12)!important;transition:transform .15s,box-shadow .15s}
+#rod-apps .cp-reg .cr-p::after{content:'';position:absolute;left:8px;right:8px;bottom:0;height:2px;border-radius:2px;background:var(--cr,#9a6b3a)}
+#rod-apps .cp-reg .cr-p:hover,#rod-apps .cp-reg .cr-p.on{transform:translateY(-2px);box-shadow:0 4px 10px rgba(60,40,20,.18)!important;border-color:var(--cr,#9a6b3a)!important}
+#rod-apps .cp-reg .cr-ico{flex:none;width:30px!important;height:30px!important;display:grid;place-items:center;border-radius:50%!important;border:1.5px solid var(--cr,#9a6b3a)!important;background:#f4ead2!important;box-shadow:0 0 0 2px #f4ead2,0 0 0 3px color-mix(in srgb,var(--cr,#9a6b3a) 40%,transparent)}
+#rod-apps .cp-reg .cr-ico svg{width:15px!important;height:15px!important;fill:none;stroke:var(--cr,#9a6b3a)!important;stroke-width:1.7}
+#rod-apps .cp-reg .cr-lb{display:flex!important;flex-direction:column;align-items:flex-start;gap:1px;min-width:0;flex:1}
+#rod-apps .cp-reg .cr-lb small{font:700 8px var(--mono,monospace)!important;letter-spacing:.16em!important;text-transform:uppercase;color:#8a6f55!important}
+#rod-apps .cp-reg .cr-lb b{font:700 15px Georgia,serif!important;color:#3b2a1d!important;line-height:1.1}
+#rod-apps .cr-pop{background:#fbf3df!important;border:1px solid #c9b28a!important;border-radius:10px!important;box-shadow:0 10px 26px rgba(60,40,20,.25)!important}
+
+#rod-apps .cp-reg .cr-lb small{display:block!important}
+/* menos espaço entre os templos */
+h2.sec.neo-tit{margin-top:12px!important}
+h2.sec.neo-tit[data-nivel]{margin-top:12px!important}
+#tm-painel.tm-neo,#recreio.rc-neo,#tesouro.neo-moldura{margin-top:14px!important;margin-bottom:0!important}
+.wrap > div.tb.neo-moldura,.wrap > div.rt.neo-moldura{margin-bottom:0!important}
+#hero-box{margin-bottom:0!important}
+
+/* sem marrom chapado: faixa esquerda e botão apps em papel com tinta */
+#lat-topo .lt-r1{background:#f4ead2!important;color:#3b2a1d!important;border-color:#5a3f2c!important}
+#lat-topo .lt-logo{background:transparent!important}
+#lat-topo .lt-id small{opacity:1;color:#8a6f55}
+#lat-topo .lt-dias{background:#fbf3df;border:1px solid #c9b28a}
+#lat-topo .lt-k{background:transparent!important;color:#5a3f2c!important;border:1px solid #5a3f2c}
+#rod-apps .rod-top .rod-bar{background:#f4ead2!important;border-right:1px solid #c9b28a!important}
+#rod-apps .rod-top .rod-bar *{color:#5a3f2c!important}
+/* folgas escondidas entre o Recreações e o Tesouro */
+.wrap>.area-cab.ts-oculta,.wrap>#area-est,.wrap>#area-dos,.wrap>#area-camp{margin:0!important}
+.wrap>#fin-wrap:empty,.wrap>#fin-wrap:not(:has(*:not([hidden]))){margin:0!important}
+
+.wrap>#lat-faixa:not(:has(*:not(:empty))){margin:0!important}
+@media(min-width:1380px){.wrap>#lat-faixa{margin:0!important}}
+
+/* roda do ciclo na Tática */
+.ci-circ{display:flex;justify-content:center;margin:4px 0 10px}
+.ci-circ .rd-svg{width:100%;max-width:340px;height:auto}
+.ci-det{margin:0 0 10px;border:1px solid #c9b28a;border-radius:10px;background:#fbf3df}
+.ci-det>summary{cursor:pointer;padding:8px 12px;font:700 9.5px var(--mono,monospace);letter-spacing:.16em;text-transform:uppercase;color:#8a6f55}
+.ci-det>#ci-roda{padding:0 10px 10px}
+/* ===== escudo do foco ===== */
+.td-aspis .td-ring{width:104px!important;height:104px!important;background:none!important;box-shadow:0 10px 22px -8px rgba(60,35,10,.55)!important;border-radius:50%!important;transition:transform .2s}
+.td-aspis .td-ring:hover{transform:rotate(-4deg) scale(1.03)}
+.td-aspis .td-ring svg{position:static;width:100%;height:100%}
+.td-aspis .td-st1{font:700 11px Georgia,serif;letter-spacing:.3em;fill:#5a3f2c}
+.td-aspis .td-st2{font:700 19px Georgia,serif;fill:#3b2a1d;font-variant-numeric:tabular-nums}
+.td-aspis .td-st3{font:700 7px var(--mono,monospace);letter-spacing:.2em;fill:#8a6f55;text-transform:uppercase}
+.td-aspis .td-fg2{transition:stroke-dashoffset 1s linear}
+.td-aspis.fim .td-ring{animation:tdPulsa 1.2s ease-in-out infinite}
+@keyframes tdPulsa{50%{transform:scale(1.05)}}
+.td-aspis .td-menu{width:250px;padding:12px!important;border:1px solid #c9b28a!important;border-radius:12px!important;background:linear-gradient(180deg,#fbf3df,#f1e3c3)!important;box-shadow:0 14px 30px rgba(60,40,20,.3)!important;gap:8px!important}
+.td-aspis .td-menu header{display:flex;flex-direction:column;gap:1px;padding-bottom:7px;border-bottom:3px double #5a3f2c}
+.td-aspis .td-menu header span{font:700 8.5px var(--mono,monospace);letter-spacing:.2em;text-transform:uppercase;color:#9a6b3a}
+.td-aspis .td-menu header b{font:400 17px Georgia,serif!important;color:#3b2a1d!important}
+.td-aspis .td-chips{display:grid;grid-template-columns:repeat(5,1fr);gap:4px}
+.td-aspis .td-chips button{display:grid!important;place-items:center;height:34px;padding:0!important;border-radius:50%!important;aspect-ratio:1;width:auto!important;border:1.5px solid #9a6b3a!important;background:#f4ead2!important;font:700 13px Georgia,serif!important;color:#5a3f2c!important;text-align:center!important}
+.td-aspis .td-chips button.on,.td-aspis .td-chips button:hover{background:#e9c87a!important}
+.td-aspis .td-livre{display:flex;gap:5px}.td-aspis .td-livre input{flex:1;min-width:0;height:32px;padding:0 10px;border:1px solid #c9b28a;border-radius:8px;background:#fbf3df;font:14px var(--sans);color:#3b2a1d}
+.td-aspis .td-livre button{width:auto!important;display:inline-block!important;padding:0 12px!important;height:32px;border-radius:8px!important;border:1px solid #5a3f2c!important;background:#f4ead2!important;color:#5a3f2c!important;font:700 10px var(--mono,monospace)!important;letter-spacing:.14em;text-transform:uppercase}
+.td-aspis .td-l{padding:7px 10px!important;border:1px solid #c9b28a!important;border-radius:8px!important;background:#fbf3df!important;color:#3b2a1d!important;font:13px var(--sans)!important}
+.td-aspis .td-l.td-5{background:#e9c87a!important;border-color:#9a6b3a!important;font-weight:700!important}
+.td-aspis .td-dois,.td-aspis .td-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px}
+.td-aspis .td-grid button{padding:7px 8px!important;border:1px solid #c9b28a!important;border-radius:8px!important;background:#fbf3df!important;color:#3b2a1d!important;font:600 12.5px var(--sans)!important;text-align:center!important}
+.td-aspis .td-opt{display:flex;gap:5px}.td-aspis .td-opt button{flex:1;padding:5px 8px!important;border:1px dashed #b89c72!important;border-radius:999px!important;background:transparent!important;font:700 9px var(--mono,monospace)!important;letter-spacing:.1em;text-transform:uppercase;color:#8a6f55!important;text-align:center!important}
+.td-aspis .td-opt button[aria-pressed="true"]{border-style:solid!important;color:#5a3f2c!important;background:#f4ead2!important}
+.td-aspis .td-menu footer{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 8px;padding-top:7px;border-top:1px dashed #b89c72}
+.td-aspis .td-menu footer span{font:700 8.5px var(--mono,monospace);letter-spacing:.18em;text-transform:uppercase;color:#9a6b3a}
+.td-aspis .td-menu footer b{font:700 13px Georgia,serif;color:#3b2a1d}
+.td-aspis .td-menu footer a{margin-left:auto;font:600 11.5px var(--sans);color:#5a3f2c}
+
+#td-disco .td-ring{cursor:grab;touch-action:none}
+#td-disco.td-arrastando .td-ring{cursor:grabbing;transform:scale(1.06)!important;box-shadow:0 18px 30px -10px rgba(60,35,10,.6)!important}
+#td-disco.td-solto.td-cima{flex-direction:column!important}
+#td-disco.td-solto.td-dir{align-items:flex-end!important}
+#td-disco .td-ring{title:''}
+
+#dj-h>div{position:relative;padding-right:30px!important}
+#dj-h .dj-x{position:absolute;top:6px;right:4px;width:auto!important;min-width:22px;height:22px;margin:0!important;padding:0 6px!important;border:1px solid #c9b28a!important;border-radius:999px!important;background:#fbf3df!important;color:#8a6f55!important;font:11px var(--sans)!important;cursor:pointer;line-height:1}
+#dj-h .dj-x:hover{color:#b4463a!important;border-color:#b4463a!important}
+#dj-h .dj-x.conf{background:#b4463a!important;border-color:#b4463a!important;color:#fff!important;font:700 9px var(--mono,monospace)!important;letter-spacing:.1em;text-transform:uppercase}
+
+/* Culture Vulture no Recreações: ocupa a largura toda, abaixo dos outros dois */
+#recreio .rc-g>#lat-cv{grid-column:1/-1}
+#recreio #lat-cv{--c-img:url("img/acampamento/anfiteatro.jpg")}
+#lat-cv .cv-cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:0 0 12px;padding-bottom:12px;border-bottom:1px dashed #c9b28a}
+#lat-cv .cv-col{display:flex;flex-direction:column;gap:4px;min-width:0}
+#lat-cv .cv-k{display:block;font:700 9px var(--mono,monospace);letter-spacing:.18em;text-transform:uppercase;color:#9a6b3a;margin-bottom:2px}
+#lat-cv .cv-in{width:100%;box-sizing:border-box;height:28px;padding:0 4px!important;border:0!important;border-bottom:1px dotted #b89c72!important;border-radius:0!important;background:transparent!important;font:14px Georgia,serif;color:#3b2a1d}
+#lat-cv .cv-in:focus{outline:0;border-bottom-color:#9a6b3a!important}
+#lat-cv .cv-tx{display:block;margin:0 0 10px}#lat-cv .cv-tx textarea{width:100%;box-sizing:border-box;border:1px solid #c9b28a;border-radius:8px;background:#fbf3df;padding:8px;font:14px Georgia,serif;color:#3b2a1d}
+#lat-cv .cv-ch{display:flex;flex-wrap:wrap;align-items:center;gap:6px}#lat-cv .cv-ch .cv-k{width:100%}
+#lat-cv .cv-ch button{width:auto!important;margin:0!important;padding:5px 12px!important;border:1px solid #b89c72!important;border-radius:999px!important;background:#fbf3df!important;color:#5a3f2c!important;font:13px Georgia,serif!important}
+#lat-cv .cv-ch button.on{background:#e9c87a!important;border-color:#9a6b3a!important}
+@media(max-width:800px){#lat-cv .cv-cols{grid-template-columns:1fr}}
+
+/* ===== Reinos, Profecia e Dossiê no padrão das primeiras páginas do livro ===== */
+#lv .lv-folha:is([data-folha="reinos"],[data-folha="profecia"],[data-folha^="dos-"]) .lv-corpo{
+ --mono:Georgia,'EB Garamond',serif;--sans:Georgia,'EB Garamond',serif;--display:Georgia,serif;--red:#9b3a2a;--bone:#24304f;--ink:#24304f;--dim:#8a6f55;
+ --panel:transparent;--panel2:transparent;--well:transparent;--bg:transparent;--line:#c9b28a;--line2:#c9b28a;--blk:transparent;color:#24304f}
+#lv .lv-folha:is([data-folha="reinos"],[data-folha="profecia"],[data-folha^="dos-"]) .lv-corpo :is(div,section,article,aside,details,header,footer,table,thead,tbody,tr,td,th,ul,ol,li,form,fieldset,label,nav):not(.lv-corpo){
+ background-color:transparent!important;background-image:none!important;box-shadow:none!important;border-radius:0!important;border-color:#d6c49c!important}
+#lv .lv-folha:is([data-folha="reinos"],[data-folha="profecia"],[data-folha^="dos-"]) .lv-corpo :is(h2,h3,h4,b,strong){font-family:Georgia,'EB Garamond',serif!important;color:#2a2418!important}
+#lv .lv-folha:is([data-folha="reinos"],[data-folha="profecia"],[data-folha^="dos-"]) .lv-corpo :is(.k9,.k5,.k6,.fc-k,.ars-k,.mm-k,.ac-k,small.k,.esp-eb){font:700 10px Georgia,serif!important;letter-spacing:.2em!important;text-transform:uppercase;color:#9b3a2a!important}
+#lv .lv-folha:is([data-folha="reinos"],[data-folha="profecia"],[data-folha^="dos-"]) .lv-corpo h2.sec{border:0!important;border-bottom:1px solid #b89c72!important;padding:0 0 4px!important;margin:6px 0 10px!important;font:400 20px Georgia,serif!important;color:#2a2418!important}
+#lv .lv-folha:is([data-folha="reinos"],[data-folha="profecia"],[data-folha^="dos-"]) .lv-corpo h2.sec::before{display:none!important}
+#lv .lv-folha:is([data-folha="reinos"],[data-folha="profecia"],[data-folha^="dos-"]) .lv-corpo h2.sec span{font:italic 12px Georgia,serif!important;letter-spacing:0!important;color:#8a6f55!important;margin-left:8px}
+#lv .lv-folha:is([data-folha="reinos"],[data-folha="profecia"],[data-folha^="dos-"]) .lv-corpo button{border-radius:2px!important;border:1px solid #b89c72!important;background:transparent!important;color:#5a3f2c!important;font-family:Georgia,serif!important;box-shadow:none!important}
+#lv .lv-folha:is([data-folha="reinos"],[data-folha="profecia"],[data-folha^="dos-"]) .lv-corpo :is(input,textarea,select){background:transparent!important;border:0!important;border-bottom:1px dotted #b89c72!important;border-radius:0!important;font-family:Georgia,serif!important;color:#24304f!important}
+#lv .lv-folha:is([data-folha="reinos"],[data-folha="profecia"],[data-folha^="dos-"]) .lv-corpo img{border:6px solid #fff!important;border-bottom-width:16px!important;box-shadow:0 4px 10px rgba(60,40,20,.25)!important;transform:rotate(-1.5deg)}
+/* Reinos como índice de capítulo: nome, descrição e linha pontilhada */
+#lv [data-folha="reinos"] .fc-reino-bt{display:flex!important;flex-direction:column;gap:0!important}
+#lv [data-folha="reinos"] .fc-reino-bt button{display:grid!important;grid-template-columns:34px auto 1fr;align-items:baseline;gap:10px;width:100%!important;padding:12px 4px!important;border:0!important;border-bottom:1px dotted #b89c72!important;text-align:left!important;counter-increment:reino}
+#lv [data-folha="reinos"] .fc-reino-bt{counter-reset:reino}
+#lv [data-folha="reinos"] .fc-reino-bt button::before{content:counter(reino,upper-roman);font:700 12px Georgia,serif;color:#9b3a2a;letter-spacing:.1em}
+#lv [data-folha="reinos"] .fc-reino-bt button b{font:400 22px Georgia,serif!important}
+#lv [data-folha="reinos"] .fc-reino-bt button small{font:italic 14px Georgia,serif!important;color:#6b5140!important;justify-self:end;text-align:right}
+#lv [data-folha="reinos"] .fc-reino-bt button[aria-pressed="true"] b{color:#9b3a2a!important}
+#lv [data-folha="reinos"] .fc-reinos>h3{display:none}
+/* Profecia: citação como no livro */
+#lv [data-folha="profecia"] .lv-prof blockquote,#lv [data-folha="profecia"] .lv-prof [class*="decl"],#lv [data-folha="profecia"] .lv-prof [class*="afirm"]{border-left:3px solid #9b3a2a!important;padding-left:14px!important;font-style:italic}
+
+#lv .lv-folha[data-folha="reinos"] .lv-corpo .fc-reino-bt button[data-reino]{border:0!important;border-bottom:1px dotted #b89c72!important;border-radius:0!important}
+#lv .lv-folha[data-folha="reinos"] .lv-corpo .fc-reino-bt button[data-reino]:hover{background:rgba(201,164,90,.12)!important}
+
+#cerbox #rail-in .rcap button{background:#f4ead2!important;color:#5a3f2c!important;border:1px solid #5a3f2c!important}
+#cerbox #rail-in .rcap button:hover{background:#e9c87a!important}
+

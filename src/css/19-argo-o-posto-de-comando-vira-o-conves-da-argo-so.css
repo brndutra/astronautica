@@ -1,0 +1,64 @@
+/* ===== Argo: o Posto de comando vira o convés da Argo (só no tema grego). Cartões com as molduras do kit Argonáutica; o rodapé é o casco laranja, com popa e proa nas pontas; os registros do dia viram escudos na amurada ===== */
+body:not(.tv).op-on{--a-pw:clamp(84px,8.1vw,140px);--a-rw:clamp(116px,11.2vw,194px)}
+body:not(.tv).op-on #modo-op{padding-left:calc(var(--a-pw)*.7)!important;padding-right:calc(var(--a-rw)*.78)!important;padding-bottom:calc(var(--a-rodh,124px) + 14px)!important}
+body:not(.tv).op-on #modo-op>.op-top{margin-left:calc(18px - var(--a-pw)*.7);margin-right:calc(18px - var(--a-rw)*.78)}
+body:not(.tv).op-on #modo-op.op-grego .op-templo{--ah:70px;--af:35px;padding:calc(var(--ah) + 4px) 16px calc(var(--af) + 6px)!important;border:1px solid var(--t-k)!important;border-radius:7px 7px 0 0!important;background:var(--a-cab) 0 0/100% var(--ah) no-repeat,var(--a-rod) 0 100%/100% var(--af) no-repeat,var(--a-lat) 0 var(--ah)/8px calc(100% - var(--ah) - var(--af)) no-repeat,var(--a-latd) 100% var(--ah)/8px calc(100% - var(--ah) - var(--af)) no-repeat,var(--neo-papel,none),#f6ecd4!important;box-shadow:0 6px 16px rgba(92,36,18,.22)!important}
+body:not(.tv).op-on #modo-op.op-grego .op-templo::before,body:not(.tv).op-on #modo-op.op-grego .op-templo>.op-num{display:none!important}
+body:not(.tv).op-on #modo-op.op-grego .op-l.op-templo{padding-left:18px!important;padding-right:16px!important}
+body:not(.tv).op-on #modo-op.op-grego .op-l.op-templo{--a-cab:url("img/acampamento/argo-clepsidra-cabecalho.svg?v=1");--a-rod:url("img/acampamento/argo-clepsidra-rodape.svg?v=1");--a-lat:url("img/acampamento/argo-clepsidra-lateral.svg?v=1");--a-latd:url("img/acampamento/argo-clepsidra-lateral-d.svg?v=1");--t-k:#607d94!important;--t-c:#c9d6e0!important}
+body:not(.tv).op-on #modo-op.op-grego .op-col1.op-templo{--a-cab:url("img/acampamento/argo-escudo-cabecalho.svg?v=1");--a-rod:url("img/acampamento/argo-escudo-rodape.svg?v=1");--a-lat:url("img/acampamento/argo-escudo-lateral.svg?v=1");--a-latd:url("img/acampamento/argo-escudo-lateral-d.svg?v=1");--t-k:#a65a43!important;--t-c:#f0c9b9!important}
+body:not(.tv).op-on #modo-op.op-grego .op-fazer.op-templo{--a-cab:url("img/acampamento/argo-arena-cabecalho.svg?v=1");--a-rod:url("img/acampamento/argo-arena-rodape.svg?v=1");--a-lat:url("img/acampamento/argo-arena-lateral.svg?v=1");--a-latd:url("img/acampamento/argo-arena-lateral-d.svg?v=1");--t-k:#806d91!important;--t-c:#d9cfe2!important}
+body:not(.tv).op-on #modo-op.op-grego .op-estudo.op-templo{--a-cab:url("img/acampamento/argo-arquearia-cabecalho.svg?v=1");--a-rod:url("img/acampamento/argo-arquearia-rodape.svg?v=1");--a-lat:url("img/acampamento/argo-arquearia-lateral.svg?v=1");--a-latd:url("img/acampamento/argo-arquearia-lateral-d.svg?v=1");--t-k:#426b94!important;--t-c:#c3d3e6!important}
+body:not(.tv).op-on #modo-op.op-grego .op-lado.op-templo{--a-cab:url("img/acampamento/argo-pandora-cabecalho.svg?v=1");--a-rod:url("img/acampamento/argo-pandora-rodape.svg?v=1");--a-lat:url("img/acampamento/argo-pandora-lateral.svg?v=1");--a-latd:url("img/acampamento/argo-pandora-lateral-d.svg?v=1");--t-k:#818350!important;--t-c:#e2e3c4!important}
+body:not(.tv).op-on #rod-apps{background:#d9772f!important;border-top:0!important;box-shadow:0 -4px 12px -6px rgba(92,36,18,.5)!important;overflow:visible!important}
+body:not(.tv).op-on #rod-apps .rod-top{position:relative!important;background:url("img/acampamento/argo-casco.svg?v=1") 0 0/auto 100px repeat-x,#d9772f!important}
+body:not(.tv).op-on #rod-apps .rod-top::before,body:not(.tv).op-on #rod-apps .rod-top::after{content:"";position:absolute;pointer-events:none;z-index:3;background:0 0/100% 100% no-repeat}
+body:not(.tv).op-on #rod-apps .rod-top::before{left:0;top:calc(var(--a-pw)*-.938);width:var(--a-pw);height:calc(var(--a-pw)*1.713);background-image:url("img/acampamento/argo-popa.svg?v=1")}
+body:not(.tv).op-on #rod-apps .rod-top::after{right:0;top:calc(var(--a-rw)*-1.056);width:var(--a-rw);height:calc(var(--a-rw)*1.6145);background-image:url("img/acampamento/argo-proa.svg?v=1")}
+body:not(.tv).op-on #rod-apps .rod-top{height:100px!important;min-height:100px!important;padding:0 calc(var(--a-rw) + 6px) 0 calc(var(--a-pw) + 8px)!important;box-sizing:border-box!important;align-items:flex-start!important;gap:8px!important}
+body:not(.tv).op-on #rod-apps :is(.cr-sep,.cr-dt,.cr-concha){display:none!important}
+body:not(.tv).op-on #rod-apps .cp-reg,body:not(.tv).op-on #rod-apps .cp-reg .cr-bar{background:transparent!important;border:0!important;box-shadow:none!important}
+body:not(.tv).op-on #rod-apps .cp-reg .cr-bar{justify-content:space-around!important;gap:4px!important;padding:3px 0 0!important;height:auto!important;overflow:visible!important}
+body:not(.tv).op-on #rod-apps .cp-reg .cr-p{flex:0 0 auto!important;min-width:0!important;height:auto!important;min-height:0!important;padding:0!important;border:0!important;background:none!important;box-shadow:none!important;display:flex!important;flex-direction:column!important;align-items:center!important;gap:2px!important;transform:none!important}
+body:not(.tv).op-on #rod-apps .cp-reg .cr-p::after,body:not(.tv).op-on #rod-apps .cp-reg .cr-p .cr-ico{display:none!important}
+body:not(.tv).op-on #rod-apps .cp-reg .cr-p .cr-lb{display:flex!important;flex-direction:column-reverse!important;align-items:center!important;gap:2px!important}
+body:not(.tv).op-on #rod-apps .cp-reg .cr-p .cr-lb b{display:grid!important;place-items:center;width:54px;height:54px;border-radius:50%;font:700 11.5px/1 Georgia,serif!important;color:#231a38!important;white-space:nowrap;overflow:hidden;background:radial-gradient(circle,#fdf8ea 0 15px,#a37a2c 15.5px 16.5px,var(--fc,#6b4f96) 17px 22px,#4a2f0e 22.5px 23.5px,transparent 24px),radial-gradient(circle at 34% 28%,#fbe7a6,#d9b25a 45%,#8f6a26)!important;box-shadow:0 3px 6px rgba(40,10,0,.45),inset 0 0 0 1px rgba(255,246,214,.6)!important}
+body:not(.tv).op-on #rod-apps .cp-reg .cr-p:nth-of-type(even) .cr-lb b{--fc:#3f8796}
+body:not(.tv).op-on #rod-apps .cp-reg .cr-p .cr-lb small{display:block!important;padding:1px 6px!important;border:1px solid #a37a2c!important;border-radius:3px;background:#f4ead2!important;color:#3b2a5c!important;font:600 8.5px/1.35 var(--mono,monospace)!important;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;opacity:1!important}
+body:not(.tv).op-on #rod-apps .cp-reg .cr-p:is(:hover,.on) .cr-lb b{box-shadow:0 0 0 3px #ffd768,0 3px 6px rgba(40,10,0,.45)!important}
+body:not(.tv).op-on #rod-apps :is(#rod-fogo,#rod-bar){margin-top:14px!important;height:auto!important;min-height:0!important;align-self:flex-start!important;background:var(--neo-papel,none),#f4ead2!important;border:1.5px solid #5c2412!important;border-radius:5px!important;box-shadow:0 0 0 2px #f4ead2,0 0 0 3px #5c2412,0 4px 8px -4px rgba(40,10,0,.5)!important}
+@media(max-width:900px){body:not(.tv).op-on #rod-apps .rod-top::before,body:not(.tv).op-on #rod-apps .rod-top::after{display:none}body:not(.tv).op-on #rod-apps .rod-top{padding:0 8px!important}body:not(.tv).op-on #modo-op{padding-left:18px!important;padding-right:18px!important}}
+/* Argo · mar animado sob o casco; o nível segue a Clepsidra (a água é o que resta do dia: alta de manhã, baixa à noite) */
+/* faixa da Clepsidra abaixo do casco (≈3 dedos): vaso de vidro com marcas de nível; a água é o que resta do dia e baixa até a meia-noite */
+body:not(.tv).op-on #rod-apps{padding-bottom:66px!important;background:repeating-linear-gradient(0deg,rgba(47,127,146,.16) 0 1px,transparent 1px 16.5px) 0 100%/100% 66px no-repeat,linear-gradient(#efe5cf,#e6dcc2) 0 100%/100% 66px no-repeat,#d9772f!important}
+@media (prefers-reduced-motion:reduce){body:not(.tv).op-on #rod-apps::after{animation:none}}
+/* Fogueira fora do Posto (o rodapé guarda "fechar o dia"); desviei mora no Escudo de Aquiles */
+body:not(.tv).op-on #modo-op .op-topr :is([data-fogo],[data-cila],[data-cilamenos]){display:none!important}
+body:not(.tv).op-on #rod-apps #rod-reg,body:not(.tv).op-on #rod-apps :is(#rod-fogo,#rod-bar){position:relative;z-index:5}
+body:not(.tv).op-on #modo-op .op-cila-slot{display:flex;align-items:center;justify-content:center;gap:6px;margin:4px 0 2px}
+body:not(.tv).op-on #modo-op .op-cila-slot .op-cila{display:inline-flex!important}
+@media (max-height:860px){body:not(.tv).op-on #modo-op.op-grego .op-g>.op-templo{overflow-y:auto!important;scrollbar-width:thin;scrollbar-color:#c9a45a transparent}}
+/* faixa de notícias (Hefesto TV) sobe para o topo da tela no Posto */
+body:not(.tv).op-on #rod-apps>#pz-ticker.pz-no-rod{position:fixed!important;top:0!important;left:0!important;right:0!important;bottom:auto!important;z-index:5;border-bottom:1px solid #c9a45a}
+body.pz-com-ticker:not(.tv).op-on #modo-op{padding-top:38px!important}
+/* faixa da Clepsidra em ondas: as seis fases do dia viram seis ondas lado a lado (06h à esquerda, 24h à direita); as que já passaram estão vazantes */
+#argo-mar{display:none}
+body:not(.tv).op-on #argo-mar{display:block;position:absolute;left:0;right:0;bottom:0;height:66px;z-index:4;overflow:hidden;pointer-events:auto}
+#argo-mar .am-fs{position:absolute;inset:0;display:flex}
+#argo-mar .am-f{position:relative;flex:1 1 0;min-width:0;border-left:1px dashed rgba(24,58,82,.25)}
+#argo-mar .am-f:first-child{border-left:0}
+#argo-mar .am-f::before,#argo-mar .am-f>i{content:"";position:absolute;left:-14px;right:-14px;bottom:0;height:100%;transform-origin:50% 100%;animation:amBob 5.5s ease-in-out infinite alternate;animation-delay:var(--d,0s);transition:transform 1.5s ease,filter 1.5s}
+#argo-mar .am-f::before{background:var(--c);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 66' preserveAspectRatio='none'%3E%3Cpath d='M0 24C26 8 58 2 92 12C112 18 124 30 146 24C166 18 184 14 200 22V66H0Z' fill='black'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 66' preserveAspectRatio='none'%3E%3Cpath d='M0 24C26 8 58 2 92 12C112 18 124 30 146 24C166 18 184 14 200 22V66H0Z' fill='black'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat}
+#argo-mar .am-f>i{background:#fff;opacity:.85;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 66' preserveAspectRatio='none'%3E%3Cpath d='M0 24C26 8 58 2 92 12C112 18 124 30 146 24C166 18 184 14 200 22' fill='none' stroke='black' stroke-width='3' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 66' preserveAspectRatio='none'%3E%3Cpath d='M0 24C26 8 58 2 92 12C112 18 124 30 146 24C166 18 184 14 200 22' fill='none' stroke='black' stroke-width='3' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat}
+@keyframes amBob{from{translate:0 0}to{translate:-10px 3px}}
+#argo-mar .am-f.passou::before,#argo-mar .am-f.passou>i{transform:scaleY(.36);filter:saturate(.45) brightness(1.08)}
+#argo-mar .am-f.agora::before{filter:brightness(1.06) saturate(1.15)}
+#argo-mar .am-t{position:absolute;left:12px;right:8px;bottom:6px;z-index:1;display:flex;flex-direction:column;gap:1px;color:var(--tx,#183a52)}
+#argo-mar .am-t b{font:700 8.5px/1.1 var(--mono,monospace);letter-spacing:.14em;text-transform:uppercase;opacity:.85}
+#argo-mar .am-t span{font:12.5px/1.2 Georgia,serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#argo-mar .am-t em{font:700 9px var(--mono,monospace);font-style:normal;letter-spacing:.1em;color:#ffe9a8}
+#argo-mar .am-f.passou .am-t{color:#183a52!important;opacity:.55}
+#argo-mar .am-ag{position:absolute;top:0;bottom:0;width:2px;margin-left:-1px;background:#b4463a;z-index:2;box-shadow:0 0 0 1px rgba(251,245,230,.7)}
+#argo-mar .am-ag span{position:absolute;top:3px;left:6px;white-space:nowrap;padding:1px 8px;border:1px solid #b4463a;border-radius:999px;background:#fbf5e6;color:#8a2f1f;font:700 9px/1.4 var(--mono,monospace);letter-spacing:.12em;text-transform:uppercase}
+#argo-mar .am-ag.dir span{left:auto;right:6px}
+@media (prefers-reduced-motion:reduce){#argo-mar .am-f::before,#argo-mar .am-f>i{animation:none}}

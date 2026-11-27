@@ -1,0 +1,132 @@
+/* ---------- Gamificação simples ---------- */
+#gm-vx{margin:14px 0 4px}
+.gm{background:var(--panel);border:2px solid var(--line2);box-shadow:5px 5px 0 color-mix(in srgb,var(--red) 28%,transparent);padding:14px 18px;display:grid;gap:12px}
+.gm-top{display:grid;grid-template-columns:auto 1fr auto;gap:22px;align-items:center}
+.gm-l,.gm-sq{display:grid;justify-items:start;gap:2px}
+.gm-l b{font:800 40px/1 var(--display);color:var(--roxo)}
+.gm-l>span:last-child,.gm-sq>span:last-child{font:12px var(--sans);color:var(--ink)}
+.gm-sq b{font:800 30px/1 var(--display);color:var(--amarelo)}
+.gm-mid{display:grid;gap:6px}
+.gm-mid small{font:11px var(--mono);color:var(--dim);letter-spacing:.04em}
+.gm-bar{display:block;height:12px;background:var(--well);border:2px solid var(--line2);border-radius:999px;overflow:hidden}
+.gm-bar i{display:block;height:100%;background:linear-gradient(90deg,var(--azul),var(--roxo));border-radius:999px}
+.gm-bot{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:10px}
+.gm-meta{list-style:none;margin:4px 0 0;padding:0;display:flex;gap:16px;flex-wrap:wrap;font:13px var(--sans);color:var(--dim)}
+.gm-meta li.ok{color:var(--verde);font-weight:600}
+.gm-meta small{font:11px var(--mono);color:var(--dim);margin-left:4px}
+.gm-regras summary{cursor:pointer;font:11px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--dim);min-height:24px}
+.gm-regras ul{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:4px;min-width:260px}
+.gm-regras li{display:flex;justify-content:space-between;gap:16px;font:12px var(--sans);color:var(--ink)}
+.gm-regras li b{font:600 12px var(--mono);color:var(--verde)}
+.gm-c{padding:12px;gap:8px;box-shadow:none}
+.gm-c .gm-l{display:flex;gap:8px;align-items:baseline}
+.gm-c .gm-l b{font:800 18px var(--display);color:var(--roxo)}
+.gm-c .gm-r{display:flex;justify-content:space-between;font:11px var(--mono);color:var(--dim)}
+.gm-c .gm-sq{display:inline;color:var(--amarelo);font-weight:600}
+.gm-c .gm-meta{flex-direction:column;gap:4px;font-size:12px}
+@media(max-width:600px){.gm-top{grid-template-columns:auto 1fr}.gm-mid{grid-column:1/-1;order:3}}
+
+/* barra da direita: sai a leitura antiga (Carga, Lastro, Saturação, patente, protocolo, diretivas) */
+#rail>.rgrid,#rail>.rbl,#rail>.rmis,#rail>.rcab:first-child{display:none}#rail-in>.rgrid,#rail-in>.rbl,#rail-in>.rmis,#rail-in>.rcab:first-child{display:none}
+
+/* sumário: só o grupo da aba aberta */
+.navl .nva{display:none}
+body[data-vx-view="op"] .navl .nva.a-op,body[data-vx-view="camp"] .navl .nva.a-camp,
+body[data-vx-view="est"] .navl .nva.a-est,body[data-vx-view="dos"] .navl .nva.a-dos{display:block}
+
+/* ---------- seletor de tema ---------- */
+#vx .vx-ap{display:inline-flex;align-items:center;gap:8px;min-height:36px;padding:4px 6px 4px 14px;border:2px solid var(--line2);border-radius:999px;background:var(--panel)}
+#vx .vx-ap span{font:11px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+#vx .vx-ap select{min-height:28px;border:0;background:var(--panel2);color:var(--bone);font:600 12px var(--sans);padding:2px 8px;border-radius:999px;cursor:pointer}
+
+/* ---------- Tema Astronáutica (inspirado na Argonáutica) ----------
+   Mar e céu da travessia do Argo: ouro do velocino (Convés), turquesa do Egeu
+   (Expedição), azul estelar (Biblioteca), púrpura tíria (Porão). Céu estrelado
+   no escuro, pergaminho no claro, faixa de grega no cabeçalho. */
+body[data-skin="astro"]{--display:"Cinzel",Georgia,"Times New Roman",serif;
+ --a-op:#f0b84c;--a-camp:#2fc8b6;--a-est:#7aa8ff;--a-dos:#c27ae0}
+body[data-skin="astro"]:not(.claro){--void:#08111d;--bg:#08111d;--panel:#0f1b2b;--panel2:#152539;--well:#050c16;--line:#1f3350;--line2:#33507a;
+ --bone:#f4efe3;--ink:#d3dbe8;--dim:#8c9cb6;--chip:#0d1726;--chip2:#0a131f;--hair:#16263c;--deep:#0c1728;--blk:#040910;
+ --pq:#1b1520;--pa:#1b1a12;--pc:#0e1b2e;--pqb:#3a2b3c;--pab:#3d3719;--pcb:#1f3a60}
+body.claro[data-skin="astro"]{--void:#f5efe1;--bg:#f5efe1;--panel:#fffaf0;--panel2:#f1e8d4;--well:#ebe0c9;--line:#dacdaf;--line2:#b6a37b;
+ --bone:#16202c;--ink:#33404f;--dim:#5f6878;--a-op:#8a5f00;--a-camp:#0f6e64;--a-est:#2357b0;--a-dos:#7a3a9c}
+body[data-skin="astro"][data-vx-view="op"]{--red:var(--a-op)}
+body[data-skin="astro"][data-vx-view="camp"]{--red:var(--a-camp)}
+body[data-skin="astro"][data-vx-view="est"]{--red:var(--a-est)}
+body[data-skin="astro"][data-vx-view="dos"]{--red:var(--a-dos)}
+body[data-skin="astro"] .a-op{--red:var(--a-op)} body[data-skin="astro"] .a-camp{--red:var(--a-camp)}
+body[data-skin="astro"] .a-est{--red:var(--a-est)} body[data-skin="astro"] .a-dos{--red:var(--a-dos)}
+body[data-skin="astro"] #vx .vx-tabs [data-view="op"]{--tab:var(--a-op)}
+body[data-skin="astro"] #vx .vx-tabs [data-view="camp"]{--tab:var(--a-camp)}
+body[data-skin="astro"] #vx .vx-tabs [data-view="est"]{--tab:var(--a-est)}
+body[data-skin="astro"] #vx .vx-tabs [data-view="dos"]{--tab:var(--a-dos)}
+body[data-skin="astro"] #vx .vx-metrics span:nth-child(1){--m:var(--a-op)}
+body[data-skin="astro"] #vx .vx-metrics span:nth-child(2){--m:var(--a-camp)}
+body[data-skin="astro"] #vx .vx-metrics span:nth-child(3){--m:var(--a-est)}
+body[data-skin="astro"] #vx .vx-metrics span:nth-child(4){--m:var(--a-dos)}
+body[data-skin="astro"]{background-image:
+ radial-gradient(1.3px 1.3px at 20px 30px,color-mix(in srgb,var(--a-op) 60%,transparent),transparent),
+ radial-gradient(1px 1px at 95px 85px,color-mix(in srgb,var(--bone) 40%,transparent),transparent),
+ radial-gradient(1.5px 1.5px at 150px 20px,color-mix(in srgb,var(--a-est) 50%,transparent),transparent),
+ radial-gradient(1px 1px at 60px 140px,color-mix(in srgb,var(--bone) 28%,transparent),transparent),
+ radial-gradient(1px 1px at 130px 120px,color-mix(in srgb,var(--a-camp) 40%,transparent),transparent);
+ background-size:180px 170px}
+body.claro[data-skin="astro"]{background-image:radial-gradient(1px 1px at 12px 12px,color-mix(in srgb,var(--a-op) 24%,transparent),transparent);background-size:24px 24px}
+body[data-skin="astro"] #vx .vx-hero{position:relative;padding-top:22px}
+body[data-skin="astro"] #vx .vx-hero::before{content:"";position:absolute;left:0;right:0;top:0;height:12px;background-color:var(--red);opacity:.85;
+ -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='12' viewBox='0 0 24 12'%3E%3Cpath d='M0 11H22V1H6V8H17V5H11' fill='none' stroke='black' stroke-width='2'/%3E%3C/svg%3E") repeat-x left center/24px 12px;
+ mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='12' viewBox='0 0 24 12'%3E%3Cpath d='M0 11H22V1H6V8H17V5H11' fill='none' stroke='black' stroke-width='2'/%3E%3C/svg%3E") repeat-x left center/24px 12px}
+body[data-skin="astro"] #vx .vx-hero h2{text-transform:none;letter-spacing:.01em;text-shadow:none;font-weight:800}
+body[data-skin="astro"] #vx .vx-card,body[data-skin="astro"] .gm,body[data-skin="astro"] .cc-hd,body[data-skin="astro"] .cc-cd,
+body[data-skin="astro"] .cc-card,body[data-skin="astro"] .cc-k,body[data-skin="astro"] .cc-ed{border-radius:8px;box-shadow:0 0 0 1px color-mix(in srgb,var(--red) 18%,transparent),0 8px 20px -12px color-mix(in srgb,var(--red) 65%,transparent)}
+body[data-skin="astro"] #vx .vx-tabs button[data-view]{border-radius:8px;letter-spacing:.06em}
+body[data-skin="astro"] #vx .vx-tabs button[data-view][aria-selected=true]{transform:none;box-shadow:0 6px 16px -8px var(--tab)}
+body[data-skin="astro"] .gm-l b{color:var(--a-op)}
+body[data-skin="astro"] .gm-sq b{color:var(--a-camp)}
+body[data-skin="astro"] .gm-bar i{background:linear-gradient(90deg,var(--a-est),var(--a-op))}
+body[data-skin="astro"] h2.sec{font-family:var(--display);letter-spacing:.04em}
+
+/* ---------- Tesouro (finanças do AxisHub) ---------- */
+#vx .vx-tabs [data-view="fin"]{--tab:var(--verde)}
+body[data-vx-view="fin"]{--red:var(--verde)}
+body[data-skin="astro"]{--a-fin:#d58a4f}
+body.claro[data-skin="astro"]{--a-fin:#8a4f1c}
+body[data-skin="astro"] #vx .vx-tabs [data-view="fin"]{--tab:var(--a-fin)}
+body[data-skin="astro"][data-vx-view="fin"]{--red:var(--a-fin)}
+#fin-wrap{margin:8px 0 24px}
+#fin-wrap{--app-bg:var(--bg);--app-panel:var(--panel);--app-bone:var(--bone);--app-dim:var(--dim);--app-line:var(--line);--app-line2:var(--line2);
+ --app-fin:var(--a-fin,#b8742e);--app-verde:var(--verde,#3a9d5d);--app-red:var(--red)}
+/* o Cofre da Argo usa a paleta e as fontes do app */
+#fin-wrap .ax-html{--bg:var(--app-bg);--paper:var(--app-panel);--ink:var(--app-bone);--ink-soft:var(--app-dim);--line:var(--app-line);--line-strong:var(--app-line2);
+ --brass:var(--app-fin);--brass-soft:color-mix(in srgb,var(--app-fin) 12%,var(--app-panel));--gold:var(--app-fin);
+ --pos:var(--app-verde);--pos-soft:color-mix(in srgb,var(--app-verde) 14%,var(--app-panel));--green:var(--app-verde);--green-soft:color-mix(in srgb,var(--app-verde) 14%,var(--app-panel));
+ --neg:var(--app-red);--neg-soft:color-mix(in srgb,var(--app-red) 12%,var(--app-panel));
+ --ax-display:var(--display);--ax-sans:var(--sans);--ax-mono:var(--mono);--ax-escuro:var(--app-bone)}
+/* as regras gerais de botão e campo do app não valem dentro do cofre */
+.ax-html :where(button,input,select,textarea,label,h1,h2,h3,h4,p,ul,ol,li,a,table,th,td){all:revert}
+#fin-wrap>.ax-html{position:relative;border:0;border-radius:0;overflow:clip;background:transparent}
+/* sem cabeçalho próprio: a navegação do cofre vira sub-abas do app, e o fundo é o da página */
+#fin-wrap .axis-weekbar,#fin-wrap .awb-dialog-backdrop:not(.open){display:none!important}
+#fin-wrap .ax-body,#fin-wrap .ax-html.habit .ax-body{background:transparent!important}
+#fin-wrap .ax-html.habit .ax-body:before{display:none!important}
+.loja-nav{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 14px}
+.loja-nav button{width:auto;margin:0;padding:7px 13px;border:1px solid var(--line);border-radius:10px;background:var(--panel);color:var(--dim);cursor:pointer;
+ font:700 10.5px/1 system-ui,-apple-system,"Segoe UI",sans-serif;letter-spacing:.14em;text-transform:uppercase;display:inline-flex;align-items:center;gap:7px}
+.loja-nav button:hover{border-color:var(--red);color:var(--ink)}
+.loja-nav button.at{background:var(--red);border-color:var(--red);color:var(--onred,#fff)}
+.loja-nav .lj-sep{flex:1}
+.loja-nav .lj-mini{letter-spacing:.06em;text-transform:none;font-weight:600}
+/* o AxisHub vivia sozinho na tela: barra e fundos presos à janela passam a ficar dentro do Tesouro */
+#fin-wrap .axis-weekbar{position:sticky!important;inset:auto!important;top:0!important;width:auto!important}
+#fin-wrap .ax-body{padding-top:0!important;min-height:0!important}
+#fin-wrap .ax-html.habit .ax-body:before{position:absolute!important}
+#fin-wrap .ax-html.habit header{display:none!important}
+#fin-wrap #toolDock{left:0!important;width:100%!important}
+#fin-wrap #toolDock .td-panel{width:100%!important;border-radius:14px!important;box-shadow:none!important}
+#fin-wrap #toolDock .td-phd{display:none!important}
+#fin-wrap #toolDock{position:absolute!important;top:0!important;height:100%!important}
+#fin-wrap #toolDock .td-panel{position:sticky!important;top:12px!important;max-height:calc(100vh - 24px)!important;margin-left:auto}
+body[data-vx-view="fin"] #rail{display:none}
+
+body[data-vx-view="fin"] #gm-vx{display:none}
+

@@ -1,0 +1,184 @@
+/* ===== banner inicial revisto ===== */
+#hero-box{position:relative}
+#hero-box:has(#bn-min[aria-expanded="true"])>.bn-row{position:absolute;top:2px;left:0;right:0;z-index:4;margin:0!important;pointer-events:none}
+#hero-box:has(#bn-min[aria-expanded="true"])>.bn-row>*{pointer-events:auto}
+#hero-box:has(#bn-min[aria-expanded="true"]) #tema-ic{width:34px!important;height:34px!important;min-height:0!important}
+#hero-box:has(#bn-min[aria-expanded="true"]) #bn-min{flex:none!important;width:auto!important;margin-left:auto!important;padding:6px 4px!important;background:none!important;border:0!important;box-shadow:none!important}
+#hero-box#hero-box .vx-hero.bn2{display:flex!important;flex-direction:column;align-items:stretch!important;gap:20px;min-height:0!important;padding:40px 46px 30px!important}
+#hero-box#hero-box .vx-hero.bn2 .bn-tit{margin:0!important}
+#hero-box#hero-box .vx-hero.bn2 .bn-tit .vx-k{display:inline-block;letter-spacing:.18em}
+#hero-box#hero-box .vx-hero.bn2 .bn-tit h2{margin:10px 0 0!important}
+#hero-box#hero-box .vx-hero.bn2 #nv-chip{position:static!important;display:inline-flex!important;align-items:center;gap:6px;width:auto!important;height:auto!important;min-height:0!important;margin:0 0 0 12px!important;padding:2px 10px!important;
+ border-radius:999px!important;border:1px solid #d9a99f!important;background:#fbefe9!important;box-shadow:none!important;vertical-align:2px;transform:none!important}
+#hero-box#hero-box .vx-hero.bn2 #nv-chip b{font-size:9.5px!important;letter-spacing:.14em}#hero-box#hero-box .vx-hero.bn2 #nv-chip span{display:none!important}#hero-box#hero-box .vx-hero.bn2 #nv-chip i{width:7px!important;height:7px!important}
+#hero-box#hero-box .vx-hero.bn2 #nv-chip:not(.nv-erro){border-color:#b9cdb2!important;background:#eef4ea!important}
+#hero-box#hero-box .vx-hero.bn2 .bn-id{display:flex;align-items:center;flex-wrap:wrap;gap:12px 14px}
+#hero-box#hero-box .vx-hero.bn2 .bn-id>*{position:static!important;top:auto!important;left:auto!important;right:auto!important;margin:0!important;transform:none!important}
+#hero-box#hero-box .vx-hero.bn2 .bn-id .ac-cracha{flex:0 1 auto;min-width:0}
+#hero-box#hero-box .vx-hero.bn2 .bn-id #vx-diario{flex:none}
+#hero-box#hero-box .vx-hero.bn2 .bn-id .cp-guia{flex:none;padding:9px 16px!important}
+#hero-box#hero-box .vx-hero.bn2 .bn-base{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-top:auto;padding-top:14px;border-top:1px dashed #c9b28a}
+#hero-box#hero-box .vx-hero.bn2 .bn-base>*{position:static!important;top:auto!important;left:auto!important;right:auto!important;bottom:auto!important;margin:0!important;transform:none!important}
+#hero-box#hero-box .vx-hero.bn2 .bn-base .cp-pinbar{border:0!important;padding:0!important}
+#hero-box#hero-box .vx-hero.bn2 .bn-base .cp-pinbar::before,#hero-box#hero-box .vx-hero.bn2 .bn-base .cp-pinbar::after{display:none!important}
+#hero-box#hero-box .vx-hero.bn2 .bn-base .cp-dracmas{display:flex!important}
+@media(min-width:901px){#hero-box#hero-box .vx-hero.bn2 .bn-tit,#hero-box#hero-box .vx-hero.bn2 .bn-id{max-width:calc(100% - 330px)}
+ #hero-box#hero-box .vx-hero.bn2>.cp-postal{top:30px!important;right:40px!important}}
+@media(max-width:900px){#hero-box#hero-box .vx-hero.bn2{padding:30px 22px 22px!important}}
+
+/* Guia do Campista como folheto do acampamento: papel dobrado em três, canto virado */
+#hero-box#hero-box .vx-hero.bn2 .bn-id .cp-guia{position:relative!important;display:flex!important;flex-direction:column;align-items:flex-start;gap:1px;width:auto!important;min-height:0!important;height:auto!important;
+ padding:9px 30px 10px 16px!important;border:1px solid #b89c72!important;border-radius:2px!important;color:#3b2a1d!important;
+ font:700 15px Georgia,'EB Garamond',serif!important;letter-spacing:.01em;text-align:left;cursor:pointer;transform:rotate(-1.6deg)!important;transition:transform .2s,box-shadow .2s;
+ background:linear-gradient(90deg,transparent 33%,rgba(90,63,44,.13) 33.3%,transparent 34%,transparent 66%,rgba(90,63,44,.13) 66.3%,transparent 67%),
+  linear-gradient(180deg,#fbf3df,#efe1c0)!important;
+ box-shadow:2px 3px 0 #d9c7a3,3px 6px 14px rgba(60,40,20,.22)!important}
+#hero-box#hero-box .vx-hero.bn2 .bn-id .cp-guia::before{content:'folheto do acampamento · chalé 7';font:700 8.5px var(--mono,monospace);letter-spacing:.2em;text-transform:uppercase;color:#9a6b3a}
+#hero-box#hero-box .vx-hero.bn2 .bn-id .cp-guia::after{content:'';position:absolute;top:-1px;right:-1px;width:16px;height:16px;background:linear-gradient(225deg,#efe6d2 50%,#d9c7a3 50%);border-left:1px solid #b89c72;border-bottom:1px solid #b89c72;border-radius:0 0 0 2px}
+#hero-box#hero-box .vx-hero.bn2 .bn-id .cp-guia:hover{transform:rotate(0deg) translateY(-2px)!important;box-shadow:2px 3px 0 #d9c7a3,4px 10px 20px rgba(60,40,20,.28)!important}
+#hero-box#hero-box .vx-hero.bn2 .bn-tit .vx-k{display:inline!important}
+
+/* três gavetas na Grade: o mês à esquerda; a semana e o dia à direita */
+.mf-alca-sem{top:calc(50% - 150px)!important}
+.mf-alca-dia{right:2px;top:calc(50% + 70px)!important}
+.tb.gav-dia .mf-alca-dia{background:#5a3f2c!important;color:#f4ead2!important}
+.mf-g-dia{right:44px;border-radius:10px 0 0 10px;box-shadow:-14px 0 30px rgba(60,40,20,.22);transform-origin:right center;transform:translateX(30px) scaleX(.6)}
+.tb.gav-dia .mf-g-dia{transform:none;opacity:1;pointer-events:auto}
+.mf-g-dia{width:min(400px,56%)!important;max-height:440px!important}
+.mf-g-dia .regdia{margin:0!important;padding:0!important;border:0!important;background:none!important;box-shadow:none!important}
+.mf-g-dia .regdia .mcab2 .k9{display:none}
+.mf-g-dia .regdia .rdsub{font-size:9px}
+.mf-g-dia .regdia .rdent{display:flex;gap:6px}.mf-g-dia .regdia .rdent input{flex:1;min-width:0}
+.mf-g-dia .regdia .rdent button{width:auto!important}
+.wrap > div.tb > .dia-gav{position:static;display:block!important;margin:0!important;padding:0!important;border:0!important;background:none!important}
+
+/* Tarefas e Missões com a moldura grega: entablamento, colunas, título em placa, réguas duplas */
+#tm-painel.tm-neo{margin:30px 0 18px!important;border-radius:3px!important;padding-top:58px!important}
+#tm-painel.tm-neo>.tm-cab{position:absolute;top:2px;left:50%;transform:translateX(-50%);z-index:2;flex-direction:row;align-items:baseline;gap:12px;margin:0;padding:7px 26px 6px;
+ border:1.5px solid #5a3f2c;border-radius:2px;background:var(--neo-papel),#f4ead2;box-shadow:0 0 0 4px #f4ead2,0 0 0 5.5px #5a3f2c;white-space:nowrap;max-width:calc(100% - 120px)}
+#tm-painel.tm-neo>.tm-cab b{order:1;font:700 17px Georgia,serif!important;color:#5a3f2c!important;letter-spacing:.02em}
+#tm-painel.tm-neo>.tm-cab .k9{order:2;font:9px var(--mono,monospace)!important;letter-spacing:.16em!important;color:#8a6f55!important;text-transform:none}
+#tm-painel.tm-neo>.tm-cab .k9::before{content:'// '}
+#tm-painel.tm-neo>.tm-lb{display:flex;align-items:center;gap:14px;margin:18px 0 12px!important;font:400 11px Georgia,serif!important;letter-spacing:.32em;text-transform:uppercase;color:#5a3f2c!important}
+#tm-painel.tm-neo>.tm-lb::before,#tm-painel.tm-neo>.tm-lb::after{content:'';flex:1;border-top:3px double #5a3f2c;opacity:.75}
+#tm-painel.tm-neo>.tm-lb:first-of-type{margin-top:4px!important}
+@media(max-width:700px){#tm-painel.tm-neo>.tm-cab .k9{display:none}#tm-painel.tm-neo{padding-left:18px!important;padding-right:18px!important}}
+
+/* banner: sem foto de perfil; nome e nível na margem inferior esquerda */
+#hero-box#hero-box .vx-hero.bn2 .ac-cracha-bt{display:none!important}
+#hero-box#hero-box .vx-hero.bn2 .bn-base .ac-cracha{position:static!important;margin:0!important;padding:0!important;transform:none!important;flex:0 1 auto;min-width:0}
+#hero-box#hero-box .vx-hero.bn2 .bn-base .ac-cracha b{font-size:14px!important}
+#hero-box#hero-box .vx-hero.bn2 .bn-id .cp-pinbar{position:static!important;border:0!important;padding:0!important;margin:0 0 0 4px!important;transform:none!important}
+#hero-box#hero-box .vx-hero.bn2 .bn-id .cp-pinbar::before,#hero-box#hero-box .vx-hero.bn2 .bn-id .cp-pinbar::after{display:none!important}
+/* Quadro de avisos: seções que abrem e fecham, no mesmo padrão */
+#cerbox .qa-sec{margin:0 0 12px;border:1px solid var(--line2,#c9b28a);border-radius:12px;background:var(--panel,#f4ead2);overflow:hidden}
+#cerbox .qa-sec>summary{list-style:none;cursor:pointer;display:flex;flex-direction:column;gap:2px;padding:11px 40px 11px 14px;position:relative}
+#cerbox .qa-sec>summary::-webkit-details-marker{display:none}
+#cerbox .qa-sec>summary::after{content:'';position:absolute;right:16px;top:50%;width:7px;height:7px;border-right:1.6px solid #5a3f2c;border-bottom:1.6px solid #5a3f2c;transform:translateY(-70%) rotate(45deg);transition:transform .2s}
+#cerbox .qa-sec[open]>summary::after{transform:translateY(-30%) rotate(-135deg)}
+#cerbox .qa-sec>summary b{font:400 16px Georgia,serif;color:#3b2a1d}
+#cerbox .qa-sec>summary .qa-sk{order:-1;font:700 8.5px var(--mono,monospace);letter-spacing:.18em;text-transform:uppercase;color:#9a6b3a}
+#cerbox .qa-sec>.qa-sb{padding:0 14px 14px}
+#cerbox .qa-sec .qa-sb>*{margin:0!important;border:0!important;background:none!important;padding:0!important;box-shadow:none!important}
+#cerbox .qa-sec .qa-sb .k6,#cerbox #qa-d-pc .pctop>.k5{display:none!important}
+#cerbox .qa-sec .pctabs{display:flex;flex-wrap:wrap;gap:4px}
+
+/* painel direito aberto: no topo só os rótulos, sem cara de botão */
+#painel-dir .pd-nav{display:flex;align-items:baseline;gap:22px;flex-wrap:wrap}
+#painel-dir .pd-nav .pd-nb{width:auto!important;min-height:0!important;height:auto!important;margin:0!important;padding:4px 0 6px!important;border:0!important;border-radius:0!important;background:none!important;box-shadow:none!important;
+ font:400 15px Georgia,serif!important;letter-spacing:.02em;color:#8a6f55!important;border-bottom:2px solid transparent!important;cursor:pointer}
+#painel-dir .pd-nav .pd-nb:hover{color:#3b2a1d!important}
+#painel-dir .pd-nav .pd-nb[aria-selected="true"]{color:#3b2a1d!important;font-weight:700!important;border-bottom-color:#5a3f2c!important}
+
+/* Recreações: moldura grega, duas colunas */
+#recreio.rc-neo{position:relative;margin:30px 0 18px!important;border-radius:3px!important;padding-top:62px!important}
+#recreio.rc-neo>.tm-cab{position:absolute;top:2px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:row;align-items:baseline;gap:12px;margin:0;padding:7px 26px 6px;
+ border:1.5px solid #5a3f2c;border-radius:2px;background:var(--neo-papel),#f4ead2;box-shadow:0 0 0 4px #f4ead2,0 0 0 5.5px #5a3f2c;white-space:nowrap;max-width:calc(100% - 120px)}
+#recreio.rc-neo>.tm-cab b{font:700 17px Georgia,serif!important;color:#5a3f2c!important}
+#recreio.rc-neo>.tm-cab .k9{font:9px var(--mono,monospace)!important;letter-spacing:.16em!important;color:#8a6f55!important}
+#recreio.rc-neo>.tm-cab .k9::before{content:'// '}
+#recreio .rc-g{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:16px;align-items:start}
+#recreio .rc-g .lat-c{margin:0!important}
+#recreio .rc-g .lat-c .cg-dobra{display:none!important}
+@media(max-width:800px){#recreio .rc-g{grid-template-columns:1fr}#recreio.rc-neo>.tm-cab .k9{display:none}#recreio.rc-neo{padding-left:18px!important;padding-right:18px!important}}
+
+/* ===== o templo em níveis: mesmo padrão, destaque descendo do ouro claro ao bronze ===== */
+:root{--n-frontao:#c99a3d;--n-entab:#a8762e;--n-colun:#a4532f;--n-atrio:#6b7a3a;--n-tesouro:#b48a4a}
+[data-nivel="frontao"]{--fase:var(--n-frontao)}[data-nivel="entab"]{--fase:var(--n-entab)}[data-nivel="colun"]{--fase:var(--n-colun)}[data-nivel="atrio"]{--fase:var(--n-atrio)}[data-nivel="tesouro"]{--fase:var(--n-tesouro)}
+/* placas de título */
+h2.sec.neo-tit[data-nivel]{border-color:var(--fase)!important;box-shadow:0 0 0 4px #f4ead2,0 0 0 5.5px var(--fase)!important}
+h2.sec.neo-tit[data-nivel]>span{color:var(--fase)!important}
+#tm-painel[data-nivel]>.tm-cab,#recreio[data-nivel]>.tm-cab{border-color:var(--fase)!important;box-shadow:0 0 0 4px #f4ead2,0 0 0 5.5px var(--fase)!important}
+#tm-painel[data-nivel]>.tm-cab .k9,#recreio[data-nivel]>.tm-cab .k9{color:var(--fase)!important}
+/* moldura: borda e uma linha de cor sob o entablamento */
+.neo-moldura[data-nivel]{border-color:color-mix(in srgb,var(--fase) 55%,#5a3f2c)!important}
+.neo-moldura[data-nivel]::after{content:'';position:absolute;left:0;right:0;top:40px;height:2px;background:var(--fase);opacity:.85;pointer-events:none}
+/* réguas duplas e etiquetas */
+#tm-painel[data-nivel]>.tm-lb{color:var(--fase)!important}
+#tm-painel[data-nivel]>.tm-lb::before,#tm-painel[data-nivel]>.tm-lb::after{border-top-color:var(--fase)!important}
+.neo-moldura[data-nivel] .tbcab .k9{color:var(--fase)!important}
+/* frontão do banner e o tesouro */
+#hero-box[data-nivel] .neo-frontao svg path:first-child{stroke:var(--fase)}
+#hero-box[data-nivel] .vx-hero.bn2 .bn-tit .vx-k{color:var(--fase)!important}
+#tesouro[data-nivel]{box-shadow:inset 0 0 0 4px #3b2a1d,inset 0 0 0 5.5px var(--fase),0 10px 28px rgba(40,25,10,.25)!important}
+#tesouro[data-nivel] .ts-k{color:var(--fase)!important}
+#lat-arena[data-nivel]{border-top:3px solid var(--fase)!important}
+/* o fio de ouro na margem da coluna central */
+#templo-fio{position:fixed;top:0;bottom:0;width:3px;z-index:58;pointer-events:none;--fase:var(--n-frontao)}
+#templo-fio i{position:absolute;inset:0;border-radius:2px;background:linear-gradient(180deg,transparent,var(--fase) 12%,var(--fase) 88%,transparent);transition:background .5s}
+#templo-fio b{position:absolute;top:50%;left:4px;font-size:7.5px!important;transform:translateY(-50%) rotate(180deg);writing-mode:vertical-rl;font:700 8.5px var(--mono,monospace);letter-spacing:.3em;text-transform:uppercase;color:var(--fase);opacity:.85;white-space:nowrap;transition:color .5s}
+#templo-fio[data-nivel="frontao"]{--fase:var(--n-frontao)}#templo-fio[data-nivel="entab"]{--fase:var(--n-entab)}#templo-fio[data-nivel="colun"]{--fase:var(--n-colun)}#templo-fio[data-nivel="atrio"]{--fase:var(--n-atrio)}#templo-fio[data-nivel="tesouro"]{--fase:var(--n-tesouro)}
+@media(max-width:900px){#templo-fio{display:none}}
+
+/* emblema do acampamento no lugar do medalhão do nível */
+#lat-gm .ac-medalha-bt{width:104px!important;height:100px!important;background:url(img/acampamento/logo-camp.webp) center/contain no-repeat!important;border-radius:0}
+#lat-gm .ac-medalha-bt svg{visibility:hidden}
+/* lira de Apolo no centro do frontão */
+#hero-box .neo-frontao.com-lira svg circle,#hero-box .neo-frontao.com-lira svg path:not(:first-child):not(:nth-child(2)){display:none}
+#hero-box .neo-frontao .fr-lira{position:absolute;left:50%;top:22px;width:56px;height:56px;transform:translateX(-50%);filter:drop-shadow(0 2px 3px rgba(60,40,10,.3));pointer-events:none}
+/* lâminas do Arsenal com imagem */
+.ars-ic.ars-ic-img{display:grid;place-items:center;overflow:visible}
+.ars-ic.ars-ic-img .ars-limg{width:120%;max-width:none;height:auto;transform:rotate(-38deg);filter:drop-shadow(0 3px 4px rgba(0,0,0,.25))}
+.ars-mimg{width:34px;height:34px;object-fit:contain;transform:rotate(-38deg);filter:drop-shadow(0 2px 2px rgba(0,0,0,.2))}
+/* runas gravadas em pedra */
+.rn2 .gl,span.g3,span.gl2{display:grid!important;place-items:center;width:58px!important;height:74px!important;margin-left:auto!important;margin-right:auto!important;line-height:1!important;background:url(img/acampamento/pedra.webp) center/contain no-repeat;color:#353a42!important;font-size:27px!important;font-weight:700;text-shadow:0 1px 0 rgba(255,255,255,.4),0 -1px 0 rgba(0,0,0,.25)}
+
+/* Mesa de runas dentro da janela de Ferramentas */
+#fer-corpo #tirbox{display:block!important;position:static!important;inset:auto!important;transform:none!important;width:auto!important;height:auto!important;max-height:none!important;margin:0!important;border:0!important;background:none!important;padding:0!important;box-shadow:none!important}
+#fer-corpo #tirbox>.cerhd{display:none!important}
+#fer-corpo #tirbox button span,#fer-corpo #tirbox .tirx,#fer-corpo #tirbox>button:first-child{display:none!important}
+
+/* Captura da bandeira com a bandeira do acampamento */
+#lat-band .band-g{display:grid;grid-template-columns:62px minmax(0,1fr);gap:12px;align-items:start}
+#lat-band .band-mastro{position:relative;padding-left:5px}
+#lat-band .band-mastro::before{content:'';position:absolute;left:0;top:-4px;bottom:-14px;width:3px;border-radius:2px;background:#5a3f2c}
+#lat-band .band-mastro img{display:block;width:100%;height:auto;border-radius:0 3px 3px 0;box-shadow:2px 3px 6px rgba(60,40,20,.25);filter:saturate(.35) brightness(.95);transform:translateY(26px) scaleY(.92);transform-origin:top left;transition:filter .4s,transform .5s}
+#lat-band.band-ok .band-mastro img{filter:none;transform:none}
+#lat-band .ac-card{margin:0!important;padding:0!important;border:0!important;background:none!important;box-shadow:none!important}
+#lat-band .ac-cab .ac-n{display:none}
+#lat-band .ac-meta{width:100%;box-sizing:border-box}
+
+#lat-gm .ac-medalha-bt,#lat-gm .ac-medalha-bt.mosaico{box-shadow:none!important;border:0!important;outline:0!important;background-color:transparent!important}
+#lat-gm .ac-medalha-bt::before,#lat-gm .ac-medalha-bt::after{display:none!important}
+
+/* botão da ficha no canto inferior esquerdo do banner */
+#hero-box#hero-box .vx-hero.bn2 .bn-base #vx-diario{position:static!important;margin:0!important;transform:none!important;flex:none;order:-1}
+/* faixas de foto no topo dos cartões: Mural de Missões, Recreações, Tesouro e Ação do dia */
+#mm-box .mm-col{overflow:hidden}
+#mm-box .mm-col::before{content:"";display:block;height:84px;margin:-14px -14px 12px;background:var(--mm-img) center/cover no-repeat;border-bottom:3px solid var(--mc,#9a6b3a);filter:sepia(.15)}
+#mm-box .mm-chale{--mm-img:url("img/acampamento/templos.jpg")}
+#mm-box .mm-quest{--mm-img:url("img/acampamento/arquearia.jpg")}
+#mm-box .mm-prof{--mm-img:url("img/acampamento/louros.jpg")}
+#recreio .lat-c,#tesouro #lat-ars,#lat-arena{overflow:hidden}
+#recreio .lat-c::before,#tesouro #lat-ars::before,#lat-e #lat-arena::before{content:"";display:block;height:78px;margin:-10px -11px 10px;background:var(--c-img) center/cover no-repeat;border-bottom:3px solid var(--fase,#9a6b3a);filter:sepia(.15)}
+#recreio #lat-apt{--c-img:url("img/acampamento/colina.jpg")}
+#recreio #lat-rec{--c-img:url("img/acampamento/pinheiro.jpg")}
+#tesouro #lat-ars{--c-img:url("img/acampamento/armas.jpg")}
+#lat-e #lat-arena{--c-img:url("img/acampamento/arquearia.jpg")}
+/* ícones nas seções do Quadro de avisos */
+#cerbox .qa-ic{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;border:1px solid #c9b28a;background:#f4ead2;margin-right:2px;flex:none}
+#cerbox .qa-ic svg{width:15px;height:15px;fill:none;stroke:#5a3f2c;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+#cerbox .qa-sec>summary{display:grid!important;grid-template-columns:30px 1fr;column-gap:8px;align-items:center}
+#cerbox .qa-sec>summary .qa-ic{grid-row:1/3}
+#cerbox .qa-sec>summary .qa-sk{order:0}
+#cerbox #rail-in .rcab.cer{display:flex;align-items:center;gap:8px}

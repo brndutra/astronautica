@@ -1,0 +1,94 @@
+/* ===== Drakkar dos Einherjar (tema Valhala): o Posto vira o convés do drakkar — quatro velas com mastro, casco de madeira com escudos (os registros do dia) e a Vigília em ondas no mar ===== */
+html body.tv.op-on{--v-b:clamp(78px,6.4vw,104px);--v-aft:calc(var(--v-b)*1.125);--v-prow:calc(var(--v-b)*2.0667)}
+html body.tv.op-on #modo-op{grid-template-columns:minmax(0,1fr)!important;padding-left:calc(var(--v-aft) + 4px)!important;padding-right:calc(var(--v-prow) + 2px)!important;padding-bottom:calc(var(--a-rodh,190px) + 12px)!important}
+html body.tv.op-on #modo-op>.op-top{margin-left:calc(18px - var(--v-aft) - 4px);margin-right:calc(18px - var(--v-prow) - 2px)}
+html body.tv.op-on #modo-op>.op-l{display:none!important}
+html body.tv.op-on #modo-op>:is(.op-top,.op-g){grid-column:1 / -1!important}
+html body.tv.op-on #modo-op .op-l::after,html body.tv.op-on #modo-op .op-g::after{content:none!important;display:none!important}
+html body.tv.op-on #modo-op .op-g{position:relative!important;isolation:isolate}
+html body.tv.op-on #modo-op .op-g::before{content:""!important;display:block!important;position:absolute!important;left:0!important;right:0!important;top:-14px!important;bottom:-36px!important;width:auto!important;height:auto!important;z-index:-1!important;pointer-events:none;border:0!important;opacity:1!important;transform:none!important;background:url("img/acampamento/dk-mastro.svg?v=1") var(--m1,12%) 0/24px 100% no-repeat,url("img/acampamento/dk-mastro.svg?v=1") var(--m2,37%) 0/24px 100% no-repeat,url("img/acampamento/dk-mastro.svg?v=1") var(--m3,62%) 0/24px 100% no-repeat,url("img/acampamento/dk-mastro.svg?v=1") var(--m4,87%) 0/24px 100% no-repeat!important}
+html body.tv.op-on #modo-op .op-g>.op-templo{position:relative!important;z-index:1;background:var(--v-topo) 0 0/100% var(--vt,80px) no-repeat,var(--v-base) 0 100%/100% var(--vb,60px) no-repeat,var(--v-tec) 0 var(--vt,80px)/100% calc(100% - var(--vt,80px) - var(--vb,60px)) no-repeat!important;border:0!important;box-shadow:none!important;border-radius:0!important;padding:calc(var(--vt,80px) + 2px) 7% calc(var(--vb,60px) + 4px)!important;overflow-y:auto!important;overflow-x:hidden!important;scrollbar-width:thin;scrollbar-color:#bca371 transparent;filter:drop-shadow(0 2px 2px rgba(78,55,37,.3))}
+html body.tv.op-on #modo-op .op-g>.op-templo>.op-num{display:none!important}
+html body.tv.op-on #modo-op .op-g>.op-templo::after,html body.tv.op-on #modo-op .op-g>.op-templo::before{content:none!important;display:none!important}
+html body.tv.op-on #modo-op .op-g>.op-templo>*{flex-shrink:0!important}
+html body.tv.op-on #modo-op .op-g>.op-col1.op-templo{--v-topo:url("img/acampamento/dk-vela-tyr-topo.svg?v=1");--v-tec:url("img/acampamento/dk-vela-tyr-tecido.svg?v=1");--v-base:url("img/acampamento/dk-vela-tyr-base.svg?v=1")}
+html body.tv.op-on #modo-op .op-g>.op-fazer.op-templo{--v-topo:url("img/acampamento/dk-vela-missoes-topo.svg?v=1");--v-tec:url("img/acampamento/dk-vela-missoes-tecido.svg?v=1");--v-base:url("img/acampamento/dk-vela-missoes-base.svg?v=1")}
+html body.tv.op-on #modo-op .op-g>.op-estudo.op-templo{--v-topo:url("img/acampamento/dk-vela-runas-topo.svg?v=1");--v-tec:url("img/acampamento/dk-vela-runas-tecido.svg?v=1");--v-base:url("img/acampamento/dk-vela-runas-base.svg?v=1")}
+html body.tv.op-on #modo-op .op-g>.op-lado.op-templo{--v-topo:url("img/acampamento/dk-vela-provisoes-topo.svg?v=1");--v-tec:url("img/acampamento/dk-vela-provisoes-tecido.svg?v=1");--v-base:url("img/acampamento/dk-vela-provisoes-base.svg?v=1")}
+html body.tv.op-on #rod-apps.rod{--v-mar:clamp(132px,19vh,206px);background:#214b5b!important;border-top:0!important;box-shadow:0 -4px 12px -6px rgba(40,25,15,.5)!important;overflow:visible!important;padding-bottom:var(--v-mar)!important}
+html body.tv.op-on #rod-apps .rod-top{position:relative!important;height:var(--v-b)!important;min-height:0!important;box-sizing:border-box!important;padding:21px calc(var(--v-prow) + 6px) 0 calc(var(--v-aft) + 6px)!important;align-items:flex-start!important;gap:8px!important;background:url("img/acampamento/dk-friso.svg?v=1") 0 0/auto 19px repeat-x,url("img/acampamento/dk-casco.svg?v=1") 0 0/var(--v-b) var(--v-b) repeat-x,#765035!important}
+html body.tv.op-on #rod-apps .rod-top::before,html body.tv.op-on #rod-apps .rod-top::after{content:"";position:absolute;pointer-events:none;z-index:3;background:0 0/100% 100% no-repeat}
+html body.tv.op-on #rod-apps .rod-top::before{left:0;top:calc(var(--v-b)*-1.0417);width:var(--v-aft);height:calc(var(--v-b)*2.0417);background-image:url("img/acampamento/dk-popa.svg?v=1")}
+html body.tv.op-on #rod-apps .rod-top::after{right:0;top:calc(var(--v-b)*-3.1667);width:var(--v-prow);height:calc(var(--v-b)*4.1667);background-image:url("img/acampamento/dk-proa.svg?v=1")}
+html body.tv.op-on #rod-apps #rod-reg,html body.tv.op-on #rod-apps #rod-reg .cp-reg,html body.tv.op-on #rod-apps #rod-reg .cr-bar{background:transparent!important;border:0!important;box-shadow:none!important}
+html body.tv.op-on #rod-apps #rod-reg{position:relative;z-index:5}
+html body.tv.op-on #rod-apps #rod-reg :is(.cr-sep,.cr-dt,.cr-concha,.cr-ico){display:none!important}
+html body.tv.op-on #rod-apps #rod-reg .cr-bar{justify-content:space-around!important;gap:4px!important;padding:0!important;height:auto!important;overflow:visible!important}
+html body.tv.op-on #rod-apps #rod-reg .cr-p{flex:0 0 auto!important;min-width:0!important;height:auto!important;min-height:0!important;padding:0!important;border:0!important;background:none!important;box-shadow:none!important;display:flex!important;flex-direction:column!important;align-items:center!important;gap:2px!important;transform:none!important}
+html body.tv.op-on #rod-apps #rod-reg .cr-p::after{display:none!important}
+html body.tv.op-on #rod-apps #rod-reg .cr-p .cr-lb{display:flex!important;flex-direction:column-reverse!important;align-items:center!important;gap:2px!important}
+html body.tv.op-on #rod-apps #rod-reg .cr-p .cr-lb small{display:block!important;padding:1px 6px!important;border:1px solid #c9a66b!important;border-radius:3px;background:#263e37!important;color:#f3e6c4!important;font:600 8.5px/1.35 var(--mono,monospace)!important;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;opacity:1!important}
+html body.tv.op-on #rod-apps #rod-reg .cr-p:is(:hover,.on) .cr-lb b{filter:drop-shadow(0 0 4px #ffd768) drop-shadow(0 3px 3px rgba(20,10,0,.45))}
+html body.tv.op-on #rod-apps :is(#rod-fogo,#rod-bar){position:relative;z-index:5;margin-top:6px!important;height:auto!important;min-height:0!important;align-self:flex-start!important}
+@media(max-width:900px){html body.tv.op-on #rod-apps .rod-top::before,html body.tv.op-on #rod-apps .rod-top::after{display:none}html body.tv.op-on #modo-op{padding-left:18px!important;padding-right:18px!important}html body.tv.op-on #rod-apps .rod-top{padding:21px 8px 0!important}}
+/* foco: o conteúdo começa no alto e rola por dentro quando não cabe (antes, centralizado, subia por cima da moldura) */
+body.op-on #modo-op .op-col1>.op-foco{justify-content:flex-start!important;min-height:0;overflow-y:auto;scrollbar-width:thin;scrollbar-color:#c9a45a transparent}
+/* Drakkar · escudos funcionais: cada registro tem o seu escudo (ícone na face, valor no centro) */
+html body.tv.op-on #rod-apps #rod-reg .cr-p .cr-lb b{display:grid!important;place-items:center;width:calc(var(--v-b)*.58);height:calc(var(--v-b)*.58);padding-top:11%;box-sizing:border-box;border-radius:50%;font:700 11px/1 Georgia,serif!important;color:#302b24!important;white-space:nowrap;overflow:hidden;background:var(--esc) center/contain no-repeat!important;filter:drop-shadow(0 3px 3px rgba(20,10,0,.5));transition:transform .16s,filter .16s}
+html body.tv.op-on #rod-apps #rod-reg .cr-p:is(:hover,.on) .cr-lb b{transform:translateY(-3px);filter:brightness(1.12) drop-shadow(0 3px 3px rgba(20,10,0,.5))}
+html body.tv.op-on #rod-apps #rod-reg .cr-p .cr-lb small{background:#392c24!important;color:#f6e0ac!important;border:1px solid #b68d55!important;border-radius:0!important;clip-path:polygon(5% 0,95% 0,100% 50%,95% 100%,5% 100%,0 50%);padding:2px 8px!important}
+html body.tv.op-on #rod-apps #rod-reg .cr-p.cr-humor{--esc:url("img/acampamento/dk-escudo-humor.svg?v=1")}
+html body.tv.op-on #rod-apps #rod-reg .cr-p.cr-agua{--esc:url("img/acampamento/dk-escudo-agua.svg?v=1")}
+html body.tv.op-on #rod-apps #rod-reg .cr-p.cr-sono{--esc:url("img/acampamento/dk-escudo-sono.svg?v=1")}
+html body.tv.op-on #rod-apps #rod-reg .cr-p.cr-mov{--esc:url("img/acampamento/dk-escudo-movimento.svg?v=1")}
+html body.tv.op-on #rod-apps #rod-reg .cr-p.cr-ref{--esc:url("img/acampamento/dk-escudo-refeicoes.svg?v=1")}
+html body.tv.op-on #rod-apps #rod-reg .cr-p.cr-gasto{--esc:url("img/acampamento/dk-escudo-gastos.svg?v=1")}
+html body.tv.op-on #rod-apps #rod-reg .cr-p.cr-med{--esc:url("img/acampamento/dk-escudo-medicacao.svg?v=1")}
+html body.tv.op-on #rod-apps #rod-reg .cr-p.cr-hab{--esc:url("img/acampamento/dk-escudo-habitos.svg?v=1")}
+html body.tv.op-on #rod-apps #rod-fogo{display:flex!important;flex-direction:column!important;align-items:center!important;gap:2px!important;background:none!important;border:0!important;box-shadow:none!important;padding:0!important;margin-top:0!important;width:auto!important;min-width:0!important}
+html body.tv.op-on #rod-apps #rod-fogo .cr-ico{display:none!important}
+html body.tv.op-on #rod-apps #rod-fogo .cr-lb{display:flex!important;flex-direction:column-reverse!important;align-items:center!important;gap:2px!important}
+html body.tv.op-on #rod-apps #rod-fogo .cr-lb b{display:grid!important;place-items:center;width:calc(var(--v-b)*.58);height:calc(var(--v-b)*.58);padding-top:11%;box-sizing:border-box;font:700 9.5px/1.05 Georgia,serif!important;color:#302b24!important;text-align:center;white-space:normal;background:url("img/acampamento/dk-escudo-ancora.svg?v=1") center/contain no-repeat!important;filter:drop-shadow(0 3px 3px rgba(20,10,0,.5))}
+html body.tv.op-on #rod-apps #rod-fogo .cr-lb small{display:block!important;background:#75402e!important;color:#f6e0ac!important;border:1px solid #b68d55!important;clip-path:polygon(5% 0,95% 0,100% 50%,95% 100%,5% 100%,0 50%);padding:2px 8px!important;font:600 8.5px/1.35 var(--mono,monospace)!important;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap}
+html body.tv.op-on #rod-apps #rod-fogo:hover .cr-lb b{transform:translateY(-3px);filter:brightness(1.12) drop-shadow(0 3px 3px rgba(20,10,0,.5))}
+/* Clepsidra · Mar do tempo: o dia inteiro (00h–24h) como travessia; o barco marca o agora */
+html body.tv.op-on #argo-mar{display:block;position:absolute;left:0;right:0;bottom:0;height:var(--v-mar);z-index:4;overflow:visible;box-sizing:border-box;padding:8px max(24px,2.2vw) 6px;color:#f7eed6;background:#214b5b url("img/acampamento/dk-mar-clepsidra.svg?v=1") 0 0/auto 100% repeat-x}
+html body.tv.op-on #argo-mar::before{content:"";position:absolute;top:-9px;left:0;right:0;height:18px;background:url("img/acampamento/dk-espuma-casco.svg?v=1") 0 0/240px 18px repeat-x;pointer-events:none}
+html body.tv.op-on #argo-mar.parado{background-image:url("img/acampamento/dk-mar-estatico.svg?v=1")}
+@media (prefers-reduced-motion:reduce){html body.tv.op-on #argo-mar{background-image:url("img/acampamento/dk-mar-estatico.svg?v=1")}html body.tv.op-on #argo-mar::before{background-image:url("img/acampamento/dk-espuma-estatica.svg?v=1")}}
+html body.tv.op-on #argo-mar .vm{position:relative;height:100%;display:flex;flex-direction:column;gap:2px;max-width:1800px;margin:0 auto}
+html body.tv.op-on #argo-mar .vm-h{display:flex;align-items:center;gap:12px;min-height:38px}
+html body.tv.op-on #argo-mar .vm-h>img{width:34px;height:34px}
+html body.tv.op-on #argo-mar .vm-h h2{margin:0;font:400 20px/1 Georgia,serif;letter-spacing:.4px;white-space:nowrap;color:#f7eed6}
+html body.tv.op-on #argo-mar .vm-h h2 em{font-style:normal;color:#ddc184}
+html body.tv.op-on #argo-mar .vm-h small{display:block;margin-top:3px;color:#b9d1cb;font:9px var(--mono,monospace);letter-spacing:.14em;text-transform:uppercase}
+html body.tv.op-on #argo-mar .vm-r{margin-left:auto;display:flex;align-items:center;gap:18px}
+html body.tv.op-on #argo-mar .vm-r>span{display:flex;align-items:center;gap:7px}
+html body.tv.op-on #argo-mar .vm-r img{width:24px;height:24px}
+html body.tv.op-on #argo-mar .vm-r small{display:block;font:8px var(--mono,monospace);letter-spacing:.14em;text-transform:uppercase;color:#b9d3ca;margin-bottom:2px}
+html body.tv.op-on #argo-mar .vm-r b{font:600 11px var(--mono,monospace);color:#f0e2bf;white-space:nowrap}
+html body.tv.op-on #argo-mar .vm-r strong{font:400 20px/1 Georgia,serif;color:#fff2ce}
+html body.tv.op-on #argo-mar .vm-t{position:relative;flex:1;min-height:0;display:flex;flex-direction:column;padding-top:26px}
+html body.tv.op-on #argo-mar .vm-sc{position:absolute;top:0;left:0;right:0;height:24px}
+html body.tv.op-on #argo-mar .vm-sc span{position:absolute;top:0;transform:translateX(-50%);font:9px var(--mono,monospace);color:#c7d8cd;display:flex;flex-direction:column;align-items:center;gap:1px}
+html body.tv.op-on #argo-mar .vm-sc span:first-child{transform:none;align-items:flex-start}
+html body.tv.op-on #argo-mar .vm-sc span:last-child{transform:translateX(-100%);align-items:flex-end}
+html body.tv.op-on #argo-mar .vm-sc img{width:9px;height:10px}
+html body.tv.op-on #argo-mar .vm-cor{position:absolute;left:0;right:0;top:12px;height:8px;background:url("img/acampamento/dk-corrente-temporal.svg?v=1") 0 50%/120px 8px repeat-x;opacity:.8}
+html body.tv.op-on #argo-mar .vm-per{position:absolute;left:0;top:12px;height:8px;width:var(--pos);background:url("img/acampamento/dk-corrente-percorrida.svg?v=1") 0 50%/120px 8px repeat-x;filter:drop-shadow(0 0 4px rgba(245,212,140,.5))}
+html body.tv.op-on #argo-mar .vm-bo{position:absolute;top:-14px;left:var(--pos);width:44px;height:28px;margin-left:-22px;background:url("img/acampamento/dk-barco-agora.svg?v=1") center/contain no-repeat;z-index:3;pointer-events:none;animation:vmBo 3.2s ease-in-out infinite alternate}
+html body.tv.op-on #argo-mar .vm-bo span{position:absolute;left:50%;top:26px;transform:translateX(-50%);padding:1px 6px;border:1px solid #a98146;border-radius:3px;background:#e8c47d;color:#253e42;font:700 8px/1.3 var(--mono,monospace);letter-spacing:.12em;text-transform:uppercase;white-space:nowrap}
+@keyframes vmBo{from{translate:0 0;rotate:-2deg}to{translate:0 -2px;rotate:2deg}}
+html body.tv.op-on #argo-mar .vm-rt{flex:1;min-height:0;display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:4px;margin-top:6px}
+html body.tv.op-on #argo-mar .vm-s{position:relative;min-width:0;display:flex;flex-direction:column;justify-content:center;gap:3px;padding:10px 9px 8px;background:var(--onda) 0 0/100% 100% no-repeat;color:#fff1d4;font:13px/1.15 Georgia,serif;overflow:hidden}
+html body.tv.op-on #argo-mar .vm-s small{font:9px var(--mono,monospace);letter-spacing:.06em;text-transform:uppercase;color:#cbd8c7;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+html body.tv.op-on #argo-mar .vm-s span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+html body.tv.op-on #argo-mar .vm-s{--onda:url("img/acampamento/dk-onda-turno-futuro.svg?v=1")}
+html body.tv.op-on #argo-mar .vm-s.passou{--onda:url("img/acampamento/dk-onda-turno-passado.svg?v=1");color:#dddcc9;opacity:.85}
+html body.tv.op-on #argo-mar .vm-s.vazio{--onda:url("img/acampamento/dk-onda-turno-vazio.svg?v=1");color:#abc2c0}
+html body.tv.op-on #argo-mar .vm-s.agora{--onda:url("img/acampamento/dk-onda-turno-ativo.svg?v=1");color:#fff6dc;filter:drop-shadow(0 0 6px rgba(244,212,139,.55))}
+html body.tv.op-on #argo-mar .vm-s.agora small{color:#f4d48b}
+html body.tv.op-on #argo-mar .vm-f{display:flex;align-items:center;gap:7px;font:10px var(--mono,monospace);letter-spacing:.06em;color:#d4e2d7;min-height:16px}
+html body.tv.op-on #argo-mar .vm-f img{width:13px;height:13px}
+html body.tv.op-on #argo-mar .vm-f b{font-weight:400;color:#f5deb0}
+@media (max-height:860px){html body.tv.op-on #argo-mar .vm-f{display:none}html body.tv.op-on #argo-mar .vm-h{min-height:30px}html body.tv.op-on #argo-mar .vm-h>img{width:26px;height:26px}html body.tv.op-on #argo-mar .vm-h h2{font-size:17px}html body.tv.op-on #argo-mar .vm-r strong{font-size:16px}}

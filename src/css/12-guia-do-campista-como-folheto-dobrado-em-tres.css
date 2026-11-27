@@ -1,0 +1,116 @@
+/* ===== Guia do Campista como folheto dobrado em três ===== */
+#ac-guia.folheto .acg-bx{width:min(1120px,94vw)!important;max-width:none!important;border-radius:3px!important;border:1px solid #b89c72!important;padding:26px 34px 30px!important;color:#3b2a1d;
+ background:linear-gradient(90deg,rgba(90,63,44,0) 32.6%,rgba(90,63,44,.12) 33.3%,rgba(255,255,255,.35) 33.6%,rgba(90,63,44,0) 35%,rgba(90,63,44,0) 65.6%,rgba(90,63,44,.12) 66.6%,rgba(255,255,255,.35) 66.9%,rgba(90,63,44,0) 68.3%),
+  linear-gradient(180deg,#fbf3df,#f1e3c3)!important;box-shadow:0 2px 0 #d9c7a3,0 20px 50px rgba(30,20,10,.45)!important}
+#ac-guia.folheto .acg-bx::before{display:none!important}
+#ac-guia.folheto .acg-cab{display:grid;grid-template-columns:86px 1fr 70px;align-items:center;gap:18px;padding-bottom:14px;margin-bottom:14px;border-bottom:3px double #5a3f2c}
+#ac-guia.folheto .acg-cab>img:first-child{width:86px;height:auto}
+#ac-guia.folheto .acg-cab .acg-lira{width:64px;height:64px;justify-self:end}
+#ac-guia.folheto .acg-cab h2{margin:2px 0!important;font:400 34px Georgia,serif!important;letter-spacing:.06em;color:#3b2a1d!important}
+#ac-guia.folheto .acg-cab .acg-k{font:700 10px var(--mono,monospace);letter-spacing:.28em;text-transform:uppercase;color:#9a6b3a}
+#ac-guia.folheto .acg-sub{margin:0;font:italic 13px Georgia,serif;color:#6b5140}
+#ac-guia.folheto .acg-ix{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 16px;padding:0 0 14px;border-bottom:1px dashed #b89c72}
+#ac-guia.folheto .acg-ix button{border-radius:2px!important;border:1px solid #b89c72!important;background:#fbf3df!important;font:700 10px var(--mono,monospace)!important;letter-spacing:.12em;text-transform:uppercase;color:#5a3f2c!important;padding:5px 9px!important}
+#ac-guia.folheto .acg-corpo{columns:3;column-gap:56px;column-fill:balance;font:14.5px/1.6 Georgia,'EB Garamond',serif}
+#ac-guia.folheto .acg-corpo section{break-inside:avoid-column;margin:0 0 18px}
+#ac-guia.folheto .acg-corpo h3{font:700 17px Georgia,serif!important;color:#5a3f2c!important;margin:0 0 6px!important;padding-bottom:4px;border-bottom:1px solid #c9b28a}
+#ac-guia.folheto .acg-foto{margin:6px 0 10px;padding:5px 5px 4px;background:#fff8ea;border:1px solid #d9c7a3;box-shadow:1px 2px 4px rgba(60,40,20,.18);transform:rotate(-1deg)}
+#ac-guia.folheto .acg-foto img{display:block;width:100%;height:96px;object-fit:cover;filter:sepia(.2)}
+#ac-guia.folheto .acg-foto figcaption{font:italic 11.5px Georgia,serif;color:#6b5140;text-align:center;margin-top:3px}
+#ac-guia.folheto .acg-foto.acg-band{float:right;width:70px;margin:2px 0 6px 10px;transform:rotate(2deg)}
+#ac-guia.folheto .acg-foto.acg-band img{height:auto;object-fit:contain}
+@media(max-width:900px){#ac-guia.folheto .acg-corpo{columns:1}#ac-guia.folheto .acg-bx{background:linear-gradient(180deg,#fbf3df,#f1e3c3)!important;padding:18px!important}#ac-guia.folheto .acg-cab{grid-template-columns:60px 1fr}#ac-guia.folheto .acg-cab .acg-lira{display:none}}
+
+/* adornos de sorte e sucesso nas molduras */
+.neo-moldura>.col-orn{position:absolute;inset:0;pointer-events:none;z-index:1}
+.col-orn .co-med{position:absolute;top:50%;width:30px;height:30px;margin-top:-15px;display:grid;place-items:center;border-radius:50%;background:var(--col-c,#f4ead2);border:1.5px solid var(--col-k,#5a3f2c);box-shadow:0 0 0 3px #f4ead2,0 0 0 4px var(--col-k,#5a3f2c);
+ font:700 13px Georgia,serif;font-style:normal;color:var(--col-k,#5a3f2c);letter-spacing:-.02em;pointer-events:auto}
+.col-orn .co-l{left:10px}.col-orn .co-r{right:10px}
+.col-orn .co-sim{position:absolute;top:14px;width:22px;height:22px;display:grid;place-items:center;border-radius:50%;background:#f4ead2;border:1px solid var(--col-k,#5a3f2c)}
+.col-orn .co-sim svg{width:14px;height:14px;fill:none;stroke:var(--col-k,#5a3f2c);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.col-orn .co-sl{left:calc(25% - 11px)}.col-orn .co-sr{right:calc(25% - 11px)}
+#tm-painel .col-orn .co-sim,#recreio .col-orn .co-sim{top:12px}
+.neo-moldura[data-col]{border-color:var(--col-k)!important}
+@media(max-width:700px){.col-orn{display:none}}
+#tesouro .ts-orn{display:flex;align-items:center;justify-content:center;gap:12px;margin:0 0 10px}
+#tesouro .ts-orn i{display:grid;place-items:center;width:24px;height:24px}
+#tesouro .ts-orn svg{width:18px;height:18px;fill:none;stroke:#d8b46a;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+#tesouro .ts-orn b{display:grid;place-items:center;min-width:30px;height:30px;padding:0 5px;border-radius:50%;border:1.5px solid #d8b46a;font:700 13px Georgia,serif;color:#f4d99a}
+
+.neo-moldura[data-col="tb"]>.col-orn .co-med{top:auto;bottom:40px;margin-top:0}
+/* Quadro de avisos temático */
+#cerbox #rail-in .rcab.cer .k9::before{content:''!important}
+#cerbox #rail-in .rcab.cer .k9{display:none!important}
+#cerbox #rail-in .qa-nm{display:flex;flex-direction:column;gap:1px;flex:1;min-width:0}
+#cerbox #rail-in .qa-nm b{font:400 16px Georgia,serif;color:#3b2a1d}
+#cerbox #rail-in .qa-nm small{font:700 8.5px var(--mono,monospace);letter-spacing:.14em;text-transform:uppercase;color:#9a6b3a}
+#cerbox #rail-in .rcab.cer>i{order:9}
+#cerbox .qa-sec>summary .qa-deus{grid-column:2;font:italic 11.5px Georgia,serif;color:#8a6f55}
+#cerbox .qa-ic,#lat-orb .lat-ic{background:radial-gradient(circle at 35% 30%,#fbf0cf,#e9c87a)!important;border:1.5px solid #9a6b3a!important;box-shadow:0 0 0 2px #f4ead2,0 0 0 3px #c9a45a}
+#lat-orb .lat-ic svg{fill:none;stroke:#5a3f2c;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+#cerbox .qa-sec,#cerbox #lat-orb{position:relative}
+#cerbox .qa-sec::after,#cerbox #lat-orb::after{content:'';position:absolute;left:12px;right:12px;bottom:0;height:3px;background:repeating-linear-gradient(90deg,#c9a45a 0 6px,transparent 6px 9px);opacity:.55;pointer-events:none}
+
+/* ===== Tesouro refeito: sem couro marrom; papel rústico mais escuro, moldura ocre como os outros painéis ===== */
+#tesouro.neo-moldura{position:relative;margin:30px 0 18px!important;padding:62px 50px 30px!important;border-radius:3px!important;color:#3b2a1d!important;box-shadow:none!important;border:1.5px solid #7a5418!important;
+ background:var(--neo-ent) left top/240px 40px repeat-x,
+  var(--neo-cap) left 4px top 42px/42px 29px no-repeat,var(--neo-cap) right 4px top 42px/42px 29px no-repeat,
+  var(--neo-fuste) left 4px top 70px/42px calc(100% - 70px - 20px) no-repeat,var(--neo-fuste) right 4px top 70px/42px calc(100% - 70px - 20px) no-repeat,
+  var(--neo-base) left 4px bottom 4px/42px 15px no-repeat,var(--neo-base) right 4px bottom 4px/42px 15px no-repeat,
+  var(--neo-papel),var(--neo-papel),linear-gradient(180deg,#e3cfa2,#d8c08c)!important}
+#tesouro.neo-moldura .ts-cab{position:absolute;top:2px;left:50%;transform:translateX(-50%);z-index:2;margin:0!important;padding:7px 26px 6px;white-space:nowrap;text-align:center;
+ border:1.5px solid var(--fase,#b48a4a);border-radius:2px;background:var(--neo-papel),#f4ead2;box-shadow:0 0 0 4px #f4ead2,0 0 0 5.5px var(--fase,#b48a4a);display:flex;align-items:baseline;gap:12px}
+#tesouro.neo-moldura .ts-cab .ts-k{order:2;font:9px var(--mono,monospace)!important;letter-spacing:.16em!important;color:var(--fase,#8a6f55)!important}
+#tesouro.neo-moldura .ts-cab .ts-k::before{content:'// '}
+#tesouro.neo-moldura .ts-cab h2{order:1;margin:0!important;font:700 17px Georgia,serif!important;color:#5a3f2c!important;letter-spacing:.02em}
+#tesouro.neo-moldura .ts-cab p,#tesouro .ts-orn{display:none!important}
+#tesouro.neo-moldura .lat-c,#tesouro.neo-moldura .sec-card{background:#f4ead2!important;border:1px solid #c9a45a!important;box-shadow:0 3px 10px rgba(90,60,20,.18)!important}
+@media(max-width:800px){#tesouro.neo-moldura{padding-left:18px!important;padding-right:18px!important}#tesouro.neo-moldura .ts-cab .ts-k{display:none}}
+
+/* painéis laterais com o mesmo fundo da página (creme com a grade fina) e rolagem fina */
+#nav,#rail,#painel-dir .pd-corpo{background-color:#e8dcb9!important;
+ background-image:linear-gradient(90deg,rgba(95,70,35,.035) 1px,transparent 1px),linear-gradient(rgba(95,70,35,.03) 1px,transparent 1px)!important;background-size:42px 42px!important;background-attachment:local!important}
+#rail{box-shadow:inset 1px 0 0 rgba(90,63,44,.14)!important}#nav{box-shadow:inset -1px 0 0 rgba(90,63,44,.14)!important}
+#nav,#rail,#painel-dir .pd-corpo,#cerbox,.mf-g,#fer-corpo,.acg-bx,.lv-corpo{scrollbar-width:thin;scrollbar-color:rgba(90,63,44,.32) transparent}
+#nav::-webkit-scrollbar,#rail::-webkit-scrollbar,#painel-dir .pd-corpo::-webkit-scrollbar,#cerbox::-webkit-scrollbar,.mf-g::-webkit-scrollbar,#fer-corpo::-webkit-scrollbar,.acg-bx::-webkit-scrollbar{width:5px;height:5px}
+#nav::-webkit-scrollbar-track,#rail::-webkit-scrollbar-track,#painel-dir .pd-corpo::-webkit-scrollbar-track,#cerbox::-webkit-scrollbar-track,.mf-g::-webkit-scrollbar-track,#fer-corpo::-webkit-scrollbar-track,.acg-bx::-webkit-scrollbar-track{background:transparent}
+#nav::-webkit-scrollbar-thumb,#rail::-webkit-scrollbar-thumb,#painel-dir .pd-corpo::-webkit-scrollbar-thumb,#cerbox::-webkit-scrollbar-thumb,.mf-g::-webkit-scrollbar-thumb,#fer-corpo::-webkit-scrollbar-thumb,.acg-bx::-webkit-scrollbar-thumb{background:rgba(90,63,44,.3);border-radius:4px}
+#nav::-webkit-scrollbar-thumb:hover,#rail::-webkit-scrollbar-thumb:hover,#painel-dir .pd-corpo::-webkit-scrollbar-thumb:hover{background:rgba(90,63,44,.55)}
+
+/* Caixa de Hermes no mesmo padrão dos outros cartões do Quadro */
+#cerbox #rail-in{position:relative;padding:12px 14px 16px!important;margin:0 0 12px!important;border:1px solid rgb(185,167,122)!important;border-radius:12px!important;background:rgb(244,234,209)!important;gap:10px!important;box-shadow:none!important}
+#cerbox #rail-in::after{content:'';position:absolute;left:12px;right:12px;bottom:0;height:3px;background:repeating-linear-gradient(90deg,#c9a45a 0 6px,transparent 6px 9px);opacity:.55;pointer-events:none}
+#cerbox #rail-in .rcab.cer{display:grid!important;grid-template-columns:30px 1fr auto;column-gap:8px;align-items:center;padding:0!important;margin:0!important}
+#cerbox #rail-in .rcab.cer .qa-ic{grid-row:1/3}
+#cerbox #rail-in .rcab.cer .qa-nm{grid-column:2;display:flex;flex-direction:column-reverse;gap:1px}
+#cerbox #rail-in .qa-nm small{font:700 8.5px var(--mono,monospace)!important;letter-spacing:.18em;color:#9a6b3a!important}
+#cerbox #rail-in .qa-nm b{font:400 16px Georgia,serif!important;color:#3b2a1d!important}
+#cerbox #rail-in .rcab.cer>i{grid-column:3;grid-row:1/3;align-self:center;padding:2px 8px;border-radius:999px;border:1px solid #c9b28a;background:#fbf3df;font:700 9px var(--mono,monospace);font-style:normal;letter-spacing:.12em;text-transform:uppercase;color:#8a6f55}
+#cerbox #rail-in .rcap{display:flex!important;flex-direction:row!important;align-items:center;gap:6px;margin:0!important;padding:0!important;background:none!important}
+#cerbox #rail-in .rcap input{flex:1;width:auto!important;min-width:0;height:36px!important;min-height:36px!important;padding:0 12px!important;border:1px solid #c9b28a!important;border-radius:8px!important;background:#fbf3df!important;font:14px var(--sans)!important;color:#3b2a1d!important;box-shadow:inset 0 1px 2px rgba(90,63,44,.08)}
+#cerbox #rail-in .rcap input:focus{outline:0;border-color:#9a6b3a!important;box-shadow:0 0 0 3px rgba(201,164,90,.25)}
+#cerbox #rail-in .rcap button{flex:none;width:auto!important;height:36px!important;padding:0 14px!important;border:0!important;border-radius:8px!important;background:#5a3f2c!important;color:#f4ead2!important;font:700 10px var(--mono,monospace)!important;letter-spacing:.16em;text-transform:uppercase;cursor:pointer}
+#cerbox #rail-in .rcap button:hover{background:#3b2a1d!important}
+#cerbox #rail-in .rlist{margin:0!important;padding:0!important;list-style:none;display:flex;flex-direction:column;gap:4px}
+#cerbox #rail-in .rlist li{padding:7px 10px!important;border-radius:8px;background:#fbf3df!important;border:1px solid #e3d3b0!important;font-size:13px;color:#3b2a1d}
+#cerbox #rail-in .rlist li.rvz{border-style:dashed!important;background:transparent!important;text-align:center;font:italic 12.5px Georgia,serif!important;letter-spacing:0!important;text-transform:none!important;color:#8a6f55!important}
+
+/* faixa fixa da coluna esquerda, na mesma altura e no mesmo desenho do índice */
+#lat-topo{position:sticky;top:0;z-index:20;margin:-10px -10px 10px;padding:10px 10px 6px;background:#e8dcb9;border-bottom:3px double #5a3f2c;display:flex;flex-direction:column;gap:6px;height:96px;box-sizing:border-box}
+#lat-topo .lt-r1{display:flex;align-items:center;gap:10px;height:32px;padding:0 6px 0 4px;border:1.5px solid #5a3f2c;border-radius:999px;background:#5a3f2c;color:#f4ead2}
+#lat-topo .lt-logo{flex:none;width:30px!important;height:30px!important;margin:0 0 0 -3px!important;padding:2px!important;border:0!important;border-radius:50%!important;background:#f4ead2!important;cursor:pointer;display:grid;place-items:center}
+#lat-topo .lt-logo img{width:26px;height:26px;object-fit:contain}
+#lat-topo .lt-id{flex:1;min-width:0;display:flex;align-items:baseline;gap:7px;white-space:nowrap;overflow:hidden}
+#lat-topo .lt-id b{font:400 13px Georgia,serif;letter-spacing:.2em;text-transform:uppercase}
+#lat-topo .lt-id small{font:9px var(--mono,monospace);letter-spacing:.12em;text-transform:uppercase;opacity:.75;overflow:hidden;text-overflow:ellipsis}
+#lat-topo .lt-dias{flex:none;display:flex;align-items:baseline;gap:4px;padding:2px 9px;border-radius:999px;background:#f4ead2;color:#3b2a1d}
+#lat-topo .lt-dias b{font:700 13px Georgia,serif}#lat-topo .lt-dias small{font:8.5px var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase;color:#8a6f55}
+#lat-topo .lt-r2{display:flex;align-items:center;gap:8px;height:30px;padding:0 10px;border-top:1px solid #5a3f2c;font-size:12px;color:#3b2a1d}
+#lat-topo .lt-k{flex:none;padding:2px 8px;border-radius:999px;background:#5a3f2c;color:#f4ead2;font:700 9px var(--mono,monospace);letter-spacing:.18em;text-transform:uppercase}
+#lat-topo .lt-bar{flex:1;height:4px;border-radius:2px;background:#e3d3b0;overflow:hidden}#lat-topo .lt-bar i{display:block;height:100%;background:#9a6b3a}
+#lat-topo .lt-n{flex:none;font:700 12px Georgia,serif}#lat-topo .lt-t{flex:none;font:9px var(--mono,monospace);letter-spacing:.08em;color:#8a6f55}
+/* o cartão de nível fica só com a meta do dia e as regras: o topo dele subiu para a faixa */
+#lat-gm .gm-top{display:none!important}
+#lat-gm .gm-bot{padding-top:0!important;border-top:0!important;margin-top:0!important}
+@media(max-width:1379px){#lat-topo{position:static;height:auto}}
+
