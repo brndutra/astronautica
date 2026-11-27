@@ -6333,38 +6333,21 @@ html body.eg #lat-topo .lt-r0 .lt-bts>:is(#fc-tg,#mf-tg,#tv-tg,#pt-tg):hover{bac
 #lat-topo .lt-r2 .lt-bar{min-width:24px}
 #lat-topo .lt-r2 #lt-dr{flex:none}
 #lat-topo .lt-r2 .op-tg{margin:0 0 0 auto!important;padding:0 9px!important;height:26px}
-/* ======================= Central: barra de abas (Manual e os seis painéis) e painel lateral centralizado ======================= */
-.ct-abas{display:flex;gap:6px;flex-wrap:wrap;align-items:stretch;padding:6px;border-radius:16px;background:rgba(24,19,13,.92);border:1px solid rgba(214,180,110,.35);box-shadow:0 8px 24px -14px rgba(0,0,0,.6)}
-.ct-abas button,:is(#cx .ct-abas,#painel-dir .ct-abas,#ct-templo .ct-abas) button{all:unset;box-sizing:border-box!important;display:flex!important;align-items:center;gap:9px;width:auto!important;height:auto!important;min-height:0!important;margin:0!important;padding:7px 13px 7px 10px!important;border:0!important;border-radius:11px!important;background:transparent!important;color:#e9dcc0!important;cursor:pointer;transition:background .15s,color .15s}
-:is(#cx .ct-abas,#painel-dir .ct-abas,#ct-templo .ct-abas) button:hover,:is(#cx .ct-abas,#painel-dir .ct-abas,#ct-templo .ct-abas) button:focus-visible{background:rgba(255,255,255,.08)!important}
-:is(#cx .ct-abas,#painel-dir .ct-abas,#ct-templo .ct-abas) button[aria-selected="true"]{background:#f1e4c4!important;color:#2a2116!important}
+/* ======================= Central: barra de abas e painel lateral como folha da central (moldura e posição no 31) ======================= */
+.ct-abas{display:flex;gap:6px;align-items:stretch}
+#ct-barra .ct-abas>button{all:unset;box-sizing:border-box!important;display:flex!important;align-items:center;width:auto!important;height:auto!important;min-height:0!important;margin:0!important;border:0!important;cursor:pointer;transition:background .15s,color .15s}
 .ct-abas svg{flex:none;width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 .ct-abas span{display:flex;flex-direction:column;line-height:1.1}
-.ct-abas b{font:600 13.5px var(--sans,system-ui,sans-serif)}
-.ct-abas small{font:600 9px var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase;opacity:.7;margin-top:2px}
-/* no Manual: a barra é a primeira linha da janela */
-#cx.mf.on{flex-direction:column;align-items:center}
-#cx.mf>.ct-abas{flex:none;width:min(1160px,100%);margin:0 0 12px;box-sizing:border-box}
-#cx.mf>.ct-abas~.mf-bx{height:calc(100vh - 44px - 76px)}
-/* um dos seis painéis aberto: o lateral vira folha centralizada, sem as abas verticais e sem a navegação antiga */
-html body #painel-dir.pd.on.central{inset:0!important;left:0!important;right:0!important;top:0!important;bottom:0!important;width:auto!important;height:auto!important;border-radius:0!important;z-index:130;pointer-events:auto;background:rgba(18,14,9,.62)!important}
+.ct-abas small{opacity:.75;margin-top:2px;text-transform:uppercase}
+/* um dos seis painéis aberto: o lateral vira folha da central, sem as abas verticais e sem a navegação antiga */
+html body #painel-dir.pd.on.central{inset:0!important;left:0!important;right:0!important;top:0!important;bottom:0!important;width:auto!important;height:auto!important;border-radius:0!important}
 #painel-dir.central>.pd-abas,#painel-dir.central .pd-nav,#painel-dir.central .pd-top .pd-pilula{display:none!important}
 html body #painel-dir.pd.on.central .pd-corpo .pd-top .pd-pilula.pil-placa{display:none!important}
-html body #painel-dir.pd.on.central .pd-corpo{position:fixed!important;left:max(16px,calc(50vw - 620px))!important;right:max(16px,calc(50vw - 620px))!important;top:14px!important;bottom:14px!important;width:auto!important;height:auto!important;max-width:none!important;transform:none!important;border:1px solid var(--line);border-radius:16px;box-shadow:0 30px 70px -30px rgba(0,0,0,.7)}
-#painel-dir.central .pd-corpo>.ct-abas{position:sticky;top:10px;z-index:5;margin:12px 0 4px}
-#painel-dir.central .pd-top{padding:6px 0;margin-bottom:8px;border-bottom:0;background:transparent;justify-content:flex-end;position:absolute;top:18px;right:22px;z-index:6}
-#painel-dir.central .pd-corpo>.ct-abas{margin-right:52px}
-@media(max-width:760px){.ct-abas button{padding:6px 9px}.ct-abas small{display:none}html body #painel-dir.pd.on.central .pd-corpo{top:0!important;bottom:0!important;left:0!important;right:0!important;border-radius:0}}
-/* Templo como folha da central (body.ct-templo): fundo escuro, barra no topo e a .wrap centralizada com rolagem própria */
-#ct-templo{display:none}
-body.ct-templo #ct-templo{display:block;position:fixed;inset:0;z-index:130;background:rgba(18,14,9,.62)}
-body.ct-templo #ct-templo>.ct-abas{position:absolute;top:14px;left:max(16px,calc(50vw - 620px));right:max(16px,calc(50vw - 620px));margin-right:52px}
-body.ct-templo #ct-templo>.ct-tx{position:absolute;top:22px;right:max(16px,calc(50vw - 620px));width:38px;height:38px;border-radius:50%;border:1px solid rgba(214,180,110,.5);background:rgba(24,19,13,.92);color:#f1e4c4;font:600 15px var(--sans,system-ui);cursor:pointer}
-html body.ct-templo .wrap{position:fixed!important;z-index:131;top:86px;bottom:14px;left:max(16px,calc(50vw - 620px))!important;right:max(16px,calc(50vw - 620px))!important;width:auto!important;max-width:none!important;margin:0!important;overflow-y:auto;overflow-x:hidden;border-radius:16px;border:1px solid rgba(150,115,60,.45);box-shadow:0 30px 70px -30px rgba(0,0,0,.7);background:var(--bg,#f4ead2);overscroll-behavior:contain}
-html body.ct-templo .wrap::before,html body.ct-templo .wrap::after{display:none}
+html body #painel-dir.pd.on.central .pd-corpo{position:fixed!important;max-width:none!important;transform:none!important}
+#cx.mf.on{flex-direction:column;align-items:center}
 /* Manual no mesmo papel creme dos painéis: as variáveis da janela da Companhia passam a ser as do papel */
 #cx.mf .mf-bx{--cx-tx:#2a2116;--cx-sv:#6b5a44;--cx-ln:rgba(90,63,44,.3);--cx-ac:#8a5a14;width:min(1240px,calc(100vw - 32px))!important;padding:18px 20px;border-radius:16px;border:1px solid rgba(150,115,60,.45);background:#f4ead2;box-shadow:0 30px 70px -30px rgba(0,0,0,.7);box-sizing:border-box;color:var(--cx-tx)}
-#cx.mf>.ct-abas{width:min(1240px,calc(100vw - 32px))}
+
 #cx.mf .mf-card{background:#fffdf6}#cx.mf .mf-card.mf-tl{background:transparent}#cx.mf .mf-card:hover{background:#fff8e8}
 #cx.mf .mf-painel{background:#fbf3df;border-color:rgba(150,115,60,.35)}
 #cx.mf .mf-painel{--pc:hsl(calc(30 + var(--pi)*52) 52% 36%)}
@@ -6373,23 +6356,50 @@ html body.ct-templo .wrap::before,html body.ct-templo .wrap::after{display:none}
 #cx.mf .mf-pg input:not([type=checkbox]),#cx.mf .mf-pg textarea,#cx.mf .mf-pg select{background:#fffdf6!important;color:#2a2116!important;border-color:rgba(90,63,44,.35)!important}
 #cx.mf .mf-pg button{color:#2a2116;border-color:rgba(90,63,44,.4)}
 #cx.mf .cx-x{color:#f4ead2}
-/* ======================= Moldura da central (43-moldura-da-central): frontão, pilares e base do templo do tema ======================= */
-#ct-mold[hidden],#ct-mold-fundo[hidden]{display:none!important}
-#ct-mold-fundo{position:fixed;inset:0;z-index:328;background:rgba(18,14,9,.66)}
-#ct-mold{position:fixed;z-index:329;pointer-events:none;left:max(16px,calc(50vw - 620px));right:max(16px,calc(50vw - 620px));top:76px;bottom:14px}
-#ct-mold .cm-front{position:absolute;top:0;left:0;right:0;overflow:visible}
-/* tímpano: o papel do templo dentro do triângulo, para o frontão não ficar vazado */
-#ct-mold .cm-tim{position:absolute;left:0;right:0;bottom:0;height:100%;background:var(--mold-pap,#f4ead2);clip-path:polygon(0 100%,50% 6%,100% 100%)}
-#ct-mold .cm-pil{position:absolute;left:0;right:0;top:var(--mold-t);bottom:var(--mold-b)}
-#ct-mold .cm-base{position:absolute;left:0;right:0;bottom:0;height:var(--mold-b);overflow:hidden}
-/* a folha (painel ou Manual) entre os pilares, abaixo do frontão e acima da base; o fundo escuro passa a ser o da moldura */
-html body.com-moldura #painel-dir.pd.on.central{z-index:331;background:transparent!important}
-html body.com-moldura #painel-dir.pd.on.central .pd-corpo{top:calc(76px + var(--mold-t))!important;bottom:calc(14px + var(--mold-b))!important;
- left:calc(max(16px,calc(50vw - 620px)) + var(--mold-s))!important;right:calc(max(16px,calc(50vw - 620px)) + var(--mold-s))!important;border:0!important;border-radius:0!important;box-shadow:none!important}
-html body.com-moldura #painel-dir.central .pd-corpo>.ct-abas{position:fixed!important;top:14px;left:max(16px,calc(50vw - 620px));right:calc(max(16px,calc(50vw - 620px)) + 52px);margin:0!important}
-html body.com-moldura #painel-dir.central .pd-top{position:fixed!important;top:20px!important;right:max(16px,calc(50vw - 620px))!important;left:auto!important;width:auto!important;margin:0!important;padding:0!important;border:0!important;background:transparent!important}
-html body.com-moldura #cx.mf.on{background:transparent!important}
-html body.com-moldura #cx.mf>.ct-abas{position:fixed;top:14px;left:max(16px,calc(50vw - 620px));right:calc(max(16px,calc(50vw - 620px)) + 52px);width:auto!important;margin:0}
-html body.com-moldura #cx.mf .mf-bx{position:fixed!important;top:calc(76px + var(--mold-t))!important;bottom:calc(14px + var(--mold-b))!important;
- left:calc(max(16px,calc(50vw - 620px)) + var(--mold-s))!important;right:calc(max(16px,calc(50vw - 620px)) + var(--mold-s))!important;width:auto!important;height:auto!important;border:0!important;border-radius:0!important;box-shadow:none!important}
-@media(max-width:760px){#ct-mold{left:0;right:0;top:64px;bottom:0}}
+/* ======================= Moldura da central (43-moldura-da-central): o próprio templo do tema ======================= */
+#ct-fundo[hidden],#ct-barra[hidden]{display:none!important}
+#ct-fundo{position:fixed;inset:0;z-index:328;background:rgba(18,14,9,.66)}
+/* o templo vira a folha: fixo, sem a moldura de cartão; posição, tamanho e zoom vêm do 43 */
+html body.ct-on .wrap{position:fixed!important;z-index:329;right:auto!important;bottom:auto!important;max-width:none!important;margin:0!important;padding:0!important;
+ overflow-x:hidden!important;overflow-y:auto!important;border:0!important;border-radius:0!important;box-shadow:none!important;scrollbar-width:thin;
+ background:linear-gradient(to bottom,transparent var(--ct-ft,0px),var(--ct-papel,#f4ead2) var(--ct-ft,0px),var(--ct-papel,#f4ead2) var(--ct-fb,100000px),transparent var(--ct-fb,100000px))!important;background-attachment:local!important}
+html body.ct-on .wrap::before,html body.ct-on .wrap::after{display:none!important}
+html body.ct-on .wrap>#tt-indice{display:none!important}
+html body.ct-on #hero-box .nf2>.pd-pilula{visibility:hidden!important;pointer-events:none!important}
+/* Manual e painéis: do templo fica só a moldura; o miolo some por baixo da folha */
+html body.ct-painel .wrap{overflow:hidden!important}
+html body.ct-painel .wrap>:not(#hero-box){display:none!important}
+html body.ct-painel #hero-box .bn-slot>*{visibility:hidden!important}
+/* a folha da aba entre os pilares */
+html body.ct-painel #painel-dir.pd.on.central{z-index:331;pointer-events:none;background:transparent!important}
+html body.ct-painel #painel-dir.pd.on.central .pd-corpo{pointer-events:auto;left:var(--ct-x)!important;top:var(--ct-y)!important;width:var(--ct-w)!important;height:var(--ct-h)!important;right:auto!important;bottom:auto!important;
+ border:0!important;border-radius:0!important;box-shadow:none!important}
+html body.ct-painel #painel-dir.central .pd-top{display:none!important}
+html body.ct-painel #cx.mf.on{z-index:331;pointer-events:none;background:transparent!important;padding:0!important}
+html body.ct-painel #cx.mf .mf-bx{pointer-events:auto;position:fixed!important;left:var(--ct-x)!important;top:var(--ct-y)!important;width:var(--ct-w)!important;height:var(--ct-h)!important;
+ border:0!important;border-radius:0!important;box-shadow:none!important}
+html body.ct-painel #cx.mf .cx-x{display:none!important}
+/* gavetas da faixa da base (semana, mês, registros) abrem por cima do miolo: a folha sai da frente enquanto estão abertas */
+html body.ct-painel:has(#hero-box .bn-rod.ver, #rod-pan:not([hidden])) :is(#painel-dir.central .pd-corpo,#cx.mf .mf-bx){visibility:hidden!important}
+/* barra de abas na cornija do frontão, com a cara da placa do tema */
+#ct-barra{position:fixed;inset:0;z-index:333;pointer-events:none}
+#ct-barra>.ct-abas{position:absolute;left:var(--ct-bx);top:var(--ct-by);transform:translate(-50%,-50%);pointer-events:auto;flex-wrap:nowrap;align-items:center;gap:0;
+ max-width:calc(100vw - 2 * var(--ct-L) - 120px);padding:3px 8px;background:var(--placa-bg,#f4ead2);border:1.5px solid var(--placa-k,#8a5a14);border-radius:var(--placa-raio,2px);
+ box-shadow:0 0 0 3px var(--placa-ring,#f4ead2),0 0 0 4.5px var(--placa-aro,#8a5a14),0 6px 12px -6px rgba(40,30,20,.45)}
+#ct-barra .ct-abas>button{padding:5px 10px 5px 8px!important;gap:7px;border-radius:0!important;color:var(--placa-sub,#9a6b3a)!important;background:transparent!important}
+#ct-barra .ct-abas>button+button,#ct-barra .ct-telas+button{border-left:1px solid color-mix(in srgb,var(--placa-k,#8a5a14) 45%,transparent)!important}
+#ct-barra .ct-abas>button:hover{background:color-mix(in srgb,var(--placa-k,#8a5a14) 12%,transparent)!important}
+#ct-barra .ct-abas>button[aria-selected="true"]{color:var(--placa-tx,#2a2418)!important;background:color-mix(in srgb,var(--placa-k,#8a5a14) 16%,transparent)!important}
+#ct-barra .ct-abas svg{width:17px;height:17px;color:var(--placa-ic,#5a3f2c)}
+#ct-barra .ct-abas b{font:400 13.5px Georgia,serif;font-variant:small-caps;letter-spacing:.03em;white-space:nowrap}
+#ct-barra .ct-abas button[aria-selected="true"] b{font-weight:700}
+#ct-barra .ct-abas small{font:600 8px var(--mono,monospace);letter-spacing:.1em;white-space:nowrap}
+/* Mural · Programação ao lado da aba Templo */
+#ct-barra .ct-telas{display:flex;flex-direction:row;align-items:baseline;gap:5px;padding:0 10px 0 2px}
+#ct-barra .ct-telas button{all:unset;cursor:pointer;font:400 12px Georgia,serif;font-variant:small-caps;color:var(--placa-sub,#9a6b3a);white-space:nowrap}
+#ct-barra .ct-telas button[aria-selected="true"]{font-weight:700;color:var(--placa-tx,#2a2418);text-decoration:underline;text-underline-offset:3px}
+#ct-barra .ct-telas i{font-style:normal;color:var(--placa-k,#8a5a14)}
+#ct-barra>.ct-tx{position:absolute;top:14px;right:var(--ct-L);width:36px;height:36px;border-radius:50%;pointer-events:auto;cursor:pointer;
+ border:1.5px solid var(--placa-k,#8a5a14);background:var(--placa-bg,#f4ead2);color:var(--placa-tx,#2a2418);font:600 15px var(--sans,system-ui)}
+@media(max-width:1100px){#ct-barra .ct-abas small{display:none}#ct-barra .ct-abas>button{padding:5px 7px!important}}
+@media(max-width:860px){#ct-barra .ct-abas b{display:none}#ct-barra>.ct-abas{max-width:calc(100vw - 60px)}}

@@ -13247,6 +13247,7 @@ bnTelaBotoes=function(){var h=document.querySelector('#hero-box .vx-hero.bn2');i
 (function(){var st=document.createElement('style');st.id='pil-placa-css';var Q='html body:not(.zz9):not(.zz8) #hero-box#hero-box .pd-pilula.pil-placa',W=Q+'>.bn-telas.na-pilula';
  var pal=TV_ON?{bg:'linear-gradient(180deg,#256139,#1d4a2c)',k:'#d4ad4f',ring:'#123321',tx:'#f3e6c4',sub:'#e9c870',ic:'#e9c870'}:EG_ON?{bg:'#f7ecd2',k:'#1e3a6e',ring:'#f7ecd2',tx:'#1e3a6e',sub:'#2a4c86',ic:'#1e3a6e'}:{bg:'var(--neo-papel,none),#f4ead2',k:'#8a5a14',ring:'#f4ead2',tx:'#2a2418',sub:'#9a6b3a',ic:'#5a3f2c'};
  st.textContent=[
+ ':root{--placa-bg:'+pal.bg+';--placa-k:'+pal.k+';--placa-ring:'+pal.ring+';--placa-aro:'+(EG_ON?'#c9a23a':pal.k)+';--placa-tx:'+pal.tx+';--placa-sub:'+pal.sub+';--placa-ic:'+pal.ic+';--placa-raio:'+(EG_ON?'999px':'2px')+'}',
  Q+'{width:auto!important;height:auto!important;padding:3px 8px!important;gap:2px!important;align-items:center!important;background:'+pal.bg+'!important;border:1.5px solid '+pal.k+'!important;border-radius:'+(EG_ON?'999px':'2px')+'!important;box-shadow:0 0 0 3px '+pal.ring+',0 0 0 4.5px '+(EG_ON?'#c9a23a':pal.k)+',0 6px 12px -6px rgba(40,30,20,.45)!important}',
  Q+'::before,'+Q+'::after{display:none!important;content:none!important}',
  Q+'>button.tt-ic{color:'+pal.ic+'!important;border:0!important;background:none!important;box-shadow:none!important}',
@@ -13269,8 +13270,9 @@ var BN_H=660;
 bnTelaPos=function(){var tb=document.querySelector('.wrap > div.tb'),h=document.querySelector('#hero-box .vx-hero.bn2'),wr=document.querySelector('.wrap');
  if(!tb||!h||!wr)return;if(BN_TELA!=='prog'||document.body.classList.contains('bn-mini')||document.body.classList.contains('bn-verso'))return;
  var cs=getComputedStyle(h),pl=parseFloat(cs.paddingLeft)||40,pr=parseFloat(cs.paddingRight)||40,pt=52,pb=24;
- var hr=h.getBoundingClientRect(),wrr=wr.getBoundingClientRect();
- var x=Math.round(hr.left-wrr.left+pl),y=Math.round(hr.top-wrr.top+pt),w=Math.round(hr.width-pl-pr),hh=Math.round(hr.height-pt-pb);
+ /* medidas da tela divididas pelo zoom da .wrap e somadas à rolagem dela (na central a .wrap é folha com zoom e rolagem própria) */
+ var z=wr.currentCSSZoom||1,hr=h.getBoundingClientRect(),wrr=wr.getBoundingClientRect(),hl=(hr.left-wrr.left)/z-wr.clientLeft+wr.scrollLeft,ht=(hr.top-wrr.top)/z-wr.clientTop+wr.scrollTop,hw=hr.width/z,hH=hr.height/z;
+ var x=Math.round(hl+pl),y=Math.round(ht+pt),w=Math.round(hw-pl-pr),hh=Math.round(hH-pt-pb);
  var k=x+'|'+y+'|'+w+'|'+hh;if(tb._tp!==k){tb._tp=k;tb.style.setProperty('--tl-x',x+'px');tb.style.setProperty('--tl-y',y+'px');tb.style.setProperty('--tl-w',w+'px');tb.style.setProperty('--tl-h',hh+'px');}};
 (function(){var st=document.createElement('style');st.id='bn-altura-unica-css';var T='html body.tela-prog div.wrap>div.tb.tb:not(#x1):not(#x2):not(#x3)';st.textContent=[
  '@media(min-width:700px){html body #hero-box#hero-box .vx-hero.bn2,html body.tela-prog #hero-box#hero-box .vx-hero.bn2{height:'+BN_H+'px!important;min-height:'+BN_H+'px!important;max-height:'+BN_H+'px!important}}',
@@ -13332,7 +13334,8 @@ setTimeout(function(){try{tpFriso();}catch(e){}},1500);setInterval(function(){tr
 
 /* base do templo inicial com a mesma largura do friso do templo seguinte; segundo templo ganha base própria com o incluidor de hábito semanal */
 function baseAlinha(){var rod=document.querySelector('#hero-box > .bn-rod'),hb=document.getElementById('hero-box'),rt=document.querySelector('.wrap > div.rt');if(!rod||!hb||!rt||innerWidth<1380)return;
- var a=hb.getBoundingClientRect(),b=rt.getBoundingClientRect();var l=Math.round(b.left-a.left),r=Math.round(a.right-b.right),v=l+'|'+r;if(rod._al===v)return;rod._al=v;
+ /* o segundo templo escondido (Manual ou painel na central) não tem medida; com zoom na .wrap, as medidas da tela vão divididas por ele */
+ var a=hb.getBoundingClientRect(),b=rt.getBoundingClientRect();if(!b.width)return;var z=hb.currentCSSZoom||1,l=Math.round((b.left-a.left)/z),r=Math.round((a.right-b.right)/z),v=l+'|'+r;if(rod._al===v)return;rod._al=v;
  rod.style.setProperty('margin-left',l+'px','important');rod.style.setProperty('margin-right',r+'px','important');var fz=document.querySelector('#hero-box > #tp-friso-bloco')||document.querySelector('#hero-box > #tp-friso');if(fz){fz.style.setProperty('margin-left',l+'px','important');fz.style.setProperty('margin-right','0px','important');fz.style.setProperty('width','calc(100% - '+(l+r)+'px)','important');}}
 function rtBase(){var rt=document.querySelector('.wrap > div.rt');if(!rt)return;var b=document.getElementById('rt-base');
  if(!b){b=document.createElement('div');b.id='rt-base';b.className='rt-base';b.innerHTML='<span class="rb-k">hábito semanal</span><input data-rbin maxlength="40" placeholder="novo hábito semanal (ex.: faxina do quarto, ligar para a família)"><button type="button" data-rbadd>incluir</button>';}
@@ -14714,10 +14717,9 @@ function mfFiltra(){var w=cxEl(),q=(CX.st.mfq||'').toLowerCase().trim();
  [].forEach.call(w.querySelectorAll('.mf-card'),function(c){c.hidden=!!q&&c.getAttribute('data-mfbusca').indexOf(q)<0;});
  [].forEach.call(w.querySelectorAll('.mf-painel'),function(s){s.hidden=!!q&&!s.querySelector('.mf-card:not([hidden])');});}
 function mfHTML(){var p=CX.p;if(p!=='~'&&!MF_T.some(function(t){return t[0]===p&&p!=='#';}))p=CX.p='~';
- var ct='<nav class="ct-abas" role="tablist" data-notr>'+ctAbasHTML('manual')+'</nav>';
- if(p==='~')return ct+'<div class="cx-bx mf-bx mf-home">'+mfPainelHTML()+'</div><button type="button" class="cx-x" data-cx="sair" aria-label="fechar">×</button>';
+ if(p==='~')return '<div class="cx-bx mf-bx mf-home">'+mfPainelHTML()+'</div><button type="button" class="cx-x" data-cx="sair" aria-label="fechar">×</button>';
  var g=mfGrupos().filter(function(g){return g[2].some(function(t){return t[0]===p;});})[0]||['','',[]];
- return ct+'<div class="cx-bx mf-bx"><nav class="mf-top"><button type="button" class="mf-volta" data-mfp="~">← painel</button><span class="mf-gn">'+esc(g[0])+'</span>'+
+ return '<div class="cx-bx mf-bx"><nav class="mf-top"><button type="button" class="mf-volta" data-mfp="~">← painel</button><span class="mf-gn">'+esc(g[0])+'</span>'+
   '<span class="mf-viz">'+g[2].filter(function(t){return t[0][0]!=='@';}).map(function(t){return '<button type="button" class="'+(t[0]===p?'on':'')+'" data-mfp="'+t[0]+'">'+esc(t[1])+'</button>';}).join('')+'</span></nav>'+
   '<section class="mf-pg">'+mfPagina(p)+'</section></div><button type="button" class="cx-x" data-cx="sair" aria-label="fechar">×</button>';}
 document.addEventListener('input',function(e){if(!e.target.matches||!e.target.matches('#cx [data-mfq]'))return;CX.st.mfq=e.target.value;mfFiltra();});
@@ -15381,83 +15383,94 @@ function postoClique(d){var s=String(d.sel||''),m=s.match(/^\[(data-[a-z0-9-]+)/
  var b=document.querySelector('#modo-op '+s)||document.querySelector('#rod-reg '+s);if(!b)return false;
  if(d.inp){if(!POSTO_SEL.test(String(d.inp)))return false;var i=document.querySelector('#modo-op '+d.inp);if(!i)return false;i.value=String(d.val||'').slice(0,300);i.dispatchEvent(new Event('input',{bubbles:true}));}
  b.click();setTimeout(function(){try{postoGrava(true);}catch(e){}},900);return true;}
-/* ======================= Central: Manual e os seis painéis como abas =======================
-   Manual · Concurso · Instruções · Leitura · Enfermaria · Finanças · Projetos.
+/* ======================= Central: Templo, Manual e os seis painéis como abas =======================
+   Templo · Manual · Concurso · Instruções · Leitura · Enfermaria · Finanças · Projetos.
    Cada aba tem nome base (igual em todos os temas) e, embaixo, o nome do tema quando houver.
-   Os painéis continuam sendo os mesmos (mesmo código e mesmos campos): com um deles aberto, o painel
-   lateral vira uma folha centralizada (classe .central) com esta barra no topo. O Manual desenha a mesma
-   barra no começo do seu HTML (mfHTML, no 36). pdAbre/pdFecha (09) e euSoloAbre (33) chamam ctPinta. */
+   Os painéis continuam sendo os mesmos (mesmo código e mesmos campos). A moldura de todas as abas é o próprio
+   templo do tema, e a barra fica na cornija do frontão: os dois são do 43 (ctMoldura). pdAbre/pdFecha (09) e
+   euSoloAbre (33) chamam ctPinta, que marca o painel lateral como folha da central. */
 var CT_ABAS=[['templo','Templo',''],['manual','Manual',''],['conc','Concurso',''],['inst','Instruções',''],['ler','Leitura','Eumátheia'],['enf','Enfermaria',''],
  ['fin','Finanças',TV_ON?'Tesouro de Andvari':EG_ON?'Tesouro do Faraó':'Bolsa de Dracmas'],['b9','Projetos',TV_ON?'Forja de Nidavellir':EG_ON?'Oficina de Ptah':'Bunker 9']];
 var CT_PD=['conc','inst','ler','enf','fin','b9'];
 function ctIcone(k){var eu=(typeof EU_BTS!=='undefined')?EU_BTS.filter(function(x){return x[0]===k;})[0]:null;if(eu)return eu[2];
  var p=k==='templo'?'<path d="M3 9l9-5 9 5M5 9v9M9.5 9v9M14.5 9v9M19 9v9M3 20h18"/>':k==='manual'?'<path d="M5 4h10l4 4v12H5z"/><path d="M15 4v4h4M8 12h8M8 15h8M8 18h5"/>':(typeof PD_ICON!=='undefined'&&PD_ICON[k])||'';
  return '<svg viewBox="0 0 24 24" aria-hidden="true">'+p+'</svg>';}
-function ctAbasHTML(at){return CT_ABAS.map(function(a){return '<button type="button" role="tab" data-ct="'+a[0]+'" aria-selected="'+(a[0]===at)+'">'+ctIcone(a[0])+
- '<span><b>'+esc(a[1])+'</b>'+(a[2]?'<small>'+esc(a[2])+'</small>':'')+'</span></button>';}).join('');}
+function ctAbasHTML(at){return CT_ABAS.map(function(a){var x='<button type="button" role="tab" data-ct="'+a[0]+'" aria-selected="'+(a[0]===at)+'">'+ctIcone(a[0])+
+ '<span><b>'+esc(a[1])+'</b>'+(a[2]?'<small>'+esc(a[2])+'</small>':'')+'</span></button>';
+ /* na aba Templo, as duas telas do templo (Mural e Programação) ficam logo ao lado, no lugar da placa do frontão */
+ if(a[0]==='templo'&&at==='templo'&&typeof ABAS_NOMES!=='undefined')x+='<span class="ct-telas">'+[['visao',ABAS_NOMES.vis],['prog',ABAS_NOMES.prog]].map(function(t){
+  return '<button type="button" data-bntela="'+t[0]+'" aria-selected="'+((BN_TELA==='prog')===(t[0]==='prog'))+'">'+esc(t[1])+'</button>';}).join('<i>·</i>')+'</span>';
+ return x;}).join('');}
 /* aba ativa do painel lateral: os três de estudo moram no Laptop */
 function ctAtiva(){var pd=document.getElementById('painel-dir');if(!pd||!pd.classList.contains('on'))return null;
  var b=pd.querySelector('.pd-nb[aria-selected="true"]')||pd.querySelector('[data-pd][aria-selected="true"]'),k=b&&b.getAttribute('data-pd');
  if(k==='lap')return (pd.classList.contains('eu-um')&&pd.dataset.euk)||'conc';return k;}
-function ctPinta(){var pd=document.getElementById('painel-dir');if(!pd)return;var k=ctAtiva(),cen=!!k&&CT_PD.indexOf(k)>=0;pd.classList.toggle('central',cen);
- var c=pd.querySelector('.pd-corpo');if(!c)return;var bar=c.querySelector(':scope>.ct-abas');if(!cen){if(bar)bar.remove();return;}
- if(!bar){bar=document.createElement('nav');bar.className='ct-abas';bar.setAttribute('role','tablist');bar.setAttribute('data-notr','');c.insertBefore(bar,c.firstChild);}
- var h=ctAbasHTML(k);if(bar._h!==h){bar.innerHTML=h;bar._h=h;}}
+function ctPinta(){var pd=document.getElementById('painel-dir');if(!pd)return;var k=ctAtiva();pd.classList.toggle('central',!!k&&CT_PD.indexOf(k)>=0);try{ctMoldura();}catch(e){}}
 document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-ct]');if(!b)return;e.preventDefault();e.stopPropagation();
  if(b.getAttribute('aria-selected')==='true')return;var k=b.getAttribute('data-ct'),pd=document.getElementById('painel-dir');
  if(k==='templo'){try{pdFecha();}catch(z){}try{cxFecha();}catch(z){}ctTemploAbre();return;}
  ctTemploFecha();
- if(k==='manual'){try{pdFecha();}catch(z){}mfAbre();return;}
+ if(k==='manual'){try{pdFecha();}catch(z){}mfAbre();try{ctMoldura();}catch(z){}return;}
  try{var cx=document.getElementById('cx');if(cx&&cx.classList.contains('on'))cxFecha();}catch(z){}
  if(pd){pd.classList.remove('eu-um');delete pd.dataset.euk;}
- if(k==='conc'||k==='inst'||k==='ler')euSoloAbre(k);else pdAbre(k);},true);
-/* clicar no fundo escuro fora da folha fecha a central */
-document.addEventListener('click',function(e){var pd=document.getElementById('painel-dir');if(pd&&e.target===pd&&pd.classList.contains('central'))pdFecha();});
-/* Templo: a página do templo abre como folha da central, por cima do operacional (body.ct-templo):
-   a .wrap vira a folha centralizada, com fundo escuro e a barra da central no topo. Fechar volta ao operacional. */
-function ctTemploAbre(){var n=document.getElementById('ct-templo');
- if(!n){n=document.createElement('div');n.id='ct-templo';n.setAttribute('data-notr','');n.innerHTML='<nav class="ct-abas" role="tablist">'+ctAbasHTML('templo')+'</nav><button type="button" class="ct-tx" aria-label="fechar">✕</button>';document.body.appendChild(n);
-  n.addEventListener('click',function(e){if(e.target===n||e.target.closest('.ct-tx'))ctTemploFecha();});}
- document.body.classList.add('ct-templo');var w=document.querySelector('.wrap');if(w)w.scrollTop=0;}
-function ctTemploFecha(){document.body.classList.remove('ct-templo');}
-document.addEventListener('keydown',function(e){if(e.key==='Escape'&&document.body.classList.contains('ct-templo')&&!document.querySelector('dialog[open]'))ctTemploFecha();});
+ if(k==='conc'||k==='inst'||k==='ler')euSoloAbre(k);else pdAbre(k);try{ctMoldura();}catch(z){}},true);
+/* Templo: a página do templo abre como aba da central, por cima do operacional (body.ct-templo). Fechar volta ao operacional. */
+function ctTemploAbre(){document.body.classList.add('ct-templo');try{ctMoldura();}catch(e){}var w=document.querySelector('.wrap');if(w)w.scrollTop=0;}
+function ctTemploFecha(){document.body.classList.remove('ct-templo');try{ctMoldura();}catch(e){}}
+/* fechar a central inteira (fundo escuro, ✕ e Esc): Templo, Manual e painel */
+function ctFecha(){ctTemploFecha();try{var cx=document.getElementById('cx');if(cx&&cx.classList.contains('on')&&cx.classList.contains('mf'))cxFecha();}catch(e){}
+ try{var pd=document.getElementById('painel-dir');if(pd&&pd.classList.contains('central'))pdFecha();}catch(e){}try{ctMoldura();}catch(e){}}
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&document.body.classList.contains('ct-on')&&!document.querySelector('dialog[open]'))ctFecha();});
 /* o botão "templo completo" do operacional abre o templo do mesmo jeito */
 document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('#modo-op [data-opsair]');if(!b)return;e.preventDefault();e.stopImmediatePropagation();ctTemploAbre();},true);
-/* ======================= Moldura da central: frontão, pilares e base do templo do tema =======================
-   Um módulo só para a moldura das abas da central (Manual e os seis painéis). As peças vêm do próprio templo do
-   tema: o frontão (.neo-frontao, sem a placa de navegação) e os pilares (fundos de capitel, fuste e base da .bn-slot)
-   são copiados com o estilo já calculado pelo navegador, então a moldura muda com o tema sem repetir regras.
-   A base é a cornija do frontão, esticada no pé. Camadas: fundo escuro (328) · moldura (329) · folha (330/331). */
-var MOLD=null,MOLD_K='';
-function moldCopia(a){var b=a.cloneNode(false);
- if(a.nodeType===1){b.removeAttribute('id');var cs=getComputedStyle(a),t='';for(var i=0;i<cs.length;i++){var p=cs[i];t+=p+':'+cs.getPropertyValue(p)+';';}b.setAttribute('style',t);if(!/^(svg|img|path|g|circle|rect|text|use|polygon|line|ellipse)$/i.test(a.tagName))b.style.overflow='visible';b.removeAttribute('class');
-  [].forEach.call(b.attributes,function(x){if(/^(data-|on|aria-)/.test(x.name))b.removeAttribute(x.name);});}
- [].forEach.call(a.childNodes,function(n){if(n.nodeType===1&&(n.classList.contains('pd-pilula')||n.matches('button,input,select,textarea')))return;b.appendChild(n.nodeType===1?moldCopia(n):n.cloneNode(true));});return b;}
-function moldMonta(){if(MOLD)return MOLD;var hb=document.getElementById('hero-box'),f=hb&&hb.querySelector('.neo-frontao'),sl=hb&&hb.querySelector('.bn-slot');if(!f||!sl)return null;
- var r=f.getBoundingClientRect();if(!r.width||!r.height)return null;
- var fc=moldCopia(f);fc.style.margin='0';fc.style.position='absolute';fc.style.left='0';fc.style.top='0';fc.style.width=r.width+'px';fc.style.height=r.height+'px';fc.style.transformOrigin='0 0';fc.style.overflow='visible';
- var cor=f.querySelector('.nf-cornija'),cr=cor&&cor.getBoundingClientRect(),cc=cor?moldCopia(cor):null;
- if(cc){cc.style.position='absolute';cc.style.left='0';cc.style.top='0';cc.style.margin='0';cc.style.width=cr.width+'px';cc.style.height=cr.height+'px';cc.style.transformOrigin='0 0';}
- var s=getComputedStyle(sl),pw=parseFloat(String(s.backgroundSize).split(',')[0])||44;
- /* quanto as peças do frontão passam da caixa dele (letreiros e acrotérios), para caber inteiro na moldura */
- var exL=0,exR=0;[].forEach.call(f.querySelectorAll('*'),function(n){if(n.closest('.pd-pilula'))return;var q=n.getBoundingClientRect();if(!q.width)return;exL=Math.max(exL,r.left-q.left);exR=Math.max(exR,q.right-r.right);});
- var pap=getComputedStyle(hb).backgroundColor;if(!pap||/rgba\(0, 0, 0, 0\)|transparent/.test(pap))pap='#f4ead2';
- MOLD={pap:pap,exL:Math.ceil(exL),exR:Math.ceil(exR),w:r.width,h:r.height,front:fc,base:cc,bw:cr?cr.width:0,bh:cr?Math.max(10,cr.height):14,pw:pw,
-  pil:{backgroundImage:s.backgroundImage,backgroundSize:s.backgroundSize,backgroundPosition:s.backgroundPosition,backgroundRepeat:s.backgroundRepeat}};
- return MOLD;}
-/* qual aba da central está aberta agora (o Templo já tem a moldura dele) */
-function moldAba(){var cx=document.getElementById('cx');if(cx&&cx.classList.contains('on')&&cx.classList.contains('mf'))return 'manual';try{var k=ctAtiva();return k&&CT_PD.indexOf(k)>=0?k:'';}catch(e){return '';}}
-function moldPinta(forca){var at=moldAba(),k=at+'|'+innerWidth+'x'+innerHeight;if(k===MOLD_K&&!forca)return;MOLD_K=k;
- var el=document.getElementById('ct-mold'),fd=document.getElementById('ct-mold-fundo'),M=at?moldMonta():null;
- if(!at||!M){document.body.classList.remove('com-moldura');if(el)el.hidden=true;if(fd)fd.hidden=true;return;}
- if(!el){fd=document.createElement('div');fd.id='ct-mold-fundo';document.body.appendChild(fd);
-  el=document.createElement('div');el.id='ct-mold';el.setAttribute('aria-hidden','true');el.setAttribute('data-notr','');el.innerHTML='<div class="cm-front"></div><div class="cm-pil"></div><div class="cm-base"></div>';document.body.appendChild(el);
-  Object.keys(M.pil).forEach(function(p){el.querySelector('.cm-pil').style[p]=M.pil[p];});}
- el.hidden=false;fd.hidden=false;document.body.classList.add('com-moldura');
- var W=el.getBoundingClientRect().width,kf=W/(M.w+M.exL+M.exR),th=Math.round(M.h*kf),fr=el.querySelector('.cm-front');
- fr.style.setProperty('--mold-pap',M.pap);fr.innerHTML=(TV_ON||EG_ON)?'':'<i class="cm-tim"></i>';var c=M.front.cloneNode(true);c.style.transform='translateX('+(M.exL*kf)+'px) scale('+kf+')';fr.appendChild(c);fr.style.height=th+'px';
- var bs=el.querySelector('.cm-base');bs.innerHTML='';if(M.base){var b=M.base.cloneNode(true);b.style.transform='scale('+(W/M.bw)+',1)';bs.appendChild(b);}
- var R=document.documentElement.style;R.setProperty('--mold-t',th+'px');R.setProperty('--mold-s',(M.pw+10)+'px');R.setProperty('--mold-b',M.bh+'px');}
-setInterval(function(){try{moldPinta(false);}catch(e){}},250);
-window.addEventListener('resize',function(){try{moldPinta(true);}catch(e){}});
+/* ======================= Moldura da central: o próprio templo do tema =======================
+   A moldura de todas as abas da central é o templo de verdade (#hero-box): frontão, pilares e a faixa da base
+   com semana, mês e diário de bordo, todos funcionando. Nada é copiado.
+   body.ct-on     central aberta: fundo escuro (#ct-fundo) e a .wrap vira folha fixa e centralizada, com zoom
+                  para o templo caber inteiro na altura da tela.
+   body.ct-templo aba Templo: a página do templo inteira, rolando dentro da folha.
+   body.ct-painel Manual ou um dos seis painéis: da .wrap fica só o #hero-box, e a folha da aba cobre o miolo
+                  entre os pilares, do frontão até a faixa da base (--ct-x/y/w/h, medidos aqui).
+   A barra de abas (#ct-barra) fica no lugar da placa de navegação do frontão (que some na central),
+   com as cores da placa do tema (--placa-*, no 32). Camadas: fundo 328 · templo 329 · folha 331 · barra 333. */
+function ctAba(){var B=document.body;if(B.classList.contains('ct-templo'))return 'templo';
+ var cx=document.getElementById('cx');if(cx&&cx.classList.contains('on')&&cx.classList.contains('mf'))return 'manual';
+ try{var k=ctAtiva();return k&&CT_PD.indexOf(k)>=0?k:'';}catch(e){return '';}}
+var CT_PLACA=30;
+function ctPx(el,p,v){var t=Math.round(v*100)/100+'px';if(el.style.getPropertyValue(p)!==t)el.style.setProperty(p,t,'important');}
+function ctMoldura(){var at=ctAba(),B=document.body,on=!!at,w=document.querySelector('.wrap'),hb=document.getElementById('hero-box');
+ if(!w||!hb)on=false;
+ B.classList.toggle('ct-on',on);B.classList.toggle('ct-painel',on&&at!=='templo');
+ var fd=document.getElementById('ct-fundo'),br=document.getElementById('ct-barra');
+ if(!on){if(fd)fd.hidden=true;if(br)br.hidden=true;if(w&&w._ctz){w._ctz=0;['zoom','left','top','width','height'].forEach(function(p){w.style.removeProperty(p);});}return;}
+ if(!fd){fd=document.createElement('div');fd.id='ct-fundo';document.body.appendChild(fd);fd.addEventListener('click',ctFecha);}
+ if(!br){br=document.createElement('div');br.id='ct-barra';br.setAttribute('data-notr','');br.innerHTML='<nav class="ct-abas" role="tablist"></nav><button type="button" class="ct-tx" aria-label="fechar">✕</button>';document.body.appendChild(br);
+  br.querySelector('.ct-tx').addEventListener('click',ctFecha);}
+ fd.hidden=false;br.hidden=false;
+ var nav=br.querySelector('.ct-abas'),h=ctAbasHTML(at);if(nav._h!==h){nav.innerHTML=h;nav._h=h;}
+ /* folha: mesma largura de sempre; zoom para o #hero-box inteiro caber na altura (as medidas da .wrap vão divididas pelo zoom) */
+ var L=Math.max(16,innerWidth/2-620),W=innerWidth-2*L,H=innerHeight-28;if(innerWidth<=760){L=0;W=innerWidth;H=innerHeight;}
+ var z=w.currentCSSZoom||1,hh=hb.getBoundingClientRect().height/z,k=Math.min(1,Math.max(.55,Math.floor(H/hh*100)/100));
+ if(Math.abs(k-(w._ctz||0))>.004){w._ctz=k;w.style.setProperty('zoom',String(k),'important');}
+ /* papel do templo só do frontão para baixo: em volta do telhado aparece o fundo escuro */
+ var fr=(hb.querySelector('.neo-frontao')||hb).getBoundingClientRect(),wr=w.getBoundingClientRect(),ft=Math.round((fr.bottom-wr.top)/k+w.scrollTop-4)+'px';
+ /* no Manual e nos painéis o papel termina no pé da faixa da base; no Templo segue com a página */
+ var rdb=hb.querySelector('.bn-rod'),fb=at!=='templo'&&rdb&&rdb.offsetParent?Math.round((rdb.getBoundingClientRect().bottom-wr.top)/k+w.scrollTop+30)+'px':'100000px';
+ if(w.style.getPropertyValue('--ct-fb')!==fb)w.style.setProperty('--ct-fb',fb);
+ if(w.style.getPropertyValue('--ct-ft')!==ft)w.style.setProperty('--ct-ft',ft);
+ if(!w._ctp){var bg=getComputedStyle(document.body).backgroundColor;w._ctp=(!bg||/rgba\(0, 0, 0, 0\)/.test(bg))?'#f4ead2':bg;w.style.setProperty('--ct-papel',w._ctp);}
+ ctPx(w,'left',L/k);ctPx(w,'top',(innerWidth<=760?0:14)/k);ctPx(w,'width',W/k);ctPx(w,'height',H/k);
+ /* barra no lugar da placa do frontão (acompanha a placa quando o Templo rola, sem sair da tela) */
+ /* a distância da placa ao pé do frontão fica guardada: com um painel aberto, a placa sai do frontão (vai para o topo do painel, no 30) */
+ var pl=hb.querySelector('.nf2>.pd-pilula'),nr=nav.getBoundingClientRect(),zz=hb.currentCSSZoom||1;
+ if(pl){var pr=pl.getBoundingClientRect();if(pr.height)CT_PLACA=(pr.top+pr.height/2-fr.bottom)/zz;}
+ var cy=Math.max(fr.bottom+CT_PLACA*zz,(innerWidth<=760?6:14)+nr.height/2);
+ br.style.setProperty('--ct-bx',(innerWidth/2)+'px');br.style.setProperty('--ct-by',Math.round(cy)+'px');br.style.setProperty('--ct-L',L+'px');
+ if(at==='templo')return;
+ /* miolo entre os pilares: do pé da barra até o topo da faixa da base */
+ var vx=hb.querySelector('.vx-hero')||hb,vr=vx.getBoundingClientRect(),rd=hb.querySelector('.bn-rod'),rr=rd&&rd.offsetParent?rd.getBoundingClientRect():null;
+ var y=Math.max(vr.top,cy+nr.height/2+8),y2=rr?rr.top-8:vr.bottom,R=document.documentElement.style;
+ R.setProperty('--ct-x',Math.round(vr.left)+'px');R.setProperty('--ct-w',Math.round(vr.width)+'px');R.setProperty('--ct-y',Math.round(y)+'px');R.setProperty('--ct-h',Math.max(120,Math.round(y2-y))+'px');}
+setInterval(function(){try{ctMoldura();}catch(e){}},250);
+window.addEventListener('resize',function(){try{ctMoldura();}catch(e){}});
 })();

@@ -272,6 +272,7 @@ bnTelaBotoes=function(){var h=document.querySelector('#hero-box .vx-hero.bn2');i
 (function(){var st=document.createElement('style');st.id='pil-placa-css';var Q='html body:not(.zz9):not(.zz8) #hero-box#hero-box .pd-pilula.pil-placa',W=Q+'>.bn-telas.na-pilula';
  var pal=TV_ON?{bg:'linear-gradient(180deg,#256139,#1d4a2c)',k:'#d4ad4f',ring:'#123321',tx:'#f3e6c4',sub:'#e9c870',ic:'#e9c870'}:EG_ON?{bg:'#f7ecd2',k:'#1e3a6e',ring:'#f7ecd2',tx:'#1e3a6e',sub:'#2a4c86',ic:'#1e3a6e'}:{bg:'var(--neo-papel,none),#f4ead2',k:'#8a5a14',ring:'#f4ead2',tx:'#2a2418',sub:'#9a6b3a',ic:'#5a3f2c'};
  st.textContent=[
+ ':root{--placa-bg:'+pal.bg+';--placa-k:'+pal.k+';--placa-ring:'+pal.ring+';--placa-aro:'+(EG_ON?'#c9a23a':pal.k)+';--placa-tx:'+pal.tx+';--placa-sub:'+pal.sub+';--placa-ic:'+pal.ic+';--placa-raio:'+(EG_ON?'999px':'2px')+'}',
  Q+'{width:auto!important;height:auto!important;padding:3px 8px!important;gap:2px!important;align-items:center!important;background:'+pal.bg+'!important;border:1.5px solid '+pal.k+'!important;border-radius:'+(EG_ON?'999px':'2px')+'!important;box-shadow:0 0 0 3px '+pal.ring+',0 0 0 4.5px '+(EG_ON?'#c9a23a':pal.k)+',0 6px 12px -6px rgba(40,30,20,.45)!important}',
  Q+'::before,'+Q+'::after{display:none!important;content:none!important}',
  Q+'>button.tt-ic{color:'+pal.ic+'!important;border:0!important;background:none!important;box-shadow:none!important}',
@@ -294,8 +295,9 @@ var BN_H=660;
 bnTelaPos=function(){var tb=document.querySelector('.wrap > div.tb'),h=document.querySelector('#hero-box .vx-hero.bn2'),wr=document.querySelector('.wrap');
  if(!tb||!h||!wr)return;if(BN_TELA!=='prog'||document.body.classList.contains('bn-mini')||document.body.classList.contains('bn-verso'))return;
  var cs=getComputedStyle(h),pl=parseFloat(cs.paddingLeft)||40,pr=parseFloat(cs.paddingRight)||40,pt=52,pb=24;
- var hr=h.getBoundingClientRect(),wrr=wr.getBoundingClientRect();
- var x=Math.round(hr.left-wrr.left+pl),y=Math.round(hr.top-wrr.top+pt),w=Math.round(hr.width-pl-pr),hh=Math.round(hr.height-pt-pb);
+ /* medidas da tela divididas pelo zoom da .wrap e somadas à rolagem dela (na central a .wrap é folha com zoom e rolagem própria) */
+ var z=wr.currentCSSZoom||1,hr=h.getBoundingClientRect(),wrr=wr.getBoundingClientRect(),hl=(hr.left-wrr.left)/z-wr.clientLeft+wr.scrollLeft,ht=(hr.top-wrr.top)/z-wr.clientTop+wr.scrollTop,hw=hr.width/z,hH=hr.height/z;
+ var x=Math.round(hl+pl),y=Math.round(ht+pt),w=Math.round(hw-pl-pr),hh=Math.round(hH-pt-pb);
  var k=x+'|'+y+'|'+w+'|'+hh;if(tb._tp!==k){tb._tp=k;tb.style.setProperty('--tl-x',x+'px');tb.style.setProperty('--tl-y',y+'px');tb.style.setProperty('--tl-w',w+'px');tb.style.setProperty('--tl-h',hh+'px');}};
 (function(){var st=document.createElement('style');st.id='bn-altura-unica-css';var T='html body.tela-prog div.wrap>div.tb.tb:not(#x1):not(#x2):not(#x3)';st.textContent=[
  '@media(min-width:700px){html body #hero-box#hero-box .vx-hero.bn2,html body.tela-prog #hero-box#hero-box .vx-hero.bn2{height:'+BN_H+'px!important;min-height:'+BN_H+'px!important;max-height:'+BN_H+'px!important}}',
@@ -357,7 +359,8 @@ setTimeout(function(){try{tpFriso();}catch(e){}},1500);setInterval(function(){tr
 
 /* base do templo inicial com a mesma largura do friso do templo seguinte; segundo templo ganha base própria com o incluidor de hábito semanal */
 function baseAlinha(){var rod=document.querySelector('#hero-box > .bn-rod'),hb=document.getElementById('hero-box'),rt=document.querySelector('.wrap > div.rt');if(!rod||!hb||!rt||innerWidth<1380)return;
- var a=hb.getBoundingClientRect(),b=rt.getBoundingClientRect();var l=Math.round(b.left-a.left),r=Math.round(a.right-b.right),v=l+'|'+r;if(rod._al===v)return;rod._al=v;
+ /* o segundo templo escondido (Manual ou painel na central) não tem medida; com zoom na .wrap, as medidas da tela vão divididas por ele */
+ var a=hb.getBoundingClientRect(),b=rt.getBoundingClientRect();if(!b.width)return;var z=hb.currentCSSZoom||1,l=Math.round((b.left-a.left)/z),r=Math.round((a.right-b.right)/z),v=l+'|'+r;if(rod._al===v)return;rod._al=v;
  rod.style.setProperty('margin-left',l+'px','important');rod.style.setProperty('margin-right',r+'px','important');var fz=document.querySelector('#hero-box > #tp-friso-bloco')||document.querySelector('#hero-box > #tp-friso');if(fz){fz.style.setProperty('margin-left',l+'px','important');fz.style.setProperty('margin-right','0px','important');fz.style.setProperty('width','calc(100% - '+(l+r)+'px)','important');}}
 function rtBase(){var rt=document.querySelector('.wrap > div.rt');if(!rt)return;var b=document.getElementById('rt-base');
  if(!b){b=document.createElement('div');b.id='rt-base';b.className='rt-base';b.innerHTML='<span class="rb-k">hábito semanal</span><input data-rbin maxlength="40" placeholder="novo hábito semanal (ex.: faxina do quarto, ligar para a família)"><button type="button" data-rbadd>incluir</button>';}

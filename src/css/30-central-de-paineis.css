@@ -1,35 +1,18 @@
-/* ======================= Central: barra de abas (Manual e os seis painéis) e painel lateral centralizado ======================= */
-.ct-abas{display:flex;gap:6px;flex-wrap:wrap;align-items:stretch;padding:6px;border-radius:16px;background:rgba(24,19,13,.92);border:1px solid rgba(214,180,110,.35);box-shadow:0 8px 24px -14px rgba(0,0,0,.6)}
-.ct-abas button,:is(#cx .ct-abas,#painel-dir .ct-abas,#ct-templo .ct-abas) button{all:unset;box-sizing:border-box!important;display:flex!important;align-items:center;gap:9px;width:auto!important;height:auto!important;min-height:0!important;margin:0!important;padding:7px 13px 7px 10px!important;border:0!important;border-radius:11px!important;background:transparent!important;color:#e9dcc0!important;cursor:pointer;transition:background .15s,color .15s}
-:is(#cx .ct-abas,#painel-dir .ct-abas,#ct-templo .ct-abas) button:hover,:is(#cx .ct-abas,#painel-dir .ct-abas,#ct-templo .ct-abas) button:focus-visible{background:rgba(255,255,255,.08)!important}
-:is(#cx .ct-abas,#painel-dir .ct-abas,#ct-templo .ct-abas) button[aria-selected="true"]{background:#f1e4c4!important;color:#2a2116!important}
+/* ======================= Central: barra de abas e painel lateral como folha da central (moldura e posição no 31) ======================= */
+.ct-abas{display:flex;gap:6px;align-items:stretch}
+#ct-barra .ct-abas>button{all:unset;box-sizing:border-box!important;display:flex!important;align-items:center;width:auto!important;height:auto!important;min-height:0!important;margin:0!important;border:0!important;cursor:pointer;transition:background .15s,color .15s}
 .ct-abas svg{flex:none;width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 .ct-abas span{display:flex;flex-direction:column;line-height:1.1}
-.ct-abas b{font:600 13.5px var(--sans,system-ui,sans-serif)}
-.ct-abas small{font:600 9px var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase;opacity:.7;margin-top:2px}
-/* no Manual: a barra é a primeira linha da janela */
-#cx.mf.on{flex-direction:column;align-items:center}
-#cx.mf>.ct-abas{flex:none;width:min(1160px,100%);margin:0 0 12px;box-sizing:border-box}
-#cx.mf>.ct-abas~.mf-bx{height:calc(100vh - 44px - 76px)}
-/* um dos seis painéis aberto: o lateral vira folha centralizada, sem as abas verticais e sem a navegação antiga */
-html body #painel-dir.pd.on.central{inset:0!important;left:0!important;right:0!important;top:0!important;bottom:0!important;width:auto!important;height:auto!important;border-radius:0!important;z-index:130;pointer-events:auto;background:rgba(18,14,9,.62)!important}
+.ct-abas small{opacity:.75;margin-top:2px;text-transform:uppercase}
+/* um dos seis painéis aberto: o lateral vira folha da central, sem as abas verticais e sem a navegação antiga */
+html body #painel-dir.pd.on.central{inset:0!important;left:0!important;right:0!important;top:0!important;bottom:0!important;width:auto!important;height:auto!important;border-radius:0!important}
 #painel-dir.central>.pd-abas,#painel-dir.central .pd-nav,#painel-dir.central .pd-top .pd-pilula{display:none!important}
 html body #painel-dir.pd.on.central .pd-corpo .pd-top .pd-pilula.pil-placa{display:none!important}
-html body #painel-dir.pd.on.central .pd-corpo{position:fixed!important;left:max(16px,calc(50vw - 620px))!important;right:max(16px,calc(50vw - 620px))!important;top:14px!important;bottom:14px!important;width:auto!important;height:auto!important;max-width:none!important;transform:none!important;border:1px solid var(--line);border-radius:16px;box-shadow:0 30px 70px -30px rgba(0,0,0,.7)}
-#painel-dir.central .pd-corpo>.ct-abas{position:sticky;top:10px;z-index:5;margin:12px 0 4px}
-#painel-dir.central .pd-top{padding:6px 0;margin-bottom:8px;border-bottom:0;background:transparent;justify-content:flex-end;position:absolute;top:18px;right:22px;z-index:6}
-#painel-dir.central .pd-corpo>.ct-abas{margin-right:52px}
-@media(max-width:760px){.ct-abas button{padding:6px 9px}.ct-abas small{display:none}html body #painel-dir.pd.on.central .pd-corpo{top:0!important;bottom:0!important;left:0!important;right:0!important;border-radius:0}}
-/* Templo como folha da central (body.ct-templo): fundo escuro, barra no topo e a .wrap centralizada com rolagem própria */
-#ct-templo{display:none}
-body.ct-templo #ct-templo{display:block;position:fixed;inset:0;z-index:130;background:rgba(18,14,9,.62)}
-body.ct-templo #ct-templo>.ct-abas{position:absolute;top:14px;left:max(16px,calc(50vw - 620px));right:max(16px,calc(50vw - 620px));margin-right:52px}
-body.ct-templo #ct-templo>.ct-tx{position:absolute;top:22px;right:max(16px,calc(50vw - 620px));width:38px;height:38px;border-radius:50%;border:1px solid rgba(214,180,110,.5);background:rgba(24,19,13,.92);color:#f1e4c4;font:600 15px var(--sans,system-ui);cursor:pointer}
-html body.ct-templo .wrap{position:fixed!important;z-index:131;top:86px;bottom:14px;left:max(16px,calc(50vw - 620px))!important;right:max(16px,calc(50vw - 620px))!important;width:auto!important;max-width:none!important;margin:0!important;overflow-y:auto;overflow-x:hidden;border-radius:16px;border:1px solid rgba(150,115,60,.45);box-shadow:0 30px 70px -30px rgba(0,0,0,.7);background:var(--bg,#f4ead2);overscroll-behavior:contain}
-html body.ct-templo .wrap::before,html body.ct-templo .wrap::after{display:none}
+html body #painel-dir.pd.on.central .pd-corpo{position:fixed!important;max-width:none!important;transform:none!important}
+#cx.mf.on{flex-direction:column;align-items:center}
 /* Manual no mesmo papel creme dos painéis: as variáveis da janela da Companhia passam a ser as do papel */
 #cx.mf .mf-bx{--cx-tx:#2a2116;--cx-sv:#6b5a44;--cx-ln:rgba(90,63,44,.3);--cx-ac:#8a5a14;width:min(1240px,calc(100vw - 32px))!important;padding:18px 20px;border-radius:16px;border:1px solid rgba(150,115,60,.45);background:#f4ead2;box-shadow:0 30px 70px -30px rgba(0,0,0,.7);box-sizing:border-box;color:var(--cx-tx)}
-#cx.mf>.ct-abas{width:min(1240px,calc(100vw - 32px))}
+
 #cx.mf .mf-card{background:#fffdf6}#cx.mf .mf-card.mf-tl{background:transparent}#cx.mf .mf-card:hover{background:#fff8e8}
 #cx.mf .mf-painel{background:#fbf3df;border-color:rgba(150,115,60,.35)}
 #cx.mf .mf-painel{--pc:hsl(calc(30 + var(--pi)*52) 52% 36%)}
