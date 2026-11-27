@@ -16269,6 +16269,21 @@ function latTopo(){var e=document.getElementById('lat-e');if(!e||typeof gmXP!=='
  if(t._h!==html||(html&&!t.firstChild)){t.innerHTML=html;t._h=html;}}
 (function(){var r0=vxRender;vxRender=function(){var x=r0.apply(this,arguments);try{latTopo();}catch(e){}return x;};})();
 setTimeout(function(){try{latTopo();}catch(e){}},300);setInterval(function(){try{latTopo();}catch(e){}},60e3);
+/* dracmas no cabeçalho do XP: moeda com o saldo ao lado da barra; o total de XP vai para a dica do número; clique abre a loja */
+function ltDracma(){var r=document.querySelector('#lat-topo>.lt-r2');if(!r||typeof drSaldo!=='function')return;var b=document.getElementById('lt-dr');
+ if(!b){b=document.createElement('button');b.type='button';b.id='lt-dr';b.title='dracmas de ouro · 10 por hora de foco ou estudo · abrir a loja';b.addEventListener('click',function(){try{ferAbre('loja');}catch(e){}});}
+ var t=r.querySelector('.lt-t');if(b.parentNode!==r){if(t)t.insertAdjacentElement('afterend',b);else r.appendChild(b);}
+ var n=r.querySelector('.lt-n');if(n&&t&&n.title!==t.textContent+' de XP')n.title=t.textContent+' de XP';
+ var v=String(drSaldo());if(b._v!==v||!b.firstChild){b._v=v;b.innerHTML='<i aria-hidden="true"></i><b>'+v+'</b>';}}
+latTopo=(function(f0){return function(){var r=f0.apply(this,arguments);try{ltDracma();}catch(e){}return r;};})(latTopo);
+setInterval(function(){try{ltDracma();}catch(e){}},5e3);
+(function(){var st=document.createElement('style');st.id='lt-dracma-css';st.textContent=[
+ '#lat-topo>.lt-r2>.lt-t{display:none!important}',
+ '#lat-topo>.lt-r2>.lt-bar{min-width:24px}',
+ '#lat-topo>.lt-r2>#lt-dr{order:98;flex:none;display:flex!important;align-items:center;gap:5px;width:auto!important;height:24px;margin:0!important;padding:0 9px 0 4px!important;border:1px solid #8a5a14!important;border-radius:999px!important;background:#f4ead2!important;color:#5a3f2c!important;cursor:pointer;font:700 12px Georgia,serif!important;box-shadow:none!important}',
+ '#lat-topo>.lt-r2>#lt-dr i{width:16px;height:16px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#f6dc8c,#c9962e 62%,#8a5a14);box-shadow:inset 0 0 0 1.2px #8a5a14,inset 0 0 0 3px #f1d27c}',
+ '#lat-topo>.lt-r2>#lt-dr:hover{background:#ead9b0!important}'
+].join('\n');document.head.appendChild(st);})();
 /* ---------- roda do ciclo de volta à Tática: medalhão circular; a lista de blocos fica num menu abaixo ---------- */
 function ciCirculo(){var r=document.getElementById('ci-roda');if(!r||!r.parentNode)return;var c=document.getElementById('ci-circ');
  if(!c){c=document.createElement('div');c.id='ci-circ';c.className='rd ci-circ';r.parentNode.insertBefore(c,r);}
@@ -20012,7 +20027,9 @@ setTimeout(function(){try{tpBanda();}catch(e){}},1300);setInterval(function(){tr
 (function(){var st=document.createElement('style');st.id='tp-sem-entab-css';st.textContent=[
  '#tp-painel #tp-entab{display:none!important}',
  '#tp-real>:is(#tm-painel,#recreio,#tesouro)::after{content:none!important;display:none!important}',
- 'html body #tp-painel #tp-real>:is(#tm-painel,#recreio,#tesouro){border-top:0!important}'
+ 'html body #tp-painel #tp-real>:is(#tm-painel,#recreio,#tesouro){border-top:0!important}',
+ /* cartões centrados: a barra de rolagem reserva o mesmo espaço dos dois lados (painel esquerdo, templo da direita e Prêmios) */
+ 'html body nav#nav.navdr,html body #tp-painel:has(#tp-real) .tp-fr.tp-fr,html body #tp-real #c-h-rec#c-h-rec{scrollbar-gutter:stable both-edges!important}'
 ].join('\n');document.head.appendChild(st);})();
 
 /* ===== Frontão: pílula e placa numa peça só — dois botões de cada lado e as telas no meio ===== */
