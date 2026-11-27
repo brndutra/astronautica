@@ -18264,6 +18264,44 @@ function argoMarGR(){var hj=hoje(),tb=S.tb||{},a=opMin(),ini=360,fim=1440,p=Math
  return '<div class="rg-box"><span class="rg-med"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 19c3-1 4-4 6-7s4-5 8-6"/><circle cx="5" cy="19" r="1.6"/><circle cx="19" cy="6" r="1.6"/></svg></span><span><b>Rota da travessia</b><small>'+Math.round(p)+'% do dia · resta '+Math.round(100-p)+'%</small></span></div>'+
   '<div class="rg-ol">'+li+'</div>'+
   '<div class="rg-box"><span><small>vigia de Linceu · próximo</small>'+(px?'<span class="rg-hora">'+esc(px.h)+'</span><b style="display:inline;font-variant:normal;font-size:13px">'+esc(px.t)+'</b> <em>em '+em+'</em>':'<b style="font-size:13px">nada mais hoje</b>')+'</span></div>';}
+/* ======================= Tablet e celular (abaixo de 1380px) =======================
+   Tarefas e Missões entram logo abaixo do banner (e aparecem também no celular, onde ficavam ocultas);
+   cartões em duas colunas no tablet, fotos com altura de verdade, banner e rodapé ajustados à tela. */
+(function(){var mq=window.matchMedia('(max-width:1379px)'),marca=null;
+ function arruma(){var r=document.getElementById('rail'),w=document.querySelector('.wrap'),h=document.getElementById('hero-box');if(!r||!w)return;
+  if(mq.matches){document.body.classList.add('estreito');if(!marca&&r.parentNode!==w){marca=document.createComment('rail');r.parentNode.insertBefore(marca,r);}
+   if(h&&h.parentNode===w){if(h.nextElementSibling!==r)h.insertAdjacentElement('afterend',r);}else if(w.firstElementChild!==r)w.insertBefore(r,w.firstChild);}
+  else{document.body.classList.remove('estreito');if(marca&&marca.parentNode&&r.parentNode===w){marca.parentNode.insertBefore(r,marca);}}}
+ if(mq.addEventListener)mq.addEventListener('change',arruma);else if(mq.addListener)mq.addListener(arruma);
+ setTimeout(arruma,300);setTimeout(arruma,1500);setInterval(arruma,3000);
+ var st=document.createElement('style');st.id='estreito-css';st.textContent=[
+  'body.estreito .wrap>#rail{display:block!important;position:relative!important;inset:auto!important;width:auto!important;max-width:none!important;height:auto!important;max-height:none!important;overflow:visible!important;transform:none!important;grid-column:1/-1;margin:6px 0 18px!important;z-index:1!important}',
+  'body.estreito .wrap>#rail #tp-real{position:static!important;width:auto!important}',
+  '@media(min-width:700px){',
+  ' body.estreito #tp-real #mm-box{flex-direction:row!important;flex-wrap:wrap!important;align-items:flex-start!important;gap:14px!important}',
+  ' body.estreito #tp-real #mm-box>*,body.estreito #tp-real #mm-box .mm-grp,body.estreito #tp-real #mm-box .mm-g>:not(.mm-col){flex:1 1 100%!important;max-width:none!important}',
+  ' body.estreito #tp-real #mm-box .mm-col,body.estreito #tp-real #mm-box>.mm-gab{flex:1 1 calc(50% - 7px)!important;min-width:300px;margin:0!important}',
+  '}',
+  'body.estreito #mm-box :is(.mm-col,.mm-gab)::before{height:140px!important;background-size:cover!important;background-position:center!important}',
+  'body.estreito #lat-e>:is(#lat-db,#lat-gm>.gm)::before,body.estreito #lat-arena::before{height:120px!important;background-size:cover!important}',
+  /* celular */
+  '@media(max-width:699px){',
+  ' body.estreito #hero-box .vx-hero.bn2 .bn-tit{max-width:none!important;width:auto!important;padding-right:0!important}',
+  ' body.estreito #hero-box .vx-hero.bn2 h2{font-size:30px!important;line-height:1.1!important}',
+  ' body.estreito #hero-box .vx-hero.bn2>.cp-postal{position:relative!important;inset:auto!important;top:auto!important;right:auto!important;width:auto!important;max-width:260px;margin:12px auto 4px!important;transform:rotate(-2deg)!important}',
+  ' body.estreito #hero-box .vx-hero.bn2 .vx-k{white-space:normal!important}',
+  ' body.estreito #hero-box .vx-hero.bn2{padding:26px 18px 22px!important}',
+  ' body.estreito #hero-box .bn-slot{padding-left:0!important;padding-right:0!important;background-image:none!important}',
+  ' body.estreito #hero-box .nf2 .nf-txt{display:none!important}',
+  ' body.estreito #hero-box .bv-fotos{justify-content:center}',
+  ' body.estreito #hero-box .bv-fotos .bv-foto{width:96px}',
+  ' body.estreito #rod-apps .cr-bar{overflow-x:auto!important;scrollbar-width:none;-webkit-overflow-scrolling:touch;justify-content:flex-start!important}',
+  ' body.estreito #rod-apps .cr-bar::-webkit-scrollbar{display:none}',
+  ' body.estreito #rod-apps .cr-p{flex:0 0 96px!important;min-width:96px!important}',
+  ' body.estreito #tp-real>:is(#tm-painel,#recreio){padding-left:14px!important;padding-right:14px!important;background-image:none!important}',
+  ' body.estreito #tp-real .col-orn{display:none!important}',
+  '}'
+ ].join('\n');document.head.appendChild(st);})();
 
 /* ======================= Companheiros por tema =======================
    Grego: Sully Brookhaven (sátiro) e os corvos McCaw. Valhala: Leif Larsen (einherji) e os corvos Ravn.
