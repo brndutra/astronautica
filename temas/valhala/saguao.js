@@ -175,4 +175,17 @@ if(TV_ON){(function(){var K=function(n){return 'url("img/acampamento/'+n+'.svg?v
  'body.tv #hero-box#hero-box .vx-hero{background-image:url("img/acampamento/vh-canto-tl.svg?v=3"),url("img/acampamento/vh-canto-tr.svg?v=3"),url("img/acampamento/vh-canto-bl.svg?v=3"),url("img/acampamento/vh-canto-br.svg?v=3"),'+K('vh-no-h-marrom')+','+K('vh-no-h-marrom')+','+K('vh-no-v-marrom')+','+K('vh-no-v-marrom')+',url("img/acampamento/vh-papel.svg?v=3")!important}'
 ].join('\n');document.head.appendChild(st);})();}
 if(TV_ON){(function(){var st=document.createElement('style');st.id='vh-bandeira-css';st.textContent='body.tv #lat-band-b img[src*="bandeira"]{content:url("img/acampamento/vh-emblema-hv.webp?v=1")!important;object-fit:contain!important;border-radius:50%}';document.head.appendChild(st);})();}
+
+(function(){var st=document.createElement('style');st.id='vh-visao-css';st.textContent=[
+ '/* Valhala: quadro de visão em pinho e latão, afirmação gravada como placa rúnica */',
+ 'body.tv #hero-box .bv-foto{background:#203936!important;padding:6px 6px 24px!important;box-shadow:0 0 0 1.5px #A88750,3px 7px 16px rgba(0,0,0,.35)!important}',
+ 'body.tv #hero-box .bv-foto figcaption{color:#e9c87a!important}',
+ 'body.tv #hero-box#hero-box .bn-visao .bv-fbt{background:#2c4b47!important}body.tv #hero-box .bv-vazio{color:#D4BD82!important}',
+ 'body.tv #hero-box .bv-af{background:#F5EBD6!important;border:1.5px solid #203936!important;border-radius:4px!important;box-shadow:0 0 0 3px #F5EBD6,0 0 0 4.5px #A88750,0 8px 16px -8px rgba(0,0,0,.4)!important}',
+ 'body.tv #hero-box .bv-af::before,body.tv #hero-box .bv-af::after{content:"ᛟ";position:absolute;top:8px;font:400 13px Georgia,serif;color:#A88750}body.tv #hero-box .bv-af::before{right:12px}body.tv #hero-box .bv-af::after{right:30px;content:"ᚱ"}',
+ 'body.tv #hero-box .bv-k{color:#5a3c22!important}',
+ 'body.tv #hero-box#hero-box .bn-visao .bv-nav button,body.tv #hero-box#hero-box .bn-visao .bv-form button{border-color:#A88750!important;background:#203936!important;color:#F5EBD6!important}',
+ 'body.tv #hero-box .bv-nav button:hover{background:#A88750!important;color:#203936!important}',
+ 'body.tv #hero-box .vx-hero.bn2 .bn-id .cp-guia{border-top:5px solid #203936!important}'
+].join('\n');document.head.appendChild(st);})();
 })();

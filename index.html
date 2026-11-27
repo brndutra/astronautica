@@ -15076,6 +15076,67 @@ function bnArruma(){var h=document.querySelector('#hero-box .vx-hero');if(!h)ret
  var fi=h.querySelector('#vx-diario');if(fi&&base.firstElementChild!==fi){fi.classList.add('bn-ficha');base.insertBefore(fi,base.firstChild);}}
 (function(){var r0=vxRender;vxRender=function(){var x=r0.apply(this,arguments);try{bnArruma();}catch(e){}return x;};})();
 setTimeout(function(){try{bnArruma();}catch(e){}},80);setTimeout(function(){try{bnArruma();}catch(e){}},1000);
+/* Quadro de visão no banner (os três temas): uma foto para visualizar e cartões com as afirmações (as mesmas da Declaração de rota) */
+var BV_I=0;
+function bvEsc(x){return String(x).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+function bvHTML(){var ig=S.ign||{},af=ig.af||[],vi=ig.vi||[],n=af.length;if(BV_I>=n||BV_I<0)BV_I=0;
+ var foto=S.visFoto?'<img src="'+S.visFoto+'" alt="minha visualização">':'<span class="bv-vazio"><b>+</b>foto para visualizar</span>';
+ var leg=vi.length?bvEsc(vi[0]):'o que você quer ver acontecer';
+ var a=n?bvEsc(af[BV_I]):'Escreva a primeira afirmação: curta, no presente, em primeira pessoa.';
+ return '<figure class="bv-foto"><button type="button" class="bv-fbt" data-bv="foto" title="'+(S.visFoto?'trocar a foto':'escolher uma foto')+'">'+foto+'</button><figcaption>'+leg+'</figcaption>'+(S.visFoto?'<button type="button" class="bv-x" data-bv="tira" title="tirar a foto" aria-label="tirar a foto">×</button>':'')+'</figure>'+
+  '<div class="bv-af'+(n?'':' bv-af-vazio')+'"><span class="bv-k">afirmação'+(n?' · '+(BV_I+1)+' de '+n:'')+'</span><p class="bv-txt">'+a+'</p>'+
+  '<div class="bv-nav">'+(n>1?'<button type="button" data-bv="ant" aria-label="afirmação anterior">‹</button><button type="button" data-bv="prox" aria-label="próxima afirmação">›</button>':'')+'<button type="button" data-bv="nova" class="bv-mais">+ afirmação</button></div>'+
+  '<form class="bv-form" hidden><input maxlength="160" placeholder="eu…" aria-label="nova afirmação"><button type="submit">ok</button></form></div>'+
+  '<input type="file" accept="image/*" class="bv-arq" hidden>';}
+function bvFoto(f,w){if(!f)return;var r=new FileReader();r.onload=function(){var im=new Image();im.onload=function(){var M=720,k=Math.min(1,M/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);c.getContext('2d').drawImage(im,0,0,c.width,c.height);
+ try{S.visFoto=c.toDataURL('image/jpeg',.8);grava();}catch(e){}w._h=null;bvPinta();};im.src=r.result;};r.readAsDataURL(f);}
+function bvPinta(){var h=document.querySelector('#hero-box .vx-hero.bn2');if(!h)return;var w=h.querySelector(':scope > .bn-visao');
+ if(!w){w=document.createElement('div');w.className='bn-visao';
+  w.addEventListener('click',function(e){var b=e.target.closest('[data-bv]');if(!b)return;var k=b.dataset.bv,n=((S.ign||{}).af||[]).length;
+   if(k==='foto'){w.querySelector('.bv-arq').click();return;}
+   if(k==='tira'){delete S.visFoto;try{grava();}catch(z){}w._h=null;bvPinta();return;}
+   if(k==='ant'){BV_I=(BV_I-1+n)%n;w._h=null;bvPinta();return;}
+   if(k==='prox'){BV_I=(BV_I+1)%n;w._h=null;bvPinta();return;}
+   if(k==='nova'){var f=w.querySelector('.bv-form');f.hidden=false;f.querySelector('input').focus();}});
+  w.addEventListener('change',function(e){if(e.target.classList.contains('bv-arq'))bvFoto(e.target.files&&e.target.files[0],w);});
+  w.addEventListener('submit',function(e){e.preventDefault();var i=e.target.querySelector('input'),v=(i.value||'').trim();if(!v)return;S.ign=S.ign||{};S.ign.af=S.ign.af||[];S.ign.af.push(v.slice(0,160));BV_I=S.ign.af.length-1;i.value='';try{grava();}catch(z){}try{pinta();}catch(z){}w._h=null;document.activeElement&&document.activeElement.blur();bvPinta();});
+  w.addEventListener('keydown',function(e){if(e.key==='Escape'){var f=w.querySelector('.bv-form');if(f)f.hidden=true;}});}
+ var base=h.querySelector(':scope > .bn-base');if(base){if(w.nextElementSibling!==base)h.insertBefore(w,base);}else if(w.parentNode!==h)h.appendChild(w);
+ if(w.contains(document.activeElement)&&document.activeElement.tagName==='INPUT')return;var x=bvHTML();if(w._h!==x){w.innerHTML=x;w._h=x;}}
+setInterval(function(){try{bvPinta();}catch(e){}},1500);setTimeout(function(){try{bvPinta();}catch(e){}},1100);
+setInterval(function(){try{var n=((S.ign||{}).af||[]).length,w=document.querySelector('#hero-box .bn-visao');if(n>1&&w&&!w.matches(':hover')&&!w.contains(document.activeElement)){BV_I=(BV_I+1)%n;bvPinta();}}catch(e){}},16000);
+(function(){var st=document.createElement('style');st.id='bn-visao-css';st.textContent=[
+ '#hero-box#hero-box .bn-visao button{min-height:0!important;height:auto!important;width:auto;margin:0!important;box-shadow:none!important;text-transform:none!important;letter-spacing:0!important}',
+ '#hero-box#hero-box .bn-visao .bv-fbt{width:100%!important;padding:0!important;border:0!important;border-radius:0!important;background:#efe3c6;display:block!important}',
+ '#hero-box#hero-box .bn-visao .bv-nav button,#hero-box#hero-box .bn-visao .bv-form button{padding:3px 11px!important;border-radius:999px!important;font:600 12px system-ui,sans-serif!important;line-height:1.3!important}',
+ '#hero-box#hero-box .bn-visao .bv-x{width:22px!important;height:22px!important;padding:0!important;border-radius:50%!important;display:grid!important;place-items:center!important}',
+ '#hero-box .bn-visao{position:relative;z-index:2;display:grid;grid-template-columns:150px minmax(0,1fr);gap:18px;align-items:stretch;max-width:620px;margin:14px 0 6px}',
+ '#hero-box .bv-foto{position:relative;margin:0;padding:7px 7px 24px;background:#fffdf7;box-shadow:2px 3px 0 #d9c7a3,3px 7px 16px rgba(60,40,20,.28);transform:rotate(-2.2deg);transition:transform .2s}',
+ '#hero-box .bv-foto:hover{transform:rotate(0) translateY(-2px)}',
+ '#hero-box .bv-fbt{display:block;width:100%;aspect-ratio:4/3;padding:0;margin:0;border:0;background:#efe3c6;cursor:pointer;overflow:hidden}',
+ '#hero-box .bv-fbt img{display:block;width:100%;height:100%;object-fit:cover}',
+ '#hero-box .bv-vazio{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:2px;font:600 9px var(--mono,monospace);letter-spacing:.14em;text-transform:uppercase;color:#8a6f55}',
+ '#hero-box .bv-vazio b{font:400 28px/1 Georgia,serif}',
+ '#hero-box .bv-foto figcaption{position:absolute;left:8px;right:8px;bottom:5px;font:italic 11px Georgia,serif;color:#5a3f2c;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}',
+ '#hero-box .bv-x{position:absolute;top:-9px;right:-9px;width:22px;height:22px;border-radius:50%;border:1px solid #5a3f2c;background:#fbf3df;color:#5a3f2c;font:700 13px/1 system-ui,sans-serif;cursor:pointer}',
+ '#hero-box .bv-af{position:relative;display:flex;flex-direction:column;gap:6px;padding:12px 18px 10px;border:1.5px solid #5a3f2c;border-radius:10px;background:linear-gradient(180deg,#fbf3df,#f1e4c3);box-shadow:0 0 0 3px #fbf3df,0 0 0 4px #c9a45a,0 8px 16px -8px rgba(60,40,20,.4)}',
+ '#hero-box .bv-k{font:700 9px var(--mono,monospace);letter-spacing:.2em;text-transform:uppercase;color:#9a6b3a}',
+ '#hero-box .bv-txt{margin:0;font:italic 400 19px/1.35 Georgia,serif;color:#2a2418}',
+ '#hero-box .bv-af:not(.bv-af-vazio) .bv-txt::before{content:"\\201C"}#hero-box .bv-af:not(.bv-af-vazio) .bv-txt::after{content:"\\201D"}',
+ '#hero-box .bv-af-vazio .bv-txt{font-size:14px;color:#8a6f55}',
+ '#hero-box .bv-nav{display:flex;gap:6px;margin-top:auto}',
+ '#hero-box .bv-nav button,#hero-box .bv-form button{border:1px solid #c9b28a;border-radius:999px;background:#fbf3df;padding:3px 11px;font:600 12px system-ui,sans-serif;color:#5a3f2c;cursor:pointer}',
+ '#hero-box .bv-nav button:hover{background:#5a3f2c;color:#fbf3df}',
+ '#hero-box .bv-mais{margin-left:auto}',
+ '#hero-box .bv-form{display:flex;gap:6px}#hero-box .bv-form[hidden]{display:none}',
+ '#hero-box .bv-form input{flex:1;min-width:0;border:1px solid #c9b28a;border-radius:8px;background:#fffdf7;padding:5px 9px;font:14px Georgia,serif}',
+ /* refino dos cartões do banner: postal e folheto com sombra e leve inclinação, sobem ao passar o cursor */
+ '#hero-box .cp-postal,#hero-box .vx-hero.bn2 .bn-id .cp-guia{transition:transform .2s,box-shadow .2s}',
+ '#hero-box .cp-postal:hover{transform:rotate(0) translateY(-3px)!important}',
+ '#hero-box .vx-hero.bn2 .bn-id .cp-guia:hover{transform:rotate(0) translateY(-2px)!important}',
+ '@media(max-width:900px){#hero-box .bn-visao{grid-template-columns:110px minmax(0,1fr);gap:12px}#hero-box .bv-txt{font-size:16px}}'
+].join('\n');document.head.appendChild(st);})();
+
 /* Registro do dia vira a terceira gaveta da Grade semanal (o dia, a semana, o mês) */
 function diaGaveta(){var tb=document.querySelector('.wrap > div.tb'),rd=document.querySelector('.regdia');if(!tb||!rd)return;var g=document.getElementById('dia-gav');
  if(!g){g=document.createElement('div');g.id='dia-gav';g.className='mf-gav dia-gav';
@@ -17999,9 +18060,9 @@ setInterval(function(){var pd=document.querySelector('#painel-dir.pd.on'),pl=doc
 window.OP_TEMPLO=OP_TEMPLO;
 try{window.ASTRO_IC={CR_IC:CR_IC,LAT_IC:LAT_IC,ARS_IC:ARS_IC,RT_IC:RT_IC,QA_IC:QA_IC,OP_IC:OP_IC,PD_ICON:PD_ICON,TEMA_IC:TEMA_IC,ICO_P:ICO_P};}catch(e){}
 /* Tema Casa do Brooklyn: cada página em arquivo próprio (temas/egito/) */
-if(EG_ON){['comum','saguao','operacional'].forEach(function(n){var sc=document.createElement('script');sc.src='temas/egito/'+n+'.js?v=1';sc.async=false;document.body.appendChild(sc);});}
+if(EG_ON){['comum','saguao','operacional'].forEach(function(n){var sc=document.createElement('script');sc.src='temas/egito/'+n+'.js?v=3';sc.async=false;document.body.appendChild(sc);});}
 /* Tema Hotel Valhala: cada página em arquivo próprio (temas/valhala/) */
-if(TV_ON){['comum','saguao','operacional'].forEach(function(n){var sc=document.createElement('script');sc.src='temas/valhala/'+n+'.js?v=1';sc.async=false;document.body.appendChild(sc);});}
+if(TV_ON){['comum','saguao','operacional'].forEach(function(n){var sc=document.createElement('script');sc.src='temas/valhala/'+n+'.js?v=3';sc.async=false;document.body.appendChild(sc);});}
 
 /* Argo: a moldura do kit acompanha a largura de cada cartão (cabeçalho 280×88 e rodapé 280×44, sem deformar) */
 function argoMede(){var o=document.getElementById('modo-op');if(!o||!window.ResizeObserver)return;

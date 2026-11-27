@@ -82,4 +82,17 @@ var st=document.createElement('style');st.id='eg-saguao-css';st.textContent=[
  'body.eg #dia-faixa#dia-faixa .df-cap::before{content:"";display:block;width:34px;height:29px;margin:-3px 0 -1px;background:'+U('obelisco-topo')+' center/contain no-repeat}',
  'body.eg #dia-faixa#dia-faixa .df-cap.df-n::before{background-image:'+U('obelisco-pe')+'}'
 ].join('\n');document.head.appendChild(st);
+
+(function(){var st=document.createElement('style');st.id='eg-visao-css';st.textContent=[
+ '/* Casa do Brooklyn: foto em moldura de lápis-lazúli e ouro, afirmação dentro de um cartucho */',
+ 'body.eg #hero-box .bv-foto{background:#1e3a6e!important;padding:6px 6px 24px!important;box-shadow:0 0 0 2px #c9a23a,3px 7px 16px rgba(20,20,40,.35)!important}',
+ 'body.eg #hero-box .bv-foto figcaption{color:#ecd27e!important}',
+ 'body.eg #hero-box#hero-box .bn-visao .bv-fbt{background:#2a4c86!important}body.eg #hero-box .bv-vazio{color:#ecd27e!important}',
+ 'body.eg #hero-box .bv-af{background:#f7ecd2!important;border:2px solid #1e3a6e!important;border-radius:40px!important;padding:12px 30px 10px!important;box-shadow:0 0 0 3px #f7ecd2,0 0 0 4.5px #c9a23a,0 5px 0 -1px #1e3a6e,0 10px 18px -8px rgba(30,20,5,.4)!important}',
+ 'body.eg #hero-box .bv-af::before{content:"☥";position:absolute;left:12px;top:50%;transform:translateY(-50%);font:400 16px Georgia,serif;color:#c9a23a}',
+ 'body.eg #hero-box .bv-k{color:#1e3a6e!important}',
+ 'body.eg #hero-box#hero-box .bn-visao .bv-nav button,body.eg #hero-box#hero-box .bn-visao .bv-form button{border-color:#c9a23a!important;background:#1e3a6e!important;color:#ecd27e!important}',
+ 'body.eg #hero-box .bv-nav button:hover{background:#c9a23a!important;color:#1e3a6e!important}',
+ 'body.eg #hero-box .vx-hero.bn2 .bn-id .cp-guia{border-top:5px solid #1e3a6e!important;background:linear-gradient(180deg,#f7ecd2,#ecdcb4)!important}'
+].join('\n');document.head.appendChild(st);})();
 })();
