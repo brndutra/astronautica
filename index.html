@@ -5647,13 +5647,13 @@ body.eg #lat-trio .tr-tabs{background:#f3e3b4;border-color:#d9c28a}
 
 /* ===== Botões de tema e Panteão na faixa do nível ===== */
 #lat-topo .lt-r1 .lt-bts{flex:none;display:flex;gap:4px;margin-left:4px}
-html body #lat-topo .lt-r1 .lt-bts>:is(#tv-tg,#pt-tg){flex:none;display:grid!important;place-items:center;width:26px!important;height:26px!important;margin:0!important;padding:0!important;border:1px solid #c9a45a!important;border-radius:50%!important;background:#fffaf0!important;color:#9a4a30!important;cursor:pointer;box-shadow:none!important}
-html body #lat-topo .lt-r1 .lt-bts>:is(#tv-tg,#pt-tg):hover{background:#9a4a30!important;color:#fffaf0!important;border-color:#9a4a30!important}
+html body #lat-topo .lt-r1 .lt-bts>:is(#tv-tg,#pt-tg,#fc-tg){flex:none;display:grid!important;place-items:center;width:26px!important;height:26px!important;margin:0!important;padding:0!important;border:1px solid #c9a45a!important;border-radius:50%!important;background:#fffaf0!important;color:#9a4a30!important;cursor:pointer;box-shadow:none!important}
+html body #lat-topo .lt-r1 .lt-bts>:is(#tv-tg,#pt-tg,#fc-tg):hover{background:#9a4a30!important;color:#fffaf0!important;border-color:#9a4a30!important}
 html body #lat-topo .lt-r1 .lt-bts svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
-html body.tv #lat-topo .lt-r1 .lt-bts>:is(#tv-tg,#pt-tg){border-color:#8a9aa6!important;color:#b3262d!important;background:#f3efe6!important}
-html body.tv #lat-topo .lt-r1 .lt-bts>:is(#tv-tg,#pt-tg):hover{background:#b3262d!important;color:#fff!important}
-html body.eg #lat-topo .lt-r1 .lt-bts>:is(#tv-tg,#pt-tg){border-color:#c9a23a!important;color:#2a4c86!important;background:#fffaea!important}
-html body.eg #lat-topo .lt-r1 .lt-bts>:is(#tv-tg,#pt-tg):hover{background:#2a4c86!important;color:#fff!important}
+html body.tv #lat-topo .lt-r1 .lt-bts>:is(#tv-tg,#pt-tg,#fc-tg){border-color:#8a9aa6!important;color:#b3262d!important;background:#f3efe6!important}
+html body.tv #lat-topo .lt-r1 .lt-bts>:is(#tv-tg,#pt-tg,#fc-tg):hover{background:#b3262d!important;color:#fff!important}
+html body.eg #lat-topo .lt-r1 .lt-bts>:is(#tv-tg,#pt-tg,#fc-tg){border-color:#c9a23a!important;color:#2a4c86!important;background:#fffaea!important}
+html body.eg #lat-topo .lt-r1 .lt-bts>:is(#tv-tg,#pt-tg,#fc-tg):hover{background:#2a4c86!important;color:#fff!important}
 #lat-topo .lt-r1 .lt-id{min-width:0;flex:1 1 auto}
 
 /* ===== Cronologia do dia no Acampamento: Tocha de Olímpia — chama e taça no alto (Inspeção), haste de bronze, empunhadura sobre plinto de mármore (Ronda); a chama do agora desce com a hora ===== */
@@ -18972,7 +18972,7 @@ if(COMP_T){
 function tmMenu(btn){var m=document.getElementById('tm-menu');
  if(!m){m=document.createElement('div');m.id='tm-menu';m.hidden=true;m.setAttribute('role','menu');document.body.appendChild(m);
   m.addEventListener('click',function(e){var b=e.target.closest('[data-tm]');if(!b)return;var k=b.getAttribute('data-tm');m.hidden=true;
-   if(k==='ficha'){try{acEditaCampista();}catch(z){}return;}
+   if(k==='ficha'){var fb=document.getElementById('fc-abre');if(fb)fb.click();return;}
    var atual=TV_ON?'valhala':EG_ON?'egito':'acampamento';if(k===atual)return;try{localStorage.setItem('astro_tema',k);}catch(z){}location.reload();});
   document.addEventListener('click',function(e){if(!m.hidden&&!e.target.closest('#tm-menu')&&!e.target.closest('.lt-logo'))m.hidden=true;},true);
   document.addEventListener('keydown',function(e){if(e.key==='Escape')m.hidden=true;});}
@@ -18980,7 +18980,7 @@ function tmMenu(btn){var m=document.getElementById('tm-menu');
  var at=TV_ON?'valhala':EG_ON?'egito':'acampamento',Z='⁠';
  var T=[['acampamento','img/acampamento/logo-camp.webp','Acampamento'+Z+' Meio'+Z+'-Sangue','Grécia · a Argo'],['valhala','img/acampamento/vh-emblema-hv-prata.webp','Hotel'+Z+' Valhala','Nórdico · o drakkar'],['egito','img/egito/emblema.svg?v=1','Casa'+Z+' do Brooklyn','Egito · a barca de Rá']];
  m.innerHTML='<header>tema do app</header>'+T.map(function(t){return '<button type="button" role="menuitem" data-tm="'+t[0]+'"'+(t[0]===at?' class="on"':'')+'><img src="'+t[1]+'" alt=""><span class="tm-n" data-n="'+t[2]+'" data-s="'+t[3]+'"></span></button>';}).join('')+
-  '<hr><button type="button" class="tm-ficha" data-tm="ficha">Ficha do campista</button>';
+  '<hr><button type="button" class="tm-ficha" data-tm="ficha">Ficha e diário</button>';
  var r=btn.getBoundingClientRect();m.style.left=Math.max(8,r.left-4)+'px';m.style.top=(r.bottom+8)+'px';m.hidden=false;}
 
 /* ===== Mostrador do FOCO: escudo próprio de cada tema ===== */
@@ -20724,6 +20724,16 @@ setTimeout(function(){try{pinbarSobe();}catch(e){}},1200);setInterval(function()
  'html body #rod-pan #rd-l .rd-x{opacity:.55!important;visibility:visible!important}',
  'html body #rod-pan #rd-l .rdi:hover .rd-x,html body #rod-pan #rd-l .rd-x:focus{opacity:1!important}'
  ].join('\n');document.head.appendChild(st);})();
+
+/* botão próprio da Ficha e do Diário na faixa do nível */
+function fcAbreJa(){try{if(typeof fcAbreDlg==='function'){fcAbreDlg();return;}}catch(z){}var b=document.getElementById('fc-abre');if(b)b.click();}
+function fcTg(){var pt=document.getElementById('pt-tg');if(!pt||!pt.parentNode)return;var b=document.getElementById('fc-tg');
+ if(!b){b=document.createElement('button');b.type='button';b.id='fc-tg';b.title=(typeof FO_CFG!=='undefined'?FO_CFG.t:'Ficha')+' e diário';b.setAttribute('aria-label',b.title);b.setAttribute('data-notr','');
+  b.innerHTML='<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5"/><path d="M9 7h7M9 10.5h5"/></svg>';
+  b.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();fcAbreJa();});}
+ if(b.previousElementSibling!==pt)pt.parentNode.insertBefore(b,pt.nextSibling);}
+setTimeout(fcTg,800);setInterval(fcTg,2500);
+
 })();
 </script>
 </body>
