@@ -5684,6 +5684,11 @@ html body:not(.tv):not(.eg) #dia-faixa#dia-faixa .df-toq.foi{background:#5a3f2c!
 html body:not(.tv):not(.eg) #dia-faixa#dia-faixa .df-agora{border-top:2px solid #e0782a!important}
 html body:not(.tv):not(.eg) #dia-faixa#dia-faixa .df-agora::before{content:""!important;position:absolute;left:-7px!important;top:-15px!important;width:12px!important;height:15px!important;border-radius:0!important;background:url("img/acampamento/tocha-chama.svg?v=1") center/contain no-repeat!important;filter:drop-shadow(0 0 3px rgba(255,190,80,.9))}
 html body:not(.tv):not(.eg) #dia-faixa#dia-faixa .df-agora b{background:#e0782a!important;color:#fff!important}
+
+/* ===== Modo noturno: mesmo visual dos temas, com luz baixa e quente (sem quebrar contraste) ===== */
+html.noite{background:#120d08;filter:brightness(.68) contrast(1.08) sepia(.26) saturate(.9)}
+html.noite body{background-color:#e9dfca}
+@media (prefers-reduced-motion:no-preference){html{transition:filter .35s ease}}
 /* ===== Barras de rolagem: finas, discretas e na cor do tema ===== */
 html{--sb:rgba(201,150,60,.55);--sb-h:#e0782a}
 html:has(body.tv),body.tv{--sb:rgba(96,114,128,.55);--sb-h:#b3262d}
@@ -13874,7 +13879,7 @@ function temaIc(){var bm=document.getElementById('bn-min');if(!bm)return;var row
  var b=document.getElementById('tema-ic');
  if(!b){b=document.createElement('button');b.type='button';b.id='tema-ic';b.className='tema-ic';row.insertBefore(b,bm);
   b.addEventListener('click',function(){var o=document.getElementById('b-tema');if(o)o.click();setTimeout(temaIc,0);});}
- var claro=document.body.classList.contains('claro'),h=claro?TEMA_IC.lua:TEMA_IC.sol;if(b._h!==h||(h&&!b.firstChild)){b.innerHTML=h;b._h=h;}
+ var claro=!document.documentElement.classList.contains('noite'),h=claro?TEMA_IC.lua:TEMA_IC.sol;if(b._h!==h||(h&&!b.firstChild)){b.innerHTML=h;b._h=h;}
  b.title=claro?'Mudar para o modo escuro':'Mudar para o modo claro';b.setAttribute('aria-label',b.title);}
 (function(){var r0=vxRender;vxRender=function(){var x=r0.apply(this,arguments);try{temaIc();}catch(e){}return x;};setTimeout(function(){try{temaIc();}catch(e){}},300);})();
 
@@ -19384,6 +19389,13 @@ if(EG_ON){(function(){var t0=tdEscudo;tdEscudo=function(fr,modo,txt,sub){var P=f
    '<text x="60" y="'+(sub?65:68)+'" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="19" fill="#1e2a44">'+txt+'</text>'+
    (sub?'<text x="60" y="76" text-anchor="middle" font-family="ui-monospace,monospace" font-size="5.5" letter-spacing="1" fill="#1e2a44" fill-opacity=".65">'+sub+'</text>':'');}
  return '<svg viewBox="0 0 120 120" aria-hidden="true">'+s+'</svg>';};})();}
+
+/* Modo noturno: o app fica sempre na paleta clara dos temas; a noite é um filtro de luz baixa sobre a página inteira */
+aplicaTema=(function(a0){return function(){var noite=S.tema!=='claro';S.tema='claro';try{a0.apply(this,arguments);}finally{S.tema=noite?'escuro':'claro';}
+ document.body.classList.add('claro');document.documentElement.classList.toggle('noite',noite);
+ var b=document.getElementById('b-tema');if(b){b.innerHTML=noite?'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 3v2.4M12 18.6V21M3 12h2.4M18.6 12H21M5.6 5.6l1.7 1.7M16.7 16.7l1.7 1.7M18.4 5.6l-1.7 1.7M7.3 16.7l-1.7 1.7"/></svg>':'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>';b.setAttribute('title',noite?'modo claro':'modo noturno');}
+ try{temaIc();}catch(e){}};})(aplicaTema);
+try{aplicaTema();}catch(e){}
 
 })();
 </script>
