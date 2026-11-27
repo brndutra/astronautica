@@ -31,7 +31,7 @@ function postoBotoes(raiz){var B=[],vis={};
  return B.slice(0,30);}
 function postoFoto(){if(!document.getElementById('modo-op')||!document.body.classList.contains('op-on'))return null;var C={};
  POSTO_CARTOES.forEach(function(c){var n=document.querySelector(c[1]);if(!n)return;var L=postoLinhas(n);
-  if(c[3])[].forEach.call(n.querySelectorAll(c[3]),function(b){if(!postoVisivel(b))return;var t=b.innerText.replace(/\s*\n\s*/g,' · ').replace(/\s+/g,' ').trim();if(t)L.push(t.slice(0,120));});
+  if(c[3])[].forEach.call(n.querySelectorAll(c[3]),function(b){if(!postoVisivel(b))return;var ps=b.querySelectorAll('small,b,em,p'),t=(ps.length&&!b.offsetParent?[].map.call(ps,function(x){return x.textContent.trim();}).filter(Boolean).join(' · '):b.innerText.replace(/\s*\n\s*/g,' · ')).replace(/\s+/g,' ').trim();if(t)L.push(t.slice(0,120));});
   C[c[0]]={t:c[2],l:L.slice(0,44),b:postoBotoes(n)};});return C;}
 /* só grava quando o conteúdo muda (relógios e contagens regressivas não contam) */
 var POSTO_K='';
