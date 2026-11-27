@@ -17964,9 +17964,9 @@ var D={CR_IC:typeof CR_IC!=='undefined'?CR_IC:null,LAT_IC:typeof LAT_IC!=='undef
 Object.keys(M).forEach(function(n){var d=D[n];if(!d)return;Object.keys(M[n]).forEach(function(k){if(!(k in d))return;var g=S[M[n][k]];if(!g)return;d[k]=F[n]?'<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">'+g+'</svg>':g;});});
 window.VH_SIMB=S;})();}
 
-function tvNo(root){if(!root)return;if(root.nodeType===3){var p=root.parentNode;if(p&&/^(SCRIPT|STYLE|TEXTAREA)$/.test(p.nodeName))return;var n=tvTxt(root.nodeValue);if(n!==root.nodeValue)root.nodeValue=n;return;}
+function tvNo(root){if(!root)return;var _e=root.nodeType===3?root.parentNode:root;if(_e&&_e.closest&&_e.closest('[data-notr]'))return;if(root.nodeType===3){var p=root.parentNode;if(p&&/^(SCRIPT|STYLE|TEXTAREA)$/.test(p.nodeName))return;var n=tvTxt(root.nodeValue);if(n!==root.nodeValue)root.nodeValue=n;return;}
  if(root.nodeType!==1||/^(SCRIPT|STYLE|TEXTAREA|INPUT)$/.test(root.nodeName))return;
- var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT),x;while(x=w.nextNode()){var pp=x.parentNode;if(pp&&/^(SCRIPT|STYLE|TEXTAREA)$/.test(pp.nodeName))continue;var v=tvTxt(x.nodeValue);if(v!==x.nodeValue)x.nodeValue=v;}
+ var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT),x;while(x=w.nextNode()){var pp=x.parentNode;if(pp&&/^(SCRIPT|STYLE|TEXTAREA)$/.test(pp.nodeName))continue;if(pp&&pp.closest&&pp.closest('[data-notr]'))continue;var v=tvTxt(x.nodeValue);if(v!==x.nodeValue)x.nodeValue=v;}
  var at=root.querySelectorAll?[root].concat([].slice.call(root.querySelectorAll('[title],[placeholder],[aria-label]'))):[];
  at.forEach(function(e){['title','placeholder','aria-label'].forEach(function(a){var v=e.getAttribute&&e.getAttribute(a);if(v){var n2=tvTxt(v);if(n2!==v)e.setAttribute(a,n2);}});});}
 function tvBotao(){var r=document.querySelector('#lat-topo>.lt-r2');if(!r)return;var b=document.getElementById('tv-tg');
@@ -18371,6 +18371,52 @@ if(COMP_T){
   '<path d="M42 13c-3-4-8-5-12-4M41 14c-4-2-8-1-11 1" fill="none" stroke="#2a2418" stroke-width="1.4" stroke-linecap="round"/>'+
   '<path d="M24 47l-3 10M31 48l1 10" stroke="#2a2418" stroke-width="1.8" stroke-linecap="round"/></svg>';};
 }
+
+/* ======================= Panteão · equivalências entre os três temas ======================= */
+var PANTEAO=[["Personagens próprios do app", [["Você (banner)", "Chase Maverick Duke · o Hékatos", "Chase Maverick Duke · filho de Ullr", "Chase Maverick Duke · mago de Neith", "nível, XP e ficha"], ["Guardião", "Sully Brookhaven · sátiro", "Brynn Halvorsen · valquíria", "Toby Nefer · babuíno", "ritos e designações"], ["Mensageiros", "Polly e Cass McCaw · corvos de Apolo", "Hugo e Mina Ravn · corvos de Odin", "Benh e Nora · garças Bennu", "avisos e más notícias"]]], ["Patronos e guias", [["Patrono", "Apolo / Hékatos", "Odin / Ullr", "Rá / Neith", "arsenal e campo de tiro"], ["Diretor", "Quíron", "Helgi", "Amós", "Casa Grande"], ["Conselho", "Conselheiro-Chefe", "Thane-Chefe", "Sacerdote-Leitor Chefe", "designações do gabinete"], ["Oráculo", "Oráculo", "Nornas", "Livro de Thoth", "missões"], ["Ronda da noite", "Harpias", "Valquírias", "Shabtis", "recolher"]]], ["Painéis e objetos", [["Laptop / Bússola", "Dédalo", "Blitzen", "Ptah", "painel de estudos"], ["Retomar", "Fio de Ariadne", "Ponte Bifröst · Heimdall", "Nó de Ísis", "de onde você parou"], ["Captura", "Píthos de Pandora", "Poço de Mímir", "Vaso canópico", "caixa de entrada"], ["Anotações", "Tabuinhas de Cadmo", "Tábuas rúnicas de Hearthstone", "Papiros de Thoth", "notas"], ["Hábitos", "Tear de Penélope", "Tear de Frigg", "Tear de Neith", "rastreados"], ["Disco de foco", "Escudo de Aquiles", "Escudo de Odin", "Olho de Hórus", "foco"], ["Integrações", "Hermes Express · George e Martha", "Correio dos Corvos · Hugin e Munin", "Correio de Thoth · najas de Uadjet", "apps ligados"], ["Notícias", "Hefesto TV", "Rádio Bifröst", "Rádio de Ptah", "leituras"], ["Clima", "Céu de Zeus", "Céu de Thor", "Céu de Nut", "tempo"], ["Relógio-escudo", "Tyson", "Blitzen", "Bes (amuleto)", "arsenal"], ["Moeda", "Dracmas", "Marcos de ouro", "Debens de ouro", "loja e prêmios"], ["Bolsa", "Bolsa de Dracmas", "Tesouro de Andvari", "Tesouro do Faraó", "finanças"], ["Calçado", "Tênis alados", "Botas de Víðarr", "Sandálias de Hórus", "trajeto"]]], ["Lugares e rotina", [["Casa", "Acampamento Meio-Sangue", "Hotel Valhala", "Casa do Brooklyn", "o app"], ["Seu lugar", "Chalé 7", "Andar 19", "Nomo 21", "quarto / aposento"], ["Sede", "Casa Grande", "Saguão", "Grande Salão", ""], ["Refeições", "Pavilhão / Refeitório", "Salão do Banquete", "Terraço", ""], ["Fim do dia", "Fogueira", "Banquete", "Braseiro", "fechar o dia"], ["Toque", "Concha", "Gjallarhorn", "Sistro", "avisos de hora"], ["Amanhecer", "Alvorada", "Despertar", "Nascer de Rá", "06h"], ["Ampulheta", "Clepsidra", "Ampulheta de Sól", "Relógio de água de Karnak", "o dia escoando"], ["Oficina", "Bunker 9", "Forja de Nidavellir", "Oficina de Ptah", "projetos"], ["Desafio do dia", "Captura da bandeira", "Combate do dia", "Duelo do dia", "vitórias"], ["Navio (operacional)", "Argo", "Drakkar", "Barca de Rá", "modo operacional"]]], ["Monstros e provas", [["Fim de expediente", "Procusto", "Procusto", "Procusto", "diálogo das 19h"], ["Enigmas", "Esfinge", "Fenrir", "Esfinge", "estudos"], ["Metas longas", "Trabalhos de Hércules", "Façanhas de Thor", "Provas de Hórus", ""], ["1ª prova", "Hidra de Lerna", "Jörmungandr", "Apófis", ""], ["2ª prova", "Leão de Nemeia", "Lobo Fenrir", "Leoa Sekhmet", ""], ["3ª prova", "Javali de Erimanto", "Javali Sæhrímnir", "Crocodilo de Sobek", ""], ["4ª prova", "Corça de Cerineia", "Cervo Eikthyrnir", "Íbis de Thoth", ""], ["5ª prova", "Aves do Estínfalo", "Águias de Hræsvelgr", "Demônios-pássaro do Duat", ""], ["6ª prova", "Estábulos de Áugias", "Salões de Útgarda", "Salões do Duat", ""]]], ["Arsenal", [["Arma", "Xíphos de bronze", "Espada de ferro", "Khopesh de bronze", ""], ["Escudo", "Aspís de madeira e bronze", "Escudo redondo de tília", "Escudo de couro de hipopótamo", ""], ["Elmo", "Elmo calcídico", "Elmo de ferro", "Coroa azul (khepresh)", ""], ["Couraça", "Linotórax", "Cota de malha", "Couraça de linho", ""], ["Instrumento", "Lira de casco de tartaruga", "Harpa de Bragi", "Harpa do templo", ""]]]];
+function panteaoAbre(){var at=TV_ON?2:(typeof EG_ON!=='undefined'&&EG_ON)?3:1,ex=function(x){return String(x).replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];});};
+ var h='<div class="pt-box" role="dialog" aria-label="Panteão · equivalências entre temas"><button type="button" class="pt-x" aria-label="fechar">×</button>'+
+  '<span class="pt-k">panteão · o mesmo app em três mitologias</span><h2>Equivalências entre temas</h2>'+
+  '<input class="pt-busca" type="search" placeholder="buscar personagem, lugar ou objeto…" aria-label="buscar">'+
+  '<div class="pt-tab"><table><thead><tr><th>Papel</th>'+[['acampamento','Acampamento Meio-Sangue'],['valhala','Hotel Valhala'],['egito','Casa do Brooklyn']].map(function(t,i){return '<th class="pt-c'+(i+1)+(at===i+1?' pt-at':'')+'"><button type="button" data-pt="'+t[0]+'" title="'+(at===i+1?'tema atual':'mudar para este tema')+'">'+t[1]+(at===i+1?' · atual':'')+'</button></th>';}).join('')+'<th>No app</th></tr></thead>';
+ PANTEAO.forEach(function(g){h+='<tbody><tr class="pt-g"><td colspan="5">'+ex(g[0])+'</td></tr>'+g[1].map(function(r){return '<tr class="pt-r"><th>'+ex(r[0])+'</th>'+[1,2,3].map(function(i){return '<td class="pt-c'+i+(at===i?' pt-at':'')+'">'+ex(r[i])+'</td>';}).join('')+'<td class="pt-o">'+ex(r[4])+'</td></tr>';}).join('')+'</tbody>';});
+ h+='</table></div></div>';
+ var w=document.getElementById('panteao');if(!w){w=document.createElement('div');w.id='panteao';w.setAttribute('data-notr','');w.setAttribute('translate','no');document.body.appendChild(w);
+  w.addEventListener('click',function(e){if(e.target===w||e.target.closest('.pt-x')){w.classList.remove('on');return;}var b=e.target.closest('[data-pt]');if(b){try{localStorage.setItem('astro_tema',b.dataset.pt);}catch(z){}location.reload();}});
+  w.addEventListener('input',function(e){if(!e.target.classList.contains('pt-busca'))return;var q=e.target.value.trim().toLowerCase();
+   [].forEach.call(w.querySelectorAll('tbody'),function(tb){var n=0;[].forEach.call(tb.querySelectorAll('.pt-r'),function(r){var ok=!q||r.textContent.toLowerCase().indexOf(q)>=0;r.hidden=!ok;if(ok)n++;});tb.hidden=!n;});});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')w.classList.remove('on');});}
+ w.innerHTML=h;w.classList.add('on');w.querySelector('.pt-busca').focus();}
+function panteaoBotao(){var r=document.querySelector('#lat-topo>.lt-r2');if(!r)return;var b=document.getElementById('pt-tg');
+ if(!b){b=document.createElement('button');b.type='button';b.id='pt-tg';b.title='Panteão · equivalências entre os temas';b.setAttribute('aria-label',b.title);
+  b.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h13l-3-3M20 17H7l3 3"/></svg>';b.addEventListener('click',panteaoAbre);}
+ var tv=document.getElementById('tv-tg');if(tv&&tv.parentNode===r){if(tv.nextElementSibling!==b)tv.insertAdjacentElement('afterend',b);}else if(b.parentNode!==r)r.appendChild(b);}
+setInterval(function(){try{panteaoBotao();}catch(e){}},1500);setTimeout(function(){try{panteaoBotao();}catch(e){}},900);
+(function(){var st=document.createElement('style');st.id='panteao-css';st.textContent=[
+ '#lat-topo>.lt-r2>#pt-tg{order:101;flex:none;display:grid!important;place-items:center;width:26px!important;height:24px;margin:0!important;padding:0!important;border:1px solid #5a3f2c!important;border-radius:999px!important;background:#f4ead2!important;color:#5a3f2c!important;cursor:pointer}',
+ '#lat-topo>.lt-r2>#pt-tg svg{width:14px;height:14px}',
+ '#panteao{position:fixed;inset:0;z-index:400;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(30,20,10,.55)}#panteao.on{display:flex}',
+ '#panteao .pt-box{position:relative;display:flex;flex-direction:column;gap:8px;width:min(1100px,100%);max-height:92vh;padding:22px 24px 18px;border:2px solid #5a3f2c;border-radius:14px;background:#f6eedb;box-shadow:0 0 0 4px #f6eedb,0 0 0 5.5px #c9a45a,0 24px 60px rgba(20,10,0,.45);color:#2a2418}',
+ '#panteao .pt-x{position:absolute;top:12px;right:12px;width:32px;height:32px;border-radius:50%;border:1.5px solid #5a3f2c;background:#fbf3df;color:#5a3f2c;font:700 18px/1 system-ui,sans-serif;cursor:pointer}',
+ '#panteao .pt-k{font:700 9px var(--mono,monospace);letter-spacing:.22em;text-transform:uppercase;color:#9a6b3a}',
+ '#panteao h2{margin:0;font:400 28px Georgia,serif;font-variant:small-caps;letter-spacing:.04em}',
+ '#panteao .pt-busca{max-width:380px;border:1px solid #c9b28a;border-radius:999px;background:#fffdf7;padding:7px 14px;font:14px system-ui,sans-serif}',
+ '#panteao .pt-tab{overflow:auto;border:1px solid #d8c8a6;border-radius:10px;background:#fffdf7}',
+ '#panteao table{width:100%;border-collapse:collapse;font:14px/1.35 Georgia,serif}',
+ '#panteao thead th{position:sticky;top:0;z-index:1;padding:0;background:#efe3c6;border-bottom:2px solid #5a3f2c;text-align:left}',
+ '#panteao thead th:first-child,#panteao thead th:last-child{padding:10px 12px;font:700 10px var(--mono,monospace);letter-spacing:.14em;text-transform:uppercase;color:#5a3f2c}',
+ '#panteao thead button{display:block;width:100%;padding:10px 12px;border:0;background:transparent;text-align:left;font:700 13px Georgia,serif;cursor:pointer;color:inherit}',
+ '#panteao thead .pt-c1 button{color:#8a5a1e}#panteao thead .pt-c2 button{color:#1f4a3c}#panteao thead .pt-c3 button{color:#1e3a6e}',
+ '#panteao thead button:hover{text-decoration:underline}',
+ '#panteao .pt-c1.pt-at{background:#fbefd6}#panteao .pt-c2.pt-at{background:#e8f1ec}#panteao .pt-c3.pt-at{background:#e6ecf7}',
+ '#panteao thead .pt-c1.pt-at{box-shadow:inset 0 -3px 0 #c9a45a}#panteao thead .pt-c2.pt-at{box-shadow:inset 0 -3px 0 #1f4a3c}#panteao thead .pt-c3.pt-at{box-shadow:inset 0 -3px 0 #1e3a6e}',
+ '#panteao .pt-g td{padding:12px 12px 4px;font:700 10px var(--mono,monospace);letter-spacing:.18em;text-transform:uppercase;color:#9a6b3a;background:#fffdf7}',
+ '#panteao .pt-r>*{padding:6px 12px;border-bottom:1px solid #eee2c8;vertical-align:top}',
+ '#panteao .pt-r>th{font:600 12px system-ui,sans-serif;color:#5a3f2c;white-space:nowrap}',
+ '#panteao .pt-o{font:italic 12px Georgia,serif;color:#8a6f55}',
+ '#panteao .pt-r:hover>*{background:#f7eedb}',
+ '@media(max-width:760px){#panteao{padding:6px}#panteao .pt-box{padding:16px 12px 12px;max-height:96vh}#panteao .pt-o,#panteao thead th:last-child{display:none}#panteao table{font-size:13px}}'
+].join('\n');document.head.appendChild(st);})();
 
 })();
 </script>
