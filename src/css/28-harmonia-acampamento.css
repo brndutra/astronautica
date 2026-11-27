@@ -1,0 +1,12 @@
+/* ===== Harmonia (só no Acampamento): uma paleta, uma ordem, uma escala de texto ===== */
+/* 1. os níveis do templo na mesma família de ouro e bronze (sai o terracota e o oliva) */
+body:not(.tv):not(.eg){--n-frontao:#c99a3d;--n-entab:#b8862f;--n-colun:#a8762e;--n-atrio:#9a6b2a;--n-tesouro:#b48a4a}
+/* 2. medalhões e símbolos das colunas em ouro */
+body:not(.tv):not(.eg) .col-orn .co-med{background:#f3e2b3!important;color:#6b4510!important;border-color:#8a5a14!important}
+body:not(.tv):not(.eg) .col-orn .co-sim svg{stroke:#8a5a14!important}
+/* 3. rótulos pequenos legíveis: nada abaixo de 10 px, menos espaçamento */
+body:not(.tv):not(.eg) :is(.k9,.k5,.vx-k,.tp-k,.ts-k,.tbcab .k9,.mm-k,.tm-lb,.rt .cab small,.kpi small){font-size:10px!important;letter-spacing:.14em!important}
+/* 4. mesmo canto e mesma borda nos cartões dos painéis laterais */
+body:not(.tv):not(.eg) :is(#lat-e,#rail) :is(.lat-c,.mm-col,.tp-pf,.tp-sec){border-radius:12px!important}
+/* 5. o escudo do FOCO não cobre o conteúdo: menor e translúcido até passar o mouse */
+body:not(.tv):not(.eg) .td-disco:not(:hover):not(.rodando){opacity:.78}
