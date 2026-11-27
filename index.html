@@ -5740,6 +5740,19 @@ html body #nav #lat-e>#lat-trio{margin-bottom:0!important}
 /* Toque da Concha (+ Hoje) dentro do templo principal, entre as bases dos pilares, nos três temas */
 html body #hero-box .bn-slot>#tp-friso-bloco{position:relative;z-index:6;box-sizing:border-box;width:auto!important;margin:12px 0 0!important;border-radius:4px 4px 0 0}
 html body #hero-box .bn-slot>#tp-friso-bloco>#tp-friso{position:relative!important;top:auto!important;width:100%!important;margin:0!important;display:block}
+
+/* ===== Fogueiras animadas por tema: botão "fechar o dia" e diálogo da Fogueira ===== */
+html{--fog1:url("img/acampamento/fog-grega-1.svg?v=1");--fog2:url("img/acampamento/fog-grega-2.svg?v=1")}
+html:has(body.tv){--fog1:url("img/acampamento/fog-nordica-1.svg?v=1");--fog2:url("img/acampamento/fog-nordica-2.svg?v=1")}
+html:has(body.eg){--fog1:url("img/acampamento/fog-egipcia-1.svg?v=1");--fog2:url("img/acampamento/fog-egipcia-2.svg?v=1")}
+html body #dia-faixa#dia-faixa .df-fogo .dff-ic{display:block!important;width:30px!important;height:31px!important;border:0!important;border-radius:0!important;box-shadow:none!important;background:var(--fog1) center/contain no-repeat!important}
+html body #dia-faixa#dia-faixa .df-fogo .dff-ic::before,html body #dia-faixa#dia-faixa .df-fogo .dff-ic::after{content:none!important}
+html body #dia-faixa#dia-faixa .df-fogo.ok .dff-ic{filter:drop-shadow(0 0 4px #ffcf6a)}
+html body #rod-apps .rod-fogo .fg-ic{background:var(--fog1) center/contain no-repeat!important;border:0!important;border-radius:0!important}
+html body .fg-dlg .fg-chama{display:block!important;flex:none;width:78px!important;height:82px!important;border:0!important;border-radius:0!important;box-shadow:none!important;background:var(--fog2) center/contain no-repeat!important;animation:none!important}
+html body .fg-dlg .fg-chama::before,html body .fg-dlg .fg-chama::after{content:none!important}
+html body .op-fog .op-k::before{content:"";display:inline-block;width:18px;height:19px;margin:0 5px -4px 0;background:var(--fog1) center/contain no-repeat}
+html.noite .fg-dlg .fg-chama,html.noite .op-fog .op-k::before{filter:invert(1) hue-rotate(180deg) saturate(1.9) brightness(.9)}
 /* ===== Barras de rolagem: finas, discretas e na cor do tema ===== */
 html{--sb:rgba(201,150,60,.55);--sb-h:#e0782a}
 html:has(body.tv),body.tv{--sb:rgba(96,114,128,.55);--sb-h:#b3262d}
@@ -19828,6 +19841,9 @@ tpFriso=(function(f0){return function(){var r=f0.apply(this,arguments);try{var s
  if(sl&&bl){if(bl.parentNode!==sl||sl.lastElementChild!==bl)sl.appendChild(bl);['margin-left','margin-right','width'].forEach(function(p){bl.style.removeProperty(p);});
   var rod=document.querySelector('#hero-box > .bn-rod');if(rod&&sl.nextElementSibling!==rod)sl.insertAdjacentElement('afterend',rod);}}catch(e){}return r;};})(tpFriso);
 setTimeout(function(){try{tpFriso();}catch(e){}},1700);setInterval(function(){try{var sl=document.querySelector('#hero-box .bn-slot'),bl=document.getElementById('tp-friso-bloco');if(sl&&bl&&bl.parentNode!==sl)tpFriso();}catch(e){}},1500);
+
+/* Fogueira: o botão da cronologia abre o diálogo direto (o rodapé não tem mais o botão antigo) */
+document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-dffogo]');if(!b)return;if(document.getElementById('rod-fogo'))return;e.preventDefault();try{fgAbre();}catch(z){}},true);
 
 })();
 </script>
