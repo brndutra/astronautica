@@ -1,0 +1,36 @@
+/* ===== Avisos dentro do Posto de comando ===== */
+#modo-op>.op-top{flex-wrap:wrap}
+#op-avisos{flex:1 1 100%;order:99;display:none;margin-top:8px}
+#op-avisos:has(.npc-toast){display:block}
+#op-avisos>#td-toasts.npc-box{position:static!important;inset:auto!important;transform:none!important;width:auto!important;max-width:none!important;display:flex!important;flex-direction:row!important;flex-wrap:wrap;gap:8px!important;pointer-events:auto;z-index:auto!important}
+#op-avisos .npc-toast,#op-avisos .npc-toast.npc-card{flex:1 1 320px;max-width:560px;min-height:0!important;padding:8px 34px 9px 58px!important;border-left-width:4px!important;border-radius:10px;animation:avIn .3s ease}
+@keyframes avIn{from{opacity:0;transform:translateY(-6px)}}
+#op-avisos .npc-toast::after,#op-avisos .npc-orn{display:none!important}
+#op-avisos .npc-toast .npc-av,#op-avisos .npc-toast.npc-card .npc-av{position:absolute!important;left:9px!important;top:9px!important;bottom:auto!important;float:none!important;width:40px!important;height:40px!important;margin:0!important;border:2px solid var(--npc-gold)!important;border-radius:50%!important;object-position:50% 25%}
+#op-avisos .npc-nm{display:inline;font-size:14px}
+#op-avisos .npc-lb{display:inline;margin-left:8px;font-size:8.5px}
+#op-avisos .npc-hr{position:absolute;right:32px;top:9px;float:none;margin:0}
+#op-avisos .npc-say{margin:2px 0 6px;font-size:14px;line-height:1.3}
+#op-avisos .npc-x{top:6px!important}
+#op-avisos .npc-ac{gap:6px}
+#op-avisos .npc-ac button{padding:3px 11px!important;font-size:12px!important;min-height:0!important}
+@media(max-width:600px){#op-avisos .npc-toast{flex-basis:100%}}
+
+/* ===== Faixa do nível: logo, nível e dias numa linha; botões com nome na seguinte ===== */
+#lat-topo{height:auto!important}
+#lat-topo .lt-r1 .lt-id{display:flex!important;flex:1 1 auto;min-width:0}
+#lat-topo .lt-r0{display:block}
+#lat-topo .lt-r0 .lt-bts{display:grid!important;grid-template-columns:repeat(4,1fr);gap:5px;margin:0!important}
+html body #lat-topo .lt-r0 .lt-bts>:is(#fc-tg,#mf-tg,#tv-tg,#pt-tg){display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:2px;width:auto!important;height:40px!important;margin:0!important;padding:3px 2px!important;border:1px solid #c9a45a!important;border-radius:9px!important;background:#f4ead2!important;color:#7a3b22!important;cursor:pointer}
+html body #lat-topo .lt-r0 .lt-bts>:is(#fc-tg,#mf-tg,#tv-tg,#pt-tg):hover{background:#9a4a30!important;color:#fffaf0!important;border-color:#9a4a30!important}
+html body #lat-topo .lt-r0 .lt-bts svg{width:15px!important;height:15px!important;flex:none}
+#lat-topo .lt-r0 .lt-bl{font:700 8.5px var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase;line-height:1;white-space:nowrap}
+html body.tv #lat-topo .lt-r0 .lt-bts>:is(#fc-tg,#mf-tg,#tv-tg,#pt-tg){border-color:#8a9aa6!important;color:#b3262d!important;background:#f3efe6!important}
+html body.tv #lat-topo .lt-r0 .lt-bts>:is(#fc-tg,#mf-tg,#tv-tg,#pt-tg):hover{background:#b3262d!important;color:#fff!important}
+html body.eg #lat-topo .lt-r0 .lt-bts>:is(#fc-tg,#mf-tg,#tv-tg,#pt-tg){border-color:#c9a23a!important;color:#2a4c86!important;background:#fffaea!important}
+html body.eg #lat-topo .lt-r0 .lt-bts>:is(#fc-tg,#mf-tg,#tv-tg,#pt-tg):hover{background:#2a4c86!important;color:#fff!important}
+/* linha do xp cabe na coluna */
+#lat-topo .lt-r2{gap:6px!important;padding:0 4px!important}
+#lat-topo .lt-r2 .lt-bar{min-width:24px}
+#lat-topo .lt-r2 #lt-dr{flex:none}
+#lat-topo .lt-r2 .op-tg{margin:0 0 0 auto!important;padding:0 9px!important;height:26px}
