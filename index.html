@@ -18255,7 +18255,7 @@ antPinta=(function(f0){return function(){var r=f0.apply(this,arguments);try{antR
  '.ant-dlg footer .ant-fog{flex:1;align-self:center;font:italic 12px Georgia,serif;color:#8a6f55}'
 ].join('\n');document.head.appendChild(st);})();
 /* modo operacional: a carta do antagonista dobrada no cabeçalho, ao lado do dia; clique abre o desafio e o "venci" */
-function opAntMini(){var o=document.getElementById('modo-op'),t=o&&o.querySelector(':scope>.op-top');if(!t)return;var b=t.querySelector(':scope>.op-antmini');
+function opAntMini(){var o=document.getElementById('modo-op'),t=o&&o.querySelector(':scope>.op-top');if(!t)return;var bs=t.querySelectorAll('.op-antmini'),b=bs[0]||null;for(var q=1;q<bs.length;q++)bs[q].remove();
  if(!b){b=document.createElement('button');b.type='button';b.setAttribute('data-notr','');b.addEventListener('click',function(e){e.preventDefault();try{antAbre();}catch(z){}});}
  var dv=t.querySelector(':scope>div:first-child:not(.op-sat-slot)'),k=dv&&dv.querySelector('.op-k');if(k){if(k.nextElementSibling!==b)k.insertAdjacentElement('afterend',b);}else if(dv){if(b.parentNode!==dv)dv.appendChild(b);}
  var x=antHoje(),m=antMonstro(x.m),st=x.st,c='op-antmini'+(st!=='aberto'?' '+st:'');if(b.className!==c)b.className=c;
@@ -18267,6 +18267,7 @@ antPinta=(function(f0){return function(){var r=f0.apply(this,arguments);try{opAn
 setInterval(function(){try{if(document.body.classList.contains('op-on'))opAntMini();}catch(e){}},5000);
 (function(){var st=document.createElement('style');st.id='op-antmini-css';var B='html body #modo-op>.op-top .op-antmini';st.textContent=[
  '#modo-op>.op-top>div:first-child .op-k{display:inline-block!important;vertical-align:middle}',
+ '#modo-op>.op-top>div:first-child .op-dt{display:block!important}',
  B+'{display:inline-flex;align-items:center;gap:6px;vertical-align:middle;max-width:210px;height:22px;width:auto!important;min-width:0;margin:0 0 0 10px!important;padding:0 10px 0 2px!important;border:0!important;border-radius:999px!important;background:#2a2418!important;box-shadow:0 0 0 1px #c9a45a!important;color:#f4ead2!important;cursor:pointer;text-align:left}',
  B+'>i{flex:none;display:grid;place-items:center;width:18px;height:18px;border-radius:50%;background:linear-gradient(180deg,#3a5a6a,#1e3a44);box-shadow:0 0 0 1px #c9a45a;font:700 10px Georgia,serif;font-style:normal;color:#e9c870}',
  B+'>span{display:flex;align-items:baseline;gap:6px;min-width:0}',
