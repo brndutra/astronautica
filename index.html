@@ -20280,6 +20280,83 @@ function rgTudo(){['dia','sem','mes','and'].forEach(function(tp){try{rgPinta(tp)
 (function(){var e0=lvEstado;lvEstado=function(){var r=e0.apply(this,arguments);try{if(CF.chave&&!document.querySelector('#lv .rg[data-rg="dia"] .rg-per'))rgTudo();}catch(e){}return r;};})();
 setInterval(function(){try{if(CF.chave){var w=document.querySelector('#lv .rg[data-rg="and"]');if(w&&!w.contains(document.activeElement)){var pn=w.querySelector('.rg-pn'),h=rgPainel();if(pn&&h)pn.outerHTML=h;}}}catch(e){}},60000);
 
+/* topo do templo: clima compacto ao lado do modo escuro; Sully + mensagens num cartão só do outro lado do frontão; sem o seletor Templo I · II; Ferramentas no rodapé; × nos painéis do Toque */
+function clTopo(){var row=document.querySelector('#hero-box .bn-row'),cl=document.getElementById('lat-cl');if(!row||!cl)return;
+ var w=document.getElementById('cl-topo');if(!w){w=document.createElement('div');w.id='cl-topo';w.className='cl-topo';w.setAttribute('data-notr','');}
+ if(w.parentNode!==row)row.appendChild(w);if(cl.parentNode!==w)w.appendChild(cl);
+ var b=cl.querySelector('.lat-cl>b'),s=cl.querySelector('.lat-cl>span');cl.title=b&&s?('Clima · '+latCidade().n+' · '+b.textContent+' '+(s.firstChild&&s.firstChild.nodeValue||'')).trim():'Clima';
+ var te=document.getElementById('tema-ic'),sk=row.querySelector('.sk-topo');
+ if(te){var c=getComputedStyle(te),v=c.backgroundColor+'|'+c.borderTopColor+'|'+c.color;if(w._v!==v){w._v=v;row.style.setProperty('--ct-bg',c.backgroundColor);row.style.setProperty('--ct-bd',c.borderTopColor);row.style.setProperty('--ct-tx',c.color);}}
+ if(sk){var c2=getComputedStyle(sk),v2=c2.backgroundColor+'|'+c2.borderTopColor;if(row._v2!==v2){row._v2=v2;row.style.setProperty('--sn-bg',c2.backgroundColor);row.style.setProperty('--sn-bd',c2.borderTopColor);}}}
+function clTopoAbre(on){var w=document.getElementById('cl-topo');if(!w)return;on=typeof on==='boolean'?on:!w.classList.contains('cl-aberto');w.classList.toggle('cl-aberto',on);document.body.classList.toggle('cl-topo-aberto',on);}
+window.addEventListener('click',function(e){var w=document.getElementById('cl-topo');if(!w||!e.target.closest)return;
+ var ed=e.target.closest('#cl-topo [data-lat-ed]');if(ed){e.preventDefault();e.stopPropagation();clTopoAbre(false);try{latEdita('clima');}catch(z){}return;}
+ if(e.target.closest('#cl-topo')){e.preventDefault();e.stopPropagation();clTopoAbre();return;}
+ if(w.classList.contains('cl-aberto'))clTopoAbre(false);},true);
+document.addEventListener('keydown',function(e){if(e.key==='Escape')clTopoAbre(false);});
+setTimeout(function(){try{clTopo();}catch(e){}},900);setInterval(function(){try{clTopo();}catch(e){}},1200);
+/* Ferramentas: o botão mora no rodapé, na ponta direita da faixa de cima */
+ferPoe=function(){var w=document.getElementById('fer-w')||ferPoe.w;if(!w)return;var t=document.querySelector('#rod-apps .rod-top');
+ if(t){if(w.parentNode!==t||t.lastElementChild!==w)t.appendChild(w);}else if(w.parentNode!==document.body)document.body.appendChild(w);};
+setTimeout(function(){try{ferPoe();}catch(e){}},1000);setInterval(function(){try{ferPoe();}catch(e){}},1500);
+/* × para fechar os painéis do Toque da Concha */
+function toqueX(){var hj=document.querySelector('#tp-friso-bloco .cb-hoje');
+ if(hj&&!hj.hidden&&!hj.querySelector(':scope>.tq-x')){var x=document.createElement('button');x.type='button';x.className='tq-x';x.setAttribute('data-tqx','hoje');x.setAttribute('aria-label','Fechar o painel do Toque da Concha');x.title='fechar';x.textContent='×';hj.appendChild(x);}
+ var r1=document.getElementById('tm-r1');if(r1&&document.body.classList.contains('concha-aberta')&&!r1.querySelector(':scope>.tq-x')){var y=document.createElement('button');y.type='button';y.className='tq-x';y.setAttribute('data-tqx','concha');y.setAttribute('aria-label','Fechar o ajuste do Toque da Concha');y.title='fechar';y.textContent='×';r1.insertBefore(y,r1.firstChild);}}
+(function(){var h0=hojePinta;hojePinta=function(){var r=h0.apply(this,arguments);try{toqueX();}catch(e){}return r;};var c0=concha;concha=function(){var r=c0.apply(this,arguments);try{toqueX();}catch(e){}return r;};})();
+setInterval(function(){try{toqueX();}catch(e){}},700);
+window.addEventListener('click',function(e){var x=e.target.closest&&e.target.closest('.tq-x[data-tqx]');if(!x)return;e.preventDefault();e.stopPropagation();
+ if(x.dataset.tqx==='concha'){try{concha(false);}catch(z){}return;}
+ HOJE_ABERTO=false;try{localStorage.setItem('astro_hoje_pan','0');}catch(z){}try{hojePinta();}catch(z){}try{hojeSobe();}catch(z){}},true);
+(function(){var st=document.createElement('style');st.id='topo-rodape-css';var k=TV_ON?'#203936':EG_ON?'#1e3a6e':'#8a5a14';
+ var R='html body:not(.zz9):not(.zz8) #hero-box#hero-box .bn-row',C=R+'>#cl-topo>#lat-cl';
+ st.textContent=[
+ /* sem o seletor Templo I · Templo II */
+ 'html body .tpl-nav{display:none!important}',
+ /* ordem na faixa do topo: modo escuro, clima | ... | Sully + mensagens */
+ R+'>#tema-ic{order:1}'+R+'>#cl-topo{order:2}'+R+'>.sk-topo{order:10;margin-left:auto!important}'+R+'>#npc-ic{order:11}'+R+'>#bn-min{order:20}',
+ 'body.cl-topo-aberto #hero-box#hero-box .bn-row{z-index:60!important}',
+ /* cartão único Sully + mensagens */
+ R+'>.sk-topo.sk-topo,'+R+'>#npc-ic#npc-ic{height:34px!important;min-height:34px!important;background:var(--sn-bg)!important;border:1px solid var(--sn-bd)!important;box-shadow:none!important}',
+ R+'>.sk-topo.sk-topo{border-radius:10px 0 0 10px!important;border-right:0!important;margin-right:0!important}',
+ R+'>#npc-ic#npc-ic{border-radius:0 10px 10px 0!important;margin-left:0!important;width:40px!important;position:relative}',
+ R+'>#npc-ic#npc-ic::before{content:"";position:absolute;left:0;top:7px;bottom:7px;border-left:1px solid var(--sn-bd)}',
+ /* clima compacto */
+ R+'>#cl-topo{position:relative;height:34px;margin-left:8px;flex:none}',
+ C+'{display:flex!important;align-items:center;gap:6px;height:34px;box-sizing:border-box;margin:0!important;padding:0 10px 0 5px!important;border:1px solid var(--ct-bd)!important;border-radius:10px!important;background:var(--ct-bg)!important;box-shadow:none!important;cursor:pointer;white-space:nowrap;min-width:0;width:auto!important}',
+ C+'>header{display:contents!important}',
+ C+'>header>div,'+C+'>header>.lat-ed{display:none!important}',
+ C+'>header>.lat-ic{width:24px!important;height:24px!important;min-width:0!important;margin:0!important;border:0!important;background:none!important;display:grid!important;place-items:center;color:var(--ct-tx)}',
+ C+'>header>.lat-ic svg{width:17px!important;height:17px!important}',
+ C+' .lat-b{margin:0!important;padding:0!important}',
+ C+' .lat-cl{display:flex!important;align-items:baseline;gap:5px}',
+ C+' .lat-cl>b{font-size:17px!important;line-height:1!important}',
+ C+' .lat-cl>span{font-size:11px!important;line-height:1!important}',
+ C+' .lat-cl small,'+C+' .lat-cl br,'+C+' .lat-cl3{display:none!important}',
+ C+' .lat-n{font-size:11px!important;margin:0!important}',
+ /* aberto: o cartão inteiro cai do topo */
+ R+'>#cl-topo.cl-aberto>#lat-cl{position:absolute;top:0;left:0;z-index:61;display:block!important;width:270px!important;height:auto;padding:10px 12px 12px!important;white-space:normal;cursor:default;box-shadow:0 14px 30px -10px rgba(40,25,10,.45)!important}',
+ R+'>#cl-topo.cl-aberto>#lat-cl>header{display:flex!important;align-items:center;gap:8px;margin-bottom:8px}',
+ R+'>#cl-topo.cl-aberto>#lat-cl>header>div{display:block!important;flex:1}',
+ R+'>#cl-topo.cl-aberto>#lat-cl>header>.lat-ed{display:grid!important;cursor:pointer}',
+ R+'>#cl-topo.cl-aberto>#lat-cl .lat-cl>b{font-size:30px!important}',
+ R+'>#cl-topo.cl-aberto>#lat-cl .lat-cl>span{font-size:12px!important;line-height:1.35!important}',
+ R+'>#cl-topo.cl-aberto>#lat-cl .lat-cl small,'+R+'>#cl-topo.cl-aberto>#lat-cl .lat-cl br{display:revert!important}',
+ R+'>#cl-topo.cl-aberto>#lat-cl .lat-cl3{display:grid!important}',
+ /* rodapé aberto: cartões alinhados, mesma altura por linha */
+ 'html body #rod-apps #lat-apps{align-items:stretch!important;align-content:start!important}',
+ 'html body #rod-apps #lat-apps>.lat-c{margin:0!important;height:auto!important;box-sizing:border-box}',
+ 'html body #rod-apps #rod-quadro{margin-bottom:12px!important}',
+ 'html body #rod-apps #rod-quadro hr,html body #rod-apps #rod-quadro>*{max-width:none!important}',
+ /* Ferramentas dentro do rodapé */
+ 'html body #rod-apps .rod-top>#fer-w#fer-w{position:relative!important;top:auto!important;right:auto!important;left:auto!important;bottom:auto!important;z-index:5!important;flex:none;display:flex;align-items:center;padding:0 10px 0 6px}',
+ 'html body #rod-apps .rod-top>#fer-w .fer-menu{top:auto!important;bottom:calc(100% + 8px)!important;right:4px!important;max-height:calc(100vh - 140px);overflow:auto}',
+ /* × dos painéis do Toque */
+ 'html body #tp-friso-bloco .cb-hoje{position:relative}',
+ 'html body:not(.zz9):not(.zz8) .tq-x.tq-x{all:unset;position:absolute!important;top:4px;right:6px;z-index:6;width:24px;height:24px;display:grid;place-items:center;border-radius:50%;border:1px solid '+k+';background:rgba(255,250,236,.95);color:'+k+';font:17px/1 Georgia,serif;cursor:pointer;box-sizing:border-box}',
+ 'html body:not(.zz9):not(.zz8) .tq-x.tq-x:hover{background:'+k+';color:#fff8e6}',
+ 'html body.concha-aberta #tp-real #tm-r1>.tq-x{position:sticky!important;float:right;top:4px;margin:4px 4px -28px 0}'
+ ].join('\n');document.head.appendChild(st);})();
 })();
 </script>
 </body>
