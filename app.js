@@ -9495,8 +9495,11 @@ function opPinta(){var o=document.getElementById('modo-op');if(!o||!document.bod
  o.querySelector('.op-dt').textContent=new Date().toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'long'})+' · '+new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
  var set=function(sel,h){var n=o.querySelector(sel);if(n&&(n._h!==h||!n.firstChild)&&!(foco&&n.contains(a))){n.innerHTML=h;n._h=h;}};
  set('.op-l',opLinhaHTML());set('.op-esc',opEscudo());var fc=opFocoHTML().replace(/<b>\d+:\d+<\/b>/,'');set('.op-foco-c',opFocoHTML());set('.op-fazer',opFazerHTML());set('.op-lado',opLadoHTML());}
+/* extensão do Chrome: versão publicada em downloads/ (mesma do extensao/manifest.json); ao publicar uma nova, troque só aqui */
+var EXT_V='0.7.1',EXT_ZIP='downloads/astronautica-extensao-'+EXT_V+'.zip';
+function extBaixada(){try{return localStorage.getItem('astro-ext-baixada')||'';}catch(e){return '';}}
 /* cabeçalho, lado direito, montado só aqui: duas pílulas.
-   alvo: desviei (com − quando há tracinho), travei, tarefa chata, ronda · caminho: manual, templo completo.
+   alvo: desviei (com − quando há tracinho), travei, tarefa chata, ronda · caminho: manual, extensão (baixar / atualizar / em dia), templo completo.
    No Valhala, depois das 18h e com a fogueira apagada, entra "acender a fogueira" entre as duas. */
 function opTopR(){var tr=document.querySelector('#modo-op .op-topr');if(!tr)return;var n=0,R={on:false,h:[]},fogo=false;
  try{n=ciHoje();}catch(e){}try{R=cxD().ronda||R;}catch(e){}try{fogo=TV_ON&&opMin()>=18*60&&!fgFeita();}catch(e){}
@@ -9506,8 +9509,15 @@ function opTopR(){var tr=document.querySelector('#modo-op .op-topr');if(!tr)retu
   '<button type="button" class="cx-trv" data-cxa="trav">travei</button><button type="button" data-cxa="esc">tarefa chata</button>'+
   '<button type="button" class="cx-rdb" data-cxa="rd" title="horários da ronda">ronda <small>'+(R.on&&R.h.length?esc(R.h.join(' · ')):'desligada')+'</small></button></span>'+
   (fogo?'<button type="button" class="op-fogo" data-fogo>acender a fogueira</button>':'')+
-  '<span class="op-pill op-pill-nav" role="group" aria-label="consulta e templo"><button type="button" class="cx-mfb" data-cxa="mf">manual</button><button type="button" class="op-sair" data-opsair>templo completo</button></span>';
+  '<span class="op-pill op-pill-nav" role="group" aria-label="consulta, extensão e templo"><button type="button" class="cx-mfb" data-cxa="mf">manual</button>'+opExtHTML()+'<button type="button" class="op-sair" data-opsair>templo completo</button></span>';
  if(tr._h!==h){tr.innerHTML=h;tr._h=h;}}
+function opExtHTML(){var b=extBaixada(),st=!b?'nova':(b===EXT_V?'ok':'atual');
+ var tx=st==='nova'?'baixar extensão':st==='atual'?'atualizar extensão':'extensão <small>'+EXT_V+' ✓</small>';
+ var ti=st==='ok'?'Extensão '+EXT_V+' já baixada. Baixar de novo':'Baixar a extensão do Chrome '+EXT_V+(st==='atual'?' (você tem a '+b+')':'');
+ return '<a class="op-ext op-ext-'+st+'" href="'+EXT_ZIP+'" download="astronautica-extensao-'+EXT_V+'.zip" data-opext title="'+esc(ti)+'">'+tx+'</a>';}
+window.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-opext]');if(!a)return;var b=extBaixada();
+ try{localStorage.setItem('astro-ext-baixada',EXT_V);}catch(z){}setTimeout(function(){try{opTopR();}catch(z){}},300);
+ try{tdAvisa(b&&b!==EXT_V?'Extensão '+EXT_V+' baixada':'Extensão baixada',b?'Para atualizar: descompacte o zip por cima da pasta antiga, abra chrome://extensions e toque em recarregar na Astronáutica.':'Para instalar: descompacte o zip, abra chrome://extensions, ligue o modo do desenvolvedor e use "Carregar sem compactação" na pasta.');}catch(z){}},true);
 function opModo(on){if(typeof on!=='boolean')on=!document.body.classList.contains('op-on');opMonta();document.body.classList.toggle('op-on',on);try{localStorage.setItem('astro_modo',on?'op':'templo');}catch(e){}
  var b=document.getElementById('op-tg');if(b){b.setAttribute('aria-pressed',String(on));}if(on){opPinta();window.scrollTo(0,0);}}
 function opBotao(){var n=document.getElementById('tt-indice');if(!n||document.getElementById('op-tg'))return;var b=document.createElement('button');b.type='button';b.id='op-tg';b.className='op-tg';b.title='Modo operacional · tudo numa tela';
@@ -13795,7 +13805,7 @@ function npcCanto(){var tp=document.getElementById('tp-painel'),b=document.getEl
 setInterval(function(){try{npcCanto();}catch(e){}},1500);window.addEventListener('resize',function(){try{npcCanto();}catch(e){}});
 
 /* verso do cartão-postal: ícone para baixar a extensão do Chrome */
-(function(){var c0=cpVerso;cpVerso=function(){var r=c0.apply(this,arguments);try{var v=document.querySelector('#hero-box .cp-postal>.cp-verso');if(v&&!v.querySelector('.cpv-ext')){var a=document.createElement('a');a.className='cpv-ext';a.href='downloads/astronautica-extensao-0.7.1.zip';a.setAttribute('download','astronautica-extensao-0.7.1.zip');a.title='Baixar a extensão do Chrome (Alt+Shift+A)';a.setAttribute('aria-label','Baixar a extensão do Chrome');
+(function(){var c0=cpVerso;cpVerso=function(){var r=c0.apply(this,arguments);try{var v=document.querySelector('#hero-box .cp-postal>.cp-verso');if(v&&!v.querySelector('.cpv-ext')){var a=document.createElement('a');a.className='cpv-ext';a.href=EXT_ZIP;a.setAttribute('download','astronautica-extensao-'+EXT_V+'.zip');a.dataset.opext='1';a.title='Baixar a extensão do Chrome '+EXT_V+' (Alt+Shift+A)';a.setAttribute('aria-label','Baixar a extensão do Chrome');
  a.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4h3a2 2 0 1 1 4 0h2v4a2 2 0 1 1 0 4v4h-4a2 2 0 1 0-4 0H6v-4a2 2 0 1 0 0-4V4z"/><path d="M12 9v6m-2.5-2.5L12 15l2.5-2.5"/></svg>';v.appendChild(a);}}catch(e){}return r;};})();
 window.addEventListener('click',function(e){if(e.target.closest&&e.target.closest('.cpv-ext'))e.stopPropagation();},true);
 (function(){var st=document.createElement('style');st.id='cpv-ext-css';var k=TV_ON?'#203936':EG_ON?'#1e3a6e':'#8a5a14';st.textContent=[
