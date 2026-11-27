@@ -6401,7 +6401,9 @@ function normaliza(p){var b=limpo();
  if(p.fichas&&typeof p.fichas==="object") b.fichas=p.fichas;
  if(Array.isArray(p.extras)) b.extras=p.extras.slice(0,40);
  if(p.premios&&typeof p.premios==="object") b.premios=p.premios;
- return b;}
+  /* campos que a versão atual ainda não conhece (de recursos acrescentados depois) passam intactos: nada some ao recarregar */
+  if(p&&typeof p==='object')Object.keys(p).forEach(function(k){if(!(k in b))b[k]=p[k];});
+  return b;}
 function ler(){try{var r=localStorage.getItem(KEY);if(r){var p=JSON.parse(r);if(p&&typeof p.carga==="number")S=normaliza(p);}}catch(e){}}
 function grava(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){ var m=el("msg"); if(m) m.textContent="armazenamento cheio \u2014 remova uma imagem"; } el("dump").value=JSON.stringify(S);}
 function anota(t,v,b,man){S.log.unshift({t:hora(),d:t,v:v,bad:!!b,dia:hoje(),man:!!man}); if(S.log.length>40)S.log.length=40;}
@@ -15871,6 +15873,9 @@ setInterval(pintaProgresso,60000);
    13 Néctar da Enfermaria (remédio) · 14 modo companhia.
    Guarda tudo em S.opx; lê e grava o mesmo registro do app. */
 (function(){var n0=normaliza;normaliza=function(p){var b=n0(p);b.opx=(p&&p.opx&&typeof p.opx==='object')?p.opx:{};return b;};})();
+/* o registro já tinha sido carregado (e normalizado sem opx) antes deste trecho: recupera o opx gravado, senão fecho do Procusto, néctar etc. se perdiam a cada recarga */
+(function(){try{var raw=JSON.parse(KEY_RAW0||'null');if(!raw||!raw.opx||typeof raw.opx!=='object')return;var o=S.opx;if(!o||typeof o!=='object'){S.opx=raw.opx;return;}Object.keys(raw.opx).forEach(function(k){var v=o[k];if(v==null||(typeof v==='object'&&!Array.isArray(v)&&!Object.keys(v).length))o[k]=raw.opx[k];});grava();}catch(e){}})();
+
 function opx(){var o=S.opx;if(!o||typeof o!=='object')o=S.opx={};
  ['bat','passo','skip','est','fog','proc','procN','adia','arOk'].forEach(function(k){if(!o[k]||typeof o[k]!=='object')o[k]={};});
  o.cfg=o.cfg||{};if(!o.cfg.saida)o.cfg.saida='19:00';if(!o.cfg.ini)o.cfg.ini='12:00';if(o.cfg.traj==null)o.cfg.traj=0;if(!o.cfg.fl)o.cfg.fl=4;
@@ -17648,12 +17653,7 @@ if(TV_ON){(function(){var S={"solroda": "<circle cx=\"12\" cy=\"12\" r=\"8.5\"/>
 var D={CR_IC:typeof CR_IC!=='undefined'?CR_IC:null,LAT_IC:typeof LAT_IC!=='undefined'?LAT_IC:null,ARS_IC:typeof ARS_IC!=='undefined'?ARS_IC:null,RT_IC:typeof RT_IC!=='undefined'?RT_IC:null,QA_IC:typeof QA_IC!=='undefined'?QA_IC:null,OP_IC:typeof OP_IC!=='undefined'?OP_IC:null,PD_ICON:typeof PD_ICON!=='undefined'?PD_ICON:null,TEMA_IC:typeof TEMA_IC!=='undefined'?TEMA_IC:null,ICO_P:typeof ICO_P!=='undefined'?ICO_P:null};
 Object.keys(M).forEach(function(n){var d=D[n];if(!d)return;Object.keys(M[n]).forEach(function(k){if(!(k in d))return;var g=S[M[n][k]];if(!g)return;d[k]=F[n]?'<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">'+g+'</svg>':g;});});
 window.VH_SIMB=S;})();}
-if(TV_ON){(function(){var A=[['#tt-indice [data-tt="fin"]','r_f'],['#tt-indice [data-ic="b9"]','mjolnir'],['#tt-indice [data-ic="laptop"]','olho'],['#tt-indice [data-ic="enf"]','r_b'],['#tt-indice [data-ic="sat"]','chifre'],
- ['#lat-db .lat-ic','r_a'],['#lat-arena .lat-ic','r_t'],['#lat-e .lat-ic','r_o'],['.qa-ic','ponte'],['.co-sim.co-sl','valknut'],['.co-sim.co-sr','vegvisir'],['.cr-concha','chifre'],['.ico.ico-sino','chifre'],['#fer-bt','mjolnir'],['.cv-ave','corvo'],['#op-tg','drakkar'],['#painel-dir [data-pane="fin"] .pd-medal','r_f'],['#painel-dir [data-pane="fin"] .pd-marca','r_f'],['#painel-dir [data-pane="lap"] .pd-medal','olho'],['#painel-dir [data-pane="lap"] .pd-marca','olho'],['#painel-dir [data-pane="enf"] .pd-medal','r_b'],['#painel-dir [data-pane="enf"] .pd-marca','r_b'],['#painel-dir [data-pane="b9"] .pd-medal','mjolnir'],['#painel-dir [data-pane="b9"] .pd-marca','mjolnir']];
- function vh(){var S=window.VH_SIMB;if(!S)return;A.forEach(function(a){Array.prototype.forEach.call(document.querySelectorAll(a[0]),function(el){var sv=el.tagName==='svg'?el:el.querySelector('svg');if(!sv||sv.getAttribute('data-vh')===a[1])return;
-  sv.setAttribute('viewBox','0 0 24 24');sv.setAttribute('fill','none');sv.setAttribute('stroke','currentColor');sv.setAttribute('stroke-linecap','round');sv.setAttribute('stroke-linejoin','round');if(!sv.getAttribute('stroke-width'))sv.setAttribute('stroke-width','1.7');sv.innerHTML=S[a[1]];sv.setAttribute('data-vh',a[1]);});});}
- var t=null;new MutationObserver(function(){if(t)return;t=setTimeout(function(){t=null;try{vh();}catch(e){}},250);}).observe(document.body,{childList:true,subtree:true});
- setTimeout(vh,300);setTimeout(vh,1500);})();}
+
 function tvNo(root){if(!root)return;if(root.nodeType===3){var p=root.parentNode;if(p&&/^(SCRIPT|STYLE|TEXTAREA)$/.test(p.nodeName))return;var n=tvTxt(root.nodeValue);if(n!==root.nodeValue)root.nodeValue=n;return;}
  if(root.nodeType!==1||/^(SCRIPT|STYLE|TEXTAREA|INPUT)$/.test(root.nodeName))return;
  var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT),x;while(x=w.nextNode()){var pp=x.parentNode;if(pp&&/^(SCRIPT|STYLE|TEXTAREA)$/.test(pp.nodeName))continue;var v=tvTxt(x.nodeValue);if(v!==x.nodeValue)x.nodeValue=v;}
@@ -17756,211 +17756,51 @@ if(TV_ON){setInterval(function(){try{tvFrontao();}catch(e){}},1200);setTimeout(f
 /* ======================= Valhala: portal de entrelaçado =======================
    Colunas cobertas de entrelaçado (no lugar dos postes lisos) com capitel de volutas e base canelada, nos templos e no Posto;
    o banner vira o portão do salão: pilastras de entrelaçado dos dois lados, verga de nós no alto e moldura de couro com filete de ouro. */
-if(TV_ON){(function(){var I=function(n){return 'url("img/acampamento/'+n+'?v=3")';};var st=document.createElement('style');st.id='tv-portal-css';st.textContent=[
- 'body.tv .neo-moldura{--neo-fuste:'+I('vh-fuste.svg')+'!important;--neo-cap:'+I('vh-capitel.svg')+'!important;--neo-base:'+I('vh-base.svg')+'!important}',
- 'body.tv #modo-op .op-templo{--t-fuste:'+I('vh-fuste.svg')+'!important;--t-cap:'+I('vh-capitel.svg')+'!important;--t-base:'+I('vh-base.svg')+'!important}',
- 'body.tv #hero-box .bn-slot{position:relative;margin:0 6px!important;padding:0 50px!important;background:',
- '  '+I('vh-capitel.svg')+' 2px 0/46px 31px no-repeat,'+I('vh-capitel.svg')+' calc(100% - 2px) 0/46px 31px no-repeat,',
- '  '+I('vh-fuste.svg')+' 2px 31px/46px 40px repeat-y,'+I('vh-fuste.svg')+' calc(100% - 2px) 31px/46px 40px repeat-y,#e9e6d6!important}',
- 'body.tv #hero-box .bn-slot::after{content:"";position:absolute;left:2px;right:2px;bottom:0;height:14px;background:'+I('vh-base.svg')+' 0 0/46px 14px no-repeat,'+I('vh-base.svg')+' 100% 0/46px 14px no-repeat}',
- 'body.tv #hero-box .vx-hero{border:2px solid #1d4a2c!important;box-shadow:inset 0 0 0 3px #e9e6d6,inset 0 0 0 4.5px #d4ad4f!important;border-radius:4px!important}',
- 'body.tv #hero-box .vx-hero::after{-webkit-mask-size:24px 24px!important;mask-size:24px 24px!important;background:#1d4a2c!important;opacity:.85}'
-].join('\n');document.head.appendChild(st);})();}
+
 
 
 /* ======================= Valhala com tons por templo (como o Acampamento tinha um tom por templo) =======================
    Ferro (Programação, Hélio no Posto, Meta do dia), sangue de escudo (Rastreados, Moiras, Saga do dia), madeira de salão
    (frontão, banner, faixas do painel esquerdo, Foco do dia, Hermes) e verde-couro só no templo das Tarefas e no Posto de Apolo. */
-if(TV_ON){(function(){var I=function(n){return 'url("img/acampamento/'+n+'.svg?v=4")';};
- var tom=function(sel,t,k){return sel+'{--neo-fuste:'+I('vh-fuste-'+t)+'!important;--neo-cap:'+I('vh-capitel-'+t)+'!important;--neo-base:'+I('vh-base-'+t)+'!important;--neo-ent:'+I('vh-escudos-'+t)+'!important;--col-k:'+k+'!important;border-color:'+k+'!important}';};
- var op=function(sel,t,k){return 'body.tv #modo-op '+sel+'.op-templo{--t-fuste:'+I('vh-fuste-'+t)+'!important;--t-cap:'+I('vh-capitel-'+t)+'!important;--t-base:'+I('vh-base-'+t)+'!important;--t-ent:'+I('vh-escudos-'+t)+'!important;--t-k:'+k+'!important}';};
- var st=document.createElement('style');st.id='tv-tons-css';st.textContent=[
-  tom('body.tv .wrap>.tb.neo-moldura','ferro','#2d3a4a'),tom('body.tv .wrap>.rt.neo-moldura,body.tv .wrap>#rt-box .rt.neo-moldura','sangue','#6a1e1e'),
-  op('.op-l','ferro','#2d3a4a'),op('.op-fazer','sangue','#6a1e1e'),op('.op-estudo','madeira','#5b3b22'),op('.op-lado','ferro','#2d3a4a'),
-  'body.tv #modo-op .op-l{--t-foto:'+I('vh-sol-ferro')+'!important}body.tv #modo-op .op-fazer{--t-foto:'+I('vh-fuso-sangue')+'!important}body.tv #modo-op .op-estudo{--t-foto:'+I('vh-olho-madeira')+'!important}body.tv #modo-op .op-lado{--t-foto:'+I('vh-valknut-ferro')+'!important}',
-  /* placas no tom do seu templo */
-  'body.tv h2.sec.neo-tit.placa-tom{background:linear-gradient(180deg,color-mix(in srgb,var(--pk) 82%,#fff),var(--pk))!important;box-shadow:0 0 0 3px #e9e6d6,0 0 0 4.5px #d4ad4f!important}',
-  /* frontão e banner em madeira com ouro */
-  'body.tv .vh-telhado{background:'+I('vh-telha-madeira')+' 0 0/24px 16px repeat,#3a2414!important}',
-  'body.tv .vh-viga{background:'+I('vh-no-h-madeira')+' 0 0/32px 16px repeat-x,#5b3b22!important}',
-  'body.tv #hero-box .nf2 .nf-txt{background:#3a2414!important;box-shadow:0 0 0 2px #3a2414!important}',
-  'body.tv #hero-box .nf2>.pd-pilula{background:linear-gradient(180deg,#6e4a2c,#4a2f1a)!important;box-shadow:0 0 0 3px #3a2414,0 0 0 4.5px #d4ad4f,0 6px 12px -6px rgba(0,0,0,.6)!important}',
-  'body.tv #hero-box .nf2>.pd-pilula button{border-left-color:#7a5636!important}',
-  'body.tv #hero-box .bn-slot{background:'+I('vh-capitel-madeira')+' 2px 0/46px 31px no-repeat,'+I('vh-capitel-madeira')+' calc(100% - 2px) 0/46px 31px no-repeat,'+I('vh-fuste-madeira')+' 2px 31px/46px 40px repeat-y,'+I('vh-fuste-madeira')+' calc(100% - 2px) 31px/46px 40px repeat-y,#e9e6d6!important}',
-  'body.tv #hero-box .bn-slot::after{background:'+I('vh-base-madeira')+' 0 0/46px 14px no-repeat,'+I('vh-base-madeira')+' 100% 0/46px 14px no-repeat!important}',
-  'body.tv #hero-box .vx-hero{border-color:#5b3b22!important}body.tv #hero-box .vx-hero::after{background:#5b3b22!important}',
-  /* painel esquerdo: faixas de madeira e cartões em tons variados */
-  '@media(min-width:1380px){body.tv #nav.navdr{background-image:'+I('vh-no-v-madeira')+','+I('vh-no-v-madeira')+'!important}}',
-  'body.tv #lat-e>#lat-gm>.gm{--lf:'+I('vh-elmo-ferro')+';--lc:#2d3a4a}',
-  'body.tv #lat-e>#lat-db{--lf:'+I('vh-livro-sangue')+';--lc:#6a1e1e}',
-  'body.tv #lat-arena{--c-img:'+I('vh-runas-madeira')+'!important}body.tv #lat-e>#lat-arena{--lc:#5b3b22}',
-  'body.tv #lat-ars{--c-img:'+I('vh-escudo-ferro')+'!important}',
-  'body.tv #rod-apps .rod-fogo .fg-ic{background-image:'+I('vh-valknut-sangue')+'!important}'
- ].join('\n');document.head.appendChild(st);})();}
+
 
 
 /* ======================= Valhala "carvalho e metal" =======================
    Um tom só, como o portão da referência: fundo cinza-pedra, entrelaçado e figuras em grafite, ouro só em detalhes
    (beiral, chifres, anel do medalhão). Reescreve as folhas do tema para as versões -tinta dos desenhos e para a paleta pedra. */
-if(TV_ON){(function(){var MAP=[[/#(1d4a2c|2d3a4a|6a1e1e|5b3b22|1f2c45)/gi,'#5a3c22'],[/#(123321|3a2414|1b2430|3f1010|143a22|4a2f1a)/gi,'#3b2717'],[/#(256139|6e4a2c|26365a)/gi,'#7a5230'],[/#(3f6f4a|7a5636|3a4a6a)/gi,'#8a6a48'],[/#cfd8bd/gi,'#e3dccf'],[/#e9e6d6/gi,'#ece6dc'],[/#d4ad4f/gi,'#a9b1b8']];
- var conv=function(t){t=t.replace(/vh-([a-z0-9-]+?)(-ferro|-sangue|-madeira)?\.svg/g,function(m,n){return 'vh-'+n+'-carvalho.svg';});MAP.forEach(function(p){t=t.replace(p[0],p[1]);});return t;};
- var faz=function(){Array.prototype.forEach.call(document.querySelectorAll('style[id^="tv-"]'),function(st){if(st.id==='tv-pedra-css'||st.dataset.tinta)return;st.textContent=conv(st.textContent);st.dataset.tinta='1';});
-  try{Object.keys(OP_TEMPLO).forEach(function(k){var i=OP_TEMPLO[k];if(i.img&&/^vh-/.test(i.img)&&!/-carvalho/.test(i.img))i.img=i.img.replace(/(-ferro|-sangue|-madeira)?\.svg$/,'-carvalho.svg');});}catch(e){}};
- faz();setTimeout(faz,50);
- var st=document.createElement('style');st.id='tv-pedra-css';st.textContent=[
-  'body.tv{background-color:#e9e2d6!important}',
-  'body.tv .wrap,body.tv #nav.navdr,body.tv #rail{background-color:#e9e2d6!important}',
-  'body.tv #hero-box .vx-hero{background:linear-gradient(135deg,#f3eee5,#e6dfd2)!important}',
-  'body.tv :is(.lat-c,#lat-gm>.gm,#lat-db,#mm-box .mm-col,#mm-box .mm-gab,.neo-moldura){background-color:#f7f3ec!important}',
-  'body.tv .vh-beiral{background:linear-gradient(180deg,#e3e7ea,#8b949c)!important}',
-  'body.tv #hero-box .nf2 .nf-txt{background:#4a3220!important;color:#e3e7ea!important;border-color:#9aa3ab!important;box-shadow:0 0 0 2px #4a3220!important}',
-  'body.tv #hero-box .nf2>.pd-pilula{background:linear-gradient(180deg,#5f4129,#4a3220)!important;border-color:#9aa3ab!important;box-shadow:0 0 0 3px #2f1f12,0 0 0 4.5px #9aa3ab,0 6px 12px -6px rgba(0,0,0,.5)!important}',
-  'body.tv #hero-box .nf2>.pd-pilula button{color:#e3e7ea!important;border-left-color:#6a4a2e!important}',
-  'body.tv h2.sec.neo-tit.placa-tom,body.tv #tp-real>:is(#tm-painel,#recreio)>.tm-cab{background:linear-gradient(180deg,#5f4129,#4a3220)!important;border-color:#9aa3ab!important;color:#f7f3ec!important;box-shadow:0 0 0 3px #e9e2d6,0 0 0 4.5px #4a3220!important}',
-  'body.tv h2.sec.neo-tit.placa-tom>span,body.tv #tp-real .tm-cab .tp-placa button{color:#e3e7ea!important}',
-  'body.tv #lat-e>:is(#lat-arena,#lat-band,#lat-cp,#lat-db),body.tv #lat-e>#lat-gm>.gm,body.tv #mm-box :is(.mm-col,.mm-gab){--lc:#4a3220!important;--mc:#4a3220!important}',
-  'body.tv #hero-box .cp-postal .fr{background:linear-gradient(rgba(20,20,18,.2),rgba(20,20,18,.45)),#34424d!important}',
-  'body.tv #lat-topo>.lt-r2>#tv-tg{background:#4a3220!important;color:#e3e7ea!important;border-color:#9aa3ab!important}',
-  'body.tv #nav.navdr,body.tv #lat-e,body.tv #lat-topo,body.tv .lat,body.tv #rail #tp-painel{background-color:#e9e2d6!important}',
-  'body.tv #lat-e>:is(#lat-arena,#lat-band,#lat-cp,#lat-db,#qa-d-pc),body.tv #lat-e>#lat-gm>.gm,body.tv #tp-real #mm-box :is(.mm-col,.mm-gab),body.tv #tp-real .lat-c{background:#faf7f1!important;border-color:#d8cdbb!important;border-top-color:#4a3220!important}',
-  'body.tv #lat-e>:is(#lat-gm>.gm,#lat-db)::before,body.tv #tp-real #mm-box :is(.mm-col,.mm-gab)::before{border-bottom-color:#4a3220!important}',
-  'body.tv #hero-box .vx-hero,body.tv #hero-box .bn-slot{background-color:#efe9df!important}',
-  'body.tv #hero-box .vx-hero{background:linear-gradient(135deg,#f5f1ea,#e7e0d3)!important}',
-  'body.tv #tp-real>:is(#tm-painel,#recreio){background-color:#efe9df!important}',
-  'body.tv #rod-apps,body.tv #rod-apps .rod-top{background:#ece6dc!important}'
- ].join('\n');document.head.appendChild(st);})();}
+
 
 
 /* ======================= Valhala carvalho e metal: sem verde e sem dourado restantes; textura de veio de madeira =======================
    Grade semanal, faixa do dia e ícones do rodapé passam para uma família de linho, mel, carvalho, aço e ardósia
    (continuam distinguindo os horários); textos dourados viram carvalho; telhas maiores. */
-if(TV_ON){(function(){var st=document.createElement('style');st.id='tv-sem-verde-css';st.textContent=[
- 'body.tv #tb-g .tbc.fx-06{background-color:#f3ead9!important}body.tv #tb-g .tbc.fx-09{background-color:#eee0c6!important}body.tv #tb-g .tbc.fx-12{background-color:#e7d8c2!important}',
- 'body.tv #tb-g .tbc.fx-15{background-color:#e3e7ea!important}body.tv #tb-g .tbc.fx-18{background-color:#d9dee3!important}body.tv #tb-g .tbc.fx-21{background-color:#e9dccf!important}',
- 'body.tv .mf-faixa *,body.tv [class*="fx-"]:not(.tbc){filter:saturate(.25)}',
- 'body.tv #dia-faixa{background:linear-gradient(180deg,#efe8dc,#e4dbcb)!important;border-color:#a8927a!important;box-shadow:inset 0 0 0 3px #f5f0e8,inset 0 0 0 4px #c9b9a3!important}',
- 'body.tv #dia-faixa .df-seg:nth-of-type(1){background:#f3ead9!important}body.tv #dia-faixa .df-seg:nth-of-type(2){background:#eee0c6!important}body.tv #dia-faixa .df-seg:nth-of-type(3){background:#e7d8c2!important}',
- 'body.tv #dia-faixa .df-seg:nth-of-type(4){background:#e3e7ea!important}body.tv #dia-faixa .df-seg:nth-of-type(5){background:#d9dee3!important}body.tv #dia-faixa .df-seg:nth-of-type(6){background:#e9dccf!important}',
- 'body.tv #dia-faixa .df-seg,body.tv #dia-faixa .df-seg *{color:#4a3220!important}',
- 'body.tv #dia-faixa .df-cap{border-color:#5a3c22!important;background:#faf7f1!important;color:#4a3220!important}',
- 'body.tv #rod-apps .cr-p .cr-ico{border-color:#7a5230!important;color:#5a3c22!important}body.tv #rod-apps .cr-p .cr-ico svg{stroke:#5a3c22!important}',
- 'body.tv #rod-apps .cr-p:nth-child(even) .cr-ico{border-color:#6f7880!important}body.tv #rod-apps .cr-p:nth-child(even) .cr-ico svg{stroke:#4b545c!important}',
- 'body.tv #rod-apps .cr-p{border-bottom-color:#c9b9a3!important;box-shadow:none!important}body.tv #rod-apps .cr-p::after{background:#7a5230!important}',
- 'body.tv #lat-gm .gm .gm-vit h3,body.tv #hero-box .vx-k,body.tv #hero-box .ac-cracha,body.tv #hero-box .ac-cracha *,body.tv #mm-box .mm-grp{color:#7a5230!important}',
- 'body.tv .vh-viga{border-color:#3e454c!important;box-shadow:0 2px 0 #8b949c!important}',
- 'body.tv .vh-telhado{background-size:36px 24px!important}',
- 'body.tv #td-disco .td-ring{filter:sepia(.35) saturate(.6) hue-rotate(-8deg)}',
- 'body.tv #hero-box .vx-hero::before{filter:sepia(.4) saturate(.5)}',
- 'body.tv .vx-hero .vx-k,body.tv #hero-box span.vx-k{color:#7a5230!important}',
- 'body.tv #lat-e>#lat-arena::before,body.tv #lat-e>:is(#lat-gm>.gm,#lat-db)::before{border-bottom-color:#5a3c22!important}',
- 'body.tv #td-agora .td-ag-bar i,body.tv #tp-base .td-ag-bar i{background:#7a5230!important}'
-].join('\n');document.head.appendChild(st);})();}
+
 
 
 /* ======================= Valhala: entalhe em relevo (referências do calendário e dos ornamentos) =======================
    Entrelaçado de verdade, com cordões que passam por cima e por baixo, contorno escuro e luz no relevo;
    pedra-ardósia nas colunas, frisos e faixas; osso nos cordões; um acento vermelho (runa do medalhão, olho do capitel).
    O carvalho fica no telhado e nos cartões. */
-if(TV_ON){(function(){var I=function(n){return 'url("img/acampamento/'+n+'.svg?v=6")';};var st=document.createElement('style');st.id='vale-entalhe-css';st.textContent=[
- 'body.tv .neo-moldura{--neo-fuste:'+I('vh-fuste-entalhe')+'!important;--neo-cap:'+I('vh-capitel-entalhe')+'!important;--neo-base:'+I('vh-base-entalhe')+'!important;--neo-ent:'+I('vh-ent-entalhe')+'!important;--col-k:#34424d!important;border-color:#34424d!important}',
- 'body.tv .wrap>.tb.neo-moldura,body.tv .wrap>.rt.neo-moldura,body.tv .wrap>#rt-box .rt.neo-moldura{--neo-fuste:'+I('vh-fuste-entalhe')+'!important;--neo-cap:'+I('vh-capitel-entalhe')+'!important;--neo-base:'+I('vh-base-entalhe')+'!important;--neo-ent:'+I('vh-ent-entalhe')+'!important;--col-k:#34424d!important}',
- 'body.tv #modo-op .op-templo{--t-fuste:'+I('vh-fuste-entalhe')+'!important;--t-cap:'+I('vh-capitel-entalhe')+'!important;--t-base:'+I('vh-base-entalhe')+'!important;--t-ent:'+I('vh-ent-entalhe')+'!important;--t-k:#34424d!important}',
- 'body.tv #hero-box .bn-slot{background:'+I('vh-capitel-entalhe')+' 2px 0/46px 31px no-repeat,'+I('vh-capitel-entalhe')+' calc(100% - 2px) 0/46px 31px no-repeat,'+I('vh-fuste-entalhe')+' 2px 31px/46px 40px repeat-y,'+I('vh-fuste-entalhe')+' calc(100% - 2px) 31px/46px 40px repeat-y,#efe9df!important}',
- 'body.tv #hero-box .bn-slot::after{background:'+I('vh-base-entalhe')+' 0 0/46px 14px no-repeat,'+I('vh-base-entalhe')+' 100% 0/46px 14px no-repeat!important}',
- 'body.tv .vh-viga{background:'+I('vh-no-h-entalhe')+' 0 0/40px 20px repeat-x,#34424d!important;height:20px!important;border-color:#151b20!important;box-shadow:0 2px 0 #151b20!important}',
- '@media(min-width:1380px){body.tv #nav.navdr{background-image:'+I('vh-no-v-entalhe')+','+I('vh-no-v-entalhe')+'!important;background-size:20px 40px!important;padding-left:20px!important;padding-right:20px!important}}',
- 'body.tv #tp-friso{background:'+I('vh-no-h-entalhe')+' 0 100%/40px 20px repeat-x,#efe9df!important;padding-bottom:20px!important}',
- 'body.tv #hero-box .vx-hero::after{background:#34424d!important}body.tv #hero-box .vx-hero{border-color:#34424d!important}',
- 'body.tv #hero-box .nf2 .fr-lira{box-shadow:0 0 0 3px #efe9df,0 0 0 5px #34424d!important}',
- 'body.tv h2.sec.neo-tit.placa-tom,body.tv #tp-real>:is(#tm-painel,#recreio)>.tm-cab{background:linear-gradient(180deg,#46576443,#34424d),#34424d!important;border-color:#151b20!important;color:#f3ece0!important;box-shadow:inset 0 0 0 2px #34424d,inset 0 0 0 3px #e4d9c6,0 0 0 2px #151b20!important}',
- 'body.tv h2.sec.neo-tit.placa-tom>span,body.tv #tp-real .tm-cab .tp-placa button{color:#e4d9c6!important}',
- 'body.tv #hero-box .nf2 .nf-txt{background:#34424d!important;border-color:#e4d9c6!important;color:#f3ece0!important;box-shadow:0 0 0 2px #151b20!important}',
- 'body.tv #hero-box .nf2>.pd-pilula{background:linear-gradient(180deg,#46576a,#2a353e)!important;border-color:#e4d9c6!important;box-shadow:0 0 0 3px #151b20,0 6px 12px -6px rgba(0,0,0,.5)!important}',
- 'body.tv #hero-box .nf2>.pd-pilula button{color:#f3ece0!important;border-left-color:#566672!important}',
- 'body.tv #lat-topo>.lt-r2>#tv-tg{background:#34424d!important;color:#e4d9c6!important;border-color:#151b20!important}',
- 'body.tv #rod-apps .rod-fogo .fg-ic{background-image:'+I('vh-bindrune-entalhe')+'!important;background-size:contain!important;background-repeat:no-repeat!important;background-position:center!important}'
-].join('\n');document.head.appendChild(st);})();}
+
 
 
 /* ======================= Valhala: o verde do hotel só na bandeira e no brasão =======================
    Verde-couro do hotel nas insígnias: medalhão, placas de título, plaquinhas do frontão, placa de ícones,
    botão do tema e o estandarte da Captura da bandeira (agora estandarte verde do hotel). Pedra e carvalho continuam na arquitetura. */
-if(TV_ON){(function(){var I=function(n){return 'url("img/acampamento/'+n+'.svg?v=7")';};var st=document.createElement('style');st.id='vale-hotel-css';st.textContent=[
- 'body.tv #hero-box .nf2 .fr-lira{content:'+I('vh-bindrune-hotel')+'!important}',
- 'body.tv #lat-band .band-mastro img{content:'+I('vh-estandarte')+';object-fit:contain}',
- 'body.tv #lat-e>#lat-band{--lc:#1f4d2e!important;border-top-color:#1f4d2e!important}'
-].join('\n');document.head.appendChild(st);})();}
+
 
 
 /* ======================= Hotel Valhala · kit de identidade do usuário (img/acampamento/kit) =======================
    Paleta do kit: verde pinho #203936, latão antigo #A88750, marfim #F5EBD6, azul fiorde #526D78, borgonha #713E48.
    Frontão art déco escalonado com o brasão, placa de título, friso entrelaçado, pilastra de latão e ícones do hotel
    (um por cartão). Substitui as camadas anteriores do tema. */
-if(TV_ON){(function(){var K=function(n){return 'url("img/acampamento/'+(/^vh-/.test(n)?'':'kit/')+n+'.svg?v=2")';};
- var P='#203936',L='#A88750',LL='#D4BD82',M='#F5EBD6',M2='#EFE3CA',F='#526D78',B='#713E48';
- var ic=function(sel,n,v){return 'body.tv '+sel+'{'+v+':'+K(n)+'!important}';};
- var st=document.createElement('style');st.id='kit-valhala-css';st.textContent=[
-  /* superfícies */
-  'body.tv{background-color:'+M+'!important}',
-  'body.tv .wrap,body.tv #nav.navdr,body.tv #lat-e,body.tv #lat-topo,body.tv #rail,body.tv #rail #tp-painel{background-color:'+M+'!important}',
-  'body.tv #lat-e>:is(#lat-arena,#lat-band,#lat-cp,#lat-db,#qa-d-pc),body.tv #lat-e>#lat-gm>.gm,body.tv #tp-real #mm-box :is(.mm-col,.mm-gab),body.tv #tp-real .lat-c{background:#FBF6EA!important;border-color:#DCC9A0!important;border-top-color:'+P+'!important}',
-  'body.tv .neo-moldura,body.tv #tp-real>:is(#tm-painel,#recreio){background-color:'+M2+'!important;border-color:'+L+'!important}',
-  'body.tv #rod-apps,body.tv #rod-apps .rod-top{background:'+M2+'!important}',
-  /* frontão do kit */
-  'body.tv #hero-box .nf2 .fr-lira{content:'+K('brasao-yggdrasil')+'!important;background:none!important;box-shadow:none!important;border-radius:0!important;width:92px!important;height:92px!important;top:30px!important}',
-  'body.tv #hero-box .nf2 .nf-txt{background:'+P+'!important;border:1.5px solid '+L+'!important;box-shadow:0 0 0 2px '+P+',0 0 0 3px #D4BD82!important;padding:5px 8px 5px 14px!important;color:'+M+'!important;font-size:13px!important;text-shadow:none!important}',
-  'body.tv .vh-viga{display:block!important;background:'+K('vh-no-h-kit')+' 0 0/40px 20px repeat-x,'+P+'!important;height:20px!important;border-color:'+L+'!important;box-shadow:0 2px 0 '+L+'!important}',
-  'body.tv .vh-beiral{background:linear-gradient(180deg,#D4BD82,'+L+')!important}',
-  'body.tv .vh-chifres{filter:sepia(.9) saturate(1.6) brightness(.85) drop-shadow(0 2px 2px rgba(0,0,0,.35))!important}',
-  'body.tv #hero-box .neo-frontao.nf2{margin-bottom:22px!important}',
-  'body.tv #hero-box .nf2>.pd-pilula{top:auto!important;bottom:-20px!important;background:'+P+'!important;border:1.5px solid '+L+'!important;box-shadow:0 0 0 3px '+M+',0 0 0 4px '+L+'!important}',
-  'body.tv #hero-box .nf2>.pd-pilula button{color:'+M+'!important;border-left-color:#3a5552!important}',
-  'body.tv #hero-box .nf2>.pd-pilula button:hover{background:#2c4b47!important}',
-  /* banner: pilastras de latão, moldura e entrelaçado em latão */
-  'body.tv #hero-box .bn-slot{background:'+K('vh-capitel-kit')+' 2px 0/46px 31px no-repeat,'+K('vh-capitel-kit')+' calc(100% - 2px) 0/46px 31px no-repeat,'+K('vh-fuste-kit')+' 2px 31px/46px 40px repeat-y,'+K('vh-fuste-kit')+' calc(100% - 2px) 31px/46px 40px repeat-y,'+M+'!important}',
-  'body.tv #hero-box .bn-slot::after{background:'+K('vh-base-kit')+' 0 0/46px 14px no-repeat,'+K('vh-base-kit')+' 100% 0/46px 14px no-repeat!important}',
-  'body.tv #hero-box .vx-hero{background:linear-gradient(135deg,#FBF4E4,#F1E5CC)!important;border:1.5px solid '+L+'!important;box-shadow:inset 0 0 0 4px #FBF4E4,inset 0 0 0 5px '+LL+'!important}',
-  'body.tv #hero-box .vx-hero::after{background:'+L+'!important;opacity:.75}',
-  'body.tv #hero-box .cp-postal .fr{background:'+P+'!important;border-color:'+L+'!important}',
-  /* templos: pilastra, friso entrelaçado, placa de título */
-  'body.tv .neo-moldura,body.tv .wrap>.tb.neo-moldura,body.tv .wrap>.rt.neo-moldura,body.tv .wrap>#rt-box .rt.neo-moldura{--neo-fuste:'+K('vh-fuste-kit')+'!important;--neo-cap:'+K('vh-capitel-kit')+'!important;--neo-base:'+K('vh-base-kit')+'!important;--neo-ent:'+K('vh-ent-kit')+'!important;--col-k:'+P+'!important}',
-  'body.tv #modo-op .op-templo{--t-fuste:'+K('vh-fuste-kit')+'!important;--t-cap:'+K('vh-capitel-kit')+'!important;--t-base:'+K('vh-base-kit')+'!important;--t-ent:'+K('vh-ent-kit')+'!important;--t-k:'+P+'!important}',
-  'body.tv h2.sec.neo-tit.placa-tom,body.tv #tp-real>:is(#tm-painel,#recreio)>.tm-cab{background:'+K('placa-titulo')+' center/100% 100% no-repeat!important;border:0!important;box-shadow:none!important;padding-left:44px!important;padding-right:44px!important;color:'+M+'!important}',
-  'body.tv h2.sec.neo-tit.placa-tom>span,body.tv #tp-real .tm-cab .tp-placa button{color:'+LL+'!important}',
-  'body.tv #tp-friso{background:'+K('vh-no-h-kit')+' 0 100%/40px 20px repeat-x,'+M+'!important;padding-bottom:20px!important}',
-  '@media(min-width:1380px){body.tv #nav.navdr{background-image:'+K('vh-no-v-kit')+','+K('vh-no-v-kit')+'!important;background-size:20px 40px!important;background-repeat:repeat-y!important;background-position:left top,right top!important;padding-left:20px!important;padding-right:20px!important}}',
-  /* ícones do hotel nos cartões (um por lugar) */
-  'body.tv :is(#mm-box .mm-col,#mm-box .mm-gab,#rt-box .rt-concha,#rt-box .rt-insp,#rt-box .rt-harp,#lat-apt,#lat-rec,#lat-cv,#lat-ars,#lat-arena,#lat-e>#lat-gm>.gm,#lat-e>#lat-db)::before{background-size:auto 60px!important;background-repeat:no-repeat!important;background-position:center!important;background-color:#ECE0C4!important;filter:none!important;border-bottom:1.5px solid '+L+'!important}',
-  ic('#mm-box .mm-chale','porta-suite','--mm-img'),ic('#mm-box .mm-quest','elevador','--mm-img'),ic('#mm-box .mm-gab','corvos','--mm-img'),ic('#mm-box .mm-orac-col','brasao-yggdrasil','--mm-img'),ic('#mm-box .mm-prof','valquiria','--mm-img'),
-  ic('#rt-box .rt-concha','recepcao','--rt-img'),ic('#rt-box .rt-insp','chave-hospede','--rt-img'),ic('#rt-box .rt-harp','b-valquiria','--rt-img'),
-  ic('#lat-apt','treinamento','--c-img'),ic('#lat-rec','banquete','--c-img'),ic('#lat-cv','bifrost','--c-img'),ic('#lat-ars','b-treinamento','--c-img'),ic('#lat-arena','mostrador','--c-img'),
-  ic('#lat-e>#lat-gm>.gm','placa-andar','--lf'),ic('#lat-e>#lat-db','registro','--lf'),
-  'body.tv #modo-op .op-l{--t-foto:'+K('b-chave-suite')+'!important}body.tv #modo-op .op-col1{--t-foto:'+K('b-brasao')+'!important}body.tv #modo-op .op-fazer{--t-foto:'+K('b-recepcao')+'!important}body.tv #modo-op .op-estudo{--t-foto:'+K('b-registro-hospede')+'!important}body.tv #modo-op .op-lado{--t-foto:'+K('b-elevador')+'!important}',
-  'body.tv #rod-apps .rod-fogo .fg-ic{background:'+K('b-banquete')+' center/contain no-repeat!important}',
-  /* textos e acentos */
-  'body.tv .vx-hero .vx-k,body.tv #hero-box span.vx-k,body.tv #mm-box .mm-grp,body.tv #lat-gm .gm .gm-vit h3{color:#8A6D3B!important}',
-  'body.tv #lat-topo>.lt-r2>#tv-tg{background:'+P+'!important;color:'+LL+'!important;border-color:'+L+'!important}',
-  /* grade e faixa do dia no tom do kit */
-  'body.tv #tb-g .tbc.fx-06{background-color:#F7EEDB!important}body.tv #tb-g .tbc.fx-09{background-color:#F0E2C2!important}body.tv #tb-g .tbc.fx-12{background-color:#E8DCC4!important}',
-  'body.tv #tb-g .tbc.fx-15{background-color:#DFE6E8!important}body.tv #tb-g .tbc.fx-18{background-color:#D6DFE3!important}body.tv #tb-g .tbc.fx-21{background-color:#EEDDE0!important}',
-  'body.tv #dia-faixa .df-seg:nth-of-type(1){background:#F7EEDB!important}body.tv #dia-faixa .df-seg:nth-of-type(2){background:#F0E2C2!important}body.tv #dia-faixa .df-seg:nth-of-type(3){background:#E8DCC4!important}',
-  'body.tv #dia-faixa .df-seg:nth-of-type(4){background:#DFE6E8!important}body.tv #dia-faixa .df-seg:nth-of-type(5){background:#D6DFE3!important}body.tv #dia-faixa .df-seg:nth-of-type(6){background:#EEDDE0!important}',
-  'body.tv #dia-faixa .df-seg,body.tv #dia-faixa .df-seg *{color:'+P+'!important}',
-  'body.tv #rod-apps .cr-p .cr-ico{border-color:'+L+'!important}body.tv #rod-apps .cr-p .cr-ico svg{stroke:'+P+'!important}',
-  'body.tv #rod-apps .cr-p:nth-child(even) .cr-ico{border-color:'+F+'!important}'
- ].join('\n');document.head.appendChild(st);})();}
+
 
 
 /* ======================= Hotel Valhala · fotos estéticas nos cartões (uma por lugar) =======================
    Diárias = espada rúnica · Nornas = runas no musgo · Saga = proas de drakkar · Meta do dia = mão com o martelo
    Foco do dia = o combate com a espada · Atividades = dragão na árvore. Os demais cartões seguem com os ícones do kit. */
-if(TV_ON){(function(){var F=function(n){return 'url("img/acampamento/vh-fotos/'+n+'.webp")';};var st=document.createElement('style');st.id='vh-fotos-css';st.textContent=[
- 'body.tv #mm-box .mm-quest{--mm-img:'+F('espada')+'!important}body.tv #mm-box .mm-orac-col{--mm-img:'+F('runas')+'!important}body.tv #mm-box .mm-prof{--mm-img:'+F('drakkar')+'!important}',
- 'body.tv #lat-e>#lat-gm>.gm{--lf:'+F('mjolnir')+'!important}body.tv #lat-arena{--c-img:'+F('combate')+'!important}body.tv #lat-apt{--c-img:'+F('dragao')+'!important}',
- 'body.tv :is(#mm-box .mm-quest,#mm-box .mm-orac-col,#mm-box .mm-prof,#lat-e>#lat-gm>.gm,#lat-arena,#lat-apt)::before{background-size:cover!important;filter:saturate(.85)!important}',
- 'body.tv #mm-box .mm-quest::before{background-position:center 42%!important}body.tv #mm-box .mm-orac-col::before{background-position:center 55%!important}body.tv #mm-box .mm-prof::before{background-position:center 32%!important}',
- 'body.tv #lat-e>#lat-gm>.gm::before{background-position:center 45%!important}body.tv #lat-arena::before{background-position:58% 40%!important}body.tv #lat-apt::before{background-position:center 30%!important}'
-].join('\n');document.head.appendChild(st);})();}
+
 
 
 /* ======================= Painéis abertos: ocupam todo o centro, do painel esquerdo ao direito, do topo ao rodapé;
@@ -17989,213 +17829,56 @@ if(TV_ON){(function(){var F=function(n){return 'url("img/acampamento/vh-fotos/'+
 setInterval(function(){var pd=document.querySelector('#painel-dir.pd.on'),pl=document.querySelector('.pd-pilula');if(!pl)return;var k=pd&&(pd.querySelector('[data-pd][aria-selected="true"]')||{}).getAttribute;var sel=pd?(pd.querySelector('[data-pd][aria-selected="true"]')||{dataset:{}}).dataset.pd:null;
  Array.prototype.forEach.call(pl.querySelectorAll('button'),function(b){var m=b.dataset.tt==='fin'?'fin':b.dataset.ic==='laptop'?'lap':b.dataset.ic==='enf'?'enf':/bunker|b9/i.test(b.title||'')?'b9':null;b.classList.toggle('pil-at',!!sel&&m===sel);});},700);
 /* ======================= Valhala · primeira parte do edifício: portão, soleira, cores e textura vetorial ======================= */
-if(TV_ON){(function(){var U=function(n){return 'url("img/acampamento/'+n+'.svg?v=3")';};var st=document.createElement('style');st.id='vh-parte1-css';st.textContent=[
- 'body.tv .vh-telhado{background:'+U('vh-telha-veio')+' 0 0/32px 20px repeat,#3b2717!important}',
- 'body.tv .vh-beiral{background:linear-gradient(180deg,#e2cf98,#A88750 55%,#7d6030)!important}',
- /* portão: moldura de entrelaçado com cantoneiras de latão em volta do banner */
- 'body.tv #hero-box#hero-box .vx-hero::after{display:none!important}',
- 'body.tv #hero-box#hero-box .vx-hero{border:0!important;border-radius:0!important;padding:34px 40px 30px!important;box-shadow:inset 0 0 0 20px transparent,0 0 0 1.5px #203936!important;background:',
- '  '+U('vh-canto-tl')+' 22px 22px/46px 46px no-repeat,'+U('vh-canto-tr')+' calc(100% - 22px) 22px/46px 46px no-repeat,'+U('vh-canto-bl')+' 22px calc(100% - 22px)/46px 46px no-repeat,'+U('vh-canto-br')+' calc(100% - 22px) calc(100% - 22px)/46px 46px no-repeat,',
- '  '+U('vh-no-h-kit')+' 0 0/40px 20px repeat-x,'+U('vh-no-h-kit')+' 0 100%/40px 20px repeat-x,'+U('vh-no-v-kit')+' 0 0/20px 40px repeat-y,'+U('vh-no-v-kit')+' 100% 0/20px 40px repeat-y,',
- '  '+U('vh-papel')+' 0 0/120px 120px!important}',
- 'body.tv #hero-box#hero-box .vx-hero::before{opacity:.35!important}',
- /* soleira de pedra fechando o portão */
- 'body.tv #hero-box .bn-slot{padding-bottom:30px!important}',
- 'body.tv #hero-box .bn-slot::before{content:"";position:absolute;left:-6px;right:-6px;bottom:0;height:30px;background:'+U('vh-soleira')+' 0 0/120px 30px repeat-x;border-bottom:2px solid #203936;box-shadow:0 3px 6px -3px rgba(0,0,0,.4);z-index:1}',
- 'body.tv #hero-box .bn-slot::after{bottom:30px!important}',
- 'body.tv #hero-box .bn-slot{background-color:#F1E6CF!important}',
- 'body.tv #hero-box{margin-bottom:6px!important}'
-].join('\n');document.head.appendChild(st);})();}
+
 
 
 /* ======================= Valhala · 2º templo (Programação): ônix, prata e bronze =======================
    Variação do primeiro: colunas entalhadas em prata sobre ônix com olho de bronze, friso de runas (desenho próprio)
    no entablamento, placa em ônix com filete de prata e letras de bronze, cantoneiras de prata na moldura. */
-if(TV_ON){(function(){var U=function(n){return 'url("img/acampamento/'+n+'.svg?v=1")';};var T='body.tv .wrap>.tb.neo-moldura';var st=document.createElement('style');st.id='vh-templo2-css';st.textContent=[
- T+'{--neo-fuste:'+U('vh-fuste-onix-tom')+'!important;--neo-cap:'+U('vh-capitel-onix-tom')+'!important;--neo-base:'+U('vh-base-onix-tom')+'!important;--neo-ent:'+U('vh-runas-onix-tom')+'!important;--col-k:#b9c2dc!important;border-color:#b9c2dc!important;',
- ' box-shadow:inset 0 0 0 1px #3d4a6b,inset 0 0 0 3px #b9c2dc!important;background-color:#f6efe0!important}',
- 'body.tv h2.sec.neo-tit#h-sem{background:#b9c2dc!important;border:1.5px solid #3d4a6b!important;color:#75809e!important;box-shadow:0 0 0 3px #f6efe0,0 0 0 4.5px #b9c2dc,0 0 0 6px #75809e!important;padding-left:30px!important;padding-right:30px!important}',
- 'body.tv h2.sec.neo-tit#h-sem>span{color:#3d4a6b!important}',
- 'body.tv h2.sec.neo-tit#h-sem::before,body.tv h2.sec.neo-tit#h-sem::after{content:"ᛟ"!important;display:inline-block!important;position:static!important;margin:0 10px;color:#75809e;font:400 14px Georgia,serif;background:none!important;width:auto!important;height:auto!important;border:0!important}',
- T+'>.col-orn .co-sim{background:#b9c2dc!important;border-color:#3d4a6b!important}'+T+'>.col-orn .co-sim svg{stroke:#75809e!important}',
- T+'>.col-orn .co-med{background:#b9c2dc!important;border-color:#3d4a6b!important;color:#75809e!important;box-shadow:0 0 0 3px #f6efe0,0 0 0 4px #75809e!important}',
- T+' .tbcab{border-bottom:1px solid #3d4a6b!important}',
- T+' .mf-alca{border-color:#b9c2dc!important;background:#b9c2dc!important;color:#75809e!important;box-shadow:0 0 0 2px #f6efe0,0 0 0 3px #3d4a6b!important}',
- T+' .mf-alca span{color:#75809e!important}',
- T+' #tb-g .tbh{background:#dbdbde!important;color:#b9c2dc!important}'
-].join('\n');document.head.appendChild(st);})();}
+
 
 
 /* ======================= Valhala · 3º templo (Rastreados): osso, sépia, azul-ísatis e ocre =======================
    Inspirado nas colunas de animais entrelaçados e no estilo Mammen: colunas de osso com cadeia de anéis em preto e
    vermelho e rosetas em espiral, capitel de volutas com olho vermelho, friso de cadeia e placa de osso com ocre. */
-if(TV_ON){(function(){var U=function(n){return 'url("img/acampamento/'+n+'.svg?v=3")';};var T='body.tv .wrap>.rt.neo-moldura,body.tv .wrap>#rt-box .rt.neo-moldura';var st=document.createElement('style');st.id='vh-templo3-css';st.textContent=[
- '/* Rastreados no Valhala: drakkar — casco de tábuas com rebites, proa de ouro entalhada, cabeça de dragão, escudos e mar */',
- ':is('+T+'){--neo-fuste:'+U('vh-fuste-drakkar-tom')+'!important;--neo-cap:'+U('vh-capitel-drakkar-tom')+'!important;--neo-base:'+U('vh-base-drakkar-tom')+'!important;--neo-ent:'+U('vh-ent-drakkar-tom')+'!important;--col-k:#7a5c12!important;border-color:#7a5c12!important;background-size:240px 40px,42px 29px,42px 29px,42px 40px,42px 40px,42px 15px,42px 15px,auto,auto!important;background-repeat:repeat-x,no-repeat,no-repeat,repeat-y,repeat-y,no-repeat,no-repeat,repeat,repeat!important;',
- ' box-shadow:inset 0 0 0 1px #e2cd8a,inset 0 0 0 3px #f6efe0!important;background-color:#f6efe0!important}',
- 'body.tv h2.sec.neo-tit#h-rast{background:repeating-linear-gradient(180deg,#e2cd8a 0 8px,#7a5c12 8px 9px,#ede0b9 9px 17px,#7a5c12 17px 18px)!important;border:2px solid #7a5c12!important;color:#f6efe0!important;text-shadow:0 1px 0 #7a5c12;box-shadow:0 0 0 2px #e2cd8a,0 0 0 3.5px #7a5c12!important;padding-left:34px!important;padding-right:34px!important}',
- 'body.tv h2.sec.neo-tit#h-rast>span{color:#ede0b9!important}',
- 'body.tv h2.sec.neo-tit#h-rast::before,body.tv h2.sec.neo-tit#h-rast::after{content:""!important;display:inline-block!important;position:static!important;vertical-align:-3px;margin:0 9px;width:16px!important;height:16px!important;background:'+U('vh-escudo-drakkar-tom')+' center/16px 16px no-repeat!important;border:0!important}',
- ':is('+T+')>.col-orn .co-sim,:is('+T+')>.col-orn .co-med{background:#e2cd8a!important;border-color:#7a5c12!important;color:#a98f48!important}',
- ':is('+T+')>.col-orn .co-sim svg{stroke:#a98f48!important}',
- ':is('+T+') .rtg td.c.on5{background:#e2cd8a!important;box-shadow:inset 0 0 0 1px #ede0b9}',
- ':is('+T+') .rtg th,:is('+T+') .rtg td.h{color:#7a5c12!important}',
- ':is('+T+') .cab{background:#ede0b9!important;border-bottom:1.5px solid #e2cd8a!important}',
- ':is('+T+') .cab button{border-color:#7a5c12!important;color:#7a5c12!important;background:#f6efe0!important}',
- ':is('+T+') .rt-novo button,:is('+T+') .ws-box button{background:#7a5c12!important;color:#ede0b9!important;border-color:#7a5c12!important}',
- ':is('+T+') .rt-novo input,:is('+T+') .ws-box input{border-color:#e2cd8a!important;background:#f6efe0!important}',
- ':is('+T+') .ws-box i,:is('+T+') .ws-box .ws-c{border-color:#e2cd8a!important}',
- ':is('+T+') .vzr{color:#ede0b9!important}'
-].join('\n');document.head.appendChild(st);})();}
+
 
 
 /* ======================= Valhala · 4º templo (Arsenal, marcos e prêmios): pedra rúnica =======================
    Granito cinza com entalhes pintados de vermelho, como as pedras rúnicas escandinavas: colunas com faixa de runas,
    capitel com cabeça de serpente em traço, friso-serpente com runas entre linhas, placa de granito com filete vermelho. */
-if(TV_ON){(function(){var U=function(n){return 'url("img/acampamento/'+n+'.svg?v=2")';};var T='body.tv #tesouro.neo-moldura';var st=document.createElement('style');st.id='vh-templo4-css';st.textContent=[
- T+'{--neo-fuste:'+U('vh-fuste-runa-tom')+'!important;--neo-cap:'+U('vh-capitel-runa-tom')+'!important;--neo-base:'+U('vh-base-runa-tom')+'!important;--neo-ent:'+U('vh-ent-runa-tom')+'!important;--col-k:#cfae8e!important;border-color:#cfae8e!important;',
- ' box-shadow:inset 0 0 0 1px #906e53,inset 0 0 0 3px #f6efe0!important;background-color:#f6efe0!important}',
- T+' .ts-cab{background:'+U('vh-granito-tom')+' 0 0/120px 120px!important;border:1.5px solid #cfae8e!important;box-shadow:0 0 0 3px #f6efe0,0 0 0 4.5px #906e53!important}',
- T+' .ts-cab h2{color:#906e53!important}'+T+' .ts-cab .ts-k{color:#906e53!important}',
- T+' .ts-cab h2::before,'+T+' .ts-cab h2::after{content:"ᚱ";margin:0 9px;color:#906e53;font:400 14px Georgia,serif}',
- T+'>.col-orn .co-sim,'+T+'>.col-orn .co-med{background:#e4d2bb!important;border-color:#cfae8e!important;color:#906e53!important}',
- T+'>.col-orn .co-sim svg{stroke:#906e53!important}',
- T+' :is(.lat-c,.sec-card){background:#f6efe0!important;border-color:#e4d2bb!important;border-top:3px solid #906e53!important}'
-].join('\n');document.head.appendChild(st);})();}
 
-if(TV_ON){(function(){var U=function(n){return 'url("img/acampamento/'+n+'.svg?v=2")';};var T='body.tv #tp-real>#tm-painel#tm-painel';var st=document.createElement('style');st.id='vh-templo5-css';st.textContent=[
- '/* Tarefas e Missões no Valhala: portal de madeira ancestral, futhark antigo entalhado em sulco #dcaaa3 nas colunas e no lintel, Yggdrasil nos galhos do capitel e nas raízes da base; fundo liso, sem imagem. Lazer do Salão mantém o kit. */',
- T+'{--neo-fuste:'+U('vh-fuste-ygg-tom')+'!important;--neo-cap:'+U('vh-capitel-ygg-tom')+'!important;--neo-base:'+U('vh-base-ygg-tom')+'!important;--neo-ent:'+U('vh-ent-ygg-tom')+'!important;--col-k:#780806!important;border-color:#780806!important;',
- ' background-size:576px 40px,42px 29px,42px 29px,42px 576px,42px 576px,42px 15px,42px 15px,auto,auto!important;',
- ' background-repeat:repeat-x,no-repeat,no-repeat,repeat-y,repeat-y,no-repeat,no-repeat,repeat,repeat!important;',
- ' box-shadow:inset 0 0 0 1px #780806,inset 0 0 0 3px #dcaaa3!important}',
- T+'>.tm-cab{background:'+U('vh-chifres-portao-tom')+' left 4px center/32px 28px no-repeat,'+U('vh-chifres-portao-tom')+' right 4px center/32px 28px no-repeat,repeating-linear-gradient(180deg,transparent 0 5px,rgba(47,44,39,.13) 5px 6px),linear-gradient(180deg,#dcaaa3,#a5514d)!important;border:1.5px solid #780806!important;box-shadow:inset 0 0 0 2px #dcaaa3,0 0 0 2px #780806,0 0 0 3.5px #780806!important;color:#f6efe0!important;text-shadow:0 1px 0 #780806;padding-left:42px!important;padding-right:42px!important}',
- T+'>.tm-cab .k9,'+T+'>.tm-cab .tp-placa button{color:#780806!important}',
- T+'>.tm-cab .tp-placa button[aria-selected="true"],'+T+'>.tm-cab .tp-placa .on{color:#f6efe0!important}',
- T+'>.col-orn .co-sim,'+T+'>.col-orn .co-med{background:#dcaaa3!important;border-color:#780806!important;color:#780806!important;box-shadow:0 0 0 1.5px #a5514d!important}',
- T+'>.col-orn .co-sim svg{stroke:#780806!important}',
- T+' .mm-modo{background:#dcaaa3!important;color:#f6efe0!important;border-color:#780806!important;box-shadow:0 0 0 1px #a5514d!important}',
- T+' #mm-box :is(.mm-col,.mm-gab){border-color:#780806!important;border-top-color:#dcaaa3!important;box-shadow:0 6px 18px rgba(6,10,28,.45)!important}',
- T+' #mm-box :is(.mm-col,.mm-gab)::before{border-bottom-color:#dcaaa3!important}',
- T+'::after{background:#dcaaa3!important;box-shadow:0 -1px 0 #780806,0 1px 0 #780806!important}'
-].join('\n');document.head.appendChild(st);})();}
 
-if(TV_ON){(function(){var st=document.createElement('style');st.id='vh-harmonia-css';st.textContent=[
- '/* Valhala com a harmonia dos templos gregos: cada templo um matiz (tom escuro nos traços, tom claro nas colunas) sobre creme; placas creme com borda e subtítulo no tom escuro */',
- 'body.tv h2.sec.neo-tit#h-sem{background:var(--neo-papel,none),#f4ead2!important;border:1.5px solid #3d4a6b!important;box-shadow:0 0 0 3px #f4ead2,0 0 0 4.5px #3d4a6b,0 6px 12px -6px rgba(40,30,20,.45)!important;color:#2a2418!important;text-shadow:none!important}',
- 'body.tv h2.sec.neo-tit#h-sem>span,body.tv h2.sec.neo-tit#h-sem .k9,body.tv h2.sec.neo-tit#h-sem .ts-k{color:#3d4a6b!important}',
- 'body.tv h2.sec.neo-tit#h-rast{background:var(--neo-papel,none),#f4ead2!important;border:1.5px solid #7a5c12!important;box-shadow:0 0 0 3px #f4ead2,0 0 0 4.5px #7a5c12,0 6px 12px -6px rgba(40,30,20,.45)!important;color:#2a2418!important;text-shadow:none!important}',
- 'body.tv h2.sec.neo-tit#h-rast>span,body.tv h2.sec.neo-tit#h-rast .k9,body.tv h2.sec.neo-tit#h-rast .ts-k{color:#7a5c12!important}',
- 'body.tv #tesouro.neo-moldura .ts-cab{background:var(--neo-papel,none),#f4ead2!important;border:1.5px solid #5c3a22!important;box-shadow:0 0 0 3px #f4ead2,0 0 0 4.5px #5c3a22,0 6px 12px -6px rgba(40,30,20,.45)!important;color:#2a2418!important;text-shadow:none!important}',
- 'body.tv #tesouro.neo-moldura .ts-cab>span,body.tv #tesouro.neo-moldura .ts-cab .k9,body.tv #tesouro.neo-moldura .ts-cab .ts-k{color:#5c3a22!important}',
- 'body.tv #tp-real>#tm-painel#tm-painel>.tm-cab{background:var(--neo-papel,none),#f4ead2!important;border:1.5px solid #780806!important;box-shadow:0 0 0 3px #f4ead2,0 0 0 4.5px #780806,0 6px 12px -6px rgba(40,30,20,.45)!important;color:#2a2418!important;text-shadow:none!important}',
- 'body.tv #tp-real>#tm-painel#tm-painel>.tm-cab>span,body.tv #tp-real>#tm-painel#tm-painel>.tm-cab .k9,body.tv #tp-real>#tm-painel#tm-painel>.tm-cab .ts-k{color:#780806!important}',
- 'body.tv #tesouro.neo-moldura .ts-cab h2{color:#2a2418!important}',
- 'body.tv '+'h2.sec.neo-tit#h-sem::before,body.tv h2.sec.neo-tit#h-sem::after{color:#3d4a6b!important}',
- 'body.tv #tesouro.neo-moldura .ts-cab h2::before,body.tv #tesouro.neo-moldura .ts-cab h2::after{color:#5c3a22!important}',
- 'body.tv #tp-real>#tm-painel#tm-painel>.tm-cab{background:var(--neo-papel,none),#f4ead2!important;padding-left:30px!important;padding-right:30px!important}',
- 'body.tv #tp-real>#tm-painel#tm-painel>.tm-cab .tp-placa button{color:#780806!important}body.tv #tp-real>#tm-painel#tm-painel>.tm-cab .tp-placa button[aria-selected="true"]{color:#2a2418!important}',
- 'body.tv :is(.wrap>.tb.neo-moldura,.wrap>.rt.neo-moldura,#tesouro.neo-moldura,#tp-real>#tm-painel#tm-painel){background-color:#f0e5cd!important}'
-].join('\n');document.head.appendChild(st);})();}
 
-if(TV_ON){(function(){var U=function(n){return 'url("img/acampamento/'+n+'.svg?v=3")';};var S='body.tv #tp-real>#recreio#recreio';var st=document.createElement('style');st.id='vh-salao-heroi-css';st.textContent=[
- '/* Lazer do Salão: a casa viking — telhado de escamas com cumeeira em zigue-zague, postes entalhados, cabeças de lobo e varanda, em verdete sobre creme. Primeiro painel central (banner): portão em verde pinho sobre creme — os andares seguem verde, azul, dourado e marrom. Mesmo padrão de tons dos templos gregos. */',
- S+'{--neo-fuste:'+U('vh-fuste-salao')+'!important;--neo-cap:'+U('vh-capitel-salao')+'!important;--neo-base:'+U('vh-base-salao')+'!important;--neo-ent:'+U('vh-ent-salao')+'!important;--col-k:#1f5550!important;border-color:#1f5550!important;background-size:240px 40px,42px 29px,42px 29px,42px 20px,42px 20px,42px 15px,42px 15px,auto,auto!important;background-repeat:repeat-x,no-repeat,no-repeat,repeat-y,repeat-y,no-repeat,no-repeat,repeat,repeat!important;background-color:#f0e5cd!important;box-shadow:inset 0 0 0 1px #a9cfc8!important}',
- S+'::after{background:#1f5550!important;box-shadow:none!important}',
- S+'>.tm-cab{background:var(--neo-papel,none),#f4ead2!important;border:1.5px solid #1f5550!important;box-shadow:0 0 0 3px #f4ead2,0 0 0 4.5px #1f5550,0 6px 12px -6px rgba(40,30,20,.45)!important;color:#2a2418!important;text-shadow:none!important;padding-left:30px!important;padding-right:30px!important}',
- S+'>.tm-cab .k9,'+S+'>.tm-cab .tp-placa button{color:#1f5550!important}'+S+'>.tm-cab .tp-placa button[aria-selected="true"]{color:#2a2418!important}',
- S+'>.col-orn .co-sim,'+S+'>.col-orn .co-med{background:#d3e1d5!important;border-color:#1f5550!important;color:#1f5550!important;box-shadow:none!important}',
- S+'>.col-orn .co-sim svg{stroke:#1f5550!important}',
- S+' .lat-c{border-color:#d8cdbb!important;border-top-color:#1f5550!important}'
-].join('\n');document.head.appendChild(st);})();}
 
-if(TV_ON){(function(){var U=function(n){return 'url("img/acampamento/'+n+'.svg?v=1")';};var F='body.tv #dia-faixa#dia-faixa';var st=document.createElement('style');st.id='vh-totem-css';st.textContent=[
- '/* Faixa da cronologia do dia no Valhala: totem de ídolo — rosto barbado com elmo de chifres no alto, poste de madeira com veios e anéis, sulco entalhado no trilho, discos rúnicos nos toques e o pé do poste na relva; madeira sobre creme */',
- F+'{background:'+U('vh-idolo-borda')+' left 2px top/8px 40px repeat-y,'+U('vh-idolo-borda')+' right 2px top/8px 40px repeat-y,linear-gradient(180deg,#f4ead2,#efe1c9)!important;border:1px solid #6e4426!important;box-shadow:inset 0 0 0 1px #d9ae86!important}',
- F+' .df-trilho{border-left:0!important;background:'+U('vh-idolo-sulco')+' left top/5px 16px repeat-y!important}',
- F+' .df-toq{width:11px!important;height:11px!important;left:-3px!important;margin-top:-1.5px;border:0!important;border-radius:50%!important;background:'+U('vh-idolo-marca')+' center/100% 100% no-repeat!important;box-shadow:0 1px 2px rgba(60,40,10,.35)!important}',
- F+' .df-toq:not(.foi){opacity:.55}',
- F+' .df-h{color:#6e4426!important}',
- F+' .df-cap{background:var(--neo-papel,none),#f4ead2!important;border:1.5px solid #6e4426!important;border-radius:6px!important;box-shadow:0 0 0 2px #f4ead2,0 0 0 3px #6e4426!important;color:#2a2418!important}',
- F+' .df-cap>i{color:#6e4426!important}',
- F+' .df-cap>svg{display:none!important}',
- F+' .df-cap::before{content:"";display:block;width:34px;height:29px;margin:-3px 0 -1px;background:'+U('vh-idolo-cabeca')+' center/contain no-repeat}',
- F+' .df-cap.df-n::before{background-image:'+U('vh-idolo-pe')+'}'
-].join('\n');document.head.appendChild(st);})();}
 
-if(TV_ON){(function(){var F=function(n){return 'url("img/acampamento/vh-fotos/'+n+'.webp?v=1")';};var C='background-size:cover!important;background-repeat:no-repeat!important;filter:saturate(.85)!important;';var st=document.createElement('style');st.id='vh-fotos2-css';st.textContent=[
- '/* fotos nórdicas nos cartões que ainda estavam com ícone */',
- 'body.tv #mm-box#mm-box .mm-chale::before{background-image:'+F('quarto')+'!important;background-position:center 58%!important;'+C+'}',
- 'body.tv #mm-box#mm-box .mm-gab::before{background-image:'+F('thing')+'!important;background-position:center 40%!important;'+C+'}',
- 'body.tv #lat-apt#lat-apt::before{background-image:'+F('salao-ouro')+'!important;background-position:center 38%!important;'+C+'}',
- 'body.tv #lat-e>#lat-db#lat-db::before{background-image:'+F('porto')+'!important;background-position:center 45%!important;'+C+'}',
- 'body.tv #rt-box#rt-box .rt-insp::before{background-image:'+F('torre')+'!important;background-position:78% 30%!important;'+C+'}',
- 'body.tv #lat-cv#lat-cv::before{background-image:'+F('vila')+'!important;background-position:center 55%!important;'+C+'}'
-].join('\n');document.head.appendChild(st);})();}
 
-if(TV_ON){(function(){var st=document.createElement('style');st.id='vh-fotos-altas-css';st.textContent=[
- '/* fotos dos cartões ocupam toda a largura e ganham mais altura */',
- 'body.tv #mm-box#mm-box :is(.mm-chale,.mm-quest,.mm-orac-col,.mm-prof,.mm-gab)::before{height:132px!important;background-size:cover!important;background-repeat:no-repeat!important}',
- 'body.tv #lat-e#lat-e>:is(#lat-db,#lat-gm>.gm)::before{height:112px!important;background-size:cover!important;background-repeat:no-repeat!important}',
- 'body.tv #lat-e#lat-e>#lat-arena::before,body.tv #lat-arena#lat-arena::before{height:96px!important;background-size:cover!important;background-repeat:no-repeat!important}',
- 'body.tv #tp-real :is(#lat-apt,#lat-cv)#lat-apt::before,body.tv #tp-real #lat-apt#lat-apt::before,body.tv #tp-real #lat-cv#lat-cv::before{height:128px!important;background-size:cover!important;background-repeat:no-repeat!important}'
-].join('\n');document.head.appendChild(st);})();}
 
-if(TV_ON){(function(){var U=function(n){return 'url("img/acampamento/'+n+'.svg?v=1")';};var O='body.tv.op-on #modo-op';var st=document.createElement('style');st.id='vh-op-drakkar-css';st.textContent=[
- '/* Modo operacional no Valhala como drakkar: a coluna da extrema esquerda é a proa (cabeça de dragão), a da extrema direita é a popa (voluta), o rodapé é o casco com escudos na amurada; casco de madeira, escudos coloridos e ondas, como na referência do drakkar */',
- O+' .op-l,'+O+' .op-g{position:relative}',
- O+' .op-l::after,'+O+' .op-g::after{content:""!important;display:block!important;position:absolute!important;top:-36px!important;bottom:-26px!important;width:46px!important;height:auto!important;z-index:4!important;pointer-events:none!important;padding:128px 0 48px!important;box-sizing:border-box!important;opacity:1!important;border:0!important;transform:none!important;',
- '  background-color:transparent!important;background-position:left top,left bottom,left top!important;background-size:46px 130px,46px 50px,46px 29px!important;background-repeat:no-repeat,no-repeat,repeat-y!important;background-origin:border-box,border-box,content-box!important;background-clip:border-box,border-box,content-box!important}',
- O+' .op-l::after{left:-8px!important;right:auto!important;width:66px!important;top:-34px!important;padding-top:118px!important;background-size:66px 120px,66px 40px,66px 22px!important;background-image:'+U('vh-nav-proa-dragao')+','+U('vh-nav-quilha-dragao')+','+U('vh-nav-haste-dragao')+'!important}',
- O+' .op-g::after{right:-8px!important;left:auto!important;background-image:'+U('vh-nav-popa')+','+U('vh-nav-quilha-d')+','+U('vh-nav-haste-popa')+'!important}',
- /* casco no rodapé */
- 'body.tv.op-on #rod-apps{background:'+U('vh-nav-escudos')+' 0 1px/80px 17px repeat-x,'+U('vh-nav-ondas')+' 0 100%/60px 12px repeat-x,'+U('vh-nav-casco')+' 0 0/120px 100% repeat-x,#c47c45!important;border-top:2px solid #4a2a14!important;box-shadow:0 -3px 10px -4px rgba(40,25,10,.45)!important}',
- 'body.tv.op-on #rod-apps .rod-top{background:transparent!important;padding-top:10px!important}',
- 'body.tv.op-on #rod-apps :is(.cr-p,#rod-fogo){background:var(--neo-papel,none),#f4ead2!important;border:1.5px solid #4a2a14!important;border-radius:5px!important;box-shadow:0 0 0 2px #f4ead2,0 0 0 3px #4a2a14,0 4px 8px -4px rgba(30,20,10,.5)!important}',
- 'body.tv.op-on #rod-apps #rod-bar{background:var(--neo-papel,none),#f4ead2!important;border:1.5px solid #4a2a14!important;border-radius:5px!important;margin:6px 4px 4px 8px!important;height:auto!important;box-shadow:0 0 0 2px #f4ead2,0 0 0 3px #4a2a14!important}'
-].join('\n');document.head.appendChild(st);})();}
 
-if(TV_ON){(function(){var U=function(n){return 'url("img/acampamento/'+n+'.svg?v=1")';};var H='body.tv #hero-box#hero-box .nf2';var st=document.createElement('style');st.id='vh-frontao-camadas-css';st.textContent=[
- '/* frontão com o emblema HV do hotel; medalhão do topo em prata */',
- 'body.tv.tv .vh-telhado{background:url("img/acampamento/vh-telha-verde.svg?v=1") 0 0/36px 24px repeat,#143a33!important}',
- H+' .fr-lira{content:url("img/acampamento/vh-emblema-hv.webp?v=1")!important;filter:drop-shadow(0 2px 3px rgba(0,0,0,.35))}',
- 'body.tv #lat-topo .lt-logo img{content:url("img/acampamento/vh-emblema-hv-prata.webp?v=1")!important;border-radius:50%}'
-].join('\n');document.head.appendChild(st);})();}
 
-if(TV_ON){(function(){var st=document.createElement('style');st.id='vh-paineis-css';st.textContent=[
- '/* painéis que abrem sobre o centro, no Valhala: friso de runas no lugar da grega, medalhão com símbolo nórdico e runa no selo, sem coroa de louros */',
- 'body.tv #painel-dir .pd3{--mea:url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'80\' height=\'12\'%3E%3Cpath transform=\'translate%282 1%29 scale%28.55%29\' d=\'M1 1V17M1 1L8 5M1 6L8 10\' fill=\'none\' stroke=\'black\' stroke-width=\'2.4\' stroke-linecap=\'round\'/%3E%3Ccircle cx=\'13\' cy=\'6\' r=\'1\' fill=\'black\'/%3E%3Cpath transform=\'translate%2818 1%29 scale%28.55%29\' d=\'M1 1V17M1 3L8 7M1 8L8 12\' fill=\'none\' stroke=\'black\' stroke-width=\'2.4\' stroke-linecap=\'round\'/%3E%3Ccircle cx=\'29\' cy=\'6\' r=\'1\' fill=\'black\'/%3E%3Cpath transform=\'translate%2834 1%29 scale%28.55%29\' d=\'M1 1V17M1 1L7 5L1 9L7 13L1 17\' fill=\'none\' stroke=\'black\' stroke-width=\'2.4\' stroke-linecap=\'round\'/%3E%3Ccircle cx=\'45\' cy=\'6\' r=\'1\' fill=\'black\'/%3E%3Cpath transform=\'translate%2850 1%29 scale%28.55%29\' d=\'M1 1V17M8 1V17M1 1L8 8M8 1L1 8\' fill=\'none\' stroke=\'black\' stroke-width=\'2.4\' stroke-linecap=\'round\'/%3E%3Ccircle cx=\'61\' cy=\'6\' r=\'1\' fill=\'black\'/%3E%3Cpath transform=\'translate%2866 1%29 scale%28.55%29\' d=\'M1 17L7 9L4.5 3L2 9L8 17\' fill=\'none\' stroke=\'black\' stroke-width=\'2.4\' stroke-linecap=\'round\'/%3E%3Ccircle cx=\'77\' cy=\'6\' r=\'1\' fill=\'black\'/%3E%3Cpath d=\'M0 11.4H80\' stroke=\'black\' stroke-width=\'1\'/%3E%3C/svg%3E")!important}',
- 'body.tv #painel-dir .pd3::before{height:12px!important;-webkit-mask-size:80px 12px!important;mask-size:80px 12px!important}',
- 'body.tv #painel-dir .pd-louro{display:none!important}',
- 'body.tv #painel-dir .pd-medal>em{font-size:0!important;position:relative}',
- 'body.tv #painel-dir .pd-medal>em::before{content:"";position:absolute;inset:3px 5px;background:currentColor;-webkit-mask:var(--vh-runa) center/contain no-repeat;mask:var(--vh-runa) center/contain no-repeat}',
- 'body.tv #painel-dir.pd.on .pd-top>.pd-pilula{background:linear-gradient(180deg,#7a5636,#5a3c22)!important;border-color:#D4BD82!important;color:#F5EBD6!important}',
- 'body.tv #painel-dir.pd.on .pd-top>.pd-pilula>button{border-left-color:#8a6644!important;color:#F5EBD6!important}',
- 'body.tv #painel-dir [data-pane="fin"] .pd-medal>em{--vh-runa:url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 9 18\'%3E%3Cpath d=\'M1 1V17M1 1L8 5M1 6L8 10\' fill=\'none\' stroke=\'black\' stroke-width=\'1.7\' stroke-linecap=\'round\' stroke-linejoin=\'round\'/%3E%3C/svg%3E")}',
- 'body.tv #painel-dir [data-pane="lap"] .pd-medal>em{--vh-runa:url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 9 18\'%3E%3Cpath d=\'M1 1V17M1 3L8 7M1 8L8 12\' fill=\'none\' stroke=\'black\' stroke-width=\'1.7\' stroke-linecap=\'round\' stroke-linejoin=\'round\'/%3E%3C/svg%3E")}',
- 'body.tv #painel-dir [data-pane="enf"] .pd-medal>em{--vh-runa:url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 9 18\'%3E%3Cpath d=\'M1 1V17M1 1L7 5L1 9L7 13L1 17\' fill=\'none\' stroke=\'black\' stroke-width=\'1.7\' stroke-linecap=\'round\' stroke-linejoin=\'round\'/%3E%3C/svg%3E")}',
- 'body.tv #painel-dir [data-pane="b9"] .pd-medal>em{--vh-runa:url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 9 18\'%3E%3Cpath d=\'M1 1V17M8 1V17M1 1L8 8M8 1L1 8\' fill=\'none\' stroke=\'black\' stroke-width=\'1.7\' stroke-linecap=\'round\' stroke-linejoin=\'round\'/%3E%3C/svg%3E")}'
-].join('\n');document.head.appendChild(st);})();}
 
-if(TV_ON){(function(){var R1='M0 11H22M4 2V10M4 2L8 4.5M4 5L8 7.5M14 2V10M14 2L17.5 4.5L14 7L17.5 10',R2='M0 11H22M4 2V10M4 2L8 4.5M4 5L8 7.5M14 2V10M14 2L17.5 4.5L14 7L17.5 10';
- /* Valhala: a grega embutida no CSS vira faixa de runas (ᚠ ᚱ) com a mesma cor e tamanho */
- function troca(){Array.prototype.forEach.call(document.querySelectorAll('style'),function(st){var t=st.textContent;if(t.indexOf('V2H15V8H8V5H11')<0&&t.indexOf('H22V1H6V8H17V5H11')<0)return;
-  st.textContent=t.split('M0 11H22M3 11V2H15V8H8V5H11').join(R1).split('M0 11H22V1H6V8H17V5H11').join(R2);});}
- troca();setTimeout(troca,1500);setTimeout(troca,5000);})();}
 
-if(TV_ON){(function(){var K=function(n){return 'url("img/acampamento/'+n+'.svg?v=2")';};var st=document.createElement('style');st.id='vh-banner-teto-css';st.textContent=[
- '/* banner com pilares e moldura em madeira marrom e trança dourada; encostado no teto, com a pílula na emenda, e fechado embaixo pela mesma trança */',
- 'body.tv #hero-box .neo-frontao.nf2{margin-bottom:0!important}',
- 'body.tv #hero-box .bn-slot::before{background:'+K('vh-no-h-marrom')+' 0 0/40px 20px repeat-x,#5a3c22!important;height:20px!important;border-top:1.5px solid #A88750!important;border-bottom:2px solid #A88750!important;box-shadow:0 3px 6px -3px rgba(0,0,0,.4)!important}',
- 'body.tv #hero-box .bn-slot{padding-bottom:22px!important}',
- 'body.tv #hero-box#hero-box .vx-hero{box-shadow:inset 0 0 0 20px transparent,0 0 0 1.5px #5a3c22!important}',
- 'body.tv #hero-box#hero-box .vx-hero::before{top:20px!important;bottom:20px!important;right:20px!important;height:auto!important;max-height:none!important}',
- 'body.tv #hero-box .bn-slot{background:'+K('vh-capitel-marrom')+' 2px 0/46px 31px no-repeat,'+K('vh-capitel-marrom')+' calc(100% - 2px) 0/46px 31px no-repeat,'+K('vh-fuste-marrom')+' 2px 31px/46px 40px repeat-y,'+K('vh-fuste-marrom')+' calc(100% - 2px) 31px/46px 40px repeat-y,#f1e6cf!important}',
- 'body.tv #hero-box .bn-slot::after{background:'+K('vh-base-marrom')+' 0 0/46px 14px no-repeat,'+K('vh-base-marrom')+' 100% 0/46px 14px no-repeat!important}',
- 'body.tv #hero-box#hero-box .vx-hero{background-image:url("img/acampamento/vh-canto-tl.svg?v=3"),url("img/acampamento/vh-canto-tr.svg?v=3"),url("img/acampamento/vh-canto-bl.svg?v=3"),url("img/acampamento/vh-canto-br.svg?v=3"),'+K('vh-no-h-marrom')+','+K('vh-no-h-marrom')+','+K('vh-no-v-marrom')+','+K('vh-no-v-marrom')+',url("img/acampamento/vh-papel.svg?v=3")!important}'
-].join('\n');document.head.appendChild(st);})();}
 
-if(TV_ON){(function(){var st=document.createElement('style');st.id='vh-bandeira-css';st.textContent='body.tv #lat-band-b img[src*="bandeira"]{content:url("img/acampamento/vh-emblema-hv.webp?v=1")!important;object-fit:contain!important;border-radius:50%}';document.head.appendChild(st);})();}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* campos do registro acrescentados depois do carregamento inicial não podem sumir na recarga */
+(function(){try{var raw=JSON.parse(KEY_RAW0||'null');if(!raw||typeof raw!=='object')return;var n=0;Object.keys(raw).forEach(function(k){if(!(k in S)){S[k]=raw[k];n++;}});if(n)grava();}catch(e){}})();
+
+window.OP_TEMPLO=OP_TEMPLO;
+/* Tema Hotel Valhala: cada página em arquivo próprio (temas/valhala/) */
+if(TV_ON){['comum','saguao','operacional'].forEach(function(n){var sc=document.createElement('script');sc.src='temas/valhala/'+n+'.js?v=1';sc.async=false;document.body.appendChild(sc);});}
 
 })();
 </script>
