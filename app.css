@@ -6373,3 +6373,23 @@ html body.ct-templo .wrap::before,html body.ct-templo .wrap::after{display:none}
 #cx.mf .mf-pg input:not([type=checkbox]),#cx.mf .mf-pg textarea,#cx.mf .mf-pg select{background:#fffdf6!important;color:#2a2116!important;border-color:rgba(90,63,44,.35)!important}
 #cx.mf .mf-pg button{color:#2a2116;border-color:rgba(90,63,44,.4)}
 #cx.mf .cx-x{color:#f4ead2}
+/* ======================= Moldura da central (43-moldura-da-central): frontão, pilares e base do templo do tema ======================= */
+#ct-mold[hidden],#ct-mold-fundo[hidden]{display:none!important}
+#ct-mold-fundo{position:fixed;inset:0;z-index:328;background:rgba(18,14,9,.66)}
+#ct-mold{position:fixed;z-index:329;pointer-events:none;left:max(16px,calc(50vw - 620px));right:max(16px,calc(50vw - 620px));top:76px;bottom:14px}
+#ct-mold .cm-front{position:absolute;top:0;left:0;right:0;overflow:visible}
+/* tímpano: o papel do templo dentro do triângulo, para o frontão não ficar vazado */
+#ct-mold .cm-tim{position:absolute;left:0;right:0;bottom:0;height:100%;background:var(--mold-pap,#f4ead2);clip-path:polygon(0 100%,50% 6%,100% 100%)}
+#ct-mold .cm-pil{position:absolute;left:0;right:0;top:var(--mold-t);bottom:var(--mold-b)}
+#ct-mold .cm-base{position:absolute;left:0;right:0;bottom:0;height:var(--mold-b);overflow:hidden}
+/* a folha (painel ou Manual) entre os pilares, abaixo do frontão e acima da base; o fundo escuro passa a ser o da moldura */
+html body.com-moldura #painel-dir.pd.on.central{z-index:331;background:transparent!important}
+html body.com-moldura #painel-dir.pd.on.central .pd-corpo{top:calc(76px + var(--mold-t))!important;bottom:calc(14px + var(--mold-b))!important;
+ left:calc(max(16px,calc(50vw - 620px)) + var(--mold-s))!important;right:calc(max(16px,calc(50vw - 620px)) + var(--mold-s))!important;border:0!important;border-radius:0!important;box-shadow:none!important}
+html body.com-moldura #painel-dir.central .pd-corpo>.ct-abas{position:fixed!important;top:14px;left:max(16px,calc(50vw - 620px));right:calc(max(16px,calc(50vw - 620px)) + 52px);margin:0!important}
+html body.com-moldura #painel-dir.central .pd-top{position:fixed!important;top:20px!important;right:max(16px,calc(50vw - 620px))!important;left:auto!important;width:auto!important;margin:0!important;padding:0!important;border:0!important;background:transparent!important}
+html body.com-moldura #cx.mf.on{background:transparent!important}
+html body.com-moldura #cx.mf>.ct-abas{position:fixed;top:14px;left:max(16px,calc(50vw - 620px));right:calc(max(16px,calc(50vw - 620px)) + 52px);width:auto!important;margin:0}
+html body.com-moldura #cx.mf .mf-bx{position:fixed!important;top:calc(76px + var(--mold-t))!important;bottom:calc(14px + var(--mold-b))!important;
+ left:calc(max(16px,calc(50vw - 620px)) + var(--mold-s))!important;right:calc(max(16px,calc(50vw - 620px)) + var(--mold-s))!important;width:auto!important;height:auto!important;border:0!important;border-radius:0!important;box-shadow:none!important}
+@media(max-width:760px){#ct-mold{left:0;right:0;top:64px;bottom:0}}
