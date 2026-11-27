@@ -498,3 +498,5 @@ body.lay-compacto .fbt button{min-width:0;padding:3px 2px;font-size:9.5px;letter
 body.lay-compacto .fstat{white-space:normal;line-height:1.2}
 body.lay-compacto [data-c=gasto] .val{flex:0 0 54px!important}
 body.lay-compacto #painel:not([hidden]){align-items:stretch!important}
+/* popup tem no máximo 800×600: o painel numa tela só encolhe a área quando o tamanho aumenta, para continuar sem rolagem */
+body.lay-compacto.modo-popup{height:calc(600px / var(--z,1));max-height:calc(600px / var(--z,1));width:min(640px,calc(790px / var(--z,1)))}

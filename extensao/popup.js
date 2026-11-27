@@ -276,7 +276,7 @@ function aplicaTema(k) {
   if (!$('painel').hidden) pintaTudo(); else pintaGuardiao();
   try { pintaMsgs(); } catch (e) { }
 }
-function aplicaZoom(z) { ZOOM = z; document.documentElement.style.zoom = z; }
+function aplicaZoom(z) { ZOOM = z; document.documentElement.style.zoom = z; document.documentElement.style.setProperty('--z', z); }
 
 
 /* contadores: a lista vive na extensão; a do app entra quando existir */
@@ -316,6 +316,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     document.body.classList.toggle('lay-templo', v === 'templo');
     $('layout').value = v; $('lay-t').textContent = v === 'compacto' ? 'templo' : 'painel';
     $('lay').title = v === 'compacto' ? 'Abrir o templo completo (com rolagem)' : 'Ver tudo numa tela só, sem rolagem';
+    if (MODO === 'popup' && v === 'compacto' && ZOOM > 1.1) aplicaZoom(1.1);
   }
   aplicaLayout(pref.layout);
   $('cap').placeholder = 'captura · despeje antes de perder'; $('g-desc').placeholder = 'gasto · almoço, uber…';
@@ -323,27 +324,32 @@ document.addEventListener('DOMContentLoaded', async function () {
   $('layout').onchange = function () { aplicaLayout(this.value); chrome.storage.local.set({ layout: this.value }); };
   aplicaTema(pref.tema || 'greek');
   aplicaZoom(+pref.zoom || 1);
+  if (MODO === 'popup' && document.body.classList.contains('lay-compacto') && ZOOM > 1.1) aplicaZoom(1.1);
   $('clique').value = pref.clique || 'popup';
   if (MODO === 'lateral') { $('m-lateral').classList.add('atual'); $('m-lateral').title = 'Você está no painel lateral'; }
   if (MODO === 'janela') { $('m-janela').classList.add('atual'); $('m-janela').title = 'Você está na janela solta'; }
 
   /* tamanho */
+  /* no popup o Chrome limita a 800×600: no painel numa tela só o tamanho para em 110% para nada ficar cortado */
+  function zMax() { return MODO === 'popup' && document.body.classList.contains('lay-compacto') ? ZOOMS.indexOf(1.1) : ZOOMS.length - 1; }
   function passo(dir) {
     var i = ZOOMS.indexOf(ZOOM); if (i < 0) i = 2;
-    i = Math.max(0, Math.min(ZOOMS.length - 1, i + dir));
+    if (dir > 0 && i >= zMax()) { aviso('No popup o painel vai até 110%. Para ampliar mais, abra a janela solta.'); return; }
+    i = Math.max(0, Math.min(zMax(), i + dir));
     aplicaZoom(ZOOMS[i]); chrome.storage.local.set({ zoom: ZOOMS[i] });
   }
   $('z-menos').onclick = function () { passo(-1); };
   $('z-mais').onclick = function () { passo(1); };
-  /* painel lateral: precisa do gesto do clique, por isso abre daqui mesmo */
-  $('m-lateral').onclick = async function () {
+  /* painel lateral: o Chrome só abre dentro do gesto do clique, então a janela do navegador é descoberta antes */
+  var JAN_NORMAL = null;
+  try { chrome.windows.getLastFocused({ windowTypes: ['normal'] }, function (w) { JAN_NORMAL = w ? w.id : null; }); } catch (e) { }
+  $('m-lateral').onclick = function () {
     if (MODO === 'lateral') return;
-    try {
-      var w = await chrome.windows.getCurrent();
-      await chrome.sidePanel.open({ windowId: w.id });
+    if (JAN_NORMAL == null || !chrome.sidePanel) { aviso('O painel lateral pede o Chrome 116 ou mais novo.', true); return; }
+    chrome.sidePanel.open({ windowId: JAN_NORMAL }).then(function () {
       if (MODO === 'popup') window.close();
-      else if (MODO === 'janela') chrome.windows.remove(w.id);
-    } catch (e) { aviso('O painel lateral pede o Chrome 116 ou mais novo.', true); }
+      else if (MODO === 'janela') chrome.windows.getCurrent(function (w) { chrome.windows.remove(w.id); });
+    }, function () { aviso('Não deu para abrir o painel lateral nesta janela.', true); });
   };
   $('m-janela').onclick = function () {
     if (MODO === 'janela') return;
