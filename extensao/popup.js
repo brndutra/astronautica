@@ -230,8 +230,48 @@ function pintaDia() {
 
 function pintaTudo() {
   pintaCab(); pintaAgora(); pintaCiclo(); pintaHumor(); pintaCont(); pintaTop(); pintaHabitos(); pintaFoco(); pintaGuardiao(); pintaDia();
-  pintaToque(); pintaAtu(); pintaCaps(); pintaVerso();
+  pintaToque(); pintaAtu(); pintaCaps(); pintaVerso(); pintaPosto();
 }
+
+/* ---------- o Posto do app, distribuído pelas abas ----------
+   O app guarda em dados.posto uma foto do que o Posto mostra (texto e botões de cada cartão).
+   Aqui só se lê; um botão vira o evento postoClique e o app clica o mesmo botão quando aplica a fila. */
+var POSTO_ABAS = { hoje: ['top', 'fazer', 'lado'], arena: ['foco', 'estudo'], reg: ['rod'] };
+function escP(t) { return String(t == null ? '' : t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+function pintaPosto() {
+  var P = estado && estado.posto, em = P && P.em ? new Date(P.em) : null, velho = em && Date.now() - em > 15 * 60000;
+  Object.keys(POSTO_ABAS).forEach(function (aba) {
+    var box = $('posto-' + aba); if (!box) return;
+    if (!P || !P.c) { box.innerHTML = '<p class="pst-vz">Abra o app uma vez para o Posto aparecer aqui.</p>'; return; }
+    var h = POSTO_ABAS[aba].map(function (k) {
+      var c = P.c[k]; if (!c) return '';
+      /* título: o nome do cartão (1ª linha), menos no cabeçalho e no rodapé; horário + compromisso numa linha só */
+      var ls = (c.l || []).slice(), tit = (k === 'top' || k === 'rod' || !ls.length) ? c.t : ls.shift(), jun = [];
+      ls.forEach(function (x, i) { if (/^\d{1,2}:\d{2}$/.test(x) && ls[i + 1] && !/^\d{1,2}:\d{2}$/.test(ls[i + 1])) { ls[i + 1] = x + ' · ' + ls[i + 1]; return; } jun.push(x); });
+      var cx = function (x) { return /[A-ZÁÉÍÓÚÂÊÔÃÕÇ]/.test(x) && x === x.toUpperCase(); };
+      var L = jun.map(function (x) {
+        var kv = x.match(/^([A-ZÁÉÍÓÚÂÊÔÃÕÇ ]{3,}) · (.*[\d—].*)$/);
+        if (kv) return '<p class="pst-kv"><b>' + escP(kv[1]) + '</b><span>' + escP(kv[2]) + '</span></p>';
+        return cx(x) && x.length > 2 ? '<b class="pst-k">' + escP(x) + '</b>' : '<p>' + escP(x) + '</p>'; }).join('');
+      var B = (c.b || []).map(function (b) {
+        var at = ' data-psel="' + escP(b.s) + '" data-plab="' + escP(b.l) + '"' + (b.i ? ' data-pinp="' + escP(b.i) + '"' : '');
+        if (b.i) return '<div class="linha pst-in"><input placeholder="' + escP(b.ph || '') + '" maxlength="300"><button class="pri"' + at + '>' + escP(b.l) + '</button></div>';
+        return '<button class="pst-b' + (b.on ? ' on' : '') + '"' + at + '>' + escP(b.l) + '</button>'; }).join('');
+      return '<div class="card pst"><h2>' + escP(tit) + '</h2>' + L + (B ? '<div class="pst-bs">' + B + '</div>' : '') + '</div>';
+    }).join('');
+    box.innerHTML = h + '<p class="pst-em">' + (em ? 'como o app mostrou às ' + String(em.getHours()).padStart(2, '0') + ':' + String(em.getMinutes()).padStart(2, '0') + (velho ? ' · abra o app para atualizar' : '') : '') + ' · os toques valem quando o app estiver aberto</p>';
+  });
+}
+/* a extensão relê a nuvem a cada 30 s (background): a aba aberta acompanha */
+try { chrome.storage.onChanged.addListener(function (ch) { if (ch.estado && ch.estado.newValue && ch.estado.newValue.dados) { estado = ch.estado.newValue.dados; try { pintaTudo(); } catch (e) { } } }); } catch (e) { }
+document.addEventListener('click', function (e) {
+  var b = e.target.closest && e.target.closest('[data-psel]'); if (!b) return;
+  e.preventDefault();
+  var d = { sel: b.dataset.psel }, inp = b.dataset.pinp;
+  if (inp) { var i = b.parentNode.querySelector('input'); if (!i || !i.value.trim()) { if (i) i.focus(); return; } d.inp = inp; d.val = i.value.trim(); i.value = ''; }
+  b.classList.add('pst-ida'); b.disabled = true;
+  manda('postoClique', d, 'Enviado ao app: ' + b.dataset.plab + '.');
+});
 
 /* passos da tarefa: guardados na extensão, por tarefa */
 var PASSOS = { chave: '', itens: [] };

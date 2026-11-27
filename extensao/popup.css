@@ -586,3 +586,19 @@ body:not(.lay-compacto) .barra-modo .lay span{display:none}
 body:not(.lay-compacto) .barra-modo .lay{padding:0 6px}
 .barra-modo .bm-v{white-space:nowrap}
 .dia li>b{white-space:nowrap}
+
+/* ---------- o Posto do app nas abas ---------- */
+.posto{display:flex;flex-direction:column;gap:10px}
+.card.pst h2{margin-bottom:4px}
+.card.pst p{margin:2px 0;font-size:12.5px;line-height:1.35}
+.card.pst .pst-k{display:block;margin:8px 0 1px;font:700 9.5px/1.2 system-ui,sans-serif;letter-spacing:.14em;color:var(--ouro)}
+.pst-bs{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.pst-bs .pst-in{flex:1 1 100%}
+.pst-b{min-height:28px;padding:3px 10px;border-radius:999px;font-size:12px}
+.pst-b.on{background:var(--tinta);border-color:var(--tinta);color:var(--papel)}
+.pst-ida{opacity:.55}
+.pst-em,.pst-vz{margin:0 4px;font-size:10.5px;color:var(--dim)}
+
+body.lay-compacto .posto{display:none!important}
+.card.pst .pst-kv{display:flex;justify-content:space-between;gap:10px;padding:3px 0;border-bottom:1px dotted var(--linha)}
+.card.pst .pst-kv b{font:700 9.5px/1.6 system-ui,sans-serif;letter-spacing:.14em;color:var(--ouro)}

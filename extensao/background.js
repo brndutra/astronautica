@@ -129,7 +129,8 @@ async function pomo(soma) {
    mudouEm: hora da última ação feita aqui; enquanto a nuvem for mais velha que ela, vale o que está aqui. */
 async function espelhaApp(af, ts) {
   var fo = await lerFoco(), agora = Date.now(), fim = (await chrome.storage.local.get('focoFim')).focoFim || {};
-  if (fo && fo.mudouEm && ts && ts < fo.mudouEm) return;
+  /* ação feita aqui: espera a nuvem ficar mais nova que ela e dá 45 s para o app aplicar a fila (ele a lê a cada 30 s) */
+  if (fo && fo.mudouEm && ((ts && ts < fo.mudouEm) || agora - fo.mudouEm < 45000)) return;
   if (af && af.dur) {
     var id = af.id || af.ini, pausado = af.pausa != null, resta = pausado ? af.pausa : af.ini + af.dur - agora;
     if (fim.id === id && ts < fim.em + 1) return;

@@ -281,7 +281,8 @@ function cxAplica(ev){var d=ev.dados||{},dia=d.dia||hoje();
    anota('Humor pela extensão: '+hv+'/5'+(d.nota?' — '+esc(String(d.nota).slice(0,120)):'')+'.',0,false);return true;
   case 'contador':return cxCont(d,dia);
   case 'ciclo':return cxCiclo(d,dia);
-  case 'focoApp':return cxFocoApp(d,dia);}
+  case 'focoApp':return cxFocoApp(d,dia);
+  case 'postoClique':return postoClique(d);}
  return false;}
 /* Um cronômetro só: a extensão manda ini, pausa, segue e fim do bloco (id = início do bloco).
    Conflito (o app já tem outro bloco): vale o do app; devolver true grava e a extensão passa a mostrar o do app. */
