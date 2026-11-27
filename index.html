@@ -19702,6 +19702,12 @@ setInterval(function(){try{tpbAltura();}catch(e){}},1000);setTimeout(function(){
  'html body .wrap{padding-bottom:var(--rod-h,0px)!important}'
 ].join('\n');document.head.appendChild(st);})();
 
+/* base do templo principal sem os dois degraus */
+(function(){var st=document.createElement('style');st.id='bn-sem-degraus-css';var R='html body:not(.zz9):not(.zz8):not(.zz7):not(.zz6):not(.zz5) #hero-box#hero-box>.bn-rod';st.textContent=[
+ R+'::before,'+R+'::after{display:none!important;content:none!important}',
+ R+'{margin-bottom:18px!important}'
+].join('\n');document.head.appendChild(st);})();
+
 })();
 </script>
 </body>
