@@ -2,8 +2,8 @@
   "manifest_version": 3,
   "name": "Astronáutica",
   "short_name": "Astronáutica",
-  "version": "0.2.0",
-  "description": "Acampamento Meio-Sangue: foco com pausa, ciclo de estudos, humor, contadores, captura, hábitos, prioridades, gastos e aviso de cada faixa do dia.",
+  "version": "0.3.0",
+  "description": "Acampamento Meio-Sangue, Hotel Valhala e Casa do Brooklyn: foco com pausa, ciclo de estudos, humor, contadores, captura, hábitos, missões, gastos e aviso de cada faixa do dia. Abre como popup, painel lateral ou janela solta.",
   "icons": {
     "16": "icones/icone-16.png",
     "32": "icones/icone-32.png",
@@ -11,12 +11,15 @@
     "128": "icones/icone-128.png"
   },
   "action": {
-    "default_title": "Acampamento Meio-Sangue",
+    "default_title": "Astronáutica",
     "default_popup": "popup.html",
     "default_icon": {
       "16": "icones/icone-16.png",
       "32": "icones/icone-32.png"
     }
+  },
+  "side_panel": {
+    "default_path": "popup.html?modo=lateral"
   },
   "background": {
     "service_worker": "background.js"
@@ -24,7 +27,8 @@
   "permissions": [
     "storage",
     "alarms",
-    "notifications"
+    "notifications",
+    "sidePanel"
   ],
   "host_permissions": [
     "https://gubpygurtxadsncthttg.supabase.co/*"
@@ -34,7 +38,7 @@
       "suggested_key": {
         "default": "Alt+Shift+A"
       },
-      "description": "Abrir o registro rápido"
+      "description": "Abrir a Astronáutica"
     }
   }
 }

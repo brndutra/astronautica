@@ -27,6 +27,10 @@ O projeto na Vercel está ligado a este repositório: cada push na `main` public
 
 ## Extensão do Chrome (`extensao/`)
 
+- Baixar pronta: ícone no verso do cartão-postal do banner (`downloads/astronautica-extensao.zip`, com o `manifest.json` na raiz).
+- Três refúgios, escolhidos na engrenagem: Acampamento Meio-Sangue, Hotel Valhala e Casa do Brooklyn (textos, cores, moeda, guardião e avisos).
+- Modos: popup, painel lateral do Chrome (largura ajustável na borda) ou janela solta (move e redimensiona; volta no mesmo lugar). A− e A+ mudam o tamanho. Na engrenagem dá para escolher o que o clique no ícone abre.
+
 - Instalar: `chrome://extensions` → ativar **Modo do desenvolvedor** → **Carregar sem compactação** → escolher a pasta `extensao`.
 - Atalho: **Alt+Shift+A** abre o registro rápido.
 - Visual do Acampamento Meio-Sangue, em três abas:

@@ -1,5 +1,8 @@
-/* Acampamento Meio-Sangue · segundo plano: aviso de cada faixa do dia, timer de foco e pausa. */
-importScripts('api.js');
+/* Astronáutica · segundo plano: aviso de cada faixa do dia, timer de foco e pausa,
+   e o modo de abrir (popup, painel lateral ou janela solta). */
+importScripts('api.js', 'temas.js');
+
+async function tema() { return temaDe((await chrome.storage.local.get('tema')).tema); }
 
 function proximaFaixa(agora) {
   agora = agora || new Date();
@@ -11,8 +14,9 @@ function proximaFaixa(agora) {
 }
 function agendaFaixa() { chrome.alarms.create('faixa', { when: proximaFaixa().getTime() }); }
 
-function avisa(id, titulo, texto) {
-  chrome.notifications.create(id + '-' + Date.now(), { type: 'basic', iconUrl: 'icones/icone-128.png', title: titulo, message: texto, priority: 1 });
+async function avisa(id, titulo, texto) {
+  var T = await tema();
+  chrome.notifications.create(id + '-' + Date.now(), { type: 'basic', iconUrl: T.guardiao.img, title: T.guardiao.nome + ' · ' + titulo, message: texto, contextMessage: T.rotulo, priority: 1 });
 }
 
 async function avisaFaixa() {
@@ -20,8 +24,8 @@ async function avisaFaixa() {
   var e = null;
   try { e = await API.estado(); } catch (err) { e = ((await chrome.storage.local.get('estado')).estado || {}).dados || null; }
   var txt = e && e.tb ? e.tb[hojeStr() + '|' + f] : '';
-  var fim = String((+f + 3) % 24).padStart(2, '0');
-  avisa('faixa', 'Faixa das ' + f + 'h às ' + fim + 'h', txt ? txt : 'Nada marcado na grade para esta faixa.');
+  var fim = String((+f + 3) % 24).padStart(2, '0'), T = await tema(), nm = T.fx[f] || '';
+  avisa('faixa', 'Toque ' + (T.toque === 'Concha' ? 'da ' : 'do ') + T.toque + ' · ' + (nm ? nm + ', ' : '') + f + 'h às ' + fim + 'h', txt ? txt : 'Nada marcado na grade para esta faixa.');
 }
 
 /* Estado do foco: tot = duração total, acum = tempo já corrido antes do trecho atual,
@@ -74,7 +78,7 @@ async function focoEncerrar(concluido) {
     if (fo.disc && feitos >= 5) await envia('ciclo', { acao: 'fechar', disc: fo.disc, min: feitos });
   }
   if (concluido) {
-    if (fo.descanso) avisa('foco', 'Pausa encerrada', 'Hora de voltar para a Arena.');
+    if (fo.descanso) avisa('foco', 'Pausa encerrada', (await tema()).voltar);
     else avisa('foco', 'Bloco concluído', feitos + ' min registrados. Levante, beba água e escolha o próximo passo.');
   }
   return { ok: true, min: feitos, descanso: !!fo.descanso, ciclo: !!(fo.disc && feitos >= 5) };
@@ -96,8 +100,41 @@ async function enviaPendentes() {
   await chrome.storage.local.set({ pendentes: resto });
 }
 
-chrome.runtime.onInstalled.addListener(function () { agendaFaixa(); chrome.alarms.create('pendentes', { periodInMinutes: 5 }); });
-chrome.runtime.onStartup.addListener(function () { agendaFaixa(); chrome.alarms.create('pendentes', { periodInMinutes: 5 }); badge(); });
+/* ---------- modos de abrir ---------- */
+async function aplicaClique(v) {
+  v = v || (await chrome.storage.local.get('clique')).clique || 'popup';
+  await chrome.action.setPopup({ popup: v === 'popup' ? 'popup.html' : '' });
+  try { await chrome.sidePanel.setPanelBehavior({ openPanelOnActionClick: v === 'lateral' }); } catch (e) { }
+}
+/* janela solta: móvel e redimensionável; volta no último lugar e tamanho */
+async function abreJanela() {
+  var g = await chrome.storage.local.get(['janelaId', 'janelaPos']);
+  if (g.janelaId) {
+    try { await chrome.windows.update(g.janelaId, { focused: true, drawAttention: true }); return; } catch (e) { }
+  }
+  var p = g.janelaPos || { width: 420, height: 720 };
+  var o = { url: 'popup.html?modo=janela', type: 'popup', width: Math.max(320, p.width | 0), height: Math.max(360, p.height | 0) };
+  if (p.left != null) { o.left = p.left | 0; o.top = p.top | 0; }
+  var w;
+  try { w = await chrome.windows.create(o); } catch (e) { delete o.left; delete o.top; w = await chrome.windows.create(o); }
+  await chrome.storage.local.set({ janelaId: w.id });
+}
+chrome.windows.onBoundsChanged.addListener(async function (w) {
+  var g = await chrome.storage.local.get('janelaId');
+  if (g.janelaId === w.id) chrome.storage.local.set({ janelaPos: { left: w.left, top: w.top, width: w.width, height: w.height } });
+});
+chrome.windows.onRemoved.addListener(async function (id) {
+  var g = await chrome.storage.local.get('janelaId');
+  if (g.janelaId === id) chrome.storage.local.remove('janelaId');
+});
+chrome.action.onClicked.addListener(async function (tab) {
+  var v = (await chrome.storage.local.get('clique')).clique || 'popup';
+  if (v === 'janela') abreJanela();
+  else if (v === 'lateral') { try { await chrome.sidePanel.open({ windowId: tab.windowId }); } catch (e) { } }
+});
+
+chrome.runtime.onInstalled.addListener(function () { agendaFaixa(); chrome.alarms.create('pendentes', { periodInMinutes: 5 }); aplicaClique(); });
+chrome.runtime.onStartup.addListener(function () { agendaFaixa(); chrome.alarms.create('pendentes', { periodInMinutes: 5 }); badge(); aplicaClique(); });
 
 chrome.alarms.onAlarm.addListener(function (a) {
   if (a.name === 'faixa') { avisaFaixa(); agendaFaixa(); }
@@ -112,4 +149,6 @@ chrome.runtime.onMessage.addListener(function (msg, _de, responde) {
   if (msg.t === 'focoEncerrar') { focoEncerrar(false).then(responde); return true; }
   if (msg.t === 'pendente') { guardaPendente(msg.tipo, msg.dados).then(function () { responde({ ok: true }); }); return true; }
   if (msg.t === 'reagendar') { agendaFaixa(); responde({ ok: true }); }
+  if (msg.t === 'janela') { abreJanela().then(function () { responde({ ok: true }); }); return true; }
+  if (msg.t === 'clique') { aplicaClique(msg.v).then(function () { responde({ ok: true }); }); return true; }
 });

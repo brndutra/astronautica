@@ -1,4 +1,4 @@
-/* Acampamento Meio-Sangue · janela da extensão
+/* Astronáutica · janela da extensão (popup, painel lateral ou janela solta)
    Lê o estado do app e a fila de eventos ainda não aplicados; tudo o que a pessoa marca
    vira evento em vertice_inbox. Quem grava o registro é sempre o app. */
 var $ = function (id) { return document.getElementById(id); };
@@ -9,8 +9,9 @@ var HUM = [[5, 'Radiante', '#d8b44a'], [4, 'Firme', '#6f8a57'], [3, 'Morno', '#c
 var CORES = ['#d99b52', '#d8c16e', '#7f9a68', '#6b8fb3', '#b86b5a', '#9a7bb0'];
 var CONT_PADRAO = [{ id: 'c-flexoes', n: 'Flexões', u: 'repetições', meta: 30 }, { id: 'c-leitura', n: 'Leitura', u: 'páginas', meta: 20 }];
 var AGUA_META = 8, CIRC = 2 * Math.PI * 47;
-/* horário do acampamento: o mesmo nome das faixas no app */
-var FX_NOME = { '06': 'alvorada', '09': 'treino na arena', '12': 'almoço no pavilhão', '15': 'atividades', '18': 'jantar', '21': 'fogueira' };
+/* refúgio, modo de abertura e tamanho */
+var MODO = new URLSearchParams(location.search).get('modo') || 'popup';
+var TEMA = 'greek', T = temaDe('greek'), ZOOM = 1, ZOOMS = [0.85, 0.92, 1, 1.1, 1.2, 1.32];
 var estado = null, fila = [], contDefs = [], relogio = null;
 
 function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
@@ -95,9 +96,9 @@ function pintaCab() {
 
 function pintaAgora() {
   var f = faixaDe(), tb = (estado && estado.tb) || {}, d = hojeStr(), el = $('agora');
-  if (!f) { el.innerHTML = '<small>fora das faixas</small><b>O acampamento dorme</b><span>A próxima faixa começa às 06h.</span>'; return; }
+  if (!f) { el.innerHTML = '<small>fora das faixas</small><b>' + esc(T.dorme) + '</b><span>A próxima faixa começa às 06h.</span>'; return; }
   var i = FAIXAS.indexOf(f), prox = FAIXAS[i + 1], txt = tb[d + '|' + f], txp = prox ? tb[d + '|' + prox] : '';
-  el.innerHTML = '<small>agora · ' + FX_NOME[f] + ' · ' + f + 'h às ' + String((+f + 3) % 24).padStart(2, '0') + 'h</small><b>' + (txt ? esc(txt) : 'Nada marcado na escala') + '</b>' +
+  el.innerHTML = '<small>agora · ' + esc(T.fx[f] || f + 'h') + ' · ' + f + 'h às ' + String((+f + 3) % 24).padStart(2, '0') + 'h</small><b>' + (txt ? esc(txt) : 'Nada marcado na escala') + '</b>' +
     (prox ? '<span>depois, às ' + prox + 'h: ' + (txp ? esc(txp) : 'livre') + '</span>' : '');
 }
 
@@ -178,7 +179,7 @@ function pintaTop() {
   var p = estado && estado.plan && estado.plan[hojeStr()], top = (p && p.top) || [], ol = $('top');
   naFila('prioridade', true).forEach(function (e) { if (top[e.dados.i]) top[e.dados.i].ok = !!e.dados.ok; });
   var com = top.filter(function (t) { return t && (t.t || '').trim(); });
-  if (!com.length) { ol.innerHTML = '<li class="vazio">Defina as três missões do dia na Casa Grande do app.</li>'; return; }
+  if (!com.length) { ol.innerHTML = '<li class="vazio">Defina as três missões do dia no ' + esc(T.sede) + ' do app.</li>'; return; }
   ol.innerHTML = top.map(function (t, i) {
     if (!t || !(t.t || '').trim()) return '';
     return '<li class="' + (t.ok ? 'ok' : '') + '"><label><input type="checkbox" data-pri="' + i + '"' + (t.ok ? ' checked' : '') + '><span>' + esc(t.t) + '</span></label></li>';
@@ -195,8 +196,33 @@ function pintaHabitos() {
 }
 
 function pintaTudo() {
-  pintaCab(); pintaAgora(); pintaCiclo(); pintaHumor(); pintaCont(); pintaTop(); pintaHabitos(); pintaFoco();
+  pintaCab(); pintaAgora(); pintaCiclo(); pintaHumor(); pintaCont(); pintaTop(); pintaHabitos(); pintaFoco(); pintaGuardiao();
 }
+
+/* guardião: uma fala de acordo com o dia */
+function pintaGuardiao() {
+  var g = T.guardiao, f = T.falas, h = new Date().getHours(), n = sessoesHoje().length, a = aguaHoje(), fala;
+  if (h >= 21) fala = f.fim;
+  else if (n > 0 && (h < 10 || a >= AGUA_META || n % 2)) fala = f.foco.replace('{n}', n).replace('{b}', n === 1 ? 'bloco' : 'blocos');
+  else if (estado && h >= 10 && a < AGUA_META) fala = f.agua.replace('{n}', AGUA_META - a);
+  else fala = f.ini[new Date().getDate() % f.ini.length];
+  $('g-img').src = g.img; $('g-img').alt = 'Retrato de ' + g.nome;
+  $('g-nome').textContent = g.completo; $('g-papel').textContent = g.papel; $('g-fala').textContent = fala;
+}
+
+/* aplica o refúgio escolhido: textos, cores, guardião */
+function aplicaTema(k) {
+  TEMA = TEMAS[k] ? k : 'greek'; T = temaDe(TEMA);
+  document.body.dataset.tema = TEMA;
+  document.title = 'Astronáutica · ' + T.rotulo;
+  document.querySelectorAll('[data-tx]').forEach(function (el) { var v = T[el.dataset.tx]; if (v != null) el.textContent = v; });
+  document.querySelectorAll('[data-tx-html]').forEach(function (el) { var v = T[el.dataset.txHtml]; if (v != null) el.innerHTML = v; });
+  $('dracmas').title = T.moeda + ' de hoje: uma por bloco de foco, uma por meta de contador batida';
+  $('tema').value = TEMA;
+  if (!$('painel').hidden) pintaTudo(); else pintaGuardiao();
+}
+function aplicaZoom(z) { ZOOM = z; document.documentElement.style.zoom = z; }
+
 
 /* contadores: a lista vive na extensão; a do app entra quando existir */
 async function carregaContadores() {
@@ -225,7 +251,47 @@ async function carrega() {
 }
 
 /* ---------- ações ---------- */
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', async function () {
+  document.body.classList.add('modo-' + MODO);
+  $('bm-k').textContent = MODO === 'lateral' ? 'painel lateral' : MODO === 'janela' ? 'janela solta' : 'popup';
+  var pref = await chrome.storage.local.get(['tema', 'zoom', 'clique']);
+  aplicaTema(pref.tema || 'greek');
+  aplicaZoom(+pref.zoom || 1);
+  $('clique').value = pref.clique || 'popup';
+  $('m-lateral').hidden = MODO === 'lateral';
+  $('m-janela').hidden = MODO === 'janela';
+
+  /* tamanho */
+  function passo(dir) {
+    var i = ZOOMS.indexOf(ZOOM); if (i < 0) i = 2;
+    i = Math.max(0, Math.min(ZOOMS.length - 1, i + dir));
+    aplicaZoom(ZOOMS[i]); chrome.storage.local.set({ zoom: ZOOMS[i] });
+  }
+  $('z-menos').onclick = function () { passo(-1); };
+  $('z-mais').onclick = function () { passo(1); };
+  /* painel lateral: precisa do gesto do clique, por isso abre daqui mesmo */
+  $('m-lateral').onclick = async function () {
+    try {
+      var w = await chrome.windows.getCurrent();
+      await chrome.sidePanel.open({ windowId: w.id });
+      if (MODO === 'popup') window.close();
+      else if (MODO === 'janela') chrome.windows.remove(w.id);
+    } catch (e) { aviso('O painel lateral pede o Chrome 116 ou mais novo.', true); }
+  };
+  $('m-janela').onclick = function () {
+    chrome.runtime.sendMessage({ t: 'janela' }, function () { if (MODO === 'popup') window.close(); });
+  };
+  $('m-ajustes').onclick = function () {
+    var a = $('ajustes'); a.hidden = !a.hidden; this.setAttribute('aria-expanded', String(!a.hidden));
+  };
+  $('tema').onchange = function () { aplicaTema(this.value); chrome.storage.local.set({ tema: TEMA }); };
+  $('clique').onchange = function () {
+    chrome.storage.local.set({ clique: this.value });
+    chrome.runtime.sendMessage({ t: 'clique', v: this.value });
+    aviso(this.value === 'popup' ? 'O ícone abre o popup.' : this.value === 'lateral' ? 'O ícone abre o painel lateral.' : 'O ícone abre a janela solta.');
+  };
+  chrome.storage.onChanged.addListener(function (m) { if (m.tema && m.tema.newValue && m.tema.newValue !== TEMA) aplicaTema(m.tema.newValue); });
+
   var d = new Date();
   $('data').textContent = DIAS[d.getDay()] + ' · ' + d.getDate() + ' ' + MESES[d.getMonth()];
   $('arco').style.strokeDasharray = CIRC;
@@ -314,13 +380,13 @@ document.addEventListener('DOMContentLoaded', function () {
     if (cid === 'agua') {
       if (dv < 0 && !aguaHoje()) return;
       var antes = aguaHoje();
-      manda('agua', dv < 0 ? { d: -1 } : {}, dv < 0 ? '−1 copo.' : (antes + 1 === AGUA_META ? 'Meta de água fechada: +1 dracma.' : '+1 copo registrado.'));
+      manda('agua', dv < 0 ? { d: -1 } : {}, dv < 0 ? '−1 copo.' : (antes + 1 === AGUA_META ? 'Meta de água fechada: +1 ' + T.moeda1 + '.' : '+1 copo registrado.'));
       return;
     }
     var c = contDefs.filter(function (x) { return x.id === cid; })[0]; if (!c) return;
     var v0 = contValor(cid); if (dv < 0 && !v0) return;
     manda('contador', { id: c.id, n: c.n, u: c.u, meta: c.meta, d: dv },
-      dv > 0 && v0 + 1 === c.meta ? c.n + ': meta do dia fechada, +1 dracma.' : c.n + ': ' + (v0 + dv) + '.');
+      dv > 0 && v0 + 1 === c.meta ? c.n + ': meta do dia fechada, +1 ' + T.moeda1 + '.' : c.n + ': ' + (v0 + dv) + '.');
   };
   $('add').onclick = async function () {
     var n = $('novo').value.trim(), m = parseInt($('novoMeta').value, 10) || 10;
@@ -333,7 +399,7 @@ document.addEventListener('DOMContentLoaded', function () {
   /* registro */
   $('cap-ok').onclick = function () {
     var t = $('cap').value.trim(); if (!t) return;
-    manda('captura', { t: t }, 'Pregado no Quadro de Avisos.'); $('cap').value = '';
+    manda('captura', { t: t }, 'Pregado no ' + T.quadro + '.'); $('cap').value = '';
   };
   $('cap').addEventListener('keydown', function (e) { if (e.key === 'Enter') $('cap-ok').click(); });
   $('habitos').addEventListener('change', function (e) {
@@ -347,7 +413,7 @@ document.addEventListener('DOMContentLoaded', function () {
   $('g-ok').onclick = function () {
     var desc = $('g-desc').value.trim(), v = num($('g-val').value);
     if (!desc || !v) { aviso('Informe o gasto e o valor.', true); return; }
-    manda('gasto', { descricao: desc, valor: v }, 'R$ ' + v.toFixed(2).replace('.', ',') + ' lançado na Loja do Acampamento.');
+    manda('gasto', { descricao: desc, valor: v }, 'R$ ' + v.toFixed(2).replace('.', ',') + ' lançado: ' + T.loja + '.');
     $('g-desc').value = ''; $('g-val').value = '';
   };
 
