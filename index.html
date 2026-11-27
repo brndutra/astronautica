@@ -20715,10 +20715,11 @@ var ORB_GUARDA=null;
 function pinbarSobe(){var nv=document.querySelector('#hero-box .vx-hero.bn2 .bn-tit #nv-chip'),bar=document.querySelector('#hero-box .vx-hero.bn2 .cp-pinbar');if(!nv||!bar)return;if(nv.nextElementSibling!==bar)nv.insertAdjacentElement('afterend',bar);}
 setTimeout(function(){try{pinbarSobe();}catch(e){}},1200);setInterval(function(){try{pinbarSobe();}catch(e){}},1300);
 (function(){var st=document.createElement('style');st.id='mural-linha-css';var R='html body:not(.zz9):not(.zz8) #hero-box#hero-box .vx-hero.bn2';st.textContent=[
- R+' #orb-mural{width:372px!important;max-width:calc(100% - 8px)}',
+ R+' #orb-mural{width:360px!important;max-width:none!important}',
  R+' .bn-tit>.cp-pinbar{display:inline-flex!important;flex-wrap:nowrap!important;align-items:center;gap:4px!important;margin:0 0 0 8px!important;padding:0!important;border:0!important;vertical-align:middle;position:static!important;transform:none!important}',
  R+' .bn-tit>.cp-pinbar>span{display:none!important}',
- R+' .bn-tit>.cp-pinbar>button{height:20px!important;min-height:0!important;padding:0 8px!important;font-size:11px!important;line-height:1!important}',
+ R+' .bn-tit>.cp-pinbar>button{height:19px!important;min-height:0!important;padding:0 6px!important;font-size:10.5px!important;line-height:1!important}',
+ R+' .bn-tit>.cp-pinbar{gap:3px!important;margin-left:6px!important}',
  R+' .bn-tit>.cp-pinbar::before,'+R+' .bn-tit>.cp-pinbar::after{display:none!important}',
  /* registros do diário: o × de apagar sempre à vista */
  'html body #rod-pan #rd-l .rd-x{opacity:.55!important;visibility:visible!important}',
