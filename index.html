@@ -15731,6 +15731,7 @@ pintaTb=function(){if(TBK.ed||TBK.arr)return;var g=el('tb-g');if(!g)return;try{t
   anota("Grade semanal limpa (dá para desfazer).",0,false);grava();pinta();});
  try{tbFoco();}catch(e){}};
 document.addEventListener('pointerdown',function(e){if(TBK.ed&&!e.target.closest('#tb-g'))tbkFechaEd();},true);
+setTimeout(function(){try{pintaTb();}catch(e){}},400);
 /* os eventos da agenda já entram desenhados na grade, na hora certa */
 agNaGrade=function(){var g=el('tb-g'),k=AG.ev.length+'|'+AG.quando;if(!g||g._agk===k||TBK.ed||TBK.arr)return;g._agk=k;try{tbkPinta();}catch(e){}};
 /* a Rota e o Posto leem os horários direto dos blocos */
