@@ -122,10 +122,42 @@ async function pomo(soma) {
   return p.n;
 }
 
+/* ---------- um cronômetro só com o app ----------
+   O foco do app (dados.td.foco: id, ini, dur, pausa = ms restantes quando pausado) manda: se o app tem um bloco,
+   a extensão mostra e avisa o mesmo bloco. Foco começado, pausado, retomado ou encerrado aqui vira evento focoApp
+   na fila; o app aplica no próprio cronômetro e registra os minutos uma vez só. Pausas de descanso ficam só aqui.
+   mudouEm: hora da última ação feita aqui; enquanto a nuvem for mais velha que ela, vale o que está aqui. */
+async function espelhaApp(af, ts) {
+  var fo = await lerFoco(), agora = Date.now(), fim = (await chrome.storage.local.get('focoFim')).focoFim || {};
+  if (fo && fo.mudouEm && ts && ts < fo.mudouEm) return;
+  if (af && af.dur) {
+    var id = af.id || af.ini, pausado = af.pausa != null, resta = pausado ? af.pausa : af.ini + af.dur - agora;
+    if (fim.id === id && ts < fim.em + 1) return;
+    if (!pausado && resta <= 0) return;
+    var meu = fo && fo.id === id;
+    if (meu && !!fo.ini === !pausado && Math.abs(restaMs(fo, agora) - resta) < 3000) { if (!fo.visto) { fo.visto = true; await chrome.storage.local.set({ foco: fo }); } return; }
+    var novo = { id: id, org: meu ? fo.org : 'app', visto: true, tot: af.dur, acum: pausado ? af.dur - af.pausa : 0, ini: pausado ? null : af.ini,
+      min: af.base || Math.round(af.dur / 60000), tarefa: (meu && fo.tarefa) || af.rot || 'foco', passo: (meu && fo.passo) || '', disc: (meu && fo.disc) || null, descanso: !!af.pausaModo };
+    await chrome.storage.local.set({ foco: novo });
+    chrome.alarms.clear('toque-int');
+    if (pausado) { chrome.alarms.clear('foco-fim'); som({ t: 'parar' }); }
+    else { chrome.alarms.create('foco-fim', { when: agora + resta }); chrome.alarms.create('tick', { periodInMinutes: 1 }); }
+    badge(); return;
+  }
+  /* o app não tem bloco: se o daqui veio do app ou o app já o tinha visto, foi encerrado lá */
+  if (fo && (fo.org === 'app' || fo.visto)) {
+    await chrome.storage.local.remove('foco');
+    chrome.alarms.clear('foco-fim'); chrome.alarms.clear('tick'); chrome.alarms.clear('toque-int'); som({ t: 'parar' }); badge();
+  }
+}
+async function espelhoAgora() { try { await API.estado(); } catch (e) { } }
+
 async function focoIniciar(m) {
   var agora = Date.now(), min = +m.min || 25, c = await cfg();
   var fo = { tot: min * 60000, acum: 0, ini: agora, min: min, tarefa: m.tarefa || '', passo: m.passo || '', descanso: !!m.descanso, disc: m.disc || null };
+  if (!fo.descanso) { fo.id = agora; fo.org = 'ext'; fo.mudouEm = agora; }
   await chrome.storage.local.set({ foco: fo });
+  if (!fo.descanso) envia('focoApp', { acao: 'ini', id: fo.id, ini: agora, min: min, rot: fo.tarefa || 'foco pela extensão' });
   chrome.alarms.create('foco-fim', { when: agora + fo.tot });
   chrome.alarms.create('tick', { periodInMinutes: 1 });
   chrome.alarms.clear('toque-int');
@@ -143,6 +175,7 @@ async function focoPausa() {
     fo.ini = agora; chrome.alarms.create('foco-fim', { when: agora + restaMs(fo, agora) });
     if (!fo.descanso) { if (c.som && c.som !== 'nenhum') som({ t: 'som', tipo: c.som }); if (+c.toque > 0) chrome.alarms.create('toque-int', { periodInMinutes: +c.toque }); }
   }
+  if (fo.id && !fo.descanso) { fo.mudouEm = agora; envia('focoApp', fo.ini ? { acao: 'segue', id: fo.id, fimEm: agora + restaMs(fo, agora) } : { acao: 'pausa', id: fo.id, resta: restaMs(fo, agora) }); }
   await chrome.storage.local.set({ foco: fo });
   badge();
   return { ok: true, pausado: !fo.ini };
@@ -153,7 +186,12 @@ async function focoEncerrar(concluido, quieto) {
   var feitos = Math.round((concluido ? fo.tot : fo.tot - restaMs(fo)) / 60000);
   await chrome.storage.local.remove('foco');
   chrome.alarms.clear('foco-fim'); chrome.alarms.clear('tick'); chrome.alarms.clear('toque-int'); som({ t: 'parar' }); badge();
-  if (!fo.descanso && feitos >= 1) {
+  if (fo.id && !fo.descanso) {
+    /* bloco ligado ao app: o app encerra o mesmo bloco e registra os minutos uma vez só */
+    await chrome.storage.local.set({ focoFim: { id: fo.id, em: Date.now() } });
+    await envia('focoApp', { acao: 'fim', id: fo.id, min: Math.max(0, feitos), rot: fo.tarefa || 'foco pela extensão' });
+    if (fo.disc && feitos >= 5) await envia('ciclo', { acao: 'fechar', disc: fo.disc, min: feitos });
+  } else if (!fo.descanso && feitos >= 1) {
     var tarefa = fo.tarefa || 'foco pela extensão';
     await envia('foco', { min: feitos, tarefa: tarefa });
     /* bloco do ciclo só fecha com pelo menos 5 min de estudo */
@@ -255,11 +293,13 @@ chrome.alarms.onAlarm.addListener(function (a) {
   else if (a.name === 'foco-fim') { focoEncerrar(true); }
   else if (a.name === 'toque-int') { som({ t: 'sino', leve: true }); }
   else if (a.name === 'tick') { badge(); }
+  else if (a.name === 'espelho') { espelhoAgora(); }
   else if (a.name === 'pendentes') { enviaPendentes(); }
 });
 
 chrome.runtime.onMessage.addListener(function (msg, _de, responde) {
   if (msg.alvo === 'som') return;
+  if (msg.t === 'espelho') { espelhaApp(msg.fo, msg.ts).then(function () { responde({ ok: true }); }); return true; }
   if (msg.t === 'focoIniciar') { focoIniciar(msg).then(function () { responde({ ok: true }); }); return true; }
   if (msg.t === 'focoPausa') { focoPausa().then(responde); return true; }
   if (msg.t === 'focoEncerrar') { focoEncerrar(false).then(responde); return true; }
@@ -270,3 +310,7 @@ chrome.runtime.onMessage.addListener(function (msg, _de, responde) {
   if (msg.t === 'testeSom') { som({ t: msg.tipo === 'sino' ? 'sino' : 'som', tipo: msg.tipo }); if (msg.tipo !== 'sino') setTimeout(function () { som({ t: 'parar' }); }, 4000); responde({ ok: true }); }
   if (msg.t === 'pomo') { pomo(false).then(function (n) { responde({ n: n }); }); return true; }
 });
+
+/* lê o foco do app a cada 30 s (e logo ao acordar) */
+chrome.alarms.create('espelho', { periodInMinutes: 0.5 });
+espelhoAgora();

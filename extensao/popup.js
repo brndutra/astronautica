@@ -57,7 +57,8 @@ function sessoesHoje() {
   var d = hojeStr();
   var s = ((estado && estado.ses) || []).filter(function (x) { return x && x.day === d; })
     .map(function (x) { return { t: x.result || x.task || 'foco', min: +x.minutes || 0 }; });
-  return s.concat(naFila('foco', true).map(function (e) { return { t: e.dados.tarefa || 'foco', min: +e.dados.min || 0 }; }));
+  return s.concat(naFila('foco', true).map(function (e) { return { t: e.dados.tarefa || 'foco', min: +e.dados.min || 0 }; }))
+    .concat(naFila('focoApp', true).filter(function (e) { return e.dados.acao === 'fim' && +e.dados.min >= 1; }).map(function (e) { return { t: e.dados.rot || 'foco', min: +e.dados.min || 0 }; }));
 }
 function dracmas() {
   var n = sessoesHoje().length;

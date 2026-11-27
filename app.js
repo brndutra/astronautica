@@ -6841,10 +6841,10 @@ function tdAvisa(tit,sub,acoes,som){var box=document.getElementById('td-toasts')
 
 /* ---------- disco de foco (tempo visível) ---------- */
 function tdFocoRest(){var f=tdD().foco;if(!f)return 0;return f.pausa!=null?f.pausa:Math.max(0,f.ini+f.dur-Date.now());}
-function tdFocoIni(min,rot,pi){var td=tdD();td.foco={ini:Date.now(),dur:min*60000,pausa:null,rot:rot||'foco',pi:(pi==null?-1:pi),acomp:!!(td.foco&&td.foco.acomp),base:min};tdSalva();tdDisco(true);
+function tdFocoIni(min,rot,pi){var td=tdD();td.foco={id:Date.now(),ini:Date.now(),dur:min*60000,pausa:null,rot:rot||'foco',pi:(pi==null?-1:pi),acomp:!!(td.foco&&td.foco.acomp),base:min};tdSalva();tdDisco(true);
  try{if(window.Notification&&Notification.permission==='default')Notification.requestPermission();}catch(e){}}
 function tdFocoFim(registrar){var td=tdD(),f=td.foco;if(!f)return;var gasto=(f.pausa!=null?f.dur-f.pausa:Math.min(f.dur,Date.now()-f.ini))/60000;
- if(registrar&&gasto>=0.5){var h=hoje();try{var v=vxData();v.sessions.push({id:'td'+Date.now(),day:h,task:null,minutes:Math.round(gasto*100)/100,result:f.rot+(f.acomp?' (acompanhado)':'')});vxSave();}catch(e){}
+ if(registrar&&gasto>=0.5){var h=hoje();try{var v=vxData();v.sessions.push({id:f.id?'tdf'+f.id:'td'+Date.now(),day:h,task:null,minutes:Math.round(gasto*100)/100,result:f.rot+(f.acomp?' (acompanhado)':'')});vxSave();}catch(e){}
   if(f.pi>=0){try{var x=plDia(h),t=x.top[f.pi];if(t){t.real=Math.round(((t.real||0)+gasto)*10)/10;}}catch(e){}}}
  td.foco=null;tdSalva();tdDisco(true);try{vxRender();}catch(e){}}
 function tdDisco(forca){var d=document.getElementById('td-disco');if(!d){d=document.createElement('div');d.id='td-disco';d.className='td-disco';document.body.appendChild(d);
@@ -6977,7 +6977,19 @@ function cxAplica(ev){var d=ev.dados||{},dia=d.dia||hoje();
   case 'humor':var hv=+d.v|0;if(hv<1||hv>5)return false;S.estado=S.estado||{};S.estado[dia]=hv;
    anota('Humor pela extensão: '+hv+'/5'+(d.nota?' — '+esc(String(d.nota).slice(0,120)):'')+'.',0,false);return true;
   case 'contador':return cxCont(d,dia);
-  case 'ciclo':return cxCiclo(d,dia);}
+  case 'ciclo':return cxCiclo(d,dia);
+  case 'focoApp':return cxFocoApp(d,dia);}
+ return false;}
+/* Um cronômetro só: a extensão manda ini, pausa, segue e fim do bloco (id = início do bloco).
+   Conflito (o app já tem outro bloco): vale o do app; devolver true grava e a extensão passa a mostrar o do app. */
+function cxFocoApp(d,dia){var td=tdD(),f=td.foco,id=+d.id,meu=!!f&&(f.id||f.ini)===id;
+ if(d.acao==='ini'){var dur=Math.max(1,Math.min(240,+d.min||25))*60000;if(f)return !meu;if(Date.now()>=+d.ini+dur)return false;
+  td.foco={id:id,ini:+d.ini,dur:dur,pausa:null,rot:String(d.rot||'foco pela extensão').slice(0,80),pi:-1,acomp:false,base:dur/60000};try{tdDisco(true);}catch(e){}return true;}
+ if(d.acao==='pausa'){if(!meu)return !!f;if(f.pausa==null)f.pausa=Math.max(0,+d.resta||0);return true;}
+ if(d.acao==='segue'){if(!meu)return !!f;if(f.pausa!=null){f.ini=+d.fimEm-f.dur;f.pausa=null;}return true;}
+ if(d.acao==='fim'){var m=Math.max(0,Math.min(240,+d.min||0));if(meu){f.pausa=Math.max(0,f.dur-m*60000);tdFocoFim(true);return true;}
+  var v=vxData(),sid='tdf'+id;if(m<1||v.sessions.some(function(s){return s.id===sid;}))return !!f;
+  v.sessions.push({id:sid,day:dia,task:'extensao',minutes:m,result:String(d.rot||'foco pela extensão').slice(0,120)});return true;}
  return false;}
 /* Contadores criados na extensão: S.cont.def (lista) e S.cont.dia[AAAA-MM-DD][id] (valor do dia). */
 function cxCont(d,dia){if(!d.id)return false;S.cont=S.cont||{};var C=S.cont;C.def=Array.isArray(C.def)?C.def:[];C.dia=C.dia||{};
@@ -9496,7 +9508,7 @@ function opPinta(){var o=document.getElementById('modo-op');if(!o||!document.bod
  var set=function(sel,h){var n=o.querySelector(sel);if(n&&(n._h!==h||!n.firstChild)&&!(foco&&n.contains(a))){n.innerHTML=h;n._h=h;}};
  set('.op-l',opLinhaHTML());set('.op-esc',opEscudo());var fc=opFocoHTML().replace(/<b>\d+:\d+<\/b>/,'');set('.op-foco-c',opFocoHTML());set('.op-fazer',opFazerHTML());set('.op-lado',opLadoHTML());}
 /* extensão do Chrome: versão publicada em downloads/ (mesma do extensao/manifest.json); ao publicar uma nova, troque só aqui */
-var EXT_V='0.7.1',EXT_ZIP='downloads/astronautica-extensao-'+EXT_V+'.zip';
+var EXT_V='0.7.2',EXT_ZIP='downloads/astronautica-extensao-'+EXT_V+'.zip';
 function extBaixada(){try{return localStorage.getItem('astro-ext-baixada')||'';}catch(e){return '';}}
 /* cabeçalho, lado direito, montado só aqui: duas pílulas.
    alvo: desviei (com − quando há tracinho), travei, tarefa chata, ronda · caminho: manual, extensão (baixar / atualizar / em dia), templo completo.
