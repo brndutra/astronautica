@@ -17952,6 +17952,7 @@ var TV_TERMOS=[["Acampamento Meio-Sangue", "Hotel Valhala"], ["Uma flecha de cad
 /* termos genéricos (por último) e versões em CAIXA ALTA de todos os termos */
 TV_TERMOS=TV_TERMOS.concat([["Hékatos · “o que acerta de longe”", "Ullr · “o arqueiro do inverno”"], ["Arsenal do Hékatos", "Arsenal de Ullr"], ["“Hékatos mira.”", "“Ullr mira.”"], ["o Hékatos", "filho de Ullr"], ["HÉKATOS", "ULLR"], ["Hékatos", "Ullr"], ["Odin · sol, arco, música e cura", "Ullr · arco, caça e inverno"], ["Diário do Semideus", "Diário do Einherji"], ["Semideus", "Einherji"], ["semideus", "einherji"], ["Caduceu de Hermes", "Cajado rúnico de Odin"], ["Céu de Zeus", "Céu de Thor"], ["Hermes Express", "Correio dos Corvos"], ["George e Martha atendem", "Hugin e Munin atendem"], ["Laptop de Dédalo", "Laptop de Blitzen"], ["bússola de dédalo", "bússola de Blitzen"], ["Bússola de Dédalo", "Bússola de Blitzen"], ["Dédalo", "Blitzen"], ["Rumo da Argo", "Rumo do Banana Grande"], ["Trabalhos de Hércules", "Façanhas de Thor"], ["trabalhos de Hércules", "façanhas de Thor"], ["A Hidra de Lerna", "Jörmungandr, a Serpente do Mundo"], ["A corça de Cerineia", "O cervo Eikthyrnir"], ["As aves do Estínfalo", "As águias de Hræsvelgr"], ["O javali de Erimanto", "O javali Sæhrímnir"], ["O leão de Nemeia", "O lobo Fenrir"], ["Os estábulos de Áugias", "Os salões de Útgarda"], ["Lira de casco de tartaruga", "Harpa de Bragi"], ["Flauta de pã", "Flauta de osso"], ["Aspís de madeira e bronze", "Escudo redondo de tília"], ["Xíphos de bronze", "Espada de ferro"], ["Elmo calcídico", "Elmo de ferro"], ["Linotórax", "Cota de malha"], ["Grevas de bronze", "Perneiras de couro"], ["Quíton de campo", "Túnica de lã"], ["Pelte de vime e couro", "Escudo leve de vime"], ["Pílos de feltro", "Gorro de lã"], ["Sandálias de couro cru", "Botas de couro cru"], ["Flechas de ponta de bronze", "Flechas de ponta de ferro"], ["Tabuinhas de Cadmo", "Tábuas rúnicas de Hearthstone"], ["Relógio-escudo de Tyson", "Relógio-escudo de Blitzen"], ["Hotel Júpiter", "Hotel Valhala"]]).concat([['Long Island Sound','Boston'],['Acampamento','Hotel'],['acampamento','hotel'],['Meio-Sangue','Einherji'],['meio-sangue','einherji'],['meio-sangues','einherjar'],['Chalé de Apolo','Andar 19'],['chalé de Apolo','andar 19'],['Chalé','Quarto'],['chalé','quarto'],['Chalés','Quartos'],['chalés','quartos'],['Quíron','Helgi']]);
 if(EG_ON&&window.EG_TERMOS)TV_TERMOS=window.EG_TERMOS.slice();
+if(TV_ON)TV_TERMOS=[["Cass McCaw · o gêmeo da Polly", "Mina Ravn · a gêmea do Hugo"], ["Polly McCaw · corvo de Apolo", "Hugo Ravn · corvo de Odin"], ["Polly e Cass McCaw, corvos gêmeos de Apolo", "Hugo e Mina Ravn, corvos gêmeos de Odin"], ["Polly e Cass McCaw", "Hugo e Mina Ravn"], ["Polly McCaw, corvo de Apolo", "Hugo Ravn, corvo de Odin"], ["Polly McCaw", "Hugo Ravn"], ["Cass McCaw", "Mina Ravn"], ["os gêmeos McCaw", "os gêmeos Ravn"], ["gêmeos McCaw", "gêmeos Ravn"], ["Sully Brookhaven · sátiro do Hékatos", "Leif Larsen · einherji do filho de Ullr"], ["Sully Brookhaven", "Leif Larsen"], ["Sully · sátiro", "Leif · einherji"], ["Sully", "Leif"], ["Polly", "Hugo"], ["Cass", "Mina"], ["mastro de Dodona", "mastro de Yggdrasil"], ["Comitê dos Cascos Fendidos", "Conselho dos Thanes"], ["já está tocando a flauta", "já está batendo o taco no gelo"]].concat(TV_TERMOS);
 (function(){var up={};TV_TERMOS.forEach(function(t){up[t[0]]=1;});var ex=[];TV_TERMOS.forEach(function(t){var U=t[0].toUpperCase();if(U!==t[0]&&!up[U]){up[U]=1;ex.push([U,t[1].toUpperCase()]);}});TV_TERMOS=TV_TERMOS.concat(ex);})();
 var TV_RX=TV_TERMOS.map(function(t){var e=t[0].replace(/[.*+?^${}()|[\]\\]/g,'\\$&');return [new RegExp('(^|[^0-9A-Za-zÀ-ÿ])'+e+'(?![0-9A-Za-zÀ-ÿ])','g'),t[1]];});
 function tvTxt(t){if(!t||t.length<3)return t;var o=t;for(var i=0;i<TV_RX.length;i++){if(o.indexOf(TV_TERMOS[i][0])<0)continue;o=o.replace(TV_RX[i][0],function(m,p){return p+TV_RX[i][1];});}return o;}
@@ -18263,6 +18264,72 @@ function argoMarGR(){var hj=hoje(),tb=S.tb||{},a=opMin(),ini=360,fim=1440,p=Math
  return '<div class="rg-box"><span class="rg-med"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 19c3-1 4-4 6-7s4-5 8-6"/><circle cx="5" cy="19" r="1.6"/><circle cx="19" cy="6" r="1.6"/></svg></span><span><b>Rota da travessia</b><small>'+Math.round(p)+'% do dia · resta '+Math.round(100-p)+'%</small></span></div>'+
   '<div class="rg-ol">'+li+'</div>'+
   '<div class="rg-box"><span><small>vigia de Linceu · próximo</small>'+(px?'<span class="rg-hora">'+esc(px.h)+'</span><b style="display:inline;font-variant:normal;font-size:13px">'+esc(px.t)+'</b> <em>em '+em+'</em>':'<b style="font-size:13px">nada mais hoje</b>')+'</span></div>';}
+
+/* ======================= Companheiros por tema =======================
+   Grego: Sully Brookhaven (sátiro) e os corvos McCaw. Valhala: Leif Larsen (einherji) e os corvos Ravn.
+   Casa do Brooklyn: Toby Nefer (babuíno) e os íbis Bennu. Os nomes nos textos trocam pelos termos de cada tema;
+   aqui mudam o retrato, a ficha, os níveis e a ave mensageira. */
+var COMP_T=TV_ON?{
+ k:'einherji guardião do filho de Ullr · andar 19 do Hotel Valhala',nm:'Leif "Lucky" Larsen',
+ nv:[[0,'Recruta do andar 19'],[100,'Einherji de corredor'],[300,'Guardião credenciado'],[600,'Farejador de prazos'],[1000,'Capitão de andar'],[1600,'Voz do Conselho dos Thanes']],
+ ficha:[['céu','Sol em Aquário, Lua em Peixes. Aquário é o signo da sua Casa 11, a dos amigos: ele é o amigo que o seu mapa pede'],
+  ['origem','nasceu em Duluth, Minnesota, em fevereiro de 1971. Goleiro do time de hóquei do colégio, morreu aos 19 segurando sozinho a porta de um ônibus escolar que deslizava para o Lago Superior numa nevasca: todos os alunos saíram. A valquíria que o escolheu ainda chama a cena de "a melhor defesa que já vi"'],
+  ['idade','55 anos de einherji, eternamente com 19'],
+  ['arma','taco de hóquei de freixo, com runas de proteção entalhadas pela avó norueguesa'],
+  ['dom','fareja distração a três andares e sente o lobo da procrastinação antes de ele uivar'],
+  ['mania','narra as próprias defesas em voz de locutor de rádio e afia o taco toda noite no corredor'],
+  ['fraqueza','panqueca de mirtilo com xarope do Salão do Banquete e qualquer jogo de hóquei na TV do saguão'],
+  ['juramento','cuidar do filho de Ullr: ritos, estudo, foco e descanso. Do gabinete quem fala é o Hugo'],
+  ['como sobe','rito +5 · cada 10 min de estudo +2 · bloco de foco +5 · revisão +3 · entrega no gabinete +10 · meta do gabinete +30']],
+ bio:'Sol em Gêmeos, ascendente em Libra · Hugo (o pensamento) traz as entregas e os avisos; Mina (a memória) traz as más notícias e nunca esquece um prazo. Netos dos corvos que voam o mundo todo dia para contar tudo a Odin: herdaram o ofício e a mania de chegar antes do recado.'}
+:EG_ON?{
+ k:'babuíno guardião do iniciado · Casa do Brooklyn',nm:'Toby Nefer',
+ nv:[[0,'Filhote da Casa'],[100,'Guardião do terraço'],[300,'Protetor credenciado'],[600,'Farejador de prazos'],[1000,'Conselheiro da Casa da Vida'],[1600,'Guardião-mor do Brooklyn']],
+ ficha:[['céu','Sol em Aquário, Lua em Peixes. Aquário é o signo da sua Casa 11, a dos amigos: ele é o amigo que o seu mapa pede'],
+  ['origem','nasceu no zoológico do Bronx, fugiu aos 3 pela grade do lago dos flamingos atrás de um carrinho de pretzels e só parou no terraço da Casa do Brooklyn. A Casa da Vida o registrou como guardião e o mandou buscar você'],
+  ['dom','fala babuinês, inglês do Brooklyn e hieróglifo de placa de metrô; sente o caos chegando pela vibração da linha F'],
+  ['mania','joga basquete na quadra do terraço e comemora cada cesta como final da NBA'],
+  ['fraqueza','pretzel de carrinho com mostarda e qualquer coisa crocante que faça barulho no saco'],
+  ['juramento','cuidar do iniciado: ritos, estudo, foco e descanso. Do gabinete quem fala é o Ibby'],
+  ['como sobe','rito +5 · cada 10 min de estudo +2 · bloco de foco +5 · revisão +3 · entrega no gabinete +10 · meta do gabinete +30']],
+ bio:'Sol em Gêmeos, ascendente em Libra · Ibby traz as entregas e os avisos; Nora traz as más notícias e não arredonda nenhum prazo. Íbis de Thoth: anotam tudo com o bico e nunca erram uma data.'}
+:null;
+if(COMP_T){
+ SAT_NV.splice.apply(SAT_NV,[0,SAT_NV.length].concat(COMP_T.nv));
+ satFicha=function(){var c=satCfg(),nv=satNivel(c.xp);
+  return '<div class="sat-ficha">'+satAvatar(satHumor())+'<div class="sat-id"><span class="sat-k">'+esc(COMP_T.k)+'</span><b class="sat-nm">'+esc(COMP_T.nm)+'</b>'+
+   '<span class="sat-nv">nível '+nv.n+' · '+esc(nv.nome)+'</span><div class="sat-xp" title="'+c.xp+' XP"><i style="width:'+nv.pct+'%"></i></div><small>'+c.xp+' XP'+(nv.ate?' · faltam '+(nv.ate-c.xp)+' para '+esc(SAT_NV[nv.n][1]):' · nível máximo')+'</small></div></div>'+
+   '<dl class="sat-tr">'+COMP_T.ficha.map(function(x){return '<dt>'+esc(x[0])+'</dt><dd>'+esc(x[1])+'</dd>';}).join('')+'</dl>';};
+ satPainelHTML=(function(f0){return function(){return f0.apply(this,arguments).replace(/<small class="cv-bio">[\s\S]*?<\/small>/,'<small class="cv-bio">'+esc(COMP_T.bio)+'</small>');};})(satPainelHTML);
+ satAvatar=function(humor){humor=humor||'calmo';
+  var olho=humor==='panico'?'<circle cx="25.5" cy="33" r="2.6" fill="#fff"/><circle cx="25.5" cy="33" r="1.3" fill="#2a2018"/><circle cx="38.5" cy="33" r="2.6" fill="#fff"/><circle cx="38.5" cy="33" r="1.3" fill="#2a2018"/>':
+   humor==='festa'?'<path d="M23 33.5c1.5-2 3.5-2 5 0M36 33.5c1.5-2 3.5-2 5 0"/>':'<circle cx="25.5" cy="33" r="1.6" fill="#2a2018"/><circle cx="38.5" cy="33" r="1.6" fill="#2a2018"/>';
+  var boca={calmo:'<path d="M28 44c2.4 1.8 5.6 1.8 8 0"/>',alerta:'<path d="M28.5 44.5h7"/>',panico:'<ellipse cx="32" cy="45" rx="3" ry="2.4" fill="#2a2018"/>',festa:'<path d="M26.5 43c3 4.2 8 4.2 11 0z" fill="#fff"/>'}[humor]||'';
+  var svg=TV_ON?
+   /* Leif: elmo de nasal, cabelo loiro, barba curta, camisa de hóquei verde do andar 19 */
+   '<path d="M20 52c3 5 7 8 12 8s9-3 12-8" fill="#2f6b4f"/><path d="M28 53h8" stroke="#f1dc9e" stroke-width="2"/>'+
+   '<path d="M17 31c0 12 7 19 15 19s15-7 15-19" fill="#f3d2ad"/>'+
+   '<path d="M17 33c-2 6 0 11 3 13l1-9zM47 33c2 6 0 11-3 13l-1-9z" fill="#e3b45a"/>'+
+   '<path d="M22 43c2 6 6 9 10 9s8-3 10-9c-3 2-6 3-10 3s-7-1-10-3z" fill="#e3b45a"/>'+
+   '<path d="M15 31c0-11 7-18 17-18s17 7 17 18z" fill="#9aa6ad"/><path d="M15 31h34" stroke-width="2.4"/><path d="M32 13v18M30 31v9h4v-9" fill="#9aa6ad"/>'+
+   '<circle cx="20" cy="25" r=".9" fill="#2a2018" stroke="none"/><circle cx="44" cy="25" r=".9" fill="#2a2018" stroke="none"/>'+olho+boca
+   :
+   /* Toby: babuíno de focinho comprido, juba cinza, boné dos Nets */
+   '<path d="M20 53c3 5 7 7 12 7s9-2 12-7" fill="#1f2a44"/>'+
+   '<path d="M13 34c-3-9 2-18 10-21 5-2 13-2 18 0 8 3 13 12 10 21-2 8-9 14-19 14s-17-6-19-14z" fill="#9c8b74"/>'+
+   '<path d="M20 34c0-7 5-12 12-12s12 5 12 12c0 3-1 5-3 7H23c-2-2-3-4-3-7z" fill="#c9a98a"/>'+
+   '<path d="M24 38c0-2 3-3 8-3s8 1 8 3v8c0 4-4 7-8 7s-8-3-8-7z" fill="#e9a8a0"/><circle cx="29.5" cy="41" r=".9" fill="#2a2018" stroke="none"/><circle cx="34.5" cy="41" r=".9" fill="#2a2018" stroke="none"/>'+
+   '<path d="M16 22c2-7 9-11 16-11s14 4 16 11z" fill="#1f2a44"/><path d="M40 21c4 0 9 1 12 3l-1 2c-4-1-8-2-12-2z" fill="#1f2a44"/><circle cx="32" cy="17" r="2.2" fill="#f1f1f1" stroke="none"/>'+
+   olho.replace(/cy="33"/g,'cy="30"').replace(/33\.5/g,'30.5')+boca.replace(/44/g,'49').replace(/43/g,'48').replace(/45/g,'50');
+  return '<svg class="sat-av sat-'+humor+'" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="#2a2018" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">'+svg+'</svg>';};
+ if(EG_ON)corvoAve=function(){return '<svg class="cv-ave" viewBox="0 0 64 64" aria-hidden="true">'+
+  '<path d="M18 44c4-9 12-14 22-14 5 0 9 2 11 5-3 7-10 12-20 12-5 0-9-1-13-3z" fill="#f4efe4" stroke="#2a2418" stroke-width="1.6" stroke-linejoin="round"/>'+
+  '<path d="M38 31c-1-6 1-12 6-15" fill="none" stroke="#2a2418" stroke-width="3.4" stroke-linecap="round"/>'+
+  '<circle cx="46" cy="15" r="5" fill="#2a2418"/><circle cx="47.5" cy="14" r="1.4" fill="#e8a33c"/>'+
+  '<path d="M50 16c5 2 8 7 9 13" fill="none" stroke="#2a2418" stroke-width="2.2" stroke-linecap="round"/>'+
+  '<path d="M20 44l-8 6M30 47l-2 10M36 46l1 10" stroke="#2a2418" stroke-width="1.8" stroke-linecap="round"/>'+
+  '<path d="M24 38c5-3 11-4 17-2" fill="none" stroke="#2a2418" stroke-width="1.2"/></svg>';};
+}
 
 })();
 </script>
