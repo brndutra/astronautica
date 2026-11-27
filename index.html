@@ -19001,7 +19001,7 @@ setTimeout(function(){try{bnPilares();}catch(e){}},900);setInterval(function(){t
 var BN_ROD_H=58;
 function bnRod(){var h=document.querySelector('#hero-box .vx-hero.bn2');if(!h)return;var rs=document.querySelectorAll('#hero-box .bn-rod'),r=rs[0]||null;for(var ri=1;ri<rs.length;ri++){var rd0=rs[ri].querySelector('.regdia');if(rd0&&r)r.querySelector('.br-slot').appendChild(rd0);rs[ri].remove();}
  if(!r){r=document.createElement('div');r.className='bn-rod';r.innerHTML='<div class="br-gav"><button type="button" data-brg="sem"><i>semana</i><b>—</b></button><button type="button" data-brg="mes"><i>mês</i><b>—</b></button></div><div class="br-db"><span class="br-k">diário de bordo · hoje</span><div class="br-slot"></div><button type="button" class="br-ver" data-brver aria-expanded="false" title="ver o que já foi registrado hoje">ver</button></div>';}
- var bsl=document.querySelector('#hero-box .bn-slot');if(bsl){var anc=(bsl.nextElementSibling&&bsl.nextElementSibling.id==='tp-friso')?bsl.nextElementSibling:bsl;if(anc.nextElementSibling!==r)anc.insertAdjacentElement('afterend',r);}else if(r.parentNode!==h)h.appendChild(r);
+ var bsl=document.querySelector('#hero-box .bn-slot');if(bsl){var anc=bsl;while(anc.nextElementSibling&&/^(tp-friso|tp-friso-bloco|hoje-pan)$/.test(anc.nextElementSibling.id))anc=anc.nextElementSibling;if(anc.nextElementSibling!==r)anc.insertAdjacentElement('afterend',r);}else if(r.parentNode!==h)h.appendChild(r);
  var a=function(q){var e=document.querySelector(q+' span');return e?e.textContent.trim():'';};
  var ts=(a('.mf-alca-sem').replace(/^a semana\s*·?\s*/i,'')||'esta semana'),tm=(a('.mf-alca-mes').replace(/^o m[eê]s\s*·?\s*/i,'')||'este mês');
  var bs=r.querySelector('[data-brg=sem] b'),bm=r.querySelector('[data-brg=mes] b');if(bs.textContent!==ts)bs.textContent=ts;if(bm.textContent!==tm)bm.textContent=tm;
@@ -19544,7 +19544,7 @@ setTimeout(function(){try{tpFriso();}catch(e){}},1500);setInterval(function(){tr
 /* base do templo inicial com a mesma largura do friso do templo seguinte; segundo templo ganha base própria com o incluidor de hábito semanal */
 function baseAlinha(){var rod=document.querySelector('#hero-box > .bn-rod'),hb=document.getElementById('hero-box'),rt=document.querySelector('.wrap > div.rt');if(!rod||!hb||!rt||innerWidth<1380)return;
  var a=hb.getBoundingClientRect(),b=rt.getBoundingClientRect();var l=Math.round(b.left-a.left),r=Math.round(a.right-b.right),v=l+'|'+r;if(rod._al===v)return;rod._al=v;
- rod.style.setProperty('margin-left',l+'px','important');rod.style.setProperty('margin-right',r+'px','important');var fz=document.querySelector('#hero-box > #tp-friso');if(fz){fz.style.setProperty('margin-left',l+'px','important');fz.style.setProperty('margin-right','0px','important');fz.style.setProperty('width','calc(100% - '+(l+r)+'px)','important');}}
+ rod.style.setProperty('margin-left',l+'px','important');rod.style.setProperty('margin-right',r+'px','important');var fz=document.querySelector('#hero-box > #tp-friso-bloco')||document.querySelector('#hero-box > #tp-friso');if(fz){fz.style.setProperty('margin-left',l+'px','important');fz.style.setProperty('margin-right','0px','important');fz.style.setProperty('width','calc(100% - '+(l+r)+'px)','important');}}
 function rtBase(){var rt=document.querySelector('.wrap > div.rt');if(!rt)return;var b=document.getElementById('rt-base');
  if(!b){b=document.createElement('div');b.id='rt-base';b.className='rt-base';b.innerHTML='<span class="rb-k">hábito semanal</span><input data-rbin maxlength="40" placeholder="novo hábito semanal (ex.: faxina do quarto, ligar para a família)"><button type="button" data-rbadd>incluir</button>';}
  if(rt.nextElementSibling!==b)rt.insertAdjacentElement('afterend',b);}
@@ -19564,6 +19564,99 @@ setTimeout(function(){try{baseAlinha();rtBase();}catch(e){}},1600);setInterval(f
  '#rt-base button{flex:none;width:auto!important;height:32px;margin:0!important;padding:0 14px!important;border:1px solid '+k+'!important;border-radius:3px!important;background:rgba(255,248,225,.5)!important;color:'+tx+'!important;font:700 10px var(--mono,monospace)!important;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;box-shadow:inset 0 1px 2px rgba(0,0,0,.18)!important}',
  '.wrap>div.rt{margin-bottom:0!important}',
  '@media(max-width:1379px){.wrap>#rt-base{padding:10px 14px}}'
+].join('\n');document.head.appendChild(st);})();
+
+/* Toque da Concha + Hoje · Compromissos numa peça só, logo acima da base do templo principal */
+var TP_BLOCO=null;
+tpFriso=function(){var sl=document.querySelector('#hero-box .bn-slot'),rod=document.querySelector('#hero-box > .bn-rod');if(!sl)return;
+ if(!TP_FRISO){TP_FRISO=document.createElement('button');TP_FRISO.type='button';TP_FRISO.id='tp-friso';TP_FRISO.className='tp-friso';TP_FRISO.setAttribute('aria-expanded','false');TP_FRISO.setAttribute('aria-label','Toque da Concha · ajustar os toques');
+  TP_FRISO.addEventListener('click',function(e){e.stopPropagation();concha(!document.body.classList.contains('concha-aberta'));});}
+ if(!TP_BLOCO){TP_BLOCO=document.createElement('section');TP_BLOCO.id='tp-friso-bloco';TP_BLOCO.className='tp-friso-bloco';TP_BLOCO.innerHTML='<div class="cb-hoje"></div>';}
+ if(TP_FRISO.parentNode!==TP_BLOCO)TP_BLOCO.insertBefore(TP_FRISO,TP_BLOCO.firstChild);
+ if(sl.nextElementSibling!==TP_BLOCO)sl.insertAdjacentElement('afterend',TP_BLOCO);if(rod&&TP_BLOCO.nextElementSibling!==rod)TP_BLOCO.insertAdjacentElement('afterend',rod);
+ var h=frisoHTML();if(TP_FRISO._h!==h||(h&&!TP_FRISO.firstChild)){TP_FRISO._h=h;TP_FRISO.innerHTML=h;}
+ var hj=TP_BLOCO.querySelector('.cb-hoje'),x='';try{x=compRodHTML();}catch(e){}if(hj._h!==x){hj._h=x;hj.innerHTML=x;}};
+setTimeout(function(){try{tpFriso();}catch(e){}},1500);
+(function(){var st=document.createElement('style');st.id='concha-hoje-css';var k=TV_ON?'#6e4426':EG_ON?'#1e3a6e':'#9a4a30';st.textContent=[
+ '#hero-box>#tp-friso-bloco{position:relative;z-index:6;box-sizing:border-box;margin:0;background:#fbf6ea;border:1px solid '+k+';border-bottom:0}',
+ '#hero-box>#tp-friso-bloco>#tp-friso{position:relative!important;top:auto!important;width:100%!important;margin:0!important;display:block}',
+ '#tp-friso-bloco .cb-hoje{max-height:170px;overflow-y:auto;scrollbar-width:thin;padding:8px 14px 10px;border-top:1px solid '+k+'}',
+ '#tp-friso-bloco .cb-hoje>*{margin:0!important;max-width:none!important;width:auto!important;border:0!important;box-shadow:none!important;background:none!important;padding:0!important}',
+ '#tp-friso-bloco .cb-hoje:empty{display:none}',
+ 'html body.tela-prog div.wrap>div.tb.tb #comp-rod{display:none!important}',
+ 'body.tv #hero-box>#tp-friso-bloco{background:#f5efe2}body.eg #hero-box>#tp-friso-bloco{background:#f8eed6}'
+].join('\n');document.head.appendChild(st);})();
+
+/* ===== O friso do Toque da Concha abre o "Hoje": a linha do dia (concha, agenda e grade) com caixa para virar toque, as missões e tarefas do dia e os próximos compromissos ===== */
+var HOJE_ABERTO=(function(){try{return localStorage.getItem('astro_hoje_pan')!=='0';}catch(e){return true;}})();
+function hojeItens(){var hj=hoje(),it=[],R=rtD();
+ R.toques.forEach(function(t,i){it.push({m:rtMin(t.h),h:t.h,t:t.n,k:'concha',ti:i,on:!!t.on});});
+ try{agDoDia(hj).forEach(function(x){if(x.dia)it.push({m:-1,h:'dia todo',t:x.t,k:'agenda'});else it.push({m:x.ini.getHours()*60+x.ini.getMinutes(),h:agHora(x),t:x.t+(x.loc?' · '+x.loc:''),k:'agenda'});});}catch(e){}
+ try{rtGradeHoje().forEach(function(x){it.push({m:x.m,h:x.h,t:x.t,k:'grade'});});}catch(e){}
+ var vis={};it=it.filter(function(x){if(x.k==='concha')return true;var k=x.h+'|'+x.t;var dup=R.toques.some(function(t){return t.h===x.h&&t.n===x.t;});if(dup||vis[k])return false;vis[k]=1;return true;});
+ it.forEach(function(x){if(x.k!=='concha')x.on=false;});
+ it.sort(function(p,q){return p.m-q.m;});return it;}
+function hojeHTML(){var hj=hoje(),a=rtAgora(),it=hojeItens(),Q=mmD(),fe=Q.feitas[hj]||[],P=plDia(hj),lig=false;try{lig=!!agIcsUrl();}catch(e){}
+ var ck=function(on,attr,tit){return '<button type="button" class="hj-ck'+(on?' on':'')+'" '+attr+' aria-pressed="'+on+'" title="'+tit+'">'+(on?'✓':'')+'</button>';};
+ var marc=false,l1=it.map(function(x){var ag='';if(!marc&&x.m>a){marc=true;ag='<li class="hj-agora"><span>agora · '+String(Math.floor(a/60)).padStart(2,'0')+':'+String(a%60).padStart(2,'0')+'</span></li>';}
+  var pode=x.m>=0;return ag+'<li class="hj-'+x.k+(x.m>=0&&x.m<a?' passou':'')+'">'+(pode?ck(x.on,x.k==='concha'?'data-hjt="'+x.ti+'"':'data-hjadd="'+esc(x.h)+'" data-hjn="'+esc(x.t)+'"',x.on?'é toque da concha · desmarcar':'marcar como toque da concha'):'<i class="hj-ck0"></i>')+'<b>'+esc(x.h)+'</b><span>'+esc(x.t)+'</span><em>'+(x.k==='concha'?'concha':x.k==='grade'?'grade':'agenda')+'</em></li>';}).join('')+(marc?'':'<li class="hj-agora"><span>agora</span></li>');
+ var tm=[];(P.top||[]).forEach(function(t,i){if((t.t||'').trim())tm.push('<li class="'+(t.ok?'ok':'')+'">'+ck(!!t.ok,'data-hjtop="'+i+'"','missão do dia')+'<span>'+esc(t.t)+'</span><em>missão</em></li>');});
+ Q.dia.forEach(function(q){var ok=fe.indexOf(q.id)>=0;tm.push('<li class="'+(ok?'ok':'')+'">'+ck(ok,'data-hjq="'+esc(q.id)+'"','diária')+'<span>'+esc(q.t)+'</span><em>diária</em></li>');});
+ Q.chale.filter(function(c){return !c.ok||c.ok===hj;}).forEach(function(c){var ok=!!c.ok;tm.push('<li class="'+(ok?'ok':'')+'">'+ck(ok,'data-hjch="'+esc(c.id)+'"','tarefa')+'<span>'+esc(c.t)+'</span><em>tarefa</em></li>');});
+ return '<section class="hj-c hj-dia"><header><span>hoje · '+new Date().toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'short'})+'</span><small>a caixa vira toque da concha</small></header><ol>'+l1+'</ol></section>'+
+  '<section class="hj-c hj-mis"><header><span>missões e tarefas do dia</span><small>'+tm.length+'</small></header>'+(tm.length?'<ul>'+tm.join('')+'</ul>':'<p class="hj-n">Nada marcado para hoje.</p>')+'</section>'+
+  '<section class="hj-c hj-prox"><header><span>compromissos · próximos dias</span></header>'+(lig?agListaHTML(10):'<p class="hj-n">Ligue a Agenda Google no rodapé para os compromissos aparecerem aqui e na Grade.</p>')+'</section>';}
+function hojePinta(){var bl=document.getElementById('tp-friso-bloco'),fz=document.getElementById('tp-friso');if(!bl||!fz)return;var hj=bl.querySelector('.cb-hoje');if(!hj)return;
+ hj.classList.add('hj-grade');hj.hidden=!HOJE_ABERTO;fz.classList.toggle('hj-aberto',HOJE_ABERTO);if(!HOJE_ABERTO)return;var h=hojeHTML();if(hj._hj!==h){hj._hj=h;hj._h=h;hj.innerHTML=h;}}
+function hojeRepinta(){try{grava();}catch(e){}try{tpFriso();}catch(e){}try{diaPinta();}catch(e){}try{var p=document.getElementById('tp-painel');if(p){p._h='';p4Painel();}}catch(e){}try{var b=document.getElementById('rt-box');if(b)b.innerHTML=rtHTML();}catch(e){}hojePinta();}
+document.addEventListener('click',function(e){var fz=e.target.closest&&e.target.closest('#tp-friso-bloco > #tp-friso');
+ if(fz){if(e.target.closest('.tf-leg b'))return;e.preventDefault();e.stopPropagation();HOJE_ABERTO=!HOJE_ABERTO;try{localStorage.setItem('astro_hoje_pan',HOJE_ABERTO?'1':'0');}catch(z){}hojePinta();return;}
+ var b=e.target.closest&&e.target.closest('#tp-friso-bloco .hj-grade .hj-ck');if(!b)return;e.preventDefault();e.stopPropagation();var d=b.dataset,R=rtD(),hj=hoje(),Q=mmD();
+ if(d.hjt!=null){var t=R.toques[+d.hjt];if(t)t.on=!t.on;}
+ else if(d.hjadd!=null){var ex=R.toques.filter(function(t){return t.h===d.hjadd&&t.n===d.hjn;})[0];if(ex)ex.on=!ex.on;else R.toques.push({h:d.hjadd,n:d.hjn,on:true});}
+ else if(d.hjtop!=null){var x=plDia(hj).top[+d.hjtop];if(x)x.ok=!x.ok;}
+ else if(d.hjq!=null){var fe=Q.feitas[hj]=Q.feitas[hj]||[],ix=fe.indexOf(d.hjq);if(ix>=0)fe.splice(ix,1);else{fe.push(d.hjq);try{op2XP(5,e);}catch(z){}}}
+ else if(d.hjch!=null){var c=Q.chale.filter(function(y){return y.id===d.hjch;})[0];if(c){if(c.ok)c.ok=false;else{c.ok=hj;try{op2XP(3,e);}catch(z){}}}}
+ try{mmSalva();}catch(z){}hojeRepinta();},true);
+compRodHTML=(function(c0){return function(){if(document.getElementById('tp-friso-bloco')&&!document.body.classList.contains('tela-prog'))return hojeHTML();return c0.apply(this,arguments);};})(compRodHTML);
+(function(){var t0=tpFriso;tpFriso=function(){var r=t0.apply(this,arguments);try{hojePinta();}catch(e){}return r;};})();
+setTimeout(function(){try{hojePinta();}catch(e){}},1700);setInterval(function(){try{hojePinta();}catch(e){}},2500);
+(function(){var st=document.createElement('style');st.id='hoje-pan-css';var k=TV_ON?'#5a3c22':EG_ON?'#1e3a6e':'#8a5a14',k2=TV_ON?'#7a5c12':EG_ON?'#c9a23a':'#b0561e',bg=TV_ON?'#f5ebd6':EG_ON?'#f7ecd2':'#fbf5e6';
+ st.textContent=[
+ 'html body.tela-prog div.wrap>div.tb #comp-rod{display:none!important}',
+ '#tp-friso-bloco>#tp-friso .tf-leg::after{content:"▾ hoje";margin-left:8px;font:700 9px var(--mono,monospace);letter-spacing:.12em;text-transform:uppercase;color:'+k2+'}',
+ '#tp-friso-bloco>#tp-friso.hj-aberto .tf-leg::after{content:"▴ hoje"}',
+ 'html body #tp-friso-bloco .cb-hoje.hj-grade{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr) minmax(0,.8fr);gap:0;max-height:300px;overflow:hidden;padding:0!important}',
+ '#tp-friso-bloco .cb-hoje.hj-grade[hidden]{display:none!important}',
+ 'html body #tp-friso-bloco .cb-hoje.hj-grade>.hj-c{padding:10px 14px 12px!important;overflow-y:auto;max-height:300px;scrollbar-width:thin;box-sizing:border-box;min-width:0}',
+ '#tp-friso-bloco .hj-grade .hj-c{min-width:0;padding:10px 14px 12px;overflow-y:auto;max-height:300px;scrollbar-width:thin;box-sizing:border-box}',
+ '#tp-friso-bloco .hj-grade .hj-c+.hj-c{border-left:1px dashed '+k+'}',
+ '#tp-friso-bloco .hj-grade header{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin:0 0 6px;padding-bottom:5px;border-bottom:1px solid '+k+'}',
+ '#tp-friso-bloco .hj-grade header span{font:700 8.5px var(--mono,monospace);letter-spacing:.14em;text-transform:uppercase;color:'+k2+'}',
+ '#tp-friso-bloco .hj-grade header small{font:italic 10.5px Georgia,serif;color:#8a6f55}',
+ '#tp-friso-bloco .hj-grade ol,#tp-friso-bloco .hj-grade ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:3px}',
+ '#tp-friso-bloco .hj-grade li{display:grid;grid-template-columns:20px 44px minmax(0,1fr) auto;align-items:center;gap:6px;font:13px var(--sans,system-ui);color:#2a2418}',
+ '#tp-friso-bloco .hj-grade .hj-mis li{grid-template-columns:20px minmax(0,1fr) auto}',
+ '#tp-friso-bloco .hj-grade li b{font:700 12px var(--mono,monospace);color:#3b2a1d}',
+ '#tp-friso-bloco .hj-grade li span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}',
+ '#tp-friso-bloco .hj-grade li em{font:700 7.5px var(--mono,monospace);font-style:normal;letter-spacing:.1em;text-transform:uppercase;color:#9a8a70}',
+ '#tp-friso-bloco .hj-grade li.passou{opacity:.5}#tp-friso-bloco .hj-grade li.ok span{text-decoration:line-through;opacity:.6}',
+ '#tp-friso-bloco .hj-grade .hj-agora{display:block}#tp-friso-bloco .hj-grade .hj-agora span{display:block;font:700 8px var(--mono,monospace);letter-spacing:.14em;text-transform:uppercase;color:#b4463a;border-top:1px solid #b4463a;padding-top:2px;margin:2px 0}',
+ '#tp-friso-bloco .hj-grade .hj-ck{display:grid!important;place-items:center;width:18px!important;height:18px!important;min-height:0!important;margin:0!important;padding:0!important;border:1.5px solid '+k+'!important;border-radius:4px!important;background:#fffaf0!important;color:#fff!important;font:700 11px/1 system-ui!important;cursor:pointer;box-shadow:none!important}',
+ '#tp-friso-bloco .hj-grade .hj-ck.on{background:'+k+'!important}',
+ '#tp-friso-bloco .hj-grade .hj-ck0{display:block;width:18px}',
+ '#tp-friso-bloco .hj-grade .hj-n{margin:0;font:italic 12px Georgia,serif;color:#6b5140}',
+ '@media(max-width:1100px){html body #tp-friso-bloco .cb-hoje.hj-grade{grid-template-columns:1fr}#tp-friso-bloco .hj-grade .hj-c+.hj-c{border-left:0;border-top:1px dashed '+k+'}}'
+].join('\n');document.head.appendChild(st);})();
+
+/* Registro rápido com o mesmo rodapé-base do painel direito: degrau estreito em cima, pedra em gradiente, preso no pé do painel de borda a borda */
+(function(){var st=document.createElement('style');st.id='trio-base-css';var T='html body #lat-e>#lat-trio#lat-trio';st.textContent=[
+ T+'{position:sticky!important;bottom:0!important;z-index:22;margin:12px -12px 0!important;width:auto!important;max-width:none!important;padding:9px 12px 10px!important;border:1px solid #9a7b4a!important;border-bottom:0!important;border-top:1px solid #9a7b4a!important;border-radius:0!important;background:linear-gradient(180deg,#efe0bb,#e2cc98)!important;box-shadow:none!important;overflow:visible}',
+ T+'::before{content:"";position:absolute;left:8px;right:8px;top:-8px;height:7px;border:1px solid #9a7b4a;border-bottom:0;background:linear-gradient(180deg,#efe0bb,#e6d3a6)}',
+ T+' .tr-cab small{color:#7a4a20!important}',
+ T+' .tr-ic{background:#f4ead2!important;border-color:#9a7b4a!important}',
+ 'body.tv '+T+',body.tv '+T+'::before{border-color:#6e4426!important;background:linear-gradient(180deg,#e9dfcc,#d8c9ad)!important}',
+ 'body.eg '+T+',body.eg '+T+'::before{border-color:#c9a23a!important;background:linear-gradient(180deg,#f4e4c0,#e6cf9e)!important}'
 ].join('\n');document.head.appendChild(st);})();
 
 })();
