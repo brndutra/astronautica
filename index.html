@@ -5546,6 +5546,43 @@ html body.op-on #rod-apps#rod-apps #argo-mar .rg-box{background:#174d62!importan
 html body.op-on #rod-apps#rod-apps #argo-mar{height:var(--a-mar-h)!important;padding-bottom:calc(var(--mt-h) + 6px)!important}
 html body.op-on,html body.op-on #rod-apps.rod{--a-mar-h:clamp(146px,19.5vh,208px);--v-mar:clamp(146px,19.5vh,208px)}
 html body.op-on #rod-apps#rod-apps #argo-mar .rg-li.agora{filter:drop-shadow(0 0 6px rgba(244,212,134,.45))!important}
+
+/* ===== Apps no mar (modo operacional) ===== */
+#mt-enc .mt-c{display:contents}
+body.op-on #mt-enc{grid-template-columns:auto minmax(0,1fr) minmax(200px,300px)!important}
+html body.op-on #rod-apps#rod-apps #mt-enc #rod-bar{pointer-events:auto;align-self:center;display:flex!important;flex-direction:column;align-items:flex-start;gap:2px;width:auto!important;height:auto!important;min-height:0!important;margin:0!important;padding:7px 14px!important;border:1px solid #a4c3b6!important;border-radius:10px!important;background:#174d62!important;box-shadow:none!important;color:#fff3d4!important;cursor:pointer;position:relative;z-index:6;text-shadow:none}
+html body.op-on #rod-apps#rod-apps #mt-enc #rod-bar:hover{background:#1f5d74!important;border-color:#f4d486!important}
+html body.op-on #rod-apps#rod-apps #mt-enc #rod-bar .rod-k{font:400 15px/1 Georgia,serif!important;font-variant:small-caps;letter-spacing:.06em;color:#fff3d4!important;text-transform:none!important}
+html body.op-on #rod-apps#rod-apps #mt-enc #rod-bar .rod-seta{font:600 8.5px/1.2 var(--mono,monospace)!important;letter-spacing:.14em;text-transform:uppercase;color:#f4d486!important}
+html body.op-on #rod-apps#rod-apps #mt-enc #rod-bar .rod-mini{display:none!important}
+html body.op-on #rod-apps#rod-apps #mt-enc #rod-bar::before,html body.op-on #rod-apps#rod-apps #mt-enc #rod-bar::after{display:none!important}
+
+/* ===== Guardião no Posto de comando: retrato redondo e balões de fala ===== */
+html body #modo-op .op-sat.op-sat2{display:flex!important;align-items:center;gap:12px;width:auto!important;max-width:min(900px,100%);min-width:0;margin:0!important;padding:0!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;overflow:visible!important;cursor:pointer;text-align:left}
+html body #modo-op .op-sat2 .sat-circ{position:relative;flex:none;width:62px;height:62px;border-radius:50%;padding:3px;background:conic-gradient(from 210deg,#f4d486,#c9853a,#f4d486,#e0782a,#f4d486);box-shadow:0 3px 10px rgba(60,35,10,.25)}
+html body #modo-op .op-sat2 .sat-circ>:not(.sat-tag){width:100%!important;height:100%!important;border-radius:50%!important;border:2px solid #fffaf0!important;background:#f6ecd4;object-fit:cover;object-position:50% 16%;display:block;box-sizing:border-box;overflow:hidden}
+html body #modo-op .op-sat2 .sat-tag{position:absolute;left:50%;bottom:-8px;transform:translateX(-50%);white-space:nowrap;padding:1px 7px;border-radius:99px;background:#2e2620;color:#f6e7c4;font:700 8px/1.5 var(--mono,monospace);letter-spacing:.12em;text-transform:uppercase}
+html body #modo-op .op-sat2 .sat-bals{display:flex;align-items:center;gap:10px;min-width:0;overflow:hidden;padding:4px 4px 4px 10px}
+html body #modo-op .op-sat2 .bl{position:relative;flex:0 1 auto;min-width:90px;max-width:300px;padding:7px 13px;border:1.5px solid #2e2620;border-radius:18px;background:#fffdf6;color:#2a2418;font:13px/1.3 Georgia,serif;display:block;overflow:hidden;opacity:0;transform:translateY(4px) scale(.96);animation:blPop .35s ease-out forwards;animation-delay:calc(var(--i,0) * .18s)}
+html body #modo-op .op-sat2 .bl:first-child{flex:none;font-style:italic;max-width:200px}
+html body #modo-op .op-sat2 .bl-w{position:relative;flex:0 1 auto;min-width:0;display:flex}
+html body #modo-op .op-sat2 .bl-w::before{content:"";position:absolute;left:-7px;top:50%;width:12px;height:12px;margin-top:-6px;background:#fffdf6;border-left:1.5px solid #2e2620;border-bottom:1.5px solid #2e2620;transform:rotate(45deg);z-index:1}
+html body #modo-op .op-sat2 .bl-w+.bl-w::before{left:-9px;width:6px;height:6px;margin-top:-3px;border:1.5px solid #2e2620;border-radius:50%;transform:none}
+html body #modo-op .op-sat2 .bl-w>.bl{flex:1 1 auto}
+html body #modo-op .op-sat2:hover .bl{border-color:#e0782a}
+html body #modo-op .op-sat2.sat-panico .bl,html body #modo-op .op-sat2.sat-panico .bl-w::before{border-color:#b4463a}
+html body #modo-op .op-sat2.sat-festa .sat-circ{background:conic-gradient(#f4d486,#7fa36a,#f4d486,#7fa36a,#f4d486)}
+@keyframes blPop{to{opacity:1;transform:none}}
+html body #modo-op .op-sat2 .bl>i{font-style:inherit;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+@media (prefers-reduced-motion:reduce){html body #modo-op .op-sat2 .bl{animation:none;opacity:1;transform:none}}
+html body.tv #modo-op .op-sat2 .sat-circ{background:conic-gradient(from 210deg,#eef1f4,#8a9aa6,#eef1f4,#b3262d,#eef1f4)}
+html body.tv #modo-op .op-sat2 .sat-tag{background:#1f262c;color:#e3e7ea}
+html body.tv #modo-op .op-sat2 .bl,html body.tv #modo-op .op-sat2 .bl-w::before{border-color:#3b4650;background:#fbfaf6}
+html body.tv #modo-op .op-sat2:hover .bl{border-color:#b3262d}
+html body.eg #modo-op .op-sat2 .sat-circ{background:conic-gradient(from 210deg,#f6d37a,#2a4c86,#f6d37a,#2f9c95,#f6d37a)}
+html body.eg #modo-op .op-sat2 .sat-tag{background:#1e3a6e;color:#f6e7c4}
+html body.eg #modo-op .op-sat2 .bl,html body.eg #modo-op .op-sat2 .bl-w::before{border-color:#1e2a44;background:#fffaea}
+html body.eg #modo-op .op-sat2:hover .bl{border-color:#2f9c95}
 /* ===== Barras de rolagem: finas, discretas e na cor do tema ===== */
 html{--sb:rgba(201,150,60,.55);--sb-h:#e0782a}
 html:has(body.tv),body.tv{--sb:rgba(96,114,128,.55);--sb-h:#b3262d}
@@ -18616,14 +18653,14 @@ setInterval(function(){try{var on=travaPaineis().some(function(p){return !p.matc
  if(AT)ANTAG.forEach(function(m){var t=AT[m.k];if(t){m.n=t[0];m.o=t[1];m.d=t[2];}});})();
 var MT_CFG=TV_ON?{img:'mar-ant-nordico',acao:'Abrir passagem',livre:'passagem aberta'}:EG_ON?{img:'mar-ant-egipcio',acao:'Restaure a ordem',livre:'ordem restaurada'}:{img:'mar-ant-grego',acao:'Cruzar o estreito',livre:'travessia livre'};
 function mtEnc(){var rd=document.getElementById('rod-apps');if(!rd)return;var e=document.getElementById('mt-enc');
- if(!e){e=document.createElement('div');e.id='mt-enc';rd.appendChild(e);e.addEventListener('click',function(ev){if(ev.target.closest('.mt-art,.mt-bt')){ev.preventDefault();try{antAbre();}catch(z){}}});}
+ if(!e){e=document.createElement('div');e.id='mt-enc';e.innerHTML='<div class="mt-c"></div>';rd.appendChild(e);e.addEventListener('click',function(ev){if(ev.target.closest('.mt-art,.mt-bt')){ev.preventDefault();try{antAbre();}catch(z){}}});}
  if(e.parentNode!==rd)rd.appendChild(e);
  var x=antHoje(),m=antMonstro(x.m),st=x.st;
  var k=st==='vencido'?MT_CFG.livre+' · vencido':st==='fugiu'?'escapou hoje · volta amanhã':'sob as águas · bloco das '+x.fx+'h';
  var h='<button type="button" class="mt-art" aria-label="'+esc(m.n)+': abrir o encontro"><img src="img/acampamento/'+MT_CFG.img+'.svg?v=1" alt=""></button>'+
   '<div class="mt-info"><span class="mt-k">'+esc(k)+'</span><b class="mt-n">'+esc(m.n)+'</b><span class="mt-o">'+esc(m.o)+'</span>'+
   '<button type="button" class="mt-bt">'+(st==='aberto'?MT_CFG.acao:'ver')+'</button></div>';
- e.className=st==='aberto'?'':st;if(e._h!==h){e.innerHTML=h;e._h=h;}}
+ e.className=st==='aberto'?'':st;var c=e.querySelector('.mt-c');if(c._h!==h){c.innerHTML=h;c._h=h;}try{mtApps();}catch(z){}}
 (function(){var p0=opPinta;opPinta=function(){var r=p0.apply(this,arguments);try{mtEnc();}catch(e){}return r;};})();
 (function(){var p0=antPinta;antPinta=function(){var r=p0.apply(this,arguments);try{mtEnc();}catch(e){}return r;};})();
 setTimeout(function(){try{mtEnc();}catch(e){}},1200);
@@ -18693,6 +18730,18 @@ setInterval(function(){try{panteaoBotao();}catch(e){}},1500);setTimeout(function
 ].join('\n');document.head.appendChild(st);
  setInterval(function(){var w=document.getElementById('panteao');if(!w||!w.classList.contains('on'))return;var b=w.querySelector('.pt-busca');if(!b)return;var c=w.querySelector('.pt-conta');if(!c){c=document.createElement('span');c.className='pt-conta';b.insertAdjacentElement('afterend',c);}
   var n=w.querySelectorAll('.pt-r:not([hidden])').length,t=w.querySelectorAll('.pt-r').length,x=(n===t?t+' equivalências · role a tabela para ver todas':n+' de '+t+' equivalências');if(c.textContent!==x)c.textContent=x;},300);})();
+
+/* Apps: no modo operacional o botão sai do casco e vai para o mar */
+function mtApps(){var b=document.getElementById('rod-bar'),e=document.getElementById('mt-enc'),top=document.querySelector('#rod-apps .rod-top');if(!b)return;
+ if(document.body.classList.contains('op-on')&&e){if(b.parentNode!==e)e.insertBefore(b,e.firstChild);}
+ else if(top&&b.parentNode!==top){var reg=document.getElementById('rod-reg');if(reg&&reg.parentNode===top)reg.insertAdjacentElement('afterend',b);else top.appendChild(b);}}
+setInterval(function(){try{mtApps();}catch(e){}},800);
+/* Guardião: retrato redondo e balões de fala no lugar da faixa */
+satOpTop=function(){var F=satFala(),nv=satNivel(satCfg().xp),nm=(COMP_T&&COMP_T.nm?COMP_T.nm.replace(/\s*"[^"]*"\s*/,' '):'Sully Brookhaven').split(' ')[0];
+ var fr=String(F.t).split(/(?<=[.!?])\s+(?=[A-ZÁÉÍÓÚÂÊÔÃÕÇ0-9])/).filter(Boolean),bal=[];
+ if(fr.length){bal.push(fr[0]);if(fr.length>1)bal.push(fr.slice(1,3).join(' '));if(fr.length>3)bal.push(fr.slice(3).join(' '));}
+ return '<button type="button" class="op-sat op-sat2 sat-'+F.h+'" data-satir="1" title="'+esc(F.t)+'"><span class="sat-circ">'+satAvatar(F.h)+'<span class="sat-tag">'+esc(nm)+' · nv '+nv.n+'</span></span>'+
+  '<span class="sat-bals">'+bal.map(function(t,i){return '<span class="bl-w"><span class="bl" style="--i:'+i+'"><i>'+esc(t)+'</i></span></span>';}).join('')+'</span></button>';};
 
 })();
 </script>
