@@ -338,7 +338,8 @@ function opVersoHTML(){var x=antHoje(),m=antMonstro(x.m),st=x.st,n=0,R={on:false
 function opVerso(){var c=document.querySelector('#modo-op .op-col1');if(!c)return;var v=c.querySelector(':scope>.op-verso'),b=c.querySelector(':scope>.op-vira');
  if(!v){v=document.createElement('div');v.className='op-verso';v.setAttribute('data-notr','');c.appendChild(v);}
  if(!b){b=document.createElement('button');b.type='button';b.className='op-vira';b.dataset.opvira='1';c.appendChild(b);}
- c.classList.toggle('verso',OP_VERSO);var bh=OP_VERSO?'⟲ frente':'⟲ verso';if(b.textContent!==bh)b.textContent=bh;b.title=OP_VERSO?'voltar ao foco':'criatura do dia, desviei e travei';
+ var cs=getComputedStyle(c);[['t','paddingTop'],['r','paddingRight'],['b','paddingBottom'],['l','paddingLeft']].forEach(function(x){var v=cs[x[1]];if(c.style.getPropertyValue('--ov-'+x[0])!==v)c.style.setProperty('--ov-'+x[0],v);});
+ c.classList.toggle('ov-virado',OP_VERSO);var bh=OP_VERSO?'⟲ frente':'⟲ verso';if(b.textContent!==bh)b.textContent=bh;b.title=OP_VERSO?'voltar ao foco':'criatura do dia, desviei e travei';
  var h=opVersoHTML();if(v._h!==h){v.innerHTML=h;v._h=h;}}
 opPinta=(function(f0){return function(){var r=f0.apply(this,arguments);try{opVerso();}catch(e){}return r;};})(opPinta);
 antPinta=(function(f0){return function(){var r=f0.apply(this,arguments);try{opVerso();}catch(e){}return r;};})(antPinta);
@@ -348,24 +349,24 @@ document.addEventListener('click',function(e){var t=e.target.closest&&e.target.c
  var kv=t.dataset.antvar.split('|');antEscolhe(kv[0],kv[1]);},true);
 (function(){var st=document.createElement('style');st.id='op-verso-css';var C='html body #modo-op .op-col1';st.textContent=[
  C+'{position:relative}',
- C+'.verso>:not(.op-verso):not(.op-vira){display:none!important}',C+':not(.verso)>.op-verso{display:none!important}',
+ C+'.ov-virado>:not(.op-verso):not(.op-vira){visibility:hidden!important;pointer-events:none!important}',C+':not(.ov-virado)>.op-verso{display:none!important}',
  C+'>.op-vira{position:absolute;top:6px;right:8px;z-index:6;width:auto!important;height:24px;margin:0!important;padding:0 10px!important;border:1px solid #5a3f2c!important;border-radius:999px!important;background:#fffdf6!important;color:#5a3f2c!important;font:700 9.5px var(--mono,monospace)!important;letter-spacing:.12em;text-transform:uppercase;cursor:pointer}',
  C+'>.op-vira:hover{background:#5a3f2c!important;color:#fffdf6!important}',
- C+'>.op-verso{display:flex;flex-direction:column;gap:10px;width:100%;min-width:0;padding:4px 0 8px;box-sizing:border-box;overflow-y:auto;overflow-x:hidden}',
+ C+'>.op-verso{position:absolute;z-index:5;top:var(--ov-t,84px);right:var(--ov-r,15px);bottom:var(--ov-b,48px);left:var(--ov-l,15px);display:flex;flex-direction:column;gap:7px;min-width:0;padding:2px 0 4px;box-sizing:border-box;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin}',
  C+' .ov-k{font:700 9px var(--mono,monospace);letter-spacing:.16em;text-transform:uppercase;color:#8a6f55}',
- C+' .ov-ant{all:unset;box-sizing:border-box;display:flex;gap:12px;align-items:flex-start;padding:12px;border-radius:14px;background:#2a2418;box-shadow:0 0 0 1px #c9a45a;color:#f4ead2;cursor:pointer}',
+ C+' .ov-ant{all:unset;box-sizing:border-box;display:flex;gap:10px;align-items:flex-start;padding:10px;border-radius:14px;background:#2a2418;box-shadow:0 0 0 1px #c9a45a;color:#f4ead2;cursor:pointer}',
  C+' .ov-ant:hover{box-shadow:0 0 0 2px #e9c870}',
- C+' .ov-ant>i{flex:none;display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:linear-gradient(180deg,#3a5a6a,#1e3a44);box-shadow:0 0 0 1.5px #c9a45a;font:700 22px Georgia,serif;font-style:normal;color:#e9c870}',
+ C+' .ov-ant>i{flex:none;display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:linear-gradient(180deg,#3a5a6a,#1e3a44);box-shadow:0 0 0 1.5px #c9a45a;font:700 18px Georgia,serif;font-style:normal;color:#e9c870}',
  C+' .ov-ant>span{display:flex;flex-direction:column;gap:3px;min-width:0}',
  C+' .ov-ant small{font:700 8.5px var(--mono,monospace);letter-spacing:.12em;text-transform:uppercase;color:#e9c870}',
- C+' .ov-ant>span{flex:1}',C+' .ov-ant b{font:700 19px/1.1 Georgia,serif;overflow-wrap:anywhere}',C+' .ov-ant em{font:italic 13px Georgia,serif;opacity:.85}',C+' .ov-ant p{margin:4px 0 0;font:12.5px/1.4 var(--sans,system-ui);opacity:.9}',
+ C+' .ov-ant>span{flex:1}',C+' .ov-ant b{font:700 17px/1.1 Georgia,serif;overflow-wrap:anywhere}',C+' .ov-ant em{font:italic 13px Georgia,serif;opacity:.85}',C+' .ov-ant p{margin:3px 0 0;font:12px/1.35 var(--sans,system-ui);opacity:.9}',
  C+' .ov-ant.vencido{background:linear-gradient(160deg,#e2bd5c,#8a6a1e);color:#1d1406}',C+' .ov-ant.vencido small{color:#3a2a08}',C+' .ov-ant.fugiu{filter:grayscale(.8);opacity:.8}',
  C+' .ov-var>div{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;margin-top:5px}',
- C+' .ov-var button{all:unset;box-sizing:border-box;display:flex;flex-direction:column;gap:2px;padding:7px 9px;border-radius:10px;border:1px solid rgba(90,63,44,.35);background:#fffdf6;color:#2a2418;font:600 12.5px/1.2 Georgia,serif;cursor:pointer}',
+ C+' .ov-var button{all:unset;box-sizing:border-box;display:flex;flex-direction:column;gap:2px;padding:5px 8px;border-radius:9px;border:1px solid rgba(90,63,44,.35);background:#fffdf6;color:#2a2418;font:600 12px/1.15 Georgia,serif;cursor:pointer}',
  C+' .ov-var button small{font:700 8px var(--mono,monospace);letter-spacing:.12em;text-transform:uppercase;color:#8a6f55}',
  C+' .ov-var button.on{border-color:#2a2418;box-shadow:0 0 0 1px #2a2418;background:#f3e6c6}',
  C+' .op-verso .op-pill-alvo{display:flex;flex-wrap:wrap;gap:6px;height:auto;max-width:100%;border:0;border-radius:0;background:transparent;box-shadow:none;overflow:visible}',
- C+' .op-verso .op-pill-alvo>button{height:30px;border:1.5px solid #2e2620!important;border-radius:999px;background:#fffdf6}',
+ C+' .op-verso .op-pill-alvo>button{height:27px;border:1.5px solid #2e2620!important;border-radius:999px;background:#fffdf6}',
  C+' .op-verso .op-pill-alvo>.cx-trv{background:#2e2620;color:#fffdf6}',
  /* a criatura mora no verso do Escudo: sai o card do rodapé e o botão da linha */
  'body.op-on #mt-enc,#modo-op .op-antbt{display:none!important}'
