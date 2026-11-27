@@ -500,3 +500,40 @@ body.lay-compacto [data-c=gasto] .val{flex:0 0 54px!important}
 body.lay-compacto #painel:not([hidden]){align-items:stretch!important}
 /* popup tem no máximo 800×600: o painel numa tela só encolhe a área quando o tamanho aumenta, para continuar sem rolagem */
 body.lay-compacto.modo-popup{height:calc(600px / var(--z,1));max-height:calc(600px / var(--z,1));width:min(640px,calc(790px / var(--z,1)))}
+
+/* ===== ferramentas de foco: sorteio, primeiro passo, ciclo de blocos, passos, tempo da faixa ===== */
+.sorteio{display:inline-grid;place-items:center;width:22px;height:22px;min-height:22px;padding:0;margin-left:4px;vertical-align:-4px;border-radius:5px}
+.sorteio svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.6}
+.sorteio circle{fill:currentColor;stroke:none}
+.sorteio:hover{background:var(--k);color:#fff6dc}
+.passo{min-height:28px;font-size:12px;font-style:italic;background:#fffaf0}
+.f-passo{display:block;margin-top:2px;font-style:italic;color:var(--k)}
+.pomo{display:flex;align-items:center;gap:4px;margin-top:2px}
+.pomo i{width:9px;height:9px;border-radius:50%;border:1px solid var(--k);background:transparent}
+.pomo i.ok{background:var(--ouro);border-color:var(--ouro)}
+.pomo span{margin-left:3px;font:600 9px system-ui;letter-spacing:.04em;color:var(--dim)}
+.passos{margin-top:4px;gap:3px}
+.passos li{display:flex;align-items:center;gap:6px;padding:3px 4px;border-radius:4px;font-size:12.5px}
+.passos li span{flex:1;min-width:0}
+.passos li small{font:600 9px system-ui;color:var(--dim)}
+.passos li.prox{background:#fffaf0;box-shadow:inset 3px 0 0 var(--ouro)}
+.passos li.ok span{text-decoration:line-through;color:var(--dim)}
+.passos .p-ck{width:18px;height:18px;min-height:18px;padding:0;border-radius:4px;font-size:11px;line-height:1}
+.passos li.ok .p-ck{background:var(--k);border-color:var(--k);color:#fff6dc}
+.passos .p-go{min-height:20px;padding:0 6px;font-size:9.5px}
+.passos .x{min-height:0;padding:0 3px;border:0;background:none;color:var(--dim)}
+.tq-fx{position:relative;height:14px;border-bottom:1px solid var(--k);background:rgba(0,0,0,.04)}
+.tq-fx i{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,var(--c),var(--ouro));opacity:.55}
+.tq-fx span{position:relative;display:block;padding:0 8px;font:600 8.5px/14px system-ui;letter-spacing:.06em;text-transform:uppercase;color:var(--k)}
+.tq-fx.fim i{background:linear-gradient(90deg,#e0a35a,#b0561e)}
+.aj-foco{margin:10px 0 0;padding:6px 10px 10px;border:1px solid var(--linha);border-radius:6px}
+.aj-foco legend{padding:0 4px;font:700 9px system-ui;letter-spacing:.14em;text-transform:uppercase;color:var(--k)}
+.aj-foco label{display:flex;align-items:center;gap:6px;margin:6px 0 0;font-size:12px;color:var(--tinta)}
+.aj-foco label select{flex:1}
+.aj-foco input[type=number]{width:56px;min-height:26px;padding:2px 6px}
+.aj-foco .aj-chk input{width:15px;height:15px;min-height:0}
+.aj-foco .linha{margin-top:8px}
+/* no painel numa tela só: sem passos e sem o campo do primeiro passo */
+body.lay-compacto [data-c=passos],body.lay-compacto .passo,body.lay-compacto .f-passo{display:none!important}
+body.lay-compacto .pomo span{display:none}
+body.lay-compacto .tq-fx{height:12px}body.lay-compacto .tq-fx span{line-height:12px;font-size:8px}

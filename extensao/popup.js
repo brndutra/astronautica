@@ -12,6 +12,8 @@ var AGUA_META = 8, CIRC = 2 * Math.PI * 47;
 /* refúgio, modo de abertura e tamanho */
 var MODO = new URLSearchParams(location.search).get('modo') || 'popup';
 var TEMA = 'greek', T = temaDe('greek'), ZOOM = 1, ZOOMS = [0.85, 0.92, 1, 1.1, 1.2, 1.32];
+/* foco e pausas (mesmos padrões do segundo plano) */
+var CF = { foco: 25, curta: 5, longa: 15, ciclo: 4, auto: true, som: 'nenhum', toque: 0, insiste: 10, aviso5: true }, POMO = 0, FOCO_ATUAL = null;
 var estado = null, fila = [], contDefs = [], relogio = null;
 
 function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
@@ -110,8 +112,16 @@ async function pintaFoco() {
   $('anel').classList.toggle('pausa', !!(fo && fo.descanso));
   $('modo').textContent = fo && fo.descanso ? 'pausa' : 'foco';
   var s = sessoesHoje(), min = s.reduce(function (a, x) { return a + x.min; }, 0);
-  $('fstat').innerHTML = '<b>' + s.length + (s.length === 1 ? ' bloco' : ' blocos') + '</b> · <b>' + min + '</b> min hoje';
-  if (!fo) { $('tempo').textContent = '25:00'; $('tlabel').textContent = 'pronto'; $('arco').style.strokeDashoffset = 0; return; }
+  FOCO_ATUAL = fo;
+  $('fstat').innerHTML = '<b>' + s.length + (s.length === 1 ? ' bloco' : ' blocos') + '</b> · <b>' + min + '</b> min hoje' +
+    (fo && fo.passo && !fo.descanso ? '<span class="f-passo">passo: ' + esc(fo.passo) + '</span>' : '');
+  var pm = (await chrome.storage.local.get('pomo')).pomo || {}; POMO = pm.dia === hojeStr() ? pm.n | 0 : 0;
+  var nc = Math.max(1, CF.ciclo), feitos = POMO % nc, dots = '';
+  for (var k = 0; k < nc; k++) dots += '<i class="' + (k < feitos ? 'ok' : '') + '"></i>';
+  $('pomo').innerHTML = dots + '<span>' + (nc - feitos) + (nc - feitos === 1 ? ' bloco' : ' blocos') + ' até a pausa longa</span>';
+  $('passo').hidden = !!fo;
+  pintaPassos(); pintaGuardiao();
+  if (!fo) { $('tempo').textContent = String(CF.foco).padStart(2, '0') + ':00'; $('tlabel').textContent = 'pronto'; $('arco').style.strokeDashoffset = 0; return; }
   if (fo.tarefa && !$('tarefa').value) $('tarefa').value = fo.tarefa;
   var tick = function () {
     var r = Math.max(0, Math.round((fo.tot - fo.acum - (fo.ini ? Date.now() - fo.ini : 0)) / 1000));
@@ -200,6 +210,34 @@ function pintaTudo() {
   pintaToque(); pintaAtu(); pintaCaps(); pintaVerso();
 }
 
+/* passos da tarefa: guardados na extensão, por tarefa */
+var PASSOS = { chave: '', itens: [] };
+function chaveTarefa() { return ((FOCO_ATUAL && !FOCO_ATUAL.descanso && FOCO_ATUAL.tarefa) || ($('tarefa') && $('tarefa').value) || '').trim().toLowerCase(); }
+async function lerPassos() {
+  var k = chaveTarefa(), A = (await chrome.storage.local.get('passos')).passos || {};
+  PASSOS = { chave: k, itens: (A[k] || []).slice() }; return PASSOS;
+}
+async function gravaPassos(P) {
+  var A = (await chrome.storage.local.get('passos')).passos || {};
+  if (P.itens.length) A[P.chave] = P.itens; else delete A[P.chave];
+  var ks = Object.keys(A); if (ks.length > 30) ks.slice(0, ks.length - 30).forEach(function (k) { delete A[k]; });
+  await chrome.storage.local.set({ passos: A });
+}
+function proximoPasso() { for (var i = 0; i < PASSOS.itens.length; i++) if (!PASSOS.itens[i].ok) return PASSOS.itens[i]; return null; }
+async function pintaPassos() {
+  if (!$('passos')) return;
+  await lerPassos();
+  var nome = (FOCO_ATUAL && !FOCO_ATUAL.descanso && FOCO_ATUAL.tarefa) || $('tarefa').value.trim();
+  $('passos-de').textContent = nome ? nome.slice(0, 28) : 'escreva a tarefa no foco';
+  var prox = proximoPasso();
+  $('passos').innerHTML = PASSOS.itens.map(function (it, i) {
+    return '<li class="' + (it.ok ? 'ok' : '') + (it === prox ? ' prox' : '') + '"><button type="button" class="p-ck" data-pi="' + i + '" data-a="ok" aria-label="concluir">' + (it.ok ? '✓' : '') + '</button>' +
+      '<span>' + esc(it.t) + (it.min ? ' <small>' + it.min + ' min</small>' : '') + '</span>' +
+      (it.ok ? '' : '<button type="button" class="p-go" data-pi="' + i + '" data-a="focar" title="focar só neste pedaço' + (it.min ? ' por ' + it.min + ' min' : '') + '">focar</button>') +
+      '<button type="button" class="x" data-pi="' + i + '" data-a="rm" aria-label="tirar">✕</button></li>';
+  }).join('') || '<li class="vazio">Nenhum pedaço ainda. Comece pelo menor possível.</li>';
+}
+
 /* Toque do dia: faixa das horas do templo, com o próximo toque e a linha de hoje */
 function pintaToque() {
   var tb = (estado && estado.tb) || {}, d = hojeStr(), agora = new Date(), h = agora.getHours(), at = faixaDe(), prox = null;
@@ -215,6 +253,13 @@ function pintaToque() {
     txt = 'Toque ' + (T.toque === 'Concha' ? 'da ' : 'do ') + T.toque + ' · próximo ' + prox + ':00 · ' + (T.fx[prox] || '') + ' · em ' + dur;
   } else txt = 'Toque ' + (T.toque === 'Concha' ? 'da ' : 'do ') + T.toque + ' · amanhã às 06:00 · ' + T.fx['06'];
   $('tq-txt').textContent = txt;
+  if (at) {
+    var ini = new Date(agora); ini.setHours(+at, 0, 0, 0);
+    var dec = (agora - ini) / 60000, falta = Math.max(0, Math.round(180 - dec));
+    $('tq-bar').style.width = Math.min(100, Math.round(dec / 180 * 100)) + '%';
+    $('tq-falta').textContent = 'faltam ' + (falta >= 60 ? Math.floor(falta / 60) + 'h' + String(falta % 60).padStart(2, '0') : falta + ' min') + ' de ' + (T.fx[at] || at + 'h') + (falta <= 15 ? ' · hora de fechar com calma' : '');
+    $('tq-fx').hidden = false; $('tq-fx').classList.toggle('fim', falta <= 15);
+  } else $('tq-fx').hidden = true;
   $('tq-dia').innerHTML = FAIXAS.map(function (f) {
     var v = tb[d + '|' + f] || '';
     return '<li class="' + (f === at ? 'agora' : (+f + 3 <= h ? 'foi' : '')) + '"><b>' + f + ':00</b><span>' + esc(T.fx[f] || '') + '</span><em>' + (v ? esc(v) : '—') + '</em></li>';
@@ -254,8 +299,10 @@ function mostraFace(f) {
 
 /* guardião: uma fala de acordo com o dia */
 function pintaGuardiao() {
-  var g = T.guardiao, f = T.falas, h = new Date().getHours(), n = sessoesHoje().length, a = aguaHoje(), fala;
-  if (h >= 21) fala = f.fim;
+  var g = T.guardiao, f = T.falas, h = new Date().getHours(), n = sessoesHoje().length, a = aguaHoje(), fala, px = proximoPasso();
+  if (FOCO_ATUAL && FOCO_ATUAL.descanso) fala = 'Pausa: levante, beba água, olhe para longe. O próximo bloco espera.';
+  else if (px) fala = 'Próximo pedaço: ' + px.t + (px.min ? ' (' + px.min + ' min)' : '') + '. Só ele.';
+  else if (h >= 21) fala = f.fim;
   else if (n > 0 && (h < 10 || a >= AGUA_META || n % 2)) fala = f.foco.replace('{n}', n).replace('{b}', n === 1 ? 'bloco' : 'blocos');
   else if (estado && h >= 10 && a < AGUA_META) fala = f.agua.replace('{n}', AGUA_META - a);
   else fala = f.ini[new Date().getDate() % f.ini.length];
@@ -412,14 +459,65 @@ document.addEventListener('DOMContentLoaded', async function () {
 
   /* foco */
   function inicia(min, extra) {
-    var m = Object.assign({ t: 'focoIniciar', min: min, tarefa: $('tarefa').value.trim() }, extra || {});
+    var m = Object.assign({ t: 'focoIniciar', min: min, tarefa: $('tarefa').value.trim(), passo: $('passo').value.trim() }, extra || {});
     chrome.runtime.sendMessage(m, function () {
       pintaFoco();
       aviso(m.descanso ? 'Pausa iniciada. Levante e beba água.' : 'Bloco iniciado. O aviso chega no fim.');
     });
   }
   document.querySelectorAll('[data-min]').forEach(function (b) { b.onclick = function () { inicia(+b.dataset.min); }; });
-  $('pausa5').onclick = function () { inicia(5, { descanso: true, tarefa: 'pausa' }); };
+  $('pausa5').onclick = function () { inicia(CF.curta, { descanso: true, tarefa: 'pausa' }); };
+
+  /* sorteio: quando não se sabe por onde começar */
+  $('sorteio').onclick = function () {
+    var op = [], d = hojeStr(), p = estado && estado.plan && estado.plan[d];
+    ((p && p.top) || []).forEach(function (t) { if (t && (t.t || '').trim() && !t.ok) op.push(t.t.trim()); });
+    ((estado && estado.hab) || []).forEach(function (hb) { if ((hb.hist || []).indexOf(d) < 0) op.push(hb.nome); });
+    var c = cicloAgora(); if (c) op.push(c.o[c.i].nome);
+    var fx = faixaDe(), tb = (estado && estado.tb) || {}; if (fx && tb[d + '|' + fx]) op.push(tb[d + '|' + fx]);
+    var px = proximoPasso(); if (px) op.push(px.t);
+    if (!op.length) { aviso('Nada para sortear: defina missões ou hábitos no app.', true); return; }
+    var x = op[Math.floor(Math.random() * op.length)];
+    $('tarefa').value = x; $('g-fala').textContent = 'Sorteei: ' + x + '. Começa só pelo primeiro passo.';
+    $('passo').focus(); aviso('Sorteado: ' + x); pintaPassos();
+  };
+
+  /* passos da tarefa */
+  var tTarefa = null;
+  $('tarefa').addEventListener('input', function () { clearTimeout(tTarefa); tTarefa = setTimeout(function () { pintaPassos().then(pintaGuardiao); }, 400); });
+  $('p-add').onclick = async function () {
+    var t = $('p-novo').value.trim(), mi = parseInt($('p-min').value, 10) || 0; if (!t) return;
+    var P = await lerPassos(); P.itens.push({ t: t, min: mi, ok: false }); await gravaPassos(P);
+    $('p-novo').value = ''; $('p-min').value = ''; pintaPassos(); pintaGuardiao();
+  };
+  $('p-novo').addEventListener('keydown', function (e) { if (e.key === 'Enter') $('p-add').click(); });
+  $('passos').onclick = async function (e) {
+    var b = e.target.closest('[data-pi]'); if (!b) return;
+    var P = await lerPassos(), i = +b.dataset.pi, it = P.itens[i]; if (!it) return;
+    if (b.dataset.a === 'ok') { it.ok = !it.ok; }
+    else if (b.dataset.a === 'rm') { P.itens.splice(i, 1); }
+    else if (b.dataset.a === 'focar') { $('passo').value = it.t; inicia(it.min || CF.foco, { passo: it.t }); }
+    await gravaPassos(P); pintaPassos(); pintaGuardiao();
+  };
+
+  /* preferências de foco */
+  function cfPinta() {
+    $('c-foco').value = CF.foco; $('c-curta').value = CF.curta; $('c-longa').value = CF.longa; $('c-ciclo').value = CF.ciclo;
+    $('c-auto').checked = !!CF.auto; $('c-som').value = CF.som; $('c-toque').value = String(CF.toque); $('c-insiste').value = String(CF.insiste); $('c-aviso5').checked = !!CF.aviso5;
+    var b25 = document.querySelector('#parado [data-min]'); b25.dataset.min = CF.foco; b25.textContent = CF.foco + ' min';
+    $('pausa5').textContent = 'pausa ' + CF.curta;
+  }
+  function cfLe() {
+    function n(id, a, b, d) { var v = parseInt($(id).value, 10); return isNaN(v) ? d : Math.max(a, Math.min(b, v)); }
+    CF = { foco: n('c-foco', 5, 120, 25), curta: n('c-curta', 1, 30, 5), longa: n('c-longa', 5, 60, 15), ciclo: n('c-ciclo', 2, 8, 4), auto: $('c-auto').checked,
+      som: $('c-som').value, toque: +$('c-toque').value || 0, insiste: +$('c-insiste').value || 0, aviso5: $('c-aviso5').checked };
+    chrome.storage.local.set({ cfgFoco: CF }); chrome.runtime.sendMessage({ t: 'reagendar' }); cfPinta(); pintaFoco();
+  }
+  CF = Object.assign({}, CF, (await chrome.storage.local.get('cfgFoco')).cfgFoco || {});
+  cfPinta();
+  document.querySelectorAll('.aj-foco input,.aj-foco select').forEach(function (x) { x.addEventListener('change', cfLe); });
+  $('c-testar').onclick = function () { var v = $('c-som').value; if (v === 'nenhum') { aviso('Escolha um som primeiro.'); return; } chrome.runtime.sendMessage({ t: 'testeSom', tipo: v }); aviso('Tocando 4 segundos de ' + $('c-som').selectedOptions[0].text + '.'); };
+  $('c-sino').onclick = function () { chrome.runtime.sendMessage({ t: 'testeSom', tipo: 'sino' }); };
   $('pp').onclick = function () { chrome.runtime.sendMessage({ t: 'focoPausa' }, function () { pintaFoco(); }); };
   $('enc').onclick = function () {
     chrome.runtime.sendMessage({ t: 'focoEncerrar' }, function (r) {
