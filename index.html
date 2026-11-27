@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<script src="temas/egito/termos.js?v=1"></script>
+<script src="temas/egito/termos.js?v=3"></script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Astronáutica</title>
@@ -16175,16 +16175,16 @@ function corvoAveG(cass){var s=corvoAve();if(!cass)return s;return s.replace('fi
 var CV_RUIM=/vencid|venceu|São 16h|atrasad/i;
 corvoDiz=function(linhas,gab){if(!linhas.length)return;var c=corvoCfg(),hm=new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
  var ruins=linhas.filter(function(l){return CV_RUIM.test(l);}),boas=linhas.filter(function(l){return !CV_RUIM.test(l);});
- if(boas.length)c.log.unshift({d:hoje(),h:hm,t:boas,q:'polly'});if(ruins.length)c.log.unshift({d:hoje(),h:hm,t:ruins,q:'cass'});if(c.log.length>25)c.log.length=25;try{grava();}catch(e){}
+ if(boas.length)c.log.unshift({d:hoje(),h:hm,t:boas,q:'polly'});if(ruins.length)c.log.unshift({d:hoje(),h:hm,t:ruins,q:'polly'});if(c.log.length>25)c.log.length=25;try{grava();}catch(e){}
  if(boas.length)aveAvisa('corvo','Polly McCaw · corvo de Apolo · '+hm,boas,gab);
- if(ruins.length)aveAvisa('cass','Cass McCaw · o gêmeo da Polly · '+hm,ruins,gab);
+ if(ruins.length)aveAvisa('cass','Polly McCaw · corvo de Apolo · '+hm,ruins,gab);
  try{satPinta();}catch(e){}};
 aveAvisa=(function(f0){return function(quem,tit,linhas,gab){if(quem!=='cass')return f0.apply(this,arguments);
  f0.call(this,'corvo',tit,linhas,gab);var d=document.getElementById('ave-dlg'),L=d&&d.querySelector('.ad-lista'),s=L&&L.lastElementChild;
- if(s){s.classList.remove('ad-corvo');s.classList.add('ad-cass');var sv=s.querySelector('svg');if(sv)sv.outerHTML=corvoAveG(true);var b=s.querySelector('b');if(b)b.textContent='Crá. Notícia ruim, e quem traz sou eu.';}};})(aveAvisa);
+ if(s){s.classList.remove('ad-corvo');s.classList.add('ad-cass');var sv=s.querySelector('svg');var b=s.querySelector('b');if(b)b.textContent='Crá. Notícia ruim, mas melhor saber agora.';}};})(aveAvisa);
 satPainelHTML=(function(f0){return function(){var h=f0.apply(this,arguments);
- h=h.replace('<span class="sat-k">recados do corvo</span><b>Polly McCaw, corvo de Apolo</b>','<span class="sat-k">recados dos corvos</span><b>Polly e Cass McCaw, corvos gêmeos de Apolo</b>')
-  .replace(/<small class="cv-bio">[^<]*<\/small>/,'<small class="cv-bio">Sol em Gêmeos, ascendente em Libra · Polly (Pollux, o imortal) traz as entregas; Cass (Castor, o gêmeo mortal) só aparece com notícia ruim · dividem a imortalidade, um dia cada · aparentam 36 · photoplayer dos dois: Chris Colfer (Cass de jaqueta de couro)</small>');
+ h=h.replace('<span class="sat-k">recados do corvo</span><b>Polly McCaw, corvo de Apolo</b>','<span class="sat-k">recados do corvo</span><b>Polly McCaw, corvo de Apolo</b>')
+  .replace(/<small class="cv-bio">[^<]*<\/small>/,'<small class="cv-bio">Sol em Gêmeos, ascendente em Libra · traz as entregas, os avisos e também as notícias ruins · tem um gêmeo, Cass, que fica no ninho · aparenta 36 · photoplayer: Chris Colfer</small>');
  return h;};})(satPainelHTML);
 satFicha=(function(f0){return function(){return f0.apply(this,arguments).replace('<dt>origem</dt>','<dt>idade</dt><dd>58 anos de sátiro, aparenta 29: sátiros envelhecem na metade do ritmo dos humanos</dd><dt>photoplayer</dt><dd>Jeremy Shada (Boise, Idaho; nascido em 21/01/1997, aquariano de carteirinha)</dd><dt>origem</dt>');};})(satFicha);
 /* ======================= o fundo do Hall das Epopeias =======================
@@ -18069,9 +18069,9 @@ var D={CR_IC:typeof CR_IC!=='undefined'?CR_IC:null,LAT_IC:typeof LAT_IC!=='undef
 Object.keys(M).forEach(function(n){var d=D[n];if(!d)return;Object.keys(M[n]).forEach(function(k){if(!(k in d))return;var g=S[M[n][k]];if(!g)return;d[k]=F[n]?'<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">'+g+'</svg>':g;});});
 window.VH_SIMB=S;})();}
 
-function tvNo(root){if(!root)return;if(root.nodeType===3){var p=root.parentNode;if(p&&/^(SCRIPT|STYLE|TEXTAREA)$/.test(p.nodeName))return;var n=tvTxt(root.nodeValue);if(n!==root.nodeValue)root.nodeValue=n;return;}
+function tvNo(root){if(!root)return;var _e=root.nodeType===3?root.parentNode:root;if(_e&&_e.closest&&_e.closest('[data-notr]'))return;if(root.nodeType===3){var p=root.parentNode;if(p&&/^(SCRIPT|STYLE|TEXTAREA)$/.test(p.nodeName))return;var n=tvTxt(root.nodeValue);if(n!==root.nodeValue)root.nodeValue=n;return;}
  if(root.nodeType!==1||/^(SCRIPT|STYLE|TEXTAREA|INPUT)$/.test(root.nodeName))return;
- var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT),x;while(x=w.nextNode()){var pp=x.parentNode;if(pp&&/^(SCRIPT|STYLE|TEXTAREA)$/.test(pp.nodeName))continue;var v=tvTxt(x.nodeValue);if(v!==x.nodeValue)x.nodeValue=v;}
+ var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT),x;while(x=w.nextNode()){var pp=x.parentNode;if(pp&&/^(SCRIPT|STYLE|TEXTAREA)$/.test(pp.nodeName))continue;if(pp&&pp.closest&&pp.closest('[data-notr]'))continue;var v=tvTxt(x.nodeValue);if(v!==x.nodeValue)x.nodeValue=v;}
  var at=root.querySelectorAll?[root].concat([].slice.call(root.querySelectorAll('[title],[placeholder],[aria-label]'))):[];
  at.forEach(function(e){['title','placeholder','aria-label'].forEach(function(a){var v=e.getAttribute&&e.getAttribute(a);if(v){var n2=tvTxt(v);if(n2!==v)e.setAttribute(a,n2);}});});}
 function tvBotao(){var r=document.querySelector('#lat-topo>.lt-r2');if(!r)return;var b=document.getElementById('tv-tg');
@@ -18424,7 +18424,7 @@ var COMP_T=TV_ON?{
   ['fraqueza','café de posto com rosquinha de bordo e qualquer desafio que comece com "aposto que você não consegue"'],
   ['juramento','levar o filho de Ullr inteiro até o Ragnarök do edital: ritos, estudo, foco e descanso. Do gabinete quem fala é o Hugin'],
   ['como sobe','rito +5 · cada 10 min de estudo +2 · bloco de foco +5 · revisão +3 · entrega no gabinete +10 · meta do gabinete +30']],
- bio:'Hugin (o pensamento) chega primeiro, com as entregas e os avisos; Munin (a memória) vem depois e não deixa passar prazo vencido. Odin os pôs na sua cola desde o primeiro dia no hotel: quem é vigiado por corvos não esquece compromisso.'}
+ bio:'Hugin, o pensamento de Odin, traz as entregas, os avisos e também as notícias ruins. O gêmeo, Munin, a memória, fica no ombro de Odin e guarda tudo o que você fez. Odin pôs Hugin na sua cola desde o primeiro dia no hotel.'}
 :EG_ON?{
  k:'babuíno escriba do iniciado · Casa do Brooklyn',nm:'Toby Nefer',
  nv:[[0,'Aprendiz de escriba'],[100,'Escriba do terraço'],[300,'Escriba credenciado'],[600,'Contador de prazos'],[1000,'Escriba-chefe da Casa'],[1600,'Guardião dos Rolos do Brooklyn']],
@@ -18589,6 +18589,58 @@ function mtEnc(){var rd=document.getElementById('rod-apps');if(!rd)return;var e=
 (function(){var p0=opPinta;opPinta=function(){var r=p0.apply(this,arguments);try{mtEnc();}catch(e){}return r;};})();
 (function(){var p0=antPinta;antPinta=function(){var r=p0.apply(this,arguments);try{mtEnc();}catch(e){}return r;};})();
 setTimeout(function(){try{mtEnc();}catch(e){}},1200);
+/* ======================= Panteão · equivalências entre os três temas ======================= */
+var PANTEAO=[["Personagens próprios do app", [["Você (banner)", "Chase Maverick Duke · o Hékatos", "Chase Maverick Duke · filho de Ullr", "Chase Maverick Duke · mago de Neith", "nível, XP e ficha"], ["Guardião", "Sully Brookhaven · sátiro protetor, Aquário", "Brynn Halvorsen · valquíria recrutadora, Sagitário", "Toby Nefer · babuíno escriba, Libra", "ritos e designações"], ["Mensageiro", "Polly McCaw · corvo de Apolo (Cass fica no ninho)", "Hugin · corvo de Odin (Munin fica com Odin)", "Benh · Bennu de Aten (chega em brasa nas más notícias)", "avisos, entregas e más notícias"]]], ["Patronos e guias", [["Patrono", "Apolo / Hékatos", "Odin / Ullr", "Rá / Neith", "arsenal e campo de tiro"], ["Diretor", "Quíron", "Helgi", "Amós", "Casa Grande"], ["Conselho", "Conselheiro-Chefe", "Thane-Chefe", "Sacerdote-Leitor Chefe", "designações do gabinete"], ["Oráculo", "Oráculo", "Nornas", "Livro de Thoth", "missões"], ["Ronda da noite", "Harpias", "Valquírias", "Shabtis", "recolher"]]], ["Painéis e objetos", [["Laptop / Bússola", "Dédalo", "Blitzen", "Ptah", "painel de estudos"], ["Retomar", "Fio de Ariadne", "Ponte Bifröst · Heimdall", "Nó de Ísis", "de onde você parou"], ["Captura", "Píthos de Pandora", "Poço de Mímir", "Vaso canópico", "caixa de entrada"], ["Anotações", "Tabuinhas de Cadmo", "Tábuas rúnicas de Hearthstone", "Papiros de Thoth", "notas"], ["Hábitos", "Tear de Penélope", "Tear de Frigg", "Tear de Neith", "rastreados"], ["Disco de foco", "Escudo de Aquiles", "Escudo de Odin", "Olho de Hórus", "foco"], ["Integrações", "Hermes Express · George e Martha", "Correio dos Corvos · Hugin e Munin", "Correio de Thoth · najas de Uadjet", "apps ligados"], ["Notícias", "Hefesto TV", "Rádio Bifröst", "Rádio de Ptah", "leituras"], ["Clima", "Céu de Zeus", "Céu de Thor", "Céu de Nut", "tempo"], ["Relógio-escudo", "Tyson", "Blitzen", "Bes (amuleto)", "arsenal"], ["Moeda", "Dracmas", "Marcos de ouro", "Debens de ouro", "loja e prêmios"], ["Bolsa", "Bolsa de Dracmas", "Tesouro de Andvari", "Tesouro do Faraó", "finanças"], ["Calçado", "Tênis alados", "Botas de Víðarr", "Sandálias de Hórus", "trajeto"]]], ["Lugares e rotina", [["Casa", "Acampamento Meio-Sangue", "Hotel Valhala", "Casa do Brooklyn", "o app"], ["Seu lugar", "Chalé 7", "Andar 19", "Nomo 21", "quarto / aposento"], ["Sede", "Casa Grande", "Saguão", "Grande Salão", ""], ["Refeições", "Pavilhão / Refeitório", "Salão do Banquete", "Terraço", ""], ["Fim do dia", "Fogueira", "Banquete", "Braseiro", "fechar o dia"], ["Toque", "Concha", "Gjallarhorn", "Sistro", "avisos de hora"], ["Amanhecer", "Alvorada", "Despertar", "Nascer de Rá", "06h"], ["Ampulheta", "Clepsidra", "Ampulheta de Sól", "Relógio de água de Karnak", "o dia escoando"], ["Oficina", "Bunker 9", "Forja de Nidavellir", "Oficina de Ptah", "projetos"], ["Desafio do dia", "Captura da bandeira", "Combate do dia", "Duelo do dia", "vitórias"], ["Navio (operacional)", "Argo", "Drakkar", "Barca de Rá", "modo operacional"]]], ["Monstros e provas", [["Fim de expediente", "Procusto", "Procusto", "Procusto", "diálogo das 19h"], ["Enigmas", "Esfinge", "Fenrir", "Esfinge", "estudos"], ["Metas longas", "Trabalhos de Hércules", "Façanhas de Thor", "Provas de Hórus", ""], ["1ª prova", "Hidra de Lerna", "Jörmungandr", "Apófis", ""], ["2ª prova", "Leão de Nemeia", "Lobo Fenrir", "Leoa Sekhmet", ""], ["3ª prova", "Javali de Erimanto", "Javali Sæhrímnir", "Crocodilo de Sobek", ""], ["4ª prova", "Corça de Cerineia", "Cervo Eikthyrnir", "Íbis de Thoth", ""], ["5ª prova", "Aves do Estínfalo", "Águias de Hræsvelgr", "Demônios-pássaro do Duat", ""], ["6ª prova", "Estábulos de Áugias", "Salões de Útgarda", "Salões do Duat", ""]]], ["Arsenal", [["Arma", "Xíphos de bronze", "Espada de ferro", "Khopesh de bronze", ""], ["Escudo", "Aspís de madeira e bronze", "Escudo redondo de tília", "Escudo de couro de hipopótamo", ""], ["Elmo", "Elmo calcídico", "Elmo de ferro", "Coroa azul (khepresh)", ""], ["Couraça", "Linotórax", "Cota de malha", "Couraça de linho", ""], ["Instrumento", "Lira de casco de tartaruga", "Harpa de Bragi", "Harpa do templo", ""]]]];
+function panteaoAbre(){var at=TV_ON?2:(typeof EG_ON!=='undefined'&&EG_ON)?3:1,ex=function(x){return String(x).replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];});};
+ var h='<div class="pt-box" role="dialog" aria-label="Panteão · equivalências entre temas"><button type="button" class="pt-x" aria-label="fechar">×</button>'+
+  '<span class="pt-k">panteão · o mesmo app em três mitologias</span><h2>Equivalências entre temas</h2>'+
+  '<input class="pt-busca" type="search" placeholder="buscar personagem, lugar ou objeto…" aria-label="buscar">'+
+  '<div class="pt-tab"><table><thead><tr><th>Papel</th>'+[['acampamento','Acampamento Meio-Sangue'],['valhala','Hotel Valhala'],['egito','Casa do Brooklyn']].map(function(t,i){return '<th class="pt-c'+(i+1)+(at===i+1?' pt-at':'')+'"><button type="button" data-pt="'+t[0]+'" title="'+(at===i+1?'tema atual':'mudar para este tema')+'">'+t[1]+(at===i+1?' · atual':'')+'</button></th>';}).join('')+'<th>No app</th></tr></thead>';
+ PANTEAO.forEach(function(g){h+='<tbody><tr class="pt-g"><td colspan="5">'+ex(g[0])+'</td></tr>'+g[1].map(function(r){return '<tr class="pt-r"><th>'+ex(r[0])+'</th>'+[1,2,3].map(function(i){return '<td class="pt-c'+i+(at===i?' pt-at':'')+'">'+ex(r[i])+'</td>';}).join('')+'<td class="pt-o">'+ex(r[4])+'</td></tr>';}).join('')+'</tbody>';});
+ h+='</table></div></div>';
+ var w=document.getElementById('panteao');if(!w){w=document.createElement('div');w.id='panteao';w.setAttribute('data-notr','');w.setAttribute('translate','no');document.body.appendChild(w);
+  w.addEventListener('click',function(e){if(e.target===w||e.target.closest('.pt-x')){w.classList.remove('on');return;}var b=e.target.closest('[data-pt]');if(b){try{localStorage.setItem('astro_tema',b.dataset.pt);}catch(z){}location.reload();}});
+  w.addEventListener('input',function(e){if(!e.target.classList.contains('pt-busca'))return;var q=e.target.value.trim().toLowerCase();
+   [].forEach.call(w.querySelectorAll('tbody'),function(tb){var n=0;[].forEach.call(tb.querySelectorAll('.pt-r'),function(r){var ok=!q||r.textContent.toLowerCase().indexOf(q)>=0;r.hidden=!ok;if(ok)n++;});tb.hidden=!n;});});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')w.classList.remove('on');});}
+ w.innerHTML=h;w.classList.add('on');w.querySelector('.pt-busca').focus();}
+function panteaoBotao(){var r=document.querySelector('#lat-topo>.lt-r2');if(!r)return;var b=document.getElementById('pt-tg');
+ if(!b){b=document.createElement('button');b.type='button';b.id='pt-tg';b.title='Panteão · equivalências entre os temas';b.setAttribute('aria-label',b.title);
+  b.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h13l-3-3M20 17H7l3 3"/></svg>';b.addEventListener('click',panteaoAbre);}
+ var tv=document.getElementById('tv-tg');if(tv&&tv.parentNode===r){if(tv.nextElementSibling!==b)tv.insertAdjacentElement('afterend',b);}else if(b.parentNode!==r)r.appendChild(b);}
+setInterval(function(){try{panteaoBotao();}catch(e){}},1500);setTimeout(function(){try{panteaoBotao();}catch(e){}},900);
+(function(){var st=document.createElement('style');st.id='panteao-css';st.textContent=[
+ '#lat-topo>.lt-r2>#pt-tg{order:101;flex:none;display:grid!important;place-items:center;width:26px!important;height:24px;margin:0!important;padding:0!important;border:1px solid #5a3f2c!important;border-radius:999px!important;background:#f4ead2!important;color:#5a3f2c!important;cursor:pointer}',
+ '#lat-topo>.lt-r2>#pt-tg svg{width:14px;height:14px}',
+ '#panteao{position:fixed;inset:0;z-index:400;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(30,20,10,.55)}#panteao.on{display:flex}',
+ '#panteao .pt-box{position:relative;display:flex;flex-direction:column;gap:8px;width:min(1100px,100%);max-height:92vh;padding:22px 24px 18px;border:2px solid #5a3f2c;border-radius:14px;background:#f6eedb;box-shadow:0 0 0 4px #f6eedb,0 0 0 5.5px #c9a45a,0 24px 60px rgba(20,10,0,.45);color:#2a2418}',
+ '#panteao .pt-x{position:absolute;top:12px;right:12px;width:32px;height:32px;border-radius:50%;border:1.5px solid #5a3f2c;background:#fbf3df;color:#5a3f2c;font:700 18px/1 system-ui,sans-serif;cursor:pointer}',
+ '#panteao .pt-k{font:700 9px var(--mono,monospace);letter-spacing:.22em;text-transform:uppercase;color:#9a6b3a}',
+ '#panteao h2{margin:0;font:400 28px Georgia,serif;font-variant:small-caps;letter-spacing:.04em}',
+ '#panteao .pt-busca{max-width:380px;border:1px solid #c9b28a;border-radius:999px;background:#fffdf7;padding:7px 14px;font:14px system-ui,sans-serif}',
+ '#panteao .pt-tab{overflow:auto;border:1px solid #d8c8a6;border-radius:10px;background:#fffdf7}',
+ '#panteao table{width:100%;border-collapse:collapse;font:14px/1.35 Georgia,serif}',
+ '#panteao thead th{position:sticky;top:0;z-index:1;padding:0;background:#efe3c6;border-bottom:2px solid #5a3f2c;text-align:left}',
+ '#panteao thead th:first-child,#panteao thead th:last-child{padding:10px 12px;font:700 10px var(--mono,monospace);letter-spacing:.14em;text-transform:uppercase;color:#5a3f2c}',
+ '#panteao thead button{display:block;width:100%;padding:10px 12px;border:0;background:transparent;text-align:left;font:700 13px Georgia,serif;cursor:pointer;color:inherit}',
+ '#panteao thead .pt-c1 button{color:#8a5a1e}#panteao thead .pt-c2 button{color:#1f4a3c}#panteao thead .pt-c3 button{color:#1e3a6e}',
+ '#panteao thead button:hover{text-decoration:underline}',
+ '#panteao .pt-c1.pt-at{background:#fbefd6}#panteao .pt-c2.pt-at{background:#e8f1ec}#panteao .pt-c3.pt-at{background:#e6ecf7}',
+ '#panteao thead .pt-c1.pt-at{box-shadow:inset 0 -3px 0 #c9a45a}#panteao thead .pt-c2.pt-at{box-shadow:inset 0 -3px 0 #1f4a3c}#panteao thead .pt-c3.pt-at{box-shadow:inset 0 -3px 0 #1e3a6e}',
+ '#panteao .pt-g td{padding:12px 12px 4px;font:700 10px var(--mono,monospace);letter-spacing:.18em;text-transform:uppercase;color:#9a6b3a;background:#fffdf7}',
+ '#panteao .pt-r>*{padding:6px 12px;border-bottom:1px solid #eee2c8;vertical-align:top}',
+ '#panteao .pt-r>th{font:600 12px system-ui,sans-serif;color:#5a3f2c;white-space:nowrap}',
+ '#panteao .pt-o{font:italic 12px Georgia,serif;color:#8a6f55}',
+ '#panteao .pt-r:hover>*{background:#f7eedb}',
+ '@media(max-width:760px){#panteao{padding:6px}#panteao .pt-box{padding:16px 12px 12px;max-height:96vh}#panteao .pt-o,#panteao thead th:last-child{display:none}#panteao table{font-size:13px}}'
+].join('\n');document.head.appendChild(st);})();
+
+/* Panteão: antagonistas do bloco pesado nos três temas; atalho no menu de temas */
+(function(){if(typeof PANTEAO==='undefined')return;var R=[['pendências que se multiplicam','Hidra de Lerna','Draugar','Enxame de escaravelhos'],['travar diante da tarefa','Medusa','Mara','Ammit, a Devoradora'],['o processo longo e confuso','Minotauro','Níðhöggr','Demônios do Duat'],['a tarefa difícil sem atalho','Leão de Nemeia','Fenrir','Petsuchos'],['notificações e feed infinito','Sereias','Nøkken','Bau'],['a tentação de abrir rede social','Empousa','Huldra','Serpopardo'],['sistema travando','Telquines','Kobolds','Shabtis rebeldes'],['três problemas misturados','Quimera','Lindworm','Tjesu heru'],['teimar num caminho que não rende','Ciclope','Gigante de gelo','Grifo teimoso'],['cabeça embaçada','Névoa','Névoa de Niflheim','Tempestade de areia'],['o bloco que estica','Procusto','Sköll','Lâmina Ensanguentada'],['hiperfoco que come as horas','Lotófagos','Elfos do monte','Lótus do Nilo'],['bagunça que rouba a atenção','Harpias','Ratatoskr','Praga de gafanhotos'],['questões e enigmas','Esfinge','Vafþrúðnir','Esfinge de Gizé'],['redemoinho do e-mail','Caríbdis','Kraken','Hipopótamo do brejo'],['o dragão da recompensa','Ládon','Fáfnir','Uraeus de fogo'],['três frentes ao mesmo tempo','Gerião','Troll de três cabeças','Escorpião gigante'],['desvios, um pedaço de cada vez','Cila','Jörmungandr','Apófis']];
+ PANTEAO.push(['Antagonistas do bloco pesado (no mar do modo operacional)',R.map(function(r){return [r[0],r[1],r[2],r[3],'sorteado a cada dia'];})]);})();
+(function(){var t0=tmMenu;tmMenu=function(btn){t0(btn);var m=document.getElementById('tm-menu');if(!m||m.hidden||typeof panteaoAbre!=='function'||m.querySelector('[data-tm="panteao"]'))return;
+ var f=m.querySelector('.tm-ficha');if(f)f.insertAdjacentHTML('beforebegin','<button type="button" class="tm-ficha" data-tm="panteao">Panteão · equivalências</button>');};
+ document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('#tm-menu [data-tm="panteao"]');if(!b)return;e.stopImmediatePropagation();document.getElementById('tm-menu').hidden=true;try{panteaoAbre();}catch(z){}},true);})();
 
 })();
 </script>
