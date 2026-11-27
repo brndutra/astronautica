@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 58 72" preserveAspectRatio="xMidYMax meet">
+<defs>
+<linearGradient id="br" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#9a6a24"/><stop offset=".3" stop-color="#e3b25a"/><stop offset=".48" stop-color="#fbe6ae"/><stop offset=".68" stop-color="#d9a648"/><stop offset="1" stop-color="#8a5a1e"/></linearGradient>
+<radialGradient id="fl" cx="50%" cy="85%" r="75%"><stop offset="0" stop-color="#fff6c8"/><stop offset=".35" stop-color="#ffd76a"/><stop offset=".7" stop-color="#f28a2c"/><stop offset="1" stop-color="#d4452a"/></radialGradient>
+<radialGradient id="glow" cx="50%" cy="60%" r="50%"><stop offset="0" stop-color="#ffd76a" stop-opacity=".55"/><stop offset="1" stop-color="#ffd76a" stop-opacity="0"/></radialGradient>
+</defs>
+<ellipse cx="29" cy="24" rx="27" ry="24" fill="url(#glow)"><animate attributeName="opacity" values=".7;1;.75;.95;.7" dur="2.6s" repeatCount="indefinite"/></ellipse>
+<path fill="url(#fl)" stroke="#b4463a" stroke-width=".8" stroke-linejoin="round" d="M29 3 C33 11 41 15 41 25 C41 30 39 34 36 37 C38 31 35 27 32 25 C33 30 30 33 29 37 C27 33 24 30 25 25 C21 28 19 32 22 37 C18 34 16 30 17 25 C17 16 26 12 29 3Z">
+<animate attributeName="d" dur="1.8s" repeatCount="indefinite" values="M29 3 C33 11 41 15 41 25 C41 30 39 34 36 37 C38 31 35 27 32 25 C33 30 30 33 29 37 C27 33 24 30 25 25 C21 28 19 32 22 37 C18 34 16 30 17 25 C17 16 26 12 29 3Z;M27 2 C34 9 42 16 40 26 C40 31 38 34 35 37 C37 30 34 27 31 24 C32 30 30 33 29 37 C27 33 25 30 26 24 C22 28 20 32 23 37 C19 34 17 30 18 25 C18 15 24 11 27 2Z;M31 4 C33 12 40 15 41 24 C41 30 39 34 36 37 C38 32 36 28 33 26 C33 30 31 34 29 37 C27 33 23 30 24 26 C21 29 19 32 22 37 C18 34 16 29 17 24 C18 16 27 13 31 4Z;M29 3 C33 11 41 15 41 25 C41 30 39 34 36 37 C38 31 35 27 32 25 C33 30 30 33 29 37 C27 33 24 30 25 25 C21 28 19 32 22 37 C18 34 16 30 17 25 C17 16 26 12 29 3Z"/></path>
+<path fill="#fff6c8" opacity=".85" d="M29 18 C31 23 34 26 33 31 C32 34 30 36 29 37 C28 36 26 34 25 31 C24 26 27 23 29 18Z"><animate attributeName="opacity" values=".85;.6;.9;.7;.85" dur="1.3s" repeatCount="indefinite"/></path>
+<path d="M3 38 H55 L52 44 C49 50 44 54 40 56 L38 72 H20 L18 56 C14 54 9 50 6 44Z" fill="url(#br)" stroke="#5a3f2c" stroke-width="1.1" stroke-linejoin="round"/>
+<path d="M3 38 H55" stroke="#5a3f2c" stroke-width="1.6"/>
+<path d="M5 41.5 H53" stroke="#fff3d4" stroke-width=".8" opacity=".8"/>
+<g fill="none" stroke="#5a3f2c" stroke-width=".8" opacity=".75"><path d="M9 44 q2 2.5 4 0 M15 44 q2 2.5 4 0 M21 44 q2 2.5 4 0 M27 44 q2 2.5 4 0 M33 44 q2 2.5 4 0 M39 44 q2 2.5 4 0 M45 44 q2 2.5 4 0"/></g>
+<path d="M20 63 H38 M20 67 H38" stroke="#5a3f2c" stroke-width=".7" opacity=".6"/>
+</svg>

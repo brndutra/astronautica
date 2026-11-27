@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 58 48" preserveAspectRatio="xMidYMin meet">
+<defs>
+<linearGradient id="br" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#9a6a24"/><stop offset=".3" stop-color="#e3b25a"/><stop offset=".48" stop-color="#fbe6ae"/><stop offset=".68" stop-color="#d9a648"/><stop offset="1" stop-color="#8a5a1e"/></linearGradient>
+<linearGradient id="mr" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fffaf0"/><stop offset="1" stop-color="#e9dcc0"/></linearGradient>
+</defs>
+<path d="M21 0 H37 L36 14 H22Z" fill="url(#br)" stroke="#5a3f2c" stroke-width="1"/>
+<g stroke="#5a3f2c" stroke-width=".9"><path d="M22 4 H36 M22 7 H36 M22 10 H36" opacity=".55"/></g>
+<path d="M19 14 H39 Q41 17 37 20 H21 Q17 17 19 14Z" fill="url(#br)" stroke="#5a3f2c" stroke-width="1"/>
+<path d="M23 20 H35 L37 26 H21Z" fill="url(#br)" stroke="#5a3f2c" stroke-width="1"/>
+<rect x="3" y="26" width="52" height="21" rx="1.5" fill="url(#mr)" stroke="#5a3f2c" stroke-width="1.1"/>
+<path d="M3 30 H55" stroke="#c9a45a" stroke-width="1.2"/>
+<path d="M6 44 h4 v-3 h-2 v1 M12 44 h4 v-3 h-2 v1 M18 44 h4 v-3 h-2 v1 M36 44 h4 v-3 h-2 v1 M42 44 h4 v-3 h-2 v1 M48 44 h4 v-3 h-2 v1" fill="none" stroke="#b5462c" stroke-width=".7" opacity=".55"/>
+</svg>
