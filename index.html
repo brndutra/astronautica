@@ -19924,6 +19924,43 @@ setInterval(function(){try{hojeSobe();}catch(e){}},700);
  B+'.hj-sobe{transform:translateY(calc(-1 * var(--hj-h,0px)));z-index:20;box-shadow:0 -8px 18px -8px rgba(40,25,10,.45)}'
 ].join('\n');document.head.appendChild(st);})();
 
+/* faixa do Toque no visual da moldura de cada tema; Registrar alinhado */
+(function(){var st=document.createElement('style');st.id='friso-moldura-css';
+ var P=TV_ON?{bg:'linear-gradient(180deg,#f1e2c2,#e6d2a8)',k:'#5a3c22',k2:'#203936',tx:'#3a2414',pr:'#203936',prt:'#f3e2b0'}:EG_ON?{bg:'linear-gradient(180deg,#f6ead0,#ecdcb4)',k:'#1e3a6e',k2:'#c9a23a',tx:'#1e3a6e',pr:'#1e3a6e',prt:'#f3e2b0'}:{bg:'linear-gradient(180deg,#fbf0d4,#f1dfae)',k:'#8a5a14',k2:'#c99a3d',tx:'#5a3a10',pr:'#8a5a14',prt:'#fff4d6'};
+ var F='html body:not(.zz9):not(.zz8) #hero-box#hero-box .bn-slot>#tp-friso-bloco>#tp-friso';
+ st.textContent=[
+ F+'{background:'+P.bg+'!important;border:1.5px solid '+P.k+'!important;border-radius:0!important;box-shadow:inset 0 0 0 2px rgba(255,250,235,.55),inset 0 0 0 3px '+P.k2+',0 -2px 8px -4px rgba(40,25,10,.35)!important}',
+ F+' .tf-met{border-bottom:1px solid '+P.k+'!important;padding:6px 8px 5px!important}',
+ F+' .tf-m b{color:'+P.tx+'!important}'+F+' .tf-m i{color:'+P.tx+'!important;opacity:.75}',
+ F+' .tf-m.prox{background:'+P.pr+'!important;box-shadow:inset 0 0 0 1px '+P.k2+'!important}'+F+' .tf-m.prox b,'+F+' .tf-m.prox i{color:'+P.prt+'!important;opacity:1}',
+ F+' .tf-tri{background:repeating-linear-gradient(90deg,'+P.k+' 0 1.5px,transparent 1.5px 3.2px)!important}',
+ F+' .tf-leg span{color:'+P.tx+'!important}'+F+' .tf-leg svg{stroke:'+P.k+'!important}'+F+' .tf-leg b{color:'+P.k+'!important}',
+ 'html body #hero-box#hero-box>.bn-rod .regdia .rdent{display:flex!important;align-items:center!important;gap:8px}',
+ 'html body #hero-box#hero-box>.bn-rod .regdia .rdent button{align-self:center!important;margin:0!important}'
+ ].join('\n');document.head.appendChild(st);})();
+
+/* Toque da Concha no visual da moldura de cada tema; frontão do templo inicial sempre por cima; Registrar alinhado */
+(function(){var st=document.createElement('style');st.id='friso-moldura-css';
+ var k=TV_ON?'#3a2414':EG_ON?'#1e3a6e':'#8a5a14',c=TV_ON?'#d4bd82':EG_ON?'#c9a23a':'#e9c97c',bg=TV_ON?'#f4ead2':EG_ON?'#f6efd9':'#fbf3df',hi=TV_ON?'#203936':EG_ON?'#1e3a6e':'#8a5a14',tx=TV_ON?'#f3e2b0':EG_ON?'#f3e2b0':'#fff8e6';
+ var F='html body:not(.zz9):not(.zz8) #hero-box#hero-box .bn-slot>#tp-friso-bloco';
+ st.textContent=[
+ F+'{border:1.5px solid '+k+'!important;border-bottom:0!important;border-radius:0!important;background:'+bg+'!important;box-shadow:0 0 0 2px '+bg+',0 0 0 3px '+c+'!important}',
+ F+'.hj-sobe{box-shadow:0 0 0 2px '+bg+',0 0 0 3px '+c+',0 -10px 18px -8px rgba(40,25,10,.45)!important}',
+ F+'>#tp-friso{border:0!important;border-radius:0!important;background:'+bg+'!important;box-shadow:none!important}',
+ F+' #tp-friso .tf-met{border-bottom:1px solid '+k+'!important}',
+ F+' #tp-friso .tf-m b{color:'+k+'!important}',F+' #tp-friso .tf-m i{color:'+k+'!important;opacity:.75}',
+ F+' #tp-friso .tf-m.prox{background:'+hi+'!important;box-shadow:inset 0 0 0 1px '+c+'!important}',F+' #tp-friso .tf-m.prox b,'+F+' #tp-friso .tf-m.prox i{color:'+tx+'!important;opacity:1}',
+ F+' #tp-friso .tf-tri{background:repeating-linear-gradient(90deg,'+k+' 0 1.5px,transparent 1.5px 3.2px)!important}',
+ F+' #tp-friso .tf-leg svg{stroke:'+k+'!important}'+F+' #tp-friso .tf-leg b{color:'+k+'!important}',F+' #tp-friso .tf-leg span{color:'+k+'!important}',
+ F+' .cb-hoje.hj-grade{background:'+bg+'!important;border-top:1px solid '+k+'!important}',
+ /* frontão e suas placas acima de tudo no templo inicial */
+ 'html body #hero-box#hero-box>.neo-frontao{position:relative!important;z-index:45!important}',
+ 'html body #hero-box#hero-box>.neo-frontao .pd-pilula{z-index:46!important}',
+ /* Registrar alinhado ao campo e aos demais botões */
+ 'html body #hero-box#hero-box>.bn-rod .regdia .rdent{display:flex!important;align-items:center!important}',
+ 'html body #hero-box#hero-box>.bn-rod .regdia .rdent>button{align-self:center!important;margin-top:0!important;margin-bottom:0!important}'
+ ].join('\n');document.head.appendChild(st);})();
+
 })();
 </script>
 </body>
