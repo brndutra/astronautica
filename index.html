@@ -15417,7 +15417,7 @@ function reorgTesouro(){var wr=document.querySelector('.wrap');if(!wr)return;var
  if(!t){t=document.createElement('section');t.id='tesouro';t.className='tesouro';t.dataset.area='op';
   t.innerHTML='<header class="ts-cab"><span class="ts-k">o tesouro do chalé 7</span><h2>Arsenal, dracmas e prêmios</h2><p>O que o treino rende: a forja do Hékatos, a moeda do acampamento, e o que ela compra.</p></header>'+
    '<div class="ts-g"><div class="ts-col" id="ts-a"></div><div class="ts-col" id="ts-b"></div></div>';}
- t.dataset.vxHidden='false';if(wr.lastElementChild!==t)wr.appendChild(t);
+ t.dataset.vxHidden='false';var tbx=document.getElementById('tp-real');if(tbx){if(t.parentNode!==tbx)tbx.appendChild(t);}else if(wr.lastElementChild!==t)wr.appendChild(t);
  var a=t.querySelector('#ts-a'),b=t.querySelector('#ts-b');
  var poe=function(col,ids){ids.forEach(function(id){var n=document.getElementById(id);if(!n)return;n.hidden=false;n.dataset.vxHidden='false';if(n.parentNode!==col)col.appendChild(n);});
   ids.forEach(function(id,i){var n=document.getElementById(id);if(n&&i&&n.previousElementSibling!==document.getElementById(ids[i-1]))col.appendChild(n);});};
@@ -18965,8 +18965,9 @@ setTimeout(function(){try{bnPilares();}catch(e){}},900);setInterval(function(){t
 
 /* Faixa inferior fixa do banner (nas duas telas): Semana e Mês (as gavetas da grade) e o Diário de bordo (sai do cartão do painel esquerdo e mora aqui) */
 var BN_ROD_H=58;
-function bnRod(){var h=document.querySelector('#hero-box .vx-hero.bn2');if(!h)return;var r=h.querySelector(':scope > .bn-rod');
- if(!r){r=document.createElement('div');r.className='bn-rod';r.innerHTML='<div class="br-gav"><button type="button" data-brg="sem"><i>semana</i><b>—</b></button><button type="button" data-brg="mes"><i>mês</i><b>—</b></button></div><div class="br-db"><span class="br-k">diário de bordo</span><div class="br-slot"></div><button type="button" class="br-ver" data-brver aria-expanded="false" title="ver o que já foi registrado hoje">ver</button></div>';h.appendChild(r);}
+function bnRod(){var h=document.querySelector('#hero-box .vx-hero.bn2');if(!h)return;var rs=document.querySelectorAll('#hero-box .bn-rod'),r=rs[0]||null;for(var ri=1;ri<rs.length;ri++){var rd0=rs[ri].querySelector('.regdia');if(rd0&&r)r.querySelector('.br-slot').appendChild(rd0);rs[ri].remove();}
+ if(!r){r=document.createElement('div');r.className='bn-rod';r.innerHTML='<div class="br-gav"><button type="button" data-brg="sem"><i>semana</i><b>—</b></button><button type="button" data-brg="mes"><i>mês</i><b>—</b></button></div><div class="br-db"><span class="br-k">diário de bordo · hoje</span><div class="br-slot"></div><button type="button" class="br-ver" data-brver aria-expanded="false" title="ver o que já foi registrado hoje">ver</button></div>';}
+ var bsl=document.querySelector('#hero-box .bn-slot');if(bsl){if(bsl.nextElementSibling!==r)bsl.insertAdjacentElement('afterend',r);}else if(r.parentNode!==h)h.appendChild(r);
  var a=function(q){var e=document.querySelector(q+' span');return e?e.textContent.trim():'';};
  var ts=(a('.mf-alca-sem').replace(/^a semana\s*·?\s*/i,'')||'esta semana'),tm=(a('.mf-alca-mes').replace(/^o m[eê]s\s*·?\s*/i,'')||'este mês');
  var bs=r.querySelector('[data-brg=sem] b'),bm=r.querySelector('[data-brg=mes] b');if(bs.textContent!==ts)bs.textContent=ts;if(bm.textContent!==tm)bm.textContent=tm;
@@ -19036,6 +19037,126 @@ setTimeout(function(){try{bnVersoBt();}catch(e){}},1200);setInterval(function(){
  'body.tv.bn-verso #hero-box .vx-hero.bn2>.bn-base{border-color:#A88750!important;background:#F5EBD6!important;box-shadow:0 0 0 3px #F5EBD6,0 0 0 4px #A88750,0 10px 26px -12px rgba(0,0,0,.45)!important}',
  'body.eg.bn-verso #hero-box .vx-hero.bn2>.bn-base{border-color:#c9a23a!important;background:#f7ecd2!important;box-shadow:0 0 0 3px #f7ecd2,0 0 0 4px #c9a23a,0 10px 26px -12px rgba(20,20,40,.45)!important}',
  'body.bn-verso #hero-box .bnm-tg,body.bn-verso #hero-box .bn-telas{display:none!important}'
+].join('\n');document.head.appendChild(st);})();
+
+/* Painel direito com três abas: Missões, Hora livre e Arsenal (o Tesouro sai da coluna do meio e vira a terceira face do templo).
+   Na Hora livre, o recreio com hora e a fila do lazer viram um rodapé fixo, que expande e recolhe. Nomes das abas por tema. */
+var ABAS_NOMES=TV_ON?{tm:'Sagas',rec:'Folga',ars:'Tesouro',vis:'Visões',prog:'Escala do andar'}:EG_ON?{tm:'Papiros',rec:'Terraço',ars:'Tesouro',vis:'Visões',prog:'Escala da Casa'}:{tm:'Missões',rec:'Hora livre',ars:'Arsenal',vis:'Visões',prog:'Escala do chalé'};
+TP_FACES.length=0;TP_FACES.push(['tm',ABAS_NOMES.tm],['rec',ABAS_NOMES.rec],['ars',ABAS_NOMES.ars]);
+p4Face=function(){try{var v=localStorage.getItem('astro_tm_face');return v==='rec'||v==='ars'?v:'tm';}catch(e){return 'tm';}};
+(function(){var r0=p4RecHTML;p4RecHTML=function(){if(p4Face()!=='rec')return '';var h=r0.apply(this,arguments),o=opx(),ate=o.lazerAte||0,n=p4Rec().filter(function(x){return !x.ok;}).length;
+ var st=ate>Date.now()?'recreio até '+new Date(ate).toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'}):'fila '+n;
+ return '<button type="button" class="tp-rod-tg" data-tprod><span>recreio com hora · fila do lazer</span><b>'+st+'</b><i aria-hidden="true">▴</i></button><div class="tp-rod-c">'+h+'</div>';};})();
+(function(){var t0=tpReal;tpReal=function(){var r=t0.apply(this,arguments);var box=tpRealBox(),ts=document.getElementById('tesouro');if(ts&&ts.parentNode!==box)box.appendChild(ts);
+ var p=document.getElementById('tp-painel');if(p){var ab='0';try{ab=localStorage.getItem('astro_rec_rod')||'0';}catch(e){}p.classList.toggle('rod-aberto',ab==='1');}return r;};})();
+(function(){var t0=tpPlaca;tpPlaca=function(){var r=t0.apply(this,arguments);var box=document.getElementById('tp-real'),ts=document.getElementById('tesouro');if(!box||!ts)return r;var cab=ts.querySelector(':scope>.ts-cab');if(!cab)return r;
+ var n=cab.querySelector(':scope>.tp-placa');if(!n){n=document.createElement('nav');n.className='tp-placa';n.setAttribute('role','tablist');cab.appendChild(n);}
+ var f=p4Face(),h=TP_FACES.map(function(x){return '<button type="button" role="tab" data-tpface="'+x[0]+'" aria-selected="'+(x[0]===f)+'">'+x[1]+'</button>';}).join('<i aria-hidden="true">·</i>');
+ if(n._h!==h||(h&&!n.firstChild)){n._h=h;n.innerHTML=h;}return r;};})();
+document.addEventListener('click',function(e){var t=e.target.closest&&e.target.closest('[data-tprod]');if(t){e.preventDefault();e.stopPropagation();var p=document.getElementById('tp-painel');if(!p)return;var on=!p.classList.contains('rod-aberto');p.classList.toggle('rod-aberto',on);try{localStorage.setItem('astro_rec_rod',on?'1':'0');}catch(z){}return;}
+ var f=e.target.closest&&e.target.closest('#tesouro [data-tpface]');if(f){e.preventDefault();e.stopPropagation();try{localStorage.setItem('astro_tm_face',f.dataset.tpface);}catch(z){}var pp=document.getElementById('tp-painel');if(pp)pp._h='';p4Painel();try{tpPlaca();}catch(z){}}},true);
+/* nomes das telas do banner */
+bnTelaBotoes=function(){var h=document.querySelector('#hero-box .vx-hero.bn2');if(!h)return;var w=h.querySelector(':scope > .bn-telas');
+ if(!w){w=document.createElement('div');w.className='bn-telas';w.setAttribute('role','tablist');w.setAttribute('data-notr','');h.appendChild(w);}
+ var x='<button type="button" role="tab" data-bntela="visao" aria-selected="'+(BN_TELA!=='prog')+'">'+ABAS_NOMES.vis+'</button><button type="button" role="tab" data-bntela="prog" aria-selected="'+(BN_TELA==='prog')+'">'+ABAS_NOMES.prog+'</button>';
+ if(w._h!==x||!w.firstChild){w.innerHTML=x;w._h=x;}};
+setTimeout(function(){try{var p=document.getElementById('tp-painel');if(p)p._h='';p4Painel();tpPlaca();reorgTesouro();}catch(e){}},1700);
+setInterval(function(){try{var n=document.querySelectorAll('#tp-real .tp-placa');Array.prototype.forEach.call(n,function(x){x.setAttribute('data-notr','');});}catch(e){}},1500);
+(function(){var st=document.createElement('style');st.id='abas3-css';st.textContent=[
+ '#tp-real[data-face="ars"]>#tm-painel,#tp-real[data-face="ars"]>#recreio{display:none!important}',
+ '#tp-real:not([data-face="ars"])>#tesouro{display:none!important}',
+ '#tp-real[data-face="ars"]>#tesouro{display:block!important;margin:0!important;width:auto!important;max-width:none!important;padding-left:40px!important;padding-right:40px!important}',
+ '#tp-real>#tesouro .ts-g{display:grid!important;grid-template-columns:1fr!important;gap:12px!important}',
+ '#tp-real>#tesouro>.ts-cab>:not(.tp-placa){display:none!important}',
+ '#tp-real>#tesouro>.ts-cab{display:flex!important;justify-content:center;margin:0 0 12px!important;padding:6px 12px!important}',
+ '#tp-real .tp-placa button{font-size:12.5px!important}#tp-real .tp-placa button[aria-selected="true"]{font-size:16px!important}',
+ /* rodapé fixo e expansível da Hora livre */
+ '#tp-painel .tp-corpo:has(.tp-rod-tg){position:sticky!important;bottom:0;z-index:25;margin:12px 0 0!important;padding:0 10px 8px!important;background:#fbf5e6;border:1px solid #c9b28a;border-radius:10px 10px 0 0;box-shadow:0 -10px 20px -12px rgba(60,40,20,.45)}',
+ '#tp-painel .tp-rod-tg{display:flex!important;align-items:center;gap:8px;width:100%!important;margin:0!important;padding:9px 4px 8px!important;border:0!important;background:none!important;cursor:pointer;box-shadow:none!important;text-transform:none!important;letter-spacing:0!important}',
+ '#tp-painel .tp-rod-tg span{flex:1;text-align:left;font:700 9px var(--mono,monospace);letter-spacing:.14em;text-transform:uppercase;color:#9a6b3a}',
+ '#tp-painel .tp-rod-tg b{font:600 12.5px Georgia,serif;color:#3b2a1d}',
+ '#tp-painel .tp-rod-tg i{font-style:normal;color:#9a6b3a;transition:transform .2s}',
+ '#tp-painel.rod-aberto .tp-rod-tg i{transform:rotate(180deg)}',
+ '#tp-painel:not(.rod-aberto) .tp-rod-c{display:none}',
+ '#tp-painel.rod-aberto .tp-rod-c{max-height:min(56vh,460px);overflow-y:auto;scrollbar-width:thin;border-top:1px dashed #c9b28a;padding-top:8px}',
+ 'body.tv #tp-painel .tp-corpo:has(.tp-rod-tg){background:#F5EBD6;border-color:#A88750}',
+ 'body.eg #tp-painel .tp-corpo:has(.tp-rod-tg){background:#f7ecd2;border-color:#c9a23a}'
+].join('\n');document.head.appendChild(st);})();
+
+/* A faixa Semana · Mês · Diário de bordo vira o embasamento do templo: degraus de pedra sob os pilares, fora do cartão */
+(function(){var st=document.createElement('style');st.id='bn-degraus-css';var R='#hero-box#hero-box>.bn-rod';st.textContent=[
+ '@media(min-width:700px){#hero-box#hero-box .vx-hero.bn2{height:560px!important;min-height:560px!important;max-height:560px!important;padding-bottom:30px!important}',
+ ' body.tela-prog #hero-box#hero-box .vx-hero.bn2{height:var(--bn-ph,560px)!important;min-height:var(--bn-ph,560px)!important;max-height:none!important}',
+ ' body.bn-verso #hero-box#hero-box .vx-hero.bn2{height:560px!important;min-height:560px!important;max-height:560px!important}}',
+ R+'{position:relative!important;left:auto!important;right:auto!important;bottom:auto!important;top:auto!important;height:auto!important;width:auto!important;margin:0 6px 24px!important;padding:9px 18px 10px!important;border:0!important;border-radius:0!important;',
+ ' border-top:2px solid #b8955a!important;background:linear-gradient(180deg,#f6e9c9,#ead6a9)!important;box-shadow:inset 0 1px 0 #fff6dd,inset 0 -1px 0 #c9a96a!important;z-index:5}',
+ R+'::before,'+R+'::after{content:"";position:absolute;pointer-events:none;background:linear-gradient(180deg,#efdcb2,#e0c793);border-top:1px solid #b8955a;box-shadow:inset 0 1px 0 #fbefd2}',
+ R+'::after{left:-10px;right:-10px;bottom:-11px;height:11px}',
+ R+'::before{left:-20px;right:-20px;bottom:-22px;height:11px;background:linear-gradient(180deg,#e6d0a0,#d4b97f)}',
+ '#hero-box>.bn-rod .br-k{color:#7a5a24!important}',
+ '#hero-box>.bn-rod .br-db{border-left-color:#b8955a!important}',
+ 'body.bn-mini #hero-box>.bn-rod{display:none!important}',
+ 'body.tv '+R+'{border-top-color:#6e4426!important;background:linear-gradient(180deg,#e9dfcc,#d8c9ad)!important;box-shadow:inset 0 1px 0 #f6efe0,inset 0 -1px 0 #a8927a!important}',
+ 'body.tv '+R+'::before,body.tv '+R+'::after{background:linear-gradient(180deg,#ddd0b5,#c8b691);border-top-color:#6e4426}',
+ 'body.eg '+R+'{border-top-color:#1e3a6e!important;background:linear-gradient(180deg,#f4e4c0,#e6cf9e)!important;box-shadow:inset 0 1px 0 #fbf0d6,inset 0 -1px 0 #c9a23a!important}',
+ 'body.eg '+R+'::before,body.eg '+R+'::after{background:linear-gradient(180deg,#ecd7a8,#dcc086);border-top-color:#c9a23a}',
+ '@media(max-width:1379px){'+R+'{margin:0 0 24px!important}}'
+].join('\n');document.head.appendChild(st);})();
+
+/* Telas no frontão (na linha da pílula de botões) e crachá no verso do cartão-postal, que vira ao clicar */
+bnTelaBotoes=function(){var h=document.querySelector('#hero-box .vx-hero.bn2');if(!h)return;var pil=document.querySelector('#hero-box .pd-pilula'),box=pil&&pil.parentNode||h;
+ var w=document.querySelector('#hero-box .bn-telas');if(!w){w=document.createElement('div');w.className='bn-telas';w.setAttribute('role','tablist');w.setAttribute('data-notr','');}
+ if(w.parentNode!==box)box.appendChild(w);w.classList.toggle('no-front',!!pil);
+ var x='<button type="button" role="tab" data-bntela="visao" aria-selected="'+(BN_TELA!=='prog')+'">'+ABAS_NOMES.vis+'</button><button type="button" role="tab" data-bntela="prog" aria-selected="'+(BN_TELA==='prog')+'">'+ABAS_NOMES.prog+'</button>';
+ if(w._h!==x||!w.firstChild){w.innerHTML=x;w._h=x;}
+ if(pil){var bx=pil.offsetLeft+pil.offsetWidth+10,by=pil.offsetTop+Math.round((pil.offsetHeight-(w.offsetHeight||26))/2);var v=bx+'|'+by;if(w._p!==v){w._p=v;w.style.setProperty('--bt-x',bx+'px');w.style.setProperty('--bt-y',by+'px');}}};
+function cpVerso(){var c=document.querySelector('#hero-box .cp-postal');if(!c)return;c.removeAttribute('aria-hidden');c.setAttribute('role','button');c.setAttribute('tabindex','0');c.title=c.classList.contains('virado')?'voltar para a frente do cartão':'virar o cartão: seus dados no verso';
+ var v=c.querySelector(':scope>.cp-verso');if(!v){v=document.createElement('div');v.className='cp-verso';c.appendChild(v);}
+ var cr=document.querySelector('#hero-box .ac-cracha span'),fi=document.getElementById('vx-diario');
+ var x='<span class="cpv-k">verso · ficha</span><div class="cpv-t">'+(cr?cr.innerHTML:'')+'</div>'+(fi?'<button type="button" class="cpv-fi" data-cpficha>abrir a ficha</button>':'')+'<i class="cpv-sel" aria-hidden="true"></i>';
+ if(v._h!==x){v._h=x;v.innerHTML=x;}}
+document.addEventListener('click',function(e){var f=e.target.closest&&e.target.closest('[data-cpficha]');if(f){e.preventDefault();e.stopPropagation();var b=document.getElementById('vx-diario');if(b)b.click();return;}
+ if(document.body.classList.contains('bn-movendo'))return;var c=e.target.closest&&e.target.closest('#hero-box .cp-postal');if(!c)return;e.preventDefault();
+ c.classList.remove('cp-gira');void c.offsetWidth;c.classList.add('cp-gira');setTimeout(function(){c.classList.toggle('virado');cpVerso();},170);setTimeout(function(){c.classList.remove('cp-gira');},360);});
+document.addEventListener('keydown',function(e){if((e.key==='Enter'||e.key===' ')&&e.target.classList&&e.target.classList.contains('cp-postal')){e.preventDefault();e.target.click();}});
+(function(){var r0=vxRender;vxRender=function(){var x=r0.apply(this,arguments);try{cpVerso();bnTelaBotoes();}catch(e){}return x;};})();
+setTimeout(function(){try{cpVerso();bnTelaBotoes();}catch(e){}},1300);setInterval(function(){try{cpVerso();bnTelaBotoes();}catch(e){}},1200);
+BN_VERSO=false;document.body.classList.remove('bn-verso');
+(function(){var st=document.createElement('style');st.id='cp-verso-css';st.textContent=[
+ '#hero-box .bn-vira{display:none!important}',
+ '#hero-box#hero-box .bn-telas.no-front{position:absolute!important;left:var(--bt-x,0)!important;top:var(--bt-y,0)!important;transform:none!important;z-index:6}',
+ '#hero-box .cp-postal{cursor:pointer;pointer-events:auto!important}',
+ '@keyframes cpGira{0%{scale:1 1}50%{scale:0 1}100%{scale:1 1}}',
+ '#hero-box .cp-postal.cp-gira{animation:cpGira .34s ease-in-out}',
+ '#hero-box .cp-postal .cp-verso{display:none}',
+ '#hero-box .cp-postal.virado>:not(.cp-verso){visibility:hidden!important}',
+ '#hero-box .cp-postal.virado .cp-verso{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;position:absolute;inset:0;z-index:3;padding:12px 16px;box-sizing:border-box;text-align:center;background:repeating-linear-gradient(0deg,transparent 0 21px,rgba(154,107,58,.16) 21px 22px),#fbf5e6;border-radius:inherit;color:#3b2a1d}',
+ '#hero-box .cp-verso .cpv-k{font:700 8px var(--mono,monospace);letter-spacing:.22em;text-transform:uppercase;color:#9a6b3a}',
+ '#hero-box .cp-verso .cpv-t{font:600 15px/1.35 Georgia,serif}#hero-box .cp-verso .cpv-t b{font-weight:700}#hero-box .cp-verso .cpv-t br+*,#hero-box .cp-verso .cpv-t small{font:12px var(--mono,monospace)}',
+ '#hero-box#hero-box .cp-verso .cpv-fi{width:auto!important;min-height:0!important;margin:2px 0 0!important;padding:3px 12px!important;border:1px solid #8a6f55!important;border-radius:999px!important;background:#f4ead2!important;color:#5a3f2c!important;font:700 9px var(--mono,monospace)!important;letter-spacing:.1em!important;text-transform:uppercase!important;box-shadow:none!important;cursor:pointer}',
+ '#hero-box#hero-box .cp-postal .cp-verso,#hero-box#hero-box .cp-postal .cp-verso *{font-family:Georgia,serif!important;text-shadow:none!important;-webkit-text-stroke:0!important;letter-spacing:normal!important;text-transform:none!important;color:#3b2a1d!important;transform:none!important;line-height:1.3!important}',
+ '#hero-box#hero-box .cp-postal .cp-verso .cpv-k{font:700 8px var(--mono,monospace)!important;letter-spacing:.22em!important;text-transform:uppercase!important;color:#9a6b3a!important}',
+ '#hero-box#hero-box .cp-postal .cp-verso .cpv-t{font-size:13px!important;font-weight:400!important}',
+ '#hero-box#hero-box .cp-postal .cp-verso .cpv-t b{display:block;font-size:17px!important;font-weight:700!important;margin-bottom:3px}',
+ '#hero-box#hero-box .cp-postal .cp-verso .cpv-t svg{width:14px;height:14px;vertical-align:-2px}',
+ '#hero-box#hero-box .cp-postal .cp-verso .cpv-fi{font:700 9px var(--mono,monospace)!important;letter-spacing:.1em!important;text-transform:uppercase!important;color:#5a3f2c!important}',
+ '#hero-box .cp-verso .cpv-sel{position:absolute;top:10px;right:12px;width:30px;height:36px;border:1.5px dashed #c9a45a;border-radius:3px}',
+ 'body.tv #hero-box .cp-postal.virado .cp-verso{background:repeating-linear-gradient(0deg,transparent 0 21px,rgba(168,135,80,.2) 21px 22px),#F5EBD6}',
+ 'body.eg #hero-box .cp-postal.virado .cp-verso{background:repeating-linear-gradient(0deg,transparent 0 21px,rgba(30,58,110,.14) 21px 22px),#f7ecd2}'
+].join('\n');document.head.appendChild(st);})();
+
+/* Registro rápido vira rodapé fixo e expansível do painel esquerdo */
+function trioRod(){var c=document.getElementById('lat-trio');if(!c)return;var ab='0';try{ab=localStorage.getItem('astro_trio_rod')||'0';}catch(e){}c.classList.toggle('aberto',ab==='1');var cab=c.querySelector('.tr-cab');if(cab){cab.setAttribute('role','button');cab.setAttribute('tabindex','0');cab.setAttribute('aria-expanded',String(ab==='1'));}}
+document.addEventListener('click',function(e){var cab=e.target.closest&&e.target.closest('#lat-trio .tr-cab');if(!cab)return;var c=document.getElementById('lat-trio'),on=!c.classList.contains('aberto');try{localStorage.setItem('astro_trio_rod',on?'1':'0');}catch(z){}trioRod();if(on){var i=c.querySelector('.tr-p:not([hidden]) input,.tr-p input');if(i)setTimeout(function(){try{i.focus();}catch(z){}},30);}},true);
+document.addEventListener('keydown',function(e){if((e.key==='Enter'||e.key===' ')&&e.target.closest&&e.target.closest('#lat-trio .tr-cab')===e.target){e.preventDefault();e.target.click();}});
+setTimeout(trioRod,1500);setInterval(function(){try{trioRod();}catch(e){}},2000);
+(function(){var st=document.createElement('style');st.id='trio-rod-css';st.textContent=[
+ '#lat-e>#lat-trio{position:sticky!important;bottom:0!important;order:99!important;z-index:22;margin-top:auto!important;box-shadow:0 -10px 20px -12px rgba(60,40,20,.45)!important;border-radius:10px 10px 0 0!important}',
+ '#lat-trio .tr-cab{cursor:pointer;margin:0!important}',
+ '#lat-trio .tr-cab::after{content:"▴";margin-left:auto;color:#9a4a30;transition:transform .2s}',
+ '#lat-trio.aberto .tr-cab::after{transform:rotate(180deg)}',
+ '#lat-trio.aberto .tr-cab{margin:0 0 10px!important}',
+ '#lat-trio:not(.aberto) :is(.tr-tabs,.tr-p){display:none!important}'
 ].join('\n');document.head.appendChild(st);})();
 
 })();
