@@ -199,16 +199,16 @@ function tvFrontao(){if(!TV_ON)return;var f=document.querySelector('#hero-box .n
 if(TV_ON){setInterval(function(){try{tvFrontao();}catch(e){}},1200);setTimeout(function(){try{tvFrontao();}catch(e){}},700);
  (function(){var I=function(n){return 'url("img/acampamento/'+n+'")';};var st=document.createElement('style');st.id='tv-nordico-css';st.textContent=[
   'body.tv #hero-box .nf2 .nf-tri,body.tv #hero-box .nf2 .nf-cornija,body.tv #hero-box .nf2 .nf-acro,body.tv #hero-box .nf2 .nf-louro{display:none!important}',
-  'body.tv #hero-box .neo-frontao.nf2{height:170px!important;margin-top:34px!important}',
+  'body.tv #hero-box .neo-frontao.nf2{height:120px!important;margin-top:34px!important}',
   'body.tv .vh-front{position:absolute;inset:0;pointer-events:none}',
-  'body.tv .vh-beiral{position:absolute;left:-4px;right:-4px;top:0;height:152px;background:linear-gradient(180deg,#e9c870,#b58a2e);clip-path:polygon(0 100%,50% 0,100% 100%);filter:drop-shadow(0 3px 2px rgba(0,0,0,.3))}',
-  'body.tv .vh-telhado{position:absolute;left:14px;right:14px;top:12px;height:140px;background:'+I('vh-telha.svg')+' 0 0/24px 16px repeat,#123321;clip-path:polygon(0 100%,50% 0,100% 100%)}',
+  'body.tv .vh-beiral{position:absolute;left:-4px;right:-4px;top:0;height:102px;background:linear-gradient(180deg,#e9c870,#b58a2e);clip-path:polygon(0 100%,50% 0,100% 100%);filter:drop-shadow(0 3px 2px rgba(0,0,0,.3))}',
+  'body.tv .vh-telhado{position:absolute;left:14px;right:14px;top:10px;height:92px;background:'+I('vh-telha.svg')+' 0 0/24px 16px repeat,#123321;clip-path:polygon(0 100%,50% 0,100% 100%)}',
   'body.tv .vh-chifres{position:absolute;left:50%;top:-34px;width:150px;height:76px;transform:translateX(-50%);background:'+I('vh-chifres.svg')+' center/contain no-repeat;filter:drop-shadow(0 2px 2px rgba(0,0,0,.35))}',
-  'body.tv .vh-viga{position:absolute;left:-6px;right:-6px;top:150px;height:18px;background:'+I('vh-no-h.svg')+' 0 0/32px 16px repeat-x,#1d4a2c;border:1px solid #8a6a1e;box-shadow:0 2px 0 #b58a2e}',
-  'body.tv #hero-box .nf2 .fr-lira{top:44px!important;width:70px!important;height:70px!important;background:none!important;box-shadow:0 0 0 3px #123321,0 0 0 5px #d4ad4f!important}',
-  'body.tv #hero-box .nf2 .nf-txt{top:104px!important;padding:4px 6px 4px 12px;font-size:13px!important;letter-spacing:.42em!important;color:#f3d88a!important;background:#123321;border:1px solid #d4ad4f;box-shadow:0 0 0 2px #123321;text-shadow:none!important}',
+  'body.tv .vh-viga{position:absolute;left:-6px;right:-6px;top:100px;height:18px;background:'+I('vh-no-h.svg')+' 0 0/32px 16px repeat-x,#1d4a2c;border:1px solid #8a6a1e;box-shadow:0 2px 0 #b58a2e}',
+  'body.tv #hero-box .nf2 .fr-lira{top:4px!important;width:52px!important;height:52px!important;background:none!important;box-shadow:0 0 0 3px #123321,0 0 0 5px #d4ad4f!important}',
+  'body.tv #hero-box .nf2 .nf-txt{top:58px!important;padding:4px 6px 4px 12px;font-size:13px!important;letter-spacing:.42em!important;color:#f3d88a!important;background:#123321;border:1px solid #d4ad4f;box-shadow:0 0 0 2px #123321;text-shadow:none!important}',
   'body.tv #hero-box .nf2 .nf-txt-l{right:calc(50% + 70px)!important}body.tv #hero-box .nf2 .nf-txt-r{left:calc(50% + 70px)!important}',
-  'body.tv #hero-box .nf2>.pd-pilula{top:146px!important}',
+  'body.tv #hero-box .nf2>.pd-pilula{top:96px!important}',
   /* placas e réguas com entrelaçado */
   'body.tv h2.sec.neo-tit.placa-tom,body.tv #tp-real>:is(#tm-painel,#recreio)>.tm-cab{border-color:#d4ad4f!important;background:linear-gradient(180deg,#256139,#1d4a2c)!important;color:#f3e6c4!important;box-shadow:0 0 0 3px #123321,0 0 0 4.5px #d4ad4f!important}',
   'body.tv h2.sec.neo-tit.placa-tom>span,body.tv #tp-real .tm-cab .tp-placa button{color:#e9c870!important}',
