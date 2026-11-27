@@ -242,7 +242,7 @@ function pintaPosto() {
   var P = estado && estado.posto, em = P && P.em ? new Date(P.em) : null, velho = em && Date.now() - em > 15 * 60000;
   Object.keys(POSTO_ABAS).forEach(function (aba) {
     var box = $('posto-' + aba); if (!box) return;
-    if (!P || !P.c) { box.innerHTML = '<p class="pst-vz">Abra o app uma vez para o Posto aparecer aqui.</p>'; return; }
+    if (!P || !P.c) { box.innerHTML = '<p class="pst-vz">Abra o app uma vez para o operacional aparecer aqui.</p>'; return; }
     var h = POSTO_ABAS[aba].map(function (k) {
       var c = P.c[k]; if (!c) return '';
       /* título: o nome do cartão (1ª linha), menos no cabeçalho e no rodapé; horário + compromisso numa linha só */

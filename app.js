@@ -9509,7 +9509,7 @@ function opPinta(){var o=document.getElementById('modo-op');if(!o||!document.bod
  var set=function(sel,h){var n=o.querySelector(sel);if(n&&(n._h!==h||!n.firstChild)&&!(foco&&n.contains(a))){n.innerHTML=h;n._h=h;}};
  set('.op-l',opLinhaHTML());set('.op-esc',opEscudo());var fc=opFocoHTML().replace(/<b>\d+:\d+<\/b>/,'');set('.op-foco-c',opFocoHTML());set('.op-fazer',opFazerHTML());set('.op-lado',opLadoHTML());}
 /* extensão do Chrome: versão publicada em downloads/ (mesma do extensao/manifest.json); ao publicar uma nova, troque só aqui */
-var EXT_V='0.7.3',EXT_ZIP='downloads/astronautica-extensao-'+EXT_V+'.zip';
+var EXT_V='0.7.4',EXT_ZIP='downloads/astronautica-extensao-'+EXT_V+'.zip';
 function extBaixada(){try{return localStorage.getItem('astro-ext-baixada')||'';}catch(e){return '';}}
 /* cabeçalho, lado direito, montado só aqui: duas pílulas.
    alvo: desviei (com − quando há tracinho), travei, tarefa chata, ronda · caminho: manual, extensão (baixar / atualizar / em dia), templo completo.
@@ -14513,8 +14513,8 @@ fgAbre=(function(f0){return function(){var r=f0.apply(this,arguments);var d=docu
  return r;};})(fgAbre);
 
 /* ===== Manual de campo: os métodos de TDAH que o Bruno guardou, em versão que funciona ===== */
-var MF_NM=TV_ON?['Conselhos de Mímir','manual de campo do einherji']:EG_ON?['Rolos de Imhotep','manual de campo do iniciado']:['Pergaminhos de Quíron','manual de campo do semideus'];
-var MF_T=[['#','coleção · para usar'],['plan','Planejador do dia','prioridades, despejo e agenda por hora'],['listas','Duas listas','despejo, 1 grande + 2 pequenas, matriz'],['fim',(TV_ON||EG_ON)?'Fechar o expediente':'Escapar de Procusto','fechar o expediente em seis passos'],['pilhas','Empilhar hábitos','âncora + passos pequenos, higiene'],
+var MF_NM=['Manual','ferramentas e consulta'];
+var MF_T=[['#','coleção · para usar'],['plan','Planejador do dia','prioridades, despejo e agenda por hora'],['listas','Duas listas','despejo, 1 grande + 2 pequenas, matriz'],['fim','Fechar o expediente','fechar o expediente em seis passos'],['pilhas','Empilhar hábitos','âncora + passos pequenos, higiene'],
  ['pausa','Pausa e água','sprints, mexer o corpo, vitórias'],['energia','Energia do momento','a tarefa certa para a bateria'],['ifwoop','Se-então e WOOP','gatilhos, plano para o obstáculo, pronto'],['semana','Revisão da semana','revisar, analisar, cortar, ajustar, seguir'],
  ['@trav','Travei','abre a companhia'],['@esc','Tarefa chata','migalhas com o sidekick'],['@ponte','Trocar de tarefa','a ponte em seis passos'],
  ['#','consulta · por assunto'],['c-comecar','Começar e destravar','por que travei e o método de cada causa'],['c-prior','Prioridades','o que importa, matriz, 80/20, clareza'],['c-tempo','Tempo e blocos','2 minutos, Parkinson, blocos para TDAH'],
@@ -14619,7 +14619,7 @@ function mfPagina(p){var m=mfD(),D=mfDia(),h='';
    '</div><p class="mf-d mf-s">Toque num item para mudar de quadrado. Sem quadrado: '+m.dump.filter(function(x){return !x.q&&!x.ok;}).length+' itens na lista.</p>';}
   else h+='<ul class="mf-lst">'+(m.dump.length?m.dump.map(item).join(''):'<li class="mf-vz">Cabeça vazia por aqui. Solte a primeira coisa.</li>')+'</ul>';}
  else if(p==='fim'){var F=D.fim||{},tot=0,ok=0;MF_FIM.forEach(function(b,i){b[1].forEach(function(t,j){tot++;if(F[i+'.'+j])ok++;});});
-  h='<h3>'+((TV_ON||EG_ON)?'Fechar o expediente':'Escapar de Procusto · fechar o expediente')+'</h3><p class="mf-d">O cérebro com TDAH não desliga sozinho do trabalho. Fechar o ciclo deixa a noite livre. De 20 a 30 minutos, sempre na mesma ordem.</p>'+
+  h='<h3>'+('Fechar o expediente')+'</h3><p class="mf-d">O cérebro com TDAH não desliga sozinho do trabalho. Fechar o ciclo deixa a noite livre. De 20 a 30 minutos, sempre na mesma ordem.</p>'+
    '<div class="mf-bar"><i style="width:'+Math.round(ok/tot*100)+'%"></i><span>'+ok+' de '+tot+'</span></div>'+
    (CX.st.fimT?'<span class="cx-big cx-mini" data-cxrel>25:00</span>':'<button type="button" class="mf-tm" data-mf="fimT">cronômetro de 25 min</button>')+
    '<div class="mf-gr">'+MF_FIM.map(function(b,i){return '<div class="mf-cd"><b><i>'+(i+1)+'</i>'+b[0]+'</b>'+b[1].map(function(t,j){return mfChk('fim|'+i+'.'+j,F[i+'.'+j],t);}).join('')+'</div>';}).join('')+'</div>'+

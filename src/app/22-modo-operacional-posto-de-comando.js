@@ -71,7 +71,7 @@ function opPinta(){var o=document.getElementById('modo-op');if(!o||!document.bod
  var set=function(sel,h){var n=o.querySelector(sel);if(n&&(n._h!==h||!n.firstChild)&&!(foco&&n.contains(a))){n.innerHTML=h;n._h=h;}};
  set('.op-l',opLinhaHTML());set('.op-esc',opEscudo());var fc=opFocoHTML().replace(/<b>\d+:\d+<\/b>/,'');set('.op-foco-c',opFocoHTML());set('.op-fazer',opFazerHTML());set('.op-lado',opLadoHTML());}
 /* extensão do Chrome: versão publicada em downloads/ (mesma do extensao/manifest.json); ao publicar uma nova, troque só aqui */
-var EXT_V='0.7.3',EXT_ZIP='downloads/astronautica-extensao-'+EXT_V+'.zip';
+var EXT_V='0.7.4',EXT_ZIP='downloads/astronautica-extensao-'+EXT_V+'.zip';
 function extBaixada(){try{return localStorage.getItem('astro-ext-baixada')||'';}catch(e){return '';}}
 /* cabeçalho, lado direito, montado só aqui: duas pílulas.
    alvo: desviei (com − quando há tracinho), travei, tarefa chata, ronda · caminho: manual, extensão (baixar / atualizar / em dia), templo completo.
