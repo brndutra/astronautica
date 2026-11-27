@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450 940" role="img"><title>Proa de drakkar — dragão entalhado de perfil</title>
+<defs>
+<linearGradient id="madeira" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#9d6234"/><stop offset=".42" stop-color="#6d4128"/><stop offset="1" stop-color="#3a261e"/></linearGradient>
+<linearGradient id="ouro" x1="0" y1="0" x2=".85" y2="1"><stop stop-color="#f7dfa1"/><stop offset=".55" stop-color="#c89b53"/><stop offset="1" stop-color="#90602e"/></linearGradient>
+<linearGradient id="head" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#b4783e"/><stop offset=".5" stop-color="#80502d"/><stop offset="1" stop-color="#4b2d21"/></linearGradient>
+<clipPath id="clip"><path d="M0 712 C103 708 172 628 214 532 C247 456 257 386 224 328 C202 293 179 284 170 290 Q158 298 158 315 Q120 289 122 231 L88 257 Q104 190 149 150 L111 151 Q180 91 260 108 L273 114 Q248 73 274 29 Q268 84 304 126 Q332 151 355 184 L344 190 Q375 212 414 240 Q421 246 411 256 Q395 272 383 258 Q370 268 365 265 L376 254 Q368 239 348 230 Q322 217 310 239 Q305 254 313 269 L306 279 Q297 280 299 263 Q294 233 276 218 Q250 200 238 223 Q223 249 254 280 Q305 324 309 391 C326 516 289 688 214 805 C163 885 81 940 0 940Z"/></clipPath>
+</defs>
+<path d="M0 712 C103 708 172 628 214 532 C247 456 257 386 224 328 C202 293 179 284 170 290 Q158 298 158 315 Q120 289 122 231 L88 257 Q104 190 149 150 L111 151 Q180 91 260 108 L273 114 Q248 73 274 29 Q268 84 304 126 Q332 151 355 184 L344 190 Q375 212 414 240 Q421 246 411 256 Q395 272 383 258 Q370 268 365 265 L376 254 Q368 239 348 230 Q322 217 310 239 Q305 254 313 269 L306 279 Q297 280 299 263 Q294 233 276 218 Q250 200 238 223 Q223 249 254 280 Q305 324 309 391 C326 516 289 688 214 805 C163 885 81 940 0 940Z" fill="url(#madeira)" stroke="#38261c" stroke-width="4" stroke-linejoin="round"/>
+<g clip-path="url(#clip)">
+<path d="M91 253Q122 174 177 143Q228 109 272 126Q316 135 354 184L344 190Q382 216 416 241Q418 262 389 264L377 254Q360 223 328 222Q298 218 302 264Q290 226 270 216Q236 201 228 235Q224 258 252 283Q299 331 300 390L260 418Q261 344 215 308Q176 277 154 312Q127 279 127 235Z" fill="url(#head)"/>
+<g fill="none" stroke-linecap="round" stroke-linejoin="round">
+<path d="M0 715 C104 710 181 632 225 530 C252 465 264 395 238 339 Q221 302 190 289 Q146 277 134 241 Q121 195 168 150 Q204 116 245 122 Q295 119 348 181" stroke="#37251b" stroke-width="23"/>
+<path d="M0 715 C104 710 181 632 225 530 C252 465 264 395 238 339 Q221 302 190 289 Q146 277 134 241 Q121 195 168 150 Q204 116 245 122 Q295 119 348 181" stroke="url(#ouro)" stroke-width="16"/>
+<path d="M0 714 C104 709 180 629 223 528 C251 464 263 396 237 339 Q220 302 190 289 Q146 277 134 241 Q121 195 168 150 Q204 116 245 122 Q295 119 348 181" stroke="#f7dca1" stroke-width="2.5"/>
+<path d="M0 763 C132 759 206 644 244 544 C280 453 293 360 241 305 Q199 277 184 249 Q158 211 184 186 Q204 169 224 187 Q240 202 223 221" stroke="#39261c" stroke-width="15"/>
+<path d="M0 763 C132 759 206 644 244 544 C280 453 293 360 241 305 Q199 277 184 249 Q158 211 184 186 Q204 169 224 187 Q240 202 223 221" stroke="url(#ouro)" stroke-width="9"/>
+<path d="M0 801 C131 797 218 686 260 560 Q289 480 289 404 M0 845 C145 842 238 707 276 580 Q300 497 299 426 M0 886 C153 884 256 750 291 615 Q313 535 309 459 M0 925 C165 922 272 782 304 647" stroke="#37251c" stroke-width="10"/>
+<path d="M0 801 C131 797 218 686 260 560 Q289 480 289 404 M0 845 C145 842 238 707 276 580 Q300 497 299 426 M0 886 C153 884 256 750 291 615 Q313 535 309 459 M0 925 C165 922 272 782 304 647" stroke="#c79a5d" stroke-width="3"/>
+<path d="M0 783Q127 780 215 639 M0 825Q141 818 231 684 M0 866Q156 853 245 725 M0 905Q162 895 262 764" stroke="#ad7441" stroke-width="3" opacity=".65"/>
+<path d="M117 148Q189 95 263 115 M96 248Q117 188 151 160 M270 38Q265 84 289 120" stroke="#e3b975" stroke-width="4"/>
+</g>
+<!-- Carved circular ornament, brow and eye -->
+<g fill="none" stroke-linecap="round" stroke-linejoin="round">
+<path d="M243 179 C228 197 202 189 196 168 C190 146 211 127 233 134 C255 141 257 166 241 177 C226 187 207 175 210 159 C213 147 229 146 233 157 C238 167 225 172 221 163" stroke="#3d281c" stroke-width="11"/>
+<path d="M243 179 C228 197 202 189 196 168 C190 146 211 127 233 134 C255 141 257 166 241 177 C226 187 207 175 210 159 C213 147 229 146 233 157 C238 167 225 172 221 163" stroke="#e2bc7c" stroke-width="6"/>
+<path d="M245 177 Q268 151 290 153 Q323 154 342 184 Q327 212 296 205 Q269 199 278 174" stroke="#3d281c" stroke-width="13"/>
+<path d="M245 177 Q268 151 290 153 Q323 154 342 184 Q327 212 296 205 Q269 199 278 174" stroke="#e4bc78" stroke-width="8"/>
+<path d="M236 220Q250 197 275 209Q300 222 306 251 M308 235Q321 213 347 227Q373 239 384 256" stroke="#e0b575" stroke-width="5"/>
+</g>
+<path d="M326 199Q342 190 351 197Q380 216 414 240Q418 251 407 258Q395 267 386 254L375 245Q355 220 329 217Q314 214 307 207Z" fill="url(#ouro)" stroke="#684424" stroke-width="2.5"/>
+<circle cx="310" cy="181" r="12" fill="#402a1d" stroke="#eed19a" stroke-width="4"/><circle cx="311" cy="181" r="4.5" fill="#efd39c"/><ellipse cx="398" cy="245" rx="6" ry="7" transform="rotate(-28 398 245)" fill="#39261c" stroke="#b18246" stroke-width="1.5"/>
+<g fill="#e4bd7c"><circle cx="166" cy="165" r="3"/><circle cx="158" cy="185" r="3"/><circle cx="150" cy="206" r="3"/><circle cx="163" cy="225" r="4"/><circle cx="174" cy="253" r="4"/><circle cx="207" cy="207" r="3.5"/><circle cx="207" cy="216" r="2.8"/><circle cx="266" cy="140" r="2.7"/></g>
+<!-- Three continuous bronze neck bands -->
+<g fill="url(#ouro)" stroke="#4a301f" stroke-width="3" stroke-linejoin="round"><path d="M228 414Q263 386 299 356L306 386Q265 419 223 446Z"/><path d="M223 450Q265 416 306 389L310 421Q264 454 215 481Z"/><path d="M215 485Q262 453 310 425L310 461Q255 488 203 522Z"/></g>
+<g stroke="#f0d197" fill="none" stroke-width="2"><path d="M229 417Q263 389 298 361 M223 453Q266 419 306 393 M216 488Q261 456 309 429"/></g>
+</g></svg>
