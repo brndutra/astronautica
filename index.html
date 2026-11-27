@@ -19835,6 +19835,16 @@ var PT_DADOS={
 };
 ptFichaExtra=(function(f0){return function(papel,i){var a=null;try{a=f0.apply(this,arguments);}catch(e){}var d=PT_DADOS[papel]&&PT_DADOS[papel][i];
  if(!d)return a;if(!a)return d;var vis={};a.forEach(function(x){vis[x[0]]=1;});return a.concat(d.filter(function(x){return !vis[x[0]];}));};})(ptFichaExtra);
+/* painel 2 (Rastreados) cresce até que, no fim da rolagem, a faixa das horas do templo 1 encoste no topo da tela */
+function rtAltura(){var rt=document.querySelector('.wrap > div.rt'),bl=document.querySelector('#hero-box > #tp-friso-bloco')||document.querySelector('#hero-box > #tp-friso');if(!rt)return;
+ if(!bl||innerWidth<1000||!bl.offsetParent){if(rt.style.minHeight){rt.style.removeProperty('min-height');}return;}
+ var hj=bl.querySelector('.cb-hoje'),hjH=0;if(hj&&!hj.hidden&&hj.offsetParent){var c=getComputedStyle(hj);hjH=hj.getBoundingClientRect().height+parseFloat(c.marginTop||0)+parseFloat(c.marginBottom||0);}
+ var fim=document.getElementById('rt-base');if(!fim||fim.previousElementSibling!==rt)fim=rt;var cf=getComputedStyle(fim),rodH=parseFloat(getComputedStyle(document.body).getPropertyValue('--rod-h'))||0;
+ var fimDoc=fim.getBoundingClientRect().bottom+scrollY+parseFloat(cf.marginBottom||0)+rodH,topoDoc=bl.getBoundingClientRect().top+scrollY;
+ var falta=innerHeight-(fimDoc-topoDoc-hjH),novo=Math.max(0,Math.round(rt.offsetHeight+falta)),at=parseFloat(rt.style.minHeight)||0;
+ if(Math.abs(novo-at)>1)rt.style.setProperty('min-height',novo+'px','important');}
+setTimeout(function(){try{rtAltura();}catch(e){}},1900);setInterval(function(){try{rtAltura();}catch(e){}},1300);window.addEventListener('resize',function(){try{rtAltura();}catch(e){}});
+document.addEventListener('click',function(e){if(e.target.closest&&e.target.closest('#tp-friso,#tp-friso-bloco'))setTimeout(function(){try{rtAltura();}catch(z){}},60);});
 
 /* o bloco da Concha entra no templo: fica dentro da colunata, entre as bases dos pilares */
 tpFriso=(function(f0){return function(){var r=f0.apply(this,arguments);try{var sl=document.querySelector('#hero-box .bn-slot'),bl=document.getElementById('tp-friso-bloco');
