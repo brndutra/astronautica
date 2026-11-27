@@ -5381,6 +5381,43 @@ html body.tv.op-on #argo-mar .vm-f{display:flex;align-items:center;gap:7px;font:
 html body.tv.op-on #argo-mar .vm-f img{width:13px;height:13px}
 html body.tv.op-on #argo-mar .vm-f b{font-weight:400;color:#f5deb0}
 @media (max-height:860px){html body.tv.op-on #argo-mar .vm-f{display:none}html body.tv.op-on #argo-mar .vm-h{min-height:30px}html body.tv.op-on #argo-mar .vm-h>img{width:26px;height:26px}html body.tv.op-on #argo-mar .vm-h h2{font-size:17px}html body.tv.op-on #argo-mar .vm-r strong{font-size:16px}}
+/* ===== Argo · revisão visual: quatro velas no convés (a Clepsidra desce para o mar como Rota da travessia) ===== */
+body:not(.tv).op-on #modo-op>.op-l{display:none!important}
+body:not(.tv).op-on #modo-op>:is(.op-top,.op-g){grid-column:1 / -1!important}
+body:not(.tv).op-on #modo-op .op-g{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:17px!important}
+body:not(.tv).op-on #modo-op.op-grego .op-g>.op-templo{border:1px solid #b9975c!important;border-top:6px solid #825532!important;border-bottom:5px solid #825532!important;border-radius:16px 16px 24px 24px!important;box-shadow:0 6px 12px rgba(109,72,37,.17),inset 0 0 0 3px #f9edcf!important;padding:calc(var(--ah) + 2px) 15px calc(var(--af) + 6px)!important;background:var(--a-cab) 0 0/100% var(--ah) no-repeat,var(--a-rod) 0 100%/100% var(--af) no-repeat,repeating-linear-gradient(90deg,rgba(255,255,255,0) 0 8px,rgba(176,138,69,.06) 9px 10px),linear-gradient(90deg,#e7d2a7 0%,#faf2dc 9%,#fff8e8 50%,#faf2dc 91%,#e7d2a7 100%)!important}
+body:not(.tv).op-on #modo-op.op-grego .op-g>.op-templo::before,body:not(.tv).op-on #modo-op.op-grego .op-g>.op-templo::after{content:""!important;display:block!important;position:absolute!important;top:calc(var(--ah) - 6px)!important;bottom:calc(var(--af) + 2px)!important;width:4px!important;height:auto!important;min-width:0!important;padding:0!important;border:0!important;box-shadow:none!important;border-radius:3px!important;background:repeating-linear-gradient(150deg,#8e602d 0 2px,#d7b777 2px 4px)!important;opacity:.75!important;transform:none!important;z-index:1;pointer-events:none}
+body:not(.tv).op-on #modo-op.op-grego .op-g>.op-templo::before{left:3px!important;right:auto!important}
+body:not(.tv).op-on #modo-op.op-grego .op-g>.op-templo::after{right:3px!important;left:auto!important}
+body:not(.tv).op-on #modo-op.op-grego .op-g>.op-templo .op-cab{background-color:#fff8e6!important}
+body:not(.tv).op-on #modo-op.op-grego .op-g>.op-templo{overflow-y:auto!important;overflow-x:hidden!important;scrollbar-width:thin;scrollbar-color:#c9a45a transparent}
+body:not(.tv).op-on #modo-op.op-grego .op-g>.op-templo>*{flex-shrink:0!important}
+body:not(.tv).op-on #modo-op.op-grego .op-g>.op-col1.op-templo{--a-cab:url("img/acampamento/argo-vela-leme-orn.svg?v=1");--a-rod:url("img/acampamento/argo-vela-leme-rod.svg?v=1");--t-k:#a65a43!important}
+body:not(.tv).op-on #modo-op.op-grego .op-g>.op-fazer.op-templo{--a-cab:url("img/acampamento/argo-vela-porao-orn.svg?v=1");--a-rod:url("img/acampamento/argo-vela-porao-rod.svg?v=1");--t-k:#806d91!important}
+body:not(.tv).op-on #modo-op.op-grego .op-g>.op-estudo.op-templo{--a-cab:url("img/acampamento/argo-vela-carta-orn.svg?v=1");--a-rod:url("img/acampamento/argo-vela-carta-rod.svg?v=1");--t-k:#426b94!important}
+body:not(.tv).op-on #modo-op.op-grego .op-g>.op-lado.op-templo{--a-cab:url("img/acampamento/argo-vela-anfora-orn.svg?v=1");--a-rod:url("img/acampamento/argo-vela-anfora-rod.svg?v=1");--t-k:#818350!important}
+body:not(.tv).op-on #rod-apps{padding-bottom:var(--a-mar-h,118px)!important}
+body:not(.tv).op-on{--a-mar-h:clamp(96px,13vh,122px)}
+body:not(.tv).op-on #argo-mar{display:grid!important;position:absolute;left:0;right:0;bottom:0;height:var(--a-mar-h);box-sizing:border-box;padding:12px 4.5% 16px;grid-template-columns:minmax(135px,.9fr) minmax(0,5fr) minmax(135px,.9fr);align-items:center;gap:13px;color:#f8f1de;background:linear-gradient(180deg,#347788,#205a71 55%,#17475f);border-top:2px solid #8fc1c4;isolation:isolate;overflow:hidden;z-index:4}
+body:not(.tv).op-on #argo-mar::before,body:not(.tv).op-on #argo-mar::after{content:"";position:absolute;left:0;right:-240px;bottom:0;height:48px;background:url("img/acampamento/argo-mar-ondas.svg?v=1") 0 100%/240px 54px repeat-x;z-index:-1;opacity:.68;animation:argoCor 18s linear infinite;pointer-events:none}
+body:not(.tv).op-on #argo-mar::after{bottom:13px;opacity:.24;animation-duration:28s;animation-direction:reverse}
+@keyframes argoCor{to{transform:translateX(-240px)}}
+@media (prefers-reduced-motion:reduce){body:not(.tv).op-on #argo-mar::before,body:not(.tv).op-on #argo-mar::after{animation:none}}
+body:not(.tv).op-on #argo-mar .rg-box{display:flex;align-items:center;gap:9px;min-width:0;padding:8px 10px;border:1px solid #a4c3b6;border-radius:4px;background:#174d62;color:#fff3d4}
+body:not(.tv).op-on #argo-mar .rg-med{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:#f3e1b4;color:#255c70;border:1.5px solid #c69c51}
+body:not(.tv).op-on #argo-mar .rg-med svg{width:16px;height:16px}
+body:not(.tv).op-on #argo-mar .rg-box b{display:block;font:400 15px/1.1 Georgia,serif;font-variant:small-caps;letter-spacing:.05em;color:#fff3d4}
+body:not(.tv).op-on #argo-mar .rg-box small{display:block;margin-top:2px;font:600 8.5px/1.3 var(--mono,monospace);letter-spacing:.14em;text-transform:uppercase;color:#fff3d4;opacity:.9}
+body:not(.tv).op-on #argo-mar .rg-box em{font-style:italic;color:#ffe0a1}
+body:not(.tv).op-on #argo-mar .rg-box .rg-hora{font:700 13px var(--mono,monospace);color:#ffe0a1;margin-right:5px}
+body:not(.tv).op-on #argo-mar .rg-ol{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px;align-items:stretch;height:100%;min-height:0}
+body:not(.tv).op-on #argo-mar .rg-li{position:relative;display:flex;flex-direction:column;justify-content:center;gap:3px;min-width:0;padding:8px 8px 7px;border:1px solid #91b4b4;border-radius:30% 14% 12px 12px / 18% 15% 12px 12px;background:linear-gradient(165deg,#e9f3e8,#b8d8d2);color:#193f50;font:13px/1.2 Georgia,serif;overflow:hidden}
+body:not(.tv).op-on #argo-mar .rg-li small{font:600 8.5px/1.25 var(--mono,monospace);letter-spacing:.07em;text-transform:uppercase;color:#315f6a}
+body:not(.tv).op-on #argo-mar .rg-li span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+body:not(.tv).op-on #argo-mar .rg-li.passou{opacity:.62}
+body:not(.tv).op-on #argo-mar .rg-li.agora{outline:2px solid #e8bd70;outline-offset:1px;background:linear-gradient(165deg,#fff2cd,#e1c88e)}
+body:not(.tv).op-on #argo-mar .rg-li.agora i{font:700 8.5px var(--mono,monospace);font-style:normal;letter-spacing:.1em;text-transform:uppercase;color:#b4463a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media (max-width:1000px){body:not(.tv).op-on #argo-mar{grid-template-columns:1fr}body:not(.tv).op-on #argo-mar .rg-box{display:none}}
 </style>
 <link rel="stylesheet" href="pontes.css">
 <script src="pontes.js" defer></script>
@@ -18120,7 +18157,7 @@ if(TV_ON){['comum','saguao','operacional'].forEach(function(n){var sc=document.c
 /* Argo: a moldura do kit acompanha a largura de cada cartão (cabeçalho 280×88 e rodapé 280×44, sem deformar) */
 function argoMede(){var o=document.getElementById('modo-op');if(!o||!window.ResizeObserver)return;
  Array.prototype.forEach.call(o.querySelectorAll('.op-templo'),function(n){if(n._argoRO)return;
-  n._argoRO=new ResizeObserver(function(){var w=n.getBoundingClientRect().width;if(!w)return;try{argoMastros();}catch(e){}n.style.setProperty('--ah',(w*88/280).toFixed(1)+'px');n.style.setProperty('--af',(w*44/280).toFixed(1)+'px');n.style.setProperty('--vt',(w*92/320).toFixed(1)+'px');n.style.setProperty('--vb',(w*72/320).toFixed(1)+'px');});
+  n._argoRO=new ResizeObserver(function(){var w=n.getBoundingClientRect().width;if(!w)return;try{argoMastros();}catch(e){}n.style.setProperty('--ah',Math.min(w*88/280,82).toFixed(1)+'px');n.style.setProperty('--af',Math.min(w*44/280,42).toFixed(1)+'px');n.style.setProperty('--vt',(w*92/320).toFixed(1)+'px');n.style.setProperty('--vb',(w*72/320).toFixed(1)+'px');});
   n._argoRO.observe(n);});}
 (function(){var m0=opMonta;opMonta=function(){var r=m0.apply(this,arguments);try{argoMede();}catch(e){}return r;};try{argoMede();}catch(e){}})();
 function argoRod(){var r=document.getElementById('rod-apps');if(!r||!window.ResizeObserver||r._argoRO)return;r._argoRO=new ResizeObserver(function(){var h=Math.round(r.getBoundingClientRect().height);if(h)document.body.style.setProperty('--a-rodh',h+'px');});r._argoRO.observe(r);}
@@ -18149,7 +18186,7 @@ function argoMarHTML(){var hj=hoje(),tb=S.tb||{},a=opMin(),ini=360,fim=1440,p=Ma
  return '<div class="am-fs">'+f+ag+'</div>';}
 function argoMarPinta(){var rd=document.getElementById('rod-apps');if(!rd)return;var m=document.getElementById('argo-mar');
  if(!m){m=document.createElement('div');m.id='argo-mar';m.setAttribute('role','img');rd.appendChild(m);}
- var h=document.body.classList.contains('tv')?argoMarTV():argoMarHTML();if(m._h!==h){m.innerHTML=h;m._h=h;}
+ var h=document.body.classList.contains('tv')?argoMarTV():argoMarGR();if(m._h!==h){m.innerHTML=h;m._h=h;}
  var a=opMin(),p=Math.max(0,Math.min(100,(a-360)/1080*100));m.setAttribute('aria-label','Clepsidra do dia em ondas: '+Math.round(100-p)+'% do dia ainda resta');}
 (function(){var p0=opPinta;opPinta=function(){var r=p0.apply(this,arguments);try{argoMarPinta();}catch(e){}return r;};})();
 
@@ -18171,6 +18208,17 @@ function argoMarTV(){var hj=hoje(),tb=S.tb||{},a=opMin(),pos=Math.max(0,Math.min
 
 function argoMastros(){var g=document.querySelector('#modo-op .op-g');if(!g)return;var R=g.getBoundingClientRect();if(!R.width)return;
  Array.prototype.forEach.call(g.querySelectorAll(':scope > .op-templo'),function(n,i){if(i>3)return;var r=n.getBoundingClientRect();g.style.setProperty('--m'+(i+1),(r.left-R.left+r.width/2-12).toFixed(1)+'px');});}
+
+/* Rota da travessia no mar (tema grego): Clepsidra à esquerda, seis turnos em ondas, Vigia de Linceu à direita */
+function argoMarGR(){var hj=hoje(),tb=S.tb||{},a=opMin(),ini=360,fim=1440,p=Math.max(0,Math.min(100,(a-ini)/(fim-ini)*100));
+ var hm=String(Math.floor(a/60)%24).padStart(2,'0')+':'+String(a%60).padStart(2,'0');
+ var li=TD_H.map(function(H){var m0=+H*60,m1=m0+180,st=a>=m1?' passou':(a>=m0?' agora':''),tx=(tb[hj+'|'+H]||'').trim()||'livre';
+  return '<div class="rg-li'+st+'" title="'+esc(H+'–'+(+H+3)+'h · '+tdFaixaNome(H)+' · '+tx)+'"><small>'+H+'h · '+esc(tdFaixaNome(H))+(st===' agora'?' · agora':'')+'</small><span>'+esc(tx)+'</span>'+(st===' agora'?'<i>a Argo está aqui · '+hm+'</i>':'')+'</div>';}).join('');
+ var px=null;try{px=clepProx();}catch(e){}
+ var q=px?Math.max(0,px.m-a):0,em=px?(q>=60?Math.floor(q/60)+'h'+String(q%60).padStart(2,'0'):q+' min'):'';
+ return '<div class="rg-box"><span class="rg-med"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 19c3-1 4-4 6-7s4-5 8-6"/><circle cx="5" cy="19" r="1.6"/><circle cx="19" cy="6" r="1.6"/></svg></span><span><b>Rota da travessia</b><small>'+Math.round(p)+'% do dia · resta '+Math.round(100-p)+'%</small></span></div>'+
+  '<div class="rg-ol">'+li+'</div>'+
+  '<div class="rg-box"><span><small>vigia de Linceu · próximo</small>'+(px?'<span class="rg-hora">'+esc(px.h)+'</span><b style="display:inline;font-variant:normal;font-size:13px">'+esc(px.t)+'</b> <em>em '+em+'</em>':'<b style="font-size:13px">nada mais hoje</b>')+'</span></div>';}
 
 })();
 </script>
