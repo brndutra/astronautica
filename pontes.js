@@ -72,7 +72,11 @@ function pintaTicker(){var z=Z().rss,t=document.getElementById('pz-ticker'),it=r
  t.innerHTML='<span class="pz-tk-k">Hefesto TV · ao vivo</span><div class="pz-tk-v"><div class="pz-tk-trilho" style="--pz-dur:'+Math.max(40,it.length*9)+'s">'+lin+'<span class="pz-tk-s">·</span>'+lin+'</div></div><button type="button" class="pz-tk-x" title="esconder até amanhã" aria-label="esconder o boletim até amanhã">✕</button>';
  document.body.classList.add('pz-com-ticker');posTicker();}
 /* a faixa mora dentro do rodapé, na largura dele: não cobre o painel esquerdo nem o templo */
-function tickerNoRodape(){var t=document.getElementById('pz-ticker'),r=document.getElementById('rod-apps');if(!t||!r)return false;if(t.parentNode!==r||r.firstElementChild!==t)r.insertBefore(t,r.firstChild);t.classList.add('pz-no-rod');return true;}
+function tickerNoRodape(){var t=document.getElementById('pz-ticker'),r=document.getElementById('rod-apps');if(!t)return false;
+ /* modo operacional (todos os temas): a faixa sobe para o cabeçalho do posto de comando */
+ var hd=document.body.classList.contains('op-on')?document.querySelector('#modo-op>.op-top'):null;
+ if(hd){if(t.parentNode!==hd||hd.lastElementChild!==t)hd.appendChild(t);t.classList.remove('pz-no-rod');t.classList.add('pz-no-topo');t.style.bottom='';return true;}
+ t.classList.remove('pz-no-topo');if(!r)return false;if(t.parentNode!==r||r.firstElementChild!==t)r.insertBefore(t,r.firstChild);t.classList.add('pz-no-rod');return true;}
 function posTicker(){var t=document.getElementById('pz-ticker'),r=document.getElementById('rod-apps');if(!t)return;if(tickerNoRodape()){t.style.bottom='';return;}
  var h=r?Math.max(0,window.innerHeight-r.getBoundingClientRect().top):0;t.style.bottom=h+'px';}
 
@@ -299,6 +303,8 @@ function arranca(){try{Z();}catch(e){return setTimeout(arranca,800);}
  setInterval(function(){pintaPontes();pintaLaptop();if(!document.getElementById('pz-ticker')&&RSS.itens.length)pintaTicker();else posTicker();},5000);
  document.addEventListener('visibilitychange',function(){if(document.visibilityState==='visible')setTimeout(function(){ciclo(false);},1500);});
  window.addEventListener('resize',posTicker);
+ /* entrar ou sair do modo operacional move a faixa na hora, sem esperar o ciclo de 5 s */
+ try{new MutationObserver(function(){posTicker();}).observe(document.body,{attributes:true,attributeFilter:['class']});}catch(e){}
  /* hábito marcado no app vai para o Habitica sem esperar o ciclo */
  var ultHab='';setInterval(function(){try{var s=JSON.stringify((A.S.hab||[]).map(function(h){return (h.hist||[]).indexOf(hoje())>=0;}));if(ultHab&&s!==ultHab&&cf().hb_key)hbSync();ultHab=s;}catch(e){}},8000);}
 window.PONTES={sync:function(k){return k?agora(k):ciclo(true);},estado:function(){return JSON.parse(JSON.stringify(ST));}};
