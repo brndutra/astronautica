@@ -5462,6 +5462,108 @@ html body.eg.op-on #argo-mar .rg-li.agora i{color:#f4d486!important}
 html body.eg.op-on #argo-mar .rg-box{background:#174d62!important;border:1px solid #a4c3b6!important;border-radius:10px!important}
 html body.eg.op-on #argo-mar .rg-med{background:url("img/acampamento/ra-selo-nilo.svg?v=1") center/contain no-repeat!important;border:0!important;color:transparent!important;width:34px!important;height:34px!important}
 html body.eg.op-on #argo-mar .rg-med svg{display:none}
+
+
+/* ===== Afirmações do banner: editar e excluir ===== */
+#hero-box .bn-visao .bv-af{position:relative}
+#hero-box .bn-visao .bv-acoes{position:absolute;top:8px;right:8px;display:flex;gap:4px;opacity:.35;transition:opacity .15s}
+#hero-box .bn-visao .bv-af:hover .bv-acoes,#hero-box .bn-visao .bv-acoes:focus-within{opacity:1}
+#hero-box#hero-box .bn-visao .bv-acoes button{width:24px!important;height:24px!important;padding:0!important;border-radius:50%!important;display:grid!important;place-items:center!important;border:1px solid rgba(160,120,60,.35)!important;background:rgba(255,255,255,.7)!important;color:#7a5a3a!important;cursor:pointer}
+#hero-box .bn-visao .bv-acoes svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+#hero-box#hero-box .bn-visao .bv-acoes .bv-del:hover{color:#c0392b!important;border-color:#c0392b!important}
+#hero-box#hero-box .bn-visao .bv-acoes .bv-del.arm{width:auto!important;padding:0 8px!important;border-radius:99px!important;background:#c0392b!important;color:#fff!important;border-color:#c0392b!important}
+#hero-box .bn-visao .bv-acoes .bv-del.arm::after{content:"excluir?";font:700 10.5px system-ui,sans-serif;margin-left:4px}
+#hero-box .bn-visao .bv-acoes .bv-del.arm svg{stroke:#fff}
+
+/* ===== Painéis sobre a área central: sem sombra e com o fundo travado ===== */
+html body .pd-corpo,html body #painel-dir .pd-corpo{box-shadow:none!important;border-left:1.5px solid rgba(150,115,60,.45)!important;overscroll-behavior:contain}
+html body dialog[open],html body dialog[open]>*,html body .modal .sheet,html body .rod-log-pop,html body #tm-menu,html body .rp-shell>*,html body .gt-shell>*{box-shadow:none!important}
+html body .rod-log-pop,html body #tm-menu,html body dialog[open]{border:1.5px solid rgba(150,115,60,.45)}
+html body dialog[open],html body .modal .sheet,html body .rod-log-pop .rl-slot{overscroll-behavior:contain}
+html.trava,html.trava body{overflow:hidden!important}
+
+/* ===== Antagonista do dia no mar (por tema) ===== */
+#mt-enc{display:none}
+body.op-on #mt-enc{display:grid;position:absolute;left:0;right:0;bottom:0;height:var(--mt-h,64px);z-index:5;grid-template-columns:minmax(0,1fr) minmax(200px,300px);align-items:end;gap:14px;padding:0 2.2% 0 2.2%;box-sizing:border-box;pointer-events:none;color:#f7f0df}
+body.op-on{--mt-h:clamp(42px,6.2vh,64px)}
+html body:not(.tv).op-on{--a-mar-h:clamp(132px,17.5vh,186px)}
+html body.eg.op-on{--a-mar-h:clamp(146px,19.5vh,208px)}
+html body.tv.op-on,html body.tv.op-on #rod-apps.rod{--v-mar:clamp(170px,23vh,262px)}
+html body.op-on #rod-apps #argo-mar{padding-bottom:calc(var(--mt-h) + 6px)!important}
+#mt-enc .mt-art{pointer-events:auto;position:relative;height:100%;min-width:0;padding:0;border:0;background:transparent;cursor:pointer;display:block;overflow:hidden}
+#mt-enc .mt-art img{position:absolute;left:0;right:0;bottom:-2px;width:100%;height:calc(100% + 4px);object-fit:contain;object-position:50% 100%;transition:transform 1.1s ease-in,opacity 1s,filter .2s}
+#mt-enc .mt-art:hover img{filter:brightness(1.15)}
+#mt-enc .mt-art::after{content:"";position:absolute;left:0;right:0;bottom:0;height:10px;background:linear-gradient(transparent,rgba(16,52,72,.55));pointer-events:none}
+#mt-enc.vencido .mt-art img{transform:translateY(80%);opacity:.18}
+#mt-enc.fugiu .mt-art img{transform:translateY(55%);opacity:.4}
+#mt-enc .mt-info{pointer-events:auto;align-self:center;display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"k b" "n b" "o b";column-gap:10px;padding:5px 10px 6px;border-left:2px solid rgba(255,231,177,.55);text-shadow:0 1px 2px rgba(10,30,45,.8)}
+#mt-enc .mt-k{grid-area:k;font:700 8.5px/1.3 var(--mono,monospace);letter-spacing:.16em;text-transform:uppercase;color:#cbe5da;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#mt-enc .mt-n{grid-area:n;font:600 17px/1.1 Georgia,serif;color:#ffe7b1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#mt-enc .mt-o{grid-area:o;font:11px/1.25 system-ui,sans-serif;color:#f1ead4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#mt-enc .mt-bt{grid-area:b;align-self:center;margin:0!important;padding:6px 10px!important;border-radius:5px!important;border:1px solid #d3b579!important;background:rgba(23,59,73,.85)!important;color:#ffe8b0!important;font:600 11px system-ui,sans-serif!important;cursor:pointer;white-space:nowrap;box-shadow:none!important;min-height:0!important;height:auto!important;width:auto!important}
+#mt-enc .mt-bt:hover{background:#315f65!important}
+#mt-enc.vencido .mt-n{text-decoration:line-through;text-decoration-color:rgba(255,231,177,.6)}
+body.tv #mt-enc .mt-info{border-left-color:rgba(205,170,90,.6)}
+body.tv #mt-enc .mt-bt{border-color:#c9a24a!important;background:rgba(20,45,55,.85)!important}
+body.eg #mt-enc .mt-info{border-left-color:rgba(201,162,58,.7)}
+body.eg #mt-enc .mt-bt{border-color:#c9a23a!important;background:rgba(30,58,110,.85)!important}
+@media (prefers-reduced-motion:reduce){#mt-enc .mt-art img{transition:none}}
+/* ===== Barras de rolagem: finas, discretas e na cor do tema ===== */
+html{--sb:rgba(201,150,60,.55);--sb-h:#e0782a}
+html:has(body.tv),body.tv{--sb:rgba(96,114,128,.55);--sb-h:#b3262d}
+html:has(body.eg),body.eg{--sb:rgba(42,76,134,.5);--sb-h:#c9a23a}
+*{scrollbar-width:thin}
+*{scrollbar-color:var(--sb) transparent!important}
+*:hover{scrollbar-color:var(--sb-h) transparent!important}
+*::-webkit-scrollbar{width:6px;height:6px}
+*::-webkit-scrollbar-track{background:transparent}
+*::-webkit-scrollbar-thumb{background:var(--sb);border-radius:99px}
+*::-webkit-scrollbar-thumb:hover{background:var(--sb-h)}
+*::-webkit-scrollbar-corner{background:transparent}
+
+/* ===== Seletor de tema no emblema do cartão de nível ===== */
+#lat-topo .lt-logo{position:relative;cursor:pointer}
+#lat-topo .lt-logo::after{content:"";position:absolute;right:-3px;bottom:-3px;width:12px;height:12px;border-radius:50%;background:#fff8e8 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M3 4.5h6M7.5 3l1.5 1.5L7.5 6M9 7.5H3M4.5 6L3 7.5 4.5 9' fill='none' stroke='%23b5462c' stroke-width='1.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/10px no-repeat;box-shadow:0 0 0 1px rgba(181,70,44,.45)}
+body.tv #lat-topo .lt-logo::after{background-color:#1d4a2c;filter:hue-rotate(160deg) brightness(1.6)}
+#lat-topo .lt-r2>#tv-tg{display:none!important}
+#tm-menu{position:fixed;z-index:9999;width:256px;padding:10px;border-radius:14px;background:#fffaf0;border:1px solid #e6cf9e;box-shadow:0 18px 40px rgba(40,25,10,.28);font-family:Georgia,serif;color:#2e2620}
+#tm-menu[hidden]{display:none}
+#tm-menu header{font:700 9px/1 var(--mono,monospace);letter-spacing:.22em;text-transform:uppercase;color:#b5462c;margin:2px 4px 8px}
+#tm-menu button{display:flex;align-items:center;gap:10px;width:100%;padding:7px 8px;margin:0 0 4px;border:1px solid transparent;border-radius:10px;background:transparent;text-align:left;cursor:pointer;font:600 13.5px/1.15 Georgia,serif;color:inherit}
+#tm-menu button:hover{background:#fdf0d8;border-color:#ecd5a6}
+#tm-menu button.on{background:#fbe6c4;border-color:#e0a04a}
+#tm-menu button img{width:30px;height:30px;border-radius:50%;object-fit:contain;flex:none;background:#fff}
+#tm-menu button{justify-content:flex-start!important;text-align:left!important}
+#tm-menu .tm-n{flex:1;min-width:0}
+#tm-menu .tm-n::before{content:attr(data-n);display:block}
+#tm-menu .tm-n::after{content:attr(data-s);display:block;font:500 10.5px/1.2 system-ui,sans-serif;color:#8a7a68;margin-top:2px}
+#tm-menu .tm-ficha{justify-content:center!important;text-align:center!important}
+#tm-menu button.on::after{content:"atual";margin-left:auto;font:700 8.5px/1 var(--mono,monospace);letter-spacing:.14em;text-transform:uppercase;color:#b5462c}
+#tm-menu hr{border:0;border-top:1px dashed #e2cfa8;margin:6px 2px}
+#tm-menu .tm-ficha{font:600 12.5px Georgia,serif;justify-content:center;color:#6b5a48}
+body.tv #tm-menu{background:#f3efe6;border-color:#8a9aa6}
+body.tv #tm-menu header,body.tv #tm-menu button.on::after{color:#b3262d}
+body.tv #tm-menu button.on{background:#e3e7ea;border-color:#5d6a74}
+body.eg #tm-menu{background:#fbf4e0;border-color:#c9a23a}
+body.eg #tm-menu header,body.eg #tm-menu button.on::after{color:#2a4c86}
+body.eg #tm-menu button.on{background:#f3e3b4;border-color:#2a4c86}
+
+/* ===== Cartão-postal do Camp Half-Blood (Acampamento) ===== */
+.cp-postal .cp-selo,.cp-postal .cp-carimbo{display:none}
+html body.claro[data-skin="astro"]:not(.tv):not(.eg) #hero-box .cp-postal{background:#fffdf6!important;border:0!important;border-radius:5px!important;padding:8px!important;
+ box-shadow:0 0 0 1px rgba(160,120,60,.25),0 2px 0 #efe3c8,0 16px 30px rgba(70,35,10,.30)!important;overflow:visible}
+html body.claro[data-skin="astro"]:not(.tv):not(.eg) #hero-box .cp-postal .fr{position:relative;overflow:hidden;border:0!important;border-radius:2px!important;
+ background:radial-gradient(120% 90% at 50% 115%,rgba(255,214,120,.55),transparent 60%),repeating-conic-gradient(from -90deg at 50% 118%,#f28a2c 0 5deg,#ec7a1c 5deg 10deg)!important;
+ box-shadow:inset 0 0 0 2px rgba(255,255,255,.35),inset 0 0 30px rgba(140,50,0,.25)!important}
+html body.claro[data-skin="astro"]:not(.tv):not(.eg) #hero-box .cp-postal .fr::before{content:"";position:absolute;left:0;right:0;bottom:0;height:26%;
+ background:linear-gradient(transparent,rgba(255,255,255,.0)),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 40' preserveAspectRatio='none'%3E%3Cpath d='M0 26 Q20 6 40 20 T80 18 T120 22 L130 12 L138 22 Q170 10 200 20 L210 8 L222 20 Q250 12 300 22 V40 H0Z' fill='%23c4561a' opacity='.55'/%3E%3Cpath d='M0 32 Q40 24 80 32 T160 30 T240 33 T300 30 V40 H0Z' fill='%23fff3dc' opacity='.35'/%3E%3C/svg%3E") bottom/100% 100% no-repeat}
+html body.claro[data-skin="astro"]:not(.tv):not(.eg) #hero-box .cp-postal .fr>div{position:relative;z-index:1}
+html body.claro[data-skin="astro"]:not(.tv):not(.eg) #hero-box .cp-postal small{font:italic 700 16px/1 "Brush Script MT","Segoe Script",cursive!important;color:#fff!important;text-shadow:0 1px 0 rgba(120,40,0,.45);transform:rotate(-6deg) translateX(-34px)}
+html body.claro[data-skin="astro"]:not(.tv):not(.eg) #hero-box .cp-postal b{font:900 30px/.9 "Rockwell","Georgia",serif!important;letter-spacing:.04em;color:#fff4d4!important;
+ -webkit-text-stroke:1px #1f3550;text-shadow:1px 1px 0 #1f3550,2px 2px 0 #1f3550,3px 3px 0 #1f3550,4px 4px 0 #2d4a6c,5px 5px 6px rgba(60,20,0,.35)!important}
+html body.claro[data-skin="astro"]:not(.tv):not(.eg) #hero-box .cp-postal span{font:italic 700 13px/1 "Brush Script MT","Segoe Script",cursive!important;color:#fff!important;text-shadow:0 1px 0 rgba(120,40,0,.45);transform:rotate(-3deg) translateX(40px);margin-top:9px}
+html body.claro[data-skin="astro"]:not(.tv):not(.eg) #hero-box .cp-postal .cp-selo{display:block;position:absolute;z-index:3;top:-9px;right:-10px;width:44px;height:52px;transform:rotate(6deg);filter:drop-shadow(0 3px 4px rgba(60,30,10,.3))}
+html body.claro[data-skin="astro"]:not(.tv):not(.eg) #hero-box .cp-postal .cp-carimbo{display:block;position:absolute;z-index:4;top:6px;right:22px;width:58px;height:40px;opacity:.75;transform:rotate(-12deg);pointer-events:none}
 </style>
 <link rel="stylesheet" href="pontes.css">
 <script src="pontes.js" defer></script>
@@ -10209,7 +10311,7 @@ setInterval(function(){var r=document.getElementById('pl-relogio');if(r&&documen
 (function(){var r0=vxRender;vxRender=function(){r0();try{plPos();}catch(e){console.error('planner:',e);}};})();
 /* enfeites do cabeçalho no visual do acampamento (só aparecem no modo claro) */
 function cpEnfeita(){var h=document.querySelector('.vx-hero');if(!h||h.querySelector('.cp-postal'))return;
- h.insertAdjacentHTML('beforeend','<div class="cp-postal" aria-hidden="true"><div class="fr"><div><small>Greetings from</small><b>Camp<br>Half-Blood</b><span>Long Island, N.Y.</span></div></div></div>'+
+ h.insertAdjacentHTML('beforeend','<div class="cp-postal" aria-hidden="true"><div class="fr"><div><small>Greetings from</small><b>Camp<br>Half-Blood</b><span>Long Island, N.Y.</span></div></div><svg class="cp-selo" viewBox="0 0 44 52"><defs><mask id="cpSeloM"><rect width="44" height="52" fill="#fff"/><g fill="#000">'+[4,12,20,28,36,44].map(function(x){return '<circle cx="'+x+'" cy="0" r="2.2"/><circle cx="'+x+'" cy="52" r="2.2"/>';}).join('')+[4,12,20,28,36,44,52].map(function(y){return '<circle cx="0" cy="'+y+'" r="2.2"/><circle cx="44" cy="'+y+'" r="2.2"/>';}).join('')+'</g></mask></defs><rect width="44" height="52" fill="#fffdf4" mask="url(#cpSeloM)"/><rect x="5" y="5" width="34" height="42" fill="#2d4a6c"/><circle cx="22" cy="22" r="9" fill="#f2a33a"/><g stroke="#f2a33a" stroke-width="1.3" stroke-linecap="round">'+[0,1,2,3,4,5,6,7].map(function(i){var a=i*Math.PI/4;return '<path d="M'+(22+12*Math.cos(a)).toFixed(1)+' '+(22+12*Math.sin(a)).toFixed(1)+' L'+(22+15*Math.cos(a)).toFixed(1)+' '+(22+15*Math.sin(a)).toFixed(1)+'"/>';}).join('')+'</g><path d="M14 22h16M26 18l4 4-4 4" stroke="#2d4a6c" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/><text x="22" y="43" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="7" fill="#fff4d4">ΔΩ · 3¢</text></svg><svg class="cp-carimbo" viewBox="0 0 58 40" fill="none" stroke="#3a2f4a" stroke-width="1.2"><circle cx="18" cy="20" r="15"/><circle cx="18" cy="20" r="11"/><text x="18" y="18" text-anchor="middle" font-family="Georgia,serif" font-size="4.6" fill="#3a2f4a" stroke="none">LONG IS.</text><text x="18" y="25" text-anchor="middle" font-family="Georgia,serif" font-size="4.6" fill="#3a2f4a" stroke="none">N.Y.</text><path d="M33 12q6-3 12 0t12 0M33 20q6-3 12 0t12 0M33 28q6-3 12 0t12 0"/></svg></div>'+
   '<div class="cp-dracmas" title="dracmas"><i class="mosaico">Δ</i><i class="mosaico">Ω</i><i class="mosaico">Ψ</i><i class="mosaico">Δ</i></div>');}
 (function(){var r0=vxRender;vxRender=function(){r0();try{cpEnfeita();}catch(e){console.error('cabeçalho:',e);}};})();
 /* ---------- Acampamento: horário do dia, colar de contas, Captura da Bandeira e Guia do Campista ---------- */
@@ -15214,7 +15316,7 @@ function bvHTML(){var ig=S.ign||{},af=ig.af||[],vi=ig.vi||[],n=af.length,F=bvFot
  var a=n?bvEsc(af[BV_I]):'Escreva a primeira afirmação: curta, no presente, em primeira pessoa.';
  return '<div class="bv-fotos">'+fs+'</div>'+
   '<div class="bv-af'+(n?'':' bv-af-vazio')+'"><span class="bv-k">afirmação'+(n?' · '+(BV_I+1)+' de '+n:'')+'</span><p class="bv-txt">'+a+'</p>'+
-  '<div class="bv-nav">'+(n>1?'<button type="button" data-bv="ant" aria-label="afirmação anterior">‹</button><button type="button" data-bv="prox" aria-label="próxima afirmação">›</button>':'')+'<button type="button" data-bv="nova" class="bv-mais">+ afirmação</button></div>'+
+  '<div class="bv-nav">'+(n>1?'<button type="button" data-bv="ant" aria-label="afirmação anterior">‹</button><button type="button" data-bv="prox" aria-label="próxima afirmação">›</button>':'')+'<button type="button" data-bv="nova" class="bv-mais">+ afirmação</button></div>'+(n?'<div class="bv-acoes"><button type="button" data-bv="edita" class="bv-ed" title="editar esta afirmação" aria-label="editar esta afirmação"><svg viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.5 6.5l4 4"/></svg></button><button type="button" data-bv="apaga" class="bv-del" title="excluir esta afirmação" aria-label="excluir esta afirmação"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>':'')+
   '<form class="bv-form" hidden><input maxlength="160" placeholder="eu…" aria-label="nova afirmação"><button type="submit">ok</button></form></div>'+
   '<input type="file" accept="image/*" class="bv-arq" hidden>';}
 function bvFoto(f,w,q){if(!f)return;var r=new FileReader();r.onload=function(){var im=new Image();im.onload=function(){var M=600,k=Math.min(1,M/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);c.getContext('2d').drawImage(im,0,0,c.width,c.height);
@@ -15226,9 +15328,12 @@ function bvPinta(){var h=document.querySelector('#hero-box .vx-hero.bn2');if(!h)
    if(k==='tira'){var F=bvFotos();F[+(b.dataset.bq||0)]=null;try{grava();}catch(z){}w._h=null;bvPinta();return;}
    if(k==='ant'){BV_I=(BV_I-1+n)%n;w._h=null;bvPinta();return;}
    if(k==='prox'){BV_I=(BV_I+1)%n;w._h=null;bvPinta();return;}
-   if(k==='nova'){var f=w.querySelector('.bv-form');f.hidden=false;f.querySelector('input').focus();}});
+   if(k==='nova'){var f=w.querySelector('.bv-form');delete f.dataset.ed;f.hidden=false;f.querySelector('input').value='';f.querySelector('input').focus();}
+   if(k==='edita'){var af0=((S.ign||{}).af||[]);if(!af0.length)return;var f2=w.querySelector('.bv-form'),i2=f2.querySelector('input');f2.dataset.ed=String(BV_I);f2.hidden=false;i2.value=af0[BV_I]||'';i2.focus();i2.select();return;}
+   if(k==='apaga'){if(!b.classList.contains('arm')){b.classList.add('arm');b.title='clique de novo para excluir';clearTimeout(b._t);b._t=setTimeout(function(){b.classList.remove('arm');b.title='excluir esta afirmação';},3500);return;}
+    var af1=((S.ign||{}).af||[]);if(!af1.length)return;af1.splice(BV_I,1);if(BV_I>=af1.length)BV_I=Math.max(0,af1.length-1);try{grava();}catch(z){}try{pinta();}catch(z){}w._h=null;bvPinta();return;}});
   w.addEventListener('change',function(e){if(e.target.classList.contains('bv-arq'))bvFoto(e.target.files&&e.target.files[0],w,+(e.target.dataset.q||0));});
-  w.addEventListener('submit',function(e){e.preventDefault();var i=e.target.querySelector('input'),v=(i.value||'').trim();if(!v)return;S.ign=S.ign||{};S.ign.af=S.ign.af||[];S.ign.af.push(v.slice(0,160));BV_I=S.ign.af.length-1;i.value='';try{grava();}catch(z){}try{pinta();}catch(z){}w._h=null;document.activeElement&&document.activeElement.blur();bvPinta();});
+  w.addEventListener('submit',function(e){e.preventDefault();var i=e.target.querySelector('input'),v=(i.value||'').trim();if(!v)return;S.ign=S.ign||{};S.ign.af=S.ign.af||[];var fm=e.target,ed=fm.dataset&&fm.dataset.ed!=null?+fm.dataset.ed:-1;if(ed>=0&&ed<S.ign.af.length){S.ign.af[ed]=v.slice(0,160);BV_I=ed;delete fm.dataset.ed;}else{S.ign.af.push(v.slice(0,160));BV_I=S.ign.af.length-1;}fm.hidden=true;i.value='';try{grava();}catch(z){}try{pinta();}catch(z){}w._h=null;document.activeElement&&document.activeElement.blur();bvPinta();});
   w.addEventListener('keydown',function(e){if(e.key==='Escape'){var f=w.querySelector('.bv-form');if(f)f.hidden=true;}});}
  var base=h.querySelector(':scope > .bn-base');if(base){if(w.nextElementSibling!==base)h.insertBefore(w,base);}else if(w.parentNode!==h)h.appendChild(w);
  if(w.contains(document.activeElement)&&document.activeElement.tagName==='INPUT')return;var x=bvHTML();if(w._h!==x){w.innerHTML=x;w._h=x;}}
@@ -15408,10 +15513,10 @@ function qaDeuses(){var ri=document.getElementById('rail-in');if(ri){var c=ri.qu
 setTimeout(function(){try{qaIcones();qaDeuses();}catch(e){}},1000);
 /* faixa fixa no topo da coluna esquerda, alinhada ao índice e à faixa Agora: identidade e nível */
 function latTopo(){var e=document.getElementById('lat-e');if(!e||typeof gmXP!=='function')return;var t=document.getElementById('lat-topo');
- if(!t){t=document.createElement('div');t.id='lat-topo';t.addEventListener('click',function(ev){if(ev.target.closest('.lt-logo')){try{acEditaCampista();}catch(z){}}});}
+ if(!t){t=document.createElement('div');t.id='lat-topo';t.addEventListener('click',function(ev){var lg=ev.target.closest('.lt-logo');if(lg){try{tmMenu(lg);}catch(z){try{acEditaCampista();}catch(z2){}}}});}
  if(e.firstElementChild!==t)e.insertBefore(t,e.firstChild);
  var x=gmXP(),nv=gmNivel(x.total),sq=gmSeq(),tot=0;try{var h=hojeN();for(var i=730;i>=0;i--)if(gmDiaOk(diaStr(h-i)))tot++;}catch(z){}
- var html='<div class="lt-r1"><button type="button" class="lt-logo" title="Ficha do campista"><img src="img/acampamento/logo-camp.webp" alt=""></button>'+
+ var html='<div class="lt-r1"><button type="button" class="lt-logo" title="Trocar o tema · ficha"><img src="img/acampamento/logo-camp.webp" alt=""></button>'+
   '<div class="lt-id"><b>Nível '+nv.n+'</b><small>'+esc(nv.t)+'</small></div>'+
   '<div class="lt-dias" title="dias no acampamento · sequência atual"><b>'+tot+'</b><small>'+(sq?'seq. '+sq:'dias')+'</small></div></div>'+
   '<div class="lt-r2"><span class="lt-k">xp</span><span class="lt-bar"><i style="width:'+nv.no+'%"></i></span><span class="lt-n">'+nv.no+'/100</span><span class="lt-t">'+x.total+' no total</span></div>';
@@ -17952,7 +18057,7 @@ var TV_TERMOS=[["Acampamento Meio-Sangue", "Hotel Valhala"], ["Uma flecha de cad
 /* termos genéricos (por último) e versões em CAIXA ALTA de todos os termos */
 TV_TERMOS=TV_TERMOS.concat([["Hékatos · “o que acerta de longe”", "Ullr · “o arqueiro do inverno”"], ["Arsenal do Hékatos", "Arsenal de Ullr"], ["“Hékatos mira.”", "“Ullr mira.”"], ["o Hékatos", "filho de Ullr"], ["HÉKATOS", "ULLR"], ["Hékatos", "Ullr"], ["Odin · sol, arco, música e cura", "Ullr · arco, caça e inverno"], ["Diário do Semideus", "Diário do Einherji"], ["Semideus", "Einherji"], ["semideus", "einherji"], ["Caduceu de Hermes", "Cajado rúnico de Odin"], ["Céu de Zeus", "Céu de Thor"], ["Hermes Express", "Correio dos Corvos"], ["George e Martha atendem", "Hugin e Munin atendem"], ["Laptop de Dédalo", "Laptop de Blitzen"], ["bússola de dédalo", "bússola de Blitzen"], ["Bússola de Dédalo", "Bússola de Blitzen"], ["Dédalo", "Blitzen"], ["Rumo da Argo", "Rumo do Banana Grande"], ["Trabalhos de Hércules", "Façanhas de Thor"], ["trabalhos de Hércules", "façanhas de Thor"], ["A Hidra de Lerna", "Jörmungandr, a Serpente do Mundo"], ["A corça de Cerineia", "O cervo Eikthyrnir"], ["As aves do Estínfalo", "As águias de Hræsvelgr"], ["O javali de Erimanto", "O javali Sæhrímnir"], ["O leão de Nemeia", "O lobo Fenrir"], ["Os estábulos de Áugias", "Os salões de Útgarda"], ["Lira de casco de tartaruga", "Harpa de Bragi"], ["Flauta de pã", "Flauta de osso"], ["Aspís de madeira e bronze", "Escudo redondo de tília"], ["Xíphos de bronze", "Espada de ferro"], ["Elmo calcídico", "Elmo de ferro"], ["Linotórax", "Cota de malha"], ["Grevas de bronze", "Perneiras de couro"], ["Quíton de campo", "Túnica de lã"], ["Pelte de vime e couro", "Escudo leve de vime"], ["Pílos de feltro", "Gorro de lã"], ["Sandálias de couro cru", "Botas de couro cru"], ["Flechas de ponta de bronze", "Flechas de ponta de ferro"], ["Tabuinhas de Cadmo", "Tábuas rúnicas de Hearthstone"], ["Relógio-escudo de Tyson", "Relógio-escudo de Blitzen"], ["Hotel Júpiter", "Hotel Valhala"]]).concat([['Long Island Sound','Boston'],['Acampamento','Hotel'],['acampamento','hotel'],['Meio-Sangue','Einherji'],['meio-sangue','einherji'],['meio-sangues','einherjar'],['Chalé de Apolo','Andar 19'],['chalé de Apolo','andar 19'],['Chalé','Quarto'],['chalé','quarto'],['Chalés','Quartos'],['chalés','quartos'],['Quíron','Helgi']]);
 if(EG_ON&&window.EG_TERMOS)TV_TERMOS=window.EG_TERMOS.slice();
-if(TV_ON)TV_TERMOS=[["Cass McCaw · o gêmeo da Polly", "Mina Ravn · a gêmea do Hugo"], ["Polly McCaw · corvo de Apolo", "Hugo Ravn · corvo de Odin"], ["Polly e Cass McCaw, corvos gêmeos de Apolo", "Hugo e Mina Ravn, corvos gêmeos de Odin"], ["Polly e Cass McCaw", "Hugo e Mina Ravn"], ["Polly McCaw, corvo de Apolo", "Hugo Ravn, corvo de Odin"], ["Polly McCaw", "Hugo Ravn"], ["Cass McCaw", "Mina Ravn"], ["os gêmeos McCaw", "os gêmeos Ravn"], ["gêmeos McCaw", "gêmeos Ravn"], ["Sully Brookhaven · sátiro do Hékatos", "Brynn Halvorsen · valquíria do filho de Ullr"], ["Sully Brookhaven", "Brynn Halvorsen"], ["Sully · sátiro", "Brynn · valquíria"], ["Sátiro Protetor", "Valquíria Guardiã"], ["sátiro Protetor", "valquíria Guardiã"], ["o sátiro", "a valquíria"], ["do sátiro", "da valquíria"], ["ao sátiro", "à valquíria"], ["sátiros", "valquírias"], ["sátiro", "valquíria"], ["Ficha do Sully", "Ficha da Brynn"], ["para o Sully", "para a Brynn"], ["XP para o Sully", "XP para a Brynn"], ["o Sully", "a Brynn"], ["do Sully", "da Brynn"], ["ao Sully", "à Brynn"], ["no Sully", "na Brynn"], ["Sully", "Brynn"], ["Polly", "Hugo"], ["Cass", "Mina"], ["mastro de Dodona", "mastro de Yggdrasil"], ["Comitê dos Cascos Fendidos", "Conselho dos Thanes"], ["já está tocando a flauta", "já está afiando a lança"]].concat(TV_TERMOS);
+if(TV_ON)TV_TERMOS=[["Tracinhos da Cila","Tracinhos de Jörmungandr"],["tracinhos da Cila","tracinhos de Jörmungandr"],["A Cila","Jörmungandr"],["a Cila","Jörmungandr"],["da Cila","de Jörmungandr"],["Cila e Caríbdis","Jörmungandr e o Kraken"],["Cass McCaw · o gêmeo da Polly", "Munin · a memória de Odin"], ["Polly McCaw · corvo de Apolo", "Hugin · o pensamento de Odin"], ["Polly e Cass McCaw, corvos gêmeos de Apolo", "Hugin e Munin, os corvos de Odin"], ["Polly e Cass McCaw", "Hugin e Munin"], ["Polly McCaw, corvo de Apolo", "Hugin, corvo de Odin"], ["Polly McCaw", "Hugin"], ["Cass McCaw", "Munin"], ["os gêmeos McCaw", "Hugin e Munin"], ["gêmeos McCaw", "Hugin e Munin"], ["Sully Brookhaven · sátiro do Hékatos", "Brynn Halvorsen · valquíria do filho de Ullr"], ["Sully Brookhaven", "Brynn Halvorsen"], ["Sully · sátiro", "Brynn · valquíria"], ["Sátiro Protetor", "Valquíria Recrutadora"], ["sátiro Protetor", "valquíria Recrutadora"], ["o sátiro", "a valquíria"], ["do sátiro", "da valquíria"], ["ao sátiro", "à valquíria"], ["sátiros", "valquírias"], ["sátiro", "valquíria"], ["Ficha do Sully", "Ficha da Brynn"], ["XP para o Sully", "XP para a Brynn"], ["para o Sully", "para a Brynn"], ["o Sully", "a Brynn"], ["do Sully", "da Brynn"], ["ao Sully", "à Brynn"], ["no Sully", "na Brynn"], ["Sully", "Brynn"], ["Polly", "Hugin"], ["Cass", "Munin"], ["Noite, cara.", "Noite, einherji. Placar do dia:"], ["Bom dia, cara.", "De pé, einherji."], ["Boa tarde, cara.", "Segundo tempo, einherji."], ["Isso é trabalho em equipe, cara.", "Isso é placar de time, einherji."], [", cara!", ", einherji!"], ["mastro de Dodona", "mastro de Yggdrasil"], ["Comitê dos Cascos Fendidos", "Conselho dos Thanes"], ["já está tocando a flauta", "já está batendo a lança no escudo"]].concat(TV_TERMOS);
 (function(){var up={};TV_TERMOS.forEach(function(t){up[t[0]]=1;});var ex=[];TV_TERMOS.forEach(function(t){var U=t[0].toUpperCase();if(U!==t[0]&&!up[U]){up[U]=1;ex.push([U,t[1].toUpperCase()]);}});TV_TERMOS=TV_TERMOS.concat(ex);})();
 var TV_RX=TV_TERMOS.map(function(t){var e=t[0].replace(/[.*+?^${}()|[\]\\]/g,'\\$&');return [new RegExp('(^|[^0-9A-Za-zÀ-ÿ])'+e+'(?![0-9A-Za-zÀ-ÿ])','g'),t[1]];});
 function tvTxt(t){if(!t||t.length<3)return t;var o=t;for(var i=0;i<TV_RX.length;i++){if(o.indexOf(TV_TERMOS[i][0])<0)continue;o=o.replace(TV_RX[i][0],function(m,p){return p+TV_RX[i][1];});}return o;}
@@ -18308,31 +18413,34 @@ function argoMarGR(){var hj=hoje(),tb=S.tb||{},a=opMin(),ini=360,fim=1440,p=Math
    Casa do Brooklyn: Toby Nefer (babuíno) e os íbis Bennu. Os nomes nos textos trocam pelos termos de cada tema;
    aqui mudam o retrato, a ficha, os níveis e a ave mensageira. */
 var COMP_T=TV_ON?{
- k:'valquíria guardiã do filho de Ullr · Hotel Valhala',nm:'Brynn "Hawk" Halvorsen',
- nv:[[0,'Valquíria aprendiz'],[100,'Recolhedora de almas'],[300,'Valquíria credenciada'],[600,'Farejadora de prazos'],[1000,'Capitã das valquírias'],[1600,'Voz do Conselho dos Thanes']],
- ficha:[['céu','Sol em Aquário, Lua em Peixes. Aquário é o signo da sua Casa 11, a dos amigos: ela é a amiga que o seu mapa pede'],
-  ['origem','de Duluth, Minnesota, e ainda viva no mundo mortal: de manhã faz faculdade de meteorologia, à noite recolhe almas para o Valhala. Foi ela quem escolheu você, no meio de uma nevasca, e diz que nunca errou uma escolha'],
-  ['idade','23 anos, valquíria há 5'],
+ k:'valquíria recrutadora do filho de Ullr · Oak House, Boston',nm:'Brynn "Hawk" Halvorsen',
+ nv:[[0,'Valquíria aprendiz'],[100,'Recolhedora de almas'],[300,'Valquíria credenciada'],[600,'Caçadora de prazos'],[1000,'Capitã da Oak House'],[1600,'Voz do Conselho dos Thanes']],
+ falas:['Brynn está na arquibancada, anotando o placar.','Um bloco é um ponto. Ela quer a virada.','Se a cabeça fugir, aperte / e despeje. Ela guarda.','Respira. Só o primeiro lance.','Brynn não fala durante o jogo. Você joga.'],
+ ficha:[['céu','Sol em Sagitário, Lua em Áries. Fogo puro: ela não consola, convoca. Sagitário é o arqueiro, o mesmo signo do caçador que ela escolheu'],
+  ['origem','nasceu em Duluth, Minnesota, e ainda vive no mundo mortal. Mora na Oak House, em Boston, com as irmãs valquírias; de dia cursa meteorologia, à noite faz a ronda pelos campos de batalha. Escolheu você no meio de uma nevasca e diz que nunca errou uma escolha'],
+  ['papel','recrutadora e treinadora: conta cada bloco como ponto no placar do andar 19 e cobra a revanche de quem desviou'],
   ['arma','lança de luz que vira um guarda-chuva vermelho quando passa pelo campus'],
-  ['dom','enxerga o brilho de quem está prestes a desistir e chega antes de você perceber'],
-  ['mania','dirige um Jeep 1994 que só pega no tranco e tem uma playlist de rock norueguês para cada tipo de prazo'],
-  ['fraqueza','café de posto com rosquinha de bordo e prova surpresa de meteorologia'],
-  ['juramento','cuidar do filho de Ullr: ritos, estudo, foco e descanso. Do gabinete quem fala é o Hugo'],
+  ['mania','Jeep 1994 que só pega no tranco, tabela de pontos colada no painel e apelido de time adversário para cada prazo'],
+  ['fraqueza','café de posto com rosquinha de bordo e qualquer desafio que comece com "aposto que você não consegue"'],
+  ['juramento','levar o filho de Ullr inteiro até o Ragnarök do edital: ritos, estudo, foco e descanso. Do gabinete quem fala é o Hugin'],
   ['como sobe','rito +5 · cada 10 min de estudo +2 · bloco de foco +5 · revisão +3 · entrega no gabinete +10 · meta do gabinete +30']],
- bio:'Sol em Gêmeos, ascendente em Libra · Hugo (o pensamento) traz as entregas e os avisos; Mina (a memória) traz as más notícias e nunca esquece um prazo. Netos dos corvos que voam o mundo todo dia para contar tudo a Odin: herdaram o ofício e a mania de chegar antes do recado.'}
+ bio:'Hugin (o pensamento) chega primeiro, com as entregas e os avisos; Munin (a memória) vem depois e não deixa passar prazo vencido. Odin os pôs na sua cola desde o primeiro dia no hotel: quem é vigiado por corvos não esquece compromisso.'}
 :EG_ON?{
- k:'babuíno guardião do iniciado · Casa do Brooklyn',nm:'Toby Nefer',
- nv:[[0,'Filhote da Casa'],[100,'Guardião do terraço'],[300,'Protetor credenciado'],[600,'Farejador de prazos'],[1000,'Conselheiro da Casa da Vida'],[1600,'Guardião-mor do Brooklyn']],
- ficha:[['céu','Sol em Aquário, Lua em Peixes. Aquário é o signo da sua Casa 11, a dos amigos: ele é o amigo que o seu mapa pede'],
-  ['origem','nasceu no zoológico do Bronx, fugiu aos 3 pela grade do lago dos flamingos atrás de um carrinho de pretzels e só parou no terraço da Casa do Brooklyn. A Casa da Vida o registrou como guardião e o mandou buscar você'],
-  ['dom','fala babuinês, inglês do Brooklyn e hieróglifo de placa de metrô; sente o caos chegando pela vibração da linha F'],
-  ['mania','joga basquete na quadra do terraço e comemora cada cesta como final da NBA'],
+ k:'babuíno escriba do iniciado · Casa do Brooklyn',nm:'Toby Nefer',
+ nv:[[0,'Aprendiz de escriba'],[100,'Escriba do terraço'],[300,'Escriba credenciado'],[600,'Contador de prazos'],[1000,'Escriba-chefe da Casa'],[1600,'Guardião dos Rolos do Brooklyn']],
+ falas:['Toby está na mesa ao lado, molhando o cálamo.','Um bloco de cada vez. Ele anota cada um.','Se a cabeça fugir, aperte / e despeje. Ele registra.','Respira. Só a primeira linha do papiro.','Toby lê em silêncio. Você escreve.'],
+ ficha:[['céu','Sol em Libra, Lua em Virgem. Libra é a balança de Ma\'at: ele pesa o dia antes de dizer qualquer coisa e só dá o veredito com os números na mão'],
+  ['origem','nasceu no zoológico do Bronx, fugiu aos 3 atrás de um carrinho de pretzels e só parou na mesa do sacerdote-leitor da Casa do Brooklyn, onde aprendeu a ler sozinho nos rolos de papiro. Desde então é o escriba que anota cada passo do iniciado'],
+  ['papel','escriba e contador: não grita, registra; cada rito, cada bloco e cada deslize vai para o papiro com hora certa'],
+  ['dom','fala babuinês, inglês do Brooklyn e hieróglifo; sente o caos chegando pela vibração da linha F do metrô'],
+  ['mania','organiza tudo em três vias e só joga basquete na quadra do terraço quando a contabilidade fecha'],
   ['fraqueza','pretzel de carrinho com mostarda e qualquer coisa crocante que faça barulho no saco'],
-  ['juramento','cuidar do iniciado: ritos, estudo, foco e descanso. Do gabinete quem fala é o Benh'],
+  ['juramento','manter a balança do iniciado em equilíbrio: ritos, estudo, foco e descanso. Do gabinete quem fala é o Benh'],
   ['como sobe','rito +5 · cada 10 min de estudo +2 · bloco de foco +5 · revisão +3 · entrega no gabinete +10 · meta do gabinete +30']],
- bio:'Sol em Gêmeos, ascendente em Libra · Benh traz as entregas e os avisos; Nora traz as más notícias e não arredonda nenhum prazo. Garças Bennu, as aves do sol que renascem a cada manhã: pousam no obelisco do terraço e nunca perdem a hora.'}
+ bio:'Benh é um Bennu, pássaro de fogo que se fez existir por vontade própria e que Aten reivindicou: carrega uma centelha de luz e não tem medo de nada. Traz as entregas em chama dourada; quando a notícia é ruim, chega em brasa vermelha. Se cair em serviço, renasce no fogo da manhã seguinte.'}
 :null;
 if(COMP_T){
+ if(COMP_T.falas)OP2_FALAS.splice.apply(OP2_FALAS,[0,OP2_FALAS.length].concat(COMP_T.falas));
  SAT_NV.splice.apply(SAT_NV,[0,SAT_NV.length].concat(COMP_T.nv));
  satFicha=function(){var c=satCfg(),nv=satNivel(c.xp);
   return '<div class="sat-ficha">'+satAvatar(satHumor())+'<div class="sat-id"><span class="sat-k">'+esc(COMP_T.k)+'</span><b class="sat-nm">'+esc(COMP_T.nm)+'</b>'+
@@ -18362,15 +18470,125 @@ if(COMP_T){
    olho.replace(/cy="33"/g,'cy="30"').replace(/33\.5/g,'30.5')+boca.replace(/44/g,'49').replace(/43/g,'48').replace(/45/g,'50');
   return '<svg class="sat-av sat-'+humor+'" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="#2a2018" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">'+svg+'</svg>';};
  if(EG_ON)corvoAve=function(){return '<svg class="cv-ave" viewBox="0 0 64 64" aria-hidden="true">'+
-  '<circle cx="44" cy="18" r="11" fill="#f6d27a" opacity=".55"/>'+
-  '<path d="M16 46c3-9 11-15 21-15 5 0 9 2 11 5-3 7-10 12-20 12-5 0-8-1-12-2z" fill="#8fa9b6" stroke="#2a2418" stroke-width="1.6" stroke-linejoin="round"/>'+
-  '<path d="M22 42c6-4 13-6 20-5" fill="none" stroke="#d9b65a" stroke-width="1.6"/>'+
-  '<path d="M39 32c-1-6 0-11 4-14" fill="none" stroke="#2a2418" stroke-width="3.2" stroke-linecap="round"/>'+
-  '<circle cx="45" cy="17" r="4.6" fill="#8fa9b6" stroke="#2a2418" stroke-width="1.4"/><circle cx="46.4" cy="16" r="1.3" fill="#e8a33c"/>'+
-  '<path d="M49 18l11 3-11 1z" fill="#d9b65a" stroke="#2a2418" stroke-width="1.2" stroke-linejoin="round"/>'+
-  '<path d="M42 13c-3-4-8-5-12-4M41 14c-4-2-8-1-11 1" fill="none" stroke="#2a2418" stroke-width="1.4" stroke-linecap="round"/>'+
-  '<path d="M24 47l-3 10M31 48l1 10" stroke="#2a2418" stroke-width="1.8" stroke-linecap="round"/></svg>';};
+  '<circle cx="44" cy="18" r="12" fill="#ffd76a" opacity=".45"/>'+
+  '<path d="M14 47c4-10 12-16 23-16 5 0 9 2 11 5-3 7-11 12-21 12-5 0-9-1-13-1z" fill="#e8743c" stroke="#5c2412" stroke-width="1.6" stroke-linejoin="round"/>'+
+  '<path d="M14 47c-4 3-8 3-11 1 3-1 5-3 6-6-3 1-6 0-7-2 4 0 7-1 10-4" fill="#f2b632" stroke="#5c2412" stroke-width="1.2" stroke-linejoin="round"/>'+
+  '<path d="M21 42c6-4 13-6 20-5M24 46c5-2 10-3 15-2" fill="none" stroke="#ffe9a8" stroke-width="1.6" stroke-linecap="round"/>'+
+  '<path d="M39 32c-1-6 0-11 4-14" fill="none" stroke="#5c2412" stroke-width="3.2" stroke-linecap="round"/>'+
+  '<circle cx="45" cy="17" r="4.6" fill="#f2a33a" stroke="#5c2412" stroke-width="1.4"/><circle cx="46.4" cy="16" r="1.3" fill="#e8a33c" stroke="#5c2412" stroke-width=".6"/>'+
+  '<path d="M49 18l11 3-11 1z" fill="#d9b65a" stroke="#5c2412" stroke-width="1.2" stroke-linejoin="round"/>'+
+  '<path d="M42 13c-2-5-1-9 2-11M40 14c-4-3-5-7-3-10" fill="none" stroke="#e8743c" stroke-width="1.8" stroke-linecap="round"/>'+
+  '<path d="M24 48l-3 9M31 48l1 10" stroke="#5c2412" stroke-width="1.8" stroke-linecap="round"/></svg>';};
 }
+
+/* ===== Seletor de tema no emblema do cartão de nível ===== */
+function tmMenu(btn){var m=document.getElementById('tm-menu');
+ if(!m){m=document.createElement('div');m.id='tm-menu';m.hidden=true;m.setAttribute('role','menu');document.body.appendChild(m);
+  m.addEventListener('click',function(e){var b=e.target.closest('[data-tm]');if(!b)return;var k=b.getAttribute('data-tm');m.hidden=true;
+   if(k==='ficha'){try{acEditaCampista();}catch(z){}return;}
+   var atual=TV_ON?'valhala':EG_ON?'egito':'acampamento';if(k===atual)return;try{localStorage.setItem('astro_tema',k);}catch(z){}location.reload();});
+  document.addEventListener('click',function(e){if(!m.hidden&&!e.target.closest('#tm-menu')&&!e.target.closest('.lt-logo'))m.hidden=true;},true);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')m.hidden=true;});}
+ if(!m.hidden){m.hidden=true;return;}
+ var at=TV_ON?'valhala':EG_ON?'egito':'acampamento',Z='⁠';
+ var T=[['acampamento','img/acampamento/logo-camp.webp','Acampamento'+Z+' Meio'+Z+'-Sangue','Grécia · a Argo'],['valhala','img/acampamento/vh-emblema-hv-prata.webp','Hotel'+Z+' Valhala','Nórdico · o drakkar'],['egito','img/egito/emblema.svg?v=1','Casa'+Z+' do Brooklyn','Egito · a barca de Rá']];
+ m.innerHTML='<header>tema do app</header>'+T.map(function(t){return '<button type="button" role="menuitem" data-tm="'+t[0]+'"'+(t[0]===at?' class="on"':'')+'><img src="'+t[1]+'" alt=""><span class="tm-n" data-n="'+t[2]+'" data-s="'+t[3]+'"></span></button>';}).join('')+
+  '<hr><button type="button" class="tm-ficha" data-tm="ficha">Ficha do campista</button>';
+ var r=btn.getBoundingClientRect();m.style.left=Math.max(8,r.left-4)+'px';m.style.top=(r.bottom+8)+'px';m.hidden=false;}
+
+/* ===== Mostrador do FOCO: escudo próprio de cada tema ===== */
+tdEscudo=function(fr,modo,txt,sub){
+ var TH=TV_ON?'tv':EG_ON?'eg':'gr',P=function(r,a){return [60+r*Math.cos(a),60+r*Math.sin(a)];},f=function(n){return n.toFixed(1);};
+ var K={gr:{a:'#fbe6ae',b:'#e3b25a',c:'#bf842e',ln:'#b5462c',campo1:'#fffaf0',campo2:'#f6e6c4',tick:'#b5462c',ink:'#2e2620',cor:'#e0782a',em:'#e0782a'},
+  tv:{a:'#eef1f4',b:'#a9b4bd',c:'#5d6a74',ln:'#3b4650',campo1:'#fbfaf6',campo2:'#e6e2d8',tick:'#3b4650',ink:'#1f262c',cor:'#b3262d',em:'#3b4650'},
+  eg:{a:'#fdeeb5',b:'#e4b84c',c:'#a87b1d',ln:'#2a4c86',campo1:'#fffaea',campo2:'#f3e2b6',tick:'#2a4c86',ink:'#1e2a44',cor:'#2f9c95',em:'#c9a23a'}}[TH];
+ var cor=modo==='pausado'?'#b8ad98':modo==='fim'?'#c0392b':modo==='pausa'?'#6f9a5b':K.cor;
+ var id='tdq'+TH,s='<defs><linearGradient id="'+id+'a" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="'+K.a+'"/><stop offset=".5" stop-color="'+K.b+'"/><stop offset="1" stop-color="'+K.c+'"/></linearGradient>'+
+  '<radialGradient id="'+id+'c" cx="45%" cy="38%" r="70%"><stop offset="0" stop-color="'+K.campo1+'"/><stop offset="1" stop-color="'+K.campo2+'"/></radialGradient></defs>';
+ s+='<circle cx="60" cy="60" r="58" fill="url(#'+id+'a)"/><circle cx="60" cy="60" r="57" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="1"/>';
+ if(TH==='tv'){for(var i=0;i<12;i++){var q=P(53.5,i*Math.PI/6);s+='<circle cx="'+f(q[0])+'" cy="'+f(q[1])+'" r="1.6" fill="#eef1f4" stroke="#3b4650" stroke-width=".6"/>';}}
+ if(TH==='eg'){s+='<circle cx="60" cy="60" r="49.5" fill="none" stroke="#2a4c86" stroke-width="5"/>';for(var e=0;e<24;e++){var w=P(49.5,e*Math.PI/12);s+='<circle cx="'+f(w[0])+'" cy="'+f(w[1])+'" r=".9" fill="#f6d37a"/>';}}
+ if(TH==='gr'){s+='<circle cx="60" cy="60" r="49.5" fill="none" stroke="'+K.ln+'" stroke-width=".9" stroke-dasharray="3 2"/>';}
+ var R=46,C=2*Math.PI*R;
+ s+='<circle cx="60" cy="60" r="'+R+'" fill="url(#'+id+'c)" stroke="'+K.ln+'" stroke-width="1"/>';
+ for(var t=0;t<60;t++){var lg=t%5===0,a=-Math.PI/2+t*Math.PI/30,p1=P(lg?37.5:40,a),p2=P(43,a),on=modo!=='parado'&&t/60<fr;
+  s+='<path d="M'+f(p1[0])+' '+f(p1[1])+'L'+f(p2[0])+' '+f(p2[1])+'" stroke="'+(on?cor:K.tick)+'" stroke-opacity="'+(on?1:lg?.55:.25)+'" stroke-width="'+(lg?1.3:.8)+'" stroke-linecap="round"/>';}
+ s+='<circle cx="60" cy="60" r="'+R+'" fill="none" stroke="rgba(0,0,0,.07)" stroke-width="3"/>';
+ if(modo!=='parado'){s+='<circle class="td-fg2" cx="60" cy="60" r="'+R+'" fill="none" stroke="'+cor+'" stroke-width="3.4" stroke-linecap="round" stroke-dasharray="'+f(C)+'" stroke-dashoffset="'+f(C*(1-fr))+'" transform="rotate(-90 60 60)"/>';
+  var tp=P(R,-Math.PI/2+2*Math.PI*fr);s+='<circle cx="'+f(tp[0])+'" cy="'+f(tp[1])+'" r="4.2" fill="'+cor+'" opacity=".25"/><circle cx="'+f(tp[0])+'" cy="'+f(tp[1])+'" r="2.4" fill="#fff" stroke="'+cor+'" stroke-width="1.4"/>';}
+ var em='';
+ if(TH==='gr'){em='<g stroke="'+K.em+'" stroke-width="1.6" stroke-linecap="round" fill="none"><circle cx="60" cy="50" r="6.5" fill="'+K.em+'" fill-opacity=".18"/>';for(var g=0;g<12;g++){var u=P(9.5,g*Math.PI/6),v=P(g%2?12:14,g*Math.PI/6);em+='<path d="M'+f(u[0])+' '+f(u[1]-10)+'L'+f(v[0])+' '+f(v[1]-10)+'"/>';}em+='</g>';}
+ if(TH==='tv'){em='<g fill="none" stroke="'+K.em+'" stroke-width="1.6" stroke-linejoin="round"><path d="M55 40l6 10.4H49zM65 40l6 10.4H59zM60 48.7l6 10.4H54z"/></g>';}
+ if(TH==='eg'){em='<g fill="'+K.em+'"><circle cx="60" cy="49" r="6"/></g><path d="M53 49c-7-1-12-4-15-8 5 1 10 2 15 5M67 49c7-1 12-4 15-8-5 1-10 2-15 5" fill="none" stroke="#2a4c86" stroke-width="1.5" stroke-linecap="round"/>';}
+ if(modo==='parado'){s+=em+'<text x="60" y="76" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="10" letter-spacing="3.2" fill="'+K.ink+'">FOCO</text>';}
+ else{var rot=modo==='pausado'?'PAUSADO':modo==='fim'?'ACABANDO':modo==='pausa'?'RESPIRO':'EM FOCO';
+  s+='<text x="60" y="'+(sub?46:48)+'" text-anchor="middle" font-family="ui-monospace,monospace" font-weight="700" font-size="5.2" letter-spacing="1.6" fill="'+cor+'">'+rot+'</text>'+
+   '<text x="60" y="'+(sub?65:68)+'" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="19" fill="'+K.ink+'">'+txt+'</text>'+
+   (sub?'<text x="60" y="76" text-anchor="middle" font-family="ui-monospace,monospace" font-size="5.5" letter-spacing="1" fill="'+K.ink+'" fill-opacity=".65">'+sub+'</text>':'');}
+ return '<svg viewBox="0 0 120 120" aria-hidden="true">'+s+'</svg>';};
+
+/* ===== Painel aberto sobre o centro: o que está por baixo não rola ===== */
+var TRAVA_SEL='.pd.on .pd-corpo,dialog[open],#rpViewer.on,#gtOverlay.on,.modal.on,.awb-dialog-backdrop.open,.rod-log-pop,#tm-menu';
+function travaPaineis(){return [].filter.call(document.querySelectorAll(TRAVA_SEL),function(e){if(e.hidden)return false;if(!e.getClientRects().length)return false;var c=getComputedStyle(e);return c.display!=='none'&&c.visibility!=='hidden'&&+c.opacity>0;});}
+function travaBloqueia(e){var ps=travaPaineis();if(!ps.length)return;var t=e.target;if(t&&t.nodeType!==1)t=t.parentNode;
+ if(ps.some(function(p){return p.contains(t);}))return;if(e.cancelable)e.preventDefault();}
+document.addEventListener('wheel',travaBloqueia,{capture:true,passive:false});
+document.addEventListener('touchmove',travaBloqueia,{capture:true,passive:false});
+setInterval(function(){try{var on=travaPaineis().some(function(p){return !p.matches('.rod-log-pop,#tm-menu');});document.documentElement.classList.toggle('trava',on);}catch(e){}},300);
+
+/* ===== Antagonistas por tema: as mesmas armadilhas da rotina, com as criaturas de cada mitologia ===== */
+(function(){var AT=TV_ON?{
+ hidra:['Draugar','pendências que voltam do túmulo','Mande três de volta para o túmulo em sequência: três itens terminados sem abrir nenhum novo no meio.'],
+ medusa:['Mara','a paralisia diante da tarefa','A Mara senta no peito de quem fica parado: comece pelo canto mais fácil por 5 minutos.'],
+ minotauro:['Níðhöggr','o processo longo e confuso','Ele rói as raízes no escuro: a cada 25 minutos, escreva em uma linha onde você está na raiz.'],
+ leao:['Fenrir','a tarefa difícil sem atalho','Nenhuma corrente mágica: 50 minutos de luta na parte mais difícil, sem trocar de tarefa.'],
+ sereias:['Nøkken','notificações e feed infinito','O violino do rio chama: celular em outro cômodo durante o bloco inteiro.'],
+ empousa:['Huldra','a tentação de abrir rede social','Ela esconde a cauda atrás de "só uma olhadinha": nenhuma rede social até o fim do bloco.'],
+ telquines:['Kobolds','sistema travando, PJe caindo','Se algo travar, anote e passe para o próximo item. Conserto fica para depois do bloco.'],
+ quimera:['Lindworm','tarefa com três problemas misturados','Separe o dragão em partes no papel antes de começar e resolva uma de cada vez.'],
+ ciclope:['Gigante de gelo','teimar num caminho que não rende','Se em 20 minutos não andar, mude de ângulo: outra peça, outro modelo, outra pergunta.'],
+ nevoa:['Névoa de Niflheim','cabeça embaçada','Antes do primeiro golpe: um copo de água e dois minutos de ar na janela.'],
+ procusto:['Sköll','o bloco que estica além da hora','O lobo persegue o sol: o bloco termina na hora marcada, nem um minuto a mais.'],
+ lotus:['Elfos do monte','o hiperfoco errado que come as horas','Uma hora no monte dos elfos vira uma noite inteira: timer visível e, quando tocar, levante.'],
+ harpias:['Ratatoskr','bagunça que rouba a atenção','O esquilo corre pela árvore espalhando tudo: mesa limpa e só uma aba aberta antes de começar.'],
+ esfinge:['Vafþrúðnir','questões e enigmas','O gigante desafia para um duelo de enigmas: dez questões seguidas, sem olhar a resposta.'],
+ caribdis:['Kraken','o redemoinho do e-mail e do WhatsApp','Caixa de entrada fechada durante o bloco; abra só nos últimos 5 minutos.'],
+ ladon:['Fáfnir','o dragão que guarda a recompensa','O ouro só sai do covil depois: a recompensa do dia vem depois de vencer este bloco.'],
+ gerioes:['Troll de três cabeças','três frentes ao mesmo tempo','Escolha uma das três cabeças e esconda as outras duas até o fim.'],
+ cila:['Jörmungandr','perder um pedaço de cada vez para as distrações','A serpente aperta o cerco a cada desvio: risque um tracinho e termine o bloco com menos de três.']}
+:EG_ON?{
+ hidra:['Enxame de escaravelhos','pendências que se multiplicam','Feche três em sequência: três itens terminados sem abrir nenhum novo no meio.'],
+ medusa:['Ammit, a Devoradora','travar diante da tarefa','Ela espera o coração pesado: comece pelo canto mais fácil por 5 minutos.'],
+ minotauro:['Demônios do Duat','o processo longo e confuso','A travessia do Duat tem doze portões: a cada 25 minutos, escreva em uma linha em qual portão você está.'],
+ leao:['Petsuchos','a tarefa difícil sem atalho','O crocodilo não larga: 50 minutos corpo a corpo na parte mais difícil, sem trocar de tarefa.'],
+ sereias:['Bau','notificações e feed infinito','Os espíritos famintos sussurram sem parar: celular em outro cômodo durante o bloco inteiro.'],
+ empousa:['Serpopardo','a tentação de abrir rede social','O pescoço comprido hipnotiza: nenhuma rede social até o fim do bloco.'],
+ telquines:['Shabtis rebeldes','sistema travando, PJe caindo','Se algo travar, anote e passe para o próximo item. Conserto fica para depois do bloco.'],
+ quimera:['Tjesu heru','tarefa com três problemas misturados','A serpente de duas cabeças puxa para lados opostos: separe os problemas no papel e resolva um de cada vez.'],
+ ciclope:['Grifo teimoso','teimar num caminho que não rende','Se em 20 minutos não andar, mude de ângulo: outra peça, outro modelo, outra pergunta.'],
+ nevoa:['Tempestade de areia','cabeça embaçada','Antes da primeira linha do papiro: um copo de água e dois minutos de ar na janela.'],
+ procusto:['Lâmina Ensanguentada','o bloco que estica além da hora','O demônio corta na hora certa: o bloco termina no horário marcado, nem um minuto a mais.'],
+ lotus:['Lótus do Nilo','o hiperfoco errado que come as horas','O perfume do lótus faz esquecer o relógio: timer visível e, quando tocar, levante.'],
+ harpias:['Praga de gafanhotos','bagunça que rouba a atenção','Mesa limpa e só uma aba aberta antes de começar.'],
+ esfinge:['Esfinge de Gizé','questões e enigmas','Dez enigmas em sequência antes de qualquer pausa, sem olhar a resposta no meio.'],
+ caribdis:['Hipopótamo do brejo','o redemoinho do e-mail e do WhatsApp','Ele revira a lama do pântano: caixa de entrada fechada; abra só nos últimos 5 minutos.'],
+ ladon:['Uraeus de fogo','a cobra que guarda a recompensa','A recompensa do dia (café, série, jogo) só depois de vencer este bloco.'],
+ gerioes:['Escorpião gigante','três frentes ao mesmo tempo','Cada pinça puxa para um lado: escolha uma frente e esconda as outras duas até o fim.'],
+ cila:['Apófis','perder um pedaço de cada vez para as distrações','A serpente do caos morde a barca a cada desvio: risque um tracinho e termine o bloco com menos de três.']}:null;
+ if(AT)ANTAG.forEach(function(m){var t=AT[m.k];if(t){m.n=t[0];m.o=t[1];m.d=t[2];}});})();
+var MT_CFG=TV_ON?{img:'mar-ant-nordico',acao:'Abrir passagem',livre:'passagem aberta'}:EG_ON?{img:'mar-ant-egipcio',acao:'Restaure a ordem',livre:'ordem restaurada'}:{img:'mar-ant-grego',acao:'Cruzar o estreito',livre:'travessia livre'};
+function mtEnc(){var rd=document.getElementById('rod-apps');if(!rd)return;var e=document.getElementById('mt-enc');
+ if(!e){e=document.createElement('div');e.id='mt-enc';rd.appendChild(e);e.addEventListener('click',function(ev){if(ev.target.closest('.mt-art,.mt-bt')){ev.preventDefault();try{antAbre();}catch(z){}}});}
+ if(e.parentNode!==rd)rd.appendChild(e);
+ var x=antHoje(),m=antMonstro(x.m),st=x.st;
+ var k=st==='vencido'?MT_CFG.livre+' · vencido':st==='fugiu'?'escapou hoje · volta amanhã':'sob as águas · bloco das '+x.fx+'h';
+ var h='<button type="button" class="mt-art" aria-label="'+esc(m.n)+': abrir o encontro"><img src="img/acampamento/'+MT_CFG.img+'.svg?v=1" alt=""></button>'+
+  '<div class="mt-info"><span class="mt-k">'+esc(k)+'</span><b class="mt-n">'+esc(m.n)+'</b><span class="mt-o">'+esc(m.o)+'</span>'+
+  '<button type="button" class="mt-bt">'+(st==='aberto'?MT_CFG.acao:'ver')+'</button></div>';
+ e.className=st==='aberto'?'':st;if(e._h!==h){e.innerHTML=h;e._h=h;}}
+(function(){var p0=opPinta;opPinta=function(){var r=p0.apply(this,arguments);try{mtEnc();}catch(e){}return r;};})();
+(function(){var p0=antPinta;antPinta=function(){var r=p0.apply(this,arguments);try{mtEnc();}catch(e){}return r;};})();
+setTimeout(function(){try{mtEnc();}catch(e){}},1200);
 
 })();
 </script>
