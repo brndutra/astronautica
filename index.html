@@ -5736,6 +5736,10 @@ body.eg #cg-gav .cg-in{background:#fbf4e0;border-color:#c9a23a}body.eg #cg-gav .
 /* Registro rápido fica colado no pé do painel esquerdo mesmo no fim da rolagem */
 html body #nav #lat-e{padding-bottom:0!important}
 html body #nav #lat-e>#lat-trio{margin-bottom:0!important}
+
+/* Toque da Concha (+ Hoje) dentro do templo principal, entre as bases dos pilares, nos três temas */
+html body #hero-box .bn-slot>#tp-friso-bloco{position:relative;z-index:6;box-sizing:border-box;width:auto!important;margin:12px 0 0!important;border-radius:4px 4px 0 0}
+html body #hero-box .bn-slot>#tp-friso-bloco>#tp-friso{position:relative!important;top:auto!important;width:100%!important;margin:0!important;display:block}
 /* ===== Barras de rolagem: finas, discretas e na cor do tema ===== */
 html{--sb:rgba(201,150,60,.55);--sb-h:#e0782a}
 html:has(body.tv),body.tv{--sb:rgba(96,114,128,.55);--sb-h:#b3262d}
@@ -19780,8 +19784,8 @@ function cgAbre(on){var g=document.getElementById('cg-gav');
  if(!g){g=document.createElement('div');g.id='cg-gav';g.innerHTML='<div class="cg-in" role="dialog" aria-label="Toque da Concha, hoje e compromissos"></div>';document.body.appendChild(g);
   g.addEventListener('click',function(e){if(e.target.closest('[data-cgx]')){cgAbre(false);return;}if(e.target.closest('[data-cgaj]')){cgAbre(false);setTimeout(function(){try{concha(true);}catch(z){}},50);}});}
  if(on===undefined)on=!g.classList.contains('on');cgMede();if(on){g.classList.add('on');cgPinta();}else g.classList.remove('on');document.body.classList.toggle('cg-on',on);}
-document.addEventListener('click',function(e){var t=e.target.closest&&e.target.closest('#tp-friso,#tp-base #td-agora');if(!t)return;e.preventDefault();e.stopImmediatePropagation();try{concha(false);}catch(z){}cgAbre();},true);
-document.addEventListener('pointerdown',function(e){var g=document.getElementById('cg-gav');if(!g||!g.classList.contains('on'))return;if(e.target.closest('#cg-gav .cg-in,#tp-friso,#tp-base #td-agora'))return;cgAbre(false);});
+document.addEventListener('click',function(e){var t=e.target.closest&&e.target.closest('#tp-base #td-agora');if(!t)return;e.preventDefault();e.stopImmediatePropagation();try{concha(false);}catch(z){}cgAbre();},true);
+document.addEventListener('pointerdown',function(e){var g=document.getElementById('cg-gav');if(!g||!g.classList.contains('on'))return;if(e.target.closest('#cg-gav .cg-in,#tp-base #td-agora'))return;cgAbre(false);});
 document.addEventListener('keydown',function(e){if(e.key==='Escape'){var g=document.getElementById('cg-gav');if(g&&g.classList.contains('on'))cgAbre(false);}});
 window.addEventListener('resize',function(){try{cgMede();}catch(e){}});setInterval(function(){try{cgMede();cgPinta();}catch(e){}},30000);
 
@@ -19818,6 +19822,12 @@ var PT_DADOS={
 };
 ptFichaExtra=(function(f0){return function(papel,i){var a=null;try{a=f0.apply(this,arguments);}catch(e){}var d=PT_DADOS[papel]&&PT_DADOS[papel][i];
  if(!d)return a;if(!a)return d;var vis={};a.forEach(function(x){vis[x[0]]=1;});return a.concat(d.filter(function(x){return !vis[x[0]];}));};})(ptFichaExtra);
+
+/* o bloco da Concha entra no templo: fica dentro da colunata, entre as bases dos pilares */
+tpFriso=(function(f0){return function(){var r=f0.apply(this,arguments);try{var sl=document.querySelector('#hero-box .bn-slot'),bl=document.getElementById('tp-friso-bloco');
+ if(sl&&bl){if(bl.parentNode!==sl||sl.lastElementChild!==bl)sl.appendChild(bl);['margin-left','margin-right','width'].forEach(function(p){bl.style.removeProperty(p);});
+  var rod=document.querySelector('#hero-box > .bn-rod');if(rod&&sl.nextElementSibling!==rod)sl.insertAdjacentElement('afterend',rod);}}catch(e){}return r;};})(tpFriso);
+setTimeout(function(){try{tpFriso();}catch(e){}},1700);setInterval(function(){try{var sl=document.querySelector('#hero-box .bn-slot'),bl=document.getElementById('tp-friso-bloco');if(sl&&bl&&bl.parentNode!==sl)tpFriso();}catch(e){}},1500);
 
 })();
 </script>
