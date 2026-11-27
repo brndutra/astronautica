@@ -10,6 +10,8 @@
   <span class="bm-k"><span class="dia" id="data">—</span><span class="dracma" id="dracmas" title="">0</span><span class="bm-v" id="bm-v"></span></span>
   <button type="button" id="z-menos" title="Diminuir o tamanho" aria-label="Diminuir o tamanho">A−</button>
   <button type="button" id="z-mais" title="Aumentar o tamanho" aria-label="Aumentar o tamanho">A+</button>
+  <button type="button" id="b-soltar" class="lay" title="Abrir em janela solta, que você move e redimensiona"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9h9v9H5zM9 5h10v10M13 11l6-6"/></svg><span>soltar</span></button>
+  <button type="button" id="b-lateral" class="lay" title="Fixar no painel lateral do Chrome"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v12H4zM15 6v12"/></svg><span>lateral</span></button>
   <button type="button" id="lay" class="lay" title="Alternar entre o painel numa tela só e o templo completo"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="7" height="7"/><rect x="14" y="4" width="7" height="7"/><rect x="3" y="14" width="7" height="6"/><rect x="14" y="14" width="7" height="6"/></svg><span id="lay-t">painel</span></button>
 </nav>
 
@@ -117,12 +119,17 @@
 
       <div class="card agora" data-c="agora" id="agora"></div>
 
+      <div class="card" data-c="dia">
+        <h2>Blocos do dia <i id="dia-k">grade</i></h2>
+        <ol class="dia" id="dia"></ol>
+      </div>
+
       <div class="card chk" data-c="top">
         <h2><span data-tx="missoes">Missões do dia</span> <i>três</i></h2>
         <ol id="top" class="mt"></ol>
       </div>
       <div class="card chk" data-c="hab">
-        <h2>Hábitos <i data-tx="habitos">treinos</i></h2>
+        <h2>Rastreio <i>hábitos · 7 dias</i></h2>
         <ul id="habitos" class="mt"></ul>
       </div>
       <div class="card" data-c="atu">

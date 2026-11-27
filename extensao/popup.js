@@ -199,14 +199,36 @@ function pintaHabitos() {
   var hs = (estado && estado.hab) || [], d = hojeStr(), ul = $('habitos');
   var marc = naFila('habito', true).map(function (e) { return e.dados.id; });
   if (!hs.length) { ul.innerHTML = '<li class="vazio">Nenhum hábito cadastrado no app.</li>'; return; }
+  /* últimos 7 dias, de seis dias atrás até hoje */
+  var dias = [], k, dt;
+  for (k = 6; k >= 0; k--) { dt = new Date(); dt.setDate(dt.getDate() - k); dias.push(dt.getFullYear() + '-' + String(dt.getMonth() + 1).padStart(2, '0') + '-' + String(dt.getDate()).padStart(2, '0')); }
+  var ini = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
   ul.innerHTML = hs.map(function (h) {
-    var feito = (h.hist || []).indexOf(d) >= 0 || marc.indexOf(h.id) >= 0;
-    return '<li class="' + (feito ? 'ok' : '') + '"><label><input type="checkbox" data-hab="' + esc(h.id) + '"' + (feito ? ' checked disabled' : '') + '><span>' + esc(h.nome) + '</span></label></li>';
+    var hist = h.hist || [], feito = hist.indexOf(d) >= 0 || marc.indexOf(h.id) >= 0, seq = 0;
+    var bol = dias.map(function (x, i) {
+      var ok = hist.indexOf(x) >= 0 || (x === d && feito), dd = new Date(x + 'T12:00');
+      return '<i class="rb' + (ok ? ' ok' : '') + (x === d ? ' hoje' : '') + '" title="' + ini[dd.getDay()] + ' ' + x.slice(8) + '"></i>';
+    }).join('');
+    for (k = dias.length - 1; k >= 0; k--) { if (hist.indexOf(dias[k]) >= 0 || (dias[k] === d && feito)) seq++; else if (dias[k] !== d) break; }
+    return '<li class="' + (feito ? 'ok' : '') + '"><label><input type="checkbox" data-hab="' + esc(h.id) + '"' + (feito ? ' checked disabled' : '') + '><span>' + esc(h.nome) + '</span></label><span class="rbs">' + bol + '</span>' + (seq > 1 ? '<b class="rseq">' + seq + 'd</b>' : '') + '</li>';
   }).join('');
 }
 
+/* blocos do dia: cada faixa com o que está na grade; dá para focar direto num bloco */
+function pintaDia() {
+  var tb = (estado && estado.tb) || {}, d = hojeStr(), h = new Date().getHours(), at = faixaDe(), vistoProx = false;
+  $('dia').innerHTML = FAIXAS.map(function (f) {
+    var v = tb[d + '|' + f] || '', fim = +f + 3, st = f === at ? 'agora' : (fim <= h ? 'foi' : '');
+    var prox = !st && !vistoProx; if (prox) vistoProx = true;
+    return '<li class="' + st + (prox ? ' prox' : '') + '"><b>' + f + '<small>h</small></b><div><span>' + esc(T.fx[f] || '') + (st === 'agora' ? ' · agora' : prox ? ' · a seguir' : '') + '</span><em>' + (v ? esc(v) : 'livre') + '</em></div>' +
+      (st !== 'foi' && v ? '<button type="button" data-diaf="' + f + '" title="focar neste bloco">focar</button>' : '') + '</li>';
+  }).join('');
+  var n = FAIXAS.filter(function (f) { return tb[d + '|' + f]; }).length;
+  $('dia-k').textContent = n ? n + ' de ' + FAIXAS.length + ' na grade' : 'grade vazia';
+}
+
 function pintaTudo() {
-  pintaCab(); pintaAgora(); pintaCiclo(); pintaHumor(); pintaCont(); pintaTop(); pintaHabitos(); pintaFoco(); pintaGuardiao();
+  pintaCab(); pintaAgora(); pintaCiclo(); pintaHumor(); pintaCont(); pintaTop(); pintaHabitos(); pintaFoco(); pintaGuardiao(); pintaDia();
   pintaToque(); pintaAtu(); pintaCaps(); pintaVerso();
 }
 
@@ -432,7 +454,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     var L = (await chrome.storage.local.get('msgs')).msgs || [];
     L.forEach(function (m) { m.lido = true; }); await chrome.storage.local.set({ msgs: L }); pintaMsgs();
   };
-  setInterval(function () { try { pintaToque(); } catch (e) { } }, 30000);
+  setInterval(function () { try { pintaToque(); pintaDia(); } catch (e) { } }, 30000);
 
   var d = new Date();
   $('data').textContent = DIAS[d.getDay()] + ' · ' + d.getDate() + ' ' + MESES[d.getMonth()];
@@ -480,6 +502,18 @@ document.addEventListener('DOMContentLoaded', async function () {
     var x = op[Math.floor(Math.random() * op.length)];
     $('tarefa').value = x; $('g-fala').textContent = 'Sorteei: ' + x + '. Começa só pelo primeiro passo.';
     $('passo').focus(); aviso('Sorteado: ' + x); pintaPassos();
+  };
+
+  /* botões claros para mover: janela solta e painel lateral */
+  $('b-soltar').onclick = function () { $('m-janela').click(); };
+  $('b-lateral').onclick = function () { $('m-lateral').click(); };
+  if (MODO === 'janela') $('b-soltar').hidden = true;
+  if (MODO === 'lateral') $('b-lateral').hidden = true;
+  /* focar direto num bloco do dia */
+  $('dia').onclick = function (e) {
+    var b = e.target.closest('[data-diaf]'); if (!b) return;
+    var v = ((estado && estado.tb) || {})[hojeStr() + '|' + b.dataset.diaf] || '';
+    $('tarefa').value = v; inicia(CF.foco);
   };
 
   /* passos da tarefa */

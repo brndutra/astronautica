@@ -537,3 +537,52 @@ body.lay-compacto.modo-popup{height:calc(600px / var(--z,1));max-height:calc(600
 body.lay-compacto [data-c=passos],body.lay-compacto .passo,body.lay-compacto .f-passo{display:none!important}
 body.lay-compacto .pomo span{display:none}
 body.lay-compacto .tq-fx{height:12px}body.lay-compacto .tq-fx span{line-height:12px;font-size:8px}
+
+/* ===== blocos do dia e rastreio de hábitos ===== */
+.dia{margin-top:6px;gap:3px}
+.dia li{display:flex;align-items:center;gap:8px;padding:4px 6px;border-radius:4px;border-left:3px solid transparent}
+.dia li>b{flex:none;width:30px;font:700 13px/1 ui-monospace,monospace;color:var(--k)}
+.dia li>b small{font-size:8px;opacity:.7}
+.dia li>div{flex:1;min-width:0}
+.dia li span{display:block;font:400 10px Georgia,serif;font-variant:small-caps;letter-spacing:.03em;color:var(--dim)}
+.dia li em{display:block;font-style:normal;font-size:12.5px;line-height:1.25;color:var(--tinta);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dia li button{flex:none;min-height:20px;padding:0 7px;font-size:9.5px}
+.dia li.foi{opacity:.45}
+.dia li.agora{background:#fffaf0;border-left-color:var(--k);box-shadow:inset 0 0 0 1px var(--c)}
+.dia li.agora em{font-weight:600}
+.dia li.prox{border-left-color:var(--c)}
+.chk ul li{display:flex;align-items:center;gap:6px}
+.chk ul li label{flex:1;min-width:0}
+.chk ul li label span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rbs{display:flex;gap:3px;flex:none}
+.rb{width:9px;height:9px;border-radius:2px;border:1px solid var(--linha);background:#fbf6e8}
+.rb.ok{background:var(--musgo);border-color:var(--musgo)}
+.rb.hoje{outline:1px solid var(--k);outline-offset:1px}
+.rseq{flex:none;font:700 9px system-ui;color:var(--ouro)}
+
+/* painel numa tela só: quatro colunas, blocos do dia em pé, rastreio visível */
+body.lay-compacto{width:780px}
+body.lay-compacto.modo-popup{width:min(780px,calc(790px / var(--z,1)))}
+body.lay-compacto #painel:not([hidden]){grid-template-columns:minmax(0,1.05fr) minmax(0,1fr) minmax(0,1fr) minmax(0,1fr);
+  grid-template-rows:auto auto minmax(0,1fr) minmax(0,1fr) auto;
+  grid-template-areas:"guard guard guard guard" "toque toque toque toque" "foco dia top cont" "ciclo dia hab humor" "cap cap gasto gasto"}
+body.lay-compacto [data-c=agora]{display:none!important}
+body.lay-compacto [data-c=hab]{display:flex!important;grid-area:hab}
+body.lay-compacto [data-c=dia]{grid-area:dia}
+body.lay-compacto .dia{overflow-y:auto;min-height:0;scrollbar-width:none;margin-top:4px}
+body.lay-compacto .dia li{padding:3px 4px;gap:6px}
+body.lay-compacto .dia li>b{width:24px;font-size:12px}
+body.lay-compacto .dia li em{font-size:11.5px;white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+body.lay-compacto .dia li button{padding:0 5px;font-size:9px}
+body.lay-compacto [data-c=cap] h2,body.lay-compacto [data-c=gasto] h2{display:none}
+body.lay-compacto .barra-modo .lay span{font-size:8.5px}
+.chk ul li{display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:6px}
+body.lay-compacto .rb{width:7px;height:7px}
+body.lay-compacto .rbs{gap:2px}
+body.lay-compacto .dia li>b{width:30px;white-space:nowrap}
+body.lay-compacto .dia li>b small{font-size:7px}
+body.lay-compacto .dia li>b small{display:none}
+body:not(.lay-compacto) .barra-modo .lay span{display:none}
+body:not(.lay-compacto) .barra-modo .lay{padding:0 6px}
+.barra-modo .bm-v{white-space:nowrap}
+.dia li>b{white-space:nowrap}
