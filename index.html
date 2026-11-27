@@ -20745,13 +20745,11 @@ setTimeout(function(){try{pinbarSobe();}catch(e){}},1200);setInterval(function()
    A+' .bn-telas button{color:'+P.tx+'!important;opacity:.78;font-variant:small-caps!important;letter-spacing:.06em!important}',
    A+' .bn-telas button[aria-selected=true]{color:'+P.ac+'!important;opacity:1}',
    A+' .bn-telas i,'+A+' .pil-orn{color:'+P.k2+'!important}'],
-  placa(B,16,32),
-  [B+'{display:flex!important;align-items:center;gap:8px}',
+  [B+'{isolation:auto;box-sizing:border-box!important;height:28px!important;min-height:0!important;margin:0!important;padding:0 16px!important;display:flex!important;align-items:center;gap:8px;clip-path:none!important;filter:none!important;border:1.5px solid '+P.k+'!important;border-radius:7px!important;background:'+P.f+'!important;box-shadow:0 0 0 2px '+(TV_ON?'#203936':EG_ON?'#1e3a6e':'#f4ead2')+',0 0 0 3px '+P.k2+',0 3px 6px -2px '+P.sh+'!important}',
+   B+'::before,'+B+'::after{content:none!important;display:none!important}',
    B+' button{color:'+P.tx+'!important;opacity:.75;font-variant:small-caps!important;letter-spacing:.06em!important;background:none!important;border:0!important;box-shadow:none!important}',
    B+' button[aria-selected=true],'+B+' button[aria-pressed=true],'+B+' button.on{color:'+P.ac+'!important;opacity:1}',
    B+' i,'+B+' span[aria-hidden]{color:'+P.k2+'!important}',
-   /* faixa superior do painel direito: sem caixa chapada; uma régua dupla no tom da moldura, com a placa centrada */
-   'html body:not(.zz9):not(.zz8) #tp-painel .tp-banda{background:linear-gradient(180deg,'+(TV_ON?'#203936':EG_ON?'#1e3a6e':'#f4ead2')+' 0 70%,transparent 100%)!important;display:flex!important;justify-content:center!important;align-items:center;padding:4px 0 6px!important;border:0!important;box-shadow:inset 0 -1px 0 '+P.k+',inset 0 -4px 0 transparent,inset 0 -5px 0 '+P.k2+'!important}',
    /* Em andamento: largura própria (não encolhe dentro do bloco do folheto) */
    'html body:not(.zz9):not(.zz8) #hero-box#hero-box .vx-hero.bn2 #orb-mural{flex:none!important;width:360px!important;max-width:none!important;align-self:flex-start}']
  ).join('\n');document.head.appendChild(st);})();
