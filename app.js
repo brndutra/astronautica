@@ -3779,9 +3779,9 @@ function pdAbre(k){var pd=pdMonta();pd.classList.add('on');
  Array.prototype.forEach.call(pd.querySelectorAll('.pd-pane'),function(p){p.hidden=p.getAttribute('data-pane')!==k;});
  var c=pd.querySelector('.pd-corpo');if(c)c.scrollTop=0;
  try{axEncaixa(false);if(k==='fin'&&AX.financas)AX.financas();}catch(e){}
- try{if(k==='enf')enfPinta();if(k==='b9')pintaProj();}catch(e){}}
+ try{if(k==='enf')enfPinta();if(k==='b9')pintaProj();}catch(e){}try{ctPinta();}catch(e){}}
 function pdFecha(){var pd=document.getElementById('painel-dir');if(!pd)return;pd.classList.remove('on');try{axEncaixa(false);}catch(e){}
- Array.prototype.forEach.call(pd.querySelectorAll('[data-pd]'),function(b){b.setAttribute('aria-selected','false');});}
+ Array.prototype.forEach.call(pd.querySelectorAll('[data-pd]'),function(b){b.setAttribute('aria-selected','false');});try{ctPinta();}catch(e){}}
 (function(){var l0=vxLayout;vxLayout=function(){l0.apply(this,arguments);try{pdMonta();}catch(e){console.error(e);}};})();
 vxShow=(function(v0){return function(view){if(view==='fin'){pdAbre('fin');return;}if(view==='est'){pdAbre('lap');return;}return v0.apply(this,arguments);};})(vxShow);
 document.addEventListener('click',function(e){var nb=e.target.closest&&e.target.closest('[data-nv]');if(!nb||nb.closest('#painel-dir'))return;var k=PD_NV[nb.getAttribute('data-nv')];if(k){e.preventDefault();e.stopImmediatePropagation();pdAbre(k);}},true);
@@ -13439,7 +13439,7 @@ pdPilula=function(){var n=document.getElementById('tt-indice');var p=document.qu
 bnTelaBotoes=(function(b0){return function(){var r=b0.apply(this,arguments);try{pdPilula();}catch(e){}return r;};})(bnTelaBotoes);
 function euSoloAbre(k){var pd=document.getElementById('painel-dir');if(pd&&pd.classList.contains('on')&&pd.classList.contains('eu-um')&&pd.dataset.euk===k){try{pdFecha();}catch(e){}return;}
  try{pdAbre('lap');}catch(e){}pd=document.getElementById('painel-dir');try{euAba(k);}catch(e){}if(pd){pd.classList.add('eu-um');pd.dataset.euk=k;}
- var eu=document.getElementById('eum'),nm=(EU_BTS.filter(function(x){return x[0]===k;})[0]||[])[3];if(eu&&nm){var h=eu.querySelector('.eu-cab h2'),kk=eu.querySelector('.eu-cab .eu-k');if(h)h.textContent=nm;if(kk)kk.textContent='painel · ligado ao Laptop';}}
+ var eu=document.getElementById('eum'),nm=(EU_BTS.filter(function(x){return x[0]===k;})[0]||[])[3];if(eu&&nm){var h=eu.querySelector('.eu-cab h2'),kk=eu.querySelector('.eu-cab .eu-k');if(h)h.textContent=nm;if(kk)kk.textContent='painel · ligado ao Laptop';}try{ctPinta();}catch(e){}}
 document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-eusolo]');if(b){e.preventDefault();e.stopImmediatePropagation();euSoloAbre(b.dataset.eusolo);return;}
  var o=e.target.closest&&e.target.closest('.pd-pilula button,#tt-indice button');if(o&&!o.dataset.eusolo){var pd=document.getElementById('painel-dir');if(pd){pd.classList.remove('eu-um');var eu=document.getElementById('eum');if(eu){var h=eu.querySelector('.eu-cab h2'),kk=eu.querySelector('.eu-cab .eu-k');if(h)h.textContent='Laptop';if(kk)kk.textContent='painel de estudos';}}}},true);
 setTimeout(function(){try{pdPilula();bnTelaBotoes();}catch(e){}},1500);setInterval(function(){try{pdPilula();}catch(e){}},2000);
@@ -14688,9 +14688,10 @@ function mfFiltra(){var w=cxEl(),q=(CX.st.mfq||'').toLowerCase().trim();
  [].forEach.call(w.querySelectorAll('.mf-card'),function(c){c.hidden=!!q&&c.getAttribute('data-mfbusca').indexOf(q)<0;});
  [].forEach.call(w.querySelectorAll('.mf-painel'),function(s){s.hidden=!!q&&!s.querySelector('.mf-card:not([hidden])');});}
 function mfHTML(){var p=CX.p;if(p!=='~'&&!MF_T.some(function(t){return t[0]===p&&p!=='#';}))p=CX.p='~';
- if(p==='~')return '<div class="cx-bx mf-bx mf-home">'+mfPainelHTML()+'</div><button type="button" class="cx-x" data-cx="sair" aria-label="fechar">×</button>';
+ var ct='<nav class="ct-abas" role="tablist" data-notr>'+ctAbasHTML('manual')+'</nav>';
+ if(p==='~')return ct+'<div class="cx-bx mf-bx mf-home">'+mfPainelHTML()+'</div><button type="button" class="cx-x" data-cx="sair" aria-label="fechar">×</button>';
  var g=mfGrupos().filter(function(g){return g[2].some(function(t){return t[0]===p;});})[0]||['','',[]];
- return '<div class="cx-bx mf-bx"><nav class="mf-top"><button type="button" class="mf-volta" data-mfp="~">← painel</button><span class="mf-gn">'+esc(g[0])+'</span>'+
+ return ct+'<div class="cx-bx mf-bx"><nav class="mf-top"><button type="button" class="mf-volta" data-mfp="~">← painel</button><span class="mf-gn">'+esc(g[0])+'</span>'+
   '<span class="mf-viz">'+g[2].filter(function(t){return t[0][0]!=='@';}).map(function(t){return '<button type="button" class="'+(t[0]===p?'on':'')+'" data-mfp="'+t[0]+'">'+esc(t[1])+'</button>';}).join('')+'</span></nav>'+
   '<section class="mf-pg">'+mfPagina(p)+'</section></div><button type="button" class="cx-x" data-cx="sair" aria-label="fechar">×</button>';}
 document.addEventListener('input',function(e){if(!e.target.matches||!e.target.matches('#cx [data-mfq]'))return;CX.st.mfq=e.target.value;mfFiltra();});
@@ -15353,4 +15354,34 @@ function postoClique(d){var s=String(d.sel||''),m=s.match(/^\[(data-[a-z0-9-]+)/
  var b=document.querySelector('#modo-op '+s)||document.querySelector('#rod-reg '+s);if(!b)return false;
  if(d.inp){if(!POSTO_SEL.test(String(d.inp)))return false;var i=document.querySelector('#modo-op '+d.inp);if(!i)return false;i.value=String(d.val||'').slice(0,300);i.dispatchEvent(new Event('input',{bubbles:true}));}
  b.click();setTimeout(function(){try{postoGrava(true);}catch(e){}},900);return true;}
+/* ======================= Central: Manual e os seis painéis como abas =======================
+   Manual · Concurso · Instruções · Leitura · Enfermaria · Finanças · Projetos.
+   Cada aba tem nome base (igual em todos os temas) e, embaixo, o nome do tema quando houver.
+   Os painéis continuam sendo os mesmos (mesmo código e mesmos campos): com um deles aberto, o painel
+   lateral vira uma folha centralizada (classe .central) com esta barra no topo. O Manual desenha a mesma
+   barra no começo do seu HTML (mfHTML, no 36). pdAbre/pdFecha (09) e euSoloAbre (33) chamam ctPinta. */
+var CT_ABAS=[['manual','Manual',''],['conc','Concurso',''],['inst','Instruções',''],['ler','Leitura','Eumátheia'],['enf','Enfermaria',''],
+ ['fin','Finanças',TV_ON?'Tesouro de Andvari':EG_ON?'Tesouro do Faraó':'Bolsa de Dracmas'],['b9','Projetos',TV_ON?'Forja de Nidavellir':EG_ON?'Oficina de Ptah':'Bunker 9']];
+var CT_PD=['conc','inst','ler','enf','fin','b9'];
+function ctIcone(k){var eu=(typeof EU_BTS!=='undefined')?EU_BTS.filter(function(x){return x[0]===k;})[0]:null;if(eu)return eu[2];
+ var p=k==='manual'?'<path d="M5 4h10l4 4v12H5z"/><path d="M15 4v4h4M8 12h8M8 15h8M8 18h5"/>':(typeof PD_ICON!=='undefined'&&PD_ICON[k])||'';
+ return '<svg viewBox="0 0 24 24" aria-hidden="true">'+p+'</svg>';}
+function ctAbasHTML(at){return CT_ABAS.map(function(a){return '<button type="button" role="tab" data-ct="'+a[0]+'" aria-selected="'+(a[0]===at)+'">'+ctIcone(a[0])+
+ '<span><b>'+esc(a[1])+'</b>'+(a[2]?'<small>'+esc(a[2])+'</small>':'')+'</span></button>';}).join('');}
+/* aba ativa do painel lateral: os três de estudo moram no Laptop */
+function ctAtiva(){var pd=document.getElementById('painel-dir');if(!pd||!pd.classList.contains('on'))return null;
+ var b=pd.querySelector('.pd-nb[aria-selected="true"]')||pd.querySelector('[data-pd][aria-selected="true"]'),k=b&&b.getAttribute('data-pd');
+ if(k==='lap')return (pd.classList.contains('eu-um')&&pd.dataset.euk)||'conc';return k;}
+function ctPinta(){var pd=document.getElementById('painel-dir');if(!pd)return;var k=ctAtiva(),cen=!!k&&CT_PD.indexOf(k)>=0;pd.classList.toggle('central',cen);
+ var c=pd.querySelector('.pd-corpo');if(!c)return;var bar=c.querySelector(':scope>.ct-abas');if(!cen){if(bar)bar.remove();return;}
+ if(!bar){bar=document.createElement('nav');bar.className='ct-abas';bar.setAttribute('role','tablist');bar.setAttribute('data-notr','');c.insertBefore(bar,c.firstChild);}
+ var h=ctAbasHTML(k);if(bar._h!==h){bar.innerHTML=h;bar._h=h;}}
+document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-ct]');if(!b)return;e.preventDefault();e.stopPropagation();
+ if(b.getAttribute('aria-selected')==='true')return;var k=b.getAttribute('data-ct'),pd=document.getElementById('painel-dir');
+ if(k==='manual'){try{pdFecha();}catch(z){}mfAbre();return;}
+ try{var cx=document.getElementById('cx');if(cx&&cx.classList.contains('on'))cxFecha();}catch(z){}
+ if(pd){pd.classList.remove('eu-um');delete pd.dataset.euk;}
+ if(k==='conc'||k==='inst'||k==='ler')euSoloAbre(k);else pdAbre(k);},true);
+/* clicar no fundo escuro fora da folha fecha a central */
+document.addEventListener('click',function(e){var pd=document.getElementById('painel-dir');if(pd&&e.target===pd&&pd.classList.contains('central'))pdFecha();});
 })();

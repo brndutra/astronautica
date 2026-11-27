@@ -230,9 +230,9 @@ function pdAbre(k){var pd=pdMonta();pd.classList.add('on');
  Array.prototype.forEach.call(pd.querySelectorAll('.pd-pane'),function(p){p.hidden=p.getAttribute('data-pane')!==k;});
  var c=pd.querySelector('.pd-corpo');if(c)c.scrollTop=0;
  try{axEncaixa(false);if(k==='fin'&&AX.financas)AX.financas();}catch(e){}
- try{if(k==='enf')enfPinta();if(k==='b9')pintaProj();}catch(e){}}
+ try{if(k==='enf')enfPinta();if(k==='b9')pintaProj();}catch(e){}try{ctPinta();}catch(e){}}
 function pdFecha(){var pd=document.getElementById('painel-dir');if(!pd)return;pd.classList.remove('on');try{axEncaixa(false);}catch(e){}
- Array.prototype.forEach.call(pd.querySelectorAll('[data-pd]'),function(b){b.setAttribute('aria-selected','false');});}
+ Array.prototype.forEach.call(pd.querySelectorAll('[data-pd]'),function(b){b.setAttribute('aria-selected','false');});try{ctPinta();}catch(e){}}
 (function(){var l0=vxLayout;vxLayout=function(){l0.apply(this,arguments);try{pdMonta();}catch(e){console.error(e);}};})();
 vxShow=(function(v0){return function(view){if(view==='fin'){pdAbre('fin');return;}if(view==='est'){pdAbre('lap');return;}return v0.apply(this,arguments);};})(vxShow);
 document.addEventListener('click',function(e){var nb=e.target.closest&&e.target.closest('[data-nv]');if(!nb||nb.closest('#painel-dir'))return;var k=PD_NV[nb.getAttribute('data-nv')];if(k){e.preventDefault();e.stopImmediatePropagation();pdAbre(k);}},true);
