@@ -1,6 +1,7 @@
 /* ======================= MODO OPERACIONAL · Posto de comando =======================
    Uma tela, sem rolagem: linha do dia, foco, o que fazer hoje, caixa de Hermes e compromissos.
-   Lê e grava os mesmos dados do app; o rodapé de registro continua embaixo. */
+   Lê e grava os mesmos dados do app; o rodapé de registro continua embaixo.
+   É a página inicial: o app sempre abre aqui; o templo fica a um clique (templo completo, OP, Alt+O). */
 var OP_FX_COR={'06':['#FAEEDA','#633806'],'09':['#FAC775','#633806'],'12':['#EAF3DE','#27500A'],'15':['#E6F1FB','#0C447C'],'18':['#EEEDFE','#3C3489'],'21':['#FBEAF0','#72243E']};
 function opMin(){var d=new Date();return d.getHours()*60+d.getMinutes();}
 function opLinhaHTML(){var hj=hoje(),tb=S.tb||{},a=opMin(),ini=360,fim=1440,pct=function(m){return Math.max(0,Math.min(100,(m-ini)/(fim-ini)*100));};
@@ -76,7 +77,8 @@ function opBotao(){var n=document.getElementById('tt-indice');if(!n||document.ge
  var p=n.querySelector('.pd-pilula');if(p)n.insertBefore(b,p);else n.appendChild(b);}
 (function(){var i0=ttIcones;ttIcones=function(){i0();try{opBotao();}catch(e){}};})();
 setInterval(function(){try{opPinta();}catch(e){}},1000);
-setTimeout(function(){try{opBotao();if(localStorage.getItem('astro_modo')==='op')opModo(true);}catch(e){}},900);
+/* abre o Posto quando todo o app.js já rodou (com as reformas dos arquivos seguintes), antes de a abertura sair */
+document.addEventListener('DOMContentLoaded',function(){try{opBotao();opModo(true);}catch(e){console.error('posto:',e);}});
 document.addEventListener('keydown',function(e){if(e.altKey&&(e.key==='o'||e.key==='O')){e.preventDefault();opModo();}});
 /* guarda de verdade o estado dos companheiros e do pacote do dia: o normaliza só mantinha chaves conhecidas */
 var EXTRA_K=['satiro','corvo','antag','flecha','cila','fogueira','vales','fogConv'];

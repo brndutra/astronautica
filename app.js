@@ -7535,7 +7535,10 @@ try{ montaNav(); }catch(e){ console.error("sum\u00e1rio:",e); }
 try{ pinta(); }catch(e){ console.error("pintura:",e);
  var m=el("msg"); if(m) m.textContent="falha ao desenhar um painel \u2014 o restante segue funcionando"; }
 try{ montaPomo(); fxLiga(); }catch(e){ console.error("extras:",e); }
-setTimeout(function(){ var b=el("boot"); if(b&&b.parentNode) b.parentNode.removeChild(b); },1750);
+/* a abertura sai quando o app terminou de montar (e o Posto já abriu), nunca antes de 1,25 s;
+   se algo travar, o CSS a tira sozinho aos 8 s */
+document.addEventListener("DOMContentLoaded",function(){ setTimeout(function(){ var b=el("boot"); if(!b) return; b.classList.add("sai");
+ setTimeout(function(){ if(b.parentNode) b.parentNode.removeChild(b); },450); },Math.max(0,1250-performance.now())); });
 window.addEventListener("resize",spark);
 /* ---------- Tudo em tela ----------
    Nada de trocar de página: todas as partes ficam empilhadas numa rolagem só, cada uma com um
@@ -9422,7 +9425,8 @@ function cvCard(){var rc=document.getElementById('recreio');if(!rc)return;var g=
 setTimeout(function(){try{cvCard();}catch(e){}},1200);setTimeout(function(){try{cvCard();}catch(e){}},3000);
 /* ======================= MODO OPERACIONAL · Posto de comando =======================
    Uma tela, sem rolagem: linha do dia, foco, o que fazer hoje, caixa de Hermes e compromissos.
-   Lê e grava os mesmos dados do app; o rodapé de registro continua embaixo. */
+   Lê e grava os mesmos dados do app; o rodapé de registro continua embaixo.
+   É a página inicial: o app sempre abre aqui; o templo fica a um clique (templo completo, OP, Alt+O). */
 var OP_FX_COR={'06':['#FAEEDA','#633806'],'09':['#FAC775','#633806'],'12':['#EAF3DE','#27500A'],'15':['#E6F1FB','#0C447C'],'18':['#EEEDFE','#3C3489'],'21':['#FBEAF0','#72243E']};
 function opMin(){var d=new Date();return d.getHours()*60+d.getMinutes();}
 function opLinhaHTML(){var hj=hoje(),tb=S.tb||{},a=opMin(),ini=360,fim=1440,pct=function(m){return Math.max(0,Math.min(100,(m-ini)/(fim-ini)*100));};
@@ -9498,7 +9502,8 @@ function opBotao(){var n=document.getElementById('tt-indice');if(!n||document.ge
  var p=n.querySelector('.pd-pilula');if(p)n.insertBefore(b,p);else n.appendChild(b);}
 (function(){var i0=ttIcones;ttIcones=function(){i0();try{opBotao();}catch(e){}};})();
 setInterval(function(){try{opPinta();}catch(e){}},1000);
-setTimeout(function(){try{opBotao();if(localStorage.getItem('astro_modo')==='op')opModo(true);}catch(e){}},900);
+/* abre o Posto quando todo o app.js já rodou (com as reformas dos arquivos seguintes), antes de a abertura sair */
+document.addEventListener('DOMContentLoaded',function(){try{opBotao();opModo(true);}catch(e){console.error('posto:',e);}});
 document.addEventListener('keydown',function(e){if(e.altKey&&(e.key==='o'||e.key==='O')){e.preventDefault();opModo();}});
 /* guarda de verdade o estado dos companheiros e do pacote do dia: o normaliza só mantinha chaves conhecidas */
 var EXTRA_K=['satiro','corvo','antag','flecha','cila','fogueira','vales','fogConv'];
@@ -15208,13 +15213,6 @@ document.addEventListener('click',function(e){var b=e.target.closest&&e.target.c
    window.ASTRO_MF[id]() devolve o HTML da página; S.drive guarda o mapa do Drive */
 (function(p0){mfPagina=function(p){var x=window.ASTRO_MF&&window.ASTRO_MF[p];if(typeof x==='function'){try{return x();}catch(e){console.error('mf '+p,e);return '';}}return p0.apply(this,arguments);};})(mfPagina);
 (function(){var n0=normaliza;normaliza=function(p){var b=n0(p);if(p&&p.drive&&typeof p.drive==='object')b.drive=p.drive;return b;};})();
-/* ======================= Posto de comando como página inicial =======================
-   O app sempre abre no Posto (modo operacional). O templo continua a um clique:
-   "templo completo" no Posto, o botão OP no painel ou Alt+O.
-   O 22-modo-operacional abre o Posto quando astro_modo === 'op'; aqui esse valor é
-   gravado antes daquela checagem (que roda 900 ms depois do carregamento).
-   Para voltar a abrir no templo, apague este arquivo e rode build.py. */
-try{localStorage.setItem('astro_modo','op');}catch(e){}
 /* ======================= Harmonia (Acampamento): uma ordem de coluna e uma paleta =======================
    Antes cada templo tinha ordem e cor próprias (lilás jônico, rosa, pêssego dórico, manteiga coríntio,
    e o Rastreio azul). Agora todos usam a mesma coluna jônica em marfim e ouro, com tinta bronze,

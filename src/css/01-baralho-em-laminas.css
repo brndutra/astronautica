@@ -158,7 +158,8 @@
 
 /* ---------- sequência de abertura ---------- */
 .boot{position:fixed;inset:0;z-index:200;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;
- animation:bootout .45s 1.25s both}
+ animation:bootout .45s 8s both}
+.boot.sai{animation:bootout .45s both}
 @keyframes bootout{to{opacity:0;visibility:hidden}}
 .boot svg{width:124px;height:124px}
 .boot .ln{font-family:var(--mono);font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--dim);opacity:0;animation:lnin .3s both}

@@ -157,7 +157,10 @@ try{ montaNav(); }catch(e){ console.error("sum\u00e1rio:",e); }
 try{ pinta(); }catch(e){ console.error("pintura:",e);
  var m=el("msg"); if(m) m.textContent="falha ao desenhar um painel \u2014 o restante segue funcionando"; }
 try{ montaPomo(); fxLiga(); }catch(e){ console.error("extras:",e); }
-setTimeout(function(){ var b=el("boot"); if(b&&b.parentNode) b.parentNode.removeChild(b); },1750);
+/* a abertura sai quando o app terminou de montar (e o Posto já abriu), nunca antes de 1,25 s;
+   se algo travar, o CSS a tira sozinho aos 8 s */
+document.addEventListener("DOMContentLoaded",function(){ setTimeout(function(){ var b=el("boot"); if(!b) return; b.classList.add("sai");
+ setTimeout(function(){ if(b.parentNode) b.parentNode.removeChild(b); },450); },Math.max(0,1250-performance.now())); });
 window.addEventListener("resize",spark);
 /* ---------- Tudo em tela ----------
    Nada de trocar de página: todas as partes ficam empilhadas numa rolagem só, cada uma com um
