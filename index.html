@@ -20496,6 +20496,21 @@ setTimeout(function(){try{pilulasJuntas();}catch(e){}},1500);setInterval(functio
  '#fc-dlg>.fc-guia h4{margin:8px 0 2px;font:700 12.5px Georgia,serif}',
  '#fc-dlg>.fc-guia ol,#fc-dlg>.fc-guia ul{margin:2px 0;padding-left:18px}'
  ].join('\n');document.head.appendChild(st);})();
+/* um painel só para o Toque: sai a gaveta lateral (toques · hoje · compromissos); o cartão Agora abre o Hoje que expande dentro do templo */
+cgAbre=function(on){var g=document.getElementById('cg-gav');if(g)g.classList.remove('on');document.body.classList.remove('cg-on');if(on===false)return;
+ HOJE_ABERTO=true;try{localStorage.setItem('astro_hoje_pan','1');}catch(z){}try{hojePinta();}catch(z){}try{hojeSobe();}catch(z){}
+ var fz=document.getElementById('tp-friso');if(fz)try{fz.scrollIntoView({behavior:'smooth',block:'center'});}catch(z){}};
+/* "ajustar" abre o editor dos toques onde ele cabe na tela (antes abria embaixo do rodapé e parecia não funcionar) */
+(function(){var c0=concha;concha=function(on){var r=c0.apply(this,arguments);try{if(on&&TP_FRISO){var q=TP_FRISO.getBoundingClientRect(),H=Math.min(460,innerHeight-160),top=q.bottom+6;
+ if(top+H>innerHeight-90)top=Math.max(70,q.top-H-6);document.body.style.setProperty('--concha-top',Math.round(top)+'px');}}catch(e){}return r;};})();
+/* a faixa de compromissos não sobrescreve mais o painel Hoje (as duas disputavam a mesma caixa) */
+(function(){var t0=tpFriso;tpFriso=function(){var hj=document.querySelector('#tp-friso-bloco .cb-hoje');if(hj){try{hj._h=compRodHTML();}catch(e){}}
+ var r=t0.apply(this,arguments);hj=document.querySelector('#tp-friso-bloco .cb-hoje');
+ if(hj&&HOJE_ABERTO&&!hj.querySelector('.hj-dia')){hj._hj='';try{hojePinta();}catch(e){}}return r;};})();
+(function(){var st=document.createElement('style');st.id='toque-um-painel-css';st.textContent=[
+ '#cg-gav{display:none!important}',
+ 'html body.concha-aberta #tp-real #tm-r1{max-height:min(460px,calc(100vh - 160px))!important}'
+ ].join('\n');document.head.appendChild(st);})();
 })();
 </script>
 </body>
