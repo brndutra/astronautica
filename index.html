@@ -5686,12 +5686,52 @@ html body:not(.tv):not(.eg) #dia-faixa#dia-faixa .df-agora::before{content:""!im
 html body:not(.tv):not(.eg) #dia-faixa#dia-faixa .df-agora b{background:#e0782a!important;color:#fff!important}
 
 /* ===== Modo noturno: mesmo visual dos temas, com luz baixa e quente (sem quebrar contraste) ===== */
-html.noite{background:#f6efe0;filter:invert(.94) hue-rotate(180deg) saturate(1.1)}
-html.noite :is(img,video,picture,canvas,iframe,image){filter:invert(1) hue-rotate(180deg) saturate(.91) brightness(.92)}
-html.noite .nt-b::before,html.noite .nt-a::after,html.noite .nt-e{filter:invert(1) hue-rotate(180deg) saturate(.91) brightness(.9)!important}
-html.noite :is(.cp-postal,#argo-mar,#mt-enc,#dia-faixa){filter:invert(1) hue-rotate(180deg) saturate(.91) brightness(.88)}
+html.noite{background:#f2f0ec;filter:invert(.9) hue-rotate(180deg) saturate(.5) contrast(.96)}
+html.noite :is(img,video,picture,canvas,iframe,image){filter:invert(1) hue-rotate(180deg) saturate(1.9) brightness(.9)}
+html.noite .nt-b::before,html.noite .nt-a::after,html.noite .nt-e{filter:invert(1) hue-rotate(180deg) saturate(1.9) brightness(.88)!important}
+html.noite :is(.cp-postal,#argo-mar,#mt-enc,#dia-faixa){filter:invert(1) hue-rotate(180deg) saturate(1.9) brightness(.86)}
 html.noite :is(.cp-postal,#argo-mar,#mt-enc,#dia-faixa,.nt-e) :is(img,video,canvas,picture){filter:none}
 html.noite :is(.cp-postal,#argo-mar,#mt-enc,#dia-faixa) :is(.nt-b::before,.nt-a::after){filter:none!important}
+
+/* ===== Toque da Concha + Hoje + Compromissos: gaveta que sobe do pé do templo, entre os pilares ===== */
+#cg-gav{position:fixed;z-index:70;left:var(--cg-l,1217px);width:var(--cg-w,350px);bottom:var(--cg-b,86px);height:var(--cg-h,560px);overflow:hidden;pointer-events:none}
+#cg-gav .cg-in{position:absolute;left:0;right:0;bottom:0;max-height:100%;display:flex;flex-direction:column;box-sizing:border-box;background:#fffaf0;border:1.5px solid #9a7b4a;border-bottom:0;border-radius:12px 12px 0 0;transform:translateY(102%);transition:transform .38s cubic-bezier(.2,.8,.2,1);pointer-events:auto}
+#cg-gav.on .cg-in{transform:none}
+#cg-gav .cg-cab{flex:none;display:flex;align-items:center;gap:8px;padding:10px 12px 8px;border-bottom:1px solid #e2d4b0;background:#f6ecd6;border-radius:12px 12px 0 0}
+#cg-gav .cg-cab svg{width:18px;height:18px;fill:none;stroke:#9a4a30;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex:none}
+#cg-gav .cg-cab div{flex:1;min-width:0}
+#cg-gav .cg-cab small{display:block;font:700 8.5px var(--mono,monospace);letter-spacing:.14em;text-transform:uppercase;color:#9a4a30}
+#cg-gav .cg-cab b{display:block;font:700 15px/1.2 Georgia,serif;color:#2a2418}
+#cg-gav .cg-cab button{flex:none;width:28px!important;height:28px!important;margin:0!important;padding:0!important;border:1px solid #c9b28a!important;border-radius:50%!important;background:#fffaf0!important;color:#5a3f2c!important;font:700 16px/1 system-ui!important;cursor:pointer;box-shadow:none!important}
+#cg-gav .cg-corpo{flex:1;min-height:0;overflow-y:auto;padding:10px 12px 14px;overscroll-behavior:contain}
+#cg-gav .tf-met{display:flex;align-items:stretch;gap:3px;margin:0 0 6px;padding:4px;border:1px solid #e2d4b0;border-radius:8px;background:#f4ead2}
+#cg-gav .tf-m{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;padding:3px 0;border-radius:6px}
+#cg-gav .tf-m b{font:700 10.5px var(--mono,monospace);color:#5a3f2c}
+#cg-gav .tf-m i{font:400 10px Georgia,serif;font-style:normal;font-variant:small-caps;color:#6b5140;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#cg-gav .tf-m.foi{opacity:.45}#cg-gav .tf-m.prox{background:#e9c87a}
+#cg-gav .tf-tri{display:none}
+#cg-gav .cg-prox{display:flex;align-items:center;gap:8px;margin:0 0 12px;font:12px/1.3 Georgia,serif;color:#5a3f2c}
+#cg-gav .cg-prox span{flex:1;min-width:0}
+#cg-gav .cg-prox button{flex:none;width:auto!important;margin:0!important;padding:3px 10px!important;border:1px solid #9a7b3f!important;border-radius:99px!important;background:#f4ead2!important;color:#5a3f2c!important;font:700 9px var(--mono,monospace)!important;letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
+#cg-gav h6{margin:12px 0 6px;font:700 8.5px var(--mono,monospace);letter-spacing:.16em;text-transform:uppercase;color:#9a4a30}
+#cg-gav .comp-dia{list-style:none;margin:0;padding:0}
+#cg-gav .comp-dia li{display:flex;align-items:baseline;gap:8px;padding:5px 2px;border-bottom:1px dashed #eadcbc;font:13px/1.3 var(--sans,system-ui);color:#2a2418}
+#cg-gav .comp-dia li i{flex:none;width:14px;height:14px;align-self:center;color:#9a6b3a}
+#cg-gav .comp-dia li i svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.6}
+#cg-gav .comp-dia li b{flex:none;min-width:44px;font:700 11px var(--mono,monospace);color:#5a3f2c}
+#cg-gav .comp-dia li span{flex:1;min-width:0}
+#cg-gav .comp-dia li.passou{opacity:.45}
+#cg-gav .comp-dia li.comp-agora{border:0;padding:3px 0}
+#cg-gav .comp-dia li.comp-agora span{display:block;width:100%;border-top:2px solid #b4463a;padding-top:2px;font:700 9px var(--mono,monospace);letter-spacing:.12em;text-transform:uppercase;color:#b4463a}
+#cg-gav .cg-prox-dias{font:12.5px/1.4 var(--sans,system-ui);color:#2a2418}
+#cg-gav .comp-n{font:italic 12px Georgia,serif;color:#8a6f55;margin:4px 0}
+#tp-base #td-agora{cursor:pointer}
+#tp-base #td-agora::after{content:"▴";position:absolute;right:10px;top:6px;font:700 11px system-ui;color:#9a6b3a}
+body.cg-on #tp-base #td-agora::after{content:"▾"}
+html body.tela-prog div.wrap #comp-rod,html body div.wrap #comp-rod{display:none!important}
+body.tv #cg-gav .cg-in{background:#f3efe6;border-color:#5d6a74}body.tv #cg-gav .cg-cab{background:#e3e7ea;border-color:#c5ccd2}body.tv #cg-gav :is(.cg-cab small,h6){color:#b3262d}body.tv #cg-gav .cg-cab svg{stroke:#b3262d}
+body.eg #cg-gav .cg-in{background:#fbf4e0;border-color:#c9a23a}body.eg #cg-gav .cg-cab{background:#f3e3b4;border-color:#d9c28a}body.eg #cg-gav :is(.cg-cab small,h6){color:#2a4c86}body.eg #cg-gav .cg-cab svg{stroke:#2a4c86}
+@media (prefers-reduced-motion:reduce){#cg-gav .cg-in{transition:none}}
 /* ===== Barras de rolagem: finas, discretas e na cor do tema ===== */
 html{--sb:rgba(201,150,60,.55);--sb-h:#e0782a}
 html:has(body.tv),body.tv{--sb:rgba(96,114,128,.55);--sb-h:#b3262d}
@@ -18715,7 +18755,7 @@ tdEscudo=function(fr,modo,txt,sub){
  return '<svg viewBox="0 0 120 120" aria-hidden="true">'+s+'</svg>';};
 
 /* ===== Painel aberto sobre o centro: o que está por baixo não rola ===== */
-var TRAVA_SEL='.pd.on .pd-corpo,dialog[open],#rpViewer.on,#gtOverlay.on,.modal.on,.awb-dialog-backdrop.open,.rod-log-pop,#tm-menu';
+var TRAVA_SEL='#cg-gav.on .cg-in,.pd.on .pd-corpo,dialog[open],#rpViewer.on,#gtOverlay.on,.modal.on,.awb-dialog-backdrop.open,.rod-log-pop,#tm-menu';
 function travaPaineis(){return [].filter.call(document.querySelectorAll(TRAVA_SEL),function(e){if(e.hidden)return false;if(!e.getClientRects().length)return false;var c=getComputedStyle(e);return c.display!=='none'&&c.visibility!=='hidden'&&+c.opacity>0;});}
 function travaBloqueia(e){var ps=travaPaineis();if(!ps.length)return;var t=e.target;if(t&&t.nodeType!==1)t=t.parentNode;
  if(ps.some(function(p){return p.contains(t);}))return;if(e.cancelable)e.preventDefault();}
@@ -19718,6 +19758,28 @@ function noiteFotos(){if(!document.documentElement.classList.contains('noite'))r
   if(RX.test(getComputedStyle(e,'::after').backgroundImage))e.classList.add('nt-a');});}
 (function(){var t=null;setInterval(function(){if(document.documentElement.classList.contains('noite'))noiteFotos();},5000);
  var a0=aplicaTema;aplicaTema=function(){var r=a0.apply(this,arguments);clearTimeout(t);t=setTimeout(noiteFotos,300);return r;};setTimeout(noiteFotos,1500);})();
+
+/* ===== Toque da Concha + Hoje + Compromissos numa gaveta que sobe do pé do templo da direita, entre os pilares ===== */
+function cgMede(){var g=document.getElementById('cg-gav');if(!g)return;var sec=null;[].some.call(document.querySelectorAll('#tp-real>section'),function(x){if(x.getClientRects().length&&getComputedStyle(x).display!=='none'){sec=x;return true;}});
+ var fr=document.querySelector('#tp-painel .tp-fr'),base=document.getElementById('tp-base');if(!fr)return;var rf=fr.getBoundingClientRect(),L,R;
+ if(sec){var r=sec.getBoundingClientRect(),c=getComputedStyle(sec);L=r.left+parseFloat(c.paddingLeft)-14;R=r.right-parseFloat(c.paddingRight)+14;}else{L=rf.left+30;R=rf.right-30;}
+ var bt=base&&base.getClientRects().length?base.getBoundingClientRect().top:innerHeight,topo=Math.max(rf.top,0)+120;
+ g.style.setProperty('--cg-l',Math.round(L)+'px');g.style.setProperty('--cg-w',Math.round(R-L)+'px');g.style.setProperty('--cg-b',Math.round(innerHeight-bt)+'px');g.style.setProperty('--cg-h',Math.max(200,Math.round(bt-topo))+'px');}
+function cgHTML(){var fz='';try{fz=frisoHTML();}catch(e){}var met=(fz.match(/<div class="tf-met">[\s\S]*?<\/div>/)||[''])[0];
+ var R=rtD(),a=rtAgora(),p=null,falta=0;try{p=rtProx();falta=p?((p.m!=null?p.m:rtMin(p.h))-a):0;if(falta<0)falta+=1440;}catch(e){}
+ var hj='',px='';try{hj=compHojeHTML();}catch(e){}try{px=agIcsUrl()?agListaHTML(10):'<p class="comp-n">Ligue a Agenda Google (cartão da Agenda, endereço iCal) para os compromissos aparecerem aqui e na Grade.</p>';}catch(e){}
+ return '<div class="cg-cab">'+RT_IC.concha+'<div><small>toques · hoje · compromissos</small><b>'+esc(new Date().toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'short'}))+'</b></div><button type="button" data-cgx aria-label="fechar">×</button></div>'+
+  '<div class="cg-corpo">'+met+'<div class="cg-prox"><span>'+(p?'próximo '+esc(p.h)+' · '+esc(p.n)+' · em '+(falta>=60?Math.floor(falta/60)+'h'+String(falta%60).padStart(2,'0'):falta+' min'):'nenhum toque ligado')+'</span><button type="button" data-cgaj>ajustar</button></div>'+
+  '<h6>hoje</h6>'+hj+'<h6>compromissos · próximos dias</h6><div class="cg-prox-dias">'+px+'</div></div>';}
+function cgPinta(){var g=document.getElementById('cg-gav');if(!g||!g.classList.contains('on'))return;var c=g.querySelector('.cg-in'),h=cgHTML();if(c._h!==h){var st=c.querySelector('.cg-corpo');var sc=st?st.scrollTop:0;c.innerHTML=h;c._h=h;var st2=c.querySelector('.cg-corpo');if(st2)st2.scrollTop=sc;}}
+function cgAbre(on){var g=document.getElementById('cg-gav');
+ if(!g){g=document.createElement('div');g.id='cg-gav';g.innerHTML='<div class="cg-in" role="dialog" aria-label="Toque da Concha, hoje e compromissos"></div>';document.body.appendChild(g);
+  g.addEventListener('click',function(e){if(e.target.closest('[data-cgx]')){cgAbre(false);return;}if(e.target.closest('[data-cgaj]')){cgAbre(false);setTimeout(function(){try{concha(true);}catch(z){}},50);}});}
+ if(on===undefined)on=!g.classList.contains('on');cgMede();if(on){g.classList.add('on');cgPinta();}else g.classList.remove('on');document.body.classList.toggle('cg-on',on);}
+document.addEventListener('click',function(e){var t=e.target.closest&&e.target.closest('#tp-friso,#tp-base #td-agora');if(!t)return;e.preventDefault();e.stopImmediatePropagation();try{concha(false);}catch(z){}cgAbre();},true);
+document.addEventListener('pointerdown',function(e){var g=document.getElementById('cg-gav');if(!g||!g.classList.contains('on'))return;if(e.target.closest('#cg-gav .cg-in,#tp-friso,#tp-base #td-agora'))return;cgAbre(false);});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){var g=document.getElementById('cg-gav');if(g&&g.classList.contains('on'))cgAbre(false);}});
+window.addEventListener('resize',function(){try{cgMede();}catch(e){}});setInterval(function(){try{cgMede();cgPinta();}catch(e){}},30000);
 
 })();
 </script>
