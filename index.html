@@ -20008,6 +20008,13 @@ setTimeout(function(){try{tpBanda();}catch(e){}},1300);setInterval(function(){tr
  '#tp-painel:has(#tp-real) .tp-fr{padding-top:0!important}'
 ].join('\n');document.head.appendChild(st);})();
 
+/* ===== Painel direito: sai a faixa inferior (entablamento com os dois símbolos e a régua da fase); os capitéis encostam direto na faixa grega ===== */
+(function(){var st=document.createElement('style');st.id='tp-sem-entab-css';st.textContent=[
+ '#tp-painel #tp-entab{display:none!important}',
+ '#tp-real>:is(#tm-painel,#recreio,#tesouro)::after{content:none!important;display:none!important}',
+ 'html body #tp-painel #tp-real>:is(#tm-painel,#recreio,#tesouro){border-top:0!important}'
+].join('\n');document.head.appendChild(st);})();
+
 /* ===== Frontão: pílula e placa numa peça só — dois botões de cada lado e as telas no meio ===== */
 pilulaOrn=function(){var o=document.querySelector('#hero-box .pd-pilula > .pil-orn');if(o)o.remove();};
 bnTelaBotoes=function(){var h=document.querySelector('#hero-box .vx-hero.bn2');if(!h)return;var pil=document.querySelector('#hero-box .pd-pilula');
