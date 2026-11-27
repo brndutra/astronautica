@@ -15405,16 +15405,22 @@ function ctPinta(){var pd=document.getElementById('painel-dir');if(!pd)return;va
  var h=ctAbasHTML(k);if(bar._h!==h){bar.innerHTML=h;bar._h=h;}}
 document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-ct]');if(!b)return;e.preventDefault();e.stopPropagation();
  if(b.getAttribute('aria-selected')==='true')return;var k=b.getAttribute('data-ct'),pd=document.getElementById('painel-dir');
- if(k==='templo'){try{pdFecha();}catch(z){}try{cxFecha();}catch(z){}try{opModo(false);}catch(z){}window.scrollTo(0,0);return;}
+ if(k==='templo'){try{pdFecha();}catch(z){}try{cxFecha();}catch(z){}ctTemploAbre();return;}
+ ctTemploFecha();
  if(k==='manual'){try{pdFecha();}catch(z){}mfAbre();return;}
  try{var cx=document.getElementById('cx');if(cx&&cx.classList.contains('on'))cxFecha();}catch(z){}
  if(pd){pd.classList.remove('eu-um');delete pd.dataset.euk;}
  if(k==='conc'||k==='inst'||k==='ler')euSoloAbre(k);else pdAbre(k);},true);
 /* clicar no fundo escuro fora da folha fecha a central */
 document.addEventListener('click',function(e){var pd=document.getElementById('painel-dir');if(pd&&e.target===pd&&pd.classList.contains('central'))pdFecha();});
-/* Templo: a própria página do templo é a aba; com o operacional desligado, a barra da central fica no topo dela */
-function ctTemplo(){var w=document.querySelector('.wrap');if(!w)return;var n=document.getElementById('ct-templo');
- if(!n){n=document.createElement('nav');n.id='ct-templo';n.className='ct-abas';n.setAttribute('role','tablist');n.setAttribute('data-notr','');n.innerHTML=ctAbasHTML('templo');}
- if(w.firstElementChild!==n)w.insertBefore(n,w.firstElementChild);}
-setTimeout(function(){try{ctTemplo();}catch(e){}},1200);setInterval(function(){try{if(!document.body.classList.contains('op-on'))ctTemplo();}catch(e){}},3000);
+/* Templo: a página do templo abre como folha da central, por cima do operacional (body.ct-templo):
+   a .wrap vira a folha centralizada, com fundo escuro e a barra da central no topo. Fechar volta ao operacional. */
+function ctTemploAbre(){var n=document.getElementById('ct-templo');
+ if(!n){n=document.createElement('div');n.id='ct-templo';n.setAttribute('data-notr','');n.innerHTML='<nav class="ct-abas" role="tablist">'+ctAbasHTML('templo')+'</nav><button type="button" class="ct-tx" aria-label="fechar">✕</button>';document.body.appendChild(n);
+  n.addEventListener('click',function(e){if(e.target===n||e.target.closest('.ct-tx'))ctTemploFecha();});}
+ document.body.classList.add('ct-templo');var w=document.querySelector('.wrap');if(w)w.scrollTop=0;}
+function ctTemploFecha(){document.body.classList.remove('ct-templo');}
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&document.body.classList.contains('ct-templo')&&!document.querySelector('dialog[open]'))ctTemploFecha();});
+/* o botão "templo completo" do operacional abre o templo do mesmo jeito */
+document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('#modo-op [data-opsair]');if(!b)return;e.preventDefault();e.stopImmediatePropagation();ctTemploAbre();},true);
 })();
