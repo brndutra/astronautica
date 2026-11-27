@@ -18884,7 +18884,7 @@ document.addEventListener('click',function(e){var t=e.target.closest&&e.target.c
 (function(){var r0=vxRender;vxRender=function(){var x=r0.apply(this,arguments);try{bnmBotao();bnmAplica();}catch(e){}return x;};})();
 setTimeout(function(){try{bnmBotao();bnmAplica();}catch(e){}},1300);setInterval(function(){try{bnmBotao();}catch(e){}},3000);
 (function(){var st=document.createElement('style');st.id='bnm-css';st.textContent=[
- '#hero-box#hero-box .bnm-tg{position:absolute!important;left:50%!important;top:12px!important;bottom:auto!important;right:auto!important;margin:0!important;width:auto!important;transform:translateX(-50%)!important;z-index:30;display:flex;gap:6px;opacity:0;transition:opacity .2s}',
+ '#hero-box#hero-box .bnm-tg{position:absolute!important;left:auto!important;right:60px!important;top:12px!important;bottom:auto!important;margin:0!important;width:auto!important;transform:none!important;z-index:30;display:flex;gap:6px;opacity:0;transition:opacity .2s}','body.tela-prog #hero-box .bnm-tg{display:none!important}',
  '#hero-box .vx-hero.bn2:hover .bnm-tg,body.bn-movendo #hero-box .bnm-tg{opacity:1}',
  '#hero-box#hero-box .bnm-tg button{width:auto!important;min-height:0!important;margin:0!important;padding:3px 10px!important;border:1px solid #8a6f55!important;border-radius:999px!important;background:#fbf5e6!important;color:#5a3f2c!important;font:700 9px var(--mono,monospace)!important;letter-spacing:.1em!important;text-transform:uppercase!important;cursor:pointer;box-shadow:none!important}',
  '#hero-box .bnm-tg [data-bnm=rs],#hero-box .bnm-tg [data-bnm=ok]{display:none}',
@@ -18914,6 +18914,54 @@ function topoBotoes(){var r1=document.querySelector('#lat-topo .lt-r1');if(!r1)r
 (function(){var l0=latTopo;latTopo=function(){var x=l0.apply(this,arguments);try{topoBotoes();}catch(e){}return x;};})();
 document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('#tv-tg');if(!b)return;e.preventDefault();e.stopImmediatePropagation();try{tmMenu(b);}catch(z){}},true);
 setTimeout(topoBotoes,1000);
+/* Banner com telas: Visão (o banner de sempre) e Programação (a grade semanal sai do seu painel, perde a moldura e passa a morar dentro do banner).
+   A grade continua no mesmo lugar do DOM (.wrap > div.tb), só é posta sobre a área do banner, para não quebrar quem a procura por esse seletor. */
+var BN_TELA='visao';try{BN_TELA=localStorage.getItem('astro_bn_tela')||'visao';}catch(e){}
+function bnTelaSet(t){BN_TELA=t;try{localStorage.setItem('astro_bn_tela',t);}catch(e){}document.body.classList.toggle('tela-prog',t==='prog');bnTelaBotoes();bnTelaPos();}
+function bnTelaBotoes(){var h=document.querySelector('#hero-box .vx-hero.bn2');if(!h)return;var w=h.querySelector(':scope > .bn-telas');
+ if(!w){w=document.createElement('div');w.className='bn-telas';w.setAttribute('role','tablist');h.appendChild(w);}
+ var x='<button type="button" role="tab" data-bntela="visao" aria-selected="'+(BN_TELA!=='prog')+'">Visão</button><button type="button" role="tab" data-bntela="prog" aria-selected="'+(BN_TELA==='prog')+'">Programação</button>';
+ if(w._h!==x||!w.firstChild){w.innerHTML=x;w._h=x;}}
+document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-bntela]');if(b){e.preventDefault();e.stopPropagation();bnTelaSet(b.dataset.bntela);return;}
+ if(e.target.closest&&e.target.closest('[data-opfx]'))setTimeout(function(){bnTelaSet('prog');var hb=document.getElementById('hero-box');if(hb)hb.scrollIntoView({behavior:'smooth',block:'start'});},120);},true);
+function bnTelaPos(){var tb=document.querySelector('.wrap > div.tb'),h=document.querySelector('#hero-box .vx-hero.bn2'),wr=document.querySelector('.wrap');
+ if(!tb||!h||!wr)return;if(BN_TELA!=='prog'||document.body.classList.contains('bn-mini')){h.style.removeProperty('--bn-ph');return;}
+ var cs=getComputedStyle(h),pl=parseFloat(cs.paddingLeft)||40,pr=parseFloat(cs.paddingRight)||40,pt=52,pb=26;
+ var hr=h.getBoundingClientRect(),wrr=wr.getBoundingClientRect();
+ var ph=Math.max(590,Math.ceil(tb.offsetHeight+pt+pb));if(h.style.getPropertyValue('--bn-ph')!==ph+'px')h.style.setProperty('--bn-ph',ph+'px');
+ hr=h.getBoundingClientRect();
+ var x=Math.round(hr.left-wrr.left+pl),y=Math.round(hr.top-wrr.top+pt),w=Math.round(hr.width-pl-pr);
+ if(tb._tp!==x+'|'+y+'|'+w){tb._tp=x+'|'+y+'|'+w;tb.style.setProperty('--tl-x',x+'px');tb.style.setProperty('--tl-y',y+'px');tb.style.setProperty('--tl-w',w+'px');}}
+document.body.classList.toggle('tela-prog',BN_TELA==='prog');
+(function(){var r0=vxRender;vxRender=function(){var x=r0.apply(this,arguments);try{bnTelaBotoes();bnTelaPos();}catch(e){}return x;};})();
+setTimeout(function(){try{bnTelaBotoes();bnTelaPos();}catch(e){}},1200);setInterval(function(){try{bnTelaBotoes();bnTelaPos();}catch(e){}},700);
+window.addEventListener('resize',function(){try{bnTelaPos();}catch(e){}});
+/* pilares do banner no Acampamento: os mesmos da Programação (jônicos azuis), já que o banner grego não tinha */
+function bnPilares(){if(TV_ON||EG_ON)return;var sl=document.querySelector('#hero-box .bn-slot');if(!sl||sl.dataset.pil)return;var cf=(typeof COL_PAINEL!=='undefined'&&COL_PAINEL.tb)||{st:'ionica',c:'#b9c2e8',k:'#4a5590'},im;try{im=colSvgs(cf);}catch(e){return;}
+ sl.dataset.pil='1';sl.style.setProperty('--pl-cap',im.cap);sl.style.setProperty('--pl-fuste',im.fuste);sl.style.setProperty('--pl-base',im.base);sl.style.setProperty('--pl-k',cf.k);}
+setTimeout(function(){try{bnPilares();}catch(e){}},900);setInterval(function(){try{bnPilares();}catch(e){}},3000);
+(function(){var st=document.createElement('style');st.id='bn-telas-css';var T='html body.tela-prog div.wrap>div.tb.tb:not(#x1):not(#x2)';st.textContent=[
+ '#hero-box#hero-box .bn-telas{position:absolute!important;top:12px!important;left:50%!important;right:auto!important;bottom:auto!important;transform:translateX(-50%)!important;z-index:31;display:flex!important;gap:0;margin:0!important;width:auto!important;padding:2px;border:1px solid #8a6f55;border-radius:999px;background:#fbf5e6;box-shadow:0 2px 6px -3px rgba(60,40,20,.35)}',
+ '#hero-box#hero-box .bn-telas button{width:auto!important;min-height:0!important;height:auto!important;margin:0!important;padding:4px 14px!important;border:0!important;border-radius:999px!important;background:transparent!important;color:#5a3f2c!important;font:700 9.5px var(--mono,monospace)!important;letter-spacing:.14em!important;text-transform:uppercase!important;cursor:pointer;box-shadow:none!important}',
+ '#hero-box#hero-box .bn-telas button[aria-selected=true]{background:#5a3f2c!important;color:#fbf5e6!important}',
+ 'body.tv #hero-box#hero-box .bn-telas{border-color:#A88750;background:#F5EBD6}body.tv #hero-box#hero-box .bn-telas button[aria-selected=true]{background:#203936!important;color:#F5EBD6!important}',
+ 'body.eg #hero-box#hero-box .bn-telas{border-color:#c9a23a;background:#f7ecd2}body.eg #hero-box#hero-box .bn-telas button[aria-selected=true]{background:#1e3a6e!important;color:#ecd27e!important}',
+ '.wrap>#h-sem{display:none!important}',
+ 'body:not(.tela-prog) .wrap>div.tb{display:none!important}',
+ 'body.bn-mini .wrap>div.tb{display:none!important}',
+ '@media(min-width:700px){body.tela-prog #hero-box#hero-box .vx-hero.bn2{height:var(--bn-ph,590px)!important;min-height:var(--bn-ph,590px)!important;max-height:none!important}}',
+ 'body.tela-prog #hero-box .vx-hero.bn2>:not(.bn-telas):not(.vx-tema){visibility:hidden!important;pointer-events:none!important}',
+ T+'{position:absolute!important;left:var(--tl-x,0)!important;top:var(--tl-y,0)!important;width:var(--tl-w,100%)!important;max-width:none!important;margin:0!important;padding:0!important;z-index:40!important;border:0!important;border-radius:0!important;background:none!important;box-shadow:none!important;outline:0!important;overflow:visible!important;contain:none!important;clip-path:none!important}',
+ T+'::before,'+T+'::after{display:none!important}',
+ T+'>.col-orn{display:none!important}',
+ T+' .tbcab{margin-top:0!important}',
+ T+' .mf-alca-mes,'+T+' .mf-alca-sem{left:auto!important;right:-44px!important}',
+ T+' .mf-alca-sem{top:calc(50% - 100px)!important}'+T+' .mf-alca-mes{top:calc(50% + 100px)!important}',
+ '@media(min-width:1380px){'+T+' .mf-alca-mes,'+T+' .mf-alca-sem{right:-89px!important}}',
+ /* pilares jônicos no banner grego */
+ 'body:not(.tv):not(.eg) #hero-box .bn-slot[data-pil]{position:relative;padding:0 46px!important;background:var(--pl-cap) 2px 0/42px 29px no-repeat,var(--pl-cap) calc(100% - 2px) 0/42px 29px no-repeat,var(--pl-fuste) 2px 29px/42px calc(100% - 44px) no-repeat,var(--pl-fuste) calc(100% - 2px) 29px/42px calc(100% - 44px) no-repeat,var(--pl-base) 2px 100%/42px 15px no-repeat,var(--pl-base) calc(100% - 2px) 100%/42px 15px no-repeat!important}',
+ '@media(max-width:1379px){body:not(.tv):not(.eg) #hero-box .bn-slot[data-pil]{padding:0!important;background:none!important}}'
+].join('\n');document.head.appendChild(st);})();
 
 })();
 </script>
