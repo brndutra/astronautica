@@ -308,6 +308,7 @@ async function carrega() {
 /* ---------- ações ---------- */
 document.addEventListener('DOMContentLoaded', async function () {
   document.body.classList.add('modo-' + MODO);
+  try { $('bm-v').textContent = 'v' + chrome.runtime.getManifest().version; } catch (e) { }
   var pref = await chrome.storage.local.get(['tema', 'zoom', 'clique']);
   aplicaTema(pref.tema || 'greek');
   aplicaZoom(+pref.zoom || 1);
