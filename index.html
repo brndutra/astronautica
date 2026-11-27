@@ -14261,6 +14261,51 @@ LV_FOLHAS.splice(7,0,{id:'profecia',sec:'Profecia',cap:'Capítulo VII',t:'Profec
 (function(){var i=LV_FOLHAS.findIndex(function(f){return f.id==='diario';});if(i<0)return;LV_FOLHAS[i].t='Registro do dia';
  LV_FOLHAS.splice(i+1,0,{id:'reg-sem',sec:'Diário',cap:'Capítulo V',t:'Registro da semana'},{id:'reg-mes',sec:'Diário',cap:'Capítulo V',t:'Registro do mês'},{id:'andam',sec:'Diário',cap:'Capítulo V',t:'Andamentos'});})();
 var LV_DOS_CORTE={'h-sec':'dos-ficha','h-painel':'dos-painel','h-lim':'dos-lim','h-diag':'dos-diag'};
+/* Bestiário: as criaturas do antagonista do dia, vencidas na Arena e registradas na Fogueira */
+(function(){var i=LV_FOLHAS.findIndex(function(f){return f.id==='profecia';});LV_FOLHAS.splice(i<0?LV_FOLHAS.length:i+1,0,{id:'bestiario',sec:'Bestiário',cap:'Capítulo VIII',t:'Bestiário',dupla:true});})();
+var LV_BEST_SEL=null;
+function lvBestHTML(){if(typeof ANTAG==='undefined')return '';var A=(typeof antD==='function')?antD():{dia:{}},B=A.best||{},hj=null;try{hj=antHoje();}catch(e){}
+ var ROM=['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV','XVI','XVII','XVIII','XIX','XX'];
+ var fug={};Object.keys(A.dia||{}).forEach(function(d){var x=A.dia[d];if(x&&x.st==='fugiu'&&!B[x.m])fug[x.m]=1;});
+ var ven=0,cards=ANTAG.map(function(m,i){var b=B[m.k],st=b?'v':(hj&&hj.m===m.k&&hj.st==='aberto')?'j':fug[m.k]?'e':'u';if(b)ven++;
+  return '<button type="button" class="bt-c bt-'+st+(LV_BEST_SEL===m.k?' on':'')+'" data-btsel="'+m.k+'"'+(st==='u'?' disabled':'')+'><small>'+ROM[i]+(st==='v'?' · '+b.n+'×':st==='j'?' · hoje':st==='e'?' · escapou':'')+'</small><b>'+(st==='u'?'?':esc(m.n))+'</b></button>';}).join('');
+ var sel=LV_BEST_SEL&&(B[LV_BEST_SEL]||(hj&&hj.m===LV_BEST_SEL)||fug[LV_BEST_SEL])?LV_BEST_SEL:null,det='';
+ if(sel){var m=antMonstro(sel),b=B[sel];det='<div class="bt-det"><span class="bt-k">'+(b?'vencido '+b.n+'×':'ainda não vencido')+'</span><b>'+esc(m.n)+'</b><p><em>armadilha</em>'+esc(m.o)+'</p><p><em>desafio</em>'+esc(m.d)+'</p>'+
+  (b&&b.dias.length?'<p><em>caiu em</em>'+b.dias.slice().reverse().map(function(d){return d.slice(8,10)+'/'+d.slice(5,7);}).join(' · ')+'</p>':'')+'</div>';}
+ var reg=[];Object.keys(B).forEach(function(k){(B[k].dias||[]).forEach(function(d){reg.push({k:k,d:d});});});reg.sort(function(a,b){return a.d<b.d?1:-1;});
+ var lst=reg.slice(0,12).map(function(r){var m=antMonstro(r.k),x=(A.dia||{})[r.d];return '<li><small>'+r.d.slice(8,10)+'/'+r.d.slice(5,7)+'</small><span><b>'+esc(m.n)+'</b>'+(x?' · bloco das '+x.fx+'h':'')+' · '+esc(m.o)+'</span><small>+20 XP</small></li>';}).join('');
+ return '<div class="bt"><div class="bt-col"><div class="bt-top"><span class="bt-k">'+ven+' de '+ANTAG.length+' vencidos</span></div><div class="bt-g">'+cards+'</div>'+det+'</div>'+
+  '<div class="bt-col"><span class="bt-k">registro das caçadas</span>'+(lst?'<ul class="bt-reg">'+lst+'</ul>':'<p class="bt-vz">Nenhuma criatura vencida ainda. A primeira vitória entra aqui, com o dia e o bloco.</p>')+
+  '<p class="bt-nota">O veredito de cada dia e a carta de amanhã ficam na Fogueira.</p></div></div>';}
+function lvBestPinta(){var c=lvCorpo('bestiario');if(!c)return;if(!c._lig){c._lig=1;c.addEventListener('click',function(e){var b=e.target.closest('[data-btsel]');if(!b)return;LV_BEST_SEL=LV_BEST_SEL===b.dataset.btsel?null:b.dataset.btsel;lvBestPinta();});}
+ var h=lvBestHTML();if(c._h!==h){c._h=h;c.innerHTML=h;}}
+lvPinta=(function(f0){return function(){var r=f0.apply(this,arguments);try{var v=document.querySelector('#lv [data-folha="bestiario"]');if(v&&!v.hidden)lvBestPinta();}catch(e){}return r;};})(lvPinta);
+(function(){var st=document.createElement('style');st.id='lv-best-css';st.textContent=[
+ '#lv .lv-fita[data-lvsec="Bestiário"]{--c:#8a6a1e}',
+ '#lv .bt{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:22px}',
+ '@media(max-width:880px){#lv .bt{grid-template-columns:1fr}}',
+ '#lv .bt-col{display:flex;flex-direction:column;gap:10px;min-width:0}',
+ '#lv .bt-k{font:700 9.5px var(--mono,monospace);letter-spacing:.14em;text-transform:uppercase;color:#8a6f55}',
+ '#lv .bt-g{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px}',
+ '@media(max-width:560px){#lv .bt-g{grid-template-columns:repeat(3,minmax(0,1fr))}}',
+ '#lv .bt-c{height:92px;width:auto!important;margin:0!important;padding:6px!important;border-radius:7px!important;display:flex;flex-direction:column;justify-content:flex-end;gap:2px;text-align:left;cursor:pointer;border:0!important}',
+ '#lv .bt-c small{font:600 8px var(--mono,monospace);letter-spacing:.06em}',
+ '#lv .bt-c b{font:700 11px/1.15 Georgia,serif}',
+ '#lv .bt-v{background:linear-gradient(160deg,#e2bd5c,#8a6a1e)!important;color:#1d1406;box-shadow:0 0 0 1.5px #5a4210}',
+ '#lv .bt-j{background:linear-gradient(160deg,#2b6b43,#123321)!important;color:#f3e6c4;box-shadow:0 0 0 2px #d4ad4f}',
+ '#lv .bt-e{background:#cfc6b0!important;color:#4a4438;box-shadow:inset 0 0 0 1px #8a8070}',
+ '#lv .bt-u{background:repeating-linear-gradient(135deg,rgba(90,63,44,.08) 0 6px,transparent 6px 12px)!important;color:#a08e72;box-shadow:inset 0 0 0 1px rgba(90,63,44,.3);align-items:center;justify-content:center;cursor:default}',
+ '#lv .bt-u b{font-size:20px}',
+ '#lv .bt-c.on{outline:2.5px solid #2a2418;outline-offset:2px}',
+ '#lv .bt-det{padding:10px 12px;border-radius:8px;background:rgba(255,250,235,.6);border:1px solid rgba(90,63,44,.3)}',
+ '#lv .bt-det b{display:block;font:700 17px Georgia,serif;margin:2px 0 4px}',
+ '#lv .bt-det p{margin:3px 0;font:13px/1.45 Georgia,serif;color:#2a2418}',
+ '#lv .bt-det em{display:inline-block;min-width:74px;font:700 9px var(--mono,monospace);font-style:normal;letter-spacing:.12em;text-transform:uppercase;color:#9a6b3a}',
+ '#lv .bt-reg{list-style:none;margin:0;padding:0}',
+ '#lv .bt-reg li{display:grid;grid-template-columns:44px 1fr auto;gap:8px;padding:7px 0;border-bottom:1px dotted rgba(90,63,44,.45);font:13px/1.35 Georgia,serif;color:#2a2418}',
+ '#lv .bt-reg small{font:600 10px var(--mono,monospace);color:#6f5a45}',
+ '#lv .bt-vz,#lv .bt-nota{margin:0;font:italic 13px/1.5 Georgia,serif;color:#5a4636}'
+].join('\n');document.head.appendChild(st);})();
 var LV_ESTREITO=window.matchMedia?window.matchMedia('(max-width: 880px)'):{matches:false};
 var LV_SOL='<svg viewBox="0 0 100 100" aria-hidden="true"><defs><radialGradient id="lvWax" cx="38%" cy="32%" r="75%"><stop offset="0%" stop-color="#d8a94a"/><stop offset="45%" stop-color="#a87a2a"/><stop offset="100%" stop-color="#6b4a16"/></radialGradient></defs>'+
  '<path fill="url(#lvWax)" d="M50 6c7 0 9 6 16 8s12-2 16 5-1 11 2 17 8 7 6 15-9 8-11 15 1 12-5 16-11-2-17 1-8 8-15 8-9-5-16-7-12 3-17-3 1-11-2-17-8-7-6-15 9-8 11-15-1-12 5-16 11 2 17-1 7-6 13-6z"/>'+
@@ -18065,6 +18110,31 @@ antPinta=(function(f0){return function(){var r=f0.apply(this,arguments);try{antR
  '.fg-dlg .fg-verso span{margin-bottom:12px;padding:4px 10px;border-radius:999px;background:#d4ad4f;font:700 9px var(--mono,monospace);letter-spacing:.12em;text-transform:uppercase;color:#1d2a10}',
  '.fg-dlg .fg-ant-bau{font:14px/1.45 Georgia,serif;color:#2a2418}',
  '.ant-dlg footer .ant-fog{flex:1;align-self:center;font:italic 12px Georgia,serif;color:#8a6f55}'
+].join('\n');document.head.appendChild(st);})();
+/* modo operacional: a carta do antagonista dobrada no cabeçalho, ao lado do dia; clique abre o desafio e o "venci" */
+function opAntMini(){var o=document.getElementById('modo-op'),t=o&&o.querySelector(':scope>.op-top');if(!t)return;var b=t.querySelector(':scope>.op-antmini');
+ if(!b){b=document.createElement('button');b.type='button';b.setAttribute('data-notr','');b.addEventListener('click',function(e){e.preventDefault();try{antAbre();}catch(z){}});}
+ var f=t.firstElementChild===b?null:t.firstElementChild;if(f){if(f.nextElementSibling!==b)f.insertAdjacentElement('afterend',b);}else if(t.firstElementChild!==b)t.insertBefore(b,t.firstChild);
+ var x=antHoje(),m=antMonstro(x.m),st=x.st,c='op-antmini'+(st!=='aberto'?' '+st:'');if(b.className!==c)b.className=c;
+ b.title=st==='aberto'?m.n+': '+m.d:m.n;
+ var h='<i aria-hidden="true">'+esc(m.n.charAt(0))+'</i><span><small>'+(st==='vencido'?'vencido · +20 XP':st==='fugiu'?'escapou':'antagonista · '+x.fx+'h')+'</small><b>'+esc(m.n)+'</b><em>'+esc(st==='vencido'?'no Bestiário':st==='fugiu'?'volta amanhã':m.o)+'</em></span>';
+ if(b._h!==h){b._h=h;b.innerHTML=h;}}
+opPinta=(function(f0){return function(){var r=f0.apply(this,arguments);try{opAntMini();}catch(e){}return r;};})(opPinta);
+antPinta=(function(f0){return function(){var r=f0.apply(this,arguments);try{opAntMini();}catch(e){}return r;};})(antPinta);
+setInterval(function(){try{if(document.body.classList.contains('op-on'))opAntMini();}catch(e){}},5000);
+(function(){var st=document.createElement('style');st.id='op-antmini-css';var B='html body #modo-op>.op-top>.op-antmini';st.textContent=[
+ B+'{flex:none;display:flex;align-items:center;gap:9px;width:auto!important;min-width:0;margin:0 0 0 14px!important;padding:5px 12px 5px 5px!important;border:0!important;border-radius:10px!important;background:#2a2418!important;box-shadow:0 0 0 1.5px #c9a45a,0 4px 10px -4px rgba(0,0,0,.45)!important;color:#f4ead2!important;cursor:pointer;text-align:left}',
+ B+'>i{flex:none;display:grid;place-items:center;width:30px;height:40px;border-radius:5px;background:linear-gradient(180deg,#3a5a6a,#1e3a44);box-shadow:0 0 0 1px #c9a45a;font:700 16px Georgia,serif;font-style:normal;color:#e9c870}',
+ B+'>span{display:flex;flex-direction:column;gap:1px;min-width:0}',
+ B+' small{font:700 8.5px var(--mono,monospace);letter-spacing:.14em;text-transform:uppercase;color:#e9c870}',
+ B+' b{font:700 13.5px Georgia,serif;color:inherit;white-space:nowrap}',
+ B+' em{max-width:190px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:italic 11px Georgia,serif;color:#cdbf9c}',
+ B+':hover{box-shadow:0 0 0 2px #e9c870,0 6px 14px -4px rgba(0,0,0,.5)!important}',
+ B+'.vencido{background:linear-gradient(160deg,#e2bd5c,#8a6a1e)!important;color:#1d1406!important;box-shadow:0 0 0 1.5px #f6dc8c,0 0 14px rgba(246,220,140,.45)!important}',
+ B+'.vencido small,'+B+'.vencido em{color:#3a2a08}',
+ B+'.fugiu{filter:grayscale(.8);opacity:.75}',
+ /* no Posto a carta mora no cabeçalho: sai o card do rodapé e o botão da linha */
+ 'body.op-on #mt-enc,#modo-op .op-antbt{display:none!important}'
 ].join('\n');document.head.appendChild(st);})();
 /* no rodapé, ao lado dos Anais */
 function fgRod(){var top=document.querySelector('#rod-apps .rod-top'),lg=document.getElementById('rod-log');if(!top||!lg)return;var b=document.getElementById('rod-fogo');
