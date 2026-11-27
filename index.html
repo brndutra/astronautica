@@ -20725,6 +20725,36 @@ setTimeout(function(){try{pinbarSobe();}catch(e){}},1200);setInterval(function()
  'html body #rod-pan #rd-l .rd-x{opacity:.55!important;visibility:visible!important}',
  'html body #rod-pan #rd-l .rdi:hover .rd-x,html body #rod-pan #rd-l .rd-x:focus{opacity:1!important}'
  ].join('\n');document.head.appendChild(st);})();
+/* placa do frontão e placa do painel direito como tábua de inscrição (tabula ansata) integrada ao templo, em todos os temas */
+(function(){var st=document.createElement('style');st.id='placas-templo-css';
+ var P=TV_ON?{k:'#a88750',k2:'#d4bd82',f:'linear-gradient(180deg,#2c4c47 0%,#203936 55%,#18302d 100%)',tx:'#e9d6a6',ac:'#fbeec6',sh:'rgba(8,18,16,.55)'}
+  :EG_ON?{k:'#c9a23a',k2:'#e7c86e',f:'linear-gradient(180deg,#27508f 0%,#1e3a6e 55%,#172f5a 100%)',tx:'#f0dcaa',ac:'#fff4d2',sh:'rgba(8,16,40,.55)'}
+  :{k:'#8a5a14',k2:'#c99a3d',f:'linear-gradient(180deg,#fdf6e3 0%,#f3e4bf 55%,#e8d4a4 100%)',tx:'#6b4413',ac:'#3b2a10',sh:'rgba(60,40,15,.35)'};
+ var E=24,clip=function(e){return 'polygon(0 50%,'+e+'px 3px,'+e+'px 0,calc(100% - '+e+'px) 0,calc(100% - '+e+'px) 3px,100% 50%,calc(100% - '+e+'px) calc(100% - 3px),calc(100% - '+e+'px) 100%,'+e+'px 100%,'+e+'px calc(100% - 3px))';};
+ var A='html body:not(.zz9):not(.zz8):not(.zz7) #hero-box#hero-box .neo-frontao .pd-pilula.pd-pilula.pil-placa',
+  B='html body:not(.zz9):not(.zz8):not(.zz7) #tp-painel .tp-banda .tp-placa.tp-placa';
+ var placa=function(S,e,h){return [
+  S+'{isolation:isolate;box-sizing:border-box!important;height:'+h+'px!important;min-height:0!important;padding:0 '+(e+10)+'px!important;border:0!important;border-radius:0!important;background:'+P.k+'!important;box-shadow:none!important;outline:0!important;clip-path:'+clip(e)+';filter:drop-shadow(0 4px 6px '+P.sh+')}',
+  S+'::before{content:""!important;display:block!important;position:absolute!important;inset:1.5px!important;z-index:-2!important;clip-path:'+clip(e-1)+';background:radial-gradient(circle at '+Math.round(e*.55)+'px 50%,'+P.k+' 0 2.2px,transparent 2.8px),radial-gradient(circle at calc(100% - '+Math.round(e*.55)+'px) 50%,'+P.k+' 0 2.2px,transparent 2.8px),'+P.f+'!important;border:0!important;transform:none!important;width:auto!important;height:auto!important}',
+  S+'::after{content:""!important;display:block!important;position:absolute!important;top:4px!important;bottom:4px!important;left:'+(e+2)+'px!important;right:'+(e+2)+'px!important;z-index:-1!important;border:1px solid '+P.k2+'!important;box-shadow:inset 0 0 0 1px '+P.k+'33!important;background:none!important;border-radius:0!important;transform:none!important;width:auto!important;height:auto!important}'];};
+ st.textContent=[].concat(
+  placa(A,E,48),
+  [A+' .tt-ic{color:'+P.tx+'!important;background:none!important;border:0!important;box-shadow:none!important}',
+   A+' .tt-ic svg{stroke:'+P.tx+'!important;opacity:.9}',A+' .tt-ic:hover svg{stroke:'+P.ac+'!important;opacity:1}',
+   A+' .bn-telas{border-color:'+P.k2+'!important}',
+   A+' .bn-telas button{color:'+P.tx+'!important;opacity:.78;font-variant:small-caps!important;letter-spacing:.06em!important}',
+   A+' .bn-telas button[aria-selected=true]{color:'+P.ac+'!important;opacity:1}',
+   A+' .bn-telas i,'+A+' .pil-orn{color:'+P.k2+'!important}'],
+  placa(B,16,32),
+  [B+'{display:flex!important;align-items:center;gap:8px}',
+   B+' button{color:'+P.tx+'!important;opacity:.75;font-variant:small-caps!important;letter-spacing:.06em!important;background:none!important;border:0!important;box-shadow:none!important}',
+   B+' button[aria-selected=true],'+B+' button[aria-pressed=true],'+B+' button.on{color:'+P.ac+'!important;opacity:1}',
+   B+' i,'+B+' span[aria-hidden]{color:'+P.k2+'!important}',
+   /* faixa superior do painel direito: sem caixa chapada; uma régua dupla no tom da moldura, com a placa centrada */
+   'html body:not(.zz9):not(.zz8) #tp-painel .tp-banda{background:linear-gradient(180deg,'+(TV_ON?'#203936':EG_ON?'#1e3a6e':'#f4ead2')+' 0 70%,transparent 100%)!important;display:flex!important;justify-content:center!important;align-items:center;padding:4px 0 6px!important;border:0!important;box-shadow:inset 0 -1px 0 '+P.k+',inset 0 -4px 0 transparent,inset 0 -5px 0 '+P.k2+'!important}',
+   /* Em andamento: largura própria (não encolhe dentro do bloco do folheto) */
+   'html body:not(.zz9):not(.zz8) #hero-box#hero-box .vx-hero.bn2 #orb-mural{flex:none!important;width:360px!important;max-width:none!important;align-self:flex-start}']
+ ).join('\n');document.head.appendChild(st);})();
 })();
 </script>
 </body>
