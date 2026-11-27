@@ -6335,9 +6335,9 @@ html body.eg #lat-topo .lt-r0 .lt-bts>:is(#fc-tg,#mf-tg,#tv-tg,#pt-tg):hover{bac
 #lat-topo .lt-r2 .op-tg{margin:0 0 0 auto!important;padding:0 9px!important;height:26px}
 /* ======================= Central: barra de abas (Manual e os seis painéis) e painel lateral centralizado ======================= */
 .ct-abas{display:flex;gap:6px;flex-wrap:wrap;align-items:stretch;padding:6px;border-radius:16px;background:rgba(24,19,13,.92);border:1px solid rgba(214,180,110,.35);box-shadow:0 8px 24px -14px rgba(0,0,0,.6)}
-.ct-abas button,:is(#cx,#painel-dir) .ct-abas button{all:unset;box-sizing:border-box!important;display:flex!important;align-items:center;gap:9px;width:auto!important;height:auto!important;min-height:0!important;margin:0!important;padding:7px 13px 7px 10px!important;border:0!important;border-radius:11px!important;background:transparent!important;color:#e9dcc0!important;cursor:pointer;transition:background .15s,color .15s}
-:is(#cx,#painel-dir) .ct-abas button:hover,:is(#cx,#painel-dir) .ct-abas button:focus-visible{background:rgba(255,255,255,.08)!important}
-:is(#cx,#painel-dir) .ct-abas button[aria-selected="true"]{background:#f1e4c4!important;color:#2a2116!important}
+.ct-abas button,:is(#cx .ct-abas,#painel-dir .ct-abas,#ct-templo) button{all:unset;box-sizing:border-box!important;display:flex!important;align-items:center;gap:9px;width:auto!important;height:auto!important;min-height:0!important;margin:0!important;padding:7px 13px 7px 10px!important;border:0!important;border-radius:11px!important;background:transparent!important;color:#e9dcc0!important;cursor:pointer;transition:background .15s,color .15s}
+:is(#cx .ct-abas,#painel-dir .ct-abas,#ct-templo) button:hover,:is(#cx .ct-abas,#painel-dir .ct-abas,#ct-templo) button:focus-visible{background:rgba(255,255,255,.08)!important}
+:is(#cx .ct-abas,#painel-dir .ct-abas,#ct-templo) button[aria-selected="true"]{background:#f1e4c4!important;color:#2a2116!important}
 .ct-abas svg{flex:none;width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 .ct-abas span{display:flex;flex-direction:column;line-height:1.1}
 .ct-abas b{font:600 13.5px var(--sans,system-ui,sans-serif)}
@@ -6355,3 +6355,18 @@ html body #painel-dir.pd.on.central .pd-corpo{position:fixed!important;left:max(
 #painel-dir.central .pd-top{padding:6px 0;margin-bottom:8px;border-bottom:0;background:transparent;justify-content:flex-end;position:absolute;top:18px;right:22px;z-index:6}
 #painel-dir.central .pd-corpo>.ct-abas{margin-right:52px}
 @media(max-width:760px){.ct-abas button{padding:6px 9px}.ct-abas small{display:none}html body #painel-dir.pd.on.central .pd-corpo{top:0!important;bottom:0!important;left:0!important;right:0!important;border-radius:0}}
+/* Templo: barra no topo da página do templo (só quando o operacional está desligado) */
+#ct-templo{position:relative;z-index:20;width:min(1240px,calc(100% - 32px));margin:10px auto 12px;box-sizing:border-box}
+body.op-on #ct-templo{display:none}
+/* Manual no mesmo papel creme dos painéis: as variáveis da janela da Companhia passam a ser as do papel */
+#cx.mf .mf-bx{--cx-tx:#2a2116;--cx-sv:#6b5a44;--cx-ln:rgba(90,63,44,.3);--cx-ac:#8a5a14;width:min(1240px,calc(100vw - 32px))!important;padding:18px 20px;border-radius:16px;border:1px solid rgba(150,115,60,.45);background:#f4ead2;box-shadow:0 30px 70px -30px rgba(0,0,0,.7);box-sizing:border-box;color:var(--cx-tx)}
+#cx.mf>.ct-abas{width:min(1240px,calc(100vw - 32px))}
+#cx.mf .mf-card{background:#fffdf6}#cx.mf .mf-card.mf-tl{background:transparent}#cx.mf .mf-card:hover{background:#fff8e8}
+#cx.mf .mf-painel{background:#fbf3df;border-color:rgba(150,115,60,.35)}
+#cx.mf .mf-painel{--pc:hsl(calc(30 + var(--pi)*52) 52% 36%)}
+#cx.mf .mf-q{background:#fffdf6;color:#2a2116;border-color:rgba(90,63,44,.35)}
+#cx.mf .mf-viz button{color:#5a4a36}#cx.mf .mf-viz button.on{background:#fffdf6;color:#2a2116}
+#cx.mf .mf-pg input:not([type=checkbox]),#cx.mf .mf-pg textarea,#cx.mf .mf-pg select{background:#fffdf6!important;color:#2a2116!important;border-color:rgba(90,63,44,.35)!important}
+#cx.mf .mf-pg button{color:#2a2116;border-color:rgba(90,63,44,.4)}
+#cx.mf .cx-x{color:#f4ead2}
+#ct-templo button{padding:6px 10px 6px 8px!important}

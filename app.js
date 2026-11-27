@@ -15386,11 +15386,11 @@ function postoClique(d){var s=String(d.sel||''),m=s.match(/^\[(data-[a-z0-9-]+)/
    Os painéis continuam sendo os mesmos (mesmo código e mesmos campos): com um deles aberto, o painel
    lateral vira uma folha centralizada (classe .central) com esta barra no topo. O Manual desenha a mesma
    barra no começo do seu HTML (mfHTML, no 36). pdAbre/pdFecha (09) e euSoloAbre (33) chamam ctPinta. */
-var CT_ABAS=[['manual','Manual',''],['conc','Concurso',''],['inst','Instruções',''],['ler','Leitura','Eumátheia'],['enf','Enfermaria',''],
+var CT_ABAS=[['templo','Templo',''],['manual','Manual',''],['conc','Concurso',''],['inst','Instruções',''],['ler','Leitura','Eumátheia'],['enf','Enfermaria',''],
  ['fin','Finanças',TV_ON?'Tesouro de Andvari':EG_ON?'Tesouro do Faraó':'Bolsa de Dracmas'],['b9','Projetos',TV_ON?'Forja de Nidavellir':EG_ON?'Oficina de Ptah':'Bunker 9']];
 var CT_PD=['conc','inst','ler','enf','fin','b9'];
 function ctIcone(k){var eu=(typeof EU_BTS!=='undefined')?EU_BTS.filter(function(x){return x[0]===k;})[0]:null;if(eu)return eu[2];
- var p=k==='manual'?'<path d="M5 4h10l4 4v12H5z"/><path d="M15 4v4h4M8 12h8M8 15h8M8 18h5"/>':(typeof PD_ICON!=='undefined'&&PD_ICON[k])||'';
+ var p=k==='templo'?'<path d="M3 9l9-5 9 5M5 9v9M9.5 9v9M14.5 9v9M19 9v9M3 20h18"/>':k==='manual'?'<path d="M5 4h10l4 4v12H5z"/><path d="M15 4v4h4M8 12h8M8 15h8M8 18h5"/>':(typeof PD_ICON!=='undefined'&&PD_ICON[k])||'';
  return '<svg viewBox="0 0 24 24" aria-hidden="true">'+p+'</svg>';}
 function ctAbasHTML(at){return CT_ABAS.map(function(a){return '<button type="button" role="tab" data-ct="'+a[0]+'" aria-selected="'+(a[0]===at)+'">'+ctIcone(a[0])+
  '<span><b>'+esc(a[1])+'</b>'+(a[2]?'<small>'+esc(a[2])+'</small>':'')+'</span></button>';}).join('');}
@@ -15404,10 +15404,16 @@ function ctPinta(){var pd=document.getElementById('painel-dir');if(!pd)return;va
  var h=ctAbasHTML(k);if(bar._h!==h){bar.innerHTML=h;bar._h=h;}}
 document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-ct]');if(!b)return;e.preventDefault();e.stopPropagation();
  if(b.getAttribute('aria-selected')==='true')return;var k=b.getAttribute('data-ct'),pd=document.getElementById('painel-dir');
+ if(k==='templo'){try{pdFecha();}catch(z){}try{cxFecha();}catch(z){}try{opModo(false);}catch(z){}window.scrollTo(0,0);return;}
  if(k==='manual'){try{pdFecha();}catch(z){}mfAbre();return;}
  try{var cx=document.getElementById('cx');if(cx&&cx.classList.contains('on'))cxFecha();}catch(z){}
  if(pd){pd.classList.remove('eu-um');delete pd.dataset.euk;}
  if(k==='conc'||k==='inst'||k==='ler')euSoloAbre(k);else pdAbre(k);},true);
 /* clicar no fundo escuro fora da folha fecha a central */
 document.addEventListener('click',function(e){var pd=document.getElementById('painel-dir');if(pd&&e.target===pd&&pd.classList.contains('central'))pdFecha();});
+/* Templo: a própria página do templo é a aba; com o operacional desligado, a barra da central fica no topo dela */
+function ctTemplo(){var w=document.querySelector('.wrap');if(!w)return;var n=document.getElementById('ct-templo');
+ if(!n){n=document.createElement('nav');n.id='ct-templo';n.className='ct-abas';n.setAttribute('role','tablist');n.setAttribute('data-notr','');n.innerHTML=ctAbasHTML('templo');}
+ if(w.firstElementChild!==n)w.insertBefore(n,w.firstElementChild);}
+setTimeout(function(){try{ctTemplo();}catch(e){}},1200);setInterval(function(){try{if(!document.body.classList.contains('op-on'))ctTemplo();}catch(e){}},3000);
 })();
