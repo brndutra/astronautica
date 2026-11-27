@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Astronáutica",
   "short_name": "Astronáutica",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Acampamento Meio-Sangue, Hotel Valhala e Casa do Brooklyn: foco com pausa, ciclo de estudos, humor, contadores, captura, hábitos, missões, gastos e aviso de cada faixa do dia. Abre como popup, painel lateral ou janela solta.",
   "icons": {
     "16": "icones/icone-16.png",

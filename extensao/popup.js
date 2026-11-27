@@ -267,6 +267,7 @@ function pintaGuardiao() {
 function aplicaTema(k) {
   TEMA = TEMAS[k] ? k : 'greek'; T = temaDe(TEMA);
   document.body.dataset.tema = TEMA;
+  try { pintaFrontao(TEMA, T.guardiao); } catch (e) { }
   document.title = 'Astronáutica · ' + T.rotulo;
   document.querySelectorAll('[data-tx]').forEach(function (el) { var v = T[el.dataset.tx]; if (v != null) el.textContent = v; });
   document.querySelectorAll('[data-tx-html]').forEach(function (el) { var v = T[el.dataset.txHtml]; if (v != null) el.innerHTML = v; });
@@ -311,8 +312,8 @@ document.addEventListener('DOMContentLoaded', async function () {
   aplicaTema(pref.tema || 'greek');
   aplicaZoom(+pref.zoom || 1);
   $('clique').value = pref.clique || 'popup';
-  $('m-lateral').hidden = MODO === 'lateral';
-  $('m-janela').hidden = MODO === 'janela';
+  if (MODO === 'lateral') { $('m-lateral').classList.add('atual'); $('m-lateral').title = 'Você está no painel lateral'; }
+  if (MODO === 'janela') { $('m-janela').classList.add('atual'); $('m-janela').title = 'Você está na janela solta'; }
 
   /* tamanho */
   function passo(dir) {
@@ -324,6 +325,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   $('z-mais').onclick = function () { passo(1); };
   /* painel lateral: precisa do gesto do clique, por isso abre daqui mesmo */
   $('m-lateral').onclick = async function () {
+    if (MODO === 'lateral') return;
     try {
       var w = await chrome.windows.getCurrent();
       await chrome.sidePanel.open({ windowId: w.id });
@@ -332,6 +334,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     } catch (e) { aviso('O painel lateral pede o Chrome 116 ou mais novo.', true); }
   };
   $('m-janela').onclick = function () {
+    if (MODO === 'janela') return;
     chrome.runtime.sendMessage({ t: 'janela' }, function () { if (MODO === 'popup') window.close(); });
   };
   $('m-ajustes').onclick = function () {

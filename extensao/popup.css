@@ -332,3 +332,64 @@ body[data-tema=egypt] .po-frente h1{text-shadow:2px 2px 0 rgba(183,139,62,.85),0
 .barra-modo{margin:8px 8px 0}
 .barra-modo .bm-k{display:flex;align-items:center;gap:7px;letter-spacing:.12em;color:var(--k)}
 .barra-modo .dracma{width:24px;height:24px;font-size:10px;border-width:1.5px}
+
+/* =====================================================================
+   Frontões arquitetônicos com ornamentos que são botões
+   ===================================================================== */
+.frontao{position:relative;height:150px;margin:6px 4px 0;padding:0}
+.frontao::after{display:none}
+.fr-teto{position:absolute;left:0;right:0;top:20px;height:100px;margin:0;background:none;clip-path:none;filter:drop-shadow(0 4px 4px rgba(40,25,10,.25))}
+.fr-teto::before{display:none}
+.fr-teto svg{display:block;width:100%;height:100%}
+.fr-timpano{position:absolute;left:50%;top:38px;width:220px;height:80px;margin-left:-110px;pointer-events:none}
+.fr-timpano svg{display:block;width:100%;height:100%}
+.fr-friso{position:absolute;left:0;right:0;top:120px;height:22px;border-top:2px solid var(--k);border-bottom:2px solid var(--k);box-shadow:inset 0 1px 0 rgba(255,255,255,.35)}
+.frontao .placa{position:absolute;left:50%;top:119px;transform:translateX(-50%);margin:0;z-index:4;white-space:nowrap}
+
+/* ornamentos-botões */
+.fr-bt{all:unset;position:absolute;z-index:5;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.fr-bt:focus-visible{outline:2px solid var(--c);outline-offset:3px;border-radius:50%}
+.fr-orn{position:relative;display:block;width:100%;height:100%;transition:transform .2s ease,filter .2s ease}
+.fr-orn>svg:first-child{display:block;width:100%;height:100%}
+.fr-bt:hover .fr-orn{transform:translateY(-2px);filter:drop-shadow(0 3px 4px rgba(40,25,10,.35)) brightness(1.06)}
+.fr-ic{position:absolute;width:14px;height:14px}
+.fr-bt.atual{cursor:default;opacity:.55}
+.fr-bt.atual:hover .fr-orn{transform:none;filter:none}
+/* ápice: preferências */
+.fr-apice{left:50%;top:0;width:40px;height:40px;margin-left:-20px}
+.fr-apice .fr-ic{left:13px;top:23px}
+/* pontas: painel lateral (esquerda) e janela solta (direita) */
+.fr-esq,.fr-dir{top:78px;width:40px;height:44px}
+.fr-esq{left:-2px}.fr-dir{right:-2px}
+.fr-esq .fr-ic,.fr-dir .fr-ic{left:13px;top:27px}
+/* medalhão do tímpano: guardião e mensagens */
+.fr-med{left:50%;top:62px;width:50px;height:50px;margin-left:-25px;border-radius:50%}
+.fr-med img{display:block;width:100%;height:100%;border-radius:50%;object-fit:cover;object-position:50% 28%;box-sizing:border-box;border:2px solid var(--c);box-shadow:0 0 0 2px var(--k),0 0 0 4px var(--c),0 4px 10px -2px rgba(30,20,10,.5);transition:transform .2s ease}
+.fr-med:hover img{transform:scale(1.06)}
+.fr-med .bm-n{top:-3px;right:-4px;box-shadow:0 0 0 2px #fbf3df}
+.fr-med[aria-expanded=true] img,.fr-apice[aria-expanded=true] .fr-orn{filter:drop-shadow(0 0 6px var(--c))}
+
+/* Valhala: escudos nas pontas, dragões cruzados no ápice */
+body[data-tema=norse] .fr-esq,body[data-tema=norse] .fr-dir{top:76px}
+body[data-tema=norse] .fr-esq .fr-ic,body[data-tema=norse] .fr-dir .fr-ic{top:15px}
+body[data-tema=norse] .fr-med img{border-radius:50%;box-shadow:0 0 0 2px #2a1a0e,0 0 0 5px #7a4e2c,0 0 0 6px #d4bd82,0 4px 10px -2px rgba(0,0,0,.5)}
+body[data-tema=norse] .fr-timpano{top:28px}
+body[data-tema=norse] .fr-med{top:50px}
+
+/* Brooklyn: pilono com bandeiras nas torres, sol alado no portal, cartucho no alto */
+body[data-tema=egypt] .fr-teto{top:16px;height:104px}
+body[data-tema=egypt] .fr-esq,body[data-tema=egypt] .fr-dir{top:34px}
+body[data-tema=egypt] .fr-esq{left:calc(19% - 20px)}body[data-tema=egypt] .fr-dir{right:calc(19% - 20px)}
+body[data-tema=egypt] .fr-esq .fr-ic,body[data-tema=egypt] .fr-dir .fr-ic{top:20px}
+body[data-tema=egypt] .fr-apice{top:2px}
+body[data-tema=egypt] .fr-apice .fr-ic{top:18px}
+body[data-tema=egypt] .fr-timpano{top:20px}
+body[data-tema=egypt] .fr-med{top:44px;width:44px;height:44px;margin-left:-22px}
+body[data-tema=egypt] .fr-med img{border-color:#c9a23a;box-shadow:0 0 0 2px #9a3d2a,0 0 0 4px #c9a23a,0 0 14px 2px rgba(233,200,110,.6)}
+/* em telas largas o frontão fica num pórtico central e a cornija corre de ponta a ponta */
+.fr-teto{left:50%;right:auto;width:min(100%,600px);transform:translateX(-50%)}
+.fr-esq{left:calc(50% - min(50%,300px) - 2px)}.fr-dir{right:calc(50% - min(50%,300px) - 2px)}
+body[data-tema=egypt] .fr-esq{left:calc(50% - min(50%,300px) * .62 - 20px)}body[data-tema=egypt] .fr-dir{right:calc(50% - min(50%,300px) * .62 - 20px)}
+.frontao::before{content:"";position:absolute;left:0;right:0;top:104px;height:16px;background:var(--k);box-shadow:inset 0 2px 0 var(--c),inset 0 -3px 0 var(--c)}
+body[data-tema=greek] .frontao::before{background:repeating-linear-gradient(90deg,#e9c97c 0 6px,#8a5a14 6px 9px) 0 6px/100% 6px no-repeat,#8a5a14}
+body[data-tema=egypt] .frontao::before{top:100px;height:20px;background:linear-gradient(#c9a23a 0 3px,transparent 3px),repeating-linear-gradient(90deg,#3a5f9e 0 7px,#c9a23a 7px 9px,#2a8a7e 9px 16px,#c9a23a 16px 18px)}
