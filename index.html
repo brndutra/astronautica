@@ -20024,7 +20024,7 @@ setInterval(function(){try{hojeSobe();}catch(e){}},700);
  ].join('\n');document.head.appendChild(st);})();
 
 /* Toque da Concha no visual da moldura de cada tema; frontão do templo inicial sempre por cima; Registrar alinhado */
-(function(){var st=document.createElement('style');st.id='friso-moldura-css';
+(function(){var st=document.createElement('style');st.id='friso-moldura2-css';
  var k=TV_ON?'#3a2414':EG_ON?'#1e3a6e':'#8a5a14',c=TV_ON?'#d4bd82':EG_ON?'#c9a23a':'#e9c97c',bg=TV_ON?'#f4ead2':EG_ON?'#f6efd9':'#fbf3df',hi=TV_ON?'#203936':EG_ON?'#1e3a6e':'#8a5a14',tx=TV_ON?'#f3e2b0':EG_ON?'#f3e2b0':'#fff8e6';
  var F='html body:not(.zz9):not(.zz8) #hero-box#hero-box .bn-slot>#tp-friso-bloco';
  st.textContent=[
@@ -20115,7 +20115,7 @@ function npcHora(){var d=new Date();return ('0'+d.getHours()).slice(-2)+':'+('0'
 function npcRegistra(tit,sub,quem){var a=npcHist();a.unshift({id:Date.now()+''+Math.round(Math.random()*999),tit:String(tit||''),sub:String(sub||''),quem:quem||'npc',h:npcHora(),d:new Date().toDateString(),lido:false});npcGrava(a);try{npcPinta();}catch(e){}}
 /* aviso: balão do guardião, no canto do templo, sem cobrir o frontão */
 tdAvisa=function(tit,sub,acoes,som){var box=document.getElementById('td-toasts');if(!box){box=document.createElement('div');box.id='td-toasts';box.setAttribute('aria-live','assertive');document.body.appendChild(box);}
- box.classList.add('npc-box');var t=document.createElement('div');t.className='npc-toast';t.setAttribute('role','alert');
+ box.classList.add('npc-box');var t=document.createElement('div');t.className='npc-toast'+(acoes&&acoes.length>1?' npc-card':'');t.setAttribute('role','alert');
  t.innerHTML=npcOrn()+'<button type="button" class="npc-x" aria-label="Dispensar aviso">×</button><span class="npc-hr">agora · '+npcHora()+'</span><img class="npc-av" src="'+NPC.img+'" alt="Retrato de '+tdEsc(NPC.curto)+'"><div class="npc-nm">'+tdEsc(NPC.curto)+'</div><div class="npc-lb">'+tdEsc(tit)+'</div>'+(sub?'<div class="npc-say">'+tdEsc(sub)+'</div>':'')+'<div class="npc-ac"></div>';
  var ac=t.querySelector('.npc-ac'),L=acoes||[['ok',null]];L.forEach(function(a,i){var b=document.createElement('button');b.type='button';b.textContent=(a[0]==='ok'?NPC.ok:a[0]);if(i===0)b.className='pri';b.onclick=function(){t.remove();if(a[1])a[1]();};ac.appendChild(b);});
  t.querySelector('.npc-x').onclick=function(){t.remove();};
@@ -20166,6 +20166,12 @@ setTimeout(function(){try{npcCentral();}catch(e){}},1700);setInterval(function()
  '.npc-hr{float:right;margin:2px 22px 0 0;font:600 8px system-ui;letter-spacing:1.2px;text-transform:uppercase;opacity:.6}',
  '.npc-toast .npc-x,#npc-pop .npc-x{position:absolute;right:7px;top:10px;border:0;background:none;color:var(--npc-ink);font:18px system-ui;line-height:1;cursor:pointer;padding:0 3px}',
  '.npc-ac{clear:both;display:flex;gap:7px;flex-wrap:wrap}',
+ /* cartão de diálogo: chamados que pedem decisão */
+ '.npc-toast.npc-card{padding-left:112px;min-height:150px;border-left-width:1px}',
+ '.npc-toast.npc-card .npc-orn{margin-left:-112px}',
+ '.npc-toast.npc-card .npc-av{float:none;position:absolute;left:0;top:7px;bottom:auto;width:98px;height:calc(100% - 7px);object-position:50% 25%;margin:0;border:0;border-right:2px solid var(--npc-gold);border-radius:0 0 0 5px}',
+ '.npc-toast.npc-card .npc-lb{border-bottom:1px solid var(--npc-gold);padding-bottom:5px;margin-bottom:2px}',
+ '.npc-toast.npc-card::after{display:none}',
  '.npc-ac button,#npc-pop .npc-pe button,#npc-pop .npc-tabs button{font:600 10px system-ui;letter-spacing:.3px;padding:6px 10px;border-radius:4px;border:1px solid var(--npc-gold);background:transparent;color:var(--npc-ink);cursor:pointer}',
  '.npc-ac button.pri{background:var(--npc-dark);border-color:var(--npc-dark);color:var(--npc-paper)}',
  /* botão do mensageiro e central */
