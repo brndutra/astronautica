@@ -15446,9 +15446,15 @@ setTimeout(function(){try{bnArruma();}catch(e){}},80);setTimeout(function(){try{
 var BV_I=0;
 function bvEsc(x){return String(x).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
 function bvFotos(){if(S.visFoto&&!Array.isArray(S.visFotos)){S.visFotos=[S.visFoto];delete S.visFoto;}if(!Array.isArray(S.visFotos))S.visFotos=[];return S.visFotos;}
-function bvHTML(){var ig=S.ign||{},af=ig.af||[],vi=ig.vi||[],n=af.length,F=bvFotos();if(BV_I>=n||BV_I<0)BV_I=0;
- var fs='';for(var q=0;q<3;q++){var u=F[q],leg=vi[q]?bvEsc(vi[q]):(q?'':'o que você quer ver acontecer');
-  fs+='<figure class="bv-foto bv-f'+q+'"><button type="button" class="bv-fbt" data-bv="foto" data-bq="'+q+'" title="'+(u?'trocar esta foto':'escolher uma foto')+'">'+(u?'<img src="'+u+'" alt="visualização '+(q+1)+'">':'<span class="bv-vazio"><b>+</b>foto '+(q+1)+'</span>')+'</button><figcaption>'+leg+'</figcaption>'+(u?'<button type="button" class="bv-x" data-bv="tira" data-bq="'+q+'" title="tirar esta foto" aria-label="tirar a foto '+(q+1)+'">×</button>':'')+'</figure>';}
+/* fotos de exemplo por tema: aparecem só enquanto o espaço está vazio; clicar troca pela sua */
+var WM='https://commons.wikimedia.org/wiki/Special:FilePath/';
+window.bvFalha=function(im){var b=im.parentNode;if(b)b.innerHTML='<span class="bv-vazio"><b>+</b>sua foto</span>';};
+function bvPadrao(){return EG_ON?[[WM+'Felucca_R08.jpg?width=600','feluca no Nilo ao pôr do sol'],[WM+'Philae_Temple_R01.jpg?width=600','quiosque de Trajano, Philae'],[WM+'Hypostyle_karnak_colonne.jpg?width=600','coluna pintada de Karnak']]
+ :TV_ON?[['img/acampamento/vh-fotos/salao-ouro.webp','o salão dourado'],['img/acampamento/vh-fotos/drakkar.webp','proas do drakkar'],['img/acampamento/vh-fotos/torre.webp','a torre acima das nuvens']]
+ :[['img/acampamento/arquearia.jpg','a linha de tiro'],['img/acampamento/fogueira-noite.webp','a fogueira da noite'],['img/acampamento/templos.jpg','os templos do bosque']];}
+function bvHTML(){var ig=S.ign||{},af=ig.af||[],vi=ig.vi||[],n=af.length,F=bvFotos(),P=bvPadrao();if(BV_I>=n||BV_I<0)BV_I=0;
+ var fs='';for(var q=0;q<3;q++){var u=F[q],pd=!u&&P[q],leg=vi[q]?bvEsc(vi[q]):(pd?pd[1]:(q?'':'o que você quer ver acontecer'));
+  fs+='<figure class="bv-foto bv-f'+q+(pd?' bv-pad':'')+'"><button type="button" class="bv-fbt" data-bv="foto" data-bq="'+q+'" title="'+(u?'trocar esta foto':'pôr a sua foto aqui')+'">'+(u?'<img src="'+u+'" alt="visualização '+(q+1)+'">':pd?'<img src="'+pd[0]+'" alt="'+pd[1]+'" loading="lazy" referrerpolicy="no-referrer" onerror="bvFalha(this)"><span class="bv-troca">+ sua foto</span>':'<span class="bv-vazio"><b>+</b>foto '+(q+1)+'</span>')+'</button><figcaption>'+leg+'</figcaption>'+(u?'<button type="button" class="bv-x" data-bv="tira" data-bq="'+q+'" title="tirar esta foto" aria-label="tirar a foto '+(q+1)+'">×</button>':'')+'</figure>';}
  var a=n?bvEsc(af[BV_I]):'Escreva a primeira afirmação: curta, no presente, em primeira pessoa.';
  return '<div class="bv-fotos">'+fs+'</div>'+
   '<div class="bv-af'+(n?'':' bv-af-vazio')+'"><span class="bv-k">afirmação'+(n?' · '+(BV_I+1)+' de '+n:'')+'</span><p class="bv-txt">'+a+'</p>'+
@@ -18436,9 +18442,9 @@ setInterval(function(){var pd=document.querySelector('#painel-dir.pd.on'),pl=doc
 window.OP_TEMPLO=OP_TEMPLO;
 try{window.ASTRO_IC={CR_IC:CR_IC,LAT_IC:LAT_IC,ARS_IC:ARS_IC,RT_IC:RT_IC,QA_IC:QA_IC,OP_IC:OP_IC,PD_ICON:PD_ICON,TEMA_IC:TEMA_IC,ICO_P:ICO_P};}catch(e){}
 /* Tema Casa do Brooklyn: cada página em arquivo próprio (temas/egito/) */
-if(EG_ON){['comum','saguao','operacional'].forEach(function(n){var sc=document.createElement('script');sc.src='temas/egito/'+n+'.js?v=5';sc.async=false;document.body.appendChild(sc);});}
+if(EG_ON){['comum','saguao','operacional'].forEach(function(n){var sc=document.createElement('script');sc.src='temas/egito/'+n+'.js?v=6';sc.async=false;document.body.appendChild(sc);});}
 /* Tema Hotel Valhala: cada página em arquivo próprio (temas/valhala/) */
-if(TV_ON){['comum','saguao','operacional'].forEach(function(n){var sc=document.createElement('script');sc.src='temas/valhala/'+n+'.js?v=3';sc.async=false;document.body.appendChild(sc);});}
+if(TV_ON){['comum','saguao','operacional'].forEach(function(n){var sc=document.createElement('script');sc.src='temas/valhala/'+n+'.js?v=4';sc.async=false;document.body.appendChild(sc);});}
 
 /* Argo: a moldura do kit acompanha a largura de cada cartão (cabeçalho 280×88 e rodapé 280×44, sem deformar) */
 function argoMede(){var o=document.getElementById('modo-op');if(!o||!window.ResizeObserver)return;
@@ -18828,6 +18834,67 @@ pithosNoDiario=function(){var sl0=trioPainel('p'),ri=document.getElementById('ra
 function trioNotas(){var nt=document.getElementById('qa-d-nt'),sl=trioPainel('n');if(!nt||!sl)return;if(nt.parentNode!==sl){var a=document.activeElement;if(a&&nt.contains(a)&&nt.parentNode)return;sl.appendChild(nt);}if(!nt.open)nt.open=true;}
 function trioArruma(){try{trioCard();fioNoPainel();pithosNoDiario();trioNotas();trioAbas();}catch(e){}}
 setInterval(trioArruma,700);setTimeout(trioArruma,600);
+/* Banner: mesma altura nos três temas e fotos do quadro de visão maiores */
+(function(){var st=document.createElement('style');st.id='bn-altura-css';st.textContent=[
+ '@media(min-width:700px){#hero-box#hero-box .vx-hero.bn2{height:590px!important;min-height:590px!important;max-height:590px!important;box-sizing:border-box!important;overflow:hidden}}',
+ '#hero-box .bn-visao{max-width:940px!important;gap:28px!important;margin:16px 0 8px!important}',
+ '#hero-box .bv-fotos{padding:10px 8px 4px 4px!important}',
+ '#hero-box .bv-fotos .bv-foto{width:clamp(118px,12.5vw,206px)!important;padding:7px 7px 24px!important}',
+ '#hero-box .bv-fotos .bv-foto+.bv-foto{margin-left:-30px!important}',
+ '#hero-box .bv-fotos .bv-foto:hover{transform:rotate(0) translateY(-10px) scale(1.18)!important}',
+ '#hero-box .bv-foto figcaption{font-size:10.5px!important}',
+ '#hero-box .bv-pad .bv-fbt{position:relative}',
+ '#hero-box .bv-troca{position:absolute;right:5px;bottom:5px;padding:2px 7px;border-radius:999px;background:rgba(20,14,8,.62);color:#fff7e2;font:600 9px var(--mono,monospace);letter-spacing:.08em;text-transform:uppercase;opacity:0;transition:opacity .2s}',
+ '#hero-box .bv-pad:hover .bv-troca{opacity:1}',
+ '@media(max-width:699px){#hero-box .bv-fotos .bv-foto{width:31vw!important}#hero-box .bv-fotos .bv-foto+.bv-foto{margin-left:-6vw!important}}'
+].join('\n');document.head.appendChild(st);})();
+
+/* Banner: organizar — arrastar título, folheto, cartão-postal, fotos, afirmação e crachá; posição guardada por tema */
+var BNM_EL=[['tit','.bn-tit','título'],['id','.bn-id','folheto'],['postal','.cp-postal','cartão-postal'],['fotos','.bv-fotos','fotos'],['af','.bv-af','afirmação'],['base','.bn-base','crachá']];
+function bnmTema(){return EG_ON?'egito':TV_ON?'valhala':'acampamento';}
+function bnmPos(){S.bnPos=S.bnPos||{};var t=bnmTema();S.bnPos[t]=S.bnPos[t]||{};return S.bnPos[t];}
+function bnmAplica(){var P=bnmPos(),st=document.getElementById('bnm-pos');if(!st){st=document.createElement('style');st.id='bnm-pos';document.head.appendChild(st);}
+ var c=BNM_EL.map(function(e){var v=P[e[0]];return v?'#hero-box .vx-hero.bn2 '+e[1]+'{translate:'+(v[0]|0)+'px '+(v[1]|0)+'px}':'';}).join('\n');if(st.textContent!==c)st.textContent=c;}
+function bnmBotao(){var h=document.querySelector('#hero-box .vx-hero.bn2');if(!h)return;var b=h.querySelector(':scope > .bnm-tg');
+ if(!b){b=document.createElement('div');b.className='bnm-tg';b.setAttribute('data-notr','');
+  b.innerHTML='<button type="button" data-bnm="tg" title="arrastar os elementos do banner">✥ organizar</button><button type="button" data-bnm="rs" title="voltar tudo ao lugar original">restaurar</button><button type="button" data-bnm="ok">pronto</button>';
+  h.appendChild(b);}}
+document.addEventListener('click',function(e){var t=e.target.closest&&e.target.closest('[data-bnm]');if(!t)return;e.preventDefault();e.stopPropagation();var k=t.dataset.bnm;
+   if(k==='tg')document.body.classList.add('bn-movendo');
+   if(k==='ok')document.body.classList.remove('bn-movendo');
+   if(k==='rs'){S.bnPos[bnmTema()]={};try{grava();}catch(z){}bnmAplica();}},true);
+(function(){var arr=null;
+ document.addEventListener('pointerdown',function(e){if(!document.body.classList.contains('bn-movendo'))return;if(e.target.closest('.bnm-tg'))return;
+  var h=document.querySelector('#hero-box .vx-hero.bn2');if(!h||!h.contains(e.target))return;
+  for(var i=0;i<BNM_EL.length;i++){var el=e.target.closest(BNM_EL[i][1]);if(el&&h.contains(el)){var v=bnmPos()[BNM_EL[i][0]]||[0,0];arr={k:BNM_EL[i][0],el:el,x0:e.clientX,y0:e.clientY,v0:v.slice(),hr:h.getBoundingClientRect(),er:el.getBoundingClientRect()};el.classList.add('bnm-ativo');e.preventDefault();e.stopPropagation();try{el.setPointerCapture(e.pointerId);}catch(z){}return;}}},true);
+ document.addEventListener('pointermove',function(e){if(!arr)return;var dx=e.clientX-arr.x0,dy=e.clientY-arr.y0,H=arr.hr,R=arr.er;
+  dx=Math.max(H.left-R.left,Math.min(H.right-R.right,dx));dy=Math.max(H.top-R.top,Math.min(H.bottom-R.bottom,dy));
+  bnmPos()[arr.k]=[Math.round(arr.v0[0]+dx),Math.round(arr.v0[1]+dy)];bnmAplica();},true);
+ document.addEventListener('pointerup',function(){if(!arr)return;arr.el.classList.remove('bnm-ativo');arr=null;try{grava();}catch(z){}},true);
+ document.addEventListener('click',function(e){if(document.body.classList.contains('bn-movendo')&&!e.target.closest('.bnm-tg')&&e.target.closest('#hero-box .vx-hero.bn2')){e.preventDefault();e.stopPropagation();}},true);
+ document.addEventListener('keydown',function(e){if(e.key==='Escape')document.body.classList.remove('bn-movendo');});})();
+(function(){var r0=vxRender;vxRender=function(){var x=r0.apply(this,arguments);try{bnmBotao();bnmAplica();}catch(e){}return x;};})();
+setTimeout(function(){try{bnmBotao();bnmAplica();}catch(e){}},1300);setInterval(function(){try{bnmBotao();}catch(e){}},3000);
+(function(){var st=document.createElement('style');st.id='bnm-css';st.textContent=[
+ '#hero-box#hero-box .bnm-tg{position:absolute!important;left:50%!important;top:12px!important;bottom:auto!important;right:auto!important;margin:0!important;width:auto!important;transform:translateX(-50%)!important;z-index:30;display:flex;gap:6px;opacity:0;transition:opacity .2s}',
+ '#hero-box .vx-hero.bn2:hover .bnm-tg,body.bn-movendo #hero-box .bnm-tg{opacity:1}',
+ '#hero-box#hero-box .bnm-tg button{width:auto!important;min-height:0!important;margin:0!important;padding:3px 10px!important;border:1px solid #8a6f55!important;border-radius:999px!important;background:#fbf5e6!important;color:#5a3f2c!important;font:700 9px var(--mono,monospace)!important;letter-spacing:.1em!important;text-transform:uppercase!important;cursor:pointer;box-shadow:none!important}',
+ '#hero-box .bnm-tg [data-bnm=rs],#hero-box .bnm-tg [data-bnm=ok]{display:none}',
+ 'body.bn-movendo #hero-box .bnm-tg [data-bnm=rs],body.bn-movendo #hero-box .bnm-tg [data-bnm=ok]{display:inline-block}body.bn-movendo #hero-box .bnm-tg [data-bnm=tg]{display:none}',
+ 'body.bn-movendo #hero-box .vx-hero.bn2 :is(.bn-tit,.bn-id,.cp-postal,.bv-fotos,.bv-af,.bn-base){outline:1.5px dashed #b07a3a;outline-offset:3px;cursor:move;touch-action:none;user-select:none}',
+ 'body.bn-movendo #hero-box .vx-hero.bn2 .bnm-ativo{outline-style:solid;z-index:20}'
+].join('\n');document.head.appendChild(st);})();
+
+/* Rodapé no modo operacional: gaveta de apps aberta fica em papel (não no laranja do casco) e a proa/popa somem enquanto ela está aberta; encontro no mar com placa legível */
+(function(){var st=document.createElement('style');st.id='rod-aberto-css';st.textContent=[
+ 'body:not(.tv).op-on #rod-apps.aberto{background:repeating-linear-gradient(0deg,rgba(47,127,146,.16) 0 1px,transparent 1px 16.5px) 0 100%/100% 66px no-repeat,linear-gradient(#efe5cf,#e6dcc2) 0 100%/100% 66px no-repeat,linear-gradient(#f6eedb,#efe3c6)!important}',
+ 'html body.tv.op-on #rod-apps.rod.aberto{background:linear-gradient(#f3ead8,#e9dcc2)!important}',
+ 'body.op-on #rod-apps.aberto .rod-top::before,body.op-on #rod-apps.aberto .rod-top::after{display:none!important}',
+ '#mt-enc .mt-info{background:rgba(9,28,36,.82)!important;border:1px solid rgba(236,210,126,.55)!important;border-radius:7px!important;padding:6px 10px 7px!important;box-shadow:0 4px 12px rgba(0,0,0,.35)!important;backdrop-filter:blur(2px)}',
+ '#mt-enc .mt-k{color:#e9dcc2!important;opacity:1!important;text-shadow:0 1px 2px #000}',
+ '#mt-enc .mt-n{color:#ffd978!important;text-shadow:0 1px 2px #000!important;-webkit-text-stroke:0!important}',
+ '#mt-enc .mt-o{color:#f6efe0!important;opacity:1!important;text-shadow:0 1px 2px #000}'
+].join('\n');document.head.appendChild(st);})();
 
 })();
 </script>

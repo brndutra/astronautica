@@ -13,3 +13,8 @@ Fotos carregadas direto do Wikimedia Commons (licenças livres). Página de cada
 - Philae_Temple_R01.jpg — Marc Ryckaert, Wikimedia Commons
 - Dendera_Temple.jpg — Wikimedia Commons (ver página do arquivo)
 - QV66_Khepri_Tomb_of_Nefertari_entrance.jpg — Wikimedia Commons (ver página do arquivo)
+
+## Fotos de exemplo do quadro de visão (banner)
+- Felucca R08.jpg: Marc Ryckaert, Wikimedia Commons (feluca no Nilo ao pôr do sol, Luxor)
+- Philae Temple R01.jpg: Marc Ryckaert, Wikimedia Commons (quiosque de Trajano, Philae)
+- Hypostyle karnak colonne.jpg: Guillaume Lelarge, Wikimedia Commons, CC BY-SA 3.0

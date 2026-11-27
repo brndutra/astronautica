@@ -188,4 +188,30 @@ if(TV_ON){(function(){var st=document.createElement('style');st.id='vh-bandeira-
  'body.tv #hero-box .bv-nav button:hover{background:#A88750!important;color:#203936!important}',
  'body.tv #hero-box .vx-hero.bn2 .bn-id .cp-guia{border-top:5px solid #203936!important}'
 ].join('\n');document.head.appendChild(st);})();
+
+/* cronologia do dia: o próprio totem — a cabeça do ídolo (elmo de chifres, barba entalhada) É a ponta (Inspeção) e o pé cravado na relva sobre a laje É a base (Ronda); poste de madeira escura com runas entalhadas nas laterais */
+if(TV_ON){(function(){var U=function(n){return 'url("img/acampamento/'+n+'.svg?v=3")';};var F='body.tv #dia-faixa#dia-faixa';var st=document.createElement('style');st.id='vh-totem2-css';st.textContent=[
+ F+'{background:none!important;border:0!important;box-shadow:none!important;padding:0 2px!important;gap:0!important}',
+ F+'::before{content:"";position:absolute;z-index:0;left:calc(2px + (100% - 4px)*.1167);right:calc(2px + (100% - 4px)*.1167);top:60px;bottom:46px;background:'+U('vh-totem-runas')+' left 3px top 8px/9px 150px repeat-y,'+U('vh-totem-runas')+' right 3px top 80px/9px 150px repeat-y,repeating-linear-gradient(90deg,transparent 0 6px,rgba(46,28,16,.35) 6px 7px,transparent 7px 13px),linear-gradient(90deg,#3a2414,#6e4426 40%,#5a3820 60%,#2e1c10)!important;box-shadow:inset 0 0 0 1px #2e1c10}',
+ F+'>*{position:relative;z-index:1}',
+ F+' .df-cap{border:0!important;border-radius:0!important;box-shadow:none!important;background:transparent!important;padding:0!important;overflow:visible}',
+ F+' .df-cap::before{display:none!important}',
+ F+' .df-cap>svg{display:none!important}',
+ F+' .df-cap.df-m{height:60px!important;background:'+U('vh-totem-topo')+' center bottom/100% 100% no-repeat!important;justify-content:flex-end!important;padding-bottom:2px!important;gap:0!important}',
+ F+' .df-cap.df-m b{font:700 6.5px var(--mono,monospace)!important;letter-spacing:.06em!important;text-transform:uppercase;color:#3a2414!important;line-height:1!important}',
+ F+' .df-cap.df-m i{font:700 7.5px var(--mono,monospace)!important;color:#3a2414!important;font-style:normal;line-height:1.1!important}',
+ F+' .df-cap.df-m.ok{filter:drop-shadow(0 0 4px #f2d27a)}',
+ F+' .df-cap.df-n{height:46px!important;background:'+U('vh-totem-pe')+' center top/100% 100% no-repeat!important;justify-content:flex-end!important;padding-bottom:2px!important;gap:0!important}',
+ F+' .df-cap.df-n b{font:700 6.5px var(--mono,monospace)!important;letter-spacing:.06em!important;text-transform:uppercase;color:#f1e6cf!important;line-height:1!important}',
+ F+' .df-cap.df-n i{font:700 7.5px var(--mono,monospace)!important;color:#ecd27e!important;font-style:normal;line-height:1.1!important}',
+ F+' .df-cap.df-n.ok i{color:#9fe3a5!important}',
+ F+' .df-cap:hover{filter:brightness(1.1)}',
+ F+' .df-trilho{background:none!important;margin:6px 15px!important}',
+ F+' .df-seg{background:color-mix(in srgb,var(--b) 30%,#3a2414)!important;border:1px solid rgba(226,198,156,.3)!important;border-radius:2px!important;box-shadow:inset 0 1px 2px rgba(0,0,0,.55)!important}',
+ F+' .df-seg span{color:#f1e6cf!important}',
+ F+' .df-seg.atual{box-shadow:0 0 0 1.5px #ecd27e,inset 0 1px 2px rgba(0,0,0,.5)!important}',
+ F+' .df-h{color:#e2c69c!important}',
+ F+' .df-toq{background:#ecd27e!important;opacity:.8}',
+ F+' .df-agora{border-top-color:#ecd27e!important}'+F+' .df-agora::before{background:#ecd27e!important}'+F+' .df-agora b{background:#ecd27e!important;color:#2b1d0e!important}'
+].join('\n');document.head.appendChild(st);})();}
 })();

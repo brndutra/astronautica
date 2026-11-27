@@ -95,4 +95,30 @@ var st=document.createElement('style');st.id='eg-saguao-css';st.textContent=[
  'body.eg #hero-box .bv-nav button:hover{background:#c9a23a!important;color:#1e3a6e!important}',
  'body.eg #hero-box .vx-hero.bn2 .bn-id .cp-guia{border-top:5px solid #1e3a6e!important;background:linear-gradient(180deg,#f7ecd2,#ecdcb4)!important}'
 ].join('\n');document.head.appendChild(st);})();
+
+/* cronologia do dia: obelisco de granito negro — o piramídio dourado É a ponta (Inspeção) e o embasamento em degraus É a base (Ronda); fuste afinando para cima, coluna de hieróglifos entalhados nas laterais */
+(function(){var U=function(n){return 'url("img/egito/'+n+'.svg?v=2")';};var F='body.eg #dia-faixa#dia-faixa';var st=document.createElement('style');st.id='eg-obelisco2-css';st.textContent=[
+ F+'{background:none!important;border:0!important;box-shadow:none!important;padding:0 2px!important;gap:0!important}',
+ F+'::before{content:"";position:absolute;z-index:0;left:5px;right:5px;top:52px;bottom:42px;background:'+U('obelisco2-glifos')+' left 4px top 10px/9px 150px repeat-y,'+U('obelisco2-glifos')+' right 4px top 85px/9px 150px repeat-y,linear-gradient(90deg,#221e1b,#3b342f 45%,#2c2622 55%,#1d1a17)!important;clip-path:polygon(7% 0,93% 0,100% 100%,0 100%);box-shadow:inset 0 0 0 1px #000}',
+ F+'>*{position:relative;z-index:1}',
+ F+' .df-cap{border:0!important;border-radius:0!important;box-shadow:none!important;background:transparent!important;padding:0!important;color:#2b1d0e!important;overflow:visible}',
+ F+' .df-cap::before{display:none!important}',
+ F+' .df-cap>svg{display:none!important}',
+ F+' .df-cap.df-m{height:52px!important;background:'+U('obelisco2-piramidion')+' center bottom/calc(100% - 6px) 100% no-repeat!important;justify-content:flex-end!important;padding-bottom:9px!important;gap:0!important}',
+ F+' .df-cap.df-m b{font:700 6.5px var(--mono,monospace)!important;letter-spacing:.06em!important;text-transform:uppercase;color:#3a2a08!important}',
+ F+' .df-cap.df-m i{font:700 8px var(--mono,monospace)!important;color:#3a2a08!important;font-style:normal}',
+ F+' .df-cap.df-m.ok{filter:drop-shadow(0 0 4px #f2d27a)}',
+ F+' .df-cap.df-n{height:42px!important;background:'+U('obelisco2-base')+' center top/100% 100% no-repeat!important;justify-content:flex-end!important;padding-bottom:4px!important;gap:0!important}',
+ F+' .df-cap.df-n b{font:700 6.5px var(--mono,monospace)!important;letter-spacing:.06em!important;text-transform:uppercase;color:#e9dcc2!important}',
+ F+' .df-cap.df-n i{font:700 8px var(--mono,monospace)!important;color:#ecd27e!important;font-style:normal}',
+ F+' .df-cap.df-n.ok i{color:#9fe3a5!important}',
+ F+' .df-cap:hover{filter:brightness(1.12)}',
+ F+' .df-trilho{background:none!important;margin:6px 15px!important}',
+ F+' .df-seg{background:color-mix(in srgb,var(--b) 26%,#2a2420)!important;border:1px solid rgba(217,203,178,.28)!important;border-radius:2px!important;box-shadow:inset 0 1px 2px rgba(0,0,0,.6)!important}',
+ F+' .df-seg span{color:#eadcc0!important}',
+ F+' .df-seg.atual{box-shadow:0 0 0 1.5px #ecd27e,inset 0 1px 2px rgba(0,0,0,.5)!important}',
+ F+' .df-h{color:#cdbb9a!important}',
+ F+' .df-toq{background:#ecd27e!important;opacity:.8}',
+ F+' .df-agora{border-top-color:#ecd27e!important}'+F+' .df-agora::before{background:#ecd27e!important}'+F+' .df-agora b{background:#ecd27e!important;color:#2b1d0e!important}'
+].join('\n');document.head.appendChild(st);})();
 })();
