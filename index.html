@@ -20510,14 +20510,6 @@ setTimeout(function(){try{rodRearruma();}catch(e){}},1700);
  RP+' .rp-cron #qa-d-dj>.qa-sb::before{display:none!important}',
  RP+' .rp-cron #dj-t{width:100%!important;box-sizing:border-box;min-height:54px}'
  ].join('\n');document.head.appendChild(st);})();
-/* Guia do Campista dentro da Ficha do Campista, pequenininho, fora do cadeado */
-function fcGuia(){var d=document.getElementById('fc-dlg');if(!d||d.querySelector(':scope > .fc-guia'))return;
- var g=document.createElement('details');g.className='fc-guia';g.setAttribute('data-notr','');
- g.innerHTML='<summary>guia do campista</summary><div class="fcg-c">'+AC_GUIA.map(function(x){return '<section><h4>'+x[0]+'</h4><div>'+x[1]+'</div></section>';}).join('')+'</div>';d.appendChild(g);}
-setTimeout(function(){try{fcGuia();}catch(e){}},1800);setInterval(function(){try{fcGuia();}catch(e){}},2000);
-(function(){var f0=fcAbreDlg;fcAbreDlg=function(){var r=f0.apply(this,arguments);try{fcGuia();}catch(e){}return r;};})();
-try{var _fa=document.getElementById('fc-abre');if(_fa)_fa.onclick=fcAbreDlg;}catch(e){}
-
 /* elementos encostados viram uma pílula só, em todos os temas */
 function pilulasJuntas(){var cab=document.querySelector('.wrap > div.rt > .cab'),h=document.getElementById('h-rast');
  if(cab&&h){var c=getComputedStyle(h),v=c.backgroundColor+'|'+c.borderTopColor+'|'+c.color;if(cab._pv!==v){cab._pv=v;cab.style.setProperty('--pj-bg',c.backgroundColor);cab.style.setProperty('--pj-bd',c.borderTopColor);cab.style.setProperty('--pj-tx',c.color);}}
@@ -20548,16 +20540,7 @@ setTimeout(function(){try{pilulasJuntas();}catch(e){}},1500);setInterval(functio
  B+' .br-db .regdia .rdent{gap:0!important}',
  B+' .br-db .regdia .rdent>input{border-radius:999px 0 0 999px!important;border-right:0!important;margin:0!important;box-shadow:none!important;border-color:var(--pj-bd)!important}',
  B+' .br-db .regdia .rdent>button{border-radius:0!important;margin:0!important;height:30px!important;box-shadow:none!important;border:1px solid var(--pj-bd)!important}',
- B+' .br-db>.br-ver{margin-left:-6px!important;border-radius:0 999px 999px 0!important;border-left:0!important;box-shadow:none!important;border-color:var(--pj-bd)!important}',
- /* guia na ficha */
- '#fc-dlg>.fc-guia{position:absolute;left:50%;bottom:30px;transform:translateX(-50%);z-index:5;width:min(640px,80%);margin:0;font-size:12px;text-align:center}',
- '#fc-dlg>.fc-guia[open]>summary{background:#5a3a10;color:#fbf3df}',
- '#fc-dlg>.fc-guia>summary{display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border:1px solid #b89c72;border-radius:999px;background:#fbf3df;color:#5a3a10;font:700 8.5px var(--mono,monospace);letter-spacing:.2em;text-transform:uppercase;cursor:pointer;list-style:none}',
- '#fc-dlg>.fc-guia>summary::-webkit-details-marker{display:none}',
- '#fc-dlg>.fc-guia>summary::before{content:"📜"}',
- '#fc-dlg>.fc-guia .fcg-c{position:absolute;left:0;right:0;bottom:calc(100% + 8px);text-align:left;border-radius:4px;box-shadow:0 14px 34px -10px rgba(0,0,0,.55);max-height:min(430px,62vh);overflow:auto;padding:8px 10px;border:1px solid #d9c7a3;background:#fbf5e6;color:#3b2a1d;font:12px/1.45 Georgia,serif;scrollbar-width:thin}',
- '#fc-dlg>.fc-guia h4{margin:8px 0 2px;font:700 12.5px Georgia,serif}',
- '#fc-dlg>.fc-guia ol,#fc-dlg>.fc-guia ul{margin:2px 0;padding-left:18px}'
+ B+' .br-db>.br-ver{margin-left:-6px!important;border-radius:0 999px 999px 0!important;border-left:0!important;box-shadow:none!important;border-color:var(--pj-bd)!important}'
  ].join('\n');document.head.appendChild(st);})();
 /* um painel só para o Toque: sai a gaveta lateral (toques · hoje · compromissos); o cartão Agora abre o Hoje que expande dentro do templo */
 cgAbre=function(on){var g=document.getElementById('cg-gav');if(g)g.classList.remove('on');document.body.classList.remove('cg-on');if(on===false)return;
@@ -20574,6 +20557,10 @@ cgAbre=function(on){var g=document.getElementById('cg-gav');if(g)g.classList.rem
  '#cg-gav{display:none!important}',
  'html body.concha-aberta #tp-real #tm-r1{max-height:min(460px,calc(100vh - 160px))!important}'
  ].join('\n');document.head.appendChild(st);})();
+/* a fichinha do campista (nome e chalé) sai: o botão dela abre o Guia do Campista */
+acEditaCampista=function(){try{acGuia();}catch(e){}};
+window.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('.ac-medalha-bt,.ac-cracha-bt,#lat-topo .lt-logo');if(!b)return;e.preventDefault();e.stopPropagation();try{acGuia();}catch(z){}},true);
+setInterval(function(){Array.prototype.forEach.call(document.querySelectorAll('.ac-medalha-bt,.ac-cracha-bt'),function(b){if(b.title!=='Guia do Campista')b.title='Guia do Campista';});},2000);
 })();
 </script>
 </body>
