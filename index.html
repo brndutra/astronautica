@@ -5418,6 +5418,50 @@ body:not(.tv).op-on #argo-mar .rg-li.passou{opacity:.62}
 body:not(.tv).op-on #argo-mar .rg-li.agora{outline:2px solid #e8bd70;outline-offset:1px;background:linear-gradient(165deg,#fff2cd,#e1c88e)}
 body:not(.tv).op-on #argo-mar .rg-li.agora i{font:700 8.5px var(--mono,monospace);font-style:normal;letter-spacing:.1em;text-transform:uppercase;color:#b4463a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 @media (max-width:1000px){body:not(.tv).op-on #argo-mar{grid-template-columns:1fr}body:not(.tv).op-on #argo-mar .rg-box{display:none}}
+/* ===== Barca solar de Rá (tema Casa do Brooklyn): mesma estrutura da Argo — quatro velas de papiro, casco com popa e proa em umbela, selos no lugar dos escudos e o Nilo com a Rota ===== */
+html body.eg.op-on{--a-pw:var(--a-rw)}
+html body.eg.op-on #modo-op .op-l::after,html body.eg.op-on #modo-op .op-g::after{content:none!important;display:none!important}
+html body.eg.op-on #modo-op.op-grego .op-g>.op-templo{border:1px solid #bd9858!important;border-radius:7px 7px 16px 16px!important;box-shadow:0 6px 12px rgba(109,72,37,.11),inset 0 0 0 2px #e8c98c!important;background:var(--a-cab) 0 0/100% var(--ah) no-repeat,var(--a-rod) 0 100%/100% var(--af) no-repeat,repeating-linear-gradient(90deg,rgba(255,255,255,0) 0 7px,rgba(184,140,66,.06) 8px 9px),linear-gradient(90deg,#ecd7ae,#fff9e9 10%,#fbf2d9 50%,#fff9e9 90%,#ecd7ae)!important}
+html body.eg.op-on #modo-op.op-grego .op-g>.op-templo::before,html body.eg.op-on #modo-op.op-grego .op-g>.op-templo::after{width:5px!important;background:var(--ra-lat) center 0/5px 36px repeat-y!important;opacity:.9!important;border-radius:0!important}
+html body.eg.op-on #modo-op.op-grego .op-g>.op-templo .op-cab{background-color:#fcf4de!important}
+html body.eg.op-on #modo-op.op-grego .op-g>.op-col1.op-templo{--a-cab:url("img/acampamento/ra-vela-leme-topo.svg?v=1")!important;--a-rod:url("img/acampamento/ra-vela-leme-base.svg?v=1")!important;--ra-lat:url("img/acampamento/ra-vela-leme-lateral.svg?v=1");--t-k:#a64f3c!important}
+html body.eg.op-on #modo-op.op-grego .op-g>.op-fazer.op-templo{--a-cab:url("img/acampamento/ra-vela-porao-topo.svg?v=1")!important;--a-rod:url("img/acampamento/ra-vela-porao-base.svg?v=1")!important;--ra-lat:url("img/acampamento/ra-vela-porao-lateral.svg?v=1");--t-k:#244c70!important}
+html body.eg.op-on #modo-op.op-grego .op-g>.op-estudo.op-templo{--a-cab:url("img/acampamento/ra-vela-carta-topo.svg?v=1")!important;--a-rod:url("img/acampamento/ra-vela-carta-base.svg?v=1")!important;--ra-lat:url("img/acampamento/ra-vela-carta-lateral.svg?v=1");--t-k:#247f83!important}
+html body.eg.op-on #modo-op.op-grego .op-g>.op-lado.op-templo{--a-cab:url("img/acampamento/ra-vela-anfora-topo.svg?v=1")!important;--a-rod:url("img/acampamento/ra-vela-anfora-base.svg?v=1")!important;--ra-lat:url("img/acampamento/ra-vela-anfora-lateral.svg?v=1");--t-k:#667955!important}
+html body.eg.op-on #rod-apps.rod{background:#c89551!important;border-top:0!important;box-shadow:0 -4px 12px -6px rgba(80,59,43,.5)!important}
+html body.eg.op-on #rod-apps .rod-top{background:url("img/acampamento/ra-casco-repetivel.svg?v=1") 0 0/auto 100px repeat-x,#c89551!important;padding-top:0!important}
+html body.eg.op-on #rod-apps .rod-top::before{width:var(--a-rw)!important;top:calc(var(--a-rw)*-1.056)!important;height:calc(var(--a-rw)*1.6145)!important;background-image:url("img/acampamento/ra-popa-papiro.svg?v=1")!important}
+html body.eg.op-on #rod-apps .rod-top::after{background-image:url("img/acampamento/ra-proa-papiro.svg?v=1")!important}
+html body.eg.op-on #rod-apps :is(#rod-reg .cr-p,#rod-reg .cr-p:hover,#rod-reg .cr-p.on){background:none!important;border:0!important;box-shadow:none!important;border-radius:0!important}
+html body.eg.op-on #rod-apps #rod-reg .cr-p .cr-lb b{background:var(--selo) center/contain no-repeat!important;box-shadow:none!important;border-radius:0!important;width:58px!important;height:48px!important;font:700 11px/1 Georgia,serif!important;color:#503b2b!important;filter:drop-shadow(0 3px 3px rgba(40,20,0,.4))}
+html body.eg.op-on #rod-apps #rod-reg .cr-p:is(:hover,.on) .cr-lb b{box-shadow:none!important;filter:brightness(1.08) drop-shadow(0 0 4px #f4d486) drop-shadow(0 3px 3px rgba(40,20,0,.4))}
+html body.eg.op-on #rod-apps #rod-reg .cr-p .cr-lb small{background:#f7edce!important;color:#503b2b!important;border:1px solid #c99a4c!important;border-radius:3px!important}
+html body.eg.op-on #rod-apps #rod-reg .cr-p:nth-of-type(1){--selo:url("img/acampamento/ra-selo-01.svg?v=1")}
+html body.eg.op-on #rod-apps #rod-reg .cr-p:nth-of-type(2){--selo:url("img/acampamento/ra-selo-02.svg?v=1")}
+html body.eg.op-on #rod-apps #rod-reg .cr-p:nth-of-type(3){--selo:url("img/acampamento/ra-selo-03.svg?v=1")}
+html body.eg.op-on #rod-apps #rod-reg .cr-p:nth-of-type(4){--selo:url("img/acampamento/ra-selo-04.svg?v=1")}
+html body.eg.op-on #rod-apps #rod-reg .cr-p:nth-of-type(5){--selo:url("img/acampamento/ra-selo-05.svg?v=1")}
+html body.eg.op-on #rod-apps #rod-reg .cr-p:nth-of-type(6){--selo:url("img/acampamento/ra-selo-06.svg?v=1")}
+html body.eg.op-on #rod-apps #rod-reg .cr-p:nth-of-type(7){--selo:url("img/acampamento/ra-selo-07.svg?v=1")}
+html body.eg.op-on #rod-apps #rod-reg .cr-p:nth-of-type(8){--selo:url("img/acampamento/ra-selo-08.svg?v=1")}
+html body.eg.op-on #rod-apps #rod-fogo{background:#f7edce!important;border:1.5px solid #c99a4c!important;border-radius:5px!important;box-shadow:0 0 0 2px #f7edce,0 0 0 3px #503b2b!important}
+html body.eg.op-on #rod-apps #rod-bar{background:#f7edce!important;border:1.5px solid #c99a4c!important;border-radius:5px!important;box-shadow:0 0 0 2px #f7edce,0 0 0 3px #503b2b!important}
+html body.eg.op-on{--a-mar-h:clamp(112px,15vh,150px)}
+html body.eg.op-on #argo-mar{background:linear-gradient(180deg,#337f91 0%,#215f79 60%,#153c5d 100%)!important;border-top:3px double #a6d6cf!important;box-shadow:inset 0 6px 18px rgba(21,62,91,.4)!important;padding:12px 2.2% 14px!important;gap:10px!important;grid-template-columns:minmax(124px,.82fr) minmax(0,6fr) minmax(124px,.82fr)!important}
+html body.eg.op-on #argo-mar::before{right:-360px!important;height:80%!important;bottom:6px!important;background:url("img/acampamento/ra-nilo-corrente-distante.svg?v=1") 0 100%/360px 100% repeat-x!important;animation:raNilo 32s linear infinite reverse!important;opacity:.72!important}
+html body.eg.op-on #argo-mar::after{right:-360px!important;height:44%!important;bottom:0!important;background:url("img/acampamento/ra-nilo-ondas.svg?v=1") 0 100%/360px 100% repeat-x!important;animation:raNilo 22s linear infinite!important;opacity:1!important}
+@keyframes raNilo{from{transform:translateX(0)}to{transform:translateX(-360px)}}
+@media (prefers-reduced-motion:reduce){html body.eg.op-on #argo-mar::before,html body.eg.op-on #argo-mar::after{animation:none!important}}
+html body.eg.op-on #argo-mar .rg-ol{gap:2px!important}
+html body.eg.op-on #argo-mar .rg-li{border:0!important;outline:0!important;border-radius:0!important;background:url("img/acampamento/ra-onda-turno-futura.svg?v=1") center/100% 100% no-repeat!important;color:#fff9e8!important;padding:26px 10px 10px!important;justify-content:center!important;filter:drop-shadow(0 3px 2px rgba(12,59,83,.4))}
+html body.eg.op-on #argo-mar .rg-li small{color:#cde6d9!important}
+html body.eg.op-on #argo-mar .rg-li.passou{background-image:url("img/acampamento/ra-onda-turno-passada.svg?v=1")!important;opacity:.8!important}
+html body.eg.op-on #argo-mar .rg-li.agora{background-image:url("img/acampamento/ra-onda-turno-atual.svg?v=1")!important;outline:0!important}
+html body.eg.op-on #argo-mar .rg-li.agora small{color:#f4d486!important}
+html body.eg.op-on #argo-mar .rg-li.agora i{color:#f4d486!important}
+html body.eg.op-on #argo-mar .rg-box{background:#174d62!important;border:1px solid #a4c3b6!important;border-radius:10px!important}
+html body.eg.op-on #argo-mar .rg-med{background:url("img/acampamento/ra-selo-nilo.svg?v=1") center/contain no-repeat!important;border:0!important;color:transparent!important;width:34px!important;height:34px!important}
+html body.eg.op-on #argo-mar .rg-med svg{display:none}
 </style>
 <link rel="stylesheet" href="pontes.css">
 <script src="pontes.js" defer></script>
@@ -18213,7 +18257,7 @@ function argoMastros(){var g=document.querySelector('#modo-op .op-g');if(!g)retu
 function argoMarGR(){var hj=hoje(),tb=S.tb||{},a=opMin(),ini=360,fim=1440,p=Math.max(0,Math.min(100,(a-ini)/(fim-ini)*100));
  var hm=String(Math.floor(a/60)%24).padStart(2,'0')+':'+String(a%60).padStart(2,'0');
  var li=TD_H.map(function(H){var m0=+H*60,m1=m0+180,st=a>=m1?' passou':(a>=m0?' agora':''),tx=(tb[hj+'|'+H]||'').trim()||'livre';
-  return '<div class="rg-li'+st+'" title="'+esc(H+'–'+(+H+3)+'h · '+tdFaixaNome(H)+' · '+tx)+'"><small>'+H+'h · '+esc(tdFaixaNome(H))+(st===' agora'?' · agora':'')+'</small><span>'+esc(tx)+'</span>'+(st===' agora'?'<i>a Argo está aqui · '+hm+'</i>':'')+'</div>';}).join('');
+  return '<div class="rg-li'+st+'" title="'+esc(H+'–'+(+H+3)+'h · '+tdFaixaNome(H)+' · '+tx)+'"><small>'+H+'h · '+esc(tdFaixaNome(H))+(st===' agora'?' · agora':'')+'</small><span>'+esc(tx)+'</span>'+(st===' agora'?'<i>'+(document.body.classList.contains('eg')?'a barca está aqui':'a Argo está aqui')+' · '+hm+'</i>':'')+'</div>';}).join('');
  var px=null;try{px=clepProx();}catch(e){}
  var q=px?Math.max(0,px.m-a):0,em=px?(q>=60?Math.floor(q/60)+'h'+String(q%60).padStart(2,'0'):q+' min'):'';
  return '<div class="rg-box"><span class="rg-med"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 19c3-1 4-4 6-7s4-5 8-6"/><circle cx="5" cy="19" r="1.6"/><circle cx="19" cy="6" r="1.6"/></svg></span><span><b>Rota da travessia</b><small>'+Math.round(p)+'% do dia · resta '+Math.round(100-p)+'%</small></span></div>'+
