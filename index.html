@@ -19659,6 +19659,49 @@ setTimeout(function(){try{hojePinta();}catch(e){}},1700);setInterval(function(){
  'body.eg '+T+',body.eg '+T+'::before{border-color:#c9a23a!important;background:linear-gradient(180deg,#f4e4c0,#e6cf9e)!important}'
 ].join('\n');document.head.appendChild(st);})();
 
+/* ===== Placa do frontão: Finanças · Projetos · Enfermaria | telas | Concurso · Instruções · Eumátheia (os três abrem como painéis próprios, mesmo morando no Laptop) ===== */
+var EU_BTS=[['conc','Concurso · edital, provas e ciclo','<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h9l3 3v15H6z"/><path d="M15 3v3h3M9 10h6M9 13h6M9 16h3"/><circle cx="16" cy="17" r="2.2"/></svg>','Concurso'],
+ ['inst','Instruções · idiomas e aprendizado','<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h7a2 2 0 0 1 2 2v12a2 2 0 0 0-2-2H4z"/><path d="M20 5h-7a2 2 0 0 0-2 2v12a2 2 0 0 1 2-2h7z"/><path d="M6.5 13l1.8-5 1.8 5M7 11.5h2.6"/></svg>','Instruções'],
+ ['ler','Eumátheia · estante de leitura','<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6c3-1.5 6-1.5 9 0v13c-3-1.5-6-1.5-9 0z"/><path d="M21 6c-3-1.5-6-1.5-9 0v13c3-1.5 6-1.5 9 0z"/></svg>','Eumátheia']];
+pdPilula=function(){var n=document.getElementById('tt-indice');var p=document.querySelector('.pd-pilula');
+ var q=function(sel){return (p&&p.querySelector(sel))||(n&&n.querySelector(sel));};
+ var fin=q('[data-tt="fin"]'),b9=q('[data-ic="b9"]'),lap=q('[data-ic="laptop"]'),enf=q('[data-ic="enf"]');if(!fin&&!b9&&!enf)return;
+ if(!p){if(!n)return;p=document.createElement('div');p.className='pd-pilula';p.setAttribute('role','group');p.setAttribute('aria-label','Painéis');n.insertBefore(p,fin||b9||enf);}
+ var tt={fin:'Bolsa de Dracmas · finanças',b9:'Bunker 9 · projetos',enf:'Enfermaria · saúde'};
+ [[fin,'fin'],[b9,'b9'],[enf,'enf']].forEach(function(x){if(x[0]){x[0].title=tt[x[1]];x[0].setAttribute('aria-label',tt[x[1]]);}});
+ var eus=EU_BTS.map(function(e){var b=p.querySelector('[data-eusolo="'+e[0]+'"]');if(!b){b=document.createElement('button');b.type='button';b.className='tt-ic eu-bt';b.dataset.eusolo=e[0];b.innerHTML=e[2];}b.title=e[1];b.setAttribute('aria-label',e[1]);return b;});
+ var tel=p.querySelector('.bn-telas');
+ var ord=[fin,b9,enf,tel].concat(eus,[lap]).filter(Boolean);ord.forEach(function(b,i){if(p.children[i]!==b)p.insertBefore(b,p.children[i]||null);});
+ if(lap)lap.classList.add('eu-lap-oculto');};
+bnTelaBotoes=(function(b0){return function(){var r=b0.apply(this,arguments);try{pdPilula();}catch(e){}return r;};})(bnTelaBotoes);
+function euSoloAbre(k){var pd=document.getElementById('painel-dir');if(pd&&pd.classList.contains('on')&&pd.classList.contains('eu-um')&&pd.dataset.euk===k){try{pdFecha();}catch(e){}return;}
+ try{pdAbre('lap');}catch(e){}pd=document.getElementById('painel-dir');try{euAba(k);}catch(e){}if(pd){pd.classList.add('eu-um');pd.dataset.euk=k;}
+ var eu=document.getElementById('eum'),nm=(EU_BTS.filter(function(x){return x[0]===k;})[0]||[])[3];if(eu&&nm){var h=eu.querySelector('.eu-cab h2'),kk=eu.querySelector('.eu-cab .eu-k');if(h)h.textContent=nm;if(kk)kk.textContent='painel · ligado ao Laptop';}}
+document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-eusolo]');if(b){e.preventDefault();e.stopImmediatePropagation();euSoloAbre(b.dataset.eusolo);return;}
+ var o=e.target.closest&&e.target.closest('.pd-pilula button,#tt-indice button');if(o&&!o.dataset.eusolo){var pd=document.getElementById('painel-dir');if(pd){pd.classList.remove('eu-um');var eu=document.getElementById('eum');if(eu){var h=eu.querySelector('.eu-cab h2'),kk=eu.querySelector('.eu-cab .eu-k');if(h)h.textContent='Laptop';if(kk)kk.textContent='painel de estudos';}}}},true);
+setTimeout(function(){try{pdPilula();bnTelaBotoes();}catch(e){}},1500);setInterval(function(){try{pdPilula();}catch(e){}},2000);
+(function(){var st=document.createElement('style');st.id='eu-bts-css';st.textContent=[
+ '.pd-pilula .eu-lap-oculto{display:none!important}',
+ '.pd-pilula .eu-bt svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}',
+ '#painel-dir.eu-um .eu-nav,#painel-dir.eu-um .eu-cab p,#painel-dir.eu-um .eu-nova{display:none!important}'
+].join('\n');document.head.appendChild(st);})();
+
+/* Hora livre: recreio e fila do lazer viram a faixa de cima do rodapé-base do painel direito (só com a aba aberta); fim do templo 2 encosta no rodapé */
+function tpbAltura(){var b=document.getElementById('tp-base'),fr=document.querySelector('#tp-painel .tp-fr');if(!b||!fr)return;var v=b.offsetHeight+'px';if(fr.style.getPropertyValue('--tpb-h')!==v)fr.style.setProperty('--tpb-h',v);}
+setInterval(function(){try{tpbAltura();}catch(e){}},1000);setTimeout(function(){try{tpbAltura();}catch(e){}},1500);
+(function(){var st=document.createElement('style');st.id='rec-faixa-css';var C='html body #tp-painel .tp-corpo:has(.tp-rod-tg)';st.textContent=[
+ C+'{position:sticky!important;bottom:var(--tpb-h,94px)!important;z-index:7!important;order:8!important;margin:12px -8px 0!important;padding:0 10px 6px!important;border:1px solid #9a7b4a!important;border-bottom:0!important;border-radius:0!important;background:linear-gradient(180deg,#f3e7c8,#efe0bb)!important;box-shadow:0 -8px 16px -12px rgba(60,40,20,.45)!important}',
+ C+' .tp-rod-tg span{color:#7a4a20!important}',
+ 'html body #tp-painel:has(#tp-real) #tp-base{margin-top:0!important}',
+ 'html body #tp-painel .tp-corpo:has(.tp-rod-tg)+#tp-base,html body #tp-painel .tp-corpo:has(.tp-rod-tg)~#tp-base{margin-top:0!important}',
+ 'body.tv '+C+'{border-color:#6e4426!important;background:linear-gradient(180deg,#efe5d2,#e9dfcc)!important}',
+ 'body.eg '+C+'{border-color:#c9a23a!important;background:linear-gradient(180deg,#f7ebcd,#f4e4c0)!important}',
+ /* templo 2: degraus encostam no rodapé */
+ 'html body .wrap>#rt-base{margin-bottom:26px!important}',
+
+ 'html body .wrap{padding-bottom:var(--rod-h,0px)!important}'
+].join('\n');document.head.appendChild(st);})();
+
 })();
 </script>
 </body>
