@@ -44,7 +44,7 @@ function opLadoHTML(){var it=[];Array.prototype.forEach.call(document.querySelec
  return h;}
 function opMonta(){var o=document.getElementById('modo-op');if(o)return o;o=document.createElement('section');o.id='modo-op';o.setAttribute('aria-label','Modo operacional');
  o.innerHTML='<header class="op-top"><div><span class="op-k">posto de comando · chalé 7</span><b class="op-dt"></b></div><div class="op-topr" data-notr></div></header>'+
-  '<div class="op-l"></div><div class="op-g"><section class="op-c op-foco"><div class="op-esc"></div><div class="op-foco-c"></div></section><section class="op-c op-fazer"></section><section class="op-c op-lado"></section></div>';
+  '<div class="op-l"></div><div class="op-g"><section class="op-c op-foco"><div class="op-esc"></div><div class="op-foco-c"></div></section><section class="op-c op-fazer"></section></div>';
  document.body.appendChild(o);
  o.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;var d=b.dataset,td=tdD(),f=td.foco,P=tdPref(),Q=mmD(),hj=hoje();
   if(d.opsair!=null){opModo(false);return;}
@@ -69,7 +69,7 @@ function opCaptura(){var o=document.getElementById('modo-op'),i=o&&o.querySelect
 function opPinta(){var o=document.getElementById('modo-op');if(!o||!document.body.classList.contains('op-on'))return;try{opTopR();}catch(e){}var a=document.activeElement,foco=a&&o.contains(a)&&/INPUT|TEXTAREA/.test(a.tagName);
  o.querySelector('.op-dt').textContent=new Date().toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'long'})+' · '+new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
  var set=function(sel,h){var n=o.querySelector(sel);if(n&&(n._h!==h||!n.firstChild)&&!(foco&&n.contains(a))){n.innerHTML=h;n._h=h;}};
- set('.op-l',opLinhaHTML());set('.op-esc',opEscudo());var fc=opFocoHTML().replace(/<b>\d+:\d+<\/b>/,'');set('.op-foco-c',opFocoHTML());set('.op-fazer',opFazerHTML());set('.op-lado',opLadoHTML());}
+ set('.op-l',opLinhaHTML());set('.op-esc',opEscudo());var fc=opFocoHTML().replace(/<b>\d+:\d+<\/b>/,'');set('.op-foco-c',opFocoHTML());set('.op-fazer',opFazerHTML());try{opLatPinta(set);}catch(e){}}
 /* extensão do Chrome: versão publicada em downloads/ (mesma do extensao/manifest.json); ao publicar uma nova, troque só aqui */
 var EXT_V='0.7.4',EXT_ZIP='downloads/astronautica-extensao-'+EXT_V+'.zip';
 function extBaixada(){try{return localStorage.getItem('astro-ext-baixada')||'';}catch(e){return '';}}

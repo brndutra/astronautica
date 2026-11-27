@@ -86,7 +86,7 @@ body.op-on #nav,body.op-on #rail,body.op-on #tt-indice,body.op-on #painel-dir:no
 #modo-op .op-foco-c{display:flex;flex-direction:column;align-items:center;gap:10px;width:100%}
 
 body.op-on #modo-op{inset:0!important;padding-bottom:92px!important}
-body.op-on #rod-apps{left:0!important;right:0!important;width:auto!important;max-width:none!important}
+body.op-on #rod-apps{width:auto!important;max-width:none!important}
 #modo-op .op-ch button{display:grid!important;place-items:center;text-align:center!important}
 
 /* ===== Kálamo · sátiro protetor ===== */

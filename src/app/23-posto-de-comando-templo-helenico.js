@@ -42,13 +42,12 @@ function opEstudoHTML(){var h=hoje(),dias=0,g={pct:0},sem=0,hj=0,q=0,c={};
 opFazerHTML=(function(f0){return function(){var R=[],meta=0,fh=0;try{R=gabResumo();R.forEach(function(r){meta+=r.meta;fh+=Math.min(r.fh,r.meta);});}catch(e){}
  var extra='<span class="op-cont" title="meta do gabinete hoje">'+(meta?fh+'/'+meta:'—')+'</span>';
  return opCab('balanca','Arena · ofício','gabinete · o Labirinto',extra)+(meta?'<span class="op-bar op-bar-g"><i style="width:'+Math.round(fh/meta*100)+'%"></i></span>':'')+f0.apply(this,arguments);};})(opFazerHTML);
-opLadoHTML=(function(f0){return function(){return opCab('asas','Píthos de Pandora','captura e agenda')+f0.apply(this,arguments);};})(opLadoHTML);
 opLinhaHTML=(function(f0){return function(){return '<header class="op-cab op-cab-l"><span class="op-med">'+opIcone('carro')+'</span><div class="op-cabt"><b>Clepsidra</b><small>linha do dia</small></div></header>'+f0.apply(this,arguments);};})(opLinhaHTML);
 /* reorganiza o Posto em quatro colunas e liga os botões novos */
 function opReforma(){var o=document.getElementById('modo-op');if(!o||o.dataset.grego)return;o.dataset.grego='1';o.classList.add('op-grego');
  var g=o.querySelector('.op-g');if(!g)return;
  g.innerHTML='<section class="op-c op-col1"><div class="op-foco">'+opCab('sol','Escudo de Aquiles','foco')+'<div class="op-esc"></div><div class="op-foco-c"></div></div><div class="op-ritos"></div></section>'+
-  '<section class="op-c op-fazer"></section><section class="op-c op-estudo"></section><section class="op-c op-lado"></section>';
+  '<section class="op-c op-fazer"></section><section class="op-c op-estudo"></section>';
  var t=o.querySelector('.op-top>div:first-child .op-k');if(t)t.innerHTML='posto de comando · chalé 7 · <span class="op-louro">❦</span>';
  o.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;var d=b.dataset;
   if(d.ophb!=null){try{latRegClica('#hb-l [data-hb="'+d.ophb+'"]');}catch(z){var x=document.querySelector('#hb-l [data-hb="'+d.ophb+'"]');if(x)x.click();}setTimeout(opPinta,120);return;}
@@ -106,8 +105,7 @@ var OP_TEMPLO={
  '.op-l':{st:'ionica',c:'#f6d99a',k:'#8a5a14',num:'Α',img:'templos.jpg',numT:'1 · o primeiro raio de Hélio'},
  '.op-col1':{st:'dorica',c:'#f2c3ab',k:'#9a4a30',num:'Ζ',img:'louros.jpg',numT:'7 · o número de Apolo e do chalé 7'},
  '.op-fazer':{st:'dorica',c:'#d8c0c6',k:'#7a4a58',num:'Γ',img:'anfiteatro.jpg',numT:'3 · as três Moiras do prazo'},
- '.op-estudo':{st:'ionica',c:'#b9c2e8',k:'#4a5590',num:'Θ',img:'arquearia.jpg',numT:'9 · as nove Musas'},
- '.op-lado':{st:'corintia',c:'#efe3b4',k:'#7a6a2a',num:'Η',img:'colina.jpg',numT:'8 · os caminhos de Hermes'}};
+ '.op-estudo':{st:'ionica',c:'#b9c2e8',k:'#4a5590',num:'Θ',img:'arquearia.jpg',numT:'9 · as nove Musas'}};
 var OP_TEMPLO_IM={};
 function opTemplo(){var o=document.getElementById('modo-op');if(!o)return;try{neoImgs();}catch(e){}
  Object.keys(OP_TEMPLO).forEach(function(sel){var n=o.querySelector(sel);if(!n||n.dataset.templo)return;var cf=OP_TEMPLO[sel],im;

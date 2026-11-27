@@ -2,7 +2,7 @@
    Cada foto do acampamento aparece num lugar só. Onde havia repetição, entra uma ilustração própria em sépia:
    Diárias (relógio de sol), Culture Vulture (máscaras), e as cinco placas do Posto de comando
    (aurora de Hélio, arco de Apolo, fios das Moiras, pergaminho das Musas, caminhos de Hermes). O louro sai do fundo da Profecia. */
-(function(){var T={'.op-l':'ilustra-aurora.svg','.op-col1':'ilustra-arco-apolo.svg','.op-fazer':'ilustra-moiras.svg','.op-estudo':'ilustra-musas.svg','.op-lado':'ilustra-hermes.svg'};
+(function(){var T={'.op-l':'ilustra-aurora.svg','.op-col1':'ilustra-arco-apolo.svg','.op-fazer':'ilustra-moiras.svg','.op-estudo':'ilustra-musas.svg'};
  try{Object.keys(T).forEach(function(k){if(OP_TEMPLO[k])OP_TEMPLO[k].img=T[k];});}catch(e){}
  var st=document.createElement('style');st.id='img-unicas-css';st.textContent=[
   '#mm-box .mm-quest{--mm-img:url("img/acampamento/ilustra-relogio-sol.svg")!important}',

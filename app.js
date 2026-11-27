@@ -9482,7 +9482,7 @@ function opLadoHTML(){var it=[];Array.prototype.forEach.call(document.querySelec
  return h;}
 function opMonta(){var o=document.getElementById('modo-op');if(o)return o;o=document.createElement('section');o.id='modo-op';o.setAttribute('aria-label','Modo operacional');
  o.innerHTML='<header class="op-top"><div><span class="op-k">posto de comando · chalé 7</span><b class="op-dt"></b></div><div class="op-topr" data-notr></div></header>'+
-  '<div class="op-l"></div><div class="op-g"><section class="op-c op-foco"><div class="op-esc"></div><div class="op-foco-c"></div></section><section class="op-c op-fazer"></section><section class="op-c op-lado"></section></div>';
+  '<div class="op-l"></div><div class="op-g"><section class="op-c op-foco"><div class="op-esc"></div><div class="op-foco-c"></div></section><section class="op-c op-fazer"></section></div>';
  document.body.appendChild(o);
  o.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;var d=b.dataset,td=tdD(),f=td.foco,P=tdPref(),Q=mmD(),hj=hoje();
   if(d.opsair!=null){opModo(false);return;}
@@ -9507,7 +9507,7 @@ function opCaptura(){var o=document.getElementById('modo-op'),i=o&&o.querySelect
 function opPinta(){var o=document.getElementById('modo-op');if(!o||!document.body.classList.contains('op-on'))return;try{opTopR();}catch(e){}var a=document.activeElement,foco=a&&o.contains(a)&&/INPUT|TEXTAREA/.test(a.tagName);
  o.querySelector('.op-dt').textContent=new Date().toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'long'})+' · '+new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
  var set=function(sel,h){var n=o.querySelector(sel);if(n&&(n._h!==h||!n.firstChild)&&!(foco&&n.contains(a))){n.innerHTML=h;n._h=h;}};
- set('.op-l',opLinhaHTML());set('.op-esc',opEscudo());var fc=opFocoHTML().replace(/<b>\d+:\d+<\/b>/,'');set('.op-foco-c',opFocoHTML());set('.op-fazer',opFazerHTML());set('.op-lado',opLadoHTML());}
+ set('.op-l',opLinhaHTML());set('.op-esc',opEscudo());var fc=opFocoHTML().replace(/<b>\d+:\d+<\/b>/,'');set('.op-foco-c',opFocoHTML());set('.op-fazer',opFazerHTML());try{opLatPinta(set);}catch(e){}}
 /* extensão do Chrome: versão publicada em downloads/ (mesma do extensao/manifest.json); ao publicar uma nova, troque só aqui */
 var EXT_V='0.7.4',EXT_ZIP='downloads/astronautica-extensao-'+EXT_V+'.zip';
 function extBaixada(){try{return localStorage.getItem('astro-ext-baixada')||'';}catch(e){return '';}}
@@ -9810,13 +9810,12 @@ function opEstudoHTML(){var h=hoje(),dias=0,g={pct:0},sem=0,hj=0,q=0,c={};
 opFazerHTML=(function(f0){return function(){var R=[],meta=0,fh=0;try{R=gabResumo();R.forEach(function(r){meta+=r.meta;fh+=Math.min(r.fh,r.meta);});}catch(e){}
  var extra='<span class="op-cont" title="meta do gabinete hoje">'+(meta?fh+'/'+meta:'—')+'</span>';
  return opCab('balanca','Arena · ofício','gabinete · o Labirinto',extra)+(meta?'<span class="op-bar op-bar-g"><i style="width:'+Math.round(fh/meta*100)+'%"></i></span>':'')+f0.apply(this,arguments);};})(opFazerHTML);
-opLadoHTML=(function(f0){return function(){return opCab('asas','Píthos de Pandora','captura e agenda')+f0.apply(this,arguments);};})(opLadoHTML);
 opLinhaHTML=(function(f0){return function(){return '<header class="op-cab op-cab-l"><span class="op-med">'+opIcone('carro')+'</span><div class="op-cabt"><b>Clepsidra</b><small>linha do dia</small></div></header>'+f0.apply(this,arguments);};})(opLinhaHTML);
 /* reorganiza o Posto em quatro colunas e liga os botões novos */
 function opReforma(){var o=document.getElementById('modo-op');if(!o||o.dataset.grego)return;o.dataset.grego='1';o.classList.add('op-grego');
  var g=o.querySelector('.op-g');if(!g)return;
  g.innerHTML='<section class="op-c op-col1"><div class="op-foco">'+opCab('sol','Escudo de Aquiles','foco')+'<div class="op-esc"></div><div class="op-foco-c"></div></div><div class="op-ritos"></div></section>'+
-  '<section class="op-c op-fazer"></section><section class="op-c op-estudo"></section><section class="op-c op-lado"></section>';
+  '<section class="op-c op-fazer"></section><section class="op-c op-estudo"></section>';
  var t=o.querySelector('.op-top>div:first-child .op-k');if(t)t.innerHTML='posto de comando · chalé 7 · <span class="op-louro">❦</span>';
  o.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;var d=b.dataset;
   if(d.ophb!=null){try{latRegClica('#hb-l [data-hb="'+d.ophb+'"]');}catch(z){var x=document.querySelector('#hb-l [data-hb="'+d.ophb+'"]');if(x)x.click();}setTimeout(opPinta,120);return;}
@@ -9874,8 +9873,7 @@ var OP_TEMPLO={
  '.op-l':{st:'ionica',c:'#f6d99a',k:'#8a5a14',num:'Α',img:'templos.jpg',numT:'1 · o primeiro raio de Hélio'},
  '.op-col1':{st:'dorica',c:'#f2c3ab',k:'#9a4a30',num:'Ζ',img:'louros.jpg',numT:'7 · o número de Apolo e do chalé 7'},
  '.op-fazer':{st:'dorica',c:'#d8c0c6',k:'#7a4a58',num:'Γ',img:'anfiteatro.jpg',numT:'3 · as três Moiras do prazo'},
- '.op-estudo':{st:'ionica',c:'#b9c2e8',k:'#4a5590',num:'Θ',img:'arquearia.jpg',numT:'9 · as nove Musas'},
- '.op-lado':{st:'corintia',c:'#efe3b4',k:'#7a6a2a',num:'Η',img:'colina.jpg',numT:'8 · os caminhos de Hermes'}};
+ '.op-estudo':{st:'ionica',c:'#b9c2e8',k:'#4a5590',num:'Θ',img:'arquearia.jpg',numT:'9 · as nove Musas'}};
 var OP_TEMPLO_IM={};
 function opTemplo(){var o=document.getElementById('modo-op');if(!o)return;try{neoImgs();}catch(e){}
  Object.keys(OP_TEMPLO).forEach(function(sel){var n=o.querySelector(sel);if(!n||n.dataset.templo)return;var cf=OP_TEMPLO[sel],im;
@@ -10801,7 +10799,7 @@ setTimeout(function(){try{diaPinta();}catch(e){}},1500);setTimeout(function(){tr
    Cada foto do acampamento aparece num lugar só. Onde havia repetição, entra uma ilustração própria em sépia:
    Diárias (relógio de sol), Culture Vulture (máscaras), e as cinco placas do Posto de comando
    (aurora de Hélio, arco de Apolo, fios das Moiras, pergaminho das Musas, caminhos de Hermes). O louro sai do fundo da Profecia. */
-(function(){var T={'.op-l':'ilustra-aurora.svg','.op-col1':'ilustra-arco-apolo.svg','.op-fazer':'ilustra-moiras.svg','.op-estudo':'ilustra-musas.svg','.op-lado':'ilustra-hermes.svg'};
+(function(){var T={'.op-l':'ilustra-aurora.svg','.op-col1':'ilustra-arco-apolo.svg','.op-fazer':'ilustra-moiras.svg','.op-estudo':'ilustra-musas.svg'};
  try{Object.keys(T).forEach(function(k){if(OP_TEMPLO[k])OP_TEMPLO[k].img=T[k];});}catch(e){}
  var st=document.createElement('style');st.id='img-unicas-css';st.textContent=[
   '#mm-box .mm-quest{--mm-img:url("img/acampamento/ilustra-relogio-sol.svg")!important}',
@@ -11318,7 +11316,7 @@ document.addEventListener('click',function(e){var b=e.target.closest&&e.target.c
    Atividades = canoas, Recarga = refeitório com bandeirolas, Culture Vulture = anfiteatro no bosque. Posto: Hélio = armadura no lago,
    Apolo = linha de tiro pintada, Tática = hoplitas, Hermes = trilha dos templos (Moiras segue com o fuso ilustrado).
    Rodapé: o cartão da Fogueira ganha o forno vetorial (terracota e creme). */
-(function(){var T={'.op-l':'armadura-lago.webp','.op-col1':'arquearia-pintura.webp','.op-estudo':'ilustra-musas.svg','.op-lado':'templos.jpg'};
+(function(){var T={'.op-l':'armadura-lago.webp','.op-col1':'arquearia-pintura.webp','.op-estudo':'ilustra-musas.svg'};
  try{Object.keys(T).forEach(function(k){if(OP_TEMPLO[k])OP_TEMPLO[k].img=T[k];});}catch(e){}
  var I=function(n){return 'url("img/acampamento/'+n+'")';};
  var st=document.createElement('style');st.id='fotos-cartoes-css';st.textContent=[
@@ -11812,7 +11810,8 @@ setTimeout(function(){try{placasTons();}catch(e){}},1200);setTimeout(function(){
    Em tela larga ocupam exatamente a coluna do meio, no lugar do templo central: painel esquerdo, faixa do dia,
    templo da direita e rodapé continuam à vista. */
 (function(){var st=document.createElement('style');st.id='pd-centro-css';st.textContent=[
- 'body.op-on #rod-apps{left:0!important;right:0!important}',
+ /* casco e mar recuados pela largura das colunas laterais do Posto (--op-lat-e/-d, css 32) */
+ 'body.op-on #rod-apps{left:var(--op-lat-e,0px)!important;right:var(--op-lat-d,0px)!important}',
  '@media(min-width:1380px){',
  ' body.com-dia #painel-dir.pd.on{left:var(--dia-l,300px)!important;right:var(--dia-r,460px)!important}',
  ' body:not(.com-dia) #painel-dir.pd.on{left:300px!important;right:var(--rail-w,460px)!important}',
@@ -12012,7 +12011,7 @@ if(TV_ON){document.body.classList.add('tv');
   setTimeout(function(){mo.disconnect();tvNo(document.body);mo.observe(document.body,{childList:true,subtree:true,characterData:true});},3000);})();
  try{document.title=tvTxt(document.title);}catch(e){}
  var I=function(n){return 'url("img/acampamento/'+n+'")';};
- try{['.op-l','.op-col1','.op-fazer','.op-estudo','.op-lado'].forEach(function(k,i){if(OP_TEMPLO[k]){OP_TEMPLO[k].img=['vh-sol.svg','vh-martelo.svg','vh-fuso.svg','vh-olho.svg','vh-valknut.svg'][i];OP_TEMPLO[k].c='#d9c58a';OP_TEMPLO[k].k='#1d4a2c';}});}catch(e){}
+ try{['.op-l','.op-col1','.op-fazer','.op-estudo'].forEach(function(k,i){if(OP_TEMPLO[k]){OP_TEMPLO[k].img=['vh-sol.svg','vh-martelo.svg','vh-fuso.svg','vh-olho.svg'][i];OP_TEMPLO[k].c='#d9c58a';OP_TEMPLO[k].k='#1d4a2c';}});}catch(e){}
  (function(){var st=document.createElement('style');st.id='tv-css';st.textContent=[
   /* paleta */
   'body.tv{--n-frontao:#b08a2e;--n-entab:#1d4a2c;--n-colun:#8e2a2a;--n-atrio:#3f5a3a;--n-tesouro:#b08a2e;background-color:#e9e6d6!important}',
@@ -15346,7 +15345,7 @@ setTimeout(function(){try{topoBotoes();}catch(e){}},300);
    Botões que abrem conversa, janela ou seletor ficam de fora: esses se usam no app. */
 /* [chave, onde, título, botões cujo texto também é conteúdo (antagonista, ronda, valores do rodapé)] */
 var POSTO_CARTOES=[['top','#modo-op>.op-top','Posto de comando','.op-antmini,.cx-rdb'],['foco','#modo-op .op-col1','Escudo','.ov-ant'],['fazer','#modo-op .op-fazer','Arena · ofício'],
- ['estudo','#modo-op .op-estudo','Campo de arquearia'],['lado','#modo-op .op-lado','Píthos'],['rod','#rod-reg','Registro do dia','[data-cr-pop]']];
+ ['estudo','#modo-op .op-estudo','Campo de arquearia'],['lado','#modo-op .op-lat-d','Píthos'],['rod','#rod-reg','Registro do dia','[data-cr-pop]']];
 var POSTO_FORA=/^data-(opsair|satir|npchist|opext|fogo|cxa|opreg|antabre|opfx|notr|mfp|tt|cr-pop|fer|opsat|ovant|antvar|opvira)$/;
 var POSTO_SEL=/^\[data-[a-z0-9-]+(="[^"\]]*")?\]$/;
 function postoSel(n){var a=[].filter.call(n.attributes,function(x){return /^data-/.test(x.name)&&!/^data-(notr|ic|h|i)$/.test(x.name);})[0];
@@ -15479,4 +15478,20 @@ function ctMoldura(){var at=ctAba(),B=document.body,on=!!at,w=document.querySele
   [['--ct-rx',(vr.left-wr.left)/k],['--ct-ry',(y-wr.top)/k],['--ct-rw',vr.width/k],['--ct-rh',(y2-y)/k-rbh],['--ct-rb',(y2-wr.top)/k-rbh+10]].forEach(function(v){var t=Math.round(v[1])+'px';if(w.style.getPropertyValue(v[0])!==t)w.style.setProperty(v[0],t);});}}
 setInterval(function(){try{ctMoldura();}catch(e){}},250);
 window.addEventListener('resize',function(){try{ctMoldura();}catch(e){}});
+/* ======================= Colunas laterais do Posto: diário de bordo (esquerda) e vigia (direita) =======================
+   O convés ficou com três velas e o casco encolheu junto. Nas laterais (estilo e encaixes no css 32):
+   esquerda · Rota da travessia (caixa do mar), o cartão de registro rápido (abre aqui ao tocar num medalhão do casco)
+             e os registros de hoje (S.log);
+   direita  · vigia (caixa "próximo" do mar), a ronda e as falas do NPC, e o Píthos: captura, trajeto, próximos,
+             bandeira e flechas (opLadoHTML, no 22 e 24), que saiu da quarta vela.
+   opPinta (22) chama opLatPinta com o mesmo set, que não repinta campo em uso. */
+function opLatMonta(o){if(o.querySelector(':scope>.op-lat-e'))return;
+ o.insertAdjacentHTML('beforeend','<section class="op-lat op-lat-e" aria-label="Diário de bordo"><header class="ol-k">diário de bordo</header><div class="ol-vaga"></div><div class="ol-c"></div></section>'+
+  '<section class="op-lat op-lat-d" aria-label="Vigia"><header class="ol-k">vigia</header><div class="ol-vaga"></div><div class="ol-c"></div></section>');}
+function opLatRegHTML(){var hj=hoje(),L=(S.log||[]).filter(function(x){return x.dia===hj;}).slice(0,14);
+ return '<div class="op-grp"><span class="op-k">registros de hoje</span><ul class="ol-reg">'+(L.map(function(x){return '<li><b>'+esc(x.t||'')+'</b><span>'+esc(x.d||'')+'</span></li>';}).join('')||
+  '<li class="op-vz">nada ainda · toque num medalhão do casco</li>')+'</ul></div>';}
+function opLatPinta(set){var o=document.getElementById('modo-op');if(!o)return;opLatMonta(o);
+ var g=o.querySelector('.op-g'),t=g?Math.round(g.getBoundingClientRect().top):76;if(t>0&&document.body.style.getPropertyValue('--ol-t')!==t+'px')document.body.style.setProperty('--ol-t',t+'px');
+ set('.op-lat-e .ol-c',opLatRegHTML());set('.op-lat-d .ol-c',opLadoHTML());}
 })();

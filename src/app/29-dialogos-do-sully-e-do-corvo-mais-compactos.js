@@ -141,7 +141,7 @@ if(TV_ON){document.body.classList.add('tv');
   setTimeout(function(){mo.disconnect();tvNo(document.body);mo.observe(document.body,{childList:true,subtree:true,characterData:true});},3000);})();
  try{document.title=tvTxt(document.title);}catch(e){}
  var I=function(n){return 'url("img/acampamento/'+n+'")';};
- try{['.op-l','.op-col1','.op-fazer','.op-estudo','.op-lado'].forEach(function(k,i){if(OP_TEMPLO[k]){OP_TEMPLO[k].img=['vh-sol.svg','vh-martelo.svg','vh-fuso.svg','vh-olho.svg','vh-valknut.svg'][i];OP_TEMPLO[k].c='#d9c58a';OP_TEMPLO[k].k='#1d4a2c';}});}catch(e){}
+ try{['.op-l','.op-col1','.op-fazer','.op-estudo'].forEach(function(k,i){if(OP_TEMPLO[k]){OP_TEMPLO[k].img=['vh-sol.svg','vh-martelo.svg','vh-fuso.svg','vh-olho.svg'][i];OP_TEMPLO[k].c='#d9c58a';OP_TEMPLO[k].k='#1d4a2c';}});}catch(e){}
  (function(){var st=document.createElement('style');st.id='tv-css';st.textContent=[
   /* paleta */
   'body.tv{--n-frontao:#b08a2e;--n-entab:#1d4a2c;--n-colun:#8e2a2a;--n-atrio:#3f5a3a;--n-tesouro:#b08a2e;background-color:#e9e6d6!important}',

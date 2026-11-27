@@ -5,7 +5,7 @@
    Botões que abrem conversa, janela ou seletor ficam de fora: esses se usam no app. */
 /* [chave, onde, título, botões cujo texto também é conteúdo (antagonista, ronda, valores do rodapé)] */
 var POSTO_CARTOES=[['top','#modo-op>.op-top','Posto de comando','.op-antmini,.cx-rdb'],['foco','#modo-op .op-col1','Escudo','.ov-ant'],['fazer','#modo-op .op-fazer','Arena · ofício'],
- ['estudo','#modo-op .op-estudo','Campo de arquearia'],['lado','#modo-op .op-lado','Píthos'],['rod','#rod-reg','Registro do dia','[data-cr-pop]']];
+ ['estudo','#modo-op .op-estudo','Campo de arquearia'],['lado','#modo-op .op-lat-d','Píthos'],['rod','#rod-reg','Registro do dia','[data-cr-pop]']];
 var POSTO_FORA=/^data-(opsair|satir|npchist|opext|fogo|cxa|opreg|antabre|opfx|notr|mfp|tt|cr-pop|fer|opsat|ovant|antvar|opvira)$/;
 var POSTO_SEL=/^\[data-[a-z0-9-]+(="[^"\]]*")?\]$/;
 function postoSel(n){var a=[].filter.call(n.attributes,function(x){return /^data-/.test(x.name)&&!/^data-(notr|ic|h|i)$/.test(x.name);})[0];

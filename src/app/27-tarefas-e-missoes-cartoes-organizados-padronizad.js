@@ -136,7 +136,7 @@ document.addEventListener('click',function(e){var b=e.target.closest&&e.target.c
    Atividades = canoas, Recarga = refeitório com bandeirolas, Culture Vulture = anfiteatro no bosque. Posto: Hélio = armadura no lago,
    Apolo = linha de tiro pintada, Tática = hoplitas, Hermes = trilha dos templos (Moiras segue com o fuso ilustrado).
    Rodapé: o cartão da Fogueira ganha o forno vetorial (terracota e creme). */
-(function(){var T={'.op-l':'armadura-lago.webp','.op-col1':'arquearia-pintura.webp','.op-estudo':'ilustra-musas.svg','.op-lado':'templos.jpg'};
+(function(){var T={'.op-l':'armadura-lago.webp','.op-col1':'arquearia-pintura.webp','.op-estudo':'ilustra-musas.svg'};
  try{Object.keys(T).forEach(function(k){if(OP_TEMPLO[k])OP_TEMPLO[k].img=T[k];});}catch(e){}
  var I=function(n){return 'url("img/acampamento/'+n+'")';};
  var st=document.createElement('style');st.id='fotos-cartoes-css';st.textContent=[

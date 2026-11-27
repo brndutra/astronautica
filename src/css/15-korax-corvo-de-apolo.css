@@ -29,7 +29,7 @@
 #modo-op.op-grego .op-top{border-bottom:0!important;padding-bottom:14px!important;position:relative}
 #modo-op.op-grego .op-top::after{content:'';position:absolute;left:0;right:0;bottom:0;height:12px;background:var(--meandro) repeat-x left center;opacity:.8}
 #modo-op.op-grego .op-louro{color:#c9a45a;letter-spacing:0}
-#modo-op.op-grego .op-g{grid-template-columns:minmax(230px,.95fr) minmax(0,1.15fr) minmax(0,1.15fr) minmax(0,.95fr)!important;gap:12px!important}
+#modo-op.op-grego .op-g{grid-template-columns:minmax(230px,.95fr) minmax(0,1.15fr) minmax(0,1.15fr)!important;gap:12px!important}
 #modo-op.op-grego .op-c,#modo-op.op-grego .op-l{position:relative;padding:22px 13px 16px!important;border:1px solid #b9a77a!important;border-radius:4px 4px 10px 10px!important;
  background:linear-gradient(180deg,#f7eed8,#f1e4c6)!important;box-shadow:inset 3px 0 0 #f7eed8,inset 4px 0 0 #d8c39a,inset -3px 0 0 #f7eed8,inset -4px 0 0 #d8c39a,0 6px 14px rgba(70,45,15,.1)!important;gap:8px!important}
 #modo-op.op-grego .op-c::before,#modo-op.op-grego .op-l::before{content:''!important;position:absolute;left:6px;right:6px;top:4px;height:12px;background:var(--meandro) repeat-x left center;opacity:.75;display:block!important;padding:0!important}
