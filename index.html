@@ -18257,24 +18257,24 @@ antPinta=(function(f0){return function(){var r=f0.apply(this,arguments);try{antR
 /* modo operacional: a carta do antagonista dobrada no cabeçalho, ao lado do dia; clique abre o desafio e o "venci" */
 function opAntMini(){var o=document.getElementById('modo-op'),t=o&&o.querySelector(':scope>.op-top');if(!t)return;var b=t.querySelector(':scope>.op-antmini');
  if(!b){b=document.createElement('button');b.type='button';b.setAttribute('data-notr','');b.addEventListener('click',function(e){e.preventDefault();try{antAbre();}catch(z){}});}
- var f=t.firstElementChild===b?null:t.firstElementChild;if(f){if(f.nextElementSibling!==b)f.insertAdjacentElement('afterend',b);}else if(t.firstElementChild!==b)t.insertBefore(b,t.firstChild);
+ var dv=t.querySelector(':scope>div:first-child:not(.op-sat-slot)'),k=dv&&dv.querySelector('.op-k');if(k){if(k.nextElementSibling!==b)k.insertAdjacentElement('afterend',b);}else if(dv){if(b.parentNode!==dv)dv.appendChild(b);}
  var x=antHoje(),m=antMonstro(x.m),st=x.st,c='op-antmini'+(st!=='aberto'?' '+st:'');if(b.className!==c)b.className=c;
  b.title=st==='aberto'?m.n+': '+m.d:m.n;
- var h='<i aria-hidden="true">'+esc(m.n.charAt(0))+'</i><span><small>'+(st==='vencido'?'vencido · +20 XP':st==='fugiu'?'escapou':'antagonista · '+x.fx+'h')+'</small><b>'+esc(m.n)+'</b><em>'+esc(st==='vencido'?'no Bestiário':st==='fugiu'?'volta amanhã':m.o)+'</em></span>';
+ var h='<i aria-hidden="true">'+esc(m.n.charAt(0))+'</i><span><b>'+esc(m.n)+'</b><small>'+(st==='vencido'?'vencido':st==='fugiu'?'escapou':x.fx+'h')+'</small></span>';
  if(b._h!==h){b._h=h;b.innerHTML=h;}}
 opPinta=(function(f0){return function(){var r=f0.apply(this,arguments);try{opAntMini();}catch(e){}return r;};})(opPinta);
 antPinta=(function(f0){return function(){var r=f0.apply(this,arguments);try{opAntMini();}catch(e){}return r;};})(antPinta);
 setInterval(function(){try{if(document.body.classList.contains('op-on'))opAntMini();}catch(e){}},5000);
-(function(){var st=document.createElement('style');st.id='op-antmini-css';var B='html body #modo-op>.op-top>.op-antmini';st.textContent=[
- B+'{flex:none;display:flex;align-items:center;gap:9px;width:auto!important;min-width:0;margin:0 0 0 14px!important;padding:5px 12px 5px 5px!important;border:0!important;border-radius:10px!important;background:#2a2418!important;box-shadow:0 0 0 1.5px #c9a45a,0 4px 10px -4px rgba(0,0,0,.45)!important;color:#f4ead2!important;cursor:pointer;text-align:left}',
- B+'>i{flex:none;display:grid;place-items:center;width:30px;height:40px;border-radius:5px;background:linear-gradient(180deg,#3a5a6a,#1e3a44);box-shadow:0 0 0 1px #c9a45a;font:700 16px Georgia,serif;font-style:normal;color:#e9c870}',
- B+'>span{display:flex;flex-direction:column;gap:1px;min-width:0}',
- B+' small{font:700 8.5px var(--mono,monospace);letter-spacing:.14em;text-transform:uppercase;color:#e9c870}',
- B+' b{font:700 13.5px Georgia,serif;color:inherit;white-space:nowrap}',
- B+' em{max-width:190px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:italic 11px Georgia,serif;color:#cdbf9c}',
- B+':hover{box-shadow:0 0 0 2px #e9c870,0 6px 14px -4px rgba(0,0,0,.5)!important}',
- B+'.vencido{background:linear-gradient(160deg,#e2bd5c,#8a6a1e)!important;color:#1d1406!important;box-shadow:0 0 0 1.5px #f6dc8c,0 0 14px rgba(246,220,140,.45)!important}',
- B+'.vencido small,'+B+'.vencido em{color:#3a2a08}',
+(function(){var st=document.createElement('style');st.id='op-antmini-css';var B='html body #modo-op>.op-top .op-antmini';st.textContent=[
+ '#modo-op>.op-top>div:first-child .op-k{display:inline-block!important;vertical-align:middle}',
+ B+'{display:inline-flex;align-items:center;gap:6px;vertical-align:middle;max-width:210px;height:22px;width:auto!important;min-width:0;margin:0 0 0 10px!important;padding:0 10px 0 2px!important;border:0!important;border-radius:999px!important;background:#2a2418!important;box-shadow:0 0 0 1px #c9a45a!important;color:#f4ead2!important;cursor:pointer;text-align:left}',
+ B+'>i{flex:none;display:grid;place-items:center;width:18px;height:18px;border-radius:50%;background:linear-gradient(180deg,#3a5a6a,#1e3a44);box-shadow:0 0 0 1px #c9a45a;font:700 10px Georgia,serif;font-style:normal;color:#e9c870}',
+ B+'>span{display:flex;align-items:baseline;gap:6px;min-width:0}',
+ B+' b{font:700 12px Georgia,serif;color:inherit;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}',
+ B+' small{flex:none;font:700 8.5px var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase;color:#e9c870}',
+ B+':hover{box-shadow:0 0 0 1.5px #e9c870!important}',
+ B+'.vencido{background:linear-gradient(160deg,#e2bd5c,#8a6a1e)!important;color:#1d1406!important;box-shadow:0 0 0 1px #f6dc8c,0 0 10px rgba(246,220,140,.45)!important}',
+ B+'.vencido small{color:#3a2a08}',
  B+'.fugiu{filter:grayscale(.8);opacity:.75}',
  /* no Posto a carta mora no cabeçalho: sai o card do rodapé e o botão da linha */
  'body.op-on #mt-enc,#modo-op .op-antbt{display:none!important}'
@@ -19722,6 +19722,57 @@ pithosNoDiario=function(){var sl0=trioPainel('p'),ri=document.getElementById('ra
 function trioNotas(){var nt=document.getElementById('qa-d-nt'),sl=trioPainel('n');if(!nt||!sl)return;if(nt.parentNode!==sl){var a=document.activeElement;if(a&&nt.contains(a)&&nt.parentNode)return;sl.appendChild(nt);}if(!nt.open)nt.open=true;}
 function trioArruma(){try{trioCard();fioNoPainel();pithosNoDiario();trioNotas();trioAbas();}catch(e){}}
 setInterval(trioArruma,700);setTimeout(trioArruma,600);
+/* ===== Registro rápido · Compras: cola o link, o app traz nome, preço, loja e foto ===== */
+TRIO_NM.push(TV_ON?['c','Feira','Feira de Birka · compras','compras']:EG_ON?['c','Mercado','Mercado de Mênfis · compras','compras']:['c','Ágora','Ágora · compras','compras']);
+function cpD(){S.compras=S.compras||[];return S.compras;}
+function cpBRL(n){return n==null?'':'R$ '+Number(n).toFixed(2).replace('.',',').replace(/\B(?=(\d{3})+(?!\d))/g,'.');}
+function cpLimpa(u){try{var x=new URL(u);Array.from(x.searchParams.keys()).forEach(function(k){if(/^(utm_|fbclid|gclid|epik|pp$|ref$|mc_)/i.test(k))x.searchParams.delete(k);});x.hash='';return x.toString();}catch(e){return u;}}
+function cpHTML(){var L=cpD(),q=L.filter(function(x){return !x.ok;}),f=L.filter(function(x){return x.ok;}),tot=0,sem=0;q.forEach(function(x){if(x.preco!=null)tot+=x.preco;else sem++;});
+ var it=function(x){return '<li class="cp-it'+(x.ok?' ok':'')+(x.lendo?' lendo':'')+'" data-cpid="'+x.id+'">'+(x.img?'<img src="'+esc(x.img)+'" alt="" loading="lazy">':'<i class="cp-sem"></i>')+
+  '<div class="cp-tx"><a href="'+esc(x.url)+'" target="_blank" rel="noopener noreferrer">'+esc(x.t||'lendo a página…')+'</a><small>'+esc(x.loja||'')+(x.erro?' · '+esc(x.erro):'')+'</small></div>'+
+  '<b class="cp-pr" data-cppreco title="clique para corrigir o preço">'+(x.preco!=null?cpBRL(x.preco):'R$ ?')+'</b>'+
+  '<span class="cp-bt"><button type="button" data-cpok title="'+(x.ok?'voltar para a lista':'marcar como comprado')+'">'+(x.ok?'↺':'✓')+'</button><button type="button" data-cpx title="remover">✕</button></span></li>';};
+ return '<form class="cp-add" data-cpadd><input name="u" type="url" inputmode="url" placeholder="cole o link do produto" autocomplete="off"><button type="submit">guardar</button></form>'+
+  (q.length?'<div class="cp-tot"><span>'+q.length+' na lista</span><b>'+cpBRL(tot)+(sem?' + '+sem+' sem preço':'')+'</b></div><ul class="cp-l">'+q.map(it).join('')+'</ul>':'<p class="cp-vz">Lista vazia. Cole o link de algo que você quer comprar: o nome, o preço e a foto vêm sozinhos.</p>')+
+  (f.length?'<details class="cp-f"><summary>comprados · '+f.length+'</summary><ul class="cp-l">'+f.slice(-12).reverse().map(it).join('')+'</ul></details>':'');}
+function cpPinta(){var c=trioCard();if(!c)return;var p=c.querySelector('[data-trp="c"]');if(!p){p=document.createElement('div');p.className='tr-p';p.setAttribute('data-trp','c');c.appendChild(p);trioAbas();}
+ if(!p._lig){p._lig=1;
+  p.addEventListener('submit',function(e){var f=e.target.closest('[data-cpadd]');if(!f)return;e.preventDefault();var u=(f.u.value||'').trim();if(!/^https?:\/\//i.test(u)){f.u.focus();return;}cpNovo(u);f.u.value='';});
+  p.addEventListener('click',function(e){var li=e.target.closest('[data-cpid]');if(!li)return;var x=cpD().filter(function(y){return y.id===li.dataset.cpid;})[0];if(!x)return;
+   if(e.target.closest('[data-cpx]')){S.compras=cpD().filter(function(y){return y!==x;});cpSalva();return;}
+   if(e.target.closest('[data-cpok]')){x.ok=!x.ok;x.dok=x.ok?hoje():null;if(x.ok){try{anota('Comprado: '+(x.t||x.url)+(x.preco!=null?' ('+cpBRL(x.preco)+')':'')+'.',0,false);}catch(z){}}cpSalva();return;}
+   if(e.target.closest('[data-cppreco]')){var v=prompt('Preço de "'+(x.t||'item')+'" (em R$):',x.preco!=null?String(x.preco).replace('.',','):'');if(v==null)return;var n=parseFloat(String(v).replace(/\./g,'').replace(',','.'));x.preco=isFinite(n)&&n>0?Math.round(n*100)/100:null;cpSalva();}});}
+ var h=cpHTML();if(p._h!==h){var a=document.activeElement,foco=a&&p.contains(a)&&a.name==='u',val=foco?a.value:'';p._h=h;p.innerHTML=h;if(foco){var i=p.querySelector('[name=u]');i.value=val;i.focus();}}
+ var tb=c.querySelector('[data-tr="c"] small');if(tb){var n=cpD().filter(function(x){return !x.ok;}).length,tx=n?'compras · '+n:'compras';if(tb.textContent!==tx)tb.textContent=tx;}}
+function cpSalva(){try{grava();}catch(e){}cpPinta();}
+function cpNovo(u){var x={id:'c'+Date.now().toString(36),url:cpLimpa(u),t:'',img:null,preco:null,loja:'',d:hoje(),ok:false,lendo:1};try{x.loja=new URL(u).hostname.replace(/^www\./,'');}catch(e){}cpD().unshift(x);cpSalva();cpLe(x);}
+function cpLe(x){fetch('/api/produto?url='+encodeURIComponent(x.url)).then(function(r){return r.json();}).then(function(d){delete x.lendo;
+  if(d&&d.ok){x.t=d.titulo||x.t;x.img=d.img||null;if(d.preco!=null)x.preco=d.preco;x.loja=d.loja||x.loja;if(d.url)x.url=d.url;delete x.erro;}
+  else{x.erro=(d&&d.erro)||'sem dados';if(!x.t)x.t=x.url.replace(/^https?:\/\/(www\.)?/,'').slice(0,60);}cpSalva();})
+ .catch(function(){delete x.lendo;x.erro='sem conexão';if(!x.t)x.t=x.url.replace(/^https?:\/\/(www\.)?/,'').slice(0,60);cpSalva();});}
+setInterval(function(){try{cpPinta();}catch(e){}},1500);setTimeout(function(){try{cpPinta();}catch(e){}},700);
+(function(){var st=document.createElement('style');st.id='cp-css';var P='#lat-trio [data-trp="c"]';st.textContent=[
+ '#lat-trio .tr-tabs{grid-template-columns:repeat(4,minmax(0,1fr))!important}',
+ P+' .cp-add{display:flex;gap:6px;margin:0 0 8px}',
+ P+' .cp-add input{flex:1;min-width:0;margin:0!important;padding:6px 9px!important;border:1px solid #c9b28a!important;border-radius:8px!important;background:#fffaf0!important;font:12.5px var(--sans,system-ui)!important;color:#2a2418!important}',
+ P+' .cp-add button{flex:none;width:auto!important;margin:0!important;padding:6px 10px!important;border:0!important;border-radius:8px!important;background:#5a3f2c!important;color:#f4ead2!important;font:700 10px var(--mono,monospace)!important;letter-spacing:.08em;text-transform:uppercase;cursor:pointer}',
+ P+' .cp-tot{display:flex;justify-content:space-between;align-items:baseline;margin:0 2px 6px;font:700 9px var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase;color:#8a6f55}',
+ P+' .cp-tot b{font:700 13px Georgia,serif;letter-spacing:0;text-transform:none;color:#2a2418}',
+ P+' .cp-l{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}',
+ P+' .cp-it{display:grid;grid-template-columns:44px minmax(0,1fr) auto;grid-template-rows:auto auto;column-gap:8px;align-items:center;padding:6px;border-radius:9px;background:#fffaf0;border:1px solid #e2d4b0}',
+ P+' .cp-it>img,'+P+' .cp-it>.cp-sem{grid-row:1/3;width:44px;height:44px;border-radius:6px;object-fit:cover;background:#efe4c8}',
+ P+' .cp-tx{min-width:0;display:flex;flex-direction:column;gap:1px}',
+ P+' .cp-tx a{font:600 12.5px/1.25 Georgia,serif;color:#2a2418;text-decoration:none;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}',
+ P+' .cp-tx a:hover{text-decoration:underline}',
+ P+' .cp-tx small{font:600 9.5px var(--mono,monospace);color:#8a6f55;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}',
+ P+' .cp-pr{grid-column:3;grid-row:1;font:700 12.5px var(--mono,monospace);color:#2f6f4e;white-space:nowrap;cursor:pointer}',
+ P+' .cp-bt{grid-column:2/4;grid-row:2;display:flex;justify-content:flex-end;gap:4px}',
+ P+' .cp-bt button{width:22px!important;height:22px;margin:0!important;padding:0!important;border:1px solid #c9b28a!important;border-radius:50%!important;background:#fff!important;color:#5a3f2c!important;font:12px/1 var(--sans,system-ui)!important;cursor:pointer}',
+ P+' .cp-it.ok{opacity:.65}'+P+' .cp-it.ok .cp-tx a{text-decoration:line-through}',
+ P+' .cp-it.lendo{animation:cpPulsa 1.2s ease-in-out infinite}@keyframes cpPulsa{50%{opacity:.55}}',
+ P+' .cp-vz{margin:4px 2px;font:italic 12.5px/1.45 Georgia,serif;color:#5a4636}',
+ P+' .cp-f{margin-top:8px}'+P+' .cp-f summary{cursor:pointer;font:700 9px var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase;color:#8a6f55;margin:0 2px 6px}'
+].join('\n');document.head.appendChild(st);})();
 /* Banner: mesma altura nos três temas e fotos do quadro de visão maiores */
 (function(){var st=document.createElement('style');st.id='bn-altura-css';st.textContent=[
  '@media(min-width:700px){#hero-box#hero-box .vx-hero.bn2{height:590px!important;min-height:590px!important;max-height:590px!important;box-sizing:border-box!important;overflow:hidden}}',

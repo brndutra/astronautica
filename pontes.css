@@ -97,3 +97,4 @@ html body #modo-op>.op-top>#pz-ticker.pz-no-topo{position:static!important;inset
  border:1px solid var(--line);border-radius:999px;display:flex}
 html body.pz-com-ticker.op-on #modo-op#modo-op:has(.op-top>#pz-ticker){padding-top:14px!important}
 body:has(.rod.aberto) #modo-op>.op-top>#pz-ticker.pz-no-topo{display:flex}
+html body #modo-op>.op-top>#pz-ticker.pz-no-topo{min-width:0!important;max-width:100%!important;overflow:hidden!important;box-sizing:border-box}
