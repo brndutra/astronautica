@@ -20096,6 +20096,105 @@ PT_DADOS['Você (banner)'][3]=[['quem é','Chase Maverick Duke, o Neb-Medu ("o s
 PT_DADOS['Patrono'][2]=[['Odin · pai','o Pai de Todos: sabedoria, runas, poesia e a palavra; o andarilho que paga caro pelo saber'],['o planeta','Mercúrio, a mente, está em Sagitário na Casa 9, a do saber distante. Quarta-feira é o dia de Mercúrio no latim e o dia de Odin no germânico'],['o centro do mapa','Sol e Mercúrio juntos na Casa 9: estudo, Direito e o quadro inteiro. Odin trocou um olho pela sabedoria no poço de Mímir; você troca horas de descanso pelo estudo do concurso'],['a Lua','Lua em Escorpião, na Casa 7: Odin é o deus dos segredos e do seiðr, o que lê o que está escondido'],['o que Valhala valoriza','a palavra dada e o saber conquistado com sacrifício. É o seu trabalho (escrever decisões) e a sua prova (o concurso)'],['ponto de atenção','Odin também é astúcia fria. O seu Marte em Libra pede justiça, não manobra: é esse o lado a vigiar']];
 PT_DADOS['Patrono'][3]=[['Thoth · caminho','o deus íbis da escrita, da lei, da lua e da magia; escriba dos deuses'],['o planeta','os gregos chamavam Thoth de Hermes Trismegisto, o Mercúrio "três vezes grande". O seu Mercúrio está em Sagitário na Casa 9, a da lei e do saber'],['a Lua','Thoth também é deus da lua, o que conta o tempo e guarda os segredos: a sua Lua em Escorpião'],['o que o Egito valoriza','Maat, a justiça, e a escrita. O escriba era a profissão mais respeitada do Egito, e você escreve decisões para um desembargador: é um escriba da justiça'],['a balança','no julgamento das almas, Thoth registra o veredito diante da balança de Maat. Marte em Libra na Casa 7 é a sua ação pela justiça'],['o guardião','o babuíno é o animal sagrado de Thoth: Toby, o seu guardião, serve o próprio patrono'],['ponto de atenção','Thoth é medida e paciência; o Ascendente em Áries quer correr']];
 
+/* ===== Mensageiros e vozes dos guardiões: retratos de Sully, Brynn e Toby; avisos no balão do guardião; central de mensagens por panteão ===== */
+var NPC=(function(){var T=TV_ON?'norse':EG_ON?'egypt':'greek';var D={
+ greek:{t:T,nome:'Sully Brookhaven',curto:'Sully',papel:'sátiro protetor · Meio-Sangue',img:'img/acampamento/sully-retrato.webp',msg:'Íris',ic:'<path d="M3 23a13 13 0 0 1 26 0M7 23a9 9 0 0 1 18 0M11 23a5 5 0 0 1 10 0M3 26h26"/>',ok:'Vamos lá',
+  orn:'M0 6H5V1H10V6H15V1H20',c:{ink:'#53391f',gold:'#b58a4f',paper:'#fff5dc',dark:'#4a3525',acc:'#974c36'}},
+ norse:{t:T,nome:'Brynn Halvorsen',curto:'Brynn',papel:'valquíria recrutadora · Valhala',img:'img/acampamento/brynn-retrato.webp',msg:'Hugin',ic:'<path d="M4 8l9 3 3 5 3-5 9-3-4 12-8 7-8-7zM16 16v11M11 11l-2-5 7 4 7-4-2 5"/>',ok:'Partiu',
+  orn:'M0 3Q5 -2 10 3T20 3M0 3Q5 8 10 3T20 3',c:{ink:'#264a42',gold:'#ac9660',paper:'#f3f2e5',dark:'#203d39',acc:'#335f51'}},
+ egypt:{t:T,nome:'Toby Nefer',curto:'Toby',papel:'escriba de Thoth · Brooklyn',img:'img/egito/toby-retrato.webp',msg:'Benh',ic:'<path d="M8 29c0-9 2-15 10-19L30 8l-10-3c-2-4-10-3-12 2-2 4 0 7 2 9M13 29v-8l9-9"/><circle cx="12" cy="7" r="1"/>',ok:'Registrado',
+  orn:'M0 6L5 1L10 6L15 1L20 6',c:{ink:'#263e60',gold:'#b89443',paper:'#fff5db',dark:'#223c55',acc:'#215783'}}};return D[T];})();
+function npcIc(){return '<svg viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round">'+NPC.ic+'</svg>';}
+function npcOrn(){var p='';for(var i=0;i<16;i++)p+='<path d="'+NPC.orn+'" transform="translate('+(i*20)+',0)"/>';return '<div class="npc-orn" aria-hidden="true"><svg viewBox="0 0 320 7" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-width=".9">'+p+'</svg></div>';}
+/* retrato do guardião em todo lugar que o app desenha o sidekick */
+satAvatar=function(humor){return '<img class="sat-av sat-foto sat-'+(humor||'calmo')+'" src="'+NPC.img+'" alt="" aria-hidden="true">';};
+/* histórico de mensagens */
+function npcHist(){try{var a=JSON.parse(localStorage.getItem('astro_npc_hist')||'[]');return Array.isArray(a)?a:[];}catch(e){return [];}}
+function npcGrava(a){try{localStorage.setItem('astro_npc_hist',JSON.stringify(a.slice(0,40)));}catch(e){}}
+function npcHora(){var d=new Date();return ('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2);}
+function npcRegistra(tit,sub,quem){var a=npcHist();a.unshift({id:Date.now()+''+Math.round(Math.random()*999),tit:String(tit||''),sub:String(sub||''),quem:quem||'npc',h:npcHora(),d:new Date().toDateString(),lido:false});npcGrava(a);try{npcPinta();}catch(e){}}
+/* aviso: balão do guardião, no canto do templo, sem cobrir o frontão */
+tdAvisa=function(tit,sub,acoes,som){var box=document.getElementById('td-toasts');if(!box){box=document.createElement('div');box.id='td-toasts';box.setAttribute('aria-live','assertive');document.body.appendChild(box);}
+ box.classList.add('npc-box');var t=document.createElement('div');t.className='npc-toast';t.setAttribute('role','alert');
+ t.innerHTML=npcOrn()+'<button type="button" class="npc-x" aria-label="Dispensar aviso">×</button><span class="npc-hr">agora · '+npcHora()+'</span><img class="npc-av" src="'+NPC.img+'" alt="Retrato de '+tdEsc(NPC.curto)+'"><div class="npc-nm">'+tdEsc(NPC.curto)+'</div><div class="npc-lb">'+tdEsc(tit)+'</div>'+(sub?'<div class="npc-say">'+tdEsc(sub)+'</div>':'')+'<div class="npc-ac"></div>';
+ var ac=t.querySelector('.npc-ac'),L=acoes||[['ok',null]];L.forEach(function(a,i){var b=document.createElement('button');b.type='button';b.textContent=(a[0]==='ok'?NPC.ok:a[0]);if(i===0)b.className='pri';b.onclick=function(){t.remove();if(a[1])a[1]();};ac.appendChild(b);});
+ t.querySelector('.npc-x').onclick=function(){t.remove();};
+ box.appendChild(t);while(box.children.length>3)box.firstChild.remove();if(som!==false){try{tdSom(3);}catch(e){}}npcRegistra(tit,sub,'npc');
+ try{if(window.Notification&&Notification.permission==='granted'&&document.visibilityState!=='visible')new Notification(NPC.curto+' · '+tit,{body:sub||'',icon:NPC.img});}catch(e){}
+ if(!acoes||acoes.length<2)setTimeout(function(){if(t.parentNode)t.remove();},60000);};
+/* avisos do diálogo do guardião (Sully/corvo) também entram no histórico */
+(function(){var a0=aveAvisa;aveAvisa=function(quem,tit,linhas,gab){try{if(linhas&&linhas.length)npcRegistra(linhas[0],linhas.slice(1).join(' · '),quem==='corvo'?'msg':'npc');}catch(e){}return a0.apply(this,arguments);};})();
+/* central de mensagens: mensageiro ao lado do guardião */
+var NPC_F='all';
+function npcPinta(){var b=document.getElementById('npc-ic'),a=npcHist(),n=a.filter(function(x){return !x.lido;}).length;
+ if(b){var c=b.querySelector('.npc-n');c.textContent=n;c.hidden=!n;}
+ var p=document.getElementById('npc-pop');if(!p||p.hidden)return;
+ var L=a.filter(function(x){return NPC_F==='all'||!x.lido;});
+ p.querySelector('.npc-lista').innerHTML=L.length?L.map(function(x){var av=x.quem==='msg'?'<span class="npc-mav">'+npcIc()+'</span>':'<img class="npc-mav" src="'+NPC.img+'" alt="">';
+  return '<div class="npc-it'+(x.lido?' lido':'')+'" data-npcid="'+esc(x.id)+'" role="button" tabindex="0">'+av+'<div><div class="npc-de">'+esc(x.quem==='msg'?NPC.msg+' · mensageiro':NPC.curto+' · '+NPC.papel)+'</div><b>'+esc(x.tit)+'</b>'+(x.sub?'<p>'+esc(x.sub)+'</p>':'')+'<small>'+esc((x.d===new Date().toDateString()?'hoje':'antes')+' · '+x.h)+'</small></div><i class="npc-dot"></i></div>';}).join(''):'<p class="npc-vz">Nenhuma mensagem neste filtro.</p>';
+ p.querySelector('.npc-ct').textContent=n+(n===1?' não lida':' não lidas');
+ [].forEach.call(p.querySelectorAll('[data-npcf]'),function(x){x.setAttribute('aria-pressed',String(x.dataset.npcf===NPC_F));});}
+function npcCentral(){var sk=document.querySelector('.sat-ic[data-satir]');var b=document.getElementById('npc-ic');
+ if(!b){b=document.createElement('button');b.type='button';b.id='npc-ic';b.className='tt-ic npc-ic';b.title='Mensagens de bordo · '+NPC.msg;b.setAttribute('aria-label','Mensagens de bordo');b.setAttribute('data-notr','');b.innerHTML=npcIc()+'<span class="npc-n" hidden>0</span>';}
+ if(sk&&sk.nextElementSibling!==b)sk.insertAdjacentElement('afterend',b);else if(!sk&&!b.parentNode)return;
+ var p=document.getElementById('npc-pop');if(!p){p=document.createElement('section');p.id='npc-pop';p.hidden=true;p.setAttribute('aria-label','Mensagens de bordo');
+  p.innerHTML=npcOrn()+'<div class="npc-cab"><span class="npc-selo">'+npcIc()+'</span><div><small>'+esc(NPC.msg)+' · '+esc(NPC.curto)+'</small><b>Mensagens de bordo</b></div><button type="button" class="npc-x" data-npcx aria-label="Fechar">×</button></div><div class="npc-tabs"><button type="button" data-npcf="all">Todas</button><button type="button" data-npcf="new">Novas</button></div><div class="npc-lista"></div><div class="npc-pe"><span class="npc-ct"></span><button type="button" data-npclidas>Marcar lidas</button></div>';document.body.appendChild(p);}
+ npcPinta();}
+function npcPos(){var b=document.getElementById('npc-ic'),p=document.getElementById('npc-pop');if(!b||!p||p.hidden)return;var r=b.getBoundingClientRect();p.style.top=Math.round(r.bottom+10)+'px';p.style.left=Math.round(Math.max(8,Math.min(innerWidth-p.offsetWidth-8,r.left+r.width/2-40)))+'px';}
+document.addEventListener('click',function(e){var t=e.target;if(!t.closest)return;
+ if(t.closest('#npc-ic')){e.preventDefault();e.stopPropagation();var p=document.getElementById('npc-pop');if(!p)return;p.hidden=!p.hidden;npcPinta();npcPos();return;}
+ var p2=document.getElementById('npc-pop');if(!p2||p2.hidden)return;
+ if(t.closest('[data-npcx]')){p2.hidden=true;return;}
+ var f=t.closest('[data-npcf]');if(f){NPC_F=f.dataset.npcf;npcPinta();return;}
+ if(t.closest('[data-npclidas]')){var a=npcHist();a.forEach(function(x){x.lido=true;});npcGrava(a);npcPinta();return;}
+ var it=t.closest('[data-npcid]');if(it){var a2=npcHist();a2.forEach(function(x){if(x.id===it.dataset.npcid)x.lido=true;});npcGrava(a2);npcPinta();return;}
+ if(!t.closest('#npc-pop'))p2.hidden=true;},true);
+setTimeout(function(){try{npcCentral();}catch(e){}},1700);setInterval(function(){try{npcCentral();npcPos();}catch(e){}},1500);window.addEventListener('resize',function(){try{npcPos();}catch(e){}});
+(function(){var c=NPC.c,st=document.createElement('style');st.id='npc-css';st.textContent=[
+ ':root{--npc-ink:'+c.ink+';--npc-gold:'+c.gold+';--npc-paper:'+c.paper+';--npc-dark:'+c.dark+';--npc-acc:'+c.acc+'}',
+ '.npc-orn{height:7px;background:var(--npc-dark);color:var(--npc-gold);overflow:hidden}.npc-orn svg{display:block;width:100%;height:100%}',
+ /* balão do guardião */
+ '#td-toasts.npc-box{position:fixed!important;top:auto!important;left:auto!important;right:var(--npc-r,380px)!important;bottom:calc(var(--rod-h,70px) + 16px)!important;transform:none!important;z-index:80!important;display:flex;flex-direction:column;gap:10px;width:360px;max-width:calc(100vw - 24px);pointer-events:none}',
+ '.npc-toast{position:relative;pointer-events:auto;color:var(--npc-ink);background:var(--npc-paper);border:1px solid var(--npc-gold);border-left:4px solid var(--npc-gold);border-radius:6px;box-shadow:0 10px 26px -8px rgba(30,20,10,.45),inset 0 0 0 3px var(--npc-paper),inset 0 0 0 4px rgba(0,0,0,.06);padding:0 14px 12px;overflow:visible;font-family:Georgia,serif;animation:npcIn .35s ease}',
+ '.npc-toast .npc-orn{margin:0 -14px 10px;border-radius:5px 5px 0 0}',
+ '.npc-toast::after{content:"";position:absolute;bottom:-6px;right:31px;width:10px;height:10px;background:var(--npc-paper);border-right:1px solid var(--npc-gold);border-bottom:1px solid var(--npc-gold);transform:rotate(45deg)}',
+ '@keyframes npcIn{from{opacity:0;transform:translateY(10px)}}',
+ '.npc-av{float:left;width:50px;height:50px;margin:0 11px 4px 0;border-radius:8px;object-fit:cover;object-position:50% 30%;border:2px solid var(--npc-gold);background:var(--npc-dark)}',
+ '.npc-nm{font-weight:700;font-size:15px}',
+ '.npc-lb{font:600 9px system-ui;letter-spacing:1.4px;text-transform:uppercase;opacity:.75;margin-top:2px}',
+ '.npc-say{clear:both;font-size:14.5px;line-height:1.35;margin:9px 0 10px}',
+ '.npc-hr{float:right;margin:2px 22px 0 0;font:600 8px system-ui;letter-spacing:1.2px;text-transform:uppercase;opacity:.6}',
+ '.npc-toast .npc-x,#npc-pop .npc-x{position:absolute;right:7px;top:10px;border:0;background:none;color:var(--npc-ink);font:18px system-ui;line-height:1;cursor:pointer;padding:0 3px}',
+ '.npc-ac{clear:both;display:flex;gap:7px;flex-wrap:wrap}',
+ '.npc-ac button,#npc-pop .npc-pe button,#npc-pop .npc-tabs button{font:600 10px system-ui;letter-spacing:.3px;padding:6px 10px;border-radius:4px;border:1px solid var(--npc-gold);background:transparent;color:var(--npc-ink);cursor:pointer}',
+ '.npc-ac button.pri{background:var(--npc-dark);border-color:var(--npc-dark);color:var(--npc-paper)}',
+ /* botão do mensageiro e central */
+ '#npc-ic{position:relative}#npc-ic svg{width:18px;height:18px}',
+ '#npc-ic .npc-n{position:absolute;top:-4px;right:-5px;min-width:15px;height:15px;padding:0 3px;border-radius:8px;background:var(--npc-acc);color:#fff;font:700 9px/15px system-ui;text-align:center;box-shadow:0 0 0 2px var(--npc-paper)}#npc-ic .npc-n[hidden]{display:none}',
+ '#npc-pop{position:fixed;z-index:90;width:360px;max-width:calc(100vw - 16px);max-height:min(560px,calc(100vh - 120px));display:flex;flex-direction:column;color:var(--npc-ink);background:var(--npc-paper);border:1px solid var(--npc-gold);border-radius:8px;box-shadow:0 14px 34px -10px rgba(30,20,10,.5),inset 0 0 0 3px var(--npc-paper),inset 0 0 0 4px rgba(0,0,0,.08);overflow:hidden;font-family:Georgia,serif}',
+ '#npc-pop[hidden]{display:none!important}',
+ '#npc-pop .npc-orn{height:12px;border-bottom:2px solid var(--npc-gold)}',
+ '#npc-pop .npc-cab{position:relative;display:flex;align-items:center;gap:10px;padding:14px 14px 10px;border-bottom:1px dotted var(--npc-gold)}',
+ '#npc-pop .npc-selo{width:42px;height:42px;flex:none;display:grid;place-items:center;border-radius:50%;border:1px solid var(--npc-gold);outline:1px dotted var(--npc-gold);outline-offset:3px;color:var(--npc-acc)}#npc-pop .npc-selo svg{width:28px;height:28px}',
+ '#npc-pop .npc-cab small{display:block;font:600 9px system-ui;letter-spacing:1.2px;text-transform:uppercase;color:var(--npc-acc)}#npc-pop .npc-cab b{font-weight:400;font-size:18px}',
+ '#npc-pop .npc-tabs{display:flex;gap:4px;padding:9px 14px 2px}#npc-pop .npc-tabs button{border-color:transparent}#npc-pop .npc-tabs button[aria-pressed=true]{border-color:var(--npc-gold);background:rgba(0,0,0,.04)}',
+ '#npc-pop .npc-lista{flex:1;min-height:0;overflow-y:auto;padding:0 14px;scrollbar-width:thin}',
+ '#npc-pop .npc-it{position:relative;display:grid;grid-template-columns:40px 1fr;gap:10px;padding:11px 0;border-bottom:1px dotted var(--npc-gold);cursor:pointer}#npc-pop .npc-it:last-child{border-bottom:0}',
+ '#npc-pop .npc-mav{width:38px;height:38px;border-radius:50%;object-fit:cover;object-position:50% 30%;border:1px solid var(--npc-gold);display:grid;place-items:center;color:var(--npc-acc)}#npc-pop span.npc-mav svg{width:24px;height:24px}',
+ '#npc-pop .npc-de{font:600 8.5px system-ui;letter-spacing:.9px;text-transform:uppercase;color:var(--npc-acc);margin-bottom:3px}',
+ '#npc-pop .npc-it b{display:block;font-size:13.5px;padding-right:12px}#npc-pop .npc-it p{margin:3px 0;font-size:12px;opacity:.8;line-height:1.4}#npc-pop .npc-it small{font:600 8px system-ui;letter-spacing:.8px;text-transform:uppercase;opacity:.6}',
+ '#npc-pop .npc-dot{position:absolute;right:1px;top:16px;width:6px;height:6px;border-radius:50%;background:var(--npc-acc)}#npc-pop .npc-it.lido .npc-dot{display:none}#npc-pop .npc-it.lido{opacity:.75}',
+ '#npc-pop .npc-vz{padding:18px 0;opacity:.7;font-size:13px}',
+ '#npc-pop .npc-pe{display:flex;align-items:center;justify-content:space-between;padding:10px 14px 12px;border-top:1px dotted var(--npc-gold)}#npc-pop .npc-ct{font:600 8.5px system-ui;letter-spacing:.8px;text-transform:uppercase;opacity:.7}',
+ 'body.noite .npc-toast,body.noite #npc-pop{filter:none}',
+ 'html body:not(.zz9):not(.zz8) :is(.npc-toast,#npc-pop) button{width:auto!important;min-width:0!important;height:auto!important;min-height:0!important;margin:0!important;box-shadow:none!important;text-transform:none!important}',
+ 'html body:not(.zz9):not(.zz8) :is(.npc-toast,#npc-pop) .npc-x{position:absolute!important;left:auto!important;right:7px!important;top:10px!important;padding:0 3px!important;border:0!important;background:none!important;font:18px/1 system-ui!important;color:var(--npc-ink)!important}',
+ 'html body:not(.zz9):not(.zz8) .npc-toast .npc-ac button{padding:6px 10px!important;font:600 10px system-ui!important;border:1px solid var(--npc-gold)!important;background:transparent!important;color:var(--npc-ink)!important;border-radius:4px!important}',
+ 'html body:not(.zz9):not(.zz8) .npc-toast .npc-ac button.pri{background:var(--npc-dark)!important;border-color:var(--npc-dark)!important;color:var(--npc-paper)!important}'
+ ].join('\n');document.head.appendChild(st);})();
+/* o balão fica no canto do templo central, à esquerda do painel direito */
+function npcCanto(){var tp=document.getElementById('tp-painel'),b=document.getElementById('td-toasts');if(!b)return;var r=tp&&tp.offsetParent?Math.max(12,Math.round(innerWidth-tp.getBoundingClientRect().left+16)):16;b.style.setProperty('--npc-r',r+'px');}
+setInterval(function(){try{npcCanto();}catch(e){}},1500);window.addEventListener('resize',function(){try{npcCanto();}catch(e){}});
 
 })();
 </script>
