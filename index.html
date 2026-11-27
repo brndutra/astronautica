@@ -5686,9 +5686,12 @@ html body:not(.tv):not(.eg) #dia-faixa#dia-faixa .df-agora::before{content:""!im
 html body:not(.tv):not(.eg) #dia-faixa#dia-faixa .df-agora b{background:#e0782a!important;color:#fff!important}
 
 /* ===== Modo noturno: mesmo visual dos temas, com luz baixa e quente (sem quebrar contraste) ===== */
-html.noite{background:#120d08;filter:brightness(.68) contrast(1.08) sepia(.26) saturate(.9)}
-html.noite body{background-color:#e9dfca}
-@media (prefers-reduced-motion:no-preference){html{transition:filter .35s ease}}
+html.noite{background:#f6efe0;filter:invert(.94) hue-rotate(180deg) saturate(1.1)}
+html.noite :is(img,video,picture,canvas,iframe,image){filter:invert(1) hue-rotate(180deg) saturate(.91) brightness(.92)}
+html.noite .nt-b::before,html.noite .nt-a::after,html.noite .nt-e{filter:invert(1) hue-rotate(180deg) saturate(.91) brightness(.9)!important}
+html.noite :is(.cp-postal,#argo-mar,#mt-enc,#dia-faixa){filter:invert(1) hue-rotate(180deg) saturate(.91) brightness(.88)}
+html.noite :is(.cp-postal,#argo-mar,#mt-enc,#dia-faixa,.nt-e) :is(img,video,canvas,picture){filter:none}
+html.noite :is(.cp-postal,#argo-mar,#mt-enc,#dia-faixa) :is(.nt-b::before,.nt-a::after){filter:none!important}
 /* ===== Barras de rolagem: finas, discretas e na cor do tema ===== */
 html{--sb:rgba(201,150,60,.55);--sb-h:#e0782a}
 html:has(body.tv),body.tv{--sb:rgba(96,114,128,.55);--sb-h:#b3262d}
@@ -19707,6 +19710,14 @@ setInterval(function(){try{tpbAltura();}catch(e){}},1000);setTimeout(function(){
  R+'::before,'+R+'::after{display:none!important;content:none!important}',
  R+'{margin-bottom:18px!important}'
 ].join('\n');document.head.appendChild(st);})();
+/* Modo noturno: fotos em fundo de cartão (::before/::after ou no próprio elemento) voltam às cores reais */
+function noiteFotos(){if(!document.documentElement.classList.contains('noite'))return;var RX=/\.(webp|jpe?g|png)/i;
+ document.querySelectorAll('body *').forEach(function(e){if(e.closest('svg'))return;var cs=getComputedStyle(e);
+  if(RX.test(cs.backgroundImage)){if((e.innerText||'').trim().length<=24)e.classList.add('nt-e');}
+  if(RX.test(getComputedStyle(e,'::before').backgroundImage))e.classList.add('nt-b');
+  if(RX.test(getComputedStyle(e,'::after').backgroundImage))e.classList.add('nt-a');});}
+(function(){var t=null;setInterval(function(){if(document.documentElement.classList.contains('noite'))noiteFotos();},5000);
+ var a0=aplicaTema;aplicaTema=function(){var r=a0.apply(this,arguments);clearTimeout(t);t=setTimeout(noiteFotos,300);return r;};setTimeout(noiteFotos,1500);})();
 
 })();
 </script>
