@@ -28,6 +28,25 @@
       <option value="templo">templo completo, com rolagem</option>
     </select>
   </label>
+  <fieldset class="aj-foco">
+    <legend>Foco e pausas</legend>
+    <label>Foco <input id="c-foco" type="number" min="5" max="120" step="5"> min</label>
+    <label>Pausa curta <input id="c-curta" type="number" min="1" max="30"> min</label>
+    <label>Pausa longa <input id="c-longa" type="number" min="5" max="60" step="5"> min</label>
+    <label>Pausa longa a cada <input id="c-ciclo" type="number" min="2" max="8"> blocos</label>
+    <label class="aj-chk"><input id="c-auto" type="checkbox"> a pausa começa sozinha no fim do bloco</label>
+    <label>Som durante o foco
+      <select id="c-som"><option value="nenhum">nenhum</option><option value="marrom">ruído marrom</option><option value="chuva">chuva</option><option value="tique">tique-taque</option></select>
+    </label>
+    <label>Toque suave durante o foco
+      <select id="c-toque"><option value="0">desligado</option><option value="10">a cada 10 min</option><option value="15">a cada 15 min</option><option value="20">a cada 20 min</option></select>
+    </label>
+    <label>Avisos com botão insistem
+      <select id="c-insiste"><option value="0">não</option><option value="5">a cada 5 min</option><option value="10">a cada 10 min</option><option value="15">a cada 15 min</option></select>
+    </label>
+    <label class="aj-chk"><input id="c-aviso5" type="checkbox"> avisar 5 min antes de cada faixa</label>
+    <div class="linha"><button type="button" id="c-testar">ouvir o som</button><button type="button" id="c-sino">ouvir o toque</button></div>
+  </fieldset>
   <label>Ao clicar no ícone da extensão
     <select id="clique">
       <option value="popup">abrir o popup</option>
@@ -91,6 +110,7 @@
 
       <div class="friso-toque" data-c="toque">
         <div class="tq-met" id="tq-met"></div>
+        <div class="tq-fx" id="tq-fx"><i id="tq-bar"></i><span id="tq-falta"></span></div>
         <button type="button" class="tq-leg" id="tq-leg" aria-expanded="false"><span id="tq-txt"></span><b>hoje ▾</b></button>
         <ol class="tq-dia" id="tq-dia" hidden></ol>
       </div>
@@ -115,7 +135,7 @@
     <section class="aba" id="arena" data-face="arena">
       <h3 class="sep"><span data-tx="treino">Treino na Arena</span></h3>
       <div class="card" data-c="foco">
-        <h2><span>Foco</span> <i id="modo">foco</i></h2>
+        <h2><span>Foco <button type="button" class="sorteio" id="sorteio" title="Não sei por onde começar: sortear uma missão, hábito ou a disciplina da vez" aria-label="Sortear por onde começar"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3"/><circle cx="9" cy="9" r="1.2"/><circle cx="15" cy="15" r="1.2"/><circle cx="15" cy="9" r="1.2"/><circle cx="9" cy="15" r="1.2"/><circle cx="12" cy="12" r="1.2"/></svg></button></span> <i id="modo">foco</i></h2>
         <p class="lead">Um bloco de cada vez. <span data-tx="diretor">Quíron</span> não cobra a lista inteira.</p>
         <div class="foco">
           <div class="anel" id="anel">
@@ -124,6 +144,7 @@
           </div>
           <div class="fcol">
             <input id="tarefa" placeholder="no que vai treinar?" maxlength="80">
+            <input id="passo" class="passo" placeholder="primeiro passo, que cabe em 2 min" maxlength="80">
             <div class="fbt" id="parado">
               <button class="pri" data-min="25">25 min</button><button data-min="50">50 min</button><button id="pausa5">pausa 5</button>
             </div>
@@ -131,8 +152,16 @@
               <button class="pri" id="pp">pausar</button><button id="enc">encerrar</button>
             </div>
             <div class="fstat" id="fstat"></div>
+            <div class="pomo" id="pomo" title="blocos no ciclo até a pausa longa"></div>
           </div>
         </div>
+      </div>
+
+      <div class="card" data-c="passos">
+        <h2>Passos <i id="passos-de">da tarefa</i></h2>
+        <p class="lead">Quebre a tarefa em pedaços pequenos. O guardião puxa um de cada vez.</p>
+        <ol class="passos" id="passos"></ol>
+        <div class="linha mt"><input id="p-novo" placeholder="próximo pedaço · ex.: abrir o arquivo" maxlength="80"><input id="p-min" class="val" inputmode="numeric" placeholder="min"><button id="p-add">incluir</button></div>
       </div>
 
       <div class="card" data-c="ciclo">

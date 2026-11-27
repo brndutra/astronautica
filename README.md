@@ -29,6 +29,7 @@ O projeto na Vercel está ligado a este repositório: cada push na `main` public
 
 - Baixar pronta: ícone no verso do cartão-postal do banner (`downloads/astronautica-extensao-<versão>.zip`, com o `manifest.json` na raiz).
 - Templo no visual do app: frontão com placa (faces Hoje · Arena · Registro), pilares, frisos e base; faixa do Toque com a linha do dia, cartão-postal que vira, guardião com fala do dia, Em andamento, últimas capturas e Mensagens de bordo.
+- Foco: ciclo com pausa curta e longa automáticas (durações nas preferências), primeiro passo de 2 min, passos da tarefa com tempo, sorteio de por onde começar, som ambiente (ruído marrom, chuva, tique-taque) e toque suave em intervalos; avisos com botões (Começar, Adiar 10 min, Pular a pausa) que insistem até a resposta; aviso 5 min antes de cada faixa e tempo restante da faixa no Toque.
 - Três refúgios, escolhidos na engrenagem: Acampamento Meio-Sangue, Hotel Valhala e Casa do Brooklyn (textos, cores, moeda, guardião e avisos).
 - Modos: popup, painel lateral do Chrome (largura ajustável na borda) ou janela solta (move e redimensiona; volta no mesmo lugar). A− e A+ mudam o tamanho. Na engrenagem dá para escolher o que o clique no ícone abre.
 
