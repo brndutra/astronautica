@@ -5782,6 +5782,43 @@ html.noite .fg-dlg .fg-chama,html.noite .op-fog .op-k::before{filter:invert(1) h
 .rg-pn b{display:block;font:700 18px/1.1 Georgia,serif;color:#2f261d}
 .rg-pn small{display:block;margin-top:2px;font:700 7.5px var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase;color:#8a6f55}
 .rg-fr{display:inline-block;margin-right:6px;padding:1px 7px;border-radius:99px;background:#efe3c6;font:700 8px var(--mono,monospace);letter-spacing:.08em;text-transform:uppercase;color:#6b5140}
+
+/* ===== Ficha em folheto (dobrável, por tema) e Diário em livro ===== */
+#fo{position:relative;height:min(86vh,840px);min-height:520px;display:flex;flex-direction:column;gap:12px;padding:18px 22px 22px;box-sizing:border-box;background:linear-gradient(160deg,#3a2417,#24160d);border-radius:12px}
+#fo[hidden]{display:none!important}
+#fo .fo-cab{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;padding-right:56px;color:#f3e6c8}
+#fo .fo-k{display:block;font:700 9px var(--mono,monospace);letter-spacing:.22em;text-transform:uppercase;color:#e2b85a}
+#fo .fo-cab b{display:block;font:700 26px/1.1 Georgia,serif;letter-spacing:.02em;font-variant:small-caps}
+#fo .fo-ac{display:flex;gap:8px}
+#fo .fo-ac button{display:inline-flex;align-items:center;gap:7px;width:auto!important;margin:0!important;padding:8px 16px!important;border:1px solid #c9a45a!important;border-radius:6px!important;background:rgba(255,240,210,.08)!important;color:#f3e6c8!important;font:600 12.5px Georgia,serif!important;cursor:pointer;box-shadow:none!important}
+#fo .fo-ac button:hover{background:#c9a45a!important;color:#2a1a10!important}
+#fo .fo-ac button[data-fodiario]{background:#c9a45a!important;color:#2a1a10!important}
+#fo .fo-ac svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+#fo .fo-dobras{position:relative;flex:1;min-height:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));background:#f7efdc;border-radius:2px;box-shadow:0 20px 44px rgba(0,0,0,.5)}
+#fo .fo-dobras::after{content:"";position:absolute;top:0;right:0;width:34px;height:34px;background:linear-gradient(225deg,#24160d 50%,#e8dbbd 50%,#d9c9a3);box-shadow:-2px 2px 4px rgba(0,0,0,.25)}
+#fo .fo-p{position:relative;min-width:0;overflow-y:auto;overscroll-behavior:contain;background:linear-gradient(90deg,rgba(90,60,30,.10),transparent 7%,transparent 93%,rgba(90,60,30,.12))}
+#fo .fo-p:nth-child(2){background:linear-gradient(90deg,rgba(90,60,30,.14),rgba(255,255,255,.28) 50%,rgba(90,60,30,.08))}
+#fo .fo-p+.fo-p{border-left:1px dashed rgba(120,85,45,.35)}
+#fo .lv-folha{display:block!important;position:static!important;inset:auto!important;width:auto!important;height:auto!important;min-height:0!important;margin:0!important;padding:18px 20px 22px!important;background:none!important;box-shadow:none!important;transform:none!important;opacity:1!important;overflow:visible!important}
+#fo .lv-folha::before,#fo .lv-folha::after{display:none!important}
+#fo .lv-cab{display:block!important;margin:0 0 10px!important;padding:0 0 6px!important;border-bottom:1px solid rgba(154,107,58,.35)!important}
+#fo .lv-cab .lv-cap,#fo .lv-num{display:none!important}
+#fo .lv-cab .lv-t{font:700 9.5px var(--mono,monospace)!important;letter-spacing:.18em!important;text-transform:uppercase;color:#9a4a30!important}
+#fo .lv-corpo{overflow:visible!important;height:auto!important}
+#fo .fc-grid{grid-template-columns:1fr!important}
+
+#fo .fc-f b{font-size:15px!important;line-height:1.3!important}
+#fo .fc-f span{font-size:8.5px!important}
+#fo .fc-top h3{font-size:24px!important}
+#fo .fc-at{display:grid!important;grid-template-columns:minmax(70px,auto) 1fr auto!important;align-items:center;gap:2px 10px!important;padding:6px 0!important;border-bottom:1px dotted rgba(154,107,58,.3)}
+#fo .fc-at>small{grid-column:1/-1!important;font:italic 11.5px/1.3 Georgia,serif!important;color:#8a6f55!important;white-space:normal!important;width:auto!important;max-width:none!important}
+#fo .fc-pq li,#fo .fc-two li,#fo .fc-sec p{font-size:13.5px!important;line-height:1.45!important}
+#lv .lv-fita:is([data-lvsec="Registro"],[data-lvsec="Atributos"],[data-lvsec="Dons"],[data-lvsec="Destino"]){display:none!important}
+#lv .lv-topo .lv-fo-bt{width:auto!important;margin:0 8px 0 auto!important;padding:6px 14px!important;border:1px solid #c9a45a!important;border-radius:6px!important;background:rgba(255,240,210,.08)!important;color:#f3e6c8!important;font:600 12px Georgia,serif!important;cursor:pointer}
+#lv .lv-topo .lv-fo-bt:hover{background:#c9a45a!important;color:#2a1a10!important}
+body.tv #fo{background:linear-gradient(160deg,#1f2a2e,#141b1e)}body.tv #fo .fo-dobras{background:#f3efe6}body.tv #fo .fo-k{color:#d4ad4f}body.tv #fo .lv-cab .lv-t{color:#b3262d!important}body.tv #fo .fo-dobras::after{background:linear-gradient(225deg,#141b1e 50%,#e3dccd 50%,#cfc6b2)}
+body.eg #fo{background:linear-gradient(160deg,#1e3a6e,#132648)}body.eg #fo .fo-dobras{background:#fbf3dc}body.eg #fo .fo-k{color:#f3d27a}body.eg #fo .lv-cab .lv-t{color:#2a4c86!important}body.eg #fo .fo-dobras::after{background:linear-gradient(225deg,#132648 50%,#efe0b5 50%,#dccb98)}
+@media (max-width:880px){#fo .fo-dobras{grid-template-columns:1fr;overflow-y:auto}#fo .fo-p{overflow:visible}#fo .fo-cab{flex-direction:column;align-items:flex-start}}
 /* ===== Barras de rolagem: finas, discretas e na cor do tema ===== */
 html{--sb:rgba(201,150,60,.55);--sb-h:#e0782a}
 html:has(body.tv),body.tv{--sb:rgba(96,114,128,.55);--sb-h:#b3262d}
@@ -20279,6 +20316,26 @@ function rgTudo(){['dia','sem','mes','and'].forEach(function(tp){try{rgPinta(tp)
 (function(){var c0=cfDiario;cfDiario=async function(){var r=await c0.apply(this,arguments);try{rgTudo();}catch(e){}return r;};})();
 (function(){var e0=lvEstado;lvEstado=function(){var r=e0.apply(this,arguments);try{if(CF.chave&&!document.querySelector('#lv .rg[data-rg="dia"] .rg-per'))rgTudo();}catch(e){}return r;};})();
 setInterval(function(){try{if(CF.chave){var w=document.querySelector('#lv .rg[data-rg="and"]');if(w&&!w.contains(document.activeElement)){var pn=w.querySelector('.rg-pn'),h=rgPainel();if(pn&&h)pn.outerHTML=h;}}}catch(e){}},60000);
+
+/* ===== A ficha abre como folheto (três dobras, por tema); o diário abre como livro ===== */
+var FO_CFG=TV_ON?{k:'folheto do hotel · andar 19',t:'Registro do Einherji',d:'abrir o diário da saga'}:EG_ON?{k:'folheto da casa · nomo 21',t:'Papiro do Iniciado',d:'abrir o diário de papiro'}:{k:'folheto do acampamento · chalé 7',t:'Ficha do Campista',d:'abrir o Diário do Semideus'};
+var LV_MODO='ficha',FO_IDS=['registro','atrib','dons','destino'];
+lvFolhas=(function(f0){return function(){return f0.apply(this,arguments).filter(function(f){return FO_IDS.indexOf(f.id)<0;});};})(lvFolhas);
+function foMonta(){var lv=document.getElementById('lv');if(!lv)return null;var fo=document.getElementById('fo');
+ if(!fo){fo=document.createElement('div');fo.id='fo';fo.className='fo';fo.setAttribute('data-notr','');fo.setAttribute('translate','no');fo.hidden=true;
+  fo.innerHTML='<div class="fo-cab"><div><span class="fo-k">'+esc(FO_CFG.k)+'</span><b>'+esc(FO_CFG.t)+'</b></div><div class="fo-ac">'+
+   '<button type="button" data-fodiario><svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h5v17H6a2 2 0 0 0-2 2z"/><path d="M20 5a2 2 0 0 0-2-2h-5v17h5a2 2 0 0 1 2 2z"/></svg>'+esc(FO_CFG.d)+'</button>'+
+   '<button type="button" data-lvtr><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="1.6"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>trancar</button></div></div>'+
+   '<div class="fo-dobras"><div class="fo-p" data-fop="1"></div><div class="fo-p" data-fop="2"></div><div class="fo-p" data-fop="3"></div></div>';
+  lv.appendChild(fo);
+  fo.addEventListener('click',function(e){if(e.target.closest('[data-fodiario]')){LV_MODO='diario';lvEstado();try{lvIrSec('Diário');}catch(z){}}});}
+ var map={registro:1,atrib:2,dons:3,destino:3};
+ FO_IDS.forEach(function(id){var sec=lv.querySelector('.lv-folha[data-folha="'+id+'"]'),p=fo.querySelector('[data-fop="'+map[id]+'"]');if(sec&&p&&sec.parentNode!==p)p.appendChild(sec);});
+ var pq=lv.querySelector('#fc-ficha > .fc-pq'),ca=lvCorpo('atrib');if(pq&&ca)ca.appendChild(pq);
+ var tp=lv.querySelector('.lv-topo');if(tp&&!tp.querySelector('.lv-fo-bt')){var b=document.createElement('button');b.type='button';b.className='lv-fo-bt';b.textContent='‹ '+FO_CFG.t;b.addEventListener('click',function(){LV_MODO='ficha';lvEstado();});var tr=tp.querySelector('[data-lvtr]');tp.insertBefore(b,tr||null);}
+ return fo;}
+lvEstado=(function(e0){return function(){var r=e0.apply(this,arguments);try{var fo=foMonta(),liv=document.getElementById('lv-livro'),ab=!!CF.chave;if(!ab)LV_MODO='ficha';
+  if(fo&&liv){var fi=ab&&LV_MODO==='ficha';if(fo.hidden!==!fi)fo.hidden=!fi;if(ab&&liv.hidden!==fi)liv.hidden=fi;}}catch(e){}return r;};})(lvEstado);
 
 })();
 </script>
