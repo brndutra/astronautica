@@ -5222,6 +5222,33 @@ dialog.ave-dlg::before{content:'';display:block;height:12px;margin:6px 8px 0;bac
 .fg-dlg .fg-cofre i{position:absolute;left:50%;top:-6px;width:40px;height:40px;margin-left:-20px;border-radius:50%;background:radial-gradient(circle,#fff3b0,rgba(242,182,50,0));opacity:0;animation:fgBrilho 1.2s .5s ease-out forwards}
 @keyframes fgAbreTampa{to{transform:rotate(-38deg) translate(-4px,-6px)}}
 @keyframes fgBrilho{to{opacity:1;transform:translateY(-18px) scale(1.8)}}
+/* ===== Argo: o Posto de comando vira o convés da Argo (só no tema grego). Cartões com as molduras do kit Argonáutica; o rodapé é o casco laranja, com popa e proa nas pontas; os registros do dia viram escudos na amurada ===== */
+body:not(.tv).op-on #modo-op{padding-left:72px!important;padding-right:112px!important;padding-bottom:116px!important}
+body:not(.tv).op-on #modo-op.op-grego .op-templo{--ah:70px;--af:35px;padding:calc(var(--ah) + 4px) 16px calc(var(--af) + 6px)!important;border:1px solid var(--t-k)!important;border-radius:7px 7px 0 0!important;background:var(--a-cab) 0 0/100% var(--ah) no-repeat,var(--a-rod) 0 100%/100% var(--af) no-repeat,var(--a-lat) 0 var(--ah)/8px calc(100% - var(--ah) - var(--af)) no-repeat,var(--a-latd) 100% var(--ah)/8px calc(100% - var(--ah) - var(--af)) no-repeat,var(--neo-papel,none),#f6ecd4!important;box-shadow:0 6px 16px rgba(92,36,18,.22)!important}
+body:not(.tv).op-on #modo-op.op-grego .op-templo::before,body:not(.tv).op-on #modo-op.op-grego .op-templo>.op-num{display:none!important}
+body:not(.tv).op-on #modo-op.op-grego .op-l.op-templo{padding-left:18px!important;padding-right:16px!important}
+body:not(.tv).op-on #modo-op.op-grego .op-l.op-templo{--a-cab:url("img/acampamento/argo-clepsidra-cabecalho.svg?v=1");--a-rod:url("img/acampamento/argo-clepsidra-rodape.svg?v=1");--a-lat:url("img/acampamento/argo-clepsidra-lateral.svg?v=1");--a-latd:url("img/acampamento/argo-clepsidra-lateral-d.svg?v=1");--t-k:#607d94!important;--t-c:#c9d6e0!important}
+body:not(.tv).op-on #modo-op.op-grego .op-col1.op-templo{--a-cab:url("img/acampamento/argo-escudo-cabecalho.svg?v=1");--a-rod:url("img/acampamento/argo-escudo-rodape.svg?v=1");--a-lat:url("img/acampamento/argo-escudo-lateral.svg?v=1");--a-latd:url("img/acampamento/argo-escudo-lateral-d.svg?v=1");--t-k:#a65a43!important;--t-c:#f0c9b9!important}
+body:not(.tv).op-on #modo-op.op-grego .op-fazer.op-templo{--a-cab:url("img/acampamento/argo-arena-cabecalho.svg?v=1");--a-rod:url("img/acampamento/argo-arena-rodape.svg?v=1");--a-lat:url("img/acampamento/argo-arena-lateral.svg?v=1");--a-latd:url("img/acampamento/argo-arena-lateral-d.svg?v=1");--t-k:#806d91!important;--t-c:#d9cfe2!important}
+body:not(.tv).op-on #modo-op.op-grego .op-estudo.op-templo{--a-cab:url("img/acampamento/argo-arquearia-cabecalho.svg?v=1");--a-rod:url("img/acampamento/argo-arquearia-rodape.svg?v=1");--a-lat:url("img/acampamento/argo-arquearia-lateral.svg?v=1");--a-latd:url("img/acampamento/argo-arquearia-lateral-d.svg?v=1");--t-k:#426b94!important;--t-c:#c3d3e6!important}
+body:not(.tv).op-on #modo-op.op-grego .op-lado.op-templo{--a-cab:url("img/acampamento/argo-pandora-cabecalho.svg?v=1");--a-rod:url("img/acampamento/argo-pandora-rodape.svg?v=1");--a-lat:url("img/acampamento/argo-pandora-lateral.svg?v=1");--a-latd:url("img/acampamento/argo-pandora-lateral-d.svg?v=1");--t-k:#818350!important;--t-c:#e2e3c4!important}
+body:not(.tv).op-on #rod-apps{background:url("img/acampamento/argo-casco.svg?v=1") 0 0/auto 100px repeat-x,#d9772f!important;border-top:0!important;box-shadow:0 -4px 12px -6px rgba(92,36,18,.5)!important;overflow:visible!important}
+body:not(.tv).op-on #rod-apps::before,body:not(.tv).op-on #rod-apps::after{content:"";position:absolute;pointer-events:none;z-index:3;background:0 0/100% 100% no-repeat}
+body:not(.tv).op-on #rod-apps::before{left:0;top:-121px;width:129px;height:221px;background-image:url("img/acampamento/argo-popa.svg?v=1")}
+body:not(.tv).op-on #rod-apps::after{right:0;top:-189px;width:179px;height:289px;background-image:url("img/acampamento/argo-proa.svg?v=1")}
+body:not(.tv).op-on #rod-apps .rod-top{height:100px!important;min-height:100px!important;background:transparent!important;padding:0 186px 0 138px!important;box-sizing:border-box!important;align-items:flex-start!important;gap:8px!important}
+body:not(.tv).op-on #rod-apps :is(.cr-sep,.cr-dt,.cr-concha){display:none!important}
+body:not(.tv).op-on #rod-apps .cp-reg,body:not(.tv).op-on #rod-apps .cp-reg .cr-bar{background:transparent!important;border:0!important;box-shadow:none!important}
+body:not(.tv).op-on #rod-apps .cp-reg .cr-bar{justify-content:space-around!important;gap:4px!important;padding:3px 0 0!important;height:auto!important;overflow:visible!important}
+body:not(.tv).op-on #rod-apps .cp-reg .cr-p{flex:0 0 auto!important;min-width:0!important;height:auto!important;min-height:0!important;padding:0!important;border:0!important;background:none!important;box-shadow:none!important;display:flex!important;flex-direction:column!important;align-items:center!important;gap:2px!important;transform:none!important}
+body:not(.tv).op-on #rod-apps .cp-reg .cr-p::after,body:not(.tv).op-on #rod-apps .cp-reg .cr-p .cr-ico{display:none!important}
+body:not(.tv).op-on #rod-apps .cp-reg .cr-p .cr-lb{display:flex!important;flex-direction:column-reverse!important;align-items:center!important;gap:2px!important}
+body:not(.tv).op-on #rod-apps .cp-reg .cr-p .cr-lb b{display:grid!important;place-items:center;width:54px;height:54px;border-radius:50%;font:700 11.5px/1 Georgia,serif!important;color:#231a38!important;white-space:nowrap;overflow:hidden;background:radial-gradient(circle,#fdf8ea 0 15px,#a37a2c 15.5px 16.5px,var(--fc,#6b4f96) 17px 22px,#4a2f0e 22.5px 23.5px,transparent 24px),radial-gradient(circle at 34% 28%,#fbe7a6,#d9b25a 45%,#8f6a26)!important;box-shadow:0 3px 6px rgba(40,10,0,.45),inset 0 0 0 1px rgba(255,246,214,.6)!important}
+body:not(.tv).op-on #rod-apps .cp-reg .cr-p:nth-of-type(even) .cr-lb b{--fc:#3f8796}
+body:not(.tv).op-on #rod-apps .cp-reg .cr-p .cr-lb small{display:block!important;padding:1px 6px!important;border:1px solid #a37a2c!important;border-radius:3px;background:#f4ead2!important;color:#3b2a5c!important;font:600 8.5px/1.35 var(--mono,monospace)!important;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;opacity:1!important}
+body:not(.tv).op-on #rod-apps .cp-reg .cr-p:is(:hover,.on) .cr-lb b{box-shadow:0 0 0 3px #ffd768,0 3px 6px rgba(40,10,0,.45)!important}
+body:not(.tv).op-on #rod-apps :is(#rod-fogo,#rod-bar){margin-top:14px!important;height:auto!important;min-height:0!important;align-self:flex-start!important;background:var(--neo-papel,none),#f4ead2!important;border:1.5px solid #5c2412!important;border-radius:5px!important;box-shadow:0 0 0 2px #f4ead2,0 0 0 3px #5c2412,0 4px 8px -4px rgba(40,10,0,.5)!important}
+@media(max-width:900px){body:not(.tv).op-on #rod-apps::before,body:not(.tv).op-on #rod-apps::after{display:none}body:not(.tv).op-on #rod-apps .rod-top{padding:0 8px!important}body:not(.tv).op-on #modo-op{padding-left:18px!important;padding-right:18px!important}}
 </style>
 <link rel="stylesheet" href="pontes.css">
 <script src="pontes.js" defer></script>
@@ -18196,6 +18223,13 @@ if(TV_ON){(function(){var K=function(n){return 'url("img/acampamento/'+n+'.svg?v
 ].join('\n');document.head.appendChild(st);})();}
 
 if(TV_ON){(function(){var st=document.createElement('style');st.id='vh-bandeira-css';st.textContent='body.tv #lat-band-b img[src*="bandeira"]{content:url("img/acampamento/vh-emblema-hv.webp?v=1")!important;object-fit:contain!important;border-radius:50%}';document.head.appendChild(st);})();}
+
+/* Argo: a moldura do kit acompanha a largura de cada cartão (cabeçalho 280×88 e rodapé 280×44, sem deformar) */
+function argoMede(){var o=document.getElementById('modo-op');if(!o||!window.ResizeObserver)return;
+ Array.prototype.forEach.call(o.querySelectorAll('.op-templo'),function(n){if(n._argoRO)return;
+  n._argoRO=new ResizeObserver(function(){var w=n.getBoundingClientRect().width;if(!w)return;n.style.setProperty('--ah',(w*88/280).toFixed(1)+'px');n.style.setProperty('--af',(w*44/280).toFixed(1)+'px');});
+  n._argoRO.observe(n);});}
+(function(){var m0=opMonta;opMonta=function(){var r=m0.apply(this,arguments);try{argoMede();}catch(e){}return r;};try{argoMede();}catch(e){}})();
 
 })();
 </script>
