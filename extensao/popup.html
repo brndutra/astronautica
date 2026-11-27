@@ -10,6 +10,7 @@
   <span class="bm-k"><span class="dia" id="data">—</span><span class="dracma" id="dracmas" title="">0</span><span class="bm-v" id="bm-v"></span></span>
   <button type="button" id="z-menos" title="Diminuir o tamanho" aria-label="Diminuir o tamanho">A−</button>
   <button type="button" id="z-mais" title="Aumentar o tamanho" aria-label="Aumentar o tamanho">A+</button>
+  <button type="button" id="lay" class="lay" title="Alternar entre o painel numa tela só e o templo completo"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="7" height="7"/><rect x="14" y="4" width="7" height="7"/><rect x="3" y="14" width="7" height="6"/><rect x="14" y="14" width="7" height="6"/></svg><span id="lay-t">painel</span></button>
 </nav>
 
 <section id="ajustes" class="card ajustes" hidden>
@@ -19,6 +20,12 @@
       <option value="greek">Acampamento Meio-Sangue</option>
       <option value="norse">Hotel Valhala</option>
       <option value="egypt">Casa do Brooklyn</option>
+    </select>
+  </label>
+  <label>Arranjo
+    <select id="layout">
+      <option value="compacto">painel numa tela só, sem rolagem</option>
+      <option value="templo">templo completo, com rolagem</option>
     </select>
   </label>
   <label>Ao clicar no ícone da extensão
@@ -63,7 +70,7 @@
   <main id="painel" hidden>
     <!-- face 1 · Hoje -->
     <section class="aba on" id="hoje" data-face="hoje">
-      <div class="postal" id="postal" role="button" tabindex="0" title="virar o cartão">
+      <div class="postal" data-c="postal" id="postal" role="button" tabindex="0" title="virar o cartão">
         <div class="po-frente">
           <small data-tx="saud">Greetings from</small>
           <h1 data-tx-html="postal">Camp<br>Half-Blood</h1>
@@ -77,28 +84,28 @@
         </div>
       </div>
 
-      <div class="guardiao" id="guardiao">
+      <div class="guardiao" data-c="guard" id="guardiao">
         <img id="g-img" src="img/sully.jpg" alt="">
         <div class="g-balao"><b id="g-nome">Sully</b><span id="g-papel">sátiro protetor</span><p id="g-fala">Um bloco de cada vez.</p></div>
       </div>
 
-      <div class="friso-toque">
+      <div class="friso-toque" data-c="toque">
         <div class="tq-met" id="tq-met"></div>
         <button type="button" class="tq-leg" id="tq-leg" aria-expanded="false"><span id="tq-txt"></span><b>hoje ▾</b></button>
         <ol class="tq-dia" id="tq-dia" hidden></ol>
       </div>
 
-      <div class="card agora" id="agora"></div>
+      <div class="card agora" data-c="agora" id="agora"></div>
 
-      <div class="card chk">
+      <div class="card chk" data-c="top">
         <h2><span data-tx="missoes">Missões do dia</span> <i>três</i></h2>
         <ol id="top" class="mt"></ol>
       </div>
-      <div class="card chk">
+      <div class="card chk" data-c="hab">
         <h2>Hábitos <i data-tx="habitos">treinos</i></h2>
         <ul id="habitos" class="mt"></ul>
       </div>
-      <div class="card">
+      <div class="card" data-c="atu">
         <h2>Em andamento <i>no app</i></h2>
         <div class="atu" id="atu"></div>
       </div>
@@ -107,7 +114,7 @@
     <!-- face 2 · Arena -->
     <section class="aba" id="arena" data-face="arena">
       <h3 class="sep"><span data-tx="treino">Treino na Arena</span></h3>
-      <div class="card">
+      <div class="card" data-c="foco">
         <h2><span>Foco</span> <i id="modo">foco</i></h2>
         <p class="lead">Um bloco de cada vez. <span data-tx="diretor">Quíron</span> não cobra a lista inteira.</p>
         <div class="foco">
@@ -128,7 +135,7 @@
         </div>
       </div>
 
-      <div class="card">
+      <div class="card" data-c="ciclo">
         <h2>Ciclo de Estudos <i id="volta">—</i></h2>
         <p class="lead">A roda gira na ordem. Fechou o bloco, passa para o próximo.</p>
         <div id="ciclo"></div>
@@ -139,14 +146,14 @@
       </div>
 
       <h3 class="sep"><span data-tx="lugar">Chalé</span></h3>
-      <div class="card">
+      <div class="card" data-c="humor">
         <h2><span data-tx="chegada">Como você chega à fogueira?</span> <i>humor</i></h2>
         <p class="lead">Um toque já registra. Vale mudar ao longo do dia.</p>
         <div class="humor" id="humor"></div>
         <div class="linha mt"><input id="hnota" placeholder="o que pesou ou ajudou (opcional)" maxlength="120"><button class="pri" id="hok">anotar</button></div>
         <div class="semana" id="semana"></div>
       </div>
-      <div class="card">
+      <div class="card" data-c="cont">
         <h2><span>Contadores</span> <i>hoje</i></h2>
         <p class="lead">Toque no + a cada vez. A barra fecha na meta.</p>
         <div class="cont" id="cont"></div>
@@ -157,13 +164,13 @@
     <!-- face 3 · Registro -->
     <section class="aba" id="reg" data-face="reg">
       <h3 class="sep"><span data-tx="quadro">Quadro de Avisos</span></h3>
-      <div class="card">
+      <div class="card" data-c="cap">
         <h2>Captura <i>despeje</i></h2>
         <div class="linha mt"><input id="cap" placeholder="despeje antes de perder" maxlength="300"><button class="pri" id="cap-ok">guardar</button></div>
         <ul class="caps" id="caps"></ul>
       </div>
       <h3 class="sep"><span data-tx="loja">Bolsa de Dracmas</span></h3>
-      <div class="card">
+      <div class="card" data-c="gasto">
         <h2>Gasto <i>hoje</i></h2>
         <div class="linha mt"><input id="g-desc" placeholder="almoço, uber, farmácia…" maxlength="80"><input id="g-val" class="val" inputmode="decimal" placeholder="R$ 0,00"><button class="pri" id="g-ok">ok</button></div>
       </div>

@@ -394,3 +394,107 @@ body[data-tema=egypt] .fr-esq{left:calc(50% - min(50%,300px) * .62 - 20px)}body[
 body[data-tema=greek] .frontao::before{background:repeating-linear-gradient(90deg,#e9c97c 0 6px,#8a5a14 6px 9px) 0 6px/100% 6px no-repeat,#8a5a14}
 body[data-tema=egypt] .frontao::before{top:100px;height:20px;background:linear-gradient(#c9a23a 0 3px,transparent 3px),repeating-linear-gradient(90deg,#3a5f9e 0 7px,#c9a23a 7px 9px,#2a8a7e 9px 16px,#c9a23a 16px 18px)}
 .bm-v{font:600 8px/1 ui-monospace,monospace;letter-spacing:.06em;color:var(--dim);opacity:.8}
+
+/* =====================================================================
+   Painel numa tela só: tudo integrado, sem rolagem
+   ===================================================================== */
+.barra-modo .lay{display:inline-flex;gap:5px;padding:0 8px}
+.barra-modo .lay span{font:700 9px/1 system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase}
+body.lay-compacto{width:640px;height:600px;max-height:600px;overflow:hidden;display:flex;flex-direction:column}
+body.lay-compacto.modo-lateral,body.lay-compacto.modo-janela{width:auto;height:100vh;max-height:none}
+body.lay-compacto .barra-modo{flex:none;margin:5px 6px 0;padding:2px 3px 2px 8px}
+body.lay-compacto .barra-modo button{height:22px;min-height:22px}
+body.lay-compacto .frontao{flex:none;zoom:.7;margin-top:2px}
+body.lay-compacto .frontao .placa{display:none}
+body.lay-compacto .templo{flex:1;min-height:0;padding:6px 22px 4px;overflow:hidden}
+body.lay-compacto #login{margin:0}
+body.lay-compacto #painel:not([hidden]){display:grid!important;height:100%;gap:6px;
+  grid-template-columns:minmax(0,1.08fr) minmax(0,1fr) minmax(0,1fr);
+  grid-template-rows:auto auto minmax(0,1.15fr) minmax(0,1fr) auto;
+  grid-template-areas:"guard guard guard" "toque toque toque" "foco agora cont" "ciclo top humor" "cap cap gasto"}
+body.lay-compacto .aba{display:contents!important}
+body.lay-compacto [data-c=postal],body.lay-compacto [data-c=atu],body.lay-compacto [data-c=hab],body.lay-compacto .sep,body.lay-compacto .lead{display:none!important}
+body.lay-compacto [data-c=guard]{grid-area:guard}body.lay-compacto [data-c=toque]{grid-area:toque}
+body.lay-compacto [data-c=foco]{grid-area:foco}body.lay-compacto [data-c=agora]{grid-area:agora}body.lay-compacto [data-c=cont]{grid-area:cont}
+body.lay-compacto [data-c=ciclo]{grid-area:ciclo}body.lay-compacto [data-c=top]{grid-area:top}body.lay-compacto [data-c=humor]{grid-area:humor}
+body.lay-compacto [data-c=cap]{grid-area:cap}body.lay-compacto [data-c=gasto]{grid-area:gasto}
+body.lay-compacto .card{margin:0!important;padding:6px 8px;min-height:0;overflow:hidden;display:flex;flex-direction:column}
+body.lay-compacto .card h2{font-size:12.5px;flex:none}
+body.lay-compacto .card h2 i{font-size:8px}
+body.lay-compacto .mt{margin-top:5px}
+/* guardião: uma linha, balão encostado no retrato */
+body.lay-compacto .guardiao{margin:0;gap:7px}
+body.lay-compacto .guardiao img{width:30px;height:30px;box-shadow:0 0 0 2px var(--papel),0 0 0 3px var(--ouro)}
+body.lay-compacto .g-balao{display:flex;align-items:center;gap:6px;padding:3px 8px}
+body.lay-compacto .g-balao::before{top:9px}
+body.lay-compacto .g-balao b{flex:none;font-size:10px}
+body.lay-compacto .g-balao span{display:none}
+body.lay-compacto .g-balao p{margin:0;min-width:0;font-size:11.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* toque */
+body.lay-compacto .friso-toque{margin:0}
+body.lay-compacto .tq-m{padding:1px 0}
+body.lay-compacto .tq-leg{padding:2px 8px 3px}
+body.lay-compacto .tq-dia{position:absolute;z-index:20;left:24px;right:24px;background:#fbf3df;border:1.5px solid var(--k);box-shadow:0 10px 20px -8px rgba(30,20,10,.5)}
+/* agora */
+body.lay-compacto .agora b{font-size:13px}
+body.lay-compacto .agora span{font-size:11px}
+/* foco */
+body.lay-compacto .foco{grid-template-columns:78px 1fr;gap:8px;flex:1;min-height:0}
+body.lay-compacto .anel{width:78px;height:78px}
+body.lay-compacto .anel .trilho,body.lay-compacto .anel .arco{stroke-width:10}
+body.lay-compacto .anel .t b{font-size:18px}
+body.lay-compacto .anel .t span{font-size:7.5px}
+body.lay-compacto .fcol{gap:4px}
+body.lay-compacto .fcol input{min-height:26px;padding:3px 7px;font-size:12px}
+body.lay-compacto .fbt{gap:3px}
+body.lay-compacto .fbt button,body.lay-compacto .cbt button{min-height:24px;padding:3px 7px;font-size:10px}
+body.lay-compacto .fstat{font-size:10px}
+/* ciclo: só a da vez e a próxima */
+body.lay-compacto .ciclo{gap:3px}
+body.lay-compacto .ciclo li{padding:3px 6px}
+body.lay-compacto .ciclo li:nth-child(n+3),body.lay-compacto .ciclo .dica,body.lay-compacto .cfalta{display:none}
+body.lay-compacto .cbt{margin-top:5px}
+/* missões e hábitos */
+body.lay-compacto .chk ol,body.lay-compacto .chk ul{gap:2px;overflow-y:auto;min-height:0;scrollbar-width:none}
+body.lay-compacto .chk label{min-height:20px;font-size:12px}
+/* contadores compactos */
+body.lay-compacto .cont{gap:4px;overflow-y:auto;min-height:0;scrollbar-width:none;margin-top:4px}
+body.lay-compacto .ct{gap:2px 6px}
+body.lay-compacto .ct .nm{font-size:11.5px}body.lay-compacto .ct .nm span{display:none}
+body.lay-compacto .ct .ctl button{width:22px;min-height:22px;font-size:13px}
+body.lay-compacto .ct .ctl b{min-width:20px;font-size:14px}
+body.lay-compacto .ct .barra{height:3px}
+body.lay-compacto [data-c=cont] .linha{display:none}
+/* humor: só as cores, com o nome no toque */
+body.lay-compacto .humor{gap:3px;margin-top:4px}
+body.lay-compacto .humor button{padding:5px 1px;font-size:8.5px;gap:3px}
+body.lay-compacto .humor button i{width:13px;height:13px}
+body.lay-compacto [data-c=humor] .linha{display:none}
+body.lay-compacto .semana{margin-top:5px;padding-top:5px}
+/* captura e gasto numa linha */
+body.lay-compacto [data-c=cap],body.lay-compacto [data-c=gasto]{flex-direction:row;align-items:center;gap:8px}
+body.lay-compacto [data-c=cap] h2,body.lay-compacto [data-c=gasto] h2{flex:none}
+body.lay-compacto [data-c=cap] h2 i,body.lay-compacto [data-c=gasto] h2 i{display:none}
+body.lay-compacto [data-c=cap] .linha,body.lay-compacto [data-c=gasto] .linha{flex:1;margin:0}
+body.lay-compacto [data-c=cap] .caps{display:none}
+body.lay-compacto [data-c=cap] input,body.lay-compacto [data-c=gasto] input{min-height:26px;padding:3px 7px;font-size:12px}
+body.lay-compacto [data-c=cap] button,body.lay-compacto [data-c=gasto] button{min-height:26px;padding:3px 8px}
+body.lay-compacto [data-c=gasto] .val{flex:0 0 62px!important}
+body.lay-compacto .base{flex:none;margin-bottom:4px}
+body.lay-compacto .base .rod{padding:3px 8px;min-height:20px}
+body.lay-compacto #ajustes,body.lay-compacto #msgs{position:absolute;z-index:30;left:20px;right:20px;top:40px;max-height:520px;overflow:auto;box-shadow:0 14px 30px -10px rgba(30,20,10,.55)}
+body.lay-compacto .fbt{display:grid;grid-template-columns:1fr 1fr}
+body.lay-compacto #pausa5{grid-column:1/-1}
+body.lay-compacto .humor button{font-size:0;padding:6px 0}
+body.lay-compacto .humor button i{width:15px;height:15px}
+body.lay-compacto [data-c=cap] h2,body.lay-compacto [data-c=gasto] h2{display:none}
+body.lay-compacto [data-c=gasto] .linha{gap:4px}
+body.lay-compacto [data-c=gasto] #g-ok{padding:3px 7px}
+body.lay-compacto .foco{grid-template-columns:70px minmax(0,1fr)}
+body.lay-compacto .anel{width:70px;height:70px}
+body.lay-compacto .anel .t b{font-size:16px}
+body.lay-compacto .fbt{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+body.lay-compacto .fbt button{min-width:0;padding:3px 2px;font-size:9.5px;letter-spacing:0}
+body.lay-compacto .fstat{white-space:normal;line-height:1.2}
+body.lay-compacto [data-c=gasto] .val{flex:0 0 54px!important}
+body.lay-compacto #painel:not([hidden]){align-items:stretch!important}

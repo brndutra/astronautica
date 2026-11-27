@@ -150,7 +150,7 @@ function pintaCiclo() {
 function pintaHumor() {
   var v = humorDe(hojeStr());
   $('humor').innerHTML = HUM.map(function (x) {
-    return '<button data-h="' + x[0] + '" aria-pressed="' + (v === x[0]) + '"><i style="background:' + x[2] + '"></i>' + x[1] + '</button>';
+    return '<button data-h="' + x[0] + '" title="' + x[1] + '" aria-pressed="' + (v === x[0]) + '"><i style="background:' + x[2] + '"></i>' + x[1] + '</button>';
   }).join('');
   var h = '';
   for (var i = 6; i >= 0; i--) {
@@ -309,7 +309,18 @@ async function carrega() {
 document.addEventListener('DOMContentLoaded', async function () {
   document.body.classList.add('modo-' + MODO);
   try { $('bm-v').textContent = 'v' + chrome.runtime.getManifest().version; } catch (e) { }
-  var pref = await chrome.storage.local.get(['tema', 'zoom', 'clique']);
+  var pref = await chrome.storage.local.get(['tema', 'zoom', 'clique', 'layout']);
+  function aplicaLayout(v) {
+    v = v === 'templo' ? 'templo' : 'compacto';
+    document.body.classList.toggle('lay-compacto', v === 'compacto');
+    document.body.classList.toggle('lay-templo', v === 'templo');
+    $('layout').value = v; $('lay-t').textContent = v === 'compacto' ? 'templo' : 'painel';
+    $('lay').title = v === 'compacto' ? 'Abrir o templo completo (com rolagem)' : 'Ver tudo numa tela só, sem rolagem';
+  }
+  aplicaLayout(pref.layout);
+  $('cap').placeholder = 'captura · despeje antes de perder'; $('g-desc').placeholder = 'gasto · almoço, uber…';
+  $('lay').onclick = function () { var v = document.body.classList.contains('lay-compacto') ? 'templo' : 'compacto'; aplicaLayout(v); chrome.storage.local.set({ layout: v }); };
+  $('layout').onchange = function () { aplicaLayout(this.value); chrome.storage.local.set({ layout: this.value }); };
   aplicaTema(pref.tema || 'greek');
   aplicaZoom(+pref.zoom || 1);
   $('clique').value = pref.clique || 'popup';
