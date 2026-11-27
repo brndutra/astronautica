@@ -5995,19 +5995,11 @@ body.eg #cx-ronda .rd-av .cx-av{background:conic-gradient(from 210deg,#e6c56e,#4
 
 /* ===== Manual de campo (métodos de TDAH) dentro da moldura da companhia ===== */
 #cx.mf{align-items:stretch;padding:22px}
-#cx.mf .mf-bx{display:grid;grid-template-columns:260px minmax(0,1fr);gap:18px;width:min(1160px,100%);height:calc(100vh - 44px);text-align:left;align-items:stretch}
-#cx .mf-nav{display:flex;flex-direction:column;gap:4px;overflow:auto;padding-right:6px;scrollbar-width:thin}
+#cx.mf .mf-bx{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr);gap:14px;width:min(1160px,100%);height:calc(100vh - 44px);text-align:left;align-items:stretch}
 #cx .mf-sk{display:flex;align-items:center;gap:10px;margin-bottom:10px}
 #cx .mf-sk .cx-av{width:52px;height:52px}
 #cx .mf-sk small{display:block;font:700 9.5px var(--mono,monospace);letter-spacing:.18em;text-transform:uppercase;color:var(--cx-ac)}
 #cx .mf-sk b{font:400 21px/1.1 Georgia,serif;color:var(--cx-tx)}
-#cx .mf-nav>button{display:grid;gap:1px;padding:9px 12px;border-radius:12px;border-color:transparent;text-align:left;background:transparent}
-#cx .mf-nav>button b{font:400 16px Georgia,serif;color:var(--cx-tx)}
-#cx .mf-nav>button small{font:12px var(--sans);color:var(--cx-sv);opacity:.8}
-#cx .mf-nav>button:hover{background:rgba(255,255,255,.06)}
-#cx .mf-nav>button.on{background:rgba(255,255,255,.1);border-color:var(--cx-ac)}
-#cx .mf-nav>button.mf-cx{border-style:dashed;border-color:var(--cx-ln)}
-#cx .mf-nav>button.mf-cx:first-of-type{margin-top:8px}
 #cx .mf-pg{overflow:auto;padding:4px 10px 40px 4px;display:flex;flex-direction:column;gap:12px;scrollbar-width:thin}
 #cx .mf-pg h3{margin:0;font:400 clamp(24px,3vw,32px) Georgia,serif;color:var(--cx-tx)}
 #cx .mf-d{margin:0;font:15.5px/1.5 Georgia,serif;color:var(--cx-sv);max-width:720px}
@@ -6097,11 +6089,8 @@ body.eg #cx-ronda .rd-av .cx-av{background:conic-gradient(from 210deg,#e6c56e,#4
 #lat-topo .lt-r1 .lt-bts>#mf-tg:hover{background:#9a4a30!important;color:#fffaf0!important}
 body.tv #lat-topo .lt-r1 .lt-bts>#mf-tg{border-color:#8a9aa6!important;color:#b3262d!important;background:#f3efe6!important}
 body.eg #lat-topo .lt-r1 .lt-bts>#mf-tg{border-color:#c9a23a!important;color:#2a4c86!important;background:#fffaea!important}
-@media(max-width:760px){#cx.mf .mf-bx{grid-template-columns:1fr;height:auto}#cx .mf-nav{flex-direction:row;overflow-x:auto;padding-bottom:6px}#cx .mf-nav>button{flex:none;max-width:180px}#cx .mf-sk{display:none}#cx .mf-en{grid-template-columns:repeat(2,1fr)}#cx .mf-woop{grid-template-columns:1fr}#cx .cx-op7{grid-template-columns:1fr}}
+@media(max-width:760px){#cx.mf .mf-bx{grid-template-columns:1fr;height:auto}#cx .mf-cards{grid-template-columns:1fr 1fr}#cx .mf-cab{flex-direction:column;align-items:stretch}#cx .mf-en{grid-template-columns:repeat(2,1fr)}#cx .mf-woop{grid-template-columns:1fr}#cx .cx-op7{grid-template-columns:1fr}}
 
-#cx .mf-grp{margin:12px 0 2px;padding:0 12px;font:700 9.5px var(--mono,monospace);letter-spacing:.22em;text-transform:uppercase;color:var(--cx-ac)}
-#cx .mf-sk+.mf-grp{margin-top:0}
-#cx .mf-nav>button.mf-cx:first-of-type{margin-top:0}
 #cx .mf-cons{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
 #cx .mf-cons ul{margin:0;padding-left:18px;display:grid;gap:4px;font:14.5px/1.45 Georgia,serif;color:var(--cx-sv)}
 #cx .mf-usar{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
@@ -6148,6 +6137,30 @@ body.eg #lat-topo .lt-r1 .lt-bts>#mf-tg{border-color:#c9a23a!important;color:#2a
 #cx .dg-out code{padding:10px 14px;border-radius:10px;background:rgba(0,0,0,.25);font:15px var(--mono,monospace);color:var(--cx-ac);overflow-wrap:anywhere}
 @media(max-width:760px){#cx .dg-nm{grid-template-columns:1fr 1fr}}
 
+/* ---------- manual: painel de cartões por momento e barra da página aberta ---------- */
+#cx.mf .mf-home{grid-template-rows:auto minmax(0,1fr)}
+#cx .mf-cab{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-right:44px}
+#cx .mf-cab .mf-sk{margin:0}
+#cx .mf-q{width:min(340px,100%);padding:9px 14px;border-radius:999px;border:1px solid var(--cx-ln);background:rgba(255,255,255,.06);color:var(--cx-tx);font:14px var(--sans)}
+#cx .mf-paineis{overflow:auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:16px;align-content:start;padding:2px 4px 40px 0;scrollbar-width:thin}
+#cx .mf-painel{--pc:hsl(calc(38 + var(--pi)*52) 55% 62%);display:flex;flex-direction:column;gap:6px;padding:14px;border-radius:16px;border:1px solid var(--cx-ln);background:rgba(255,255,255,.035);border-top:3px solid var(--pc)}
+#cx .mf-painel h3{margin:0;font:400 21px/1.15 Georgia,serif;color:var(--cx-tx)}
+#cx .mf-painel>p{margin:0 0 6px;font:12.5px var(--sans);color:var(--cx-sv)}
+#cx .mf-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+#cx .mf-card{all:unset;box-sizing:border-box;display:flex;flex-direction:column;gap:3px;min-height:86px;padding:10px 12px;border-radius:12px;border:1px solid var(--cx-ln);background:rgba(255,255,255,.05);cursor:pointer;transition:background .15s,border-color .15s,transform .15s}
+#cx .mf-card:hover,#cx .mf-card:focus-visible{background:rgba(255,255,255,.1);border-color:var(--pc);transform:translateY(-1px)}
+#cx .mf-card em{font:700 8.5px var(--mono,monospace);letter-spacing:.16em;text-transform:uppercase;font-style:normal;color:var(--pc)}
+#cx .mf-card b{font:400 15.5px/1.2 Georgia,serif;color:var(--cx-tx)}
+#cx .mf-card small{font:11.5px/1.35 var(--sans);color:var(--cx-sv);opacity:.85}
+#cx .mf-card.mf-tl{background:transparent;border-style:dashed}
+#cx .mf-card.mf-tc{background:rgba(255,255,255,.02);border-color:var(--pc)}
+#cx .mf-card[hidden],#cx .mf-painel[hidden]{display:none}
+#cx .mf-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding-right:44px}
+#cx .mf-top .mf-volta{padding:7px 14px;border-radius:999px;font:600 13px var(--sans)}
+#cx .mf-gn{font:700 9.5px var(--mono,monospace);letter-spacing:.2em;text-transform:uppercase;color:var(--cx-ac)}
+#cx .mf-viz{display:flex;gap:6px;flex-wrap:wrap}
+#cx .mf-viz button{padding:5px 11px;border-radius:999px;font:12.5px var(--sans);background:transparent;border:1px solid var(--cx-ln);color:var(--cx-sv)}
+#cx .mf-viz button.on{border-color:var(--cx-ac);color:var(--cx-tx);background:rgba(255,255,255,.08)}
 /* ===== Manual de campo III ===== */
 #cx .m3-msg{margin:0;padding:9px 13px;border-left:3px solid var(--cx-ac);border-radius:8px;background:rgba(255,255,255,.06);font:italic 14.5px/1.45 Georgia,serif;color:var(--cx-tx)}
 #cx .m3-alerta{margin:0;padding:9px 13px;border:1px solid #d9705a;border-radius:10px;font:14.5px/1.45 Georgia,serif;color:#f0a58f;background:rgba(217,112,90,.08)}

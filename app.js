@@ -14666,10 +14666,34 @@ function mfPagina(p){var m=mfD(),D=mfDia(),h='';
    '<div class="mf-rv">'+Q.map(function(x,i){return '<label class="mf-cd"><b><i>'+(i+1)+'</i>'+x[1]+'</b><small>'+x[2]+'</small><textarea data-mfsem="'+x[0]+'" rows="2">'+esc(SW[x[0]]||'')+'</textarea></label>';}).join('')+'</div>'+
    '<button type="button" class="cx-pri" data-mf="semok">'+(SW.ok?'guardado no diário de bordo ✓':'guardar no diário de bordo')+'</button>';}
  return h;}
-function mfHTML(){var p=CX.p;if(!MF_T.some(function(t){return t[0]===p&&p!=='#';}))p=CX.p='plan';
- return '<div class="cx-bx mf-bx"><nav class="mf-nav"><div class="mf-sk">'+cxAv('calmo')+'<div><small>'+esc(MF_NM[1])+'</small><b>'+esc(MF_NM[0])+'</b></div></div>'+
-  MF_T.map(function(t){if(t[0]==='#')return '<span class="mf-grp">'+esc(t[1])+'</span>';return '<button type="button" class="'+(t[0]===p?'on':'')+(t[0][0]==='@'?' mf-cx':'')+'" data-mfp="'+t[0]+'"><b>'+esc(t[1])+'</b><small>'+esc(t[2])+'</small></button>';}).join('')+'</nav>'+
+/* painel do manual: cartões agrupados por momento; cada leitura fica junto das ferramentas do mesmo assunto.
+   Página que não estiver em nenhum grupo (acrescentada por outro arquivo) cai em "Mais". "~" = o painel. */
+var MF_PAINEL=[
+ ['Planejar o dia','esvaziar a cabeça, escolher e dar hora',['plan','listas','abc','tempo','semana','c-prior','c-tempo']],
+ ['Fazer e manter o foco','começar, sustentar e respirar entre blocos',['foco','dez','cartas','pausa','energia','c-energia','c-distr','c-hiper']],
+ ['Travou?','a causa, a saída e a companhia',['@trav','@esc','@ponte','probl','ifwoop','c-comecar','c-procr','c-troca']],
+ ['Cabeça e corpo','humor, calma e o dia ruim',['humor','calma','pens','trilho','treino','c-trilho','c-higiene']],
+ ['Hábitos e fim do dia','o que repete e como fechar',['pilhas','fim','c-habito','c-fim']],
+ ['Organização e apoio','papel, digital e o que tira da cabeça',['ped','digital','mapa','c-papel','c-digital','c-apoio','c-auto']]];
+function mfItem(id){return MF_T.filter(function(t){return t[0]===id;})[0];}
+function mfGrupos(){var usados={},G=MF_PAINEL.map(function(g){var it=g[2].map(mfItem).filter(Boolean);it.forEach(function(t){usados[t[0]]=1;});return [g[0],g[1],it];});
+ var resto=MF_T.filter(function(t){return t[0]!=='#'&&!usados[t[0]];});if(resto.length)G.push(['Mais','o que entrou depois',resto]);return G.filter(function(g){return g[2].length;});}
+function mfTipo(id){return id[0]==='@'?['companhia','mf-tc']:/^c-/.test(id)?['leitura','mf-tl']:['ferramenta','mf-tf'];}
+function mfCard(t){var tp=mfTipo(t[0]);return '<button type="button" class="mf-card '+tp[1]+'" data-mfp="'+t[0]+'" data-mfbusca="'+esc((t[1]+' '+(t[2]||'')).toLowerCase())+'"><em>'+tp[0]+'</em><b>'+esc(t[1])+'</b><small>'+esc(t[2]||'')+'</small></button>';}
+function mfPainelHTML(){var q=(CX.st.mfq||'').toLowerCase();
+ return '<header class="mf-cab">'+'<div class="mf-sk">'+cxAv('calmo')+'<div><small>'+esc(MF_NM[1])+'</small><b>'+esc(MF_NM[0])+'</b></div></div>'+
+  '<input type="search" class="mf-q" data-mfq placeholder="procurar: travei, prioridade, dormir…" value="'+esc(CX.st.mfq||'')+'"></header>'+
+  '<div class="mf-paineis">'+mfGrupos().map(function(g,i){return '<section class="mf-painel" style="--pi:'+i+'"><h3>'+esc(g[0])+'</h3><p>'+esc(g[1])+'</p><div class="mf-cards">'+g[2].map(mfCard).join('')+'</div></section>';}).join('')+'</div>';}
+function mfFiltra(){var w=cxEl(),q=(CX.st.mfq||'').toLowerCase().trim();
+ [].forEach.call(w.querySelectorAll('.mf-card'),function(c){c.hidden=!!q&&c.getAttribute('data-mfbusca').indexOf(q)<0;});
+ [].forEach.call(w.querySelectorAll('.mf-painel'),function(s){s.hidden=!!q&&!s.querySelector('.mf-card:not([hidden])');});}
+function mfHTML(){var p=CX.p;if(p!=='~'&&!MF_T.some(function(t){return t[0]===p&&p!=='#';}))p=CX.p='~';
+ if(p==='~')return '<div class="cx-bx mf-bx mf-home">'+mfPainelHTML()+'</div><button type="button" class="cx-x" data-cx="sair" aria-label="fechar">×</button>';
+ var g=mfGrupos().filter(function(g){return g[2].some(function(t){return t[0]===p;});})[0]||['','',[]];
+ return '<div class="cx-bx mf-bx"><nav class="mf-top"><button type="button" class="mf-volta" data-mfp="~">← painel</button><span class="mf-gn">'+esc(g[0])+'</span>'+
+  '<span class="mf-viz">'+g[2].filter(function(t){return t[0][0]!=='@';}).map(function(t){return '<button type="button" class="'+(t[0]===p?'on':'')+'" data-mfp="'+t[0]+'">'+esc(t[1])+'</button>';}).join('')+'</span></nav>'+
   '<section class="mf-pg">'+mfPagina(p)+'</section></div><button type="button" class="cx-x" data-cx="sair" aria-label="fechar">×</button>';}
+document.addEventListener('input',function(e){if(!e.target.matches||!e.target.matches('#cx [data-mfq]'))return;CX.st.mfq=e.target.value;mfFiltra();});
 function mfDump(){var w=cxEl(),i=w.querySelector('[data-mfin="dump"]'),t=i&&i.value.trim();if(!t)return;mfD().dump.unshift({id:mfId(),t:t,d:hoje()});mfSalva();cxPinta();var j=cxEl().querySelector('[data-mfin="dump"]');if(j)j.focus();}
 function mfVit(){var w=cxEl(),i=w.querySelector('[data-mfin="vit"]'),t=i&&i.value.trim();if(!t)return;var D=mfDia();D.pz=D.pz||{sp:0,ag:0,fx:[],mv:[],vit:[]};D.pz.vit.push(t);mfSalva();cxPinta();}
 function mfAch(id){return mfD().dump.filter(function(x){return x.id===id;})[0];}
@@ -14737,7 +14761,7 @@ document.addEventListener('keydown',function(e){if(e.key!=='Enter')return;var t=
  return c0.apply(this,arguments);};})(cxClick);
 
 /* ---------- acesso: botão na faixa do nível e no topo do Posto ---------- */
-function mfAbre(p){cxAbre('mf',p||'plan',{});}
+function mfAbre(p){cxAbre('mf',p||'~',{});}
 function mfTg(){var fc=document.getElementById('fc-tg')||document.getElementById('pt-tg');if(!fc||!fc.parentNode)return;var b=document.getElementById('mf-tg');
  if(!b){b=document.createElement('button');b.type='button';b.id='mf-tg';b.title=MF_NM[0]+' · manual de campo';b.setAttribute('aria-label',b.title);b.setAttribute('data-notr','');
   b.innerHTML='<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h11a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6z"/><path d="M6 3a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2"/><path d="M9 8l2 2 4-4M9 14h6M9 17h4"/></svg>';
