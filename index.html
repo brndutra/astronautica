@@ -5255,9 +5255,6 @@ body:not(.tv).op-on #rod-apps :is(#rod-fogo,#rod-bar){margin-top:14px!important;
 /* Argo · mar animado sob o casco; o nível segue a Clepsidra (a água é o que resta do dia: alta de manhã, baixa à noite) */
 /* faixa da Clepsidra abaixo do casco (≈3 dedos): vaso de vidro com marcas de nível; a água é o que resta do dia e baixa até a meia-noite */
 body:not(.tv).op-on #rod-apps{padding-bottom:66px!important;background:repeating-linear-gradient(0deg,rgba(47,127,146,.16) 0 1px,transparent 1px 16.5px) 0 100%/100% 66px no-repeat,linear-gradient(#efe5cf,#e6dcc2) 0 100%/100% 66px no-repeat,#d9772f!important}
-body:not(.tv).op-on #rod-apps::after{content:"";position:absolute;left:0;right:0;bottom:0;height:calc(10px + 64px*var(--a-mar,.5));z-index:4;pointer-events:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='40'%3E%3Cpath d='M0 8q11-6 22.5 0t22.5 0 22.5 0 22.5 0V40H0z' fill='%23cfe2ef' fill-opacity='.85'/%3E%3Cpath d='M0 8q11-6 22.5 0t22.5 0 22.5 0 22.5 0' fill='none' stroke='%23fff' stroke-opacity='.8' stroke-width='1.6'/%3E%3C/svg%3E") 0 0/90px 40px repeat-x,url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='40'%3E%3Cpath d='M0 10q15-8 30 0t30 0 30 0 30 0V40H0z' fill='%2393bcd9'/%3E%3Cpath d='M0 10q15-8 30 0t30 0 30 0 30 0' fill='none' stroke='%23fff' stroke-width='2'/%3E%3C/svg%3E") 0 6px/120px 40px repeat-x,linear-gradient(#93bcd9,#4f86b3) 0 22px/100% 100% no-repeat;animation:argoMar 9s linear infinite;transition:height 2s ease}
-@keyframes argoMar{from{background-position:0 0,0 6px,0 22px}to{background-position:90px 0,-120px 6px,0 22px}}
-body:not(.tv).op-on #rod-apps::before{content:attr(data-mar);position:absolute;left:50%;bottom:20px;transform:translateX(-50%);z-index:6;pointer-events:none;white-space:nowrap;padding:3px 12px;border:1px solid #4f86b3;border-radius:999px;background:rgba(251,245,230,.92);color:#1f4a63;font:600 10px/1.2 var(--mono,monospace);letter-spacing:.14em;text-transform:uppercase}
 @media (prefers-reduced-motion:reduce){body:not(.tv).op-on #rod-apps::after{animation:none}}
 /* Fogueira fora do Posto (o rodapé guarda "fechar o dia"); desviei mora no Escudo de Aquiles */
 body:not(.tv).op-on #modo-op .op-topr :is([data-fogo],[data-cila],[data-cilamenos]){display:none!important}
@@ -5268,6 +5265,27 @@ body:not(.tv).op-on #modo-op .op-cila-slot .op-cila{display:inline-flex!importan
 /* faixa de notícias (Hefesto TV) sobe para o topo da tela no Posto */
 body:not(.tv).op-on #rod-apps>#pz-ticker.pz-no-rod{position:fixed!important;top:0!important;left:0!important;right:0!important;bottom:auto!important;z-index:5;border-bottom:1px solid #c9a45a}
 body.pz-com-ticker:not(.tv).op-on #modo-op{padding-top:38px!important}
+/* faixa da Clepsidra em ondas: as seis fases do dia viram seis ondas lado a lado (06h à esquerda, 24h à direita); as que já passaram estão vazantes */
+#argo-mar{display:none}
+body:not(.tv).op-on #argo-mar{display:block;position:absolute;left:0;right:0;bottom:0;height:66px;z-index:4;overflow:hidden;pointer-events:auto}
+#argo-mar .am-fs{position:absolute;inset:0;display:flex}
+#argo-mar .am-f{position:relative;flex:1 1 0;min-width:0;border-left:1px dashed rgba(24,58,82,.25)}
+#argo-mar .am-f:first-child{border-left:0}
+#argo-mar .am-f::before,#argo-mar .am-f>i{content:"";position:absolute;left:-14px;right:-14px;bottom:0;height:100%;transform-origin:50% 100%;animation:amBob 5.5s ease-in-out infinite alternate;animation-delay:var(--d,0s);transition:transform 1.5s ease,filter 1.5s}
+#argo-mar .am-f::before{background:var(--c);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 66' preserveAspectRatio='none'%3E%3Cpath d='M0 24C26 8 58 2 92 12C112 18 124 30 146 24C166 18 184 14 200 22V66H0Z' fill='black'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 66' preserveAspectRatio='none'%3E%3Cpath d='M0 24C26 8 58 2 92 12C112 18 124 30 146 24C166 18 184 14 200 22V66H0Z' fill='black'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat}
+#argo-mar .am-f>i{background:#fff;opacity:.85;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 66' preserveAspectRatio='none'%3E%3Cpath d='M0 24C26 8 58 2 92 12C112 18 124 30 146 24C166 18 184 14 200 22' fill='none' stroke='black' stroke-width='3' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 66' preserveAspectRatio='none'%3E%3Cpath d='M0 24C26 8 58 2 92 12C112 18 124 30 146 24C166 18 184 14 200 22' fill='none' stroke='black' stroke-width='3' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat}
+@keyframes amBob{from{translate:0 0}to{translate:-10px 3px}}
+#argo-mar .am-f.passou::before,#argo-mar .am-f.passou>i{transform:scaleY(.36);filter:saturate(.45) brightness(1.08)}
+#argo-mar .am-f.agora::before{filter:brightness(1.06) saturate(1.15)}
+#argo-mar .am-t{position:absolute;left:12px;right:8px;bottom:6px;z-index:1;display:flex;flex-direction:column;gap:1px;color:var(--tx,#183a52)}
+#argo-mar .am-t b{font:700 8.5px/1.1 var(--mono,monospace);letter-spacing:.14em;text-transform:uppercase;opacity:.85}
+#argo-mar .am-t span{font:12.5px/1.2 Georgia,serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#argo-mar .am-t em{font:700 9px var(--mono,monospace);font-style:normal;letter-spacing:.1em;color:#ffe9a8}
+#argo-mar .am-f.passou .am-t{color:#183a52!important;opacity:.55}
+#argo-mar .am-ag{position:absolute;top:0;bottom:0;width:2px;margin-left:-1px;background:#b4463a;z-index:2;box-shadow:0 0 0 1px rgba(251,245,230,.7)}
+#argo-mar .am-ag span{position:absolute;top:3px;left:6px;white-space:nowrap;padding:1px 8px;border:1px solid #b4463a;border-radius:999px;background:#fbf5e6;color:#8a2f1f;font:700 9px/1.4 var(--mono,monospace);letter-spacing:.12em;text-transform:uppercase}
+#argo-mar .am-ag.dir span{left:auto;right:6px}
+@media (prefers-reduced-motion:reduce){#argo-mar .am-f::before,#argo-mar .am-f>i{animation:none}}
 </style>
 <link rel="stylesheet" href="pontes.css">
 <script src="pontes.js" defer></script>
@@ -17946,6 +17964,21 @@ function argoCila(){if(document.body.classList.contains('tv'))return;var o=docum
 (function(){var f0=op2FogModo;op2FogModo=function(){if(!document.body.classList.contains('tv'))return false;return f0.apply(this,arguments);};
  var p0=opPinta;opPinta=function(){var r=p0.apply(this,arguments);try{argoMar();argoCila();}catch(e){}return r;};try{argoMar();}catch(e){}})();
 document.addEventListener('keydown',function(e){if(e.altKey&&(e.key==='d'||e.key==='D')&&!document.body.classList.contains('tv')){var b=document.querySelector('#modo-op .op-cila-slot [data-cila]');if(b){e.stopImmediatePropagation();e.preventDefault();ciMarca(b);}}},true);
+
+/* Clepsidra em ondas no pé do casco: uma onda por fase do dia */
+var AM_COR={'06':['#cfe8f3','#183a52'],'09':['#a9d4ea','#183a52'],'12':['#7fbcde','#123047'],'15':['#5d9fcb','#fbf5e6'],'18':['#4680b2','#fbf5e6'],'21':['#2f5f8f','#fbf5e6']};
+function argoMarHTML(){var hj=hoje(),tb=S.tb||{},a=opMin(),ini=360,fim=1440,p=Math.max(0,Math.min(100,(a-ini)/(fim-ini)*100)),r=Math.round(100-p);
+ var f=TD_H.map(function(H,i){var m0=+H*60,m1=m0+180,st=a>=m1?' passou':(a>=m0?' agora':''),c=AM_COR[H]||['#7fbcde','#183a52'],txt=(tb[hj+'|'+H]||'').trim()||'livre',fl='';
+  if(st===' agora'){var q=m1-a;fl=' <em>faltam '+(q>=60?Math.floor(q/60)+'h'+String(q%60).padStart(2,'0'):q+' min')+'</em>';}
+  return '<div class="am-f'+st+'" style="--c:'+c[0]+';--tx:'+c[1]+';--d:-'+(i*.9).toFixed(1)+'s" title="'+esc(H+'–'+(+H+3)+'h · '+tdFaixaNome(H)+' · '+txt)+'"><i></i><div class="am-t"><b>'+H+' · '+esc(tdFaixaNome(H))+fl+'</b><span>'+esc(txt)+'</span></div></div>';}).join('');
+ var hm=String(Math.floor(a/60)%24).padStart(2,'0')+':'+String(a%60).padStart(2,'0');
+ var ag=(a>=ini&&a<fim)?'<div class="am-ag'+(p>80?' dir':'')+'" style="left:'+p.toFixed(2)+'%"><span>'+hm+' · resta '+r+'% do dia</span></div>':'';
+ return '<div class="am-fs">'+f+'</div>'+ag;}
+function argoMarPinta(){if(document.body.classList.contains('tv'))return;var rd=document.getElementById('rod-apps');if(!rd)return;var m=document.getElementById('argo-mar');
+ if(!m){m=document.createElement('div');m.id='argo-mar';m.setAttribute('role','img');rd.appendChild(m);}
+ var h=argoMarHTML();if(m._h!==h){m.innerHTML=h;m._h=h;}
+ var a=opMin(),p=Math.max(0,Math.min(100,(a-360)/1080*100));m.setAttribute('aria-label','Clepsidra do dia em ondas: '+Math.round(100-p)+'% do dia ainda resta');}
+(function(){var p0=opPinta;opPinta=function(){var r=p0.apply(this,arguments);try{argoMarPinta();}catch(e){}return r;};})();
 
 })();
 </script>
