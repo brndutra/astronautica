@@ -19,7 +19,8 @@ body.pz-com-ticker #rod-apps:has(>#pz-ticker){height:auto}
 .pz-tk-x{flex:none;width:20px!important;height:20px;margin:0!important;padding:0!important;border:0!important;background:transparent!important;color:var(--dim)!important;font-size:11px;cursor:pointer;line-height:1}
 .pz-tk-x:hover{color:var(--red)!important}
 @keyframes pz-tk{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-@media (prefers-reduced-motion:reduce){.pz-tk-trilho{animation:none}.pz-tk-v{overflow-x:auto}}
+/* a faixa sempre corre sozinha e nunca mostra barra de rolagem (para no hover) */
+.pz-tk-v{overflow:hidden!important;scrollbar-width:none}.pz-tk-v::-webkit-scrollbar{display:none}
 @media (max-width:640px){#pz-ticker .pz-tk-k{display:none}}
 
 /* ---------- Pontes no painel de apps ---------- */
