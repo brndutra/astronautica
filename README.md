@@ -52,7 +52,9 @@ O projeto na Vercel está ligado a este repositório: cada push na `main` public
 - `planner/imprimir.html`: as folhas do caderno de discos G (200 × 275 mm, 11 furos), sem datas, sem horários e sem bolinhas. Manual e despejo, mês com hábitos e finanças no verso, e semanas (segunda a quarta na frente; quinta a domingo, hábitos e revisão no verso). Imprime em A4 com marcas de corte ou direto no tamanho G. A frente tem os furos à esquerda e o verso, à direita. Os parâmetros `?fmt=a4|g&man=1&mes=1&sem=5` montam a impressão.
 - `planner/papel.js`: a consulta **Caderno de papel** no Manual de campo, com a rotina e o botão que abre as folhas para imprimir.
 - `planner/caneta.js`: modo caneta na **Folha livre** do Diário. Traço com pressão, quatro tintas (uma é marca-texto), borracha (também a ponta-borracha da caneta), desfazer (Ctrl+Z) e apagar tudo. Com caneta de tablet, só a ponta escreve e o dedo rola a folha. A tinta fica em `S.cofre.tinta`, cifrada com a senha do diário, e some da tela quando o livro tranca.
-- Os dois scripts usam `window.ASTRO.MF_T`, `MF_C`, `cxPinta` e `cofre` (`aberto`, `cifra`, `decifra`), expostos no `index.html`.
+- `planner/drive-mapa.js`: página **Mapa do Drive** no Manual de campo. Mostra a árvore de pastas do Drive com busca, abrir e fechar tudo e atalho para cada pasta. O mapa vem do arquivo `mapa-do-drive.json` (gerado pelo Claude a partir do Drive; fica em `_Organizacao`), importado pelo botão da página, e fica em `S.drive.mapa`, nunca no repositório, porque o repositório é público. Pastas de código exportado aparecem recolhidas, só com a contagem.
+- Os scripts usam `window.ASTRO.MF_T`, `MF_C`, `cxPinta`, `esc` e `cofre` (`aberto`, `cifra`, `decifra`), expostos no `index.html`. Páginas novas do Manual de campo entram por `window.ASTRO_MF[id]`, que devolve o HTML da página.
+- Folhas da semana: cada dia tem "encerro às" e, no pé, "parei em → próximo passo"; o topo tem foco do mês, meta e foco da semana. Os hábitos ficam só na semana; o verso do mês é só de finanças.
 
 ## Caduceu de Hermes (`pontes.js`, `pontes.css`)
 

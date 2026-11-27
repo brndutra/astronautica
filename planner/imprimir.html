@@ -66,7 +66,8 @@ body{font-family:"EB Garamond",Georgia,"Times New Roman",serif;color:var(--tinta
 .cab .lin{flex:1;border-bottom:.25mm solid var(--linha);height:6mm}
 .cab .curta{width:34mm;flex:0 0 auto}
 .cab .de{font-style:italic;font-size:11pt;color:var(--suave);line-height:1}
-.pontos{background-image:var(--pontos);background-size:5mm 5mm;background-position:0 0}
+.pontos{position:relative;overflow:hidden}
+.pontos>.ptsvg{position:absolute;inset:0;width:100%;height:100%;display:block}
 .lin1{border-bottom:.25mm solid var(--linha);height:7.5mm}
 .campo{display:flex;align-items:flex-end;gap:3mm}
 .campo .kk{white-space:nowrap;padding-bottom:1mm}
@@ -76,7 +77,7 @@ body{font-family:"EB Garamond",Georgia,"Times New Roman",serif;color:var(--tinta
 .rodape{margin-top:auto;padding-top:2mm;display:flex;justify-content:space-between;font-style:italic;font-size:8.5pt;color:#a39a8d}
 
 /* ---------- semana ---------- */
-.topo-sem{display:grid;grid-template-columns:1fr 1fr;gap:3mm 6mm;margin-bottom:4mm}
+.topo-sem{display:grid;grid-template-columns:1fr 1fr 1fr;gap:3mm 5mm;margin-bottom:4mm}
 .topo-sem .prio{grid-column:1/-1}
 .dias{flex:1;display:flex;flex-direction:column;border-top:.25mm solid var(--linha)}
 .dia{flex:1;display:flex;border-bottom:.25mm solid var(--linha);min-height:0}
@@ -84,7 +85,14 @@ body{font-family:"EB Garamond",Georgia,"Times New Roman",serif;color:var(--tinta
 .dia .rot-d b{font-family:"IM Fell English SC",Georgia,serif;font-weight:400;font-size:13pt;letter-spacing:.08em}
 .dia .rot-d i{font-style:normal;font-size:8pt;color:var(--suave);letter-spacing:.05em}
 .dia .rot-d .dd{width:10mm;border-bottom:.25mm solid var(--linha);height:4.5mm}
-.dia .area{flex:1;min-width:0}
+.dia .area{flex:1;min-width:0;display:flex;flex-direction:column}
+.dia .area .pontos{flex:1}
+.dia .parei{display:flex;align-items:flex-end;gap:2mm;height:6.5mm;border-top:.2mm dashed var(--linha);padding:0 2mm .8mm}
+.dia .parei span{font-style:italic;font-size:8pt;color:var(--suave);white-space:nowrap}
+.dia .parei i{flex:1;border-bottom:.2mm solid var(--fio);height:4mm}
+.dia .rot-d .enc{margin-top:auto;margin-bottom:2mm;display:flex;flex-direction:column;align-items:center;gap:.8mm}
+.dia .rot-d .enc small{font-size:7pt;color:var(--suave);letter-spacing:.04em}
+.dia .rot-d .enc span{width:10mm;border-bottom:.25mm solid var(--linha);height:4mm}
 .dupla-d{display:flex;flex:1;border-bottom:.25mm solid var(--linha)}
 .dupla-d .dia{border-bottom:0}
 .dupla-d .dia+.dia{border-left:.25mm solid var(--linha)}
@@ -161,6 +169,7 @@ body{font-family:"EB Garamond",Georgia,"Times New Roman",serif;color:var(--tinta
  <button type="button" id="imp">Imprimir</button>
 </div>
 <p class="dica">Imprima <b>frente e verso, virando pela borda longa</b>, em papel de 90 a 120 g. No formato A4, corte nas marcas dos cantos. Depois passe no furador de caderno de discos: a faixa tracejada mostra o lado dos furos. A frente tem os furos à esquerda e o verso, à direita, então cada folha abre certinho no caderno.</p>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><pattern id="pts" patternUnits="userSpaceOnUse" width="18.8976" height="18.8976"><circle cx="9.4488" cy="9.4488" r="1.2" fill="#b7ad9e"/></pattern></defs></svg>
 <main class="mesa" id="mesa"></main>
 
 <script>
@@ -176,13 +185,14 @@ function semFrente(){
  return '<div class="folha frente">'+
   '<div class="cab"><span class="tit">Semana</span><span class="de">de</span><span class="lin curta"></span><span class="de">a</span><span class="lin curta"></span><span class="lin"></span></div>'+
   '<div class="topo-sem">'+
+   '<div class="campo"><span class="kk">foco do mês</span><div class="lin1"></div></div>'+
    '<div class="campo"><span class="kk">meta da semana</span><div class="lin1"></div></div>'+
    '<div class="campo"><span class="kk">foco</span><div class="lin1"></div></div>'+
    '<div class="prio"><div class="kk" style="margin-bottom:.5mm">três prioridades da semana</div>'+
     [1,2,3].map(function(n){return '<div class="campo"><span class="num">'+n+'</span><div class="lin1"></div></div>';}).join('')+'</div>'+
   '</div>'+
   '<div class="dias">'+[0,1,2].map(dia).join('')+'</div>'+
-  rodape('hoje: até três prioridades e o primeiro passo de cada uma')+'</div>';}
+  rodape('hoje: até três prioridades, o primeiro passo de cada uma e a hora de encerrar')+'</div>';}
 
 /* ---- semana, verso: quinta a domingo, hábitos e revisão ---- */
 function semVerso(){
@@ -200,10 +210,12 @@ function semVerso(){
     '<div class="campo"><span class="kk">próxima semana</span><div class="lin1"></div></div>'+
     '<div class="campo"><span class="kk">gastos ok?</span><div class="lin1"></div></div></div>'+
   '</div>'+
-  rodape('fim do dia: onde parei e o próximo passo')+'</div>';}
+  rodape('fim do dia: marque os hábitos e escreva onde parou')+'</div>';}
 
 function dia(i){
- return '<div class="dia"><div class="rot-d"><b>'+DIAS[i]+'</b><span class="dd"></span><i>'+DIAS_L[i]+'</i></div><div class="area pontos"></div></div>';}
+ return '<div class="dia"><div class="rot-d"><b>'+DIAS[i]+'</b><span class="dd"></span><i>'+DIAS_L[i]+'</i>'+
+  '<div class="enc"><small>encerro às</small><span></span></div></div>'+
+  '<div class="area"><div class="pontos"></div><div class="parei"><span>parei em</span><i></i><span>próximo passo</span><i></i></div></div></div>';}
 
 /* ---- mês: calendário sem números + sessões, datas e metas ---- */
 function mesFrente(){
@@ -217,17 +229,13 @@ function mesFrente(){
    '<div><div class="k sec-t">metas do mês</div>'+lin(7)+'</div>'+
   '</div>'+rodape('peço dia, sessão e a minha entrega: tudo aqui')+'</div>';}
 
-/* ---- verso do mês: hábitos do mês e finanças ---- */
+/* ---- verso do mês: finanças (os hábitos ficam só na semana) ---- */
 function mesVerso(){
- var cols='<col class="c-nm">',hd='<th></th>';for(var d=1;d<=31;d++){cols+='<col>';hd+='<th>'+d+'</th>';}
- var hb='';for(var h=0;h<3;h++){hb+='<tr><td class="nm"></td>';for(var d2=1;d2<=31;d2++)hb+='<td></td>';hb+='</tr>';}
- var contas='';for(var c=0;c<17;c++)contas+='<tr><td></td><td></td><td></td><td></td></tr>';
- var gastos='';for(var g=0;g<9;g++)gastos+='<tr><td></td><td></td></tr>';
- var entra='';for(var e=0;e<4;e++)entra+='<tr><td></td><td></td></tr>';
+ var contas='';for(var c=0;c<26;c++)contas+='<tr><td></td><td></td><td></td><td></td></tr>';
+ var gastos='';for(var g=0;g<15;g++)gastos+='<tr><td></td><td></td></tr>';
+ var entra='';for(var e=0;e<5;e++)entra+='<tr><td></td><td></td></tr>';
  return '<div class="folha verso">'+
-  '<div class="cab"><span class="tit">Hábitos e finanças</span><span class="lin"></span></div>'+
-  '<div class="k sec-t">hábitos do mês</div>'+
-  '<table class="hm"><colgroup>'+cols+'</colgroup><tr>'+hd+'</tr>'+hb+'</table>'+
+  '<div class="cab"><span class="tit">Finanças do mês</span><span class="lin"></span></div>'+
   '<div class="fin">'+
    '<div><div class="k sec-t">contas fixas</div>'+
     '<table class="tb"><colgroup><col style="width:42%"><col style="width:22%"><col style="width:16%"><col style="width:20%"></colgroup>'+
@@ -246,12 +254,12 @@ function manual(){
   '<div class="cab"><span class="tit">Manual do caderno</span><span class="lin"></span></div>'+
   '<div class="man">'+
   '<section><p class="ouro">Menos é mais. Três prioridades por dia, três hábitos. Dia ruim não estraga o caderno: pule e recomece na página de hoje, sem compensar nada.</p></section>'+
-  '<section><h3>A ordem do caderno</h3><ol><li>Este manual e, no verso, o despejo.</li><li>O mês atual, com hábitos e finanças no verso.</li><li>As semanas.</li><li>Folhas pontilhadas e quadriculadas para notas.</li></ol><p>Divisórias entre o mês, as semanas e as notas. Comece só com o mês atual: não monte o ano inteiro.</p></section>'+
-  '<section><h3>Os três hábitos</h3><ol><li>Dormir na hora (meta realista; adiantar 15 a 30 minutos por semana).</li><li>Encerrar o trabalho no horário marcado.</li><li>Natação ou estudo para o TRF3 (escolha um).</li></ol><p>Marque o dia em que cumprir. Não precisa cumprir todos.</p></section>'+
-  '<section><h3>De manhã · 5 minutos</h3><ol><li>Abra na semana, na faixa de hoje.</li><li>Escreva até três prioridades.</li><li>Para cada uma, o primeiro passo de 2 minutos.</li><li>Anote a hora de encerrar.</li></ol></section>'+
+  '<section><h3>A ordem do caderno</h3><ol><li>Este manual e, no verso, o despejo.</li><li>O mês atual, com as finanças no verso.</li><li>As semanas.</li><li>Folhas pontilhadas e quadriculadas para notas.</li></ol><p>Divisórias entre o mês, as semanas e as notas. Comece só com o mês atual: não monte o ano inteiro.</p></section>'+
+  '<section><h3>Os três hábitos</h3><ol><li>Dormir na hora (meta realista; adiantar 15 a 30 minutos por semana).</li><li>Encerrar o trabalho no horário marcado.</li><li>Natação ou estudo para o TRF3 (escolha um).</li></ol><p>Marque na folha da semana o dia em que cumprir. Não precisa cumprir todos.</p></section>'+
+  '<section><h3>De manhã · 5 minutos</h3><ol><li>Abra na semana, na faixa de hoje.</li><li>Escreva até três prioridades.</li><li>Para cada uma, o primeiro passo de 2 minutos.</li><li>Anote ao lado do dia a hora de encerrar.</li></ol></section>'+
   '<section><h3>Durante o dia</h3><ul><li>Blocos de 25 a 45 minutos, com pausa curta.</li><li>Travou? Qual é o menor passo agora?</li><li>Lembrou de algo no meio da tarefa? Anote no despejo e volte.</li><li>Faltou espaço? Enfie uma folha pontilhada no meio da semana.</li></ul></section>'+
-  '<section><h3>No fim do dia · 2 minutos</h3><ol><li>Marque o que fez.</li><li>Uma linha: onde parou e o próximo passo.</li><li>Passe o que sobrou para amanhã, sem culpa.</li><li>Marque os hábitos.</li></ol></section>'+
-  '<section><h3>Domingo · 10 minutos</h3><ol><li>Revisão: o que funcionou, o que travou.</li><li>Meta, foco e três prioridades da próxima semana.</li><li>Olhe os gastos.</li><li>Ajuste a hora de dormir, se for o caso.</li></ol></section>'+
+  '<section><h3>No fim do dia · 2 minutos</h3><ol><li>Marque o que fez.</li><li>No pé do dia: onde parou e o próximo passo.</li><li>Passe o que sobrou para amanhã, sem culpa.</li><li>Marque os hábitos.</li></ol></section>'+
+  '<section><h3>Domingo · 10 minutos</h3><ol><li>Revisão: o que funcionou, o que travou.</li><li>Foco do mês, meta, foco e três prioridades da próxima semana.</li><li>Olhe os gastos.</li><li>Ajuste a hora de dormir, se for o caso.</li></ol></section>'+
   '<section><h3>No começo do mês</h3><ul><li>Marcos das sessões: peço dia, sessão e a sua entrega.</li><li>Prazos e aniversários.</li><li>Contas fixas com valor e vencimento.</li></ul></section>'+
   '<section><h3>Quando tudo parecer bagunçado</h3><p>Despeje tudo no verso desta folha, sem ordem. Depois escolha uma coisa e escreva só o primeiro passo dela.</p></section>'+
   '</div>'+rodape('volte aqui sempre que esquecer como usar')+'</div>';}
@@ -281,9 +289,10 @@ function monta(){
  document.getElementById('pagina').textContent='@page{size:'+(f==='a4'?'210mm 297mm':'200mm 275mm')+';margin:0}';
  var h='',i;
  for(i=0;i<q('q-man');i++)h+=par('manual · frente',manual(),'despejo · verso',despejo());
- for(i=0;i<q('q-mes');i++)h+=par('mês · frente',mesFrente(),'hábitos e finanças · verso',mesVerso());
+ for(i=0;i<q('q-mes');i++)h+=par('mês · frente',mesFrente(),'finanças · verso',mesVerso());
  for(i=0;i<q('q-sem');i++)h+=par('semana '+(i+1)+' · frente',semFrente(),'semana '+(i+1)+' · verso',semVerso());
  document.getElementById('mesa').innerHTML=h||'<p class="dica">Escolha ao menos uma folha.</p>';
+ Array.prototype.forEach.call(document.querySelectorAll('#mesa .pontos'),function(el){el.insertAdjacentHTML('afterbegin','<svg class="ptsvg" aria-hidden="true"><rect width="100%" height="100%" fill="url(#pts)"/></svg>');});
  try{localStorage.setItem('astro-papel-g',JSON.stringify({f:f,m:q('q-man'),mes:q('q-mes'),s:q('q-sem')}));}catch(e){}}
 try{var o=JSON.parse(localStorage.getItem('astro-papel-g')||'null');if(o){document.getElementById('fmt').value=o.f||'a4';document.getElementById('q-man').value=o.m;document.getElementById('q-mes').value=o.mes;document.getElementById('q-sem').value=o.s;}}catch(e){}
 var p=new URLSearchParams(location.search);
