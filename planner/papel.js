@@ -23,7 +23,7 @@ C['c-papel']=['Caderno de papel',
  ['Domingo · 10 minutos',['Revisão: o que funcionou, o que travou.','Foco do mês, meta, foco e três prioridades da próxima semana.','Olhe os gastos.','Ajuste a hora de dormir, se for o caso.']],
  ['No começo do mês',['Marcos das sessões: peço dia, sessão e a sua entrega.','Prazos e aniversários.','Contas fixas com valor e vencimento.']],
  ['Quando tudo parecer bagunçado',['Despeje tudo no verso do manual, sem ordem.','Escolha uma coisa e escreva só o primeiro passo dela.']],
- ['Imprimir e montar',['Frente e verso, virando pela borda longa, em papel de 90 a 120 g.','No A4, corte nas marcas dos cantos (a folha G tem 200 × 275 mm).','Fure com o furador de caderno de discos: a frente tem os furos à esquerda e o verso, à direita.']],
+ ['Imprimir e montar',['Cada ficha tem "baixar o caderno": o PDF pronto (manual, um mês e cinco semanas) com o visual do tema dela. "Montar folhas" escolhe outras quantidades.','Frente e verso, virando pela borda longa, em papel de 90 a 120 g.','No A4, corte nas marcas dos cantos (a folha G tem 200 × 275 mm).','Fure com o furador de caderno de discos: a frente tem os furos à esquerda e o verso, à direita.']],
  ['À caneta no tablet',['A Folha livre da Ficha do Campista aceita caneta: toque em "caneta" na barra do papel.','Com caneta de tablet, o dedo rola a página e só a caneta escreve.']]],
  [['@papel-imprimir','imprimir as páginas'],['listas','despejo'],['semana','revisão da semana']]];
 

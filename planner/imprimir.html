@@ -6,7 +6,7 @@
 <title>Páginas do caderno G · Astronáutica</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IM+Fell+English+SC&family=Cinzel:wght@400;600&family=Spectral:ital,wght@0,400;0,500;1,400&family=Marcellus+SC&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
    Páginas do caderno de discos G (folha 200 × 275 mm, 11 furos)
@@ -15,28 +15,29 @@
    sem bolinhas de checklist, com espaço largo para escrever.
    ============================================================ */
 :root{
+ --fT:"IM Fell English SC",Georgia,serif;--fC:"EB Garamond",Georgia,serif;--orn:#8c2f2a;--esc:1;
  --tinta:#2b2622;--suave:#6f665c;--linha:#c9c0b2;--fio:#ddd5c8;--ponto:#b7ad9e;--cera:#8c2f2a;
  --furo:16mm;--fora:8mm;--topo:9mm;--pe:8mm;
  --pontos:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 50 50'%3E%3Ccircle cx='25' cy='25' r='3.2' fill='%23b7ad9e'/%3E%3C/svg%3E");
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
-body{font-family:"EB Garamond",Georgia,"Times New Roman",serif;color:var(--tinta);background:#e9e4dc}
+body{font-family:var(--fC);color:var(--tinta);background:#e9e4dc}
 
 /* ---------- painel de controle (só na tela) ---------- */
 .ctl{position:sticky;top:0;z-index:5;background:#2b2622;color:#f4efe6;padding:14px 18px;display:flex;flex-wrap:wrap;gap:12px 22px;align-items:center;box-shadow:0 2px 14px rgba(0,0,0,.25)}
-.ctl h1{font-family:"IM Fell English SC",Georgia,serif;font-weight:400;font-size:21px;letter-spacing:.06em;margin-right:auto}
-.ctl h1 small{display:block;font-family:"EB Garamond",Georgia,serif;font-size:13px;letter-spacing:0;opacity:.7}
+.ctl h1{font-family:var(--fT);font-weight:400;font-size:21px;letter-spacing:.06em;margin-right:auto}
+.ctl h1 small{display:block;font-family:var(--fC);font-size:13px;letter-spacing:0;opacity:.7}
 .ctl label{display:flex;align-items:center;gap:8px;font-size:15px}
 .ctl input[type=number]{width:58px;padding:5px 6px;border-radius:6px;border:1px solid #6f665c;background:#3a332d;color:#f4efe6;font:inherit}
 .ctl select{padding:5px 8px;border-radius:6px;border:1px solid #6f665c;background:#3a332d;color:#f4efe6;font:inherit}
-.ctl button{padding:8px 16px;border-radius:999px;border:0;background:#c9a15a;color:#2b2622;font:600 15px "EB Garamond",Georgia,serif;cursor:pointer}
+.ctl button{padding:8px 16px;border-radius:999px;border:0;background:#c9a15a;color:#2b2622;font:600 15px var(--fC);cursor:pointer}
 .ctl button:hover{background:#ddb873}
 .dica{max-width:980px;margin:14px auto 0;padding:0 18px;font-size:15px;line-height:1.45;color:#4e463e}
 .dica b{color:var(--cera);font-weight:600}
 .mesa{display:flex;flex-direction:column;align-items:center;gap:22px;padding:22px 12px 60px}
 .par{display:flex;flex-wrap:wrap;justify-content:center;gap:18px}
-.rot{font-family:"IM Fell English SC",Georgia,serif;font-size:13px;letter-spacing:.1em;color:#6f665c;text-align:center;margin-bottom:6px}
+.rot{font-family:var(--fT);font-size:13px;letter-spacing:.1em;color:#6f665c;text-align:center;margin-bottom:6px}
 .chapa{background:#fff;box-shadow:0 6px 22px rgba(43,38,34,.18)}
 @media (max-width:860px){.chapa{zoom:.62}}
 @media (max-width:520px){.chapa{zoom:.42}.ctl h1{font-size:18px}}
@@ -59,10 +60,10 @@ body{font-family:"EB Garamond",Georgia,"Times New Roman",serif;color:var(--tinta
 .g .chapa{width:200mm;height:275mm}
 
 /* ---------- peças comuns ---------- */
-.k{font-family:"IM Fell English SC",Georgia,serif;letter-spacing:.14em;font-size:10.5pt;color:var(--cera)}
-.kk{font-family:"IM Fell English SC",Georgia,serif;letter-spacing:.12em;font-size:9pt;color:var(--suave)}
+.k{font-family:var(--fT);letter-spacing:.14em;font-size:10.5pt;color:var(--cera)}
+.kk{font-family:var(--fT);letter-spacing:.12em;font-size:9pt;color:var(--suave)}
 .cab{display:flex;align-items:flex-end;gap:5mm;padding-bottom:2.5mm;border-bottom:.35mm solid var(--tinta);margin-bottom:4mm}
-.cab .tit{font-family:"IM Fell English SC",Georgia,serif;font-size:19pt;letter-spacing:.08em;line-height:1}
+.cab .tit{font-family:var(--fT);font-size:19pt;letter-spacing:.08em;line-height:1}
 .cab .lin{flex:1;border-bottom:.25mm solid var(--linha);height:6mm}
 .cab .curta{width:34mm;flex:0 0 auto}
 .cab .de{font-style:italic;font-size:11pt;color:var(--suave);line-height:1}
@@ -72,7 +73,7 @@ body{font-family:"EB Garamond",Georgia,"Times New Roman",serif;color:var(--tinta
 .campo{display:flex;align-items:flex-end;gap:3mm}
 .campo .kk{white-space:nowrap;padding-bottom:1mm}
 .campo .lin1{flex:1}
-.num{font-family:"IM Fell English SC",Georgia,serif;color:var(--cera);font-size:11pt;width:5mm;padding-bottom:1mm}
+.num{font-family:var(--fT);color:var(--cera);font-size:11pt;width:5mm;padding-bottom:1mm}
 .caixa{border:.25mm solid var(--linha);border-radius:1.5mm;padding:2.5mm 3mm}
 .rodape{margin-top:auto;padding-top:2mm;display:flex;justify-content:space-between;font-style:italic;font-size:8.5pt;color:#a39a8d}
 
@@ -82,7 +83,7 @@ body{font-family:"EB Garamond",Georgia,"Times New Roman",serif;color:var(--tinta
 .dias{flex:1;display:flex;flex-direction:column;border-top:.25mm solid var(--linha)}
 .dia{flex:1;display:flex;border-bottom:.25mm solid var(--linha);min-height:0}
 .dia .rot-d{width:15mm;flex:0 0 auto;border-right:.25mm solid var(--linha);padding:2.5mm 0 0 0;display:flex;flex-direction:column;align-items:center;gap:1.5mm}
-.dia .rot-d b{font-family:"IM Fell English SC",Georgia,serif;font-weight:400;font-size:13pt;letter-spacing:.08em}
+.dia .rot-d b{font-family:var(--fT);font-weight:400;font-size:13pt;letter-spacing:.08em}
 .dia .rot-d i{font-style:normal;font-size:8pt;color:var(--suave);letter-spacing:.05em}
 .dia .rot-d .dd{width:10mm;border-bottom:.25mm solid var(--linha);height:4.5mm}
 .dia .area{flex:1;min-width:0;display:flex;flex-direction:column}
@@ -98,14 +99,14 @@ body{font-family:"EB Garamond",Georgia,"Times New Roman",serif;color:var(--tinta
 .dupla-d .dia+.dia{border-left:.25mm solid var(--linha)}
 .base-sem{display:grid;grid-template-columns:1.12fr 1fr;gap:5mm;margin-top:4mm;height:47mm}
 .trk{width:100%;border-collapse:collapse;table-layout:fixed}
-.trk th{font-family:"IM Fell English SC",Georgia,serif;font-weight:400;font-size:8.5pt;color:var(--suave);padding:0 0 1.2mm;letter-spacing:.06em}
+.trk th{font-family:var(--fT);font-weight:400;font-size:8.5pt;color:var(--suave);padding:0 0 1.2mm;letter-spacing:.06em}
 .trk td{border:.25mm solid var(--linha);height:7.2mm}
 .trk td.nm{border:0;border-bottom:.25mm solid var(--linha)}
 .trk col.c-nm{width:32mm}
 
 /* ---------- mês ---------- */
 .cal{width:100%;border-collapse:collapse;table-layout:fixed}
-.cal th{font-family:"IM Fell English SC",Georgia,serif;font-weight:400;font-size:9.5pt;letter-spacing:.1em;color:var(--suave);padding:0 0 1.5mm}
+.cal th{font-family:var(--fT);font-weight:400;font-size:9.5pt;letter-spacing:.1em;color:var(--suave);padding:0 0 1.5mm}
 .cal td{border:.25mm solid var(--linha);height:25.5mm;vertical-align:top;padding:1.2mm 1.4mm}
 .cal td span{display:block;width:6.5mm;height:5mm;border-bottom:.25mm solid var(--fio)}
 .cal td.fds{background:#faf8f4}
@@ -122,7 +123,7 @@ body{font-family:"EB Garamond",Georgia,"Times New Roman",serif;color:var(--tinta
 .fin{display:grid;grid-template-columns:1.25fr 1fr;gap:6mm;flex:1}
 .fin>div{display:flex;flex-direction:column}
 .tb{width:100%;border-collapse:collapse;table-layout:fixed}
-.tb th{font-family:"IM Fell English SC",Georgia,serif;font-weight:400;font-size:8.5pt;color:var(--suave);text-align:left;padding:0 1mm 1mm;letter-spacing:.06em;border-bottom:.3mm solid var(--tinta)}
+.tb th{font-family:var(--fT);font-weight:400;font-size:8.5pt;color:var(--suave);text-align:left;padding:0 1mm 1mm;letter-spacing:.06em;border-bottom:.3mm solid var(--tinta)}
 .tb td{border-bottom:.25mm solid var(--linha);height:7.6mm}
 .tb td+td{border-left:.2mm solid var(--fio)}
 .fecha{display:grid;grid-template-columns:auto 1fr;gap:1mm 3mm;align-items:end;margin-top:auto}
@@ -131,7 +132,7 @@ body{font-family:"EB Garamond",Georgia,"Times New Roman",serif;color:var(--tinta
 
 /* ---------- manual ---------- */
 .man{column-count:2;column-gap:8mm;font-size:12.2pt;line-height:1.42;flex:1}
-.man h3{font-family:"IM Fell English SC",Georgia,serif;font-weight:400;font-size:12.6pt;letter-spacing:.1em;color:var(--cera);margin:0 0 1.2mm;break-after:avoid}
+.man h3{font-family:var(--fT);font-weight:400;font-size:12.6pt;letter-spacing:.1em;color:var(--cera);margin:0 0 1.2mm;break-after:avoid}
 .man section{break-inside:avoid;margin-bottom:5.5mm}
 .man ol,.man ul{padding-left:5mm}
 .man li{margin-bottom:.6mm}
@@ -141,6 +142,22 @@ body{font-family:"EB Garamond",Georgia,"Times New Roman",serif;color:var(--tinta
 /* ---------- despejo ---------- */
 .desp{flex:1;border:.25mm solid var(--linha);border-radius:1.5mm}
 .um{margin-top:4mm;display:grid;grid-template-columns:1fr 1fr;gap:5mm}
+
+
+/* ---------- temas: friso sob o cabeçalho, runa e cartucho nos dias ---------- */
+.friso{display:flex;align-items:center;justify-content:space-between;gap:1.5mm;height:4.6mm;margin:-2.2mm 0 3.2mm;color:var(--orn)}
+.friso svg{height:4.2mm;width:auto;flex:0 0 auto;fill:none;stroke:currentColor;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+.friso i{flex:1;height:0;border-top:.25mm solid currentColor;opacity:.55}
+.friso.meandro{display:block;height:3.4mm}
+.friso.meandro svg{width:100%;height:100%}
+.dia .rot-d .runa{display:block;height:5.5mm;color:var(--orn);opacity:.8}
+.dia .rot-d .runa svg{height:5.5mm;width:5.5mm;display:block;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+body[data-tema="egipcio"] .dia .rot-d b{border:.3mm solid var(--orn);border-radius:3.2mm;padding:1.4mm .9mm 1.6mm;writing-mode:vertical-rl;text-orientation:upright;letter-spacing:.02em;font-size:10.5pt;position:relative}
+body[data-tema="egipcio"] .dia .rot-d b::after{content:"";position:absolute;left:-.6mm;right:-.6mm;bottom:-1.3mm;border-top:.45mm solid var(--orn)}
+body[data-tema="nordico"] .cab{border-bottom-width:.55mm;border-bottom-style:double;border-bottom-color:var(--tinta)}
+body[data-tema="nordico"] .cab .tit{letter-spacing:.12em}
+body[data-tema="egipcio"] .cab .tit{letter-spacing:.06em}
+.man{font-size:calc(12.2pt * var(--esc))}
 
 /* ---------- impressão ---------- */
 @media print{
@@ -154,10 +171,17 @@ body{font-family:"EB Garamond",Georgia,"Times New Roman",serif;color:var(--tinta
 }
 </style>
 <style id="pagina"></style>
+<style id="tema-css"></style>
 </head>
 <body class="a4">
 <div class="ctl">
  <h1>Páginas do caderno G<small>caderno de discos 200 × 275 mm · sem datas, sem horários</small></h1>
+ <label>Tema
+  <select id="tema">
+   <option value="grego">Acampamento Meio-Sangue</option>
+   <option value="nordico">Hotel Valhala</option>
+   <option value="egipcio">Casa do Brooklyn</option>
+  </select></label>
  <label>Formato
   <select id="fmt">
    <option value="a4">A4 com marcas de corte</option>
@@ -169,7 +193,7 @@ body{font-family:"EB Garamond",Georgia,"Times New Roman",serif;color:var(--tinta
  <button type="button" id="imp">Imprimir</button>
 </div>
 <p class="dica">Imprima <b>frente e verso, virando pela borda longa</b>, em papel de 90 a 120 g. No formato A4, corte nas marcas dos cantos. Depois passe no furador de caderno de discos: a faixa tracejada mostra o lado dos furos. A frente tem os furos à esquerda e o verso, à direita, então cada folha abre certinho no caderno.</p>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><pattern id="pts" patternUnits="userSpaceOnUse" width="18.8976" height="18.8976"><circle cx="9.4488" cy="9.4488" r="1.2" fill="#b7ad9e"/></pattern></defs></svg>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><pattern id="pts" patternUnits="userSpaceOnUse" width="18.8976" height="18.8976"><circle cx="9.4488" cy="9.4488" r="1.2" style="fill:var(--ponto)"/></pattern></defs></svg>
 <main class="mesa" id="mesa"></main>
 
 <script>
@@ -177,8 +201,19 @@ body{font-family:"EB Garamond",Georgia,"Times New Roman",serif;color:var(--tinta
 "use strict";
 var DIAS=['SEG','TER','QUA','QUI','SEX','SÁB','DOM'];
 var DIAS_L=['segunda','terça','quarta','quinta','sexta','sábado','domingo'];
+var TEMAS={"grego": {"casa": "Acampamento Meio-Sangue · chalé 7", "fT": "\"IM Fell English SC\",Georgia,serif", "fC": "\"EB Garamond\",Georgia,serif", "esc": 1.07, "v": {"tinta": "#2b2622", "suave": "#6f665c", "linha": "#c9c0b2", "fio": "#ddd5c8", "ponto": "#b7ad9e", "cera": "#8c2f2a", "orn": "#9a7b3f"}, "friso": "meandro"}, "nordico": {"casa": "Hotel Valhala · andar 19", "fT": "\"Cinzel\",Georgia,serif", "fC": "\"Spectral\",Georgia,serif", "esc": 0.94, "v": {"tinta": "#1f262c", "suave": "#5a646d", "linha": "#b9c0c6", "fio": "#d6dade", "ponto": "#a7afb6", "cera": "#6a1e1e", "orn": "#34424d"}, "friso": ["<path d='M0 0V16M0 0L7 4M0 5L7 9' transform='translate(8.5 4)' stroke-width='1.9'/>", "<path d='M0 16V0L7 5V16' transform='translate(8.5 4)' stroke-width='1.9'/>", "<path d='M0 0V16M0 4L6 8L0 12' transform='translate(8.5 4)' stroke-width='1.9'/>", "<path d='M0 0V16M0 2L7 6M0 7L7 11' transform='translate(8.5 4)' stroke-width='1.9'/>", "<path d='M0 0V16M0 0L6 4L0 8L7 16' transform='translate(8.5 4)' stroke-width='1.9'/>", "<path d='M7 3L1 8L7 13' transform='translate(8.5 4)' stroke-width='1.9'/>", "<path d='M9 4.5l4.6 8H4.4zM15 4.5l4.6 8h-9.2zM12 10.2l4.6 8H7.4z'/>", "<path d='M0 2L7 14M7 2L0 14' transform='translate(8.5 4)' stroke-width='1.9'/>", "<path d='M0 0V16M0 0L6 4L0 8' transform='translate(8.5 4)' stroke-width='1.9'/>", "<path d='M0 0V16M7 0V16M0 5L7 10' transform='translate(8.5 4)' stroke-width='1.9'/>", "<path d='M3.5 0V16M0 5L7 10' transform='translate(8.5 4)' stroke-width='1.9'/>"], "runas": ["<path d='M0 0V16M7 0V16M0 0L7 7M7 0L0 7' transform='translate(8.5 4)' stroke-width='1.9'/>", "<path d='M3.5 0V16M0 4L3.5 0L7 4' transform='translate(8.5 4)' stroke-width='1.9'/>", "<path d='M0 16L6 8L3.5 2L1 8L7 16' transform='translate(8.5 4)' stroke-width='1.9'/>", "<path d='M0 0V16M0 4L6 8L0 12' transform='translate(8.5 4)' stroke-width='1.9'/>", "<path d='M0 0V16M0 0L7 4M0 5L7 9' transform='translate(8.5 4)' stroke-width='1.9'/>", "<path d='M0 0V16M0 0L7 5' transform='translate(8.5 4)' stroke-width='1.9'/>", "<path d='M6 0L1 5L6 10L1 16' transform='translate(8.5 4)' stroke-width='1.9'/>"]}, "egipcio": {"casa": "Casa do Brooklyn · nomo 21", "fT": "\"Marcellus SC\",Georgia,serif", "fC": "\"Cormorant Garamond\",Georgia,serif", "esc": 1.08, "v": {"tinta": "#2b1d0e", "suave": "#6b5a42", "linha": "#cdbf9f", "fio": "#e2d7bd", "ponto": "#bfae88", "cera": "#1e3a6e", "orn": "#b08a2e"}, "friso": ["<path d='M12 9.5c-2.6 0-4-2.2-4-4.2S9.6 1.8 12 1.8s4 1.5 4 3.5-1.4 4.2-4 4.2zM5 11h14M12 9.5V22'/>", "<path d='M3 10c3-3 6-4 9-4s6 1 9 4c-3 2.5-6 3.5-9 3.5S6 12.5 3 10zM12 7.6a2.2 2.2 0 1 0 0 4.4a2.2 2.2 0 1 0 0-4.4zM10 13.5l-1.5 5c-1 1.2-2.6 1.4-3.5.6M14 13.5c1.5 1.3 2.5 3 2.5 5.5'/>", "<path d='M12 7.5c-3 0-5 2.6-5 6.2S9 21 12 21s5-3.7 5-7.3-2-6.2-5-6.2zM9 5.2a3 2.2 0 0 0 6 0zM12 9v12M7 12L3.5 10M7 15.5H3M7.6 18.5l-3 2.2M17 12l3.5-2M17 15.5h4M16.4 18.5l3 2.2'/>", "<path d='M9 22h6M10 22V9M14 22V9M6.5 9h11M6.5 6.5h11M6.5 4h11M12 4V2.5'/>", "<path d='M12 20c-4 0-7-3-7-7 2.5.3 5 2 7 4 2-2 4.5-3.7 7-4 0 4-3 7-7 7zM12 17c-1.5-3-1.5-7 0-11 1.5 4 1.5 8 0 11z'/>", "<path d='M12 22V4M12 4c3 2 4 6 3.5 11.5L12 18M12 4c-2.5 3-3 7-2.5 12L12 18'/>", "<path d='M12 4a6 6 0 1 0 0 12a6 6 0 1 0 0-12zM6 19h12M9 15.5V19M15 15.5V19'/>", "<path d='M12 6a6 6 0 1 0 0 12a6 6 0 1 0 0-12zM1.5 12h3M19.5 12h3M12 1.5v2M5 5l1.5 1.5M19 5l-1.5 1.5'/>"]}};
+var TEMA_ATUAL='grego';
+function TEMA(){return TEMAS[TEMA_ATUAL]||TEMAS.grego;}
+function runa(i){var r=TEMA().runas;return r?'<span class="runa"><svg viewBox="0 0 24 24">'+r[i]+'</svg></span>':'';}
+function friso(){var t=TEMA();
+ if(t.friso==='meandro'){var d='';for(var x=0;x<180;x+=6)d+='M'+x+' 5.5H'+(x+5)+'V0.5H'+(x+1)+'V3.5H'+(x+3)+'V2';
+  return '<div class="friso meandro"><svg viewBox="0 0 180 6" preserveAspectRatio="none"><path d="'+d+'M0 5.5H180" stroke-width=".45"/></svg></div>';}
+ var h='';t.friso.forEach(function(p,k){h+=(k?'<i></i>':'')+'<svg viewBox="0 0 24 24">'+p+'</svg>';});return '<div class="friso">'+h+'</div>';}
+function aplicaTema(){var t=TEMA(),v=t.v,c=':root{--fT:'+t.fT+';--fC:'+t.fC+';--esc:'+t.esc;
+ Object.keys(v).forEach(function(k){c+=';--'+k+':'+v[k];});
+ document.getElementById('tema-css').textContent=c+'}';document.body.setAttribute('data-tema',TEMA_ATUAL);}
 function lin(n){var s='';for(var i=0;i<n;i++)s+='<div class="lin1"></div>';return s;}
-function rodape(t){return '<div class="rodape"><span>'+t+'</span><span>Astronáutica</span></div>';}
+function rodape(t){return '<div class="rodape"><span>'+t+'</span><span>'+TEMA().casa+'</span></div>';}
 
 /* ---- semana, frente: meta, foco, prioridades e segunda a quarta ---- */
 function semFrente(){
@@ -213,7 +248,7 @@ function semVerso(){
   rodape('fim do dia: marque os hábitos e escreva onde parou')+'</div>';}
 
 function dia(i){
- return '<div class="dia"><div class="rot-d"><b>'+DIAS[i]+'</b><span class="dd"></span><i>'+DIAS_L[i]+'</i>'+
+ return '<div class="dia"><div class="rot-d"><b>'+DIAS[i]+'</b>'+runa(i)+'<span class="dd"></span><i>'+DIAS_L[i]+'</i>'+
   '<div class="enc"><small>encerro às</small><span></span></div></div>'+
   '<div class="area"><div class="pontos"></div><div class="parei"><span>parei em</span><i></i><span>próximo passo</span><i></i></div></div></div>';}
 
@@ -286,18 +321,22 @@ function par(t1,a,t2,b){
 function q(id){var v=parseInt(document.getElementById(id).value,10);return isNaN(v)||v<0?0:v;}
 function monta(){
  var f=document.getElementById('fmt').value;document.body.className=f;
+ TEMA_ATUAL=document.getElementById('tema').value||'grego';aplicaTema();
  document.getElementById('pagina').textContent='@page{size:'+(f==='a4'?'210mm 297mm':'200mm 275mm')+';margin:0}';
  var h='',i;
  for(i=0;i<q('q-man');i++)h+=par('manual · frente',manual(),'despejo · verso',despejo());
  for(i=0;i<q('q-mes');i++)h+=par('mês · frente',mesFrente(),'finanças · verso',mesVerso());
  for(i=0;i<q('q-sem');i++)h+=par('semana '+(i+1)+' · frente',semFrente(),'semana '+(i+1)+' · verso',semVerso());
  document.getElementById('mesa').innerHTML=h||'<p class="dica">Escolha ao menos uma folha.</p>';
+ Array.prototype.forEach.call(document.querySelectorAll('#mesa .cab'),function(el){el.insertAdjacentHTML('afterend',friso());});
  Array.prototype.forEach.call(document.querySelectorAll('#mesa .pontos'),function(el){el.insertAdjacentHTML('afterbegin','<svg class="ptsvg" aria-hidden="true"><rect width="100%" height="100%" fill="url(#pts)"/></svg>');});
  try{localStorage.setItem('astro-papel-g',JSON.stringify({f:f,m:q('q-man'),mes:q('q-mes'),s:q('q-sem')}));}catch(e){}}
+/* tema: o do app (astro_tema), se houver; o parâmetro ?tema= manda */
+try{var at=localStorage.getItem('astro_tema');document.getElementById('tema').value=at==='valhala'?'nordico':at==='egito'?'egipcio':'grego';}catch(e){}
 try{var o=JSON.parse(localStorage.getItem('astro-papel-g')||'null');if(o){document.getElementById('fmt').value=o.f||'a4';document.getElementById('q-man').value=o.m;document.getElementById('q-mes').value=o.mes;document.getElementById('q-sem').value=o.s;}}catch(e){}
 var p=new URLSearchParams(location.search);
-['fmt','q-man','q-mes','q-sem'].forEach(function(id){var k=id.replace('q-','');if(p.has(k))document.getElementById(id).value=p.get(k);});
-['fmt','q-man','q-mes','q-sem'].forEach(function(id){document.getElementById(id).addEventListener('input',monta);});
+['tema','fmt','q-man','q-mes','q-sem'].forEach(function(id){var k=id.replace('q-','');if(p.has(k))document.getElementById(id).value=p.get(k);});
+['tema','fmt','q-man','q-mes','q-sem'].forEach(function(id){document.getElementById(id).addEventListener('input',monta);});
 document.getElementById('imp').addEventListener('click',function(){window.print();});
 monta();
 })();

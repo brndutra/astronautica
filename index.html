@@ -5789,7 +5789,7 @@ html.noite .fg-dlg .fg-chama,html.noite .op-fog .op-k::before{filter:invert(1) h
 #fo .fo-cab{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;padding-right:56px;color:#f3e6c8}
 #fo .fo-k{display:block;font:700 9px var(--mono,monospace);letter-spacing:.22em;text-transform:uppercase;color:#e2b85a}
 #fo .fo-cab b{display:block;font:700 26px/1.1 Georgia,serif;letter-spacing:.02em;font-variant:small-caps}
-#fo .fo-ac{display:flex;gap:8px}
+#fo .fo-ac{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:8px}
 #fo .fo-ac button{display:inline-flex;align-items:center;gap:7px;width:auto!important;margin:0!important;padding:8px 16px!important;border:1px solid #c9a45a!important;border-radius:6px!important;background:rgba(255,240,210,.08)!important;color:#f3e6c8!important;font:600 12.5px Georgia,serif!important;cursor:pointer;box-shadow:none!important}
 #fo .fo-ac button:hover{background:#c9a45a!important;color:#2a1a10!important}
 #fo .fo-ac button[data-fodiario]{background:#c9a45a!important;color:#2a1a10!important}
@@ -6277,7 +6277,7 @@ html body.claro[data-skin="astro"]:not(.tv):not(.eg) #hero-box .cp-postal .cp-ca
 </style>
 <link rel="stylesheet" href="pontes.css?v=2">
 <script src="pontes.js" defer></script>
-<script src="planner/papel.js?v=2" defer></script>
+<script src="planner/papel.js?v=3" defer></script>
 <script src="planner/caneta.js?v=1" defer></script>
 <script src="planner/drive-mapa.js?v=1" defer></script>
 </head>
@@ -21118,16 +21118,22 @@ setInterval(function(){try{if(CF.chave){var w=document.querySelector('#lv .rg[da
 
 /* ===== A ficha abre como folheto (três dobras, por tema); o diário abre como livro ===== */
 var FO_CFG=TV_ON?{k:'folheto do hotel · andar 19',t:'Registro do Einherji',d:'abrir o diário da saga'}:EG_ON?{k:'folheto da casa · nomo 21',t:'Papiro do Iniciado',d:'abrir o diário de papiro'}:{k:'folheto do acampamento · chalé 7',t:'Ficha do Campista',d:'abrir o Diário do Semideus'};
+/* caderno de papel em PDF, com o visual do tema de cada ficha (planner/pdf/caderno-g-*.pdf) */
+var FO_PDF=TV_ON?{f:'nordico',n:'Caderno G · Hotel Valhala.pdf'}:EG_ON?{f:'egipcio',n:'Caderno G · Casa do Brooklyn.pdf'}:{f:'grego',n:'Caderno G · Acampamento Meio-Sangue.pdf'};
 var LV_MODO='ficha',FO_IDS=['registro','atrib','dons','destino'];
 lvFolhas=(function(f0){return function(){return f0.apply(this,arguments).filter(function(f){return FO_IDS.indexOf(f.id)<0;});};})(lvFolhas);
 function foMonta(){var lv=document.getElementById('lv');if(!lv)return null;var fo=document.getElementById('fo');
  if(!fo){fo=document.createElement('div');fo.id='fo';fo.className='fo';fo.setAttribute('data-notr','');fo.setAttribute('translate','no');fo.hidden=true;
   fo.innerHTML='<div class="fo-cab"><div><span class="fo-k">'+esc(FO_CFG.k)+'</span><b>'+esc(FO_CFG.t)+'</b></div><div class="fo-ac">'+
    '<button type="button" data-fodiario><svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h5v17H6a2 2 0 0 0-2 2z"/><path d="M20 5a2 2 0 0 0-2-2h-5v17h5a2 2 0 0 1 2 2z"/></svg>'+esc(FO_CFG.d)+'</button>'+
-   '<button type="button" data-lvtr><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="1.6"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>trancar</button></div></div>'+
+   '<button type="button" data-fopdf title="Manual, um mês e cinco semanas, em A4 com marcas de corte"><svg viewBox="0 0 24 24"><path d="M12 4v11"/><path d="M7.5 10.5L12 15l4.5-4.5"/><path d="M5 19h14"/></svg>baixar o caderno</button>'+
+   '<button type="button" data-fomonta title="Escolher quantos meses e semanas imprimir"><svg viewBox="0 0 24 24"><path d="M7 8V4h10v4"/><rect x="4" y="8" width="16" height="8" rx="1.5"/><path d="M7 13h10v7H7z"/></svg>montar folhas</button>'+
+'<button type="button" data-lvtr><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="1.6"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>trancar</button></div></div>'+
    '<div class="fo-dobras"><div class="fo-p" data-fop="1"></div><div class="fo-p" data-fop="2"></div><div class="fo-p" data-fop="3"></div></div>';
   lv.appendChild(fo);
-  fo.addEventListener('click',function(e){if(e.target.closest('[data-fodiario]')){LV_MODO='diario';lvEstado();try{lvIrSec('Diário');}catch(z){}}});}
+  fo.addEventListener('click',function(e){if(e.target.closest('[data-fodiario]')){LV_MODO='diario';lvEstado();try{lvIrSec('Diário');}catch(z){}}
+   if(e.target.closest('[data-fopdf]')){var a=document.createElement('a');a.href='planner/pdf/caderno-g-'+FO_PDF.f+'.pdf';a.download=FO_PDF.n;document.body.appendChild(a);a.click();a.remove();}
+   if(e.target.closest('[data-fomonta]')){var u='planner/imprimir.html?tema='+FO_PDF.f,w=window.open(u,'_blank','noopener');if(!w)location.href=u;}});}
  var map={registro:1,atrib:2,dons:3,destino:3};
  FO_IDS.forEach(function(id){var sec=lv.querySelector('.lv-folha[data-folha="'+id+'"]'),p=fo.querySelector('[data-fop="'+map[id]+'"]');if(sec&&p&&sec.parentNode!==p)p.appendChild(sec);});
  var pq=lv.querySelector('#fc-ficha > .fc-pq'),ca=lvCorpo('atrib');if(pq&&ca)ca.appendChild(pq);
