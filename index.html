@@ -5757,6 +5757,31 @@ html.noite .fg-dlg .fg-chama,html.noite .op-fog .op-k::before{filter:invert(1) h
 #fc-ficha .fc-pq,.lv .fc-pq{margin:12px 0;padding:10px 12px;border:1px solid rgba(154,107,58,.35);border-radius:6px;background:rgba(255,250,240,.6)}
 #fc-ficha .fc-pq>b,.fc-pq>b{display:block;margin:0 0 6px;font:700 9px var(--mono,monospace);letter-spacing:.16em;text-transform:uppercase;color:#9a4a30}
 .fc-pq ul{margin:0;padding-left:18px}.fc-pq li{margin:0 0 5px;font:13px/1.45 Georgia,serif}.fc-pq li em{font-style:normal;font-weight:700}
+
+/* ===== Diário em páginas: dia, semana, mês e andamentos ===== */
+#lv .lv-folha[data-folha="diario"] #cf-diario{display:none!important}
+.rg{display:flex;flex-direction:column;gap:10px}
+.rg-k{font:700 8.5px var(--mono,monospace);letter-spacing:.16em;text-transform:uppercase;color:#9a4a30}
+.rg-per{font:700 17px/1.2 Georgia,serif;color:var(--lv-ink,#2f261d)}
+.rg-gui{margin:0;padding:8px 10px 8px 26px;border-left:2px solid rgba(154,74,48,.35);font:italic 12.5px/1.5 Georgia,serif;color:#6b5140;background:rgba(255,250,240,.5)}
+.rg-gui li{margin:0}
+.rg textarea{width:100%;box-sizing:border-box;min-height:92px;padding:9px 11px;border:1px solid #c9b28a;border-radius:6px;background:#fffdf6!important;font:14px/1.55 Georgia,serif;color:#2f261d;resize:vertical}
+.rg-ac{display:flex;align-items:center;gap:8px}
+.rg-ac button{width:auto!important;margin:0!important;padding:6px 14px!important;border:1px solid #9a7b3f!important;border-radius:999px!important;background:#f4ead2!important;color:#2f261d!important;font:700 9.5px var(--mono,monospace)!important;letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
+.rg-ac button:hover{background:#9a4a30!important;color:#fffaf0!important}
+.rg-ac select{padding:5px 8px;border:1px solid #c9b28a;border-radius:6px;background:#fffdf6;font:12.5px Georgia,serif}
+.rg-ac small{font:italic 11.5px Georgia,serif;color:#8a6f55}
+.rg-lista{list-style:none;margin:4px 0 0;padding:0;display:flex;flex-direction:column;gap:8px}
+.rg-lista li{padding:8px 10px;border:1px solid rgba(154,107,58,.25);border-radius:6px;background:rgba(255,253,246,.7)}
+.rg-lista li.atual{border-color:#9a4a30;box-shadow:inset 3px 0 0 #9a4a30}
+.rg-lista time{display:block;font:700 8.5px var(--mono,monospace);letter-spacing:.12em;text-transform:uppercase;color:#8a6f55;margin:0 0 3px}
+.rg-lista p{margin:0;font:13.5px/1.5 Georgia,serif;color:#2f261d;white-space:pre-wrap}
+.rg-lista .vz{border-style:dashed;font:italic 12.5px Georgia,serif;color:#8a6f55}
+.rg-pn{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.rg-pn div{padding:7px 8px;border:1px solid rgba(154,107,58,.3);border-radius:6px;background:rgba(255,253,246,.75);text-align:center}
+.rg-pn b{display:block;font:700 18px/1.1 Georgia,serif;color:#2f261d}
+.rg-pn small{display:block;margin-top:2px;font:700 7.5px var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase;color:#8a6f55}
+.rg-fr{display:inline-block;margin-right:6px;padding:1px 7px;border-radius:99px;background:#efe3c6;font:700 8px var(--mono,monospace);letter-spacing:.08em;text-transform:uppercase;color:#6b5140}
 /* ===== Barras de rolagem: finas, discretas e na cor do tema ===== */
 html{--sb:rgba(201,150,60,.55);--sb-h:#e0782a}
 html:has(body.tv),body.tv{--sb:rgba(96,114,128,.55);--sb-h:#b3262d}
@@ -13846,6 +13871,9 @@ var LV_FOLHAS=[
  {id:'dos-lim',sec:'Dossiê',cap:'Apêndice',t:'Dossiê · ponto fraco',dupla:true},
  {id:'dos-diag',sec:'Dossiê',cap:'Apêndice',t:'Dossiê · oráculo',dupla:true}];
 LV_FOLHAS.splice(7,0,{id:'profecia',sec:'Profecia',cap:'Capítulo VII',t:'Profecia do ciclo',dupla:true});
+/* Diário: registro do dia, da semana, do mês e andamentos, cada um na sua página */
+(function(){var i=LV_FOLHAS.findIndex(function(f){return f.id==='diario';});if(i<0)return;LV_FOLHAS[i].t='Registro do dia';
+ LV_FOLHAS.splice(i+1,0,{id:'reg-sem',sec:'Diário',cap:'Capítulo V',t:'Registro da semana'},{id:'reg-mes',sec:'Diário',cap:'Capítulo V',t:'Registro do mês'},{id:'andam',sec:'Diário',cap:'Capítulo V',t:'Andamentos'});})();
 var LV_DOS_CORTE={'h-sec':'dos-ficha','h-painel':'dos-painel','h-lim':'dos-lim','h-diag':'dos-diag'};
 var LV_ESTREITO=window.matchMedia?window.matchMedia('(max-width: 880px)'):{matches:false};
 var LV_SOL='<svg viewBox="0 0 100 100" aria-hidden="true"><defs><radialGradient id="lvWax" cx="38%" cy="32%" r="75%"><stop offset="0%" stop-color="#d8a94a"/><stop offset="45%" stop-color="#a87a2a"/><stop offset="100%" stop-color="#6b4a16"/></radialGradient></defs>'+
@@ -20211,6 +20239,46 @@ window.addEventListener('click',function(e){if(e.target.closest&&e.target.closes
  '#hero-box .cp-postal .cp-verso .cpv-ext:hover{background:'+k+';color:#fff8e6}',
  '#hero-box .cp-postal .cp-verso .cpv-ext svg{width:17px;height:17px}'
 ].join('\n');document.head.appendChild(st);})();
+
+/* ===== Diário do Semideus em páginas: registro do dia, da semana, do mês e andamentos (tudo cifrado com a senha do cofre) ===== */
+var RG_MES=['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
+function rgPer(tp,d){d=d||new Date();var p2=function(n){return String(n).padStart(2,'0');};
+ if(tp==='sem'){var k=acSemana(d),a=new Date(k+'T12:00:00'),b=new Date(a);b.setDate(a.getDate()+6);return {k:k,t:'semana de '+p2(a.getDate())+'/'+p2(a.getMonth()+1)+' a '+p2(b.getDate())+'/'+p2(b.getMonth()+1)};}
+ if(tp==='mes')return {k:d.getFullYear()+'-'+p2(d.getMonth()+1),t:RG_MES[d.getMonth()]+' de '+d.getFullYear()};
+ if(tp==='and')return {k:'and',t:'frentes em curso'};
+ return {k:hoje(),t:d.toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'long'})};}
+var RG_CFG={dia:{pg:'diario',gui:['o que aconteceu hoje','o que venci','o que travou','como estou chegando ao fim do dia'],ph:'Registro do dia: fatos, vitórias, o que travou e como você está.'},
+ sem:{pg:'reg-sem',gui:['as vitórias da semana','o que ficou para trás e por quê','o foco da próxima semana'],ph:'Balanço da semana.'},
+ mes:{pg:'reg-mes',gui:['as conquistas do mês','o que mudou em mim e na rotina','a meta do próximo mês'],ph:'Balanço do mês.'},
+ and:{pg:'andam',gui:['em que pé está cada frente','o próximo passo concreto','o que está travando'],ph:'Andamento de uma frente: onde está e qual o próximo passo.'}};
+var RG_FRENTES=['Concurso TRF3','Gabinete','Apps e ferramentas','Corpo e saúde','Línguas e runas','Casa','Outra'];
+function rgPainel(){var o=[];try{var x=gmXP(),nv=gmNivel(x.total);o.push(['nível '+nv.n,x.total+' XP']);}catch(e){}
+ try{o.push([gmSeq()+' dias','sequência']);}catch(e){}
+ try{var D=satDia();o.push([D.feitos.length+'/'+D.H.length,'ritos hoje']);o.push([D.min+'/'+D.meta,'min de estudo hoje']);o.push([(D.blocos||0)+'','blocos de foco hoje']);o.push([D.rv.length+'','revisões hoje']);}catch(e){}
+ return o.length?'<div class="rg-pn">'+o.map(function(x){return '<div><b>'+esc(x[0])+'</b><small>'+esc(x[1])+'</small></div>';}).join('')+'</div>':'';}
+async function rgPinta(tp){var C=RG_CFG[tp],corpo=lvCorpo(C.pg);if(!corpo)return;var w=corpo.querySelector(':scope>.rg[data-rg="'+tp+'"]');
+ if(!w){w=document.createElement('div');w.className='rg';w.setAttribute('data-rg',tp);corpo.appendChild(w);
+  w.addEventListener('click',function(e){if(e.target.closest('[data-rgadd]'))rgAdd(tp);});}
+ if(!CF.chave){w.innerHTML='<p class="rg-gui">Abra o cofre para ler e escrever.</p>';return;}
+ var P=rgPer(tp),L=(S.dsd||[]).filter(function(e){return (e.tp||'dia')===tp;}),it=[];
+ for(var i=L.length-1;i>=0;i--){var e=L[i],t='';try{t=await cfDecifra(e);}catch(z){t='(entrada cifrada com outra senha)';}
+  var atual=tp!=='and'&&e.per===P.k;it.push('<li'+(atual?' class="atual"':'')+'><time>'+esc(e.rot||e.em||'')+'</time>'+(e.fr?'<span class="rg-fr">'+esc(e.fr)+'</span>':'')+'<p>'+esc(t)+'</p></li>');}
+ var ta=w.querySelector('textarea'),rasc=ta?ta.value:'';
+ w.innerHTML='<span class="rg-k">'+(tp==='dia'?'hoje':tp==='sem'?'esta semana':tp==='mes'?'este mês':'andamentos')+'</span><b class="rg-per">'+esc(P.t)+'</b>'+
+  (tp==='and'?rgPainel():'')+'<ul class="rg-gui">'+C.gui.map(function(g){return '<li>'+esc(g)+'</li>';}).join('')+'</ul>'+
+  '<textarea rows="4" placeholder="'+esc(C.ph)+'"></textarea>'+
+  '<div class="rg-ac">'+(tp==='and'?'<select data-rgfr>'+RG_FRENTES.map(function(f){return '<option>'+esc(f)+'</option>';}).join('')+'</select>':'')+'<button type="button" data-rgadd>guardar</button><small>cifrado com a sua senha</small></div>'+
+  '<ol class="rg-lista">'+(it.join('')||'<li class="vz">Nada registrado ainda.</li>')+'</ol>';
+ if(rasc)w.querySelector('textarea').value=rasc;}
+async function rgAdd(tp){var w=document.querySelector('#lv .rg[data-rg="'+tp+'"]');if(!w||!CF.chave)return;var ta=w.querySelector('textarea'),t=(ta.value||'').trim();if(!t)return;
+ var o=await cfCifra(t),n=new Date(),P=rgPer(tp);o.tp=tp;o.per=P.k;o.em=n.toLocaleDateString('pt-BR')+' · '+String(n.getHours()).padStart(2,'0')+'h'+String(n.getMinutes()).padStart(2,'0');
+ o.rot=(tp==='dia'?o.em:P.t+' · '+o.em);var fr=w.querySelector('[data-rgfr]');if(fr)o.fr=fr.value;
+ S.dsd=S.dsd||[];S.dsd.push(o);try{grava();}catch(e){}try{anota(tp==='dia'?'Registro do dia no diário':tp==='sem'?'Registro da semana no diário':tp==='mes'?'Registro do mês no diário':'Andamento registrado no diário',0,false);}catch(e){}
+ ta.value='';rgPinta(tp);}
+function rgTudo(){['dia','sem','mes','and'].forEach(function(tp){try{rgPinta(tp);}catch(e){}});}
+(function(){var c0=cfDiario;cfDiario=async function(){var r=await c0.apply(this,arguments);try{rgTudo();}catch(e){}return r;};})();
+(function(){var e0=lvEstado;lvEstado=function(){var r=e0.apply(this,arguments);try{if(CF.chave&&!document.querySelector('#lv .rg[data-rg="dia"] .rg-per'))rgTudo();}catch(e){}return r;};})();
+setInterval(function(){try{if(CF.chave){var w=document.querySelector('#lv .rg[data-rg="and"]');if(w&&!w.contains(document.activeElement)){var pn=w.querySelector('.rg-pn'),h=rgPainel();if(pn&&h)pn.outerHTML=h;}}}catch(e){}},60000);
 
 })();
 </script>
