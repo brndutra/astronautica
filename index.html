@@ -20202,6 +20202,16 @@ setTimeout(function(){try{npcCentral();}catch(e){}},1700);setInterval(function()
 function npcCanto(){var tp=document.getElementById('tp-painel'),b=document.getElementById('td-toasts');if(!b)return;var r=tp&&tp.offsetParent?Math.max(12,Math.round(innerWidth-tp.getBoundingClientRect().left+16)):16;b.style.setProperty('--npc-r',r+'px');}
 setInterval(function(){try{npcCanto();}catch(e){}},1500);window.addEventListener('resize',function(){try{npcCanto();}catch(e){}});
 
+/* verso do cartão-postal: ícone para baixar a extensão do Chrome */
+(function(){var c0=cpVerso;cpVerso=function(){var r=c0.apply(this,arguments);try{var v=document.querySelector('#hero-box .cp-postal>.cp-verso');if(v&&!v.querySelector('.cpv-ext')){var a=document.createElement('a');a.className='cpv-ext';a.href='downloads/astronautica-extensao.zip';a.setAttribute('download','astronautica-extensao.zip');a.title='Baixar a extensão do Chrome (Alt+Shift+A)';a.setAttribute('aria-label','Baixar a extensão do Chrome');
+ a.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4h3a2 2 0 1 1 4 0h2v4a2 2 0 1 1 0 4v4h-4a2 2 0 1 0-4 0H6v-4a2 2 0 1 0 0-4V4z"/><path d="M12 9v6m-2.5-2.5L12 15l2.5-2.5"/></svg>';v.appendChild(a);}}catch(e){}return r;};})();
+window.addEventListener('click',function(e){if(e.target.closest&&e.target.closest('.cpv-ext'))e.stopPropagation();},true);
+(function(){var st=document.createElement('style');st.id='cpv-ext-css';var k=TV_ON?'#203936':EG_ON?'#1e3a6e':'#8a5a14';st.textContent=[
+ '#hero-box .cp-postal .cp-verso .cpv-ext{position:absolute;top:8px;right:8px;z-index:4;width:28px;height:28px;display:grid;place-items:center;border-radius:50%;border:1px solid '+k+';background:rgba(255,250,236,.92);color:'+k+';box-shadow:0 2px 6px -2px rgba(30,20,10,.4);text-decoration:none;cursor:pointer}',
+ '#hero-box .cp-postal .cp-verso .cpv-ext:hover{background:'+k+';color:#fff8e6}',
+ '#hero-box .cp-postal .cp-verso .cpv-ext svg{width:17px;height:17px}'
+].join('\n');document.head.appendChild(st);})();
+
 })();
 </script>
 </body>
