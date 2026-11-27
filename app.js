@@ -9511,16 +9511,12 @@ function opPinta(){var o=document.getElementById('modo-op');if(!o||!document.bod
 /* extensão do Chrome: versão publicada em downloads/ (mesma do extensao/manifest.json); ao publicar uma nova, troque só aqui */
 var EXT_V='0.7.4',EXT_ZIP='downloads/astronautica-extensao-'+EXT_V+'.zip';
 function extBaixada(){try{return localStorage.getItem('astro-ext-baixada')||'';}catch(e){return '';}}
-/* cabeçalho, lado direito, montado só aqui: duas pílulas.
-   alvo: desviei (com − quando há tracinho), travei, tarefa chata, ronda · caminho: manual, extensão (baixar / atualizar / em dia), templo completo.
+/* cabeçalho, lado direito, montado só aqui: uma pílula.
+   caminho: manual, extensão (baixar / atualizar / em dia), templo completo. desviei, travei, tarefa chata e ronda moram no verso do Escudo (26).
    No Valhala, depois das 18h e com a fogueira apagada, entra "acender a fogueira" entre as duas. */
-function opTopR(){var tr=document.querySelector('#modo-op .op-topr');if(!tr)return;var n=0,R={on:false,h:[]},fogo=false;
- try{n=ciHoje();}catch(e){}try{R=cxD().ronda||R;}catch(e){}try{fogo=TV_ON&&opMin()>=18*60&&!fgFeita();}catch(e){}
- var h='<span class="op-pill op-pill-alvo" role="group" aria-label="desvios e travas">'+
-  '<button type="button" class="op-cila" data-cila title="Desviei do alvo (Alt+D)">desviei <em>'+n+'</em></button>'+
-  (n?'<button type="button" class="op-cila-menos" data-cilamenos title="tirar o último tracinho de hoje" aria-label="tirar o último tracinho de hoje">−</button>':'')+
-  '<button type="button" class="cx-trv" data-cxa="trav">travei</button><button type="button" data-cxa="esc">tarefa chata</button>'+
-  '<button type="button" class="cx-rdb" data-cxa="rd" title="horários da ronda">ronda <small>'+(R.on&&R.h.length?esc(R.h.join(' · ')):'desligada')+'</small></button></span>'+
+function opTopR(){var tr=document.querySelector('#modo-op .op-topr');if(!tr)return;var fogo=false;
+ try{fogo=TV_ON&&opMin()>=18*60&&!fgFeita();}catch(e){}
+ var h=
   (fogo?'<button type="button" class="op-fogo" data-fogo>acender a fogueira</button>':'')+
   '<span class="op-pill op-pill-nav" role="group" aria-label="consulta, extensão e templo"><button type="button" class="cx-mfb" data-cxa="mf">manual</button>'+opExtHTML()+'<button type="button" class="op-sair" data-opsair>templo completo</button></span>';
  if(tr._h!==h){tr.innerHTML=h;tr._h=h;}}
@@ -11123,30 +11119,54 @@ antPinta=(function(f0){return function(){var r=f0.apply(this,arguments);try{antR
  '.fg-dlg .fg-ant-bau{font:14px/1.45 Georgia,serif;color:#2a2418}',
  '.ant-dlg footer .ant-fog{flex:1;align-self:center;font:italic 12px Georgia,serif;color:#8a6f55}'
 ].join('\n');document.head.appendChild(st);})();
-/* modo operacional: a carta do antagonista dobrada no cabeçalho, ao lado do dia; clique abre o desafio e o "venci" */
-function opAntMini(){var o=document.getElementById('modo-op'),t=o&&o.querySelector(':scope>.op-top');if(!t)return;var bs=t.querySelectorAll('.op-antmini'),b=bs[0]||null;for(var q=1;q<bs.length;q++)bs[q].remove();
- if(!b){b=document.createElement('button');b.type='button';b.setAttribute('data-notr','');b.addEventListener('click',function(e){e.preventDefault();try{antAbre();}catch(z){}});}
- var dv=t.querySelector(':scope>div:first-child:not(.op-sat-slot)'),k=dv&&dv.querySelector('.op-k');if(k){if(k.nextElementSibling!==b)k.insertAdjacentElement('afterend',b);}else if(dv){if(b.parentNode!==dv)dv.appendChild(b);}
- var x=antHoje(),m=antMonstro(x.m),st=x.st,c='op-antmini'+(st!=='aberto'?' '+st:'');if(b.className!==c)b.className=c;
- b.title=st==='aberto'?m.n+': '+m.d:m.n;
- var h='<i aria-hidden="true">'+esc(m.n.charAt(0))+'</i><span><b>'+esc(m.n)+'</b><small>'+(st==='vencido'?'vencido':st==='fugiu'?'escapou':x.fx+'h')+'</small></span>';
- if(b._h!==h){b._h=h;b.innerHTML=h;}}
-opPinta=(function(f0){return function(){var r=f0.apply(this,arguments);try{opAntMini();}catch(e){}return r;};})(opPinta);
-antPinta=(function(f0){return function(){var r=f0.apply(this,arguments);try{opAntMini();}catch(e){}return r;};})(antPinta);
-setInterval(function(){try{if(document.body.classList.contains('op-on'))opAntMini();}catch(e){}},5000);
-(function(){var st=document.createElement('style');st.id='op-antmini-css';var B='html body #modo-op>.op-top .op-antmini';st.textContent=[
- '#modo-op>.op-top>div:first-child .op-k{display:inline-block!important;vertical-align:middle}',
- '#modo-op>.op-top>div:first-child .op-dt{display:block!important}',
- B+'{display:inline-flex;align-items:center;gap:6px;vertical-align:middle;max-width:210px;height:22px;width:auto!important;min-width:0;margin:0 0 0 10px!important;padding:0 10px 0 2px!important;border:0!important;border-radius:999px!important;background:#2a2418!important;box-shadow:0 0 0 1px #c9a45a!important;color:#f4ead2!important;cursor:pointer;text-align:left}',
- B+'>i{flex:none;display:grid;place-items:center;width:18px;height:18px;border-radius:50%;background:linear-gradient(180deg,#3a5a6a,#1e3a44);box-shadow:0 0 0 1px #c9a45a;font:700 10px Georgia,serif;font-style:normal;color:#e9c870}',
- B+'>span{display:flex;align-items:baseline;gap:6px;min-width:0}',
- B+' b{font:700 12px Georgia,serif;color:inherit;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}',
- B+' small{flex:none;font:700 8.5px var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase;color:#e9c870}',
- B+':hover{box-shadow:0 0 0 1.5px #e9c870!important}',
- B+'.vencido{background:linear-gradient(160deg,#e2bd5c,#8a6a1e)!important;color:#1d1406!important;box-shadow:0 0 0 1px #f6dc8c,0 0 10px rgba(246,220,140,.45)!important}',
- B+'.vencido small{color:#3a2a08}',
- B+'.fugiu{filter:grayscale(.8);opacity:.75}',
- /* no Posto a carta mora no cabeçalho: sai o card do rodapé e o botão da linha */
+/* ---------- verso do Escudo: a criatura do dia e o que tira do alvo (desviei, travei, tarefa chata, ronda) ----------
+   O Escudo (.op-col1) tem frente (foco) e verso; o botão "virar" troca e o lado fica guardado.
+   A criatura: nome, o que ela representa, o desafio, o bloco e o estado; tocar abre o "venci / escapou".
+   Embaixo, as três versões (grega, nórdica, egípcia): a escolhida vale em todos os temas (antEscolhe, no 30). */
+var OP_VERSO=(function(){try{return localStorage.getItem('astro-escudo-verso')==='1';}catch(e){return false;}})();
+function opVersoHTML(){var x=antHoje(),m=antMonstro(x.m),st=x.st,n=0,R={on:false,h:[]};try{n=ciHoje();}catch(e){}try{R=cxD().ronda||R;}catch(e){}
+ var vs=['g','n','e'].map(function(v){var t=ANT_VAR[v][m.k];if(!t)return '';var on=antVar(m.k)===v;return '<button type="button" class="'+(on?'on':'')+'" data-antvar="'+m.k+'|'+v+'" title="'+esc(t[2])+'"><small>'+({g:'grega',n:'nórdica',e:'egípcia'})[v]+'</small>'+esc(t[0])+'</button>';}).join('');
+ return '<span class="ov-k">verso do escudo · o que tira do alvo</span>'+
+  '<button type="button" class="ov-ant'+(st!=='aberto'?' '+st:'')+'" data-ovant><i aria-hidden="true">'+esc(m.n.charAt(0))+'</i><span><small>criatura do dia · bloco das '+esc(x.fx)+'h'+(st==='vencido'?' · vencida':st==='fugiu'?' · escapou':'')+'</small><b>'+esc(m.n)+'</b><em>'+esc(m.o)+'</em><p>'+esc(m.d)+'</p></span></button>'+
+  '<div class="ov-var"><span class="ov-k">a sua versão desta criatura · vale em todos os temas</span><div>'+vs+'</div></div>'+
+  '<span class="op-pill op-pill-alvo" role="group" aria-label="desvios e travas">'+
+  '<button type="button" class="op-cila" data-cila title="Desviei do alvo (Alt+D)">desviei <em>'+n+'</em></button>'+
+  (n?'<button type="button" class="op-cila-menos" data-cilamenos title="tirar o último tracinho de hoje" aria-label="tirar o último tracinho de hoje">−</button>':'')+
+  '<button type="button" class="cx-trv" data-cxa="trav">travei</button><button type="button" data-cxa="esc">tarefa chata</button>'+
+  '<button type="button" class="cx-rdb" data-cxa="rd" title="horários da ronda">ronda <small>'+(R.on&&R.h.length?esc(R.h.join(' · ')):'desligada')+'</small></button></span>';}
+function opVerso(){var c=document.querySelector('#modo-op .op-col1');if(!c)return;var v=c.querySelector(':scope>.op-verso'),b=c.querySelector(':scope>.op-vira');
+ if(!v){v=document.createElement('div');v.className='op-verso';v.setAttribute('data-notr','');c.appendChild(v);}
+ if(!b){b=document.createElement('button');b.type='button';b.className='op-vira';b.dataset.opvira='1';c.appendChild(b);}
+ c.classList.toggle('verso',OP_VERSO);var bh=OP_VERSO?'⟲ frente':'⟲ verso';if(b.textContent!==bh)b.textContent=bh;b.title=OP_VERSO?'voltar ao foco':'criatura do dia, desviei e travei';
+ var h=opVersoHTML();if(v._h!==h){v.innerHTML=h;v._h=h;}}
+opPinta=(function(f0){return function(){var r=f0.apply(this,arguments);try{opVerso();}catch(e){}return r;};})(opPinta);
+antPinta=(function(f0){return function(){var r=f0.apply(this,arguments);try{opVerso();}catch(e){}return r;};})(antPinta);
+document.addEventListener('click',function(e){var t=e.target.closest&&e.target.closest('[data-opvira],[data-ovant],[data-antvar]');if(!t||!t.closest('#modo-op'))return;e.preventDefault();e.stopPropagation();
+ if(t.dataset.opvira){OP_VERSO=!OP_VERSO;try{localStorage.setItem('astro-escudo-verso',OP_VERSO?'1':'0');}catch(z){}opVerso();return;}
+ if(t.hasAttribute('data-ovant')){try{antAbre();}catch(z){}return;}
+ var kv=t.dataset.antvar.split('|');antEscolhe(kv[0],kv[1]);},true);
+(function(){var st=document.createElement('style');st.id='op-verso-css';var C='html body #modo-op .op-col1';st.textContent=[
+ C+'{position:relative}',
+ C+'.verso>:not(.op-verso):not(.op-vira){display:none!important}',C+':not(.verso)>.op-verso{display:none!important}',
+ C+'>.op-vira{position:absolute;top:6px;right:8px;z-index:6;width:auto!important;height:24px;margin:0!important;padding:0 10px!important;border:1px solid #5a3f2c!important;border-radius:999px!important;background:#fffdf6!important;color:#5a3f2c!important;font:700 9.5px var(--mono,monospace)!important;letter-spacing:.12em;text-transform:uppercase;cursor:pointer}',
+ C+'>.op-vira:hover{background:#5a3f2c!important;color:#fffdf6!important}',
+ C+'>.op-verso{display:flex;flex-direction:column;gap:10px;width:100%;min-width:0;padding:4px 0 8px;box-sizing:border-box;overflow-y:auto;overflow-x:hidden}',
+ C+' .ov-k{font:700 9px var(--mono,monospace);letter-spacing:.16em;text-transform:uppercase;color:#8a6f55}',
+ C+' .ov-ant{all:unset;box-sizing:border-box;display:flex;gap:12px;align-items:flex-start;padding:12px;border-radius:14px;background:#2a2418;box-shadow:0 0 0 1px #c9a45a;color:#f4ead2;cursor:pointer}',
+ C+' .ov-ant:hover{box-shadow:0 0 0 2px #e9c870}',
+ C+' .ov-ant>i{flex:none;display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:linear-gradient(180deg,#3a5a6a,#1e3a44);box-shadow:0 0 0 1.5px #c9a45a;font:700 22px Georgia,serif;font-style:normal;color:#e9c870}',
+ C+' .ov-ant>span{display:flex;flex-direction:column;gap:3px;min-width:0}',
+ C+' .ov-ant small{font:700 8.5px var(--mono,monospace);letter-spacing:.12em;text-transform:uppercase;color:#e9c870}',
+ C+' .ov-ant>span{flex:1}',C+' .ov-ant b{font:700 19px/1.1 Georgia,serif;overflow-wrap:anywhere}',C+' .ov-ant em{font:italic 13px Georgia,serif;opacity:.85}',C+' .ov-ant p{margin:4px 0 0;font:12.5px/1.4 var(--sans,system-ui);opacity:.9}',
+ C+' .ov-ant.vencido{background:linear-gradient(160deg,#e2bd5c,#8a6a1e);color:#1d1406}',C+' .ov-ant.vencido small{color:#3a2a08}',C+' .ov-ant.fugiu{filter:grayscale(.8);opacity:.8}',
+ C+' .ov-var>div{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;margin-top:5px}',
+ C+' .ov-var button{all:unset;box-sizing:border-box;display:flex;flex-direction:column;gap:2px;padding:7px 9px;border-radius:10px;border:1px solid rgba(90,63,44,.35);background:#fffdf6;color:#2a2418;font:600 12.5px/1.2 Georgia,serif;cursor:pointer}',
+ C+' .ov-var button small{font:700 8px var(--mono,monospace);letter-spacing:.12em;text-transform:uppercase;color:#8a6f55}',
+ C+' .ov-var button.on{border-color:#2a2418;box-shadow:0 0 0 1px #2a2418;background:#f3e6c6}',
+ C+' .op-verso .op-pill-alvo{display:flex;flex-wrap:wrap;gap:6px;height:auto;max-width:100%;border:0;border-radius:0;background:transparent;box-shadow:none;overflow:visible}',
+ C+' .op-verso .op-pill-alvo>button{height:30px;border:1.5px solid #2e2620!important;border-radius:999px;background:#fffdf6}',
+ C+' .op-verso .op-pill-alvo>.cx-trv{background:#2e2620;color:#fffdf6}',
+ /* a criatura mora no verso do Escudo: sai o card do rodapé e o botão da linha */
  'body.op-on #mt-enc,#modo-op .op-antbt{display:none!important}'
 ].join('\n');document.head.appendChild(st);})();
 /* no rodapé, ao lado dos Anais */
@@ -12424,7 +12444,8 @@ document.addEventListener('touchmove',travaBloqueia,{capture:true,passive:false}
 setInterval(function(){try{var on=travaPaineis().some(function(p){return !p.matches('.rod-log-pop,#tm-menu');});document.documentElement.classList.toggle('trava',on);}catch(e){}},300);
 
 /* ===== Antagonistas por tema: as mesmas armadilhas da rotina, com as criaturas de cada mitologia ===== */
-(function(){var AT=TV_ON?{
+/* versões de cada monstro nos três temas (g = grego, base do ANTAG; n = nórdico; e = egípcio) */
+var ANT_VAR=(function(){var G={};ANTAG.forEach(function(m){G[m.k]=[m.n,m.o,m.d];});var N={
  hidra:['Draugar','pendências que voltam do túmulo','Mande três de volta para o túmulo em sequência: três itens terminados sem abrir nenhum novo no meio.'],
  medusa:['Mara','a paralisia diante da tarefa','A Mara senta no peito de quem fica parado: comece pelo canto mais fácil por 5 minutos.'],
  minotauro:['Níðhöggr','o processo longo e confuso','Ele rói as raízes no escuro: a cada 25 minutos, escreva em uma linha onde você está na raiz.'],
@@ -12442,8 +12463,7 @@ setInterval(function(){try{var on=travaPaineis().some(function(p){return !p.matc
  caribdis:['Kraken','o redemoinho do e-mail e do WhatsApp','Caixa de entrada fechada durante o bloco; abra só nos últimos 5 minutos.'],
  ladon:['Fáfnir','o dragão que guarda a recompensa','O ouro só sai do covil depois: a recompensa do dia vem depois de vencer este bloco.'],
  gerioes:['Troll de três cabeças','três frentes ao mesmo tempo','Escolha uma das três cabeças e esconda as outras duas até o fim.'],
- cila:['Jörmungandr','perder um pedaço de cada vez para as distrações','A serpente aperta o cerco a cada desvio: risque um tracinho e termine o bloco com menos de três.']}
-:EG_ON?{
+ cila:['Jörmungandr','perder um pedaço de cada vez para as distrações','A serpente aperta o cerco a cada desvio: risque um tracinho e termine o bloco com menos de três.']},E={
  hidra:['Enxame de escaravelhos','pendências que se multiplicam','Feche três em sequência: três itens terminados sem abrir nenhum novo no meio.'],
  medusa:['Ammit, a Devoradora','travar diante da tarefa','Ela espera o coração pesado: comece pelo canto mais fácil por 5 minutos.'],
  minotauro:['Demônios do Duat','o processo longo e confuso','A travessia do Duat tem doze portões: a cada 25 minutos, escreva em uma linha em qual portão você está.'],
@@ -12461,8 +12481,13 @@ setInterval(function(){try{var on=travaPaineis().some(function(p){return !p.matc
  caribdis:['Hipopótamo do brejo','o redemoinho do e-mail e do WhatsApp','Ele revira a lama do pântano: caixa de entrada fechada; abra só nos últimos 5 minutos.'],
  ladon:['Uraeus de fogo','a cobra que guarda a recompensa','A recompensa do dia (café, série, jogo) só depois de vencer este bloco.'],
  gerioes:['Escorpião gigante','três frentes ao mesmo tempo','Cada pinça puxa para um lado: escolha uma frente e esconda as outras duas até o fim.'],
- cila:['Apófis','perder um pedaço de cada vez para as distrações','A serpente do caos morde a barca a cada desvio: risque um tracinho e termine o bloco com menos de três.']}:null;
- if(AT)ANTAG.forEach(function(m){var t=AT[m.k];if(t){m.n=t[0];m.o=t[1];m.d=t[2];}});})();
+ cila:['Apófis','perder um pedaço de cada vez para as distrações','A serpente do caos morde a barca a cada desvio: risque um tracinho e termine o bloco com menos de três.']};return {g:G,n:N,e:E};})();
+/* criatura fixa entre temas: a versão escolhida para cada monstro (S.antag.esc[k] = g, n ou e) vale em todos os temas;
+   sem escolha, vale a do tema atual */
+function antVar(k){var A=antD(),c=(A.esc||{})[k];return c&&ANT_VAR[c]?c:(TV_ON?'n':EG_ON?'e':'g');}
+function antAplica(){ANTAG.forEach(function(m){var t=ANT_VAR[antVar(m.k)][m.k]||ANT_VAR.g[m.k];if(t){m.n=t[0];m.o=t[1];m.d=t[2];}});}
+function antEscolhe(k,v){if(!ANT_VAR[v])return;var A=antD();A.esc=A.esc||{};A.esc[k]=v;antAplica();try{grava();}catch(e){}try{opPinta();}catch(e){}}
+try{antAplica();}catch(e){}
 var MT_CFG=TV_ON?{img:'mar-ant-nordico',acao:'Abrir passagem',livre:'passagem aberta'}:EG_ON?{img:'mar-ant-egipcio',acao:'Restaure a ordem',livre:'ordem restaurada'}:{img:'mar-ant-grego',acao:'Cruzar o estreito',livre:'travessia livre'};
 function mtEnc(){var rd=document.getElementById('rod-apps');if(!rd)return;var e=document.getElementById('mt-enc');
  if(!e){e=document.createElement('div');e.id='mt-enc';e.innerHTML='<div class="mt-c"></div>';rd.appendChild(e);e.addEventListener('click',function(ev){if(ev.target.closest('.mt-art,.mt-bt')){ev.preventDefault();try{antAbre();}catch(z){}}});}
@@ -15315,13 +15340,14 @@ setTimeout(function(){try{topoBotoes();}catch(e){}},300);
    volta como evento postoClique (cxAplica, no 19) e o app clica o mesmo botão aqui: a lógica fica só no app.
    Botões que abrem conversa, janela ou seletor ficam de fora: esses se usam no app. */
 /* [chave, onde, título, botões cujo texto também é conteúdo (antagonista, ronda, valores do rodapé)] */
-var POSTO_CARTOES=[['top','#modo-op>.op-top','Posto de comando','.op-antmini,.cx-rdb'],['foco','#modo-op .op-col1','Escudo'],['fazer','#modo-op .op-fazer','Arena · ofício'],
+var POSTO_CARTOES=[['top','#modo-op>.op-top','Posto de comando','.op-antmini,.cx-rdb'],['foco','#modo-op .op-col1','Escudo','.ov-ant'],['fazer','#modo-op .op-fazer','Arena · ofício'],
  ['estudo','#modo-op .op-estudo','Campo de arquearia'],['lado','#modo-op .op-lado','Píthos'],['rod','#rod-reg','Registro do dia','[data-cr-pop]']];
-var POSTO_FORA=/^data-(opsair|satir|npchist|opext|fogo|cxa|opreg|antabre|opfx|notr|mfp|tt|cr-pop|fer|opsat)$/;
+var POSTO_FORA=/^data-(opsair|satir|npchist|opext|fogo|cxa|opreg|antabre|opfx|notr|mfp|tt|cr-pop|fer|opsat|ovant|antvar|opvira)$/;
 var POSTO_SEL=/^\[data-[a-z0-9-]+(="[^"\]]*")?\]$/;
 function postoSel(n){var a=[].filter.call(n.attributes,function(x){return /^data-/.test(x.name)&&!/^data-(notr|ic|h|i)$/.test(x.name);})[0];
  return a?(a.value?'['+a.name+'="'+a.value.replace(/["\]]/g,'')+'"]':'['+a.name+']'):null;}
-function postoVisivel(e){return !!(e.offsetParent||getComputedStyle(e).position==='fixed');}
+/* o Escudo tem frente e verso: os dois lados entram na foto, mesmo o que estiver virado */
+function postoVisivel(e){return !!(e.offsetParent||getComputedStyle(e).position==='fixed'||(e.closest&&e.closest('#modo-op .op-col1')&&!e.closest('[hidden]')));}
 /* texto do cartão em linhas, como aparece na tela (rótulos em caixa alta continuam em caixa alta), sem os botões */
 function postoLinhas(raiz){var L=[],w=document.createTreeWalker(raiz,NodeFilter.SHOW_TEXT,null),n,ult=null,buf='';
  function bloco(e){while(e&&e!==raiz){var d=getComputedStyle(e).display;if(d!=='inline'&&d!=='inline-block'&&d!=='contents')return e;e=e.parentElement;}return raiz;}

@@ -354,7 +354,8 @@ document.addEventListener('touchmove',travaBloqueia,{capture:true,passive:false}
 setInterval(function(){try{var on=travaPaineis().some(function(p){return !p.matches('.rod-log-pop,#tm-menu');});document.documentElement.classList.toggle('trava',on);}catch(e){}},300);
 
 /* ===== Antagonistas por tema: as mesmas armadilhas da rotina, com as criaturas de cada mitologia ===== */
-(function(){var AT=TV_ON?{
+/* versões de cada monstro nos três temas (g = grego, base do ANTAG; n = nórdico; e = egípcio) */
+var ANT_VAR=(function(){var G={};ANTAG.forEach(function(m){G[m.k]=[m.n,m.o,m.d];});var N={
  hidra:['Draugar','pendências que voltam do túmulo','Mande três de volta para o túmulo em sequência: três itens terminados sem abrir nenhum novo no meio.'],
  medusa:['Mara','a paralisia diante da tarefa','A Mara senta no peito de quem fica parado: comece pelo canto mais fácil por 5 minutos.'],
  minotauro:['Níðhöggr','o processo longo e confuso','Ele rói as raízes no escuro: a cada 25 minutos, escreva em uma linha onde você está na raiz.'],
@@ -372,8 +373,7 @@ setInterval(function(){try{var on=travaPaineis().some(function(p){return !p.matc
  caribdis:['Kraken','o redemoinho do e-mail e do WhatsApp','Caixa de entrada fechada durante o bloco; abra só nos últimos 5 minutos.'],
  ladon:['Fáfnir','o dragão que guarda a recompensa','O ouro só sai do covil depois: a recompensa do dia vem depois de vencer este bloco.'],
  gerioes:['Troll de três cabeças','três frentes ao mesmo tempo','Escolha uma das três cabeças e esconda as outras duas até o fim.'],
- cila:['Jörmungandr','perder um pedaço de cada vez para as distrações','A serpente aperta o cerco a cada desvio: risque um tracinho e termine o bloco com menos de três.']}
-:EG_ON?{
+ cila:['Jörmungandr','perder um pedaço de cada vez para as distrações','A serpente aperta o cerco a cada desvio: risque um tracinho e termine o bloco com menos de três.']},E={
  hidra:['Enxame de escaravelhos','pendências que se multiplicam','Feche três em sequência: três itens terminados sem abrir nenhum novo no meio.'],
  medusa:['Ammit, a Devoradora','travar diante da tarefa','Ela espera o coração pesado: comece pelo canto mais fácil por 5 minutos.'],
  minotauro:['Demônios do Duat','o processo longo e confuso','A travessia do Duat tem doze portões: a cada 25 minutos, escreva em uma linha em qual portão você está.'],
@@ -391,8 +391,13 @@ setInterval(function(){try{var on=travaPaineis().some(function(p){return !p.matc
  caribdis:['Hipopótamo do brejo','o redemoinho do e-mail e do WhatsApp','Ele revira a lama do pântano: caixa de entrada fechada; abra só nos últimos 5 minutos.'],
  ladon:['Uraeus de fogo','a cobra que guarda a recompensa','A recompensa do dia (café, série, jogo) só depois de vencer este bloco.'],
  gerioes:['Escorpião gigante','três frentes ao mesmo tempo','Cada pinça puxa para um lado: escolha uma frente e esconda as outras duas até o fim.'],
- cila:['Apófis','perder um pedaço de cada vez para as distrações','A serpente do caos morde a barca a cada desvio: risque um tracinho e termine o bloco com menos de três.']}:null;
- if(AT)ANTAG.forEach(function(m){var t=AT[m.k];if(t){m.n=t[0];m.o=t[1];m.d=t[2];}});})();
+ cila:['Apófis','perder um pedaço de cada vez para as distrações','A serpente do caos morde a barca a cada desvio: risque um tracinho e termine o bloco com menos de três.']};return {g:G,n:N,e:E};})();
+/* criatura fixa entre temas: a versão escolhida para cada monstro (S.antag.esc[k] = g, n ou e) vale em todos os temas;
+   sem escolha, vale a do tema atual */
+function antVar(k){var A=antD(),c=(A.esc||{})[k];return c&&ANT_VAR[c]?c:(TV_ON?'n':EG_ON?'e':'g');}
+function antAplica(){ANTAG.forEach(function(m){var t=ANT_VAR[antVar(m.k)][m.k]||ANT_VAR.g[m.k];if(t){m.n=t[0];m.o=t[1];m.d=t[2];}});}
+function antEscolhe(k,v){if(!ANT_VAR[v])return;var A=antD();A.esc=A.esc||{};A.esc[k]=v;antAplica();try{grava();}catch(e){}try{opPinta();}catch(e){}}
+try{antAplica();}catch(e){}
 var MT_CFG=TV_ON?{img:'mar-ant-nordico',acao:'Abrir passagem',livre:'passagem aberta'}:EG_ON?{img:'mar-ant-egipcio',acao:'Restaure a ordem',livre:'ordem restaurada'}:{img:'mar-ant-grego',acao:'Cruzar o estreito',livre:'travessia livre'};
 function mtEnc(){var rd=document.getElementById('rod-apps');if(!rd)return;var e=document.getElementById('mt-enc');
  if(!e){e=document.createElement('div');e.id='mt-enc';e.innerHTML='<div class="mt-c"></div>';rd.appendChild(e);e.addEventListener('click',function(ev){if(ev.target.closest('.mt-art,.mt-bt')){ev.preventDefault();try{antAbre();}catch(z){}}});}

@@ -73,16 +73,12 @@ function opPinta(){var o=document.getElementById('modo-op');if(!o||!document.bod
 /* extensão do Chrome: versão publicada em downloads/ (mesma do extensao/manifest.json); ao publicar uma nova, troque só aqui */
 var EXT_V='0.7.4',EXT_ZIP='downloads/astronautica-extensao-'+EXT_V+'.zip';
 function extBaixada(){try{return localStorage.getItem('astro-ext-baixada')||'';}catch(e){return '';}}
-/* cabeçalho, lado direito, montado só aqui: duas pílulas.
-   alvo: desviei (com − quando há tracinho), travei, tarefa chata, ronda · caminho: manual, extensão (baixar / atualizar / em dia), templo completo.
+/* cabeçalho, lado direito, montado só aqui: uma pílula.
+   caminho: manual, extensão (baixar / atualizar / em dia), templo completo. desviei, travei, tarefa chata e ronda moram no verso do Escudo (26).
    No Valhala, depois das 18h e com a fogueira apagada, entra "acender a fogueira" entre as duas. */
-function opTopR(){var tr=document.querySelector('#modo-op .op-topr');if(!tr)return;var n=0,R={on:false,h:[]},fogo=false;
- try{n=ciHoje();}catch(e){}try{R=cxD().ronda||R;}catch(e){}try{fogo=TV_ON&&opMin()>=18*60&&!fgFeita();}catch(e){}
- var h='<span class="op-pill op-pill-alvo" role="group" aria-label="desvios e travas">'+
-  '<button type="button" class="op-cila" data-cila title="Desviei do alvo (Alt+D)">desviei <em>'+n+'</em></button>'+
-  (n?'<button type="button" class="op-cila-menos" data-cilamenos title="tirar o último tracinho de hoje" aria-label="tirar o último tracinho de hoje">−</button>':'')+
-  '<button type="button" class="cx-trv" data-cxa="trav">travei</button><button type="button" data-cxa="esc">tarefa chata</button>'+
-  '<button type="button" class="cx-rdb" data-cxa="rd" title="horários da ronda">ronda <small>'+(R.on&&R.h.length?esc(R.h.join(' · ')):'desligada')+'</small></button></span>'+
+function opTopR(){var tr=document.querySelector('#modo-op .op-topr');if(!tr)return;var fogo=false;
+ try{fogo=TV_ON&&opMin()>=18*60&&!fgFeita();}catch(e){}
+ var h=
   (fogo?'<button type="button" class="op-fogo" data-fogo>acender a fogueira</button>':'')+
   '<span class="op-pill op-pill-nav" role="group" aria-label="consulta, extensão e templo"><button type="button" class="cx-mfb" data-cxa="mf">manual</button>'+opExtHTML()+'<button type="button" class="op-sair" data-opsair>templo completo</button></span>';
  if(tr._h!==h){tr.innerHTML=h;tr._h=h;}}
