@@ -237,16 +237,16 @@ satOpTop=(function(f0){return function(){return f0.apply(this,arguments).replace
    (virada de bloco, 5 min antes da próxima, fim de bloco, vitória, desvio, ociosidade, convite da Fogueira),
    um de cada vez; o balão fica 30 s e se recolhe. Durante um bloco ninguém fala, exceto na virada.
    No máximo 4 falas por hora e nunca a mesma fala duas vezes no dia. Clicar no ponto do retrato mostra as últimas falas. */
-var NPC={ativo:null,hist:false};
+var NPC_FALA={ativo:null,hist:false}; /* estado das falas; NPC (retrato, nome, ícone) é do 34 */
 function npcD(){var d=null;try{d=JSON.parse(localStorage.getItem('astro_npc')||'null');}catch(e){}if(!d||d.d!==hoje())d={d:hoje(),ditos:{},log:(d&&d.log)||[],novo:0,antV:0,ocioso:0};return d;}
-function npcGrava(d){d.log=d.log.slice(-30);try{localStorage.setItem('astro_npc',JSON.stringify(d));}catch(e){}}
+function npcFalaGrava(d){d.log=d.log.slice(-30);try{localStorage.setItem('astro_npc',JSON.stringify(d));}catch(e){}}
 function npcNome(){try{return (COMP_T&&COMP_T.nm?COMP_T.nm.replace(/\s*"[^"]*"\s*/,' '):'Sully Brookhaven').split(' ')[0];}catch(e){return 'Sully';}}
 function npcFala(k,quem,t,prio){var d=npcD(),ag=Date.now();if(d.ditos[k])return;var h1=d.log.filter(function(x){return ag-x.em<3600e3;}).length;if(h1>=4&&!prio)return;
- d.ditos[k]=1;var m={k:k,quem:quem,t:t,em:ag};d.log.push(m);d.novo=(d.novo|0)+1;npcGrava(d);NPC.ativo={m:m,ate:ag+30000};npcPinta();}
-function npcPinta(){try{if(document.body.classList.contains('op-on'))opPinta();}catch(e){}}
+ d.ditos[k]=1;var m={k:k,quem:quem,t:t,em:ag};d.log.push(m);d.novo=(d.novo|0)+1;npcFalaGrava(d);NPC_FALA.ativo={m:m,ate:ag+30000};npcFalaPinta();}
+function npcFalaPinta(){try{if(document.body.classList.contains('op-on'))opPinta();}catch(e){}}
 function npcAgora(){var d=new Date();return d.getHours()*60+d.getMinutes();}
-function npcTick(){if(!document.body.classList.contains('op-on')){if(NPC.ativo)NPC.ativo=null;return;}var hj=hoje(),a=npcAgora(),L=[];try{L=tbkDoDia(hj);}catch(e){}var nm=npcNome(),dentro=L.filter(function(b){return a>=b.i&&a<b.f;})[0];
- if(NPC.ativo&&Date.now()>NPC.ativo.ate){NPC.ativo=null;npcPinta();}
+function npcTick(){if(!document.body.classList.contains('op-on')){if(NPC_FALA.ativo)NPC_FALA.ativo=null;return;}var hj=hoje(),a=npcAgora(),L=[];try{L=tbkDoDia(hj);}catch(e){}var nm=npcNome(),dentro=L.filter(function(b){return a>=b.i&&a<b.f;})[0];
+ if(NPC_FALA.ativo&&Date.now()>NPC_FALA.ativo.ate){NPC_FALA.ativo=null;npcFalaPinta();}
  /* manhã: primeira abertura do dia */
  if(a>=300&&a<720){var p=L.filter(function(b){return b.f>a;})[0];npcFala('bom-dia','g','Bom dia. '+(p?'Primeiro bloco: '+p.t+', às '+tbkHM(p.i)+'.':'Nada na grade hoje. Quer montar o dia?'));}
  L.forEach(function(b){
@@ -254,26 +254,28 @@ function npcTick(){if(!document.body.classList.contains('op-on')){if(NPC.ativo)N
   if(a>=b.i&&a<b.i+2)npcFala('ini-'+b.id+'-'+b.i,'g','Agora: '+b.t+', até '+tbkHM(b.f)+'. Só isso.',1);
   if(a>=b.f&&a<b.f+2&&!L.some(function(c){return c.i===b.f;}))npcFala('fim-'+b.id+'-'+b.f,'g','Fim de '+b.t+'. Respira: cinco minutos longe da tela.',1);});
  /* vitória sobre o antagonista */
- try{var x=antHoje(),m=antMonstro(x.m);if(x.st==='vencido'){var dd=npcD();if(!dd.antV){dd.antV=1;npcGrava(dd);npcFala('ant-v','a',m.n+': desta vez você venceu. Amanhã volto com outra cara.',1);setTimeout(function(){npcFala('ant-v-g','g','+20 XP. Mandou bem, cara.',1);},31000);}}
+ try{var x=antHoje(),m=antMonstro(x.m);if(x.st==='vencido'){var dd=npcD();if(!dd.antV){dd.antV=1;npcFalaGrava(dd);npcFala('ant-v','a',m.n+': desta vez você venceu. Amanhã volto com outra cara.',1);setTimeout(function(){npcFala('ant-v-g','g','+20 XP. Mandou bem, cara.',1);},31000);}}
   else if(x.st==='aberto'&&!dentro&&a>=+x.fx*60-10&&a<+x.fx*60)npcFala('ant-pre','a',m.n+' espera no bloco das '+x.fx+'h. '+m.d);}catch(e){}
  /* ociosidade: fora de bloco, entre 07h e 21h, só depois de 45 min parado */
- if(!dentro&&a>=420&&a<1260){var dd2=npcD();if(!dd2.ocioso)dd2.ocioso=Date.now(),npcGrava(dd2);else if(Date.now()-dd2.ocioso>45*60e3){npcFala('oc-'+Math.floor(a/120),'g','Nada marcado agora. Escolhe a próxima flecha ou descansa de verdade.');dd2.ocioso=Date.now();npcGrava(dd2);}}
- else{var dd3=npcD();if(dd3.ocioso){dd3.ocioso=0;npcGrava(dd3);}}
+ if(!dentro&&a>=420&&a<1260){var dd2=npcD();if(!dd2.ocioso)dd2.ocioso=Date.now(),npcFalaGrava(dd2);else if(Date.now()-dd2.ocioso>45*60e3){npcFala('oc-'+Math.floor(a/120),'g','Nada marcado agora. Escolhe a próxima flecha ou descansa de verdade.');dd2.ocioso=Date.now();npcFalaGrava(dd2);}}
+ else{var dd3=npcD();if(dd3.ocioso){dd3.ocioso=0;npcFalaGrava(dd3);}}
  /* noite: convite da Fogueira */
  try{if(a>=1260&&!fgFeita()&&!dentro)npcFala('fogueira','g','A Fogueira está acesa quando você quiser fechar o dia. Um minuto, sem culpa.');}catch(e){}}
 /* desvio anotado: o guardião puxa de volta, sem sermão */
 if(typeof ciMarca==='function'){ciMarca=(function(f0){return function(){var r=f0.apply(this,arguments);try{var a=npcAgora(),b=tbkDoDia(hoje()).filter(function(x){return a>=x.i&&a<x.f;})[0];npcFala('desvio-'+Date.now(),'g','Anotado. Volta para '+(b?b.t:'o que estava fazendo')+'.',1);}catch(e){}return r;};})(ciMarca);}
 satOpTop=(function(f0){return function(){var h=f0.apply(this,arguments),i=h.indexOf('<span class="sat-bals">'),j=i<0?-1:h.indexOf('</button>',i);if(i<0||j<0)return h;
- var d=npcD(),at=NPC.ativo,mid;
+ var d=npcD(),at=NPC_FALA.ativo,mid;
  if(at){var quem=at.m.quem==='a'?(function(){try{return antMonstro(antHoje().m).n;}catch(e){return '';}})():'';
   mid='<span class="sat-bals npc-on"><span class="bl-w"><span class="bl npc-'+at.m.quem+'" style="--i:0"><i>'+(quem?'<b>'+esc(quem)+'</b> ':'')+esc(quem&&at.m.t.indexOf(quem+':')===0?at.m.t.slice(quem.length+1).trim():at.m.t)+'</i></span></span></span>';}
- else mid='<span class="sat-bals npc-vz">'+(d.log.length?'<span class="npc-pt'+(d.novo?' novo':'')+'" data-npchist title="últimas falas">'+(d.novo?d.novo:'···')+'</span>':'')+'</span>';
- return h.slice(0,i)+mid+h.slice(j);};})(satOpTop);
-function npcHist(alvo){var o=document.getElementById('npc-hist');if(o){o.remove();return;}var d=npcD();d.novo=0;npcGrava(d);o=document.createElement('div');o.id='npc-hist';o.className='npc-hist';
+ /* sem fala ativa o guardião não fica no cabeçalho: sobra só o marcador das falas do dia (some se não houve nenhuma) */
+ else{var b0=h.indexOf('<button type="button" class="op-sat');if(b0<0||b0>i)return h;
+  return h.slice(0,b0)+(d.log.length?'<span class="op-sat2 npc-fora"><span class="npc-pt'+(d.novo?' novo':'')+'" data-npchist title="últimas falas de '+esc(npcNome())+'">'+(d.novo?d.novo:'···')+'</span></span>':'')+h.slice(j+9);}
+ return h.slice(0,i).replace('class="op-sat op-sat2','class="op-sat op-sat2 npc-vem')+mid+h.slice(j);};})(satOpTop);
+function npcFalaHist(alvo){var o=document.getElementById('npc-hist');if(o){o.remove();return;}var d=npcD();d.novo=0;npcFalaGrava(d);o=document.createElement('div');o.id='npc-hist';o.className='npc-hist';
  var nm=npcNome(),an='';try{an=antMonstro(antHoje().m).n;}catch(e){}
  o.innerHTML='<b>últimas falas</b><ul>'+d.log.slice(-8).reverse().map(function(m){var dt=new Date(m.em);return '<li><small>'+String(dt.getHours()).padStart(2,'0')+':'+String(dt.getMinutes()).padStart(2,'0')+' · '+esc(m.quem==='a'?an:nm)+'</small><span>'+esc(m.t)+'</span></li>';}).join('')+'</ul>';
- document.body.appendChild(o);var r=alvo.getBoundingClientRect();o.style.left=Math.max(8,Math.min(innerWidth-330,r.left-20))+'px';o.style.top=(r.bottom+8)+'px';npcPinta();}
-window.addEventListener('click',function(e){var p=e.target.closest&&e.target.closest('[data-npchist]');if(p){e.preventDefault();e.stopImmediatePropagation();npcHist(p);return;}var o=document.getElementById('npc-hist');if(o&&!e.target.closest('#npc-hist'))o.remove();},true);
+ document.body.appendChild(o);var r=alvo.getBoundingClientRect();o.style.left=Math.max(8,Math.min(innerWidth-330,r.left-20))+'px';o.style.top=(r.bottom+8)+'px';npcFalaPinta();}
+window.addEventListener('click',function(e){var p=e.target.closest&&e.target.closest('[data-npchist]');if(p){e.preventDefault();e.stopImmediatePropagation();npcFalaHist(p);return;}var o=document.getElementById('npc-hist');if(o&&!e.target.closest('#npc-hist'))o.remove();},true);
 setInterval(function(){try{npcTick();}catch(e){}},15000);setTimeout(function(){try{npcTick();}catch(e){}},2500);
 (function(){var st=document.createElement('style');st.id='npc-css';var B='html body #modo-op .op-sat2';st.textContent=[
  B+' .sat-bals.npc-on .bl{animation:npcEntra .45s cubic-bezier(.2,.9,.3,1.3) both}',
@@ -282,7 +284,9 @@ setInterval(function(){try{npcTick();}catch(e){}},15000);setTimeout(function(){t
  B+' .sat-bals.npc-on .bl b{font:700 12px Georgia,serif;margin-right:4px}',
  B+' .bl.npc-a{background:#1f2a22!important;color:#f3e6c4!important;border-color:#d4ad4f!important}',
  B+' .bl-w:has(.npc-a)::before{background:#1f2a22!important;border-color:#d4ad4f!important}',
- B+' .sat-bals.npc-vz{padding-left:4px}',
+ '@keyframes npcSai{from{opacity:0;transform:translateY(-10px) scale(.94)}to{opacity:1;transform:none}}',
+ B+'.npc-vem{animation:npcSai .4s cubic-bezier(.2,.9,.3,1.2) both}',
+ B+'.npc-fora{display:flex;align-items:center;justify-content:center;min-width:28px}',
  B+' .npc-pt{display:grid;place-items:center;min-width:22px;height:22px;padding:0 6px;border-radius:999px;border:1.5px solid #2e2620;background:#fffdf6;font:700 10px var(--mono,monospace);color:#5a3f2c;cursor:pointer}',
  B+' .npc-pt.novo{background:#c8553d;border-color:#c8553d;color:#fff;animation:npcPulsa 1.6s ease-in-out infinite}',
  '@keyframes npcPulsa{50%{box-shadow:0 0 0 4px rgba(200,85,61,.25)}}',
