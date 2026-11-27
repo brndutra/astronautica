@@ -1,4 +1,4 @@
-# Créditos das fotos do tema Casa do Brooklyn
+# Créditos das fotos do tema Nomo do Brooklyn
 
 Fotos carregadas direto do Wikimedia Commons (licenças livres). Página de cada arquivo: https://commons.wikimedia.org/wiki/File:<nome>
 

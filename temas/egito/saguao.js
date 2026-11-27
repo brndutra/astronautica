@@ -1,4 +1,4 @@
-/* Casa do Brooklyn · Saguão (página principal): frontão em pilono com sol alado, banner com colunas de papiro, templos em cores de faiança, vinhetas nos cartões, cronologia em obelisco.
+/* Nomo do Brooklyn · Saguão (página principal): frontão em pilono com sol alado, banner com colunas de papiro, templos em cores de faiança, vinhetas nos cartões, cronologia em obelisco.
    Carregado só quando o tema egípcio está ligado. */
 (function(){
 var U=function(n){return 'url("img/egito/'+n+'.svg?v=1")';};
@@ -12,7 +12,7 @@ var st=document.createElement('style');st.id='eg-saguao-css';st.textContent=[
  /* banner: colunas de papiro e moldura de lótus */
  'body.eg #hero-box .bn-slot{background:'+U('capitel-lapis')+' 2px 0/46px 31px no-repeat,'+U('capitel-lapis')+' calc(100% - 2px) 0/46px 31px no-repeat,'+U('fuste-lapis')+' 2px 31px/46px 132px repeat-y,'+U('fuste-lapis')+' calc(100% - 2px) 31px/46px 132px repeat-y!important;padding:0 50px!important}',
  'body.eg #hero-box#hero-box .vx-hero{border:0!important;border-radius:0!important;background:'+U('ent-ocre')+' 0 0/240px 40px repeat-x,linear-gradient(0deg,#1e3a6e 0 6px,#c9a23a 6px 8px,transparent 8px),#f7ecd2!important;box-shadow:0 0 0 1.5px #6e4f10!important;padding-top:48px!important}',
- 'body.eg #hero-box#hero-box .vx-hero.bn2 .bn-id .cp-guia::before{content:"folheto da casa · nomo 21"!important}',
+ 'body.eg #hero-box#hero-box .vx-hero.bn2 .bn-id .cp-guia::before{content:"folheto do nomo · brooklyn"!important}',
  'body.eg #hero-box .cp-postal .fr{background:linear-gradient(160deg,#2a4c86,#1e3a6e)!important}',
  'body.eg #hero-box .cp-postal{background:linear-gradient(160deg,#2a4c86,#1e3a6e)!important;border:2px solid #c9a23a!important;color:#f7ecd2!important}',
  'body.eg #hero-box .cp-postal *{color:#f7ecd2!important}',
@@ -84,7 +84,7 @@ var st=document.createElement('style');st.id='eg-saguao-css';st.textContent=[
 ].join('\n');document.head.appendChild(st);
 
 (function(){var st=document.createElement('style');st.id='eg-visao-css';st.textContent=[
- '/* Casa do Brooklyn: foto em moldura de lápis-lazúli e ouro, afirmação dentro de um cartucho */',
+ '/* Nomo do Brooklyn: foto em moldura de lápis-lazúli e ouro, afirmação dentro de um cartucho */',
  'body.eg #hero-box .bv-foto{background:#1e3a6e!important;padding:6px 6px 24px!important;box-shadow:0 0 0 2px #c9a23a,3px 7px 16px rgba(20,20,40,.35)!important}',
  'body.eg #hero-box .bv-foto figcaption{color:#ecd27e!important}',
  'body.eg #hero-box#hero-box .bn-visao .bv-fbt{background:#2a4c86!important}body.eg #hero-box .bv-vazio{color:#ecd27e!important}',
