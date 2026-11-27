@@ -15639,6 +15639,11 @@ function agPintaTudo(){try{agNaGrade();}catch(e){}try{compPinta();}catch(e){}var
    Se S.tb mudar por fora (limpar, desfazer, plano da semana), os blocos daquela faixa são refeitos a partir dele. */
 var TBK={px:26,ini:360,fim:1440,ed:null,arr:null};
 function tbkD(){S.blk=S.blk||{};S.blkSrc=S.blkSrc||{};return S.blk;}
+/* tranca: planejou, trancou. Dia passado é imutável; destrancar hoje ou depois exige "replanejar" com o motivo, que vai para os Anais */
+function tbkTr(d){S.blkTr=S.blkTr||{};return d<hoje()||!!S.blkTr[d];}
+function tbkTranca(d,por){S.blkTr=S.blkTr||{};S.blkTr[d]={em:Date.now(),por:por||'mão'};Object.keys(S.blkTr).forEach(function(k){if(k<gabMais(hoje(),-30))delete S.blkTr[k];});}
+function tbkAviso(t,el){try{dToast(t,el);}catch(e){}}
+var TBK_LOCK='<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="1.6"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>',TBK_OPEN='<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="1.6"/><path d="M8 11V8a4 4 0 0 1 7.6-1.7"/></svg>';
 function tbkHM(m){m=Math.max(0,Math.min(1440,Math.round(m)));return String(Math.floor(m/60)).padStart(2,'0')+':'+String(m%60).padStart(2,'0');}
 function tbkMin(v){var m=/^(\d{1,2}):(\d{2})$/.exec(String(v||''));return m?Math.min(1440,+m[1]*60+ +m[2]):null;}
 function tbkFaixa(i){var H=null;TD_H.forEach(function(x){if(i>=+x*60)H=x;});return H||TD_H[0];}
@@ -15672,16 +15677,16 @@ function tbkPinta(){var g=el('tb-g');if(!g)return;var dias=tbSemana(),hj=hoje();
  g.classList.add('tbk');var H0=TBK.ini,H1=TBK.fim,alt=g.clientHeight;TBK.px=alt>260?Math.max(18,Math.min(36,Math.floor((alt-44)/((H1-H0)/60)))):26;
  var px=TBK.px,y=function(m){return Math.round((m-H0)/60*px);},h='',agora=new Date(),am=agora.getHours()*60+agora.getMinutes();
  h+='<div class="tbk-cab"><span></span>'+dias.map(function(d,i){var tod=[];try{tod=agDoDia(d).filter(function(x){return x.dia;});}catch(e){}
-  return '<div class="tbk-dh'+(d===hj?' hoje':'')+'"><small>'+TBD[i]+(d===hj?' · hoje':'')+'</small><b>'+(+d.slice(8))+'</b>'+(tod.length?'<i title="'+esc(tod.map(function(x){return x.t;}).join(' · '))+'">'+esc(tod.length===1?tod[0].t:tod.length+' eventos')+'</i>':'')+'</div>';}).join('')+'</div>';
+  var tr=tbkTr(d),pas=d<hj;return '<div class="tbk-dh'+(d===hj?' hoje':'')+(tr?' tr':'')+'">'+(pas?'':'<button type="button" class="tbk-lk'+(tr?' on':'')+'" data-tbklock="'+d+'" title="'+(tr?'dia trancado · replanejar':'trancar o dia')+'" aria-label="'+(tr?'replanejar o dia':'trancar o dia')+'">'+(tr?TBK_LOCK:TBK_OPEN)+'</button>')+'<small>'+TBD[i]+(d===hj?' · hoje':'')+'</small><b>'+(+d.slice(8))+'</b>'+(tod.length?'<i title="'+esc(tod.map(function(x){return x.t;}).join(' · '))+'">'+esc(tod.length===1?tod[0].t:tod.length+' eventos')+'</i>':'')+'</div>';}).join('')+'</div>';
  h+='<div class="tbk-corpo" style="height:'+y(H1)+'px;--tbk-h:'+px+'px"><div class="tbk-eixo">';
  TD_H.forEach(function(H){var s=+H*60;h+='<div class="tbk-fx fx-'+tbkTurno(H)+'" style="top:'+y(s)+'px;height:'+(y(Math.min(H1,s+180))-y(s))+'px"><b>'+H+'</b><small>'+esc(tdFaixaNome(H))+'</small></div>';});
  h+='</div>';
- dias.forEach(function(d){var L=tbkRaias(tbkDoDia(d));h+='<div class="tbk-col'+(d===hj?' hoje':'')+'" data-tbkdia="'+d+'">';
+ dias.forEach(function(d){var L=tbkRaias(tbkDoDia(d));var trc=tbkTr(d);h+='<div class="tbk-col'+(d===hj?' hoje':'')+(trc?' tr':'')+'" data-tbkdia="'+d+'">';
   try{agDoDia(d).filter(function(x){return !x.dia;}).forEach(function(x){var a=Math.max(H0,(x.ini.toDateString()===new Date(d+'T12:00:00').toDateString())?x.ini.getHours()*60+x.ini.getMinutes():H0),b=Math.min(H1,(x.fim.toDateString()===new Date(d+'T12:00:00').toDateString())?x.fim.getHours()*60+x.fim.getMinutes():H1);
    if(b<=H0||a>=H1||b<=a)return;h+='<div class="tbk-ag" style="top:'+y(a)+'px;height:'+Math.max(14,y(b)-y(a))+'px" title="'+esc(agHora(x)+' · '+x.t)+'"><span>'+esc(agHora(x)+' '+x.t)+'</span></div>';});}catch(e){}
   L.forEach(function(b){var top=y(Math.max(H0,b.i)),hh=Math.max(14,y(Math.min(H1,b.f))-top),w=100/b._n,cur=(d===hj&&am>=b.i&&am<b.f),foi=(d<hj)||(d===hj&&am>=b.f);
    h+='<div class="tbk-b fx-'+tbkTurno(tbkFaixa(b.i))+(cur?' agora':'')+(foi?' foi':'')+(hh<30?' curto':'')+'" data-tbkb="'+b.id+'" style="top:'+top+'px;height:'+hh+'px;left:calc('+(b._r*w)+'% + 2px);width:calc('+w+'% - 4px)" title="'+esc(tbkHM(b.i)+'–'+tbkHM(b.f)+' · '+b.t)+'">'+
-    '<small>'+tbkHM(b.i)+'–'+tbkHM(b.f)+'</small><span>'+esc(b.t||'sem título')+'</span><i class="tbk-rz" aria-hidden="true"></i></div>';});
+    '<small>'+tbkHM(b.i)+'–'+tbkHM(b.f)+'</small><span>'+esc(b.t||'sem título')+'</span>'+(trc?'':'<i class="tbk-rz" aria-hidden="true"></i>')+(d===hj&&foi&&b.f<1440?'<button type="button" class="tbk-mv" data-tbkmv="'+b.id+'" title="ficou para trás · mover para o próximo horário livre">mover</button>':'')+'</div>';});
   if(d===hj&&am>=H0&&am<H1)h+='<div class="tbk-agora" style="top:'+y(am)+'px"></div>';
   h+='</div>';});
  h+='</div>';g.innerHTML=h;TBK.ed=null;
@@ -15709,6 +15714,8 @@ function tbkRepete(id){var a=tbkAcha(id);if(!a)return;var dias=tbSemana().slice(
 function tbkLiga(g){if(g._tbk)return;g._tbk=1;
  g.addEventListener('pointerdown',function(e){if(e.button!==0||e.target.closest('#tbk-ed'))return;var be=e.target.closest('[data-tbkb]'),col=e.target.closest('[data-tbkdia]');if(!col)return;
   if(TBK.ed&&!be){tbkFechaEd();return;}
+  if(e.target.closest('[data-tbkmv]'))return;
+  if(tbkTr(col.getAttribute('data-tbkdia'))){if(!e.target.closest('[data-tbkb]')||true)tbkAviso(col.getAttribute('data-tbkdia')<hoje()?'Dia que passou fica como foi.':'Dia trancado. Para mudar, use o cadeado: replanejar.',col);return;}
   var a=be?tbkAcha(be.getAttribute('data-tbkb')):null;TBK.arr={x:e.clientX,y:e.clientY,be:be,a:a,dia:col.getAttribute('data-tbkdia'),col:col,rz:!!e.target.closest('.tbk-rz'),mov:false,i0:a?a.b.i:0,f0:a?a.b.f:0};
   if(be){try{be.setPointerCapture(e.pointerId);}catch(z){}}});
  g.addEventListener('pointermove',function(e){var R=TBK.arr;if(!R||!R.be)return;var dy=e.clientY-R.y,dx=e.clientX-R.x;if(!R.mov&&Math.abs(dy)<5&&Math.abs(dx)<5)return;R.mov=true;
@@ -15720,11 +15727,23 @@ function tbkLiga(g){if(g._tbk)return;g._tbk=1;
   if(R.be&&R.a){if(R.mov){var d0=R.a.d;R.a.b.i=R.i;R.a.b.f=R.f;if(R.dia!==d0){tbkD()[d0]=tbkD()[d0].filter(function(b){return b!==R.a.b;});(tbkD()[R.dia]=tbkD()[R.dia]||[]).push(R.a.b);}tbkSalva([d0,R.dia]);}
    else tbkEdita(R.a.b.id);return;}
   if(!R.be&&Math.abs(e.clientY-R.y)<5){var r=R.col.getBoundingClientRect();tbkCria(R.dia,TBK.ini+(e.clientY-r.top)/TBK.px*60-15);}});
- g.addEventListener('click',function(e){var b=e.target.closest('#tbk-ed button');if(!b)return;var id=TBK.ed;
+ g.addEventListener('click',function(e){var lk=e.target.closest('[data-tbklock]');if(lk){tbkCadeado(lk.getAttribute('data-tbklock'),lk);return;}
+  var mv=e.target.closest('[data-tbkmv]');if(mv){e.stopPropagation();tbkMove(mv.getAttribute('data-tbkmv'),mv);return;}
+  var b=e.target.closest('#tbk-ed button');if(!b)return;var id=TBK.ed;
   if(b.hasAttribute('data-tbkok'))tbkFechaEd();
   else if(b.hasAttribute('data-tbkdel')){var a=tbkAcha(id);document.getElementById('tbk-ed').remove();TBK.ed=null;if(a){tbkD()[a.d]=tbkD()[a.d].filter(function(x){return x.id!==id;});tbkSalva([a.d]);}}
   else if(b.hasAttribute('data-tbkrep')){tbkFechaEd();tbkRepete(id);}});
  g.addEventListener('keydown',function(e){if(!e.target.closest('#tbk-ed'))return;if(e.key==='Enter'){e.preventDefault();tbkFechaEd();}else if(e.key==='Escape'){e.preventDefault();var a=tbkAcha(TBK.ed);if(a&&!a.b.t)tbkFechaEd();else{document.getElementById('tbk-ed').remove();TBK.ed=null;}}});}
+function tbkCadeado(d,el){if(d<hoje())return;S.blkTr=S.blkTr||{};
+ if(!S.blkTr[d]){tbkTranca(d,'mão');try{anota('Grade de '+d.slice(8,10)+'/'+d.slice(5,7)+' trancada.',0,false);}catch(e){}try{grava();}catch(e){}tbkPinta();return;}
+ var m=prompt('Replanejar '+d.slice(8,10)+'/'+d.slice(5,7)+': o que mudou?');if(m==null)return;m=m.trim();if(!m){tbkAviso('Escreva em poucas palavras o que mudou para destrancar.',el);return;}
+ delete S.blkTr[d];S.blkRep=S.blkRep||[];S.blkRep.push({d:d,em:Date.now(),m:m.slice(0,140)});if(S.blkRep.length>60)S.blkRep=S.blkRep.slice(-60);
+ try{anota('Replanejou '+d.slice(8,10)+'/'+d.slice(5,7)+': '+m.slice(0,140)+'.',0,false,true);}catch(e){}try{grava();}catch(e){}tbkPinta();}
+/* bloco que ficou para trás: vai para o próximo horário livre de hoje (gesto explícito, vale mesmo com o dia trancado) */
+function tbkMove(id,el){var a=tbkAcha(id);if(!a||a.d!==hoje())return;var dur=a.b.f-a.b.i,d=new Date(),ini=Math.ceil((d.getHours()*60+d.getMinutes())/15)*15,L=tbkDoDia(a.d).filter(function(b){return b!==a.b;}),t=Math.max(ini,TBK.ini),ok=null;
+ while(t+dur<=TBK.fim){var bate=L.filter(function(b){return b.i<t+dur&&b.f>t;});if(!bate.length){ok=t;break;}t=Math.max.apply(null,bate.map(function(b){return b.f;}));}
+ if(ok==null){tbkAviso('Não coube mais hoje: '+a.b.t+'. Fica para a Fogueira decidir.',el);return;}
+ var de=tbkHM(a.b.i);a.b.i=ok;a.b.f=ok+dur;try{anota('Ficou para trás: '+a.b.t+' saiu das '+de+' e foi para as '+tbkHM(ok)+'.',0,false);}catch(e){}tbkSalva([a.d]);}
 pintaTb=function(){if(TBK.ed||TBK.arr)return;var g=el('tb-g');if(!g)return;try{tbkLiga(g);tbkPinta();}catch(e){try{console.error(e);}catch(z){}}
  lig("b-tb-lp",function(){var kk,dd=tbSemana(),bak={},n=0;for(kk in (S.tb||{}))if(dd.indexOf(kk.split("|")[0])>=0){bak[kk]=S.tb[kk];n++;}if(!n)return;
   if(!confirm("Limpar os blocos desta semana? Dá para desfazer logo depois."))return;S.tbBak={quando:Date.now(),itens:bak};for(kk in bak)delete S.tb[kk];
@@ -15763,6 +15782,15 @@ setInterval(function(){try{var g=el('tb-g'),n=g&&g.querySelector('.tbk-agora');i
  G+' .tbk-rz{position:absolute;left:0;right:0;bottom:0;height:7px;cursor:ns-resize;background:linear-gradient(0deg,rgba(42,36,24,.18),transparent)}',
  G+' .tbk-ag{position:absolute;right:2px;width:46%;box-sizing:border-box;padding:1px 4px;border-radius:5px;border:1px dashed rgba(42,36,24,.55);background:rgba(255,255,255,.55);font:600 9px/1.2 var(--sans,system-ui);color:#2a2418;overflow:hidden;pointer-events:none;z-index:3}',
  G+' .tbk-agora{position:absolute;left:-3px;right:-3px;height:2px;background:#c8553d;z-index:4;pointer-events:none}'+G+' .tbk-agora::before{content:"";position:absolute;left:-4px;top:-4px;width:10px;height:10px;border-radius:50%;background:#c8553d}',
+ G+' .tbk-dh{position:relative}',
+ G+' .tbk-lk{position:absolute;top:2px;right:2px;display:grid;place-items:center;width:18px!important;height:18px;margin:0!important;padding:0!important;border:0!important;border-radius:50%!important;background:none!important;color:inherit!important;opacity:.45;cursor:pointer}',
+ G+' .tbk-lk svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}',
+ G+' .tbk-lk.on{opacity:1;color:#8a5a14!important}'+G+' .tbk-dh.hoje .tbk-lk.on{color:#e9c870!important}',
+ G+' .tbk-lk:hover{opacity:1}',
+ G+' .tbk-col.tr{cursor:not-allowed}'+G+' .tbk-col.tr .tbk-b{cursor:default}',
+ G+' .tbk-col.tr:not(.hoje){background:repeating-linear-gradient(135deg,rgba(90,63,44,.05) 0 6px,transparent 6px 12px)}',
+ G+' .tbk-mv{position:absolute;right:3px;bottom:3px;width:auto!important;margin:0!important;padding:1px 7px!important;border:1px solid #9a4a30!important;border-radius:999px!important;background:#fbeee4!important;color:#9a4a30!important;font:700 8.5px var(--mono,monospace)!important;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;opacity:0;transition:opacity .15s}',
+ G+' .tbk-b:hover .tbk-mv,'+G+' .tbk-mv:focus{opacity:1}',
  G+' .tbk-ed{position:absolute;z-index:20;width:240px;padding:10px;border-radius:10px;background:#fbf3df;border:1.5px solid #5a3f2c;box-shadow:0 12px 26px -10px rgba(0,0,0,.5);display:flex;flex-direction:column;gap:8px;user-select:text}',
  G+' .tbk-ed .tbk-t{width:100%!important;box-sizing:border-box;margin:0!important;padding:6px 8px!important;border:1px solid #c9a45a!important;border-radius:6px!important;background:#fff!important;font:14px Georgia,serif!important;color:#2a2418!important}',
  G+' .tbk-ed .tbk-hs{display:flex;gap:8px}'+G+' .tbk-ed label{flex:1;display:flex;flex-direction:column;gap:2px;font:700 8.5px var(--mono,monospace);letter-spacing:.12em;text-transform:uppercase;color:#8a6f55}',
@@ -18237,9 +18265,9 @@ fgAbre=(function(f0){return function(){var r=f0.apply(this,arguments);var d=docu
   if(c.fgantv!=null){var bl=d.querySelector('.fg-bloco'),ul=bl&&bl.querySelector('ul.fg-v,.fg-vz'),V=fgVenci();if(ul){var n=document.createElement('ul');n.className='fg-v';n.innerHTML=V.map(function(v){return '<li>'+esc(v)+'</li>';}).join('');ul.replaceWith(n);}}
   fgAntPinta(d);});}
  try{fgAntPinta(d);}catch(e){}return r;};})(fgAbre);
-fgFecha=(function(f0){return function(d){var x=antHoje();if(x.st==='aberto')antFoge();var am=antSorteia(dAmanha());var r=f0.apply(this,arguments);
+fgFecha=(function(f0){return function(d){try{tbkTranca(dAmanha(),'fogueira');}catch(e){}var x=antHoje();if(x.st==='aberto')antFoge();var am=antSorteia(dAmanha());var r=f0.apply(this,arguments);
  try{antRegistra(x);grava();var bau=d.querySelector('.fg-bau');if(bau){var p=document.createElement('p');p.className='fg-ant-bau';
-  p.innerHTML=(x.st==='vencido'?'A carta de <b>'+esc(antMonstro(x.m).n)+'</b> foi guardada no Bestiário. ':'')+'Amanhã, <b>'+esc(antMonstro(am.m).n)+'</b> guarda o bloco das '+am.fx+'h.';
+  p.innerHTML=(x.st==='vencido'?'A carta de <b>'+esc(antMonstro(x.m).n)+'</b> foi guardada no Bestiário. ':'')+'Amanhã, <b>'+esc(antMonstro(am.m).n)+'</b> guarda o bloco das '+am.fx+'h. A grade de amanhã está trancada.';
   bau.insertBefore(p,bau.querySelector('.fg-boa'));}}catch(e){}return r;};})(fgFecha);
 /* no meio do dia: sem "escapou" (o veredito é na Fogueira); o venci fica, para a recompensa vir na hora */
 antPinta=(function(f0){return function(){var r=f0.apply(this,arguments);try{antRegistra();var d=document.getElementById('ant-dlg');if(d){var f=d.querySelector('[data-antfuga]');if(f)f.remove();
