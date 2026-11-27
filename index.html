@@ -19781,6 +19781,40 @@ document.addEventListener('pointerdown',function(e){var g=document.getElementByI
 document.addEventListener('keydown',function(e){if(e.key==='Escape'){var g=document.getElementById('cg-gav');if(g&&g.classList.contains('on'))cgAbre(false);}});
 window.addEventListener('resize',function(){try{cgMede();}catch(e){}});setInterval(function(){try{cgMede();cgPinta();}catch(e){}},30000);
 
+/* ===== Panteão: fichas completas dos personagens nos três temas; patronos justificados pelo mapa natal (20/12/2000, 14h10, Colíder) e pela matriz do destino ===== */
+var PT_DADOS={
+ 'Você (banner)':{
+  1:[['quem é','Chase Maverick Duke, o Hékatos ("o que acerta de longe"), filho de Apolo, Chalé 7'],['nascimento','20/12/2000, 14h10 · Sol a 29° de Sagitário, Ascendente em Áries, Lua em Escorpião'],['origem','Austin, Texas; reclamado na primeira fogueira'],['dons','a flecha que já sabe o alvo · a escuta do oráculo · o canto que reúne · o mestre do templo'],['ponto fraco','a queima: muito fogo, pouco chão'],['talismã','a dracma do Grau 29']],
+  2:[['quem é','Chase Maverick Duke, einherji do Andar 19, filho de Ullr'],['como chegou','caiu em batalha no último dia do sol em Sagitário, na véspera do solstício, e a valquíria Brynn o recolheu na nevasca'],['arma','arco de teixo de Ýdalir, o vale dos teixos de Ullr, e o anel de juramento'],['dons','mira no inverno, palavra jurada, leitura do campo'],['ponto fraco','a queima: luta até cair, e o Banquete é obrigatório'],['talismã','uma runa Eihwaz (o teixo) gravada em osso']],
+  3:[['quem é','Chase Maverick Duke, iniciado da Casa do Brooklyn, mago do caminho de Neith, Nomo 21'],['como chegou','um sacerdote-leitor percebeu o sol do último grau no seu ba e o trouxe ao terraço'],['arma','arco de Neith, varinha de marfim e cajado de sicômoro'],['dons','o hieróglifo que já sabe o alvo · o véu levantado · a balança justa'],['ponto fraco','a queima: muito Rá, pouco Nilo'],['talismã','um amuleto do escudo e das flechas cruzadas de Neith']]},
+ 'Patrono':{
+  1:[['Apolo · pai','deus do sol, do arco, da profecia e da cura'],['por quê','já é o pai do Hékatos; a justificativa está na Ficha do campista']],
+  2:[['Ullr · pai','deus do inverno, do arco, da neve e dos juramentos; enteado de Thor, filho de Sif'],['o solstício','você nasceu a 20/12, na véspera do solstício de inverno do norte, com o Sol no último grau de Sagitário: é a porta do inverno, o reino de Ullr'],['o juramento','os nórdicos juravam "pelo anel de Ullr". No centro da sua matriz está o Arcano 5, o Hierofante, guardião da lei, e Marte em Libra na Casa 7 é a ação pela justiça: o tribunal é o seu anel de juramento'],['a glória','Ullr quer dizer "glória". Seu Meio do Céu em Capricórnio pede reconhecimento sério e duradouro, e o Sol no grau 29 dá a sensação de missão'],['Odin · patrono do hotel','senhor de Valhala, o andarilho que busca o saber a qualquer preço'],['o enforcado','no topo da matriz está o Arcano 12, o Enforcado: Odin pendurado nove noites em Yggdrasil para ganhar as runas. É o sacrifício escolhido em troca de saber, os seus meses de estudo'],['o dia de Odin','quarta-feira é o dia de Mercúrio no latim e o dia de Odin (Woden) no germânico. Seu Mercúrio está em Sagitário na Casa 9, a do saber distante: o andarilho que estuda'],['o olho no poço','o caminho de vida 7 e a Sacerdotisa (Arcano 2) na matriz são o buscador que troca um olho pela sabedoria no poço de Mímir']],
+  3:[['Neith · patrona','deusa de Saís, criadora, tecelã e arqueira, a mais antiga do Egito'],['a juíza','no Julgamento entre Hórus e Set, os deuses pediram a Neith que arbitrasse, e ela decidiu o trono. Sua matriz abre no Arcano 20, o Julgamento, e tem o Hierofante no centro: o tribunal é o seu campo'],['o véu','em Saís se lia "ninguém levantou o meu véu". O Arcano 2, a Sacerdotisa, é o saber velado, o oráculo calado da sua matriz'],['a tecelã','Neith tece o mundo no tear. Vênus, Urano e Netuno em Aquário na Casa 10 são quem tece os próprios sistemas, apps e processos no trabalho'],['Rá · patrono do nomo','o sol que navega de dia na barca e atravessa o Duat à noite'],['o sol alto','você nasceu às 14h10, com o Sol na Casa 9, ainda alto no céu: Rá em plena barca do dia'],['o fim do ciclo','o Sol no grau 29, o último do signo, é a hora em que a barca de Rá chega ao fim do trecho e se prepara para renascer'],['o fogo do começo','Ascendente em Áries: o criador que se ergue do caos e dá o primeiro passo']]},
+ 'Guardião':{
+  1:[['quem é','Sully Brookhaven, sátiro protetor designado pelo Conselho dos Cascos Fendidos'],['céu','Sol em Aquário: o amigo leal e um pouco excêntrico'],['jeito','casual, fala "cara", toca flauta quando você termina um bloco'],['função no app','conta ritos, designações e XP; fala no Posto de comando'],['fraqueza','enchiladas e latinhas']],
+  2:[['quem é','Brynn "Hawk" Halvorsen, valquíria recrutadora da Oak House, em Boston'],['céu','Sol em Sagitário, Lua em Áries: fogo puro, ela convoca em vez de consolar'],['jeito','fala em placar, revanche e glória; te chama de einherji'],['função no app','conta ritos e blocos como pontos no placar do andar 19'],['fraqueza','café de posto com rosquinha de bordo e qualquer aposta']],
+  3:[['quem é','Toby Nefer, babuíno escriba de Thoth na Casa do Brooklyn'],['céu','Sol em Libra, Lua em Virgem: pesa o dia na balança de Ma\'at antes de falar'],['jeito','não grita, registra; te chama de iniciado'],['função no app','anota cada rito, bloco e deslize no papiro'],['fraqueza','pretzel de carrinho com mostarda']]},
+ 'Mensageiro':{
+  1:[['quem é','Polly McCaw, corvo de Apolo'],['céu','Sol em Gêmeos, ascendente em Libra'],['função no app','traz entregas, avisos e más notícias'],['família','o gêmeo, Cass, fica no ninho']],
+  2:[['quem é','Hugin, o pensamento de Odin'],['função no app','traz entregas, avisos e más notícias'],['família','o gêmeo, Munin, a memória, fica no ombro de Odin e guarda o que você fez'],['jeito','chega primeiro e fala pouco: "Crá."']],
+  3:[['quem é','Benh, um Bennu, pássaro de fogo reivindicado por Aten'],['função no app','traz entregas em chama dourada; nas más notícias chega em brasa'],['dom','se cair em serviço, renasce no fogo da manhã seguinte'],['jeito','"Krrok."']]},
+ 'Diretor':{
+  1:[['quem é','Quíron, o centauro que treina heróis desde Aquiles'],['função','diretor de atividades; a voz da Casa Grande'],['jeito','paciente, firme, um professor antes de tudo']],
+  2:[['quem é','Helgi, gerente do Hotel Valhala'],['função','cuida dos andares, dos einherjar e do banquete'],['jeito','burocrático, dramático, leal ao hotel']],
+  3:[['quem é','Amós Kane, sacerdote-leitor e chefe da Casa do Brooklyn'],['função','guarda o nomo e orienta os iniciados'],['jeito','calmo, jazzista, sempre de chapéu']]},
+ 'Oráculo':{
+  1:[['quem é','o Oráculo de Delfos, no sótão da Casa Grande'],['função','dá as missões em versos de viés']],
+  2:[['quem são','as Nornas: Urðr (o que foi), Verðandi (o que é) e Skuld (o que será)'],['função','tecem as missões ao pé de Yggdrasil']],
+  3:[['o que é','o Livro de Thoth, o saber guardado em feitiços'],['função','dá as missões como palavras de poder']]},
+ 'Ronda da noite':{
+  1:[['quem são','as harpias da limpeza'],['função','depois do toque de recolher, devoram quem ainda está fora do chalé']],
+  2:[['quem são','as valquírias de plantão'],['função','recolhem quem ficou acordado além da hora']],
+  3:[['quem são','os shabtis, servos de argila animados por magia'],['função','fecham a casa e mandam o iniciado para o aposento']]}
+};
+ptFichaExtra=(function(f0){return function(papel,i){var a=null;try{a=f0.apply(this,arguments);}catch(e){}var d=PT_DADOS[papel]&&PT_DADOS[papel][i];
+ if(!d)return a;if(!a)return d;var vis={};a.forEach(function(x){vis[x[0]]=1;});return a.concat(d.filter(function(x){return !vis[x[0]];}));};})(ptFichaExtra);
+
 })();
 </script>
 </body>
