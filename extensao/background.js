@@ -17,6 +17,9 @@ function agendaFaixa() { chrome.alarms.create('faixa', { when: proximaFaixa().ge
 async function avisa(id, titulo, texto) {
   var T = await tema();
   chrome.notifications.create(id + '-' + Date.now(), { type: 'basic', iconUrl: T.guardiao.img, title: T.guardiao.nome + ' · ' + titulo, message: texto, contextMessage: T.rotulo, priority: 1 });
+  var d = new Date(), L = (await chrome.storage.local.get('msgs')).msgs || [];
+  L.unshift({ tit: titulo, txt: texto, h: String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0') + ' · ' + d.getDate() + '/' + (d.getMonth() + 1), lido: false });
+  await chrome.storage.local.set({ msgs: L.slice(0, 40) });
 }
 
 async function avisaFaixa() {

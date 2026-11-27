@@ -179,7 +179,7 @@ function pintaTop() {
   var p = estado && estado.plan && estado.plan[hojeStr()], top = (p && p.top) || [], ol = $('top');
   naFila('prioridade', true).forEach(function (e) { if (top[e.dados.i]) top[e.dados.i].ok = !!e.dados.ok; });
   var com = top.filter(function (t) { return t && (t.t || '').trim(); });
-  if (!com.length) { ol.innerHTML = '<li class="vazio">Defina as três missões do dia no ' + esc(T.sede) + ' do app.</li>'; return; }
+  if (!com.length) { ol.innerHTML = '<li class="vazio">Defina as três missões do dia ' + esc(T.naSede) + ' do app.</li>'; return; }
   ol.innerHTML = top.map(function (t, i) {
     if (!t || !(t.t || '').trim()) return '';
     return '<li class="' + (t.ok ? 'ok' : '') + '"><label><input type="checkbox" data-pri="' + i + '"' + (t.ok ? ' checked' : '') + '><span>' + esc(t.t) + '</span></label></li>';
@@ -197,6 +197,59 @@ function pintaHabitos() {
 
 function pintaTudo() {
   pintaCab(); pintaAgora(); pintaCiclo(); pintaHumor(); pintaCont(); pintaTop(); pintaHabitos(); pintaFoco(); pintaGuardiao();
+  pintaToque(); pintaAtu(); pintaCaps(); pintaVerso();
+}
+
+/* Toque do dia: faixa das horas do templo, com o próximo toque e a linha de hoje */
+function pintaToque() {
+  var tb = (estado && estado.tb) || {}, d = hojeStr(), agora = new Date(), h = agora.getHours(), at = faixaDe(), prox = null;
+  FAIXAS.forEach(function (f) { if (+f > h && prox == null) prox = f; });
+  $('tq-met').innerHTML = FAIXAS.map(function (f, i) {
+    var cl = f === at ? 'agora' : (+f + 3 <= h ? 'foi' : '');
+    return (i ? '<span class="tq-tri" aria-hidden="true"></span>' : '') + '<div class="tq-m ' + cl + '" title="' + esc(tb[d + '|' + f] || 'livre') + '"><b>' + f + ':00</b><i>' + esc(T.fx[f] || '') + '</i></div>';
+  }).join('');
+  var txt;
+  if (prox) {
+    var alvo = new Date(agora); alvo.setHours(+prox, 0, 0, 0);
+    var m = Math.round((alvo - agora) / 60000), dur = m >= 60 ? Math.floor(m / 60) + 'h' + String(m % 60).padStart(2, '0') : m + ' min';
+    txt = 'Toque ' + (T.toque === 'Concha' ? 'da ' : 'do ') + T.toque + ' · próximo ' + prox + ':00 · ' + (T.fx[prox] || '') + ' · em ' + dur;
+  } else txt = 'Toque ' + (T.toque === 'Concha' ? 'da ' : 'do ') + T.toque + ' · amanhã às 06:00 · ' + T.fx['06'];
+  $('tq-txt').textContent = txt;
+  $('tq-dia').innerHTML = FAIXAS.map(function (f) {
+    var v = tb[d + '|' + f] || '';
+    return '<li class="' + (f === at ? 'agora' : (+f + 3 <= h ? 'foi' : '')) + '"><b>' + f + ':00</b><span>' + esc(T.fx[f] || '') + '</span><em>' + (v ? esc(v) : '—') + '</em></li>';
+  }).join('');
+}
+/* Em andamento (leitura do app) */
+var ORB = [['foco', 'Em foco'], ['ass', 'Assistindo'], ['ouv', 'Ouvindo'], ['est', 'Estudando'], ['pen', 'Pensando em'], ['alm', 'Almejando']];
+function pintaAtu() {
+  var a = (estado && estado.atu) || {};
+  $('atu').innerHTML = ORB.map(function (o) { var v = a[o[0]] || ''; return '<div class="ob' + (v ? ' cheio' : '') + '"><span>' + o[1] + '</span><b>' + (v ? esc(v) : '—') + '</b></div>'; }).join('');
+}
+/* últimas capturas do Quadro */
+function pintaCaps() {
+  var L = naFila('captura').map(function (e) { return { t: e.dados.t, d: e.dados.dia, nova: 1 }; }).reverse()
+    .concat(((estado && estado.cap) || []).slice(0, 6));
+  $('caps').innerHTML = L.slice(0, 5).map(function (c) { return '<li' + (c.nova ? ' class="nova"' : '') + '><span>' + esc(c.t) + '</span><small>' + esc(c.d === hojeStr() ? 'hoje' : (c.d || '')) + '</small></li>'; }).join('') || '<li class="vazio">Nada pregado ainda.</li>';
+}
+/* verso do cartão-postal: contas do dia */
+function pintaVerso() {
+  var s = sessoesHoje(), min = s.reduce(function (a, x) { return a + x.min; }, 0), dr = dracmas();
+  $('pv-t').textContent = s.length + (s.length === 1 ? ' bloco' : ' blocos') + ' · ' + min + ' min · ' + dr + ' ' + (dr === 1 ? T.moeda1 : T.moeda.toLowerCase()) + ' hoje';
+}
+/* mensagens de bordo: o que o segundo plano avisou */
+async function pintaMsgs() {
+  var L = (await chrome.storage.local.get('msgs')).msgs || [], n = L.filter(function (m) { return !m.lido; }).length;
+  $('m-n').hidden = !n; $('m-n').textContent = n;
+  $('msgs-de').textContent = T.mensageiro + ' · ' + T.guardiao.nome;
+  $('msgs-ct').textContent = n + (n === 1 ? ' não lida' : ' não lidas');
+  $('msgs-l').innerHTML = L.slice(0, 30).map(function (m) {
+    return '<li class="' + (m.lido ? 'lido' : '') + '"><img src="' + esc(T.guardiao.img) + '" alt=""><div><b>' + esc(m.tit) + '</b><p>' + esc(m.txt) + '</p><small>' + esc(m.h) + '</small></div></li>';
+  }).join('') || '<li class="vazio">Nenhuma mensagem ainda. Os avisos das faixas e do foco aparecem aqui.</li>';
+}
+function mostraFace(f) {
+  document.querySelectorAll('#faces [data-face]').forEach(function (b) { b.setAttribute('aria-selected', String(b.dataset.face === f)); });
+  document.querySelectorAll('.aba').forEach(function (a) { a.classList.toggle('on', a.dataset.face === f); });
 }
 
 /* guardião: uma fala de acordo com o dia */
@@ -220,6 +273,7 @@ function aplicaTema(k) {
   $('dracmas').title = T.moeda + ' de hoje: uma por bloco de foco, uma por meta de contador batida';
   $('tema').value = TEMA;
   if (!$('painel').hidden) pintaTudo(); else pintaGuardiao();
+  try { pintaMsgs(); } catch (e) { }
 }
 function aplicaZoom(z) { ZOOM = z; document.documentElement.style.zoom = z; }
 
@@ -253,7 +307,6 @@ async function carrega() {
 /* ---------- ações ---------- */
 document.addEventListener('DOMContentLoaded', async function () {
   document.body.classList.add('modo-' + MODO);
-  $('bm-k').textContent = MODO === 'lateral' ? 'painel lateral' : MODO === 'janela' ? 'janela solta' : 'popup';
   var pref = await chrome.storage.local.get(['tema', 'zoom', 'clique']);
   aplicaTema(pref.tema || 'greek');
   aplicaZoom(+pref.zoom || 1);
@@ -290,7 +343,28 @@ document.addEventListener('DOMContentLoaded', async function () {
     chrome.runtime.sendMessage({ t: 'clique', v: this.value });
     aviso(this.value === 'popup' ? 'O ícone abre o popup.' : this.value === 'lateral' ? 'O ícone abre o painel lateral.' : 'O ícone abre a janela solta.');
   };
-  chrome.storage.onChanged.addListener(function (m) { if (m.tema && m.tema.newValue && m.tema.newValue !== TEMA) aplicaTema(m.tema.newValue); });
+  chrome.storage.onChanged.addListener(function (m) { if (m.tema && m.tema.newValue && m.tema.newValue !== TEMA) aplicaTema(m.tema.newValue); if (m.msgs) pintaMsgs(); });
+
+  /* faces do templo */
+  var face = (await chrome.storage.local.get('face')).face || 'hoje';
+  mostraFace(face);
+  $('faces').onclick = function (e) { var b = e.target.closest('[data-face]'); if (!b) return; mostraFace(b.dataset.face); chrome.storage.local.set({ face: b.dataset.face }); };
+  /* cartão-postal vira */
+  $('postal').onclick = function () { this.classList.toggle('virado'); };
+  $('postal').onkeydown = function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); this.click(); } };
+  /* faixa do Toque sobe e revela a linha de hoje */
+  $('tq-leg').onclick = function () { var l = $('tq-dia'); l.hidden = !l.hidden; this.setAttribute('aria-expanded', String(!l.hidden)); this.querySelector('b').textContent = l.hidden ? 'hoje ▾' : 'hoje ▴'; };
+  /* mensagens de bordo */
+  pintaMsgs();
+  $('m-msgs').onclick = async function () {
+    var c = $('msgs'); c.hidden = !c.hidden; this.setAttribute('aria-expanded', String(!c.hidden));
+    if (!c.hidden) pintaMsgs();
+  };
+  $('msgs-lidas').onclick = async function () {
+    var L = (await chrome.storage.local.get('msgs')).msgs || [];
+    L.forEach(function (m) { m.lido = true; }); await chrome.storage.local.set({ msgs: L }); pintaMsgs();
+  };
+  setInterval(function () { try { pintaToque(); } catch (e) { } }, 30000);
 
   var d = new Date();
   $('data').textContent = DIAS[d.getDay()] + ' · ' + d.getDate() + ' ' + MESES[d.getMonth()];

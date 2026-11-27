@@ -7,12 +7,13 @@
 </head>
 <body data-tema="greek">
 <nav class="barra-modo" aria-label="Janela da extensão">
-  <span class="bm-k" id="bm-k">popup</span>
+  <span class="bm-k"><span class="dia" id="data">—</span><span class="dracma" id="dracmas" title="">0</span></span>
   <button type="button" id="z-menos" title="Diminuir o tamanho" aria-label="Diminuir o tamanho">A−</button>
   <button type="button" id="z-mais" title="Aumentar o tamanho" aria-label="Aumentar o tamanho">A+</button>
   <button type="button" id="m-lateral" title="Fixar no painel lateral do Chrome" aria-label="Fixar no painel lateral"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M15 4v16"/></svg></button>
   <button type="button" id="m-janela" title="Abrir em janela solta (mover e redimensionar)" aria-label="Abrir em janela solta"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="13" height="13" rx="2"/><path d="M8 3h13v13M13 11l8-8"/></svg></button>
-  <button type="button" id="m-ajustes" title="Tema e preferências" aria-label="Tema e preferências" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1"/></svg></button>
+  <button type="button" id="m-msgs" title="Mensagens de bordo" aria-label="Mensagens de bordo" aria-expanded="false"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 8l9 3 3 5 3-5 9-3-4 12-8 7-8-7zM16 16v11M11 11l-2-5 7 4 7-4-2 5"/></svg><i class="bm-n" id="m-n" hidden>0</i></button>
+  <button type="button" id="m-ajustes" title="Refúgio e preferências" aria-label="Refúgio e preferências" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1"/></svg></button>
 </nav>
 
 <section id="ajustes" class="card ajustes" hidden>
@@ -31,111 +32,147 @@
       <option value="janela">abrir a janela solta</option>
     </select>
   </label>
-  <p class="lead">No painel lateral, arraste a borda para mudar a largura. A janela solta pode ser movida e redimensionada; ela volta no mesmo lugar e tamanho.</p>
+  <p class="lead">No painel lateral, arraste a borda para mudar a largura. A janela solta pode ser movida e redimensionada e volta no mesmo lugar e tamanho. Com espaço, as três faces do templo ficam lado a lado.</p>
 </section>
 
-<header class="cab">
-  <small data-tx="saud">Greetings from</small>
-  <h1 data-tx-html="postal">Camp<br>Half-Blood</h1>
-  <div class="sub" data-tx="sub">Chalé 7 · Long Island Sound</div>
-  <div class="lado">
-    <span class="dia" id="data">—</span>
-    <div class="dracma" id="dracmas" title="">0</div>
-  </div>
+<section id="msgs" class="card msgs" hidden>
+  <h2><span>Mensagens de bordo</span> <i id="msgs-de">Polly McCaw</i></h2>
+  <ul id="msgs-l" class="msgs-l"></ul>
+  <div class="msgs-pe"><span id="msgs-ct"></span><button type="button" class="sem" id="msgs-lidas">marcar lidas</button></div>
+</section>
+
+<!-- frontão: telhado do tema, placa com as faces do templo, data e moeda -->
+<header class="frontao">
+  <div class="fr-teto" aria-hidden="true"><i class="fr-sel"></i></div>
+  <nav class="placa" id="faces" role="tablist" aria-label="Faces do templo">
+    <button type="button" role="tab" data-face="hoje" aria-selected="true">Hoje</button><i aria-hidden="true">·</i><button type="button" role="tab" data-face="arena" aria-selected="false" data-tx="arena">Arena</button><i aria-hidden="true">·</i><button type="button" role="tab" data-face="reg" aria-selected="false">Registro</button>
+  </nav>
 </header>
 
-<div class="guardiao" id="guardiao">
-  <img id="g-img" src="img/sully.jpg" alt="">
-  <div class="g-balao"><b id="g-nome">Sully</b><span id="g-papel">sátiro protetor</span><p id="g-fala">Um bloco de cada vez.</p></div>
+<div class="templo">
+  <section id="login" class="card" hidden>
+    <h2 data-tx="portao">Portão do acampamento</h2>
+    <p class="lead">Entre com a mesma conta do app. O que você marcar aqui aparece lá na próxima sincronização.</p>
+    <label>E-mail<input id="email" type="email" autocomplete="email"></label>
+    <label>Senha<input id="senha" type="password" autocomplete="current-password"></label>
+    <button id="entrar" class="pri">Entrar</button>
+  </section>
+
+  <main id="painel" hidden>
+    <!-- face 1 · Hoje -->
+    <section class="aba on" id="hoje" data-face="hoje">
+      <div class="postal" id="postal" role="button" tabindex="0" title="virar o cartão">
+        <div class="po-frente">
+          <small data-tx="saud">Greetings from</small>
+          <h1 data-tx-html="postal">Camp<br>Half-Blood</h1>
+          <div class="sub" data-tx="sub">Chalé 7 · Long Island Sound</div>
+          <span class="po-selo" aria-hidden="true"></span>
+        </div>
+        <div class="po-verso">
+          <span class="pv-k">verso · contas do dia</span>
+          <div class="colar"><div class="fio" id="fio"></div></div>
+          <p class="pv-t" id="pv-t"></p>
+        </div>
+      </div>
+
+      <div class="guardiao" id="guardiao">
+        <img id="g-img" src="img/sully.jpg" alt="">
+        <div class="g-balao"><b id="g-nome">Sully</b><span id="g-papel">sátiro protetor</span><p id="g-fala">Um bloco de cada vez.</p></div>
+      </div>
+
+      <div class="friso-toque">
+        <div class="tq-met" id="tq-met"></div>
+        <button type="button" class="tq-leg" id="tq-leg" aria-expanded="false"><span id="tq-txt"></span><b>hoje ▾</b></button>
+        <ol class="tq-dia" id="tq-dia" hidden></ol>
+      </div>
+
+      <div class="card agora" id="agora"></div>
+
+      <div class="card chk">
+        <h2><span data-tx="missoes">Missões do dia</span> <i>três</i></h2>
+        <ol id="top" class="mt"></ol>
+      </div>
+      <div class="card chk">
+        <h2>Hábitos <i data-tx="habitos">treinos</i></h2>
+        <ul id="habitos" class="mt"></ul>
+      </div>
+      <div class="card">
+        <h2>Em andamento <i>no app</i></h2>
+        <div class="atu" id="atu"></div>
+      </div>
+    </section>
+
+    <!-- face 2 · Arena -->
+    <section class="aba" id="arena" data-face="arena">
+      <h3 class="sep"><span data-tx="treino">Treino na Arena</span></h3>
+      <div class="card">
+        <h2><span>Foco</span> <i id="modo">foco</i></h2>
+        <p class="lead">Um bloco de cada vez. <span data-tx="diretor">Quíron</span> não cobra a lista inteira.</p>
+        <div class="foco">
+          <div class="anel" id="anel">
+            <svg viewBox="0 0 112 112" aria-hidden="true"><circle class="trilho" cx="56" cy="56" r="47"/><circle class="arco" id="arco" cx="56" cy="56" r="47"/></svg>
+            <div class="t"><b id="tempo">25:00</b><span id="tlabel">pronto</span></div>
+          </div>
+          <div class="fcol">
+            <input id="tarefa" placeholder="no que vai treinar?" maxlength="80">
+            <div class="fbt" id="parado">
+              <button class="pri" data-min="25">25 min</button><button data-min="50">50 min</button><button id="pausa5">pausa 5</button>
+            </div>
+            <div class="fbt" id="rodando" hidden>
+              <button class="pri" id="pp">pausar</button><button id="enc">encerrar</button>
+            </div>
+            <div class="fstat" id="fstat"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Ciclo de Estudos <i id="volta">—</i></h2>
+        <p class="lead">A roda gira na ordem. Fechou o bloco, passa para o próximo.</p>
+        <div id="ciclo"></div>
+        <div class="cbt" id="cbt">
+          <button class="ouro" id="treinar">treinar a da vez · 50 min</button>
+          <button id="pular">pular</button>
+        </div>
+      </div>
+
+      <h3 class="sep"><span data-tx="lugar">Chalé</span></h3>
+      <div class="card">
+        <h2><span data-tx="chegada">Como você chega à fogueira?</span> <i>humor</i></h2>
+        <p class="lead">Um toque já registra. Vale mudar ao longo do dia.</p>
+        <div class="humor" id="humor"></div>
+        <div class="linha mt"><input id="hnota" placeholder="o que pesou ou ajudou (opcional)" maxlength="120"><button class="pri" id="hok">anotar</button></div>
+        <div class="semana" id="semana"></div>
+      </div>
+      <div class="card">
+        <h2><span>Contadores</span> <i>hoje</i></h2>
+        <p class="lead">Toque no + a cada vez. A barra fecha na meta.</p>
+        <div class="cont" id="cont"></div>
+        <div class="linha mt"><input id="novo" placeholder="novo contador · ex.: páginas" maxlength="30"><input id="novoMeta" class="val" inputmode="numeric" placeholder="meta"><button id="add">criar</button></div>
+      </div>
+    </section>
+
+    <!-- face 3 · Registro -->
+    <section class="aba" id="reg" data-face="reg">
+      <h3 class="sep"><span data-tx="quadro">Quadro de Avisos</span></h3>
+      <div class="card">
+        <h2>Captura <i>despeje</i></h2>
+        <div class="linha mt"><input id="cap" placeholder="despeje antes de perder" maxlength="300"><button class="pri" id="cap-ok">guardar</button></div>
+        <ul class="caps" id="caps"></ul>
+      </div>
+      <h3 class="sep"><span data-tx="loja">Bolsa de Dracmas</span></h3>
+      <div class="card">
+        <h2>Gasto <i>hoje</i></h2>
+        <div class="linha mt"><input id="g-desc" placeholder="almoço, uber, farmácia…" maxlength="80"><input id="g-val" class="val" inputmode="decimal" placeholder="R$ 0,00"><button class="pri" id="g-ok">ok</button></div>
+      </div>
+    </section>
+  </main>
 </div>
 
-<section id="login" class="card" hidden>
-  <h2 data-tx="portao">Portão do acampamento</h2>
-  <p class="lead">Entre com a mesma conta do app. O que você marcar aqui aparece lá na próxima sincronização.</p>
-  <label>E-mail<input id="email" type="email" autocomplete="email"></label>
-  <label>Senha<input id="senha" type="password" autocomplete="current-password"></label>
-  <button id="entrar" class="pri">Entrar</button>
-</section>
-
-<main id="painel" hidden>
-  <div class="colar"><span class="k">contas do dia</span><div class="fio" id="fio"></div></div>
-
-  <section class="aba on" id="arena">
-    <h3 class="sep" data-tx="arena">Arena</h3>
-    <div class="card agora" id="agora"></div>
-
-    <div class="card">
-      <h2><span data-tx="treino">Treino na Arena</span> <i id="modo">foco</i></h2>
-      <p class="lead">Um bloco de cada vez. <span data-tx="diretor">Quíron</span> não cobra a lista inteira.</p>
-      <div class="foco">
-        <div class="anel" id="anel">
-          <svg viewBox="0 0 112 112" aria-hidden="true"><circle class="trilho" cx="56" cy="56" r="47"/><circle class="arco" id="arco" cx="56" cy="56" r="47"/></svg>
-          <div class="t"><b id="tempo">25:00</b><span id="tlabel">pronto</span></div>
-        </div>
-        <div class="fcol">
-          <input id="tarefa" placeholder="no que vai treinar?" maxlength="80">
-          <div class="fbt" id="parado">
-            <button class="pri" data-min="25">25 min</button><button data-min="50">50 min</button><button id="pausa5">pausa 5</button>
-          </div>
-          <div class="fbt" id="rodando" hidden>
-            <button class="pri" id="pp">pausar</button><button id="enc">encerrar</button>
-          </div>
-          <div class="fstat" id="fstat"></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <h2>Ciclo de Estudos <i id="volta">—</i></h2>
-      <p class="lead">A roda gira na ordem. Fechou o bloco, passa para o próximo.</p>
-      <div id="ciclo"></div>
-      <div class="cbt" id="cbt">
-        <button class="ouro" id="treinar">treinar a da vez · 50 min</button>
-        <button id="pular">pular</button>
-      </div>
-    </div>
-  </section>
-
-  <section class="aba on" id="chale">
-    <h3 class="sep" data-tx="lugar">Chalé</h3>
-    <div class="card">
-      <h2><span data-tx="chegada">Como você chega à fogueira?</span> <i>humor</i></h2>
-      <p class="lead">Um toque já registra. Vale mudar ao longo do dia.</p>
-      <div class="humor" id="humor"></div>
-      <div class="linha mt"><input id="hnota" placeholder="o que pesou ou ajudou (opcional)" maxlength="120"><button class="pri" id="hok">anotar</button></div>
-      <div class="semana" id="semana"></div>
-    </div>
-
-    <div class="card">
-      <h2><span>Contadores · <span data-tx="lugar">Chalé</span></span> <i>hoje</i></h2>
-      <p class="lead">Toque no + a cada vez. A barra fecha na meta.</p>
-      <div class="cont" id="cont"></div>
-      <div class="linha mt"><input id="novo" placeholder="novo contador · ex.: páginas" maxlength="30"><input id="novoMeta" class="val" inputmode="numeric" placeholder="meta"><button id="add">criar</button></div>
-    </div>
-  </section>
-
-  <section class="aba on" id="reg">
-    <h3 class="sep">Registro</h3>
-    <div class="card">
-      <h2>Captura <i data-tx="quadro">Quadro de Avisos</i></h2>
-      <div class="linha mt"><input id="cap" placeholder="despeje antes de perder" maxlength="300"><button class="pri" id="cap-ok">guardar</button></div>
-    </div>
-    <div class="card chk">
-      <h2><span data-tx="missoes">Missões do dia</span> <i>três</i></h2>
-      <ol id="top" class="mt"></ol>
-    </div>
-    <div class="card chk">
-      <h2>Hábitos <i data-tx="habitos">treinos</i></h2>
-      <ul id="habitos" class="mt"></ul>
-    </div>
-    <div class="card">
-      <h2>Gasto <i data-tx="loja">Bolsa de Dracmas</i></h2>
-      <div class="linha mt"><input id="g-desc" placeholder="almoço, uber, farmácia…" maxlength="80"><input id="g-val" class="val" inputmode="decimal" placeholder="R$ 0,00"><button class="pri" id="g-ok">ok</button></div>
-    </div>
-  </section>
-</main>
-
-<footer class="rod"><span id="msg" role="status"></span><span class="dir"><a id="abrir" target="_blank" rel="noopener" hidden>abrir o app ↗</a><button id="sair" class="sem" hidden>sair</button></span></footer>
+<!-- base do templo: degraus com o rodapé -->
+<footer class="base">
+  <div class="rod"><span id="msg" role="status"></span><span class="dir"><a id="abrir" target="_blank" rel="noopener" hidden>abrir o app ↗</a><button id="sair" class="sem" hidden>sair</button></span></div>
+</footer>
 <script src="api.js"></script>
 <script src="temas.js"></script>
 <script src="popup.js"></script>

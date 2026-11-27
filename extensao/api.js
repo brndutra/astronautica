@@ -55,7 +55,7 @@ var API = {
   async estado() {
     var s = await API.sessao(); if (!s) return null;
     var sel = 'tb:dados->tb,hab:dados->hab,plan:dados->plan,agua:dados->agua,est:dados->est,' +
-      'estado:dados->estado,cont:dados->cont,ses:dados->vx->sessions';
+      'estado:dados->estado,cont:dados->cont,ses:dados->vx->sessions,atu:dados->atu,cap:dados->cap';
     var rows = await API._rest('vertice_estado?select=' + encodeURIComponent(sel) + '&user_id=eq.' + s.user.id);
     var e = rows && rows[0] ? rows[0] : {};
     await chrome.storage.local.set({ estado: { em: Date.now(), dados: e } });

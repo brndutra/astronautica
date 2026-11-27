@@ -3,7 +3,7 @@
 var TEMAS = {
   greek: {
     rotulo: 'Acampamento Meio-Sangue', saud: 'Greetings from', postal: 'Camp<br>Half-Blood', sub: 'Chalé 7 · Long Island Sound',
-    portao: 'Portão do acampamento', lugar: 'Chalé', moeda: 'Dracmas', moeda1: 'dracma', diretor: 'Quíron', sede: 'Casa Grande',
+    portao: 'Portão do acampamento', lugar: 'Chalé', moeda: 'Dracmas', moeda1: 'dracma', diretor: 'Quíron', sede: 'Casa Grande', naSede: 'na Casa Grande',
     arena: 'Arena', treino: 'Treino na Arena', loja: 'Bolsa de Dracmas', quadro: 'Quadro de Avisos', fim: 'fogueira', chegada: 'Como você chega à fogueira?', toque: 'Concha',
     dorme: 'O acampamento dorme', missoes: 'Missões do dia', habitos: 'Treinos', voltar: 'Hora de voltar para a Arena.',
     fx: { '06': 'alvorada', '09': 'treinos', '12': 'refeitório', '15': 'arena', '18': 'jantar', '21': 'fogueira' },
@@ -18,7 +18,7 @@ var TEMAS = {
   },
   norse: {
     rotulo: 'Hotel Valhala', saud: 'Greetings from', postal: 'Hotel<br>Valhalla', sub: 'Andar 19 · Boston, Mass.',
-    portao: 'Portaria do hotel', lugar: 'Andar 19', moeda: 'Marcos de ouro', moeda1: 'marco', diretor: 'Helgi', sede: 'Saguão',
+    portao: 'Portaria do hotel', lugar: 'Andar 19', moeda: 'Marcos de ouro', moeda1: 'marco', diretor: 'Helgi', sede: 'Saguão', naSede: 'no Saguão',
     arena: 'Arena', treino: 'Treino na Arena', loja: 'Tesouro de Andvari', quadro: 'Quadro do Saguão', fim: 'banquete', chegada: 'Como você chega ao banquete?', toque: 'Gjallarhorn',
     dorme: 'O hotel dorme', missoes: 'Sagas do dia', habitos: 'Treinos', voltar: 'Hora de voltar para a Arena, einherji.',
     fx: { '06': 'despertar', '09': 'treinos', '12': 'salão do banquete', '15': 'arena', '18': 'jantar', '21': 'banquete' },
@@ -33,7 +33,7 @@ var TEMAS = {
   },
   egypt: {
     rotulo: 'Casa do Brooklyn', saud: 'Greetings from', postal: 'Casa do<br>Brooklyn', sub: 'Nomo 21 · Brooklyn, N.Y.',
-    portao: 'Portão da Casa', lugar: 'Aposento', moeda: 'Debens de ouro', moeda1: 'deben', diretor: 'Amós', sede: 'Grande Salão',
+    portao: 'Portão da Casa', lugar: 'Aposento', moeda: 'Debens de ouro', moeda1: 'deben', diretor: 'Amós', sede: 'Grande Salão', naSede: 'no Grande Salão',
     arena: 'Arena', treino: 'Treino na Arena', loja: 'Tesouro do Faraó', quadro: 'Quadro do Grande Salão', fim: 'braseiro', chegada: 'Como você chega ao braseiro?', toque: 'Sistro',
     dorme: 'A Casa dorme', missoes: 'Papiros do dia', habitos: 'Ritos', voltar: 'Hora de voltar para a Arena, iniciado.',
     fx: { '06': 'nascer de Rá', '09': 'treinos', '12': 'terraço', '15': 'arena', '18': 'jantar', '21': 'braseiro' },
