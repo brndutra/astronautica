@@ -275,8 +275,8 @@ setTimeout(function(){try{placasTons();}catch(e){}},1200);setTimeout(function(){
    Em tela larga ocupam exatamente a coluna do meio, no lugar do templo central: painel esquerdo, faixa do dia,
    templo da direita e rodapé continuam à vista. */
 (function(){var st=document.createElement('style');st.id='pd-centro-css';st.textContent=[
- /* casco e mar recuados pela largura das colunas laterais do Posto (--op-lat-e/-d, css 32) */
- 'body.op-on #rod-apps{left:var(--op-lat-e,0px)!important;right:var(--op-lat-d,0px)!important}',
+ /* casco e mar na largura toda (com um NPC ao lado, só o casco recua: css 32) */
+ 'body.op-on #rod-apps{left:0!important;right:0!important}',
  '@media(min-width:1380px){',
  ' body.com-dia #painel-dir.pd.on{left:var(--dia-l,300px)!important;right:var(--dia-r,460px)!important}',
  ' body:not(.com-dia) #painel-dir.pd.on{left:300px!important;right:var(--rail-w,460px)!important}',

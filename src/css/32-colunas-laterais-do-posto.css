@@ -1,35 +1,53 @@
-/* ======================= Posto (44): placar do campista e cartões laterais situacionais =======================
-   Três velas no convés; casco e mar recuam --op-lat-e/--op-lat-d (o recuo do #rod-apps está no 28). As margens ficam
-   livres: o registro rápido (.cr-pop) e a ronda (#cx-ronda) abrem nelas, logo acima do casco (--ol-b, medido no 44),
-   e o Píthos abre na margem direita pelo botão do topo (body.op-pithos). --ol-t é o topo do convés. */
+/* ======================= Posto (44): placar do campista, Píthos sob chamada e NPC ao lado =======================
+   Três velas no convés, na largura toda. Os medalhões do casco abrem o registro rápido no lugar de sempre (07/10/13).
+   Com um NPC em cena (body.op-npc, posto pelo 44), a coluna da direita abre e a embarcação (convés e casco) recua
+   --op-lat-d; o mar (#argo-mar) não muda: continua na largura toda. Sem NPC, --op-lat-d é zero. --ol-t é o topo do convés. */
 body.op-on{--op-lat-e:0px;--op-lat-d:0px}
+body.op-on #modo-op .op-g,body.op-on #rod-apps .rod-top{transition:margin-right .28s ease}
 @media(min-width:1100px){
- body.op-on{--op-lat-d:clamp(196px,17vw,250px)}
- body.op-on #modo-op .op-g{margin-right:var(--op-lat-d)!important}
- body.op-on #cx-ronda{left:auto!important;right:18px!important;top:auto!important;bottom:var(--ol-b,290px)!important;width:max(calc(var(--op-lat-d) - 30px),240px)!important;max-width:none!important;box-sizing:border-box;
-  flex-direction:column;align-items:stretch;padding:12px!important;border-radius:10px!important;animation:olDir .22s ease-out both}
- body.op-on #cx-ronda .rd-bt{flex-wrap:wrap}
+ body.op-on.op-npc{--op-lat-d:clamp(250px,20vw,320px)}
+ body.op-on.op-npc #modo-op .op-g,body.op-on.op-npc #rod-apps .rod-top{margin-right:var(--op-lat-d)!important}
+ /* o fundo do rodapé sai de trás do vão: só o casco recua, o mar fica igual */
+ html body.op-on.op-npc #rod-apps.rod{background:transparent!important;box-shadow:none!important}
 }
-@media(min-width:1360px){
- body.op-on{--op-lat-e:clamp(196px,14vw,320px);--op-lat-d:clamp(196px,14vw,320px)}
- body.op-on #modo-op .op-g{margin-left:var(--op-lat-e)!important}
- html body.op-on #rod-apps .cr-pop{position:fixed!important;left:18px!important;right:auto!important;top:auto!important;bottom:var(--ol-b,290px)!important;width:calc(var(--op-lat-e) - 30px)!important;
-  min-width:0!important;max-width:none!important;box-sizing:border-box;animation:olEsq .22s ease-out both}
-}
-@keyframes olEsq{from{opacity:0;transform:translateX(-14px)}to{opacity:1;transform:none}}
 @keyframes olDir{from{opacity:0;transform:translateX(14px)}to{opacity:1;transform:none}}
+
+/* coluna do NPC: a fala do guardião ou do antagonista */
+#modo-op>.op-npc{display:none}
+body.op-on.op-npc-fala #modo-op>.op-npc{display:block;position:fixed;z-index:6;right:14px;top:var(--ol-t,76px);width:calc(var(--op-lat-d) - 28px);box-sizing:border-box;
+ padding:16px 14px 14px;background:rgba(250,245,232,.98);border:1px solid rgba(120,85,40,.3);border-radius:12px;box-shadow:0 16px 32px -16px rgba(40,25,10,.5);
+ text-align:center;color:#2e2418;animation:olDir .28s ease-out both}
+@media(max-width:1099px){body.op-on.op-npc-fala #modo-op>.op-npc{width:260px}}
+#modo-op>.op-npc .on-av{width:84px;height:84px;margin:0 auto 8px;border-radius:50%;padding:3px;background:conic-gradient(from 210deg,#f4d486,#c9853a,#f4d486)}
+#modo-op>.op-npc .on-av>*{width:100%!important;height:100%!important;border-radius:50%;border:2px solid #fff;object-fit:cover;display:block;background:#f6ecd4}
+#modo-op>.op-npc .on-av.on-ant{background:conic-gradient(from 210deg,#d4ad4f,#1f2a22,#d4ad4f)}
+#modo-op>.op-npc .on-av i{display:grid!important;place-items:center;font:normal 34px Georgia,serif;color:#1f2a22}
+#modo-op>.op-npc small{display:block;font:700 9.5px var(--mono,monospace);letter-spacing:.16em;text-transform:uppercase;color:#8a6f55}
+#modo-op>.op-npc p{margin:8px 0 12px;font:italic 16px/1.4 Georgia,serif}
+#modo-op>.op-npc .on-ok{display:inline-block!important;width:auto!important;min-width:0!important;border:1px solid #2e2620;background:#fffdf6;border-radius:999px;padding:4px 18px;font:700 11px var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase;cursor:pointer;color:#2e2418}
+#modo-op>.op-npc .on-ok:hover{background:#2e2620;color:#fffdf6}
+body.tv #modo-op>.op-npc .on-av{background:conic-gradient(from 210deg,#d9b36a,#b3262d,#d9b36a)}
+body.eg #modo-op>.op-npc .on-av{background:conic-gradient(from 210deg,#e6c56e,#4f86c9,#e6c56e)}
+
+/* a ronda do sidekick é NPC também: entra na mesma coluna */
+@media(min-width:1100px){
+ body.op-on.op-npc #cx-ronda{left:auto!important;right:14px!important;top:var(--ol-t,76px)!important;bottom:auto!important;width:calc(var(--op-lat-d) - 28px)!important;max-width:none!important;box-sizing:border-box;
+  flex-direction:column;align-items:stretch;text-align:center;padding:14px!important;border-radius:12px!important;animation:olDir .28s ease-out both}
+ body.op-on.op-npc #cx-ronda .rd-av{align-self:center}
+ body.op-on.op-npc #cx-ronda .rd-bt{flex-wrap:wrap;justify-content:center}
+ body.op-on.op-npc-fala #cx-ronda{top:auto!important;bottom:calc(var(--a-mar-h,118px) + 120px)!important}
+}
+
 /* Píthos: só quando chamado; cartão leve, sem moldura de vela */
 .op-lat{display:none}
-body.op-on.op-pithos #modo-op>.op-lat-d{display:flex;flex-direction:column;gap:8px;position:fixed;z-index:3;right:14px;top:var(--ol-t,76px);max-height:calc(100vh - var(--ol-t,76px) - 14px);
- width:280px;box-sizing:border-box;padding:12px 12px 14px;background:rgba(250,245,232,.97);border:1px solid rgba(120,85,40,.28);border-radius:10px;
+body.op-on.op-pithos #modo-op>.op-lat-d{display:flex;flex-direction:column;gap:8px;position:fixed;z-index:7;right:14px;top:var(--ol-t,76px);max-height:calc(100vh - var(--ol-t,76px) - 14px);
+ width:300px;box-sizing:border-box;padding:12px 12px 14px;background:rgba(250,245,232,.97);border:1px solid rgba(120,85,40,.28);border-radius:10px;
  box-shadow:0 16px 32px -16px rgba(40,25,10,.5);animation:olDir .22s ease-out both}
 #modo-op>.op-lat-d .ol-x{position:absolute;top:6px;right:6px;width:24px;height:24px;border:0;border-radius:50%;background:transparent;color:#7a6248;font:600 12px var(--sans,system-ui);cursor:pointer}
 #modo-op>.op-lat-d .ol-x:hover{background:rgba(120,85,40,.12)}
 #modo-op>.op-lat-d .ol-c{min-height:0;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin;display:flex;flex-direction:column;gap:8px;padding-right:4px}
 #modo-op>.op-lat-d .op-cap{flex-wrap:wrap}
 #modo-op>.op-lat-d .op-cap button{flex:1}
-/* com margem lateral, o cartão cabe nela inteiro (fora da popa e do convés) */
-@media(min-width:1100px){body.op-on.op-pithos #modo-op>.op-lat-d{width:calc(var(--op-lat-d) - 24px)}}
 body.op-pithos #modo-op .op-pith{background:rgba(138,90,20,.14)!important}
 /* placar do campista no topo: emblema (tema), nível e XP, dracmas, sequência, claro/escuro */
 #modo-op .op-hud{display:inline-flex;align-items:center}
