@@ -53,10 +53,11 @@ function trgEventos(de,ate){var r=[];
   if(x.getDate()===1){var c=new Date(x.getFullYear(),x.getMonth(),5);r.push(trgDia(trgUtilAntes(c),'Presenças do mês anterior no EGP'));}
   x.setDate(x.getDate()+1);}
  return r.filter(function(e){return e.fim>=de&&e.ini<=ate;});}
-/* junta à lista da Agenda Google, sem repetir o que já vier de lá (mesmo título e mesmo início) */
+/* junta à lista da Agenda Google (com a rotina pessoal da parte 48), sem repetir o que já vier de lá (mesmo título e mesmo início) */
 function trgJunta(){if(typeof AG==='undefined')return;var de=new Date();de.setHours(0,0,0,0);de.setDate(de.getDate()-14);var ate=new Date();ate.setDate(ate.getDate()+120);
  var base=AG.ev.filter(function(e){return !e.trg;}),k={};base.forEach(function(e){k[e.t+'|'+(+e.ini)]=1;});
- AG.ev=base.concat(trgEventos(de,ate).filter(function(e){return !k[e.t+'|'+(+e.ini)];})).sort(function(a,b){return a.ini-b.ini;});}
+ var meus=trgEventos(de,ate).concat(typeof rotEventos==='function'?rotEventos(de,ate):[]);
+ AG.ev=base.concat(meus.filter(function(e){return !k[e.t+'|'+(+e.ini)];})).sort(function(a,b){return a.ini-b.ini;});}
 (function(){var b0=agBusca;agBusca=function(){var r=b0.apply(this,arguments);trgJunta();return r;};
  var p0=agPintaTudo;agPintaTudo=function(){trgJunta();return p0.apply(this,arguments);};})();
 setTimeout(function(){trgJunta();try{agPintaTudo();}catch(e){}},1200);
