@@ -80,7 +80,8 @@ function opTopR(){var tr=document.querySelector('#modo-op .op-topr');if(!tr)retu
  try{fogo=TV_ON&&opMin()>=18*60&&!fgFeita();}catch(e){}
  var h=
   (fogo?'<button type="button" class="op-fogo" data-fogo>acender a fogueira</button>':'')+
-  '<span class="op-pill op-pill-nav" role="group" aria-label="consulta, extensão e templo"><button type="button" class="cx-mfb" data-cxa="mf">manual</button>'+opExtHTML()+'<button type="button" class="op-sair" data-opsair>templo completo</button></span>';
+  (typeof opHudHTML==='function'?opHudHTML():'')+
+  '<span class="op-pill op-pill-nav" role="group" aria-label="consulta, Píthos, extensão e templo"><button type="button" class="cx-mfb" data-cxa="mf">manual</button><button type="button" class="op-pith" data-opith>Píthos</button>'+opExtHTML()+'<button type="button" class="op-sair" data-opsair>templo completo</button></span>';
  if(tr._h!==h){tr.innerHTML=h;tr._h=h;}}
 function opExtHTML(){var b=extBaixada(),st=!b?'nova':(b===EXT_V?'ok':'atual');
  var tx=st==='nova'?'baixar extensão':st==='atual'?'atualizar extensão':'extensão <small>'+EXT_V+' ✓</small>';

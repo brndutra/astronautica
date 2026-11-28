@@ -11,7 +11,7 @@ var POSTO_SEL=/^\[data-[a-z0-9-]+(="[^"\]]*")?\]$/;
 function postoSel(n){var a=[].filter.call(n.attributes,function(x){return /^data-/.test(x.name)&&!/^data-(notr|ic|h|i)$/.test(x.name);})[0];
  return a?(a.value?'['+a.name+'="'+a.value.replace(/["\]]/g,'')+'"]':'['+a.name+']'):null;}
 /* o Escudo tem frente e verso: os dois lados entram na foto, mesmo o que estiver virado */
-function postoVisivel(e){return !!(e.offsetParent||getComputedStyle(e).position==='fixed'||(e.closest&&e.closest('#modo-op .op-col1')&&!e.closest('[hidden]')));}
+function postoVisivel(e){return !!(e.offsetParent||(e.closest&&e.closest('#modo-op>.op-lat-d'))||getComputedStyle(e).position==='fixed'||(e.closest&&e.closest('#modo-op .op-col1')&&!e.closest('[hidden]')));}
 /* texto do cartão em linhas, como aparece na tela (rótulos em caixa alta continuam em caixa alta), sem os botões */
 function postoLinhas(raiz){var L=[],w=document.createTreeWalker(raiz,NodeFilter.SHOW_TEXT,null),n,ult=null,buf='';
  function bloco(e){while(e&&e!==raiz){var d=getComputedStyle(e).display;if(d!=='inline'&&d!=='inline-block'&&d!=='contents')return e;e=e.parentElement;}return raiz;}

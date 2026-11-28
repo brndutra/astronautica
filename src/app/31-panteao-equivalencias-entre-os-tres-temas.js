@@ -222,7 +222,7 @@ function topoBotoes(){var r1=document.querySelector('#lat-topo .lt-r1');if(!r1)r
 (function(){var t0=tvBotao;tvBotao=function(){t0.apply(this,arguments);topoBotoes();};})();
 (function(){if(typeof panteaoBotao!=='function')return;var p0=panteaoBotao;panteaoBotao=function(){p0.apply(this,arguments);topoBotoes();};})();
 (function(){var l0=latTopo;latTopo=function(){var x=l0.apply(this,arguments);try{topoBotoes();}catch(e){}return x;};})();
-document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('#tv-tg');if(!b)return;e.preventDefault();e.stopImmediatePropagation();try{tmMenu(b);}catch(z){}},true);
+document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('#tv-tg,[data-tmenu]');if(!b)return;e.preventDefault();e.stopImmediatePropagation();try{tmMenu(b);}catch(z){}},true);
 setTimeout(topoBotoes,1000);
 /* Banner com telas: Visão (o banner de sempre) e Programação (a grade semanal sai do seu painel, perde a moldura e passa a morar dentro do banner).
    A grade continua no mesmo lugar do DOM (.wrap > div.tb), só é posta sobre a área do banner, para não quebrar quem a procura por esse seletor. */

@@ -5399,7 +5399,7 @@ body:not(.tv).op-on #modo-op.op-grego .op-g>.op-fazer.op-templo{--a-cab:url("img
 body:not(.tv).op-on #modo-op.op-grego .op-g>.op-estudo.op-templo{--a-cab:url("img/acampamento/argo-vela-carta-orn.svg?v=1");--a-rod:url("img/acampamento/argo-vela-carta-rod.svg?v=1");--t-k:#426b94!important}
 body:not(.tv).op-on #rod-apps{padding-bottom:var(--a-mar-h,118px)!important}
 body:not(.tv).op-on{--a-mar-h:clamp(96px,13vh,122px)}
-body:not(.tv).op-on #argo-mar{display:grid!important;position:absolute;left:0;right:0;bottom:0;height:var(--a-mar-h);box-sizing:border-box;padding:12px 4.5% 16px;grid-template-columns:minmax(0,1fr);align-items:center;gap:13px;color:#f8f1de;background:linear-gradient(180deg,#347788,#205a71 55%,#17475f);border-top:2px solid #8fc1c4;isolation:isolate;overflow:hidden;z-index:4}
+body:not(.tv).op-on #argo-mar{display:grid!important;position:absolute;left:0;right:0;bottom:0;height:var(--a-mar-h);box-sizing:border-box;padding:12px 4.5% 16px;grid-template-columns:minmax(135px,.9fr) minmax(0,5fr) minmax(135px,.9fr);align-items:center;gap:13px;color:#f8f1de;background:linear-gradient(180deg,#347788,#205a71 55%,#17475f);border-top:2px solid #8fc1c4;isolation:isolate;overflow:hidden;z-index:4}
 body:not(.tv).op-on #argo-mar::before,body:not(.tv).op-on #argo-mar::after{content:"";position:absolute;left:0;right:-240px;bottom:0;height:48px;background:url("img/acampamento/argo-mar-ondas.svg?v=1") 0 100%/240px 54px repeat-x;z-index:-1;opacity:.68;animation:argoCor 18s linear infinite;pointer-events:none}
 body:not(.tv).op-on #argo-mar::after{bottom:13px;opacity:.24;animation-duration:28s;animation-direction:reverse}
 @keyframes argoCor{to{transform:translateX(-240px)}}
@@ -5418,7 +5418,7 @@ body:not(.tv).op-on #argo-mar .rg-li span{white-space:nowrap;overflow:hidden;tex
 body:not(.tv).op-on #argo-mar .rg-li.passou{opacity:.62}
 body:not(.tv).op-on #argo-mar .rg-li.agora{outline:2px solid #e8bd70;outline-offset:1px;background:linear-gradient(165deg,#fff2cd,#e1c88e)}
 body:not(.tv).op-on #argo-mar .rg-li.agora i{font:700 8.5px var(--mono,monospace);font-style:normal;letter-spacing:.1em;text-transform:uppercase;color:#b4463a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-@media (max-width:1099px){body:not(.tv).op-on #argo-mar .rg-box{display:none}}
+@media (max-width:1000px){body:not(.tv).op-on #argo-mar{grid-template-columns:1fr}body:not(.tv).op-on #argo-mar .rg-box{display:none}}
 /* ===== Barca solar de Rá (tema Casa do Brooklyn): mesma estrutura da Argo — quatro velas de papiro, casco com popa e proa em umbela, selos no lugar dos escudos e o Nilo com a Rota ===== */
 html body.eg.op-on{--a-pw:var(--a-rw)}
 html body.eg.op-on #modo-op .op-l::after,html body.eg.op-on #modo-op .op-g::after{content:none!important;display:none!important}
@@ -5447,7 +5447,7 @@ html body.eg.op-on #rod-apps #rod-reg .cr-p:nth-of-type(8){--selo:url("img/acamp
 html body.eg.op-on #rod-apps #rod-fogo{background:#f7edce!important;border:1.5px solid #c99a4c!important;border-radius:5px!important;box-shadow:0 0 0 2px #f7edce,0 0 0 3px #503b2b!important}
 html body.eg.op-on #rod-apps #rod-bar{background:#f7edce!important;border:1.5px solid #c99a4c!important;border-radius:5px!important;box-shadow:0 0 0 2px #f7edce,0 0 0 3px #503b2b!important}
 html body.eg.op-on{--a-mar-h:clamp(112px,15vh,150px)}
-html body.eg.op-on #argo-mar{background:linear-gradient(180deg,#337f91 0%,#215f79 60%,#153c5d 100%)!important;border-top:3px double #a6d6cf!important;box-shadow:inset 0 6px 18px rgba(21,62,91,.4)!important;padding:12px 2.2% 14px!important;gap:10px!important;grid-template-columns:minmax(0,1fr)!important}
+html body.eg.op-on #argo-mar{background:linear-gradient(180deg,#337f91 0%,#215f79 60%,#153c5d 100%)!important;border-top:3px double #a6d6cf!important;box-shadow:inset 0 6px 18px rgba(21,62,91,.4)!important;padding:12px 2.2% 14px!important;gap:10px!important;grid-template-columns:minmax(124px,.82fr) minmax(0,6fr) minmax(124px,.82fr)!important}
 html body.eg.op-on #argo-mar::before{right:-360px!important;height:80%!important;bottom:6px!important;background:url("img/acampamento/ra-nilo-corrente-distante.svg?v=1") 0 100%/360px 100% repeat-x!important;animation:raNilo 32s linear infinite reverse!important;opacity:.72!important}
 html body.eg.op-on #argo-mar::after{right:-360px!important;height:44%!important;bottom:0!important;background:url("img/acampamento/ra-nilo-ondas.svg?v=1") 0 100%/360px 100% repeat-x!important;animation:raNilo 22s linear infinite!important;opacity:1!important}
 @keyframes raNilo{from{transform:translateX(0)}to{transform:translateX(-360px)}}
@@ -5511,7 +5511,7 @@ body.eg #mt-enc .mt-bt{border-color:#c9a23a!important;background:rgba(30,58,110,
 
 /* ===== Mar e fases padronizados nos três temas (estética das ondas da barca de Rá) ===== */
 html body.op-on #rod-apps#rod-apps #argo-mar{display:block!important;position:absolute!important;left:0!important;right:0!important;bottom:0!important;height:66px!important;z-index:4!important;overflow:hidden!important;pointer-events:auto!important}
-html body.op-on #rod-apps#rod-apps #argo-mar{display:grid!important;position:absolute!important;left:0!important;right:0!important;bottom:0!important;height:var(--a-mar-h)!important;box-sizing:border-box!important;padding:12px 4.5% 16px!important;grid-template-columns:minmax(0,1fr)!important;align-items:center!important;gap:13px!important;color:#f8f1de!important;background:linear-gradient(180deg,#347788,#205a71 55%,#17475f)!important;border-top:2px solid #8fc1c4!important;isolation:isolate!important;overflow:hidden!important;z-index:4!important}
+html body.op-on #rod-apps#rod-apps #argo-mar{display:grid!important;position:absolute!important;left:0!important;right:0!important;bottom:0!important;height:var(--a-mar-h)!important;box-sizing:border-box!important;padding:12px 4.5% 16px!important;grid-template-columns:minmax(135px,.9fr) minmax(0,5fr) minmax(135px,.9fr)!important;align-items:center!important;gap:13px!important;color:#f8f1de!important;background:linear-gradient(180deg,#347788,#205a71 55%,#17475f)!important;border-top:2px solid #8fc1c4!important;isolation:isolate!important;overflow:hidden!important;z-index:4!important}
 html body.op-on #rod-apps#rod-apps #argo-mar::before,html body.op-on #rod-apps#rod-apps #argo-mar::after{content:""!important;position:absolute!important;left:0!important;right:-240px!important;bottom:0!important;height:48px!important;background:url("img/acampamento/argo-mar-ondas.svg?v=1") 0 100%/240px 54px repeat-x!important;z-index:-1!important;opacity:.68!important;animation:argoCor 18s linear infinite!important;pointer-events:none!important;top:auto!important}
 html body.op-on #rod-apps#rod-apps #argo-mar::after{bottom:13px!important;opacity:.24!important;animation-duration:28s!important;animation-direction:reverse!important;top:auto!important}
 @media (prefers-reduced-motion:reduce){html body.op-on #rod-apps#rod-apps #argo-mar::before,html body.op-on #rod-apps#rod-apps #argo-mar::after{animation:none!important;top:auto!important}}
@@ -5529,9 +5529,9 @@ html body.op-on #rod-apps#rod-apps #argo-mar .rg-li span{white-space:nowrap!impo
 html body.op-on #rod-apps#rod-apps #argo-mar .rg-li.passou{opacity:.62!important}
 html body.op-on #rod-apps#rod-apps #argo-mar .rg-li.agora{outline:2px solid #e8bd70!important;outline-offset:1px!important;background:linear-gradient(165deg,#fff2cd,#e1c88e)!important}
 html body.op-on #rod-apps#rod-apps #argo-mar .rg-li.agora i{font:700 8.5px var(--mono,monospace)!important;font-style:normal!important;letter-spacing:.1em!important;text-transform:uppercase!important;color:#b4463a!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
-@media (max-width:1099px){html body.op-on #rod-apps#rod-apps #argo-mar .rg-box{display:none!important}}
+@media (max-width:1000px){html body.op-on #rod-apps#rod-apps #argo-mar{grid-template-columns:1fr!important}}
 @media (max-width:1000px){html body.op-on #rod-apps#rod-apps #argo-mar .rg-box{display:none!important}}
-html body.op-on #rod-apps#rod-apps #argo-mar{background:linear-gradient(180deg,#337f91 0%,#215f79 60%,#153c5d 100%)!important;border-top:3px double #a6d6cf!important;box-shadow:inset 0 6px 18px rgba(21,62,91,.4)!important;padding:12px 2.2% 14px!important;gap:10px!important;grid-template-columns:minmax(0,1fr)!important}
+html body.op-on #rod-apps#rod-apps #argo-mar{background:linear-gradient(180deg,#337f91 0%,#215f79 60%,#153c5d 100%)!important;border-top:3px double #a6d6cf!important;box-shadow:inset 0 6px 18px rgba(21,62,91,.4)!important;padding:12px 2.2% 14px!important;gap:10px!important;grid-template-columns:minmax(124px,.82fr) minmax(0,6fr) minmax(124px,.82fr)!important}
 html body.op-on #rod-apps#rod-apps #argo-mar::before{right:-360px!important;height:80%!important;bottom:6px!important;background:url("img/acampamento/ra-nilo-corrente-distante.svg?v=1") 0 100%/360px 100% repeat-x!important;animation:raNilo 32s linear infinite reverse!important;opacity:.72!important;top:auto!important}
 html body.op-on #rod-apps#rod-apps #argo-mar::after{right:-360px!important;height:44%!important;bottom:0!important;background:url("img/acampamento/ra-nilo-ondas.svg?v=1") 0 100%/360px 100% repeat-x!important;animation:raNilo 22s linear infinite!important;opacity:1!important;top:auto!important}
 @media (prefers-reduced-motion:reduce){html body.op-on #rod-apps#rod-apps #argo-mar::before,html body.op-on #rod-apps#rod-apps #argo-mar::after{animation:none!important;top:auto!important}}
@@ -6407,45 +6407,53 @@ html body.ct-painel:has(#hero-box .bn-rod.ver, #rod-pan:not([hidden])) :is(#pain
 @media(max-width:1380px){#ct-barra .ct-abas small{display:none}#ct-barra .ct-abas>button{padding:5px 8px!important}}
 @media(max-width:1120px){#ct-barra .ct-abas svg{display:none}#ct-barra .ct-abas b{font-size:12px;letter-spacing:0}#ct-barra .ct-abas>button{padding:5px 6px!important}}
 @media(max-width:860px){#ct-barra .ct-abas b{display:none}#ct-barra .ct-abas svg{display:block}#ct-barra>.ct-abas{max-width:calc(100vw - 60px)}}
-/* ======================= Colunas laterais do Posto (44): diário de bordo e vigia =======================
-   Três velas no convés; casco e mar recuam --op-lat-e/--op-lat-d de cada lado  e as colunas ocupam
-   as laterais de alto a baixo (o recuo do #rod-apps está no 28). As duas caixas do mar (Rota da travessia e vigia · próximo), o cartão de registro
-   rápido (.cr-pop) e a ronda (#cx-ronda) encaixam nas colunas; --ol-t é o topo do convés, medido no 44. */
+/* ======================= Posto (44): placar do campista e cartões laterais situacionais =======================
+   Três velas no convés; casco e mar recuam --op-lat-e/--op-lat-d (o recuo do #rod-apps está no 28). As margens ficam
+   livres: o registro rápido (.cr-pop) e a ronda (#cx-ronda) abrem nelas, logo acima do casco (--ol-b, medido no 44),
+   e o Píthos abre na margem direita pelo botão do topo (body.op-pithos). --ol-t é o topo do convés. */
 body.op-on{--op-lat-e:0px;--op-lat-d:0px}
-.op-lat{display:none}
-/* telas médias: só a coluna do vigia (com o Píthos); a Rota fica no mar e o registro rápido abre no casco */
 @media(min-width:1100px){
  body.op-on{--op-lat-d:clamp(196px,17vw,250px)}
  body.op-on #modo-op .op-g{margin-right:var(--op-lat-d)!important}
- body.op-on #modo-op>.op-lat-d{display:flex}
- html body.op-on #rod-apps#rod-apps #argo-mar .rg-box:first-child{display:none!important}
+ body.op-on #cx-ronda{left:auto!important;right:18px!important;top:auto!important;bottom:var(--ol-b,290px)!important;width:max(calc(var(--op-lat-d) - 30px),240px)!important;max-width:none!important;box-sizing:border-box;
+  flex-direction:column;align-items:stretch;padding:12px!important;border-radius:10px!important;animation:olDir .22s ease-out both}
+ body.op-on #cx-ronda .rd-bt{flex-wrap:wrap}
 }
-/* telas largas: as duas colunas */
 @media(min-width:1360px){
  body.op-on{--op-lat-e:clamp(196px,14vw,320px);--op-lat-d:clamp(196px,14vw,320px)}
  body.op-on #modo-op .op-g{margin-left:var(--op-lat-e)!important}
- body.op-on #modo-op>.op-lat-e{display:flex}
- html body.op-on #rod-apps#rod-apps #argo-mar .rg-box:first-child{display:flex!important;position:fixed!important;left:24px!important;top:calc(var(--ol-t,76px) + 30px)!important;width:calc(var(--op-lat-e) - 44px)!important;height:84px!important;box-sizing:border-box!important;margin:0!important;overflow:hidden!important}
- /* cartão de registro rápido: abre na coluna da esquerda, por cima da lista */
- html body.op-on #rod-apps .cr-pop{position:fixed!important;left:24px!important;right:auto!important;top:calc(var(--ol-t,76px) + 124px)!important;bottom:auto!important;width:calc(var(--op-lat-e) - 44px)!important;min-width:0!important;max-width:none!important;box-sizing:border-box}
+ html body.op-on #rod-apps .cr-pop{position:fixed!important;left:18px!important;right:auto!important;top:auto!important;bottom:var(--ol-b,290px)!important;width:calc(var(--op-lat-e) - 30px)!important;
+  min-width:0!important;max-width:none!important;box-sizing:border-box;animation:olEsq .22s ease-out both}
 }
-@media(min-width:1100px){
- body.op-on #modo-op>.op-lat{flex-direction:column;gap:8px;position:fixed;z-index:2;top:var(--ol-t,76px);bottom:14px;box-sizing:border-box;padding:10px 10px 12px;
-  border:1.5px solid var(--placa-k,#8a5a14);border-radius:6px;background:#f6eedb;box-shadow:0 0 0 3px var(--placa-ring,#f4ead2),0 0 0 4.5px var(--placa-aro,#8a5a14),0 10px 22px -12px rgba(40,25,10,.5);overflow:hidden}
- body.op-on #modo-op>.op-lat-e{left:14px;width:calc(var(--op-lat-e) - 24px)}
- body.op-on #modo-op>.op-lat-d{right:14px;width:calc(var(--op-lat-d) - 24px)}
- /* papel claro nos três temas (a moldura leva a cor da placa do tema) */
- body.op-on #modo-op>.op-lat .ol-k{flex:none;font:700 8.5px var(--mono,monospace);letter-spacing:.18em;text-transform:uppercase;color:#8a6a3a;text-align:center}
- body.op-on #modo-op>.op-lat .ol-vaga{flex:none;height:84px}
- body.op-on #modo-op>.op-lat .ol-c{flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin;display:flex;flex-direction:column;gap:8px}
- body.op-on #modo-op>.op-lat .op-cap{flex-wrap:wrap}
- body.op-on #modo-op>.op-lat .op-cap button{flex:1}
- body.op-on #modo-op>.op-lat .ol-reg{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px}
- body.op-on #modo-op>.op-lat .ol-reg li{display:flex;gap:6px;font:12.5px/1.3 Georgia,serif;color:#2a2418}
- body.op-on #modo-op>.op-lat .ol-reg li b{flex:none;font:700 11px var(--mono,monospace);color:#9a6b3a}
- /* caixa "vigia · próximo" do mar na vaga do topo da coluna da direita */
- html body.op-on #rod-apps#rod-apps #argo-mar .rg-box:last-child{position:fixed!important;right:24px!important;left:auto!important;top:calc(var(--ol-t,76px) + 30px)!important;width:calc(var(--op-lat-d) - 44px)!important;height:84px!important;box-sizing:border-box!important;margin:0!important;overflow:hidden!important}
- /* ronda e falas do vigia: na coluna da direita */
- body.op-on #cx-ronda{left:auto!important;right:24px!important;top:calc(var(--ol-t,76px) + 124px)!important;bottom:auto!important;width:calc(var(--op-lat-d) - 44px)!important;max-width:none!important;box-sizing:border-box;flex-direction:column;align-items:stretch;padding:12px!important;border-radius:8px!important}
- body.op-on #cx-ronda .rd-bt{flex-wrap:wrap}
-}
+@keyframes olEsq{from{opacity:0;transform:translateX(-14px)}to{opacity:1;transform:none}}
+@keyframes olDir{from{opacity:0;transform:translateX(14px)}to{opacity:1;transform:none}}
+/* Píthos: só quando chamado; cartão leve, sem moldura de vela */
+.op-lat{display:none}
+body.op-on.op-pithos #modo-op>.op-lat-d{display:flex;flex-direction:column;gap:8px;position:fixed;z-index:3;right:14px;top:var(--ol-t,76px);max-height:calc(100vh - var(--ol-t,76px) - 14px);
+ width:280px;box-sizing:border-box;padding:12px 12px 14px;background:rgba(250,245,232,.97);border:1px solid rgba(120,85,40,.28);border-radius:10px;
+ box-shadow:0 16px 32px -16px rgba(40,25,10,.5);animation:olDir .22s ease-out both}
+#modo-op>.op-lat-d .ol-x{position:absolute;top:6px;right:6px;width:24px;height:24px;border:0;border-radius:50%;background:transparent;color:#7a6248;font:600 12px var(--sans,system-ui);cursor:pointer}
+#modo-op>.op-lat-d .ol-x:hover{background:rgba(120,85,40,.12)}
+#modo-op>.op-lat-d .ol-c{min-height:0;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin;display:flex;flex-direction:column;gap:8px;padding-right:4px}
+#modo-op>.op-lat-d .op-cap{flex-wrap:wrap}
+#modo-op>.op-lat-d .op-cap button{flex:1}
+/* com margem lateral, o cartão cabe nela inteiro (fora da popa e do convés) */
+@media(min-width:1100px){body.op-on.op-pithos #modo-op>.op-lat-d{width:calc(var(--op-lat-d) - 24px)}}
+body.op-pithos #modo-op .op-pith{background:rgba(138,90,20,.14)!important}
+/* placar do campista no topo: emblema (tema), nível e XP, dracmas, sequência, claro/escuro */
+#modo-op .op-hud{display:inline-flex;align-items:center}
+#modo-op .op-hud>*{display:inline-flex;align-items:center;gap:6px;padding:0 10px;height:100%;white-space:nowrap}
+#modo-op .op-hud button{border:0;background:transparent;cursor:pointer;font:inherit;color:inherit}
+#modo-op .op-hud button:hover{background:rgba(138,90,20,.1)}
+#modo-op .op-hud .oh-emb{padding:0 6px 0 8px}
+#modo-op .op-hud .oh-emb img{width:24px;height:24px;object-fit:contain;display:block}
+#modo-op .op-hud .oh-nv b{font:600 12.5px Georgia,serif;font-variant:small-caps;letter-spacing:.03em}
+#modo-op .op-hud .oh-bar{display:block;width:64px;height:6px;border-radius:3px;background:rgba(90,63,44,.16);overflow:hidden}
+#modo-op .op-hud .oh-bar i{display:block;height:100%;background:linear-gradient(90deg,#d9a441,#b5762a);border-radius:3px}
+#modo-op .op-hud .oh-nv small,#modo-op .op-hud .oh-sq small{font:600 9px var(--mono,monospace);letter-spacing:.06em;color:#8a6f55}
+#modo-op .op-hud .oh-dr{font:700 12.5px var(--mono,monospace);color:#8a5a14}
+#modo-op .op-hud .oh-dr i{font-style:normal;color:#c9962b}
+#modo-op .op-hud .oh-sq{font:700 12.5px var(--mono,monospace);gap:3px}
+#modo-op .op-hud .oh-luz svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+#modo-op .op-hud>*+*{border-left:1px solid rgba(90,63,44,.22)}
+@media(max-width:900px){#modo-op .op-hud .oh-bar,#modo-op .op-hud .oh-nv small{display:none}}
