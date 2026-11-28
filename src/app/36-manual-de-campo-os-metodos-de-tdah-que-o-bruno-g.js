@@ -169,7 +169,7 @@ function mfCard(t){var tp=mfTipo(t[0]);return '<button type="button" class="mf-c
 function mfPainelHTML(){var q=(CX.st.mfq||'').toLowerCase();
  return '<header class="mf-cab">'+'<div class="mf-sk">'+cxAv('calmo')+'<div><small>'+esc(MF_NM[1])+'</small><b>'+esc(MF_NM[0])+'</b></div></div>'+
   '<input type="search" class="mf-q" data-mfq placeholder="procurar: travei, prioridade, dormir…" value="'+esc(CX.st.mfq||'')+'"></header>'+
-  '<div class="mf-paineis">'+mfGrupos().map(function(g,i){return '<section class="mf-painel" style="--pi:'+i+'"><h3>'+esc(g[0])+'</h3><p>'+esc(g[1])+'</p><div class="mf-cards">'+g[2].map(mfCard).join('')+'</div></section>';}).join('')+'</div>';}
+  '<div class="mf-paineis">'+(typeof cadPainelHTML==='function'?cadPainelHTML():'')+mfGrupos().map(function(g,i){return '<section class="mf-painel" style="--pi:'+i+'"><h3>'+esc(g[0])+'</h3><p>'+esc(g[1])+'</p><div class="mf-cards">'+g[2].map(mfCard).join('')+'</div></section>';}).join('')+'</div>';}
 function mfFiltra(){var w=cxEl(),q=(CX.st.mfq||'').toLowerCase().trim();
  [].forEach.call(w.querySelectorAll('.mf-card'),function(c){c.hidden=!!q&&c.getAttribute('data-mfbusca').indexOf(q)<0;});
  [].forEach.call(w.querySelectorAll('.mf-painel'),function(s){s.hidden=!!q&&!s.querySelector('.mf-card:not([hidden])');});}
