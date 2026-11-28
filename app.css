@@ -6404,6 +6404,11 @@ html body.ct-painel:has(#hero-box .bn-rod.ver, #rod-pan:not([hidden])) :is(#pain
 #ct-barra .ct-abas small{font:600 8px var(--mono,monospace);letter-spacing:.1em;white-space:nowrap}
 #ct-barra>.ct-tx{position:absolute;top:14px;right:var(--ct-L);width:36px;height:36px;border-radius:50%;pointer-events:auto;cursor:pointer;
  border:1.5px solid var(--placa-k,#8a5a14);background:var(--placa-bg,#f4ead2);color:var(--placa-tx,#2a2418);font:600 15px var(--sans,system-ui)}
+/* ↗ abre o painel numa aba própria do navegador (42/43) */
+#ct-barra>.ct-ab{position:absolute;top:14px;right:calc(var(--ct-L) + 44px);width:36px;height:36px;box-sizing:border-box;border-radius:50%;pointer-events:auto;display:grid;place-items:center;text-decoration:none;
+ border:1.5px solid var(--placa-k,#8a5a14);background:var(--placa-bg,#f4ead2);color:var(--placa-tx,#2a2418);font:600 16px var(--sans,system-ui)}
+#ct-barra>.ct-ab[hidden]{display:none}
+#ct-barra>.ct-ab:hover,#ct-barra>.ct-tx:hover{background:color-mix(in srgb,var(--placa-k,#8a5a14) 14%,var(--placa-bg,#f4ead2))}
 @media(max-width:1380px){#ct-barra .ct-abas small{display:none}#ct-barra .ct-abas>button{padding:5px 8px!important}}
 @media(max-width:1120px){#ct-barra .ct-abas svg{display:none}#ct-barra .ct-abas b{font-size:12px;letter-spacing:0}#ct-barra .ct-abas>button{padding:5px 6px!important}}
 @media(max-width:860px){#ct-barra .ct-abas b{display:none}#ct-barra .ct-abas svg{display:block}#ct-barra>.ct-abas{max-width:calc(100vw - 60px)}}

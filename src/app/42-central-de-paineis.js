@@ -20,13 +20,22 @@ function ctAtiva(){var pd=document.getElementById('painel-dir');if(!pd||!pd.clas
  if(k==='lap')return (pd.classList.contains('eu-um')&&pd.dataset.euk)||'conc';return k;}
 function ctPinta(){var pd=document.getElementById('painel-dir');if(!pd)return;var k=ctAtiva();pd.classList.toggle('central',!!k&&CT_PD.indexOf(k)>=0);try{ctMoldura();}catch(e){}}
 document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-ct]');if(!b)return;e.preventDefault();e.stopPropagation();
- if(b.getAttribute('aria-selected')==='true')return;var k=b.getAttribute('data-ct'),pd=document.getElementById('painel-dir');
+ if(b.getAttribute('aria-selected')==='true')return;ctVai(b.getAttribute('data-ct'));},true);
+/* abre uma aba da central (clique na barra ou endereço #central=chave) */
+function ctVai(k){var pd=document.getElementById('painel-dir');
  if(CT_TP.indexOf(k)>=0){try{pdFecha();}catch(z){}try{var cx0=document.getElementById('cx');if(cx0&&cx0.classList.contains('on'))cxFecha();}catch(z){}ctTemploAbre(k);return;}
  ctTemploFecha();
  if(k==='manual'){try{pdFecha();}catch(z){}mfAbre();try{ctMoldura();}catch(z){}return;}
  try{var cx=document.getElementById('cx');if(cx&&cx.classList.contains('on'))cxFecha();}catch(z){}
  if(pd){pd.classList.remove('eu-um');delete pd.dataset.euk;}
- if(k==='conc'||k==='inst'||k==='ler')euSoloAbre(k);else pdAbre(k);try{ctMoldura();}catch(z){}},true);
+ if(k==='conc'||k==='inst'||k==='ler')euSoloAbre(k);else pdAbre(k);try{ctMoldura();}catch(z){}}
+/* aba própria do navegador: cada painel (menos Mural e Programação, que são o templo) tem endereço #central=chave.
+   O ↗ da barra (43) abre esse endereço numa aba com nome fixo, então clicar de novo volta para a mesma aba. */
+var CT_FORA=['mural','prog'];
+function ctLink(k){return location.pathname+location.search+'#central='+k;}
+function ctHash(){var m=location.hash.match(/^#central=([a-z0-9]+)/);if(!m)return;var k=m[1];if(!CT_ABAS.some(function(a){return a[0]===k;}))return;
+ var n=0;(function vai(){if(document.getElementById('hero-box')&&document.body.classList.contains('op-on')||++n>30){try{ctVai(k);}catch(e){}return;}setTimeout(vai,400);})();}
+window.addEventListener('hashchange',ctHash);setTimeout(ctHash,900);
 /* Templo: Mural, Programação e Rastreio abrem por cima do operacional (body.ct-templo; no Rastreio, também body.ct-rast).
    Mural e Programação são as duas telas do templo (bnTelaSet, no 31); o Rastreio sai de baixo do templo e entra no miolo. */
 function ctTemploAbre(k){k=k||(BN_TELA==='prog'?'prog':'mural');var B=document.body;B.classList.toggle('ct-rast',k==='rast');

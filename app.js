@@ -15396,13 +15396,22 @@ function ctAtiva(){var pd=document.getElementById('painel-dir');if(!pd||!pd.clas
  if(k==='lap')return (pd.classList.contains('eu-um')&&pd.dataset.euk)||'conc';return k;}
 function ctPinta(){var pd=document.getElementById('painel-dir');if(!pd)return;var k=ctAtiva();pd.classList.toggle('central',!!k&&CT_PD.indexOf(k)>=0);try{ctMoldura();}catch(e){}}
 document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-ct]');if(!b)return;e.preventDefault();e.stopPropagation();
- if(b.getAttribute('aria-selected')==='true')return;var k=b.getAttribute('data-ct'),pd=document.getElementById('painel-dir');
+ if(b.getAttribute('aria-selected')==='true')return;ctVai(b.getAttribute('data-ct'));},true);
+/* abre uma aba da central (clique na barra ou endereço #central=chave) */
+function ctVai(k){var pd=document.getElementById('painel-dir');
  if(CT_TP.indexOf(k)>=0){try{pdFecha();}catch(z){}try{var cx0=document.getElementById('cx');if(cx0&&cx0.classList.contains('on'))cxFecha();}catch(z){}ctTemploAbre(k);return;}
  ctTemploFecha();
  if(k==='manual'){try{pdFecha();}catch(z){}mfAbre();try{ctMoldura();}catch(z){}return;}
  try{var cx=document.getElementById('cx');if(cx&&cx.classList.contains('on'))cxFecha();}catch(z){}
  if(pd){pd.classList.remove('eu-um');delete pd.dataset.euk;}
- if(k==='conc'||k==='inst'||k==='ler')euSoloAbre(k);else pdAbre(k);try{ctMoldura();}catch(z){}},true);
+ if(k==='conc'||k==='inst'||k==='ler')euSoloAbre(k);else pdAbre(k);try{ctMoldura();}catch(z){}}
+/* aba própria do navegador: cada painel (menos Mural e Programação, que são o templo) tem endereço #central=chave.
+   O ↗ da barra (43) abre esse endereço numa aba com nome fixo, então clicar de novo volta para a mesma aba. */
+var CT_FORA=['mural','prog'];
+function ctLink(k){return location.pathname+location.search+'#central='+k;}
+function ctHash(){var m=location.hash.match(/^#central=([a-z0-9]+)/);if(!m)return;var k=m[1];if(!CT_ABAS.some(function(a){return a[0]===k;}))return;
+ var n=0;(function vai(){if(document.getElementById('hero-box')&&document.body.classList.contains('op-on')||++n>30){try{ctVai(k);}catch(e){}return;}setTimeout(vai,400);})();}
+window.addEventListener('hashchange',ctHash);setTimeout(ctHash,900);
 /* Templo: Mural, Programação e Rastreio abrem por cima do operacional (body.ct-templo; no Rastreio, também body.ct-rast).
    Mural e Programação são as duas telas do templo (bnTelaSet, no 31); o Rastreio sai de baixo do templo e entra no miolo. */
 function ctTemploAbre(k){k=k||(BN_TELA==='prog'?'prog':'mural');var B=document.body;B.classList.toggle('ct-rast',k==='rast');
@@ -15438,10 +15447,12 @@ function ctMoldura(){var at=ctAba(),B=document.body,on=!!at,w=document.querySele
  var fd=document.getElementById('ct-fundo'),br=document.getElementById('ct-barra');
  if(!on){if(fd)fd.hidden=true;if(br)br.hidden=true;if(w&&w._ctz){w._ctz=0;['zoom','left','top','width','height'].forEach(function(p){w.style.removeProperty(p);});}return;}
  if(!fd){fd=document.createElement('div');fd.id='ct-fundo';document.body.appendChild(fd);fd.addEventListener('click',ctFecha);}
- if(!br){br=document.createElement('div');br.id='ct-barra';br.setAttribute('data-notr','');br.innerHTML='<nav class="ct-abas" role="tablist"></nav><button type="button" class="ct-tx" aria-label="fechar">✕</button>';document.body.appendChild(br);
+ if(!br){br=document.createElement('div');br.id='ct-barra';br.setAttribute('data-notr','');br.innerHTML='<nav class="ct-abas" role="tablist"></nav><a class="ct-ab" target="_blank" rel="noopener" title="abrir este painel numa aba própria do navegador" aria-label="abrir numa aba própria">↗</a><button type="button" class="ct-tx" aria-label="fechar">✕</button>';document.body.appendChild(br);
   br.querySelector('.ct-tx').addEventListener('click',ctFecha);}
  fd.hidden=false;br.hidden=false;
  var nav=br.querySelector('.ct-abas'),h=ctAbasHTML(at);if(nav._h!==h){nav.innerHTML=h;nav._h=h;}
+ /* ↗: o painel aberto numa aba própria (42, ctLink); Mural e Programação ficam no templo */
+ var ab=br.querySelector('.ct-ab');if(ab){var fora=CT_FORA.indexOf(at)>=0;ab.hidden=fora;if(!fora){var u=ctLink(at);if(ab.getAttribute('href')!==u){ab.setAttribute('href',u);ab.setAttribute('target','astro-'+at);}}}
  /* folha: mesma largura de sempre; zoom para o #hero-box inteiro caber na altura (as medidas da .wrap vão divididas pelo zoom) */
  var L=Math.max(16,innerWidth/2-620),W=innerWidth-2*L,H=innerHeight-28;if(innerWidth<=760){L=0;W=innerWidth;H=innerHeight;}
  var z=w.currentCSSZoom||1,hh=hb.getBoundingClientRect().height/z,k=Math.min(1,Math.max(.55,Math.floor(H/hh*100)/100));

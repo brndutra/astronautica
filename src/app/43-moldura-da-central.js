@@ -21,10 +21,12 @@ function ctMoldura(){var at=ctAba(),B=document.body,on=!!at,w=document.querySele
  var fd=document.getElementById('ct-fundo'),br=document.getElementById('ct-barra');
  if(!on){if(fd)fd.hidden=true;if(br)br.hidden=true;if(w&&w._ctz){w._ctz=0;['zoom','left','top','width','height'].forEach(function(p){w.style.removeProperty(p);});}return;}
  if(!fd){fd=document.createElement('div');fd.id='ct-fundo';document.body.appendChild(fd);fd.addEventListener('click',ctFecha);}
- if(!br){br=document.createElement('div');br.id='ct-barra';br.setAttribute('data-notr','');br.innerHTML='<nav class="ct-abas" role="tablist"></nav><button type="button" class="ct-tx" aria-label="fechar">✕</button>';document.body.appendChild(br);
+ if(!br){br=document.createElement('div');br.id='ct-barra';br.setAttribute('data-notr','');br.innerHTML='<nav class="ct-abas" role="tablist"></nav><a class="ct-ab" target="_blank" rel="noopener" title="abrir este painel numa aba própria do navegador" aria-label="abrir numa aba própria">↗</a><button type="button" class="ct-tx" aria-label="fechar">✕</button>';document.body.appendChild(br);
   br.querySelector('.ct-tx').addEventListener('click',ctFecha);}
  fd.hidden=false;br.hidden=false;
  var nav=br.querySelector('.ct-abas'),h=ctAbasHTML(at);if(nav._h!==h){nav.innerHTML=h;nav._h=h;}
+ /* ↗: o painel aberto numa aba própria (42, ctLink); Mural e Programação ficam no templo */
+ var ab=br.querySelector('.ct-ab');if(ab){var fora=CT_FORA.indexOf(at)>=0;ab.hidden=fora;if(!fora){var u=ctLink(at);if(ab.getAttribute('href')!==u){ab.setAttribute('href',u);ab.setAttribute('target','astro-'+at);}}}
  /* folha: mesma largura de sempre; zoom para o #hero-box inteiro caber na altura (as medidas da .wrap vão divididas pelo zoom) */
  var L=Math.max(16,innerWidth/2-620),W=innerWidth-2*L,H=innerHeight-28;if(innerWidth<=760){L=0;W=innerWidth;H=innerHeight;}
  var z=w.currentCSSZoom||1,hh=hb.getBoundingClientRect().height/z,k=Math.min(1,Math.max(.55,Math.floor(H/hh*100)/100));
